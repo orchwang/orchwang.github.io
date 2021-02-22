@@ -11,7 +11,8 @@ plugins:
   - jekyll-feed
 
 sass:
-    # style: compact
+  sass_dir: _sass
+  style: compressed
 
 # Exclude from processing.
 # The following items will not be processed, by default.
