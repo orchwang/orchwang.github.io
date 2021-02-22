@@ -1,24 +1,3 @@
-
-/*!
-
-=========================================================
-* {{ site.product.name }} {{ site.product.name_long }} - v{{ site.product.version }}
-=========================================================
-
-* Product Page: {{ site.product.download }}
-* Copyright {{ 'now' | date: "%Y" }} {{ site.author }} ({{ site.website.url }})
-* Licensed under MIT ({{ site.product.license }})
-
-* Coded by www.creative-tim.com
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-
-// {{ site.product.name }} components
-
 @import "functions";
 @import "mixins";
 
