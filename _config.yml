@@ -11,7 +11,7 @@ plugins:
   - jekyll-feed
 
 sass:
-  sass_dir: _scss
+  sass_dir: _lib
   style: compressed
 
 # Exclude from processing.
