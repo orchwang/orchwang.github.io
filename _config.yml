@@ -3,7 +3,7 @@ email: hwang.jongtaek@gmail.com
 description: >- 
   황오크의 개인 위키
 baseurl: "/"
-url: "https://orchwang.github.io"
+url: "https://wiki.orchwang.dev"
 twitter_username: orchwang
 github_username:  orchwang
 
@@ -11,7 +11,7 @@ plugins:
   - jekyll-feed
 
 sass:
-    style: compact
+    # style: compact
 
 # Exclude from processing.
 # The following items will not be processed, by default.
