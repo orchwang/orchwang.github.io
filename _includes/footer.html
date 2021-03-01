@@ -9,12 +9,12 @@
 
         {%- if site.author -%}
           {{ site.author | escape }}
-        {%- else -%}
-          {{ site.title | escape }}
         {%- endif -%}
+
         {%- if site.email -%}
           <a class="u-email" href="mailto:{{ site.email }}">{{ site.email }}</a>
         {%- endif -%}
+        
       </div>
       <div class="col-md-6">
         <p>{{- site.description | escape -}}</p>
