@@ -1,12 +1,17 @@
 ---
 layout: post
-title:  "유닉스의 탄생"
-date:   2021-02-21 07:11:25 +0900
+title: "유닉스의 탄생"
+date: 2021-02-21 07:11:25 +0900
 categories: book
 tags: unix bell-labs
 published: false
 ---
+
 # 왜 읽었나?
+
+```
+code
+```
 
 # 벨 연구소
 

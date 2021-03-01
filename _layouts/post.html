@@ -6,7 +6,8 @@ layout: default
   <div class="container">
 
     <div class="row justify-content-center">
-      <div class="col-lg-12">
+      <div class="col-lg-12 py-4">
+        
         <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
         <p class="post-meta">
         <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
@@ -21,7 +22,9 @@ layout: default
 
     <div class="row justify-content-center">
       <div class="col-lg-12">
-        {{ content }}
+        <article class="markdown-body">
+          {{ content }}
+        </article>
       </div>
     </div>
 
