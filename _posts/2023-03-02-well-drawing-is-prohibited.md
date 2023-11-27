@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "잘 그리기 금지 를 읽고"
-date: 2023-02-23 06:00:00 +0900
+date: 2023-11-27 23:24:00 +0900
 categories: book
 tags: drawing, how-to
 published: true
