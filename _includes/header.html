@@ -1,11 +1,29 @@
-<nav class="navbar navbar-light bg-white">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <img src="/assets/img/brand/orchwang.png" alt="" width="60" class="d-inline-block align-top">
-    </a>
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="site-branding">
+                <a href="{{ '/' | relative_url }}" class="logo-link">
+                    <img src="{{ '/assets/images/logo/orchwang.png' | relative_url }}" alt="Orc Hwang Logo" class="site-logo">
+                </a>
+                <div class="branding-text">
+                    <a href="{{ '/' | relative_url }}" class="site-title">{{ site.title }}</a>
+                    <p class="site-description">{{ site.description }}</p>
+                </div>
+            </div>
 
-    <div class="d-flex">
-      
+            <nav class="main-navigation">
+                <ul class="nav-menu">
+                    <li><a href="{{ '/' | relative_url }}">홈</a></li>
+                    <li><a href="{{ '/pages/categories.html' | relative_url }}">카테고리</a></li>
+                    <li><a href="{{ '/pages/tags.html' | relative_url }}">태그</a></li>
+                    <li><a href="{{ '/pages/cv.html' | relative_url }}">CV</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="검색어를 입력하세요...">
+            <div id="search-results" class="search-results"></div>
+        </div>
     </div>
-  </div>
-</nav>
+</header>

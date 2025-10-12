@@ -1,0 +1,68 @@
+---
+layout: default
+title: 홈
+---
+
+<div class="home">
+    <section class="welcome-section">
+        <h1>{{ site.title }}</h1>
+        <p class="welcome-text">{{ site.description }}</p>
+        <p class="welcome-subtitle">개발 학습 과정을 기록하고, 지식을 체계적으로 관리합니다.</p>
+    </section>
+
+    {% if site.posts.size > 0 %}
+    <section class="recent-posts">
+        <h2>최근 포스트</h2>
+        <div class="posts-list">
+            {% for post in site.posts limit:10 %}
+            <article class="post-item">
+                <h3 class="post-item-title">
+                    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                </h3>
+                <div class="post-item-meta">
+                    <time datetime="{{ post.date | date_to_xmlschema }}">
+                        {{ post.date | date: "%Y년 %m월 %d일" }}
+                    </time>
+                    {% if post.tags %}
+                    <div class="post-item-tags">
+                        {% for tag in post.tags %}
+                        <a href="{{ site.baseurl }}/tags/{{ tag | slugify }}/" class="tag">{{ tag }}</a>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                {% if post.excerpt %}
+                <div class="post-item-excerpt">
+                    {{ post.excerpt | strip_html | truncate: 200 }}
+                </div>
+                {% endif %}
+            </article>
+            {% endfor %}
+        </div>
+    </section>
+    {% else %}
+    <section class="empty-state">
+        <h2>아직 포스트가 없습니다</h2>
+        <p>첫 포스트를 작성해보세요!</p>
+        <p>_posts 디렉토리에 마크다운 파일을 추가하면 됩니다.</p>
+    </section>
+    {% endif %}
+
+    <section class="quick-links">
+        <h2>바로가기</h2>
+        <div class="quick-links-grid">
+            <a href="{{ '/pages/tags.html' | relative_url }}" class="quick-link-card">
+                <h3>📚 태그</h3>
+                <p>태그별로 포스트를 찾아보세요</p>
+            </a>
+            <a href="{{ '/pages/categories.html' | relative_url }}" class="quick-link-card">
+                <h3>🗂️ 카테고리</h3>
+                <p>카테고리별로 포스트를 찾아보세요</p>
+            </a>
+            <a href="{{ '/pages/cv.html' | relative_url }}" class="quick-link-card">
+                <h3>👤 CV</h3>
+                <p>이력서 및 프로필</p>
+            </a>
+        </div>
+    </section>
+</div>

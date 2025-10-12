@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh pr diff:*)",
+      "Bash(gh pr comment:*)",
+      "Bash(gh pr review:*)",
+      "Bash(gh pr view:*)",
+      "mcp__github__get_pull_request",
+      "mcp__filesystem__read_multiple_files",
+      "mcp__filesystem__list_directory",
+      "Bash(python:*)",
+      "mcp__github__search_pull_requests",
+      "Bash(git add:*)",
+      "Bash(grep:*)",
+      "Bash(pip install:*)",
+      "WebFetch(domain:docs.allauth.org)",
+      "WebFetch(domain:github.com)",
+      "WebSearch",
+      "Bash(npm run build:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": ["github", "filesystem"]
+}

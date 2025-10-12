@@ -1,0 +1,20 @@
+---
+layout: default
+---
+
+<div class="cv-page">
+    <header class="cv-header">
+        <h1>{{ page.title }}</h1>
+        {% if page.subtitle %}
+        <p class="cv-subtitle">{{ page.subtitle }}</p>
+        {% endif %}
+    </header>
+
+    <div class="cv-content">
+        {{ content }}
+    </div>
+
+    <footer class="cv-footer">
+        <p>Last updated: {{ page.date | date: "%Y년 %m월 %d일" }}</p>
+    </footer>
+</div>
