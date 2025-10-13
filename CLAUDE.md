@@ -280,7 +280,7 @@ published: true
 - `date`: Must be in YYYY-MM-DD format and match the filename date
   - **Always use today's actual date** (not future dates)
   - Jekyll hides future-dated posts by default
-  - Example: If today is 2024-10-12, use `date: 2024-10-12`
+  - Example: If today is 2025-10-12, use `date: 2025-10-12`
 - `categories`: Use singular form, choose one primary category
 - `tags`: Use array format with square brackets
 - `published`: Controls post visibility

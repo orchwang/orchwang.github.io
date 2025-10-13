@@ -13,7 +13,7 @@ date: 2025-10-12
 # 황 종 택 (Jongtaek Hwang)
 
 - **Email:** orchwng@gmail.com
-- **Blog:** [https://blog.orchwang.dev/](https://blog.orchwang.dev/)
+- **Blog:** [https://wiki.orchwang.dev/](https://wiki.orchwang.dev/)
 - **LinkedIn:** [www.linkedin.com/in/orchwang](https://www.linkedin.com/in/orchwang)
 - **GitHub:** [https://github.com/orchwang](https://github.com/orchwang)
 
