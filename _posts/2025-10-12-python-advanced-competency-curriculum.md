@@ -5,6 +5,7 @@ date: 2025-10-12
 categories: Technology
 tags: [python, curriculum]
 published: true
+excerpt: "10년차 백엔드 엔지니어를 위한 Python 심화 커리큘럼. Internals, 성능 최적화, 아키텍처, 테스팅, 운영 자동화, 코드 품질까지 실전 중심으로 구성했습니다."
 ---
 
 아래는 10년차 백엔드 엔지니어 / Lead급 개발자가 갖춰야 할 "Python 심화 역량 커리큘럼" 입니다.

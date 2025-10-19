@@ -5,6 +5,7 @@ date: 2025-10-12
 categories: Roadmap
 tags: [python, career, engineer]
 published: true
+excerpt: "10년차 Python 백엔드 엔지니어 기술 역량 로드맵. 언어 코어, 아키텍처, 데이터베이스, 인프라, 운영, 협업 등 전 영역을 체크리스트로 정리했습니다."
 ---
 
 ## Python 엔지니어 기술 역량 로드맵

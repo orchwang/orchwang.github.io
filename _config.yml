@@ -9,6 +9,11 @@ email: your-email@example.com
 
 # Build settings
 markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    default_lang: text
 permalink: /:year/:month/:day/:title.html
 timezone: Asia/Seoul
 
