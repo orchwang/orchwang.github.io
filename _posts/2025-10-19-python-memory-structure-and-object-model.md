@@ -826,7 +826,7 @@ Python의 "자동" 메모리 관리가 모든 것을 해결해주는 것은 아�
 
 ### 다음 학습
 
-- GIL (Global Interpreter Lock)
+- [GIL (Global Interpreter Lock)](/2025/10/22/python-gil.html)
 - Bytecode와 실행 과정
 - Import 시스템 심화
 - Exception Internals
