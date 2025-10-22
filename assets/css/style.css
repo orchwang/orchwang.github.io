@@ -19,13 +19,26 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--bg-color);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    font-feature-settings: "kern" 1, "liga" 1;
+    word-break: keep-all;
+    word-wrap: break-word;
+    font-variation-settings: "wght" 400;
+}
+
+/* Font weight variations for Pretendard Variable */
+strong, b {
+    font-variation-settings: "wght" 600;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-variation-settings: "wght" 700;
 }
 
 .container {
@@ -488,7 +501,7 @@ mark {
     background-color: var(--bg-light);
     padding: 3px 8px;
     border-radius: 4px;
-    font-family: "SF Mono", "Monaco", "Cascadia Code", "Fira Code", "Consolas", "Courier New", monospace;
+    font-family: "Pretendard Variable", "D2Coding", "SF Mono", "Monaco", "Cascadia Code", "Fira Code", "Consolas", "Courier New", monospace;
     font-size: 0.88em;
     color: #d63384;
     border: 1px solid #e1e4e8;
