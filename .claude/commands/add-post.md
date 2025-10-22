@@ -45,6 +45,7 @@ date: YYYY-MM-DD
 categories: <category>
 tags: [tag1, tag2, tag3]
 published: true
+excerpt: "Brief 1-2 sentence summary of the post content."
 ---
 
 ## Introduction
@@ -94,6 +95,11 @@ Summary and wrap-up...
    - `categories:` is optional (omit the line if not provided)
    - `tags:` should be an array format: [tag1, tag2, tag3]
    - `published: true` must always be included for posts ready to display
+   - `excerpt:` should be a brief 1-2 sentence summary
+     - Must be quoted
+     - Describes what the post covers
+     - Used for SEO and post previews
+     - Always include this field by default
 
 5. **After Creating the File**:
    - Confirm the file was created
@@ -155,6 +161,7 @@ Creates: `_posts/2023-12-31-my-retrospective-2023.md`
 - If category is not provided, omit the `categories:` line entirely
 - Tags should always be provided (at least one tag)
 - **Always include `published: true` in the front matter**
+- **Always include `excerpt:` field** with a brief 1-2 sentence summary for SEO and post previews
 - Create the file in the `_posts/` directory
 - The post will be automatically picked up by Jekyll when the server is running
 - The filename date and front matter date must match
