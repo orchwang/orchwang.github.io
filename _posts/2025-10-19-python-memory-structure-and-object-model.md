@@ -168,8 +168,10 @@ print(f"str('hello'): {sys.getsizeof('hello')} bytes")
 print(f"list([]): {sys.getsizeof([])} bytes")
 print(f"list([1,2,3]): {sys.getsizeof([1,2,3])} bytes")
 
+{% raw %}
 print(f"dict({{}}): {sys.getsizeof({})} bytes")
 print(f"dict({{'a':1}}): {sys.getsizeof({'a':1})} bytes")
+{% endraw %}
 ```
 
 **getsizeof()의 한계점:**
