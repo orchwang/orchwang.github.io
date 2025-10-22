@@ -6,9 +6,9 @@
 
     // Configuration
     const CONFIG = {
-        contentSelector: '.post-content',
+        contentSelector: '.post-content, .cv-content',
         tocContainerSelector: '#toc-content',
-        tocSidebarSelector: '#post-toc',
+        tocSidebarSelector: '#post-toc, #cv-toc',
         headingSelector: 'h2, h3',
         activeClass: 'active',
         scrollOffset: 100, // Activate section when this far from top

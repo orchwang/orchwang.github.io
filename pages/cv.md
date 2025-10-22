@@ -1,21 +1,19 @@
 ---
 layout: cv
 title: CV
-subtitle: 10년차 Python 백엔드 개발자
+subtitle: Python Backend Engineer | HHKB & NeoVim
 permalink: /pages/cv.html
 date: 2025-10-12
 ---
 
-<div class="cv-logo-container">
-  <img src="{{ '/assets/images/logo/orchwang.png' | relative_url }}" alt="Orc Hwang Logo" class="cv-logo">
-</div>
+## Bio
 
-# 황 종 택 (Jongtaek Hwang)
-
+- **Name:** 황 종 택 (Jongtaek Hwang)
 - **Email:** orchwng@gmail.com
 - **Blog:** [https://wiki.orchwang.dev/](https://wiki.orchwang.dev/)
 - **LinkedIn:** [www.linkedin.com/in/orchwang](https://www.linkedin.com/in/orchwang)
 - **GitHub:** [https://github.com/orchwang](https://github.com/orchwang)
+- **Twitter:** [https://x.com/orchwang](https://x.com/orchwang)
 
 ## Professional Summary
 
@@ -29,9 +27,21 @@ date: 2025-10-12
 - **Product Mindset**: 단순 이슈 해결이 아닌 제품을 위한 코딩과 협업, 커뮤니케이션에 능함
 - **AI 협업**: 효과적인 AI와의 협업을 통해 개인 및 조직이 더욱 제품에 좋은 기여가 가능하도록 지원
 
+## Tools
+
+- **Keyboard:**
+  - [Happy Hacking Professional HYBRID White](https://happyhackingkb.com/jp/products/hybrid/)
+  - [Happy Hacking Professional HYBRID Type-S Snow White](https://happyhackingkb.com/jp/products/hybrid_types/)
+  - [Keychron Q60 Pro Max](https://www.keychron.com/collections/keychron-q-max-series-keyboard/products/keychron-q60-max-qmk-via-wireless-custom-mechanical-keyboard)
+- **IDE:**
+  - [NvChad (NeoVim Wrapper)](https://nvchad.com/)
+  - VSCode with VimMode
+
 ## Work Experience
 
-**총 경력: 10년 7개월**
+### 총 경력
+
+- {{ site.career_start_date | career_duration }}
 
 ### **데이터메이커** (2024.01 - 재직중, 1년 10개월)
 
@@ -63,76 +73,71 @@ date: 2025-10-12
 
 ## Technical Skills
 
-### Programming Languages & Frameworks
+### 🐍 Programming Languages & Frameworks
 
-- **Primary:**
-  - `Python`
-  - `Django`
-  - `FastAPI`
-  - `DRF (Django REST Framework)`
-- **Secondary:**
-  - `JavaScript`
-  - `Java`
+| Level | Technology |
+|-------|-----------|
+| **Primary** | Python, Django, FastAPI, DRF (Django REST Framework) |
+| **Secondary** | JavaScript, Java |
 
-### Databases & Caching
+### 💾 Databases & Caching
 
-- `MySQL`
-- `PostgreSQL`
-- `SQL`
-- `Redis`
-- `Elasticsearch`
+| Technology | Type |
+|-----------|------|
+| MySQL, PostgreSQL | Relational Database |
+| Redis | In-Memory Cache |
+| Elasticsearch | Search Engine |
 
-### Cloud & Infrastructure
+### ☁️ Cloud & Infrastructure
 
-- **AWS:**
-  - `EC2`
-  - `ECS`
-  - `RDS`
-  - `S3`
-  - `SQS`
-  - `Athena`
-  - `Lambda`
-  - `Firehose`
-- **IaC:**
-  - `Terraform`
-- **Container:**
-  - `Docker`
+| Service | Technologies |
+|---------|-------------|
+| **AWS** | EC2, ECS, RDS, S3, SQS, Athena, Lambda, Firehose |
+| **IaC** | Terraform |
+| **Container** | Docker |
 
-### DevOps & Tools
+### 🔧 DevOps & Tools
 
-- `Git`
-- `GitHub`
-- `CI/CD`
-- `Linux`
+| Tool | Purpose |
+|------|---------|
+| Git, GitHub | Version Control |
+| CI/CD | Continuous Integration/Deployment |
+| Linux | Operating System |
 
-### AI/ML Related
+### 🤖 AI/ML Related
 
-- `Ray`
-- `Pydantic`
-- `BERT`
-- `AI Model Serving`
-- `MLOps`
-- `LLMOps`
+| Technology | Description |
+|-----------|-------------|
+| Ray | Distributed Computing Framework |
+| Pydantic | Data Validation |
+| BERT | NLP Model |
+| MLOps, LLMOps | AI Platform Operations |
+| AI Model Serving | Model Deployment |
 
-### Development Practices
+### 📐 Development Practices
 
-- `TDD (Test-Driven Development)`
-- `Clean Code`
-- `CQRS`
-- `MSA`
-- `API Design`
-- `OpenAPI`
+| Practice | Description |
+|----------|-------------|
+| TDD | Test-Driven Development |
+| Clean Code | Code Quality Standards |
+| CQRS | Command Query Responsibility Segregation |
+| MSA | Microservices Architecture |
+| API Design | RESTful API, OpenAPI |
 
-### AI Coding Tools
+### 🚀 AI Coding Tools
 
-- `Claude Code`
-- `AI Pair Programming`
+| Tool | Purpose |
+|------|---------|
+| Claude Code | AI-Powered IDE |
+| AI Pair Programming | AI-Assisted Development |
 
-### Documentation
+### 📝 Documentation
 
-- `Docusaurus`
-- `Docs as Code`
-- `Markdown`
+| Tool | Purpose |
+|------|---------|
+| Docusaurus | Documentation Site Generator |
+| Docs as Code | Documentation Methodology |
+| Markdown | Markup Language |
 
 ## Key Achievements Summary
 

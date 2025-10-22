@@ -59,8 +59,6 @@ print(f"Time: {time.time() - start_time:.2f}s")
 
 위 코드에서 두 스레드가 동시에 실행되지만, GIL로 인해 실제로는 순차적으로 실행됩니다.
 
----
-
 ## Thread vs Process vs Async
 
 Python에서 동시성을 처리하는 세 가지 주요 방법을 비교해보겠습니다.
@@ -238,6 +236,7 @@ print(sys._is_gil_enabled())  # False
 ```
 
 **Windows에서 확장 모듈 컴파일 시 주의사항 (3.14+):**
+
 ```python
 # build backend에서 Py_GIL_DISABLED 전처리 변수를 명시적으로 지정해야 함
 import sysconfig
@@ -281,8 +280,6 @@ interp_id = interpreters.create()
 interpreters.run_string(interp_id, "print('Hello from subinterpreter')")
 interpreters.destroy(interp_id)
 ```
-
----
 
 ## Python 3.14 Free-Threaded 실전 예제
 
@@ -371,13 +368,13 @@ print(f"Elapsed: {elapsed:.2f}s")
 
 ### 성능 비교 표
 
-| 작업 유형 | Python 3.12 (GIL) | Python 3.14 (Free-threaded) | 개선율 | 적합성 |
-|---------|------------------|----------------------------|-------|--------|
-| **Fibonacci (4 threads)** | 1377ms | 279ms | **5.0x** | ✅ 매우 적합 |
-| **Counter (2 threads)** | 37.35s | 27.21s | **1.4x** | ✅ 적합 |
-| **DataFrame 연산** | 기준 | 50-90% 빠름 | **2-10x** | ✅ 매우 적합 |
-| **단일 스레드 작업** | 기준 | 5-10% 느림 | **0.9x** | ⚠️ 부적합 |
-| **I/O-bound 작업** | 기준 | 거의 동일 | **~1.0x** | ⚠️ 이득 없음 |
+| 작업 유형                 | Python 3.12 (GIL) | Python 3.14 (Free-threaded) | 개선율    | 적합성       |
+| ------------------------- | ----------------- | --------------------------- | --------- | ------------ |
+| **Fibonacci (4 threads)** | 1377ms            | 279ms                       | **5.0x**  | ✅ 매우 적합 |
+| **Counter (2 threads)**   | 37.35s            | 27.21s                      | **1.4x**  | ✅ 적합      |
+| **DataFrame 연산**        | 기준              | 50-90% 빠름                 | **2-10x** | ✅ 매우 적합 |
+| **단일 스레드 작업**      | 기준              | 5-10% 느림                  | **0.9x**  | ⚠️ 부적합    |
+| **I/O-bound 작업**        | 기준              | 거의 동일                   | **~1.0x** | ⚠️ 이득 없음 |
 
 ### 사용 권장사항
 
@@ -399,6 +396,7 @@ print(f"Elapsed: {elapsed:.2f}s")
 ### 주의사항
 
 **확장 모듈 호환성:**
+
 ```python
 # free-threaded 빌드에서 확장 모듈 호환성 확인
 import sys
@@ -409,10 +407,9 @@ print(f"GIL enabled: {sys._is_gil_enabled()}")
 ```
 
 **메모리 사용량:**
+
 - Free-threaded 빌드는 약 10% 더 많은 메모리 사용
 - 메모리가 제한된 환경에서는 주의 필요
-
----
 
 ## Key Points
 
@@ -426,8 +423,6 @@ print(f"GIL enabled: {sys._is_gil_enabled()}")
 - **PyPy**: JIT 컴파일로 성능 향상, 여전히 GIL 존재
 - **Subinterpreters**: multiprocessing과 threading의 중간 지점
 - **설치**: `uvx python@3.14t`로 간편하게 free-threaded Python 사용 가능
-
----
 
 ## Conclusion
 
@@ -460,8 +455,6 @@ Python 3.14는 GIL의 종말이 아니라, **개발자에게 선택권을 제공
 - [Python 3.14 Free-Threaded 실전 활용 및 벤치마크]
 - [PyPy vs CPython vs Free-threaded Python 성능 비교]
 - [확장 모듈의 Free-threaded 호환성 가이드]
-
----
 
 ## 참고 자료
 
