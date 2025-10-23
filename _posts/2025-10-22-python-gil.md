@@ -12,7 +12,49 @@ excerpt: "Python GIL의 작동 원리, Thread/Process/Async 비교, 그리고 Py
 
 Python의 GIL(Global Interpreter Lock)은 CPython 인터프리터의 핵심 메커니즘 중 하나로, 멀티스레딩 환경에서 Python 코드의 실행을 제어합니다. GIL은 Python의 성능과 동시성 처리에 큰 영향을 미치며, Python 개발자라면 반드시 이해해야 할 개념입니다.
 
----
+<div class="post-summary-box" markdown="1">
+
+### 📌 이 글에서 다루는 내용
+
+#### 🔍 핵심 주제
+
+- **GIL의 작동 원리**: 한 번에 하나의 스레드만 Python 바이트코드를 실행하는 메커니즘
+- **동시성 처리 비교**: Threading vs Multiprocessing vs Async/Await의 차이점과 적합한 사용 사례
+- **Python 3.14 혁신**: Free-threaded 빌드 공식 지원 (PEP 779) 및 실전 벤치마크
+
+#### 🎯 주요 내용
+
+1. **GIL 기초**
+
+   - GIL이 필요한 이유 (메모리 관리, C 확장 호환성)
+   - GIL의 동작 방식과 성능 영향
+
+2. **동시성 처리 패턴**
+
+   - Threading: I/O-bound 작업에 적합
+   - Multiprocessing: CPU-bound 작업에 적합
+   - Async: 대량 I/O 작업에 최적
+   - 각 방식의 장단점 비교표
+
+3. **Free-threaded Python (3.13+)**
+
+   - PyPy와 nogil 프로젝트 동향
+   - PEP 703 & PEP 779 마일스톤
+   - Subinterpreters (PEP 554) 접근법
+
+4. **Python 3.14 실전 가이드**
+   - Free-threaded 빌드 설치 및 설정
+   - Fibonacci/Counter 벤치마크 (3-5배 성능 향상)
+   - 사용 권장사항 및 주의사항
+
+#### 💡 이런 분들께 추천
+
+- Python 멀티스레딩 성능 이슈를 경험한 개발자
+- CPU-bound 작업 최적화가 필요한 경우
+- Python 3.14+ free-threaded 적용을 고려 중인 팀
+- MLOps/데이터 처리 파이프라인 개발자
+
+</div>
 
 ## GIL 작동 원리
 
