@@ -12,40 +12,41 @@ excerpt: "Python 메모리 구조, 참조 카운팅, 가비지 컬렉션, __slot
 
 Python의 메모리 구조와 객체 모델을 이해하는 것은 효율적이고 버그 없는 코드를 작성하는 데 필수적입니다. 이 글에서는 Python이 메모리를 관리하고, 객체를 처리하며, 다양한 내부 메커니즘을 통해 성능을 최적화하는 방법을 심층적으로 살펴봅니다.
 
----
-
 <div class="post-summary-box" markdown="1">
 
 ### 📋 이 글에서 다루는 내용
 
 #### 📚 주요 주제
+
 - **객체 모델**: Python의 "모든 것은 객체" 철학과 id(), is, sys.getsizeof() 활용
 - **메모리 아키텍처**: CPython의 계층적 메모리 구조 (Arena → Pool → Block)
 - **참조 카운팅**: 객체 생명주기 관리와 메모리 해제 메커니즘
 - **가비지 컬렉션**: 순환 참조 해결을 위한 세대별 GC
-- **메모리 최적화**: __slots__, weakref, gc 모듈을 활용한 최적화 기법
+- **메모리 최적화**: **slots**, weakref, gc 모듈을 활용한 최적화 기법
 
 #### 🎯 학습 목표
+
 - CPython 내부 메모리 관리 방식 이해
 - 참조 카운팅과 가비지 컬렉션의 동작 원리 파악
 - 메모리 사용량을 50% 이상 절감하는 최적화 기법 습득
 - 메모리 누수 디버깅 및 프로파일링 실전 활용
 
 #### 📊 포함된 다이어그램
+
 **6개의 Mermaid 다이어그램**으로 복잡한 개념을 시각화했습니다:
+
 1. Python 객체 생명주기 전체 흐름
 2. CPython 메모리 아키텍처 계층 구조
 3. 참조 카운팅 증가/감소 흐름
 4. 세대별 가비지 컬렉션 프로세스
-5. __slots__ vs __dict__ 메모리 구조 비교
+5. **slots** vs **dict** 메모리 구조 비교
 6. 강한 참조 vs 약한 참조 비교
 
 #### ⏱️ 예상 읽기 시간
+
 약 25-30분 (코드 예제 실습 포함 시 45분)
 
 </div>
-
----
 
 **Python 객체 생명주기 전체 흐름:**
 
@@ -77,8 +78,6 @@ graph TD
     style P fill:#ffebee,stroke:#c62828,stroke-width:2px
     style M fill:#fff3e0,stroke:#f57c00,stroke-width:2px
 ```
-
----
 
 ## 1. 파이썬의 모든 것은 객체다: Object의 기본
 
@@ -213,8 +212,6 @@ def get_total_size(obj, seen=None):
 
 print(f"list2 전체 크기: {get_total_size(list2)} bytes")
 ```
-
----
 
 ## 2. CPython 메모리 관리의 비밀
 
@@ -387,8 +384,6 @@ print(f"수거된 객체 수: {collected}")
 # 추적 가능한 객체 목록
 print(f"추적 중인 객체 수: {len(gc.get_objects())}")
 ```
-
----
 
 ## 3. 메모리 최적화 및 고급 관리 기법
 
@@ -769,8 +764,6 @@ def profile_memory_with_gc():
 profile_memory_with_gc()
 ```
 
----
-
 ## 핵심 포인트
 
 ### 객체 모델의 이해
@@ -801,8 +794,6 @@ profile_memory_with_gc()
 - 메모리 프로파일링(`tracemalloc`)과 가비지 컬렉션(`gc`)을 함께 사용하여 메모리 문제를 진단하세요
 - 순환 참조가 의심될 때는 `gc.set_debug(gc.DEBUG_SAVEALL)`로 디버깅하세요
 
----
-
 ## 결론
 
 Python의 메모리 구조와 객체 모델을 깊이 이해하는 것은 단순히 이론적 지식을 넘어 실무에서 직면하는 성능 문제와 메모리 이슈를 해결하는 핵심 역량입니다.
@@ -826,12 +817,14 @@ Python의 "자동" 메모리 관리가 모든 것을 해결해주는 것은 아�
 
 ### 다음 학습
 
-- [GIL (Global Interpreter Lock)](/2025/10/22/python-gil.html)
-- Bytecode와 실행 과정
+이 글을 읽으셨다면 다음 주제로 넘어가보세요:
+
+- **[Python GIL (Global Interpreter Lock)](/2025/10/22/python-gil.html)** ← 다음 추천
+  - 메모리 구조를 이해했다면, 멀티스레딩 환경에서 Python이 어떻게 동작하는지 알아보세요
+- [Python Bytecode](/2025/10/24/python-bytecode.html)
+  - 바이트코드 수준에서 Python의 실행 메커니즘 이해
 - Import 시스템 심화
 - Exception Internals
-
----
 
 ## 참고 자료
 

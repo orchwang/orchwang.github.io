@@ -213,8 +213,6 @@ asyncio.run(main())
 | Multiprocessing | 없음     | ✅        | ⚠️        | 높음      | 중간   |
 | Async           | 있음     | ❌        | ✅        | 매우 낮음 | 높음   |
 
----
-
 ## PyPy, nogil 프로젝트 동향
 
 ### PyPy
@@ -489,14 +487,25 @@ Python의 GIL은 오랫동안 논쟁의 대상이었지만, 동시에 CPython의
 
 Python 3.14는 GIL의 종말이 아니라, **개발자에게 선택권을 제공하는 새로운 시작**입니다. 필요에 따라 GIL의 단순성과 free-threaded의 성능을 선택할 수 있게 되었습니다.
 
-### Next Steps
+### 이전 학습
 
-- [Python Concurrency 패턴 학습]
-- [Asyncio 심화 학습]
-- [CPython 인터프리터 내부 구조]
-- [Python 3.14 Free-Threaded 실전 활용 및 벤치마크]
-- [PyPy vs CPython vs Free-threaded Python 성능 비교]
-- [확장 모듈의 Free-threaded 호환성 가이드]
+이 글을 더 잘 이해하기 위해 먼저 읽어보세요:
+
+- **[Python 메모리 구조와 객체 모델](/2025/10/19/python-memory-structure-and-object-model.html)** ← 이전 추천
+  - GIL이 왜 필요한지 이해하려면 Python의 메모리 관리(reference counting) 메커니즘을 먼저 알아야 합니다
+
+### 다음 학습
+
+이 글을 읽으셨다면 다음 주제로 넘어가보세요:
+
+- **[Python Bytecode](/2025/10/24/python-bytecode.html)** ← 다음 추천
+  - GIL이 바이트코드 실행에 어떻게 영향을 미치는지, 인터프리터 루프는 어떻게 동작하는지 알아보세요
+- Python Concurrency 패턴 학습
+- Asyncio 심화 학습
+- CPython 인터프리터 내부 구조
+- Python 3.14 Free-Threaded 실전 활용 및 벤치마크
+- PyPy vs CPython vs Free-threaded Python 성능 비교
+- 확장 모듈의 Free-threaded 호환성 가이드
 
 ## 참고 자료
 
