@@ -44,7 +44,15 @@ jobs:
 
       - name: Build with Jekyll
         # Outputs to the './_site' directory by default
-        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        run: |
+          echo "=== Checking _plugins directory ==="
+          ls -la _plugins/
+          echo "=== Building site with Jekyll ==="
+          bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}" --verbose
+          echo "=== Checking generated categories ==="
+          ls -la _site/categories/ || echo "No categories directory!"
+          echo "=== Checking generated tags ==="
+          ls -la _site/tags/ || echo "No tags directory!"
         env:
           JEKYLL_ENV: production
 
