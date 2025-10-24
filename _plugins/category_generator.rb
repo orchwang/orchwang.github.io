@@ -6,7 +6,9 @@ module Jekyll
       if site.layouts.key? 'category_page'
         dir = site.config['category_page_dir'] || 'categories'
         site.categories.each_key do |category|
-          site.pages << CategoryPage.new(site, site.source, File.join(dir, category), category)
+          # Use slugified (lowercased) directory name to match link generation
+          category_slug = Utils.slugify(category)
+          site.pages << CategoryPage.new(site, site.source, File.join(dir, category_slug), category)
         end
       end
     end
