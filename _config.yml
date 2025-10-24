@@ -32,6 +32,9 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
+# Enable custom plugins from _plugins directory
+plugins_dir: _plugins
+
 # Exclude from processing
 exclude:
   - Gemfile
