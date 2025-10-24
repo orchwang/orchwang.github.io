@@ -16,9 +16,13 @@
       "WebFetch(domain:docs.allauth.org)",
       "WebFetch(domain:github.com)",
       "WebSearch",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(gh run view:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
-  "enabledMcpjsonServers": ["github", "filesystem"]
+  "enabledMcpjsonServers": [
+    "github",
+    "filesystem"
+  ]
 }
