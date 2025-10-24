@@ -492,6 +492,17 @@ Learn more about [Python Basics](/2025/10/11/python-basics.html)
 4. **Use consistent formatting**: Makes content easier to navigate
 5. **Tag thoughtfully**: Makes content discoverable
 
+### For Markdown Formatting
+
+1. **Avoid unnecessary horizontal rules**: Do not use standalone `---` between sections
+   - Section headers (##, ###) provide sufficient visual separation
+   - Only use `---` in YAML front matter (required for Jekyll)
+   - Exception: Use `---` only when semantically necessary for special content breaks
+2. **Summary boxes**: The post summary box (`<div class="post-summary-box">`) should flow directly into the first section without a separator
+3. **Section transitions**: Go directly from one section header to another without horizontal rules
+4. **Visual hierarchy**: Let headers, spacing, and content structure provide visual organization
+5. **Consistency**: Follow the formatting style established in existing posts (e.g., Python GIL post)
+
 ---
 
 ## Common Tasks
