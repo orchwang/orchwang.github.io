@@ -3,7 +3,7 @@ layout: post
 title: "Python engineer job description"
 date: 2025-10-12
 categories: Career
-tags: [python, career]
+tags: [python, career, job-description]
 published: true
 excerpt: "Python Backend Engineer 직무 기술서. Junior부터 Staff급까지 레벨별 역할, 책임, 기술 스택, 핵심 역량을 상세히 정리했습니다."
 ---

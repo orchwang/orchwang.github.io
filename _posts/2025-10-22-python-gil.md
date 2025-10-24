@@ -3,7 +3,7 @@ layout: post
 title: "Python GIL"
 date: 2025-10-22
 categories: Technology
-tags: [python, gil]
+tags: [python, gil, concurrency, threading, multiprocessing, async, internals, performance]
 published: true
 excerpt: "Python GIL의 작동 원리, Thread/Process/Async 비교, 그리고 Python 3.14 free-threaded 공식 지원(PEP 779)과 실전 벤치마크를 코드 예제와 함께 상세히 설명합니다."
 ---
