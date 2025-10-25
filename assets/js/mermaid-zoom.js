@@ -8,6 +8,52 @@
 window.initMermaidZoom = function() {
     'use strict';
 
+    // Check if device is mobile or tablet
+    function isMobileOrTablet() {
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+        // Check for common mobile/tablet patterns
+        const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|Tablet/i;
+
+        // Check screen width (tablets typically <= 1024px)
+        const isSmallScreen = window.innerWidth <= 1024;
+
+        // Check for touch capability
+        const isTouchDevice = ('ontouchstart' in window) ||
+                              (navigator.maxTouchPoints > 0) ||
+                              (navigator.msMaxTouchPoints > 0);
+
+        return mobileRegex.test(userAgent) || (isTouchDevice && isSmallScreen);
+    }
+
+    // Skip zoom initialization on mobile/tablet devices
+    if (isMobileOrTablet()) {
+        console.log('📱 Mobile/tablet detected - Mermaid zoom interface disabled for better touch experience');
+
+        // Just ensure minimum height for diagrams without zoom
+        const mermaidDivs = document.querySelectorAll('.mermaid');
+        mermaidDivs.forEach((mermaidDiv, index) => {
+            const svg = mermaidDiv.querySelector('svg');
+            if (svg) {
+                const MIN_HEIGHT = 400;
+                const currentHeight = svg.getAttribute('height');
+                const computedHeight = svg.getBoundingClientRect().height;
+                let actualHeight = currentHeight ? parseInt(currentHeight) : computedHeight;
+
+                if (actualHeight < MIN_HEIGHT) {
+                    svg.setAttribute('height', MIN_HEIGHT.toString());
+                } else {
+                    svg.setAttribute('height', actualHeight.toString());
+                }
+
+                // Add mobile class for styling
+                mermaidDiv.classList.add('mermaid-mobile');
+                console.log(`📱 Mobile diagram ${index}: height set to ${actualHeight}px (static, no zoom)`);
+            }
+        });
+        return;
+    }
+
     // Check if svg-pan-zoom is available
     if (typeof svgPanZoom === 'undefined') {
         console.warn('svg-pan-zoom library not loaded. Mermaid zoom functionality disabled.');
