@@ -40,6 +40,9 @@
     <script src="{{ '/assets/js/mobile-menu.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/category-tree.js' | relative_url }}"></script>
 
+    <!-- svg-pan-zoom library for interactive diagrams -->
+    <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+
     <!-- Mermaid.js for diagram rendering -->
     <script type="module">
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
@@ -71,9 +74,19 @@
                 fontFamily: 'inherit'
             });
 
-            // Trigger mermaid rendering
-            mermaid.run();
+            // Trigger mermaid rendering and then apply zoom
+            mermaid.run().then(() => {
+                // Wait a bit for SVG to be fully rendered
+                setTimeout(() => {
+                    if (typeof svgPanZoom !== 'undefined') {
+                        window.initMermaidZoom();
+                    }
+                }, 500);
+            });
         });
     </script>
+
+    <!-- Mermaid Pan & Zoom Enhancement -->
+    <script defer src="{{ '/assets/js/mermaid-zoom.js' | relative_url }}"></script>
 </body>
 </html>

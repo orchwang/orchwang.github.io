@@ -1758,17 +1758,209 @@ mark {
     border-radius: 8px;
     border: 1px solid var(--border-color);
     overflow-x: auto;
+    min-height: 400px; /* Increased minimum height for better visibility */
 }
 
 /* Ensure mermaid diagrams are responsive */
 .mermaid svg {
     max-width: 100%;
-    height: auto;
+    height: auto !important; /* Allow SVG to grow with content */
+    min-height: 350px; /* Minimum height for SVG */
+    background-color: transparent !important; /* Fix black background issue */
+}
+
+/* Fix svg-pan-zoom overlay background */
+.mermaid svg > g,
+.mermaid svg > g > g {
+    background-color: transparent !important;
 }
 
 /* Center align mermaid diagrams */
 .post-content .mermaid {
     text-align: center;
+}
+
+/* Mermaid Zoom Container */
+.mermaid-zoom-container {
+    position: relative;
+    margin: 2em 0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.mermaid-zoom-container .mermaid {
+    margin: 0;
+    cursor: grab;
+    user-select: none;
+    border-radius: 0 0 8px 8px;
+    border-top: none;
+    background-color: white !important; /* Ensure white background for zoom container */
+}
+
+.mermaid-zoom-container .mermaid:active {
+    cursor: grabbing;
+}
+
+/* Interactive Badge */
+.mermaid-interactive-badge {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    user-select: none;
+    transition: all 0.3s ease;
+}
+
+.mermaid-interactive-badge:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+}
+
+/* Reset Button */
+.mermaid-reset-btn {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    background: white;
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.mermaid-reset-btn:hover {
+    background: var(--secondary-color);
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+.mermaid-reset-btn:active {
+    transform: scale(0.98);
+}
+
+/* svg-pan-zoom Control Icons Customization */
+.svg-pan-zoom-control {
+    cursor: pointer;
+    fill: white;
+    stroke: var(--secondary-color);
+    stroke-width: 1px;
+}
+
+.svg-pan-zoom-control:hover {
+    fill: var(--secondary-color);
+}
+
+.svg-pan-zoom-control-background {
+    fill: white;
+    opacity: 0.95;
+    stroke: var(--border-color);
+    stroke-width: 1px;
+}
+
+.svg-pan-zoom-control-element {
+    fill: var(--secondary-color);
+}
+
+.svg-pan-zoom-control-element:hover {
+    fill: var(--accent-color);
+}
+
+/* Ensure svg-pan-zoom controls are visible and styled */
+.svg-pan-zoom-control-background {
+    rx: 4;
+    ry: 4;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .mermaid-interactive-badge {
+        font-size: 11px;
+        padding: 6px 12px;
+    }
+
+    .mermaid-reset-btn {
+        top: 45px;
+        right: 8px;
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .mermaid-zoom-container .mermaid {
+        padding: 0.5em;
+    }
+
+    /* Adjust svg-pan-zoom controls for mobile */
+    .svg-pan-zoom-control {
+        transform: scale(0.9);
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .mermaid-zoom-container .mermaid {
+        cursor: default;
+    }
+
+    .mermaid-reset-btn {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+}
+
+/* Dark mode support (if you add dark mode in the future) */
+@media (prefers-color-scheme: dark) {
+    .mermaid-zoom-container .mermaid {
+        background-color: #1e1e1e;
+        border-color: #444;
+    }
+
+    .mermaid-reset-btn {
+        background: #2d2d2d;
+        color: var(--secondary-color);
+        border-color: var(--secondary-color);
+    }
+
+    .mermaid-reset-btn:hover {
+        background: var(--secondary-color);
+        color: white;
+    }
+
+    .svg-pan-zoom-control-background {
+        fill: #2d2d2d;
+        stroke: #444;
+    }
+}
+
+/* Animation for zoom interactions */
+@keyframes zoomPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(52, 152, 219, 0);
+    }
+}
+
+.mermaid-zoom-container:active {
+    animation: zoomPulse 0.6s ease-out;
 }
 
 /* Post Summary Box */
