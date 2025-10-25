@@ -1587,15 +1587,22 @@ mark {
 /* Responsive Design */
 @media (max-width: 768px) {
     .header-content {
+        display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        gap: 15px;
     }
 
     .site-branding {
         flex: 1;
-        min-width: 200px;
+        min-width: 0;
+        overflow: hidden;
+    }
+
+    .site-branding .branding-text {
+        overflow: hidden;
     }
 
     .site-branding .site-logo {
@@ -1603,17 +1610,20 @@ mark {
     }
 
     .site-branding .site-title {
-        font-size: 24px;
+        font-size: 20px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .site-branding .site-description {
-        font-size: 12px;
+        display: none;
     }
 
     /* Show hamburger menu on mobile */
     .hamburger-menu {
         display: flex;
-        order: 2;
+        flex-shrink: 0;
     }
 
     /* Hide navigation by default on mobile */
