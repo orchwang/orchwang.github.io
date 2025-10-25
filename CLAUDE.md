@@ -60,22 +60,45 @@ Developers who want to:
 │   ├── post.html          # Blog post layout
 │   ├── tag_page.html      # Tag listing layout
 │   ├── category_page.html # Category listing layout
+│   ├── series_page.html   # Series listing layout
 │   └── cv.html            # CV page layout
 ├── _plugins/               # Custom Jekyll plugins
-│   ├── tag_generator.rb   # Auto-generate tag pages
-│   └── category_generator.rb  # Auto-generate category pages
-├── _posts/                 # All learning posts (Markdown)
-│   ├── YYYY-MM-DD-*.md
+│   ├── tag_generator.rb       # Auto-generate tag pages
+│   ├── category_generator.rb  # Auto-generate category pages
+│   └── series_generator.rb    # Auto-generate series pages
+├── _posts/                    # All learning posts organized by categories
+│   ├── Career/                # Career-related posts
+│   │   └── Roadmap/          # Roadmap posts (nested category)
+│   │       └── YYYY-MM-DD-*.md
+│   ├── Technology/            # Technology posts
+│   │   └── Python/           # Python-specific posts (nested category)
+│   │       └── YYYY-MM-DD-*.md
+│   ├── Retrospec/            # Retrospective posts
+│   │   └── YYYY-MM-DD-*.md
+│   └── (root for uncategorized)  # Posts without categories
 ├── assets/                 # Static files
 │   ├── css/style.css      # Main stylesheet
-│   ├── js/search.js       # Search functionality
+│   ├── js/
+│   │   ├── search.js      # Search functionality
+│   │   ├── mobile-menu.js # Mobile hamburger menu
+│   │   └── toc.js         # Table of contents
 │   └── images/            # Images and logos
 ├── pages/                  # Fixed pages
 │   ├── cv.md              # Curriculum Vitae
 │   ├── tags.md            # All tags listing
-│   └── categories.md      # All categories listing
+│   ├── categories.md      # All categories listing
+│   └── series.md          # All series listing
 └── index.html             # Home page
 ```
+
+**Important Notes on Post Organization:**
+
+- **Category Directories**: Posts are organized into directories based on their categories
+- **Single Category**: `categories: Retrospec` → `_posts/Retrospec/`
+- **Multiple Categories**: `categories: [Technology, Python]` → `_posts/Technology/Python/`
+- **No Categories**: Posts without categories can stay in `_posts/` root
+- **URL Structure**: URLs remain unchanged (`/:year/:month/:day/:title.html`) regardless of directory location
+- **Jekyll Compatibility**: Jekyll natively supports subdirectories in `_posts/`
 
 ---
 
@@ -248,6 +271,21 @@ published: true
 
 ## Writing New Posts
 
+### Post File Location
+
+Posts are organized by category in directory structure:
+
+- **No categories**: `_posts/YYYY-MM-DD-post-name.md` (root directory)
+- **Single category**: `_posts/CategoryName/YYYY-MM-DD-post-name.md`
+  - Example: `_posts/Retrospec/2025-10-25-my-retrospective.md`
+- **Multiple categories (nested)**: `_posts/Category1/Category2/YYYY-MM-DD-post-name.md`
+  - Example: `_posts/Technology/Python/2025-10-25-python-advanced.md`
+  - Example: `_posts/Career/Roadmap/2025-10-25-senior-engineer.md`
+
+**Directory Creation:**
+- Always create the category directories first if they don't exist
+- Use exact capitalization (Technology, Python, Career, Roadmap, Retrospec, etc.)
+
 ### Post Naming Convention
 
 ```
@@ -256,9 +294,9 @@ YYYY-MM-DD-topic-name.md
 
 **Examples:**
 
-- `2025-10-15-python-decorators.md`
-- `2025-10-16-react-hooks-guide.md`
-- `2025-10-17-binary-search-tree.md`
+- `_posts/Technology/Python/2025-10-15-python-decorators.md`
+- `_posts/Career/Roadmap/2025-10-16-engineering-skills.md`
+- `_posts/Retrospec/2025-10-17-2025-retrospective.md`
 
 ### Front Matter Template
 
@@ -267,9 +305,11 @@ YYYY-MM-DD-topic-name.md
 layout: post
 title: "Your Post Title"
 date: YYYY-MM-DD
-categories: [Roadmap|Programming|Computer-Science]
+categories: [Category1, Category2]  # or single: categories: CategoryName
 tags: [tag1, tag2, tag3]
+series: SeriesName  # optional
 published: true
+excerpt: "Brief 1-2 sentence summary for SEO and previews."
 ---
 ```
 
@@ -281,13 +321,18 @@ published: true
   - **Always use today's actual date** (not future dates)
   - Jekyll hides future-dated posts by default
   - Example: If today is 2025-10-12, use `date: 2025-10-12`
-- `categories`: Use singular form, choose one primary category
-- `tags`: Use array format with square brackets
+- `categories`: Format depends on number of categories:
+  - **Single category**: `categories: Retrospec` (no brackets)
+  - **Multiple categories**: `categories: [Technology, Python]` (with brackets)
+  - **Directory structure mirrors categories**: `[Technology, Python]` → `_posts/Technology/Python/`
+  - **Omit if no categories**: Don't include the line at all
+- `tags`: Use array format with square brackets `[tag1, tag2, tag3]`
+- `series`: Optional field to group related posts (e.g., `series: Python-Essential`)
 - `published`: Controls post visibility
   - `true` = Post appears on the site (default for all published content)
   - `false` = Draft post, hidden from builds
   - **Always include this field** when creating or updating posts
-- Multi-word categories: Use hyphens (e.g., `Computer-Science` not `Computer Space`)
+- `excerpt`: Brief 1-2 sentence summary for SEO and post previews (always include)
 
 ### Content Structure Template
 

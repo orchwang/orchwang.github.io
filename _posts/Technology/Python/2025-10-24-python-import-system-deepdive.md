@@ -2,8 +2,9 @@
 layout: post
 title: "Python Import System Deepdive"
 date: 2025-10-24
-categories: Technology
+categories: [Technology, Python]
 tags: [python, curriculum, import-system, modules, internals]
+series: Python-Essential
 published: true
 excerpt: "Python의 import 시스템 내부 동작 원리를 깊이 있게 탐구합니다. sys.modules, importlib, meta path finder, 그리고 lazy import까지 상세히 다룹니다."
 ---

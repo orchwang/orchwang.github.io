@@ -2,8 +2,9 @@
 layout: post
 title: "Python 메모리 구조와 객체 모델"
 date: 2025-10-19
-categories: Technology
-tags: [python, memory, internals, garbage-collection, optimization, performance]
+categories: [Technology, Python]
+series: Python-Essential
+tags: [python, memory, garbage-collection]
 published: true
 excerpt: "Python 메모리 구조, 참조 카운팅, 가비지 컬렉션, __slots__, weakref 등 CPython의 메모리 관리 메커니즘을 6개의 다이어그램과 함께 상세히 설명합니다."
 ---

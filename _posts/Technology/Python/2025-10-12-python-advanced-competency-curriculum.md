@@ -2,8 +2,9 @@
 layout: post
 title: "Python Advanced Competency Curriculum"
 date: 2025-10-12
-categories: Technology
-tags: [python, curriculum, roadmap, backend, architecture]
+categories: [Technology, Python]
+series: Python-Essential
+tags: [python, curriculum]
 published: true
 excerpt: "10년차 백엔드 엔지니어를 위한 Python 심화 커리큘럼. Internals, 성능 최적화, 아키텍처, 테스팅, 운영 자동화, 코드 품질까지 실전 중심으로 구성했습니다."
 ---

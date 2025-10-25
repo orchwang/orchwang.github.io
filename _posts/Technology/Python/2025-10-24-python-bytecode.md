@@ -2,17 +2,9 @@
 layout: post
 title: "Python Bytecode"
 date: 2025-10-24
-categories: Technology
-tags:
-  [
-    python,
-    curriculum,
-    internals,
-    performance,
-    CPython,
-    dis-module,
-    optimization,
-  ]
+categories: [Technology, Python]
+series: Python-Essential
+tags: [python, curriculum]
 published: true
 excerpt: "Python이 코드를 효율적으로 실행하기 위해 사용하는 중간 표현인 바이트코드에 대해 알아봅니다."
 ---

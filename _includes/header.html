@@ -11,11 +11,18 @@
                 </div>
             </div>
 
-            <nav class="main-navigation">
+            <button class="hamburger-menu" id="hamburger-menu" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="main-navigation" id="main-navigation">
                 <ul class="nav-menu">
                     <li><a href="{{ '/' | relative_url }}">홈</a></li>
                     <li><a href="{{ '/pages/categories.html' | relative_url }}">카테고리</a></li>
                     <li><a href="{{ '/pages/tags.html' | relative_url }}">태그</a></li>
+                    <li><a href="{{ '/pages/series.html' | relative_url }}">시리즈</a></li>
                     <li><a href="{{ '/pages/cv.html' | relative_url }}">CV</a></li>
                 </ul>
             </nav>

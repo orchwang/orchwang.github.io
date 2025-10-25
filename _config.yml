@@ -68,3 +68,7 @@ tag_page_dir: tags
 # Category settings
 category_page_layout: category_page
 category_page_dir: categories
+
+# Series settings
+series_page_layout: series_page
+series_page_dir: series

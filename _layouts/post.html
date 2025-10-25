@@ -18,6 +18,42 @@ layout: default
                 </div>
                 {% endif %}
             </div>
+
+            {% if page.series %}
+            <div class="series-info">
+                {% assign series_posts = site.posts | where: "series", page.series | sort: 'date' %}
+                {% assign series_size = series_posts | size %}
+                {% assign current_index = 0 %}
+                {% for post in series_posts %}
+                    {% if post.url == page.url %}
+                        {% assign current_index = forloop.index %}
+                        {% break %}
+                    {% endif %}
+                {% endfor %}
+                <div class="series-badge">
+                    📖 시리즈: <a href="{{ site.baseurl }}/series/{{ page.series | slugify }}/">{{ page.series }}</a>
+                    <span class="series-position">({{ current_index }} / {{ series_size }})</span>
+                </div>
+                {% if series_size > 1 %}
+                <div class="series-navigation">
+                    {% if current_index > 1 %}
+                        {% assign prev_index = current_index | minus: 2 %}
+                        {% assign prev_post = series_posts[prev_index] %}
+                        <a href="{{ prev_post.url | relative_url }}" class="series-nav-link series-prev">
+                            ← 이전: {{ prev_post.title }}
+                        </a>
+                    {% endif %}
+                    {% if current_index < series_size %}
+                        {% assign next_index = current_index %}
+                        {% assign next_post = series_posts[next_index] %}
+                        <a href="{{ next_post.url | relative_url }}" class="series-nav-link series-next">
+                            다음: {{ next_post.title }} →
+                        </a>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
         </header>
 
         <div class="post-content">
