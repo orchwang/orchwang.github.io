@@ -12,18 +12,33 @@ window.initMermaidZoom = function() {
     function isMobileOrTablet() {
         const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-        // Check for common mobile/tablet patterns
+        // Check for common mobile/tablet patterns (most reliable)
         const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|Tablet/i;
-
-        // Check screen width (tablets typically <= 1024px)
-        const isSmallScreen = window.innerWidth <= 1024;
+        const isMobileUA = mobileRegex.test(userAgent);
 
         // Check for touch capability
         const isTouchDevice = ('ontouchstart' in window) ||
                               (navigator.maxTouchPoints > 0) ||
                               (navigator.msMaxTouchPoints > 0);
 
-        return mobileRegex.test(userAgent) || (isTouchDevice && isSmallScreen);
+        // Check viewport width (use window.innerWidth which respects viewport meta tag)
+        // Most phones in portrait: ≤ 428px, tablets in portrait: ≤ 768px
+        const isSmallViewport = window.innerWidth <= 768;
+
+        // Primary check: User Agent (catches all mobile devices including high-res)
+        if (isMobileUA) {
+            console.log(`📱 Mobile detected via User Agent: ${userAgent}`);
+            return true;
+        }
+
+        // Secondary check: Touch device with small viewport (catches edge cases)
+        if (isTouchDevice && isSmallViewport) {
+            console.log(`📱 Mobile detected via touch + small viewport: ${window.innerWidth}px`);
+            return true;
+        }
+
+        console.log(`💻 Desktop detected: ${window.innerWidth}px, touch: ${isTouchDevice}`);
+        return false;
     }
 
     // Skip zoom initialization on mobile/tablet devices

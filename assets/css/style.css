@@ -1903,7 +1903,8 @@ mark {
 }
 
 /* Tablet and mobile: disable zoom interface */
-@media (max-width: 1024px) {
+/* Using hover:none to detect true touch devices (not desktop with touchscreen) */
+@media (hover: none) and (pointer: coarse) {
     /* Hide zoom controls on mobile/tablet */
     .mermaid-zoom-container .mermaid-interactive-badge,
     .mermaid-zoom-container .mermaid-reset-btn,
@@ -1916,6 +1917,20 @@ mark {
         overflow-x: auto !important;
         overflow-y: auto !important;
         -webkit-overflow-scrolling: touch;
+    }
+
+    /* Remove grab cursor on mobile */
+    .mermaid-zoom-container .mermaid {
+        cursor: default !important;
+    }
+}
+
+/* Additional fallback for older mobile browsers */
+@media (max-width: 768px) {
+    .mermaid-zoom-container .mermaid-interactive-badge,
+    .mermaid-zoom-container .mermaid-reset-btn,
+    .svg-pan-zoom-control {
+        display: none !important;
     }
 }
 
