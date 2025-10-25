@@ -1492,8 +1492,10 @@ Python의 import 시스템은 단순해 보이지만 내부적으로는 매우 �
 
 ### 다음 학습
 
-이 글을 읽으셨다면 다음 주제로 넘어가보세요:
+**Python-Essential 시리즈:**
+- **다음:** [Python exception internals 로깅 및 Stack trace 분석](/2025/10/25/python-exception-internals-로깅-및-stack-trace-분석.html) - 예외 처리 내부 구조와 디버깅 기법
 
+**관련 주제:**
 - Python 패키지 구조 설계 패턴
 - Python Metaclass와 클래스 생성 메커니즘
 - Python 플러그인 아키텍처 설계
