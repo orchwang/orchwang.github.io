@@ -115,30 +115,28 @@ Task 1 완료
 ```mermaid
 sequenceDiagram
     participant App as Application
-    participant Loop as Event Loop
+    participant ELoop as Event Loop
     participant Task1 as Task 1
     participant Task2 as Task 2
     participant IO as I/O
 
-    App->>Loop: asyncio.run(main())
-    Loop->>Task1: 코루틴 스케줄
-    Loop->>Task2: 코루틴 스케줄
+    App->>ELoop: asyncio.run(main())
+    ELoop->>Task1: 코루틴 스케줄
+    ELoop->>Task2: 코루틴 스케줄
 
     Task1->>IO: await asyncio.sleep(1)
-    activate IO
-    Note over Task1: 대기 상태
+    Note right of Task1: 대기 상태
 
     Task2->>IO: await asyncio.sleep(0.5)
-    Note over Task2: 대기 상태
+    Note right of Task2: 대기 상태
 
     IO-->>Task2: 0.5초 후 완료
-    deactivate IO
-    Task2-->>Loop: 결과 반환
+    Task2-->>ELoop: 결과 반환
 
     IO-->>Task1: 1초 후 완료
-    Task1-->>Loop: 결과 반환
+    Task1-->>ELoop: 결과 반환
 
-    Loop-->>App: 모든 결과 반환
+    ELoop-->>App: 모든 결과 반환
 ```
 
 ### Event Loop 접근 및 제어
