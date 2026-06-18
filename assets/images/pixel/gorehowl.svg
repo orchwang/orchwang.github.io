@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64" shape-rendering="crispEdges" role="img" aria-label="Gorehowl axe">
+  <!-- ============================================================
+       Gorehowl — Grom Hellscream's two-handed axe, original pixel art.
+       Built on a 32x64 grid of rect "cells". Uses currentColor for the
+       steel so it themes when inlined; explicit gold edge + crimson rune
+       keep it legible when used as a standalone <img>. Outline keeps it
+       readable on both bone-light and steel-dark backgrounds.
+       ============================================================ -->
+  <g fill="currentColor">
+    <!-- haft (handle) -->
+    <rect x="14" y="22" width="4" height="34"/>
+    <!-- haft wrap bands -->
+    <rect x="13" y="30" width="6" height="2"/>
+    <rect x="13" y="40" width="6" height="2"/>
+    <rect x="13" y="50" width="6" height="2"/>
+    <!-- pommel -->
+    <rect x="12" y="56" width="8" height="4"/>
+    <!-- blade socket / collar -->
+    <rect x="11" y="18" width="10" height="5"/>
+  </g>
+
+  <!-- crescent blade — dark steel body -->
+  <g fill="#5b5b62">
+    <rect x="4" y="6"  width="6" height="3"/>
+    <rect x="3" y="9"  width="9" height="3"/>
+    <rect x="3" y="12" width="11" height="4"/>
+    <rect x="4" y="16" width="11" height="3"/>
+    <rect x="17" y="6"  width="6" height="3"/>
+    <rect x="20" y="9"  width="9" height="3"/>
+    <rect x="18" y="12" width="11" height="4"/>
+    <rect x="17" y="16" width="11" height="3"/>
+    <!-- center spine block -->
+    <rect x="12" y="9" width="8" height="9"/>
+  </g>
+
+  <!-- back-spike (top point) -->
+  <g fill="#5b5b62">
+    <rect x="15" y="0" width="2" height="6"/>
+    <rect x="14" y="3" width="4" height="3"/>
+  </g>
+
+  <!-- honed gold cutting edge -->
+  <g fill="#c79a2e">
+    <rect x="2" y="9"  width="2" height="3"/>
+    <rect x="2" y="12" width="2" height="4"/>
+    <rect x="3" y="16" width="2" height="3"/>
+    <rect x="28" y="9"  width="2" height="3"/>
+    <rect x="28" y="12" width="2" height="4"/>
+    <rect x="27" y="16" width="2" height="3"/>
+    <rect x="4" y="6"  width="2" height="3"/>
+    <rect x="21" y="6"  width="2" height="3"/>
+  </g>
+
+  <!-- crimson Horde rune set into the spine -->
+  <g fill="#9e1a1a">
+    <rect x="14" y="11" width="4" height="2"/>
+    <rect x="15" y="13" width="2" height="3"/>
+  </g>
+</svg>

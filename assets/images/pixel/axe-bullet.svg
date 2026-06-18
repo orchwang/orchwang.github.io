@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges" role="img" aria-label="axe">
+  <!-- Small Gorehowl axe-head bullet. Single-color (currentColor) so it
+       tints to whatever uses it — list markers, link affordances.
+       Compact crescent + short haft, legible down to ~10px. -->
+  <g fill="currentColor">
+    <!-- haft -->
+    <rect x="9" y="7" width="2" height="7"/>
+    <rect x="8" y="13" width="4" height="2"/>
+    <!-- crescent blade -->
+    <rect x="2" y="3" width="6" height="2"/>
+    <rect x="1" y="5" width="8" height="2"/>
+    <rect x="2" y="7" width="7" height="2"/>
+    <rect x="3" y="9" width="6" height="1"/>
+    <!-- back spike -->
+    <rect x="9" y="2" width="2" height="3"/>
+  </g>
+</svg>

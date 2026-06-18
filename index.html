@@ -4,9 +4,44 @@ title: 홈
 ---
 
 <div class="home">
+    <section class="hero-banner" aria-label="Orc Hwang's Wiki — 오그리마의 전쟁군주">
+        <picture class="hero-banner-media">
+            <source
+                type="image/webp"
+                srcset="{{ '/assets/images/hero/orgrimmar-hero-640.webp' | relative_url }} 640w, {{ '/assets/images/hero/orgrimmar-hero-1024.webp' | relative_url }} 1024w, {{ '/assets/images/hero/orgrimmar-hero-1536.webp' | relative_url }} 1536w"
+                sizes="100vw">
+            <img
+                src="{{ '/assets/images/hero/orgrimmar-hero.jpg' | relative_url }}"
+                srcset="{{ '/assets/images/hero/orgrimmar-hero-1024.webp' | relative_url }} 1024w, {{ '/assets/images/hero/orgrimmar-hero-1536.webp' | relative_url }} 1536w"
+                sizes="100vw"
+                alt="석양의 오그리마를 굽어보는 오크 전쟁군주와 호드 깃발, 붉은 도시"
+                width="1536" height="1024"
+                fetchpriority="high" decoding="async">
+        </picture>
+        <div class="hero-banner-scrim" aria-hidden="true"></div>
+        <div class="hero-banner-content">
+            <span class="warlord-crest warlord-crest-hero">
+                <img src="{{ '/assets/images/logo/orchwang.png' | relative_url }}" alt="전쟁군주 문장 — Orc Hwang" class="site-logo">
+            </span>
+            <h1 class="hero-banner-title">{{ site.title }}</h1>
+            <p class="hero-banner-text">{{ site.description }}</p>
+            <p class="hero-banner-subtitle">Lok'tar! 학습은 정복, 완료는 도장깨기 — 한 전장씩 함락하는 오그리마의 학습 코덱스</p>
+            <div class="axe-divider" aria-hidden="true"><span class="axe-cross"></span></div>
+        </div>
+    </section>
+
+    <section class="tavern-band tavern-band--day" aria-label="학습 주막 안내">
+        <div class="tavern-band-media" aria-hidden="true"></div>
+        <div class="tavern-band-scrim" aria-hidden="true"></div>
+        <h2 class="tavern-band-title">여기는 학습 주막</h2>
+        <p class="tavern-band-text">한 잔 들고 자리에 앉으시오 — 오늘의 도장깨기를 시작할 시간이오. 최근 출정 기록을 살피고, 다음 전장을 고르시오.</p>
+        <p class="tavern-band-subtitle">Lok'tar ogar — 배우는 자에게 영광을</p>
+        <div class="axe-divider" aria-hidden="true"><span class="axe-cross"></span></div>
+    </section>
+
     {% if site.posts.size > 0 %}
     <section class="recent-posts">
-        <h2>최근 포스트</h2>
+        <h2>최근 출정 기록</h2>
         <div class="posts-list">
             {% for post in site.posts limit:10 %}
             <article class="post-item">
@@ -43,23 +78,23 @@ title: 홈
     {% endif %}
 
     <section class="quick-links">
-        <h2>바로가기</h2>
+        <h2>전쟁 캠프 바로가기</h2>
         <div class="quick-links-grid">
             <a href="{{ '/pages/tags.html' | relative_url }}" class="quick-link-card">
                 <h3>📚 태그</h3>
-                <p>태그별로 포스트를 찾아보세요</p>
+                <p>전리품 태그로 포스트를 찾아보세요</p>
             </a>
             <a href="{{ '/pages/categories.html' | relative_url }}" class="quick-link-card">
                 <h3>🗂️ 카테고리</h3>
-                <p>카테고리별로 포스트를 찾아보세요</p>
+                <p>던전(카테고리)별로 탐험해보세요</p>
             </a>
             <a href="{{ '/pages/series.html' | relative_url }}" class="quick-link-card">
                 <h3>📖 시리즈</h3>
-                <p>시리즈별로 연관된 포스트를 찾아보세요</p>
+                <p>퀘스트 라인(시리즈)을 따라가 보세요</p>
             </a>
             <a href="{{ '/pages/cv.html' | relative_url }}" class="quick-link-card">
                 <h3>👤 CV</h3>
-                <p>이력서 및 프로필</p>
+                <p>모험가 기록(이력서)을 확인하세요</p>
             </a>
         </div>
     </section>

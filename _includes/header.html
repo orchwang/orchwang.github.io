@@ -2,8 +2,10 @@
     <div class="container">
         <div class="header-content">
             <div class="site-branding">
-                <a href="{{ '/' | relative_url }}" class="logo-link">
-                    <img src="{{ '/assets/images/logo/orchwang.png' | relative_url }}" alt="Orc Hwang Logo" class="site-logo">
+                <a href="{{ '/' | relative_url }}" class="logo-link" aria-label="홈으로 — 전쟁군주의 문장">
+                    <span class="warlord-crest">
+                        <img src="{{ '/assets/images/logo/orchwang.png' | relative_url }}" alt="Orc Hwang 전쟁군주 문장" class="site-logo">
+                    </span>
                 </a>
                 <div class="branding-text">
                     <a href="{{ '/' | relative_url }}" class="site-title">{{ site.title }}</a>
@@ -11,11 +13,19 @@
                 </div>
             </div>
 
-            <button class="hamburger-menu" id="hamburger-menu" aria-label="Toggle navigation menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <div class="header-actions">
+                <button class="theme-toggle" id="theme-toggle" type="button"
+                        aria-pressed="false" aria-label="테마 전환">
+                    <span class="icon-light" aria-hidden="true">🔥</span><span class="toggle-label label-light">던전</span>
+                    <span class="icon-dark" aria-hidden="true">☀️</span><span class="toggle-label label-dark">주막</span>
+                </button>
+
+                <button class="hamburger-menu" id="hamburger-menu" aria-label="Toggle navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
 
             <nav class="main-navigation" id="main-navigation">
                 <ul class="nav-menu">

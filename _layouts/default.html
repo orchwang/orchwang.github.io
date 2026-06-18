@@ -3,8 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
-    <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+
+    <!-- Theme: apply saved/OS theme before paint to avoid a flash -->
+    <script>
+        (function () {
+            try {
+                var saved = localStorage.getItem('theme');
+                if (saved === 'dark' || saved === 'light') {
+                    document.documentElement.setAttribute('data-theme', saved);
+                }
+                // else: leave unset so prefers-color-scheme decides (CSS handles it)
+            } catch (e) {}
+        })();
+    </script>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/favicon/favicon-32x32.png' | relative_url }}">
@@ -12,17 +23,38 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/images/favicon/apple-touch-icon.png' | relative_url }}">
     <link rel="shortcut icon" href="{{ '/favicon.ico' | relative_url }}">
 
-    <!-- Google Fonts: Noto Sans KR -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <!-- Noto Sans KR (Pretendard fallback) -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Latin pixel display faces (chrome accents) -->
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&display=swap" rel="stylesheet">
 
-    <!-- Pretendard Variable Font (Korean-English) -->
+    <!-- Pretendard Variable Font (Korean-English body — reading tier) -->
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
 
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+
+    {% comment %}
+      Preload the above-the-fold home hero (core concept image: Orgrimmar warlord).
+      Responsive srcset so the browser fetches the right size at high priority.
+      Only on the home page, where the hero is the LCP element.
+    {% endcomment %}
+    {% if page.url == '/' or page.url == '/index.html' %}
+    <link rel="preload" as="image"
+          imagesrcset="{{ '/assets/images/hero/orgrimmar-hero-640.webp' | relative_url }} 640w, {{ '/assets/images/hero/orgrimmar-hero-1024.webp' | relative_url }} 1024w, {{ '/assets/images/hero/orgrimmar-hero-1536.webp' | relative_url }} 1536w"
+          imagesizes="100vw"
+          fetchpriority="high"
+          type="image/webp">
+    {% endif %}
+
     {% seo %}
     {% feed_meta %}
+
+    <!-- og:image type (seo-tag omits it); image dims/alt come from _config.yml `image`. -->
+    <meta property="og:image:type" content="image/jpeg">
 </head>
 <body>
     {% include header.html %}
@@ -35,6 +67,12 @@
 
     {% include footer.html %}
 
+    <button class="scroll-top" id="scroll-top" type="button" aria-label="맨 위로 — 본진으로 귀환">
+        <span class="axe-cross" aria-hidden="true"></span>
+    </button>
+
+    <script src="{{ '/assets/js/theme-toggle.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/scroll-top.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/search.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/toc.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/mobile-menu.js' | relative_url }}"></script>

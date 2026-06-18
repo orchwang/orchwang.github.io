@@ -4,7 +4,23 @@ layout: default
 
 <div class="cv-wrapper">
     <div class="cv-page">
-        <header class="cv-header">
+        <header class="cv-header cv-header--cover">
+            <div class="cv-cover-media" aria-hidden="true">
+                <picture>
+                    <source
+                        type="image/webp"
+                        srcset="{{ '/assets/images/hero/orgrimmar-hero-640.webp' | relative_url }} 640w, {{ '/assets/images/hero/orgrimmar-hero-1024.webp' | relative_url }} 1024w, {{ '/assets/images/hero/orgrimmar-hero-1536.webp' | relative_url }} 1536w"
+                        sizes="(max-width: 1200px) 100vw, 800px">
+                    <img
+                        src="{{ '/assets/images/hero/orgrimmar-hero.jpg' | relative_url }}"
+                        srcset="{{ '/assets/images/hero/orgrimmar-hero-1024.webp' | relative_url }} 1024w, {{ '/assets/images/hero/orgrimmar-hero-1536.webp' | relative_url }} 1536w"
+                        sizes="(max-width: 1200px) 100vw, 800px"
+                        alt=""
+                        width="1536" height="1024"
+                        loading="lazy" decoding="async">
+                </picture>
+                <span class="cv-cover-scrim"></span>
+            </div>
             <div class="cv-header-text">
                 <h1>{{ page.title }}</h1>
                 {% if page.subtitle %}
@@ -12,9 +28,11 @@ layout: default
                 {% endif %}
             </div>
             <div class="cv-header-image">
-                <img src="{{ '/assets/images/logo/orchwang.png' | relative_url }}"
-                     alt="{{ page.title }}"
-                     class="cv-profile-image">
+                <span class="warlord-crest warlord-crest-cv">
+                    <img src="{{ '/assets/images/logo/orchwang.png' | relative_url }}"
+                         alt="{{ page.title }} — 전쟁군주 캐릭터 시트"
+                         class="cv-profile-image">
+                </span>
             </div>
         </header>
 

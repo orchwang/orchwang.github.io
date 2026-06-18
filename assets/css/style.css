@@ -1,4 +1,13 @@
-/* BBH Sans Bogle Font */
+/* ============================================================
+   Orc Hwang's Wiki — "Quest Codex" Pixel-RPG design system
+   See DESIGN.md for the authoritative contract.
+   Reading tier = Pretendard (long Hangul body, UNTOUCHABLE).
+   Chrome tier  = Galmuri11 pixel (full Hangul) + Latin pixel accents.
+   ============================================================ */
+
+/* --- Fonts ------------------------------------------------- */
+
+/* BBH Sans Bogle (Latin display, legacy brand face) */
 @font-face {
     font-family: 'BBH Sans Bogle';
     font-style: normal;
@@ -8,6 +17,25 @@
     unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 
+/* Galmuri11 — pixel font with FULL Hangul syllable-block coverage.
+   Used for short UI chrome only (nav, titles, badges, labels). */
+@font-face {
+    font-family: 'Galmuri11';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('Galmuri11 Regular'),
+         url('https://cdn.jsdelivr.net/npm/galmuri@2.40.3/dist/Galmuri11.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Galmuri11';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local('Galmuri11 Bold'),
+         url('https://cdn.jsdelivr.net/npm/galmuri@2.40.3/dist/Galmuri11-Bold.woff2') format('woff2');
+}
+
 /* Reset and Base Styles */
 * {
     margin: 0;
@@ -15,24 +43,217 @@
     box-sizing: border-box;
 }
 
+/* ============================================================
+   1. COLOR TOKENS
+   ============================================================ */
+
+/* --- Light: Orgrimmar by day (red rock, bone, sun-baked clay) ----- */
 :root {
-    --primary-color: #2c3e50;
-    --secondary-color: #3498db;
-    --accent-color: #e74c3c;
-    --text-color: #333;
-    --text-light: #666;
-    --bg-color: #fff;
-    --bg-light: #f8f9fa;
-    --border-color: #dee2e6;
-    --shadow: 0 2px 4px rgba(0,0,0,0.1);
-    --shadow-lg: 0 4px 8px rgba(0,0,0,0.15);
+    --bg-color: #e7d3ab;       /* sun-baked clay / canyon dust page */
+    --bg-light: #f2e3c4;       /* raised tan-bone panels */
+    --bg-panel: #fbf3df;       /* reading surface — bone/parchment (highest legibility) */
+    --bg-sunken: #ddc89e;      /* recessed wells (code, table stripes) */
+
+    --ink: #2e2418;
+    --text-color: #2e2418;     /* dark tusk-ink (high contrast on bone) */
+    --text-light: #6a5a42;     /* muted clay-brown meta */
+
+    --primary-color: #7a2418;  /* burnt iron-red structural (headers, frames) */
+    --secondary-color: #2f6b34;/* deep orc-green link/accent (AA on bone) */
+    --secondary-strong: #1f4f25;
+    --accent-color: #a3201a;   /* Horde crimson highlight (AA on bone) */
+
+    --crimson: #a30000;        /* Horde war-banner crimson (chrome only) */
+    --crimson-deep: #6e0d0d;   /* dried-blood backing */
+    --orc-green: #5a8a3a;      /* orc-skin olive (chrome accents) */
+    --orc-green-deep: #3d6b2f;
+    --steel: #4a4a52;          /* forged steel grey */
+    --bone: #efe2c4;           /* tusk/bone ivory (medallion fill) */
+
+    --gold: #9a6f12;           /* bronze/brass (frames, edges on dark chrome) */
+    --gold-bright: #d9a528;    /* brighter brass for dark chrome */
+    --gold-soft: rgba(154,111,18,0.16);
+    --badge-fill: #c08a14;     /* brighter brass for coin-badges (AA w/ dark text) */
+
+    --border-color: #8a6a3e;   /* pixel frame mid-bronze */
+    --border-strong: #2a1a12;  /* hard outer outline (charred) */
+    --shadow-color: rgba(42,20,12,0.85);
+
+    --chrome-bg: #2a1512;      /* charred-iron war-camp banner/footer */
+    --chrome-bg-2: #1a0c0a;
+    --chrome-ink: #f2e3c4;     /* bone text on chrome */
+    --chrome-muted: rgba(242,227,196,0.78);
+
+    /* Hero / cover scrim over the Orgrimmar concept image.
+       Text sits on the LEFT (darker side), so the scrim is heaviest left + bottom.
+       Day theme: a firm but warm dusk wash that still clears WCAG AA for bone text. */
+    --hero-scrim:
+        linear-gradient(90deg, rgba(20,8,6,0.86) 0%, rgba(20,8,6,0.66) 34%, rgba(20,8,6,0.30) 64%, rgba(20,8,6,0.16) 100%),
+        linear-gradient(0deg, rgba(12,5,4,0.78) 0%, rgba(12,5,4,0.20) 42%, transparent 70%);
+    --hero-ink: #f6ecd4;            /* bone-white hero copy */
+    --hero-ink-muted: rgba(246,236,212,0.88);
+    --hero-text-shadow: 0 2px 6px rgba(0,0,0,0.85), 0 0 2px rgba(0,0,0,0.9);
+    --hero-focus-x: left;          /* keep the dark left side under the text */
+
+    /* --- Tavern / environment art (interior scene) ------------
+       Theme 1:1 mapping: day (bright, warm) = light; night (dark,
+       vignetted, crossed-axes + skull) = dark. The day/night URL is
+       swapped per theme; `--ambient-bg-url` points at the active one
+       so a single layer covers ambient bg, footer and bands. */
+    --tavern-day-url: url("/assets/images/tavern/tavern-day-1536.webp");
+    --tavern-night-url: url("/assets/images/tavern/tavern-night-1536.webp");
+    --tavern-day-url-sm: url("/assets/images/tavern/tavern-day-1024.webp");
+    --tavern-night-url-sm: url("/assets/images/tavern/tavern-night-1024.webp");
+    --ambient-bg-url: var(--tavern-day-url);     /* day room in the gutters */
+    --ambient-blur: 7px;
+    --ambient-opacity: 0.30;
+    /* Dark scrim that keeps the ambient image quiet behind the page;
+       blends toward the page bg color at the center so panels float. */
+    --ambient-scrim: linear-gradient(180deg, rgba(231,211,171,0.55) 0%, rgba(231,211,171,0.78) 60%, rgba(231,211,171,0.92) 100%);
+
+    /* Tavern scrim for footer / bands — bone copy must clear AA on top.
+       Heaviest at the text edge; same recipe in both themes. */
+    --tavern-scrim:
+        linear-gradient(180deg, rgba(20,9,6,0.78) 0%, rgba(20,9,6,0.62) 45%, rgba(20,9,6,0.80) 100%);
+    --tavern-scrim-soft:
+        linear-gradient(180deg, rgba(20,9,6,0.74) 0%, rgba(20,9,6,0.66) 50%, rgba(20,9,6,0.78) 100%);
+
+    --link-color: var(--secondary-color);
+    --code-ink: #a3201a;       /* inline code (crimson on bone) */
+
+    /* hard pixel shadows (blur 0) */
+    --px-shadow: 4px 4px 0 var(--shadow-color);
+    --px-shadow-lg: 6px 6px 0 var(--shadow-color);
+    --px-shadow-sm: 2px 2px 0 var(--shadow-color);
+    /* legacy aliases (kept so untouched rules don't break) */
+    --shadow: var(--px-shadow-sm);
+    --shadow-lg: var(--px-shadow);
+
+    --radius: 2px;
+    color-scheme: light;
 }
 
+/* --- Dark: the Forge at night (ember-orange, lava glow, black iron) -- */
+:root[data-theme="dark"] {
+    --bg-color: #161210;          /* cold forge stone floor */
+    --bg-light: #221b16;          /* raised iron panels, cards, code */
+    --bg-panel: #271f18;          /* reading surface (warm dark, not black) */
+    --bg-sunken: #14100d;
+
+    --ink: #ede2cf;
+    --text-color: #ede2cf;        /* warm bone-white body */
+    --text-light: #b6a487;        /* muted */
+
+    --primary-color: #f0b46a;     /* ember-amber structural (headings, frames) */
+    --secondary-color: #e07a4a;   /* lava-ember link (AA on dark stone) */
+    --secondary-strong: #f0996a;
+    --accent-color: #e8633a;      /* hot crimson-ember highlight */
+
+    --crimson: #c21e1e;           /* glowing war-banner crimson (chrome) */
+    --crimson-deep: #7a1414;
+    --orc-green: #7aac4e;         /* lit orc-green (chrome accents) */
+    --orc-green-deep: #557f37;
+    --steel: #6a6a74;             /* lit steel */
+    --bone: #2e2620;             /* dark medallion backing */
+
+    --gold: #d9a528;              /* brass/ember-gold */
+    --gold-bright: #f5c542;       /* brightest forge-gold */
+    --gold-soft: rgba(245,197,66,0.15);
+    --badge-fill: #d9a528;        /* coin-badge fill (AAA w/ near-black text) */
+
+    --border-color: #5a463a;      /* worn bronze frame */
+    --border-strong: #080604;     /* hard outer outline (near-black) */
+    --shadow-color: rgba(0,0,0,0.85);
+
+    --chrome-bg: #1a0c0a;         /* black-iron war banner */
+    --chrome-bg-2: #0d0605;
+    --chrome-ink: #ede2cf;
+    --chrome-muted: rgba(237,226,207,0.72);
+
+    --code-ink: #e8633a;
+
+    /* Forge-night: deepen the scrim a touch so the hero stays AA on dark surfaces. */
+    --hero-scrim:
+        linear-gradient(90deg, rgba(8,4,3,0.92) 0%, rgba(8,4,3,0.74) 34%, rgba(8,4,3,0.40) 64%, rgba(8,4,3,0.22) 100%),
+        linear-gradient(0deg, rgba(5,2,2,0.85) 0%, rgba(5,2,2,0.26) 42%, transparent 70%);
+    --hero-ink: #f3e6c8;
+    --hero-ink-muted: rgba(243,230,200,0.88);
+
+    /* Night tavern in the gutters; the night plate is already vignetted,
+       so it sits a touch stronger but the scrim blends to the forge floor. */
+    --ambient-bg-url: var(--tavern-night-url);
+    --ambient-opacity: 0.34;
+    --ambient-scrim: linear-gradient(180deg, rgba(22,18,16,0.62) 0%, rgba(22,18,16,0.82) 60%, rgba(22,18,16,0.94) 100%);
+
+    color-scheme: dark;
+}
+
+/* OS-default dark when the user has not explicitly chosen a theme */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]):not([data-theme="dark"]) {
+        --bg-color: #161210;
+        --bg-light: #221b16;
+        --bg-panel: #271f18;
+        --bg-sunken: #14100d;
+        --ink: #ede2cf;
+        --text-color: #ede2cf;
+        --text-light: #b6a487;
+        --primary-color: #f0b46a;
+        --secondary-color: #e07a4a;
+        --secondary-strong: #f0996a;
+        --accent-color: #e8633a;
+        --crimson: #c21e1e;
+        --crimson-deep: #7a1414;
+        --orc-green: #7aac4e;
+        --orc-green-deep: #557f37;
+        --steel: #6a6a74;
+        --bone: #2e2620;
+        --gold: #d9a528;
+        --gold-bright: #f5c542;
+        --gold-soft: rgba(245,197,66,0.15);
+        --badge-fill: #d9a528;
+        --border-color: #5a463a;
+        --border-strong: #080604;
+        --shadow-color: rgba(0,0,0,0.85);
+        --chrome-bg: #1a0c0a;
+        --chrome-bg-2: #0d0605;
+        --chrome-ink: #ede2cf;
+        --chrome-muted: rgba(237,226,207,0.72);
+        --code-ink: #e8633a;
+        --hero-scrim:
+            linear-gradient(90deg, rgba(8,4,3,0.92) 0%, rgba(8,4,3,0.74) 34%, rgba(8,4,3,0.40) 64%, rgba(8,4,3,0.22) 100%),
+            linear-gradient(0deg, rgba(5,2,2,0.85) 0%, rgba(5,2,2,0.26) 42%, transparent 70%);
+        --hero-ink: #f3e6c8;
+        --hero-ink-muted: rgba(243,230,200,0.88);
+        --ambient-bg-url: var(--tavern-night-url);
+        --ambient-opacity: 0.34;
+        --ambient-scrim: linear-gradient(180deg, rgba(22,18,16,0.62) 0%, rgba(22,18,16,0.82) 60%, rgba(22,18,16,0.94) 100%);
+        color-scheme: dark;
+    }
+}
+
+/* --- Font role tokens ------------------------------------- */
+:root {
+    --font-body: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    --font-pixel: "Galmuri11", "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    --font-pixel-latin: "Silkscreen", "VT323", "Galmuri11", monospace;
+    --font-mono: "D2Coding", "SF Mono", "Monaco", "Cascadia Code", "Fira Code", "Consolas", "Courier New", monospace;
+
+    /* Original pixel-art Gorehowl assets (see assets/images/pixel/) */
+    --axe-cross-url: url("/assets/images/pixel/axe-cross.svg");
+    --gorehowl-url: url("/assets/images/pixel/gorehowl.svg");
+    --axe-bullet-url: url("/assets/images/pixel/axe-bullet.svg");
+}
+
+/* --- Base ------------------------------------------------- */
 body {
-    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-family: var(--font-body);
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--bg-color);
+    background-image:
+        repeating-linear-gradient(0deg, rgba(110,13,13,0.02) 0 2px, transparent 2px 4px),
+        repeating-linear-gradient(90deg, rgba(110,13,13,0.02) 0 2px, transparent 2px 4px);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -40,6 +261,46 @@ body {
     word-break: keep-all;
     word-wrap: break-word;
     font-variation-settings: "wght" 400;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+:root[data-theme="dark"] body,
+:root:not([data-theme="light"]) body {
+    /* subtle dungeon grid; overridden harmlessly in light by the rule above */
+}
+
+/* ============================================================
+   AMBIENT TAVERN BACKGROUND — "changing the room" on theme toggle
+   A single fixed, blurred, low-opacity tavern plate behind the page,
+   visible only in the GUTTERS (>=1200px, where the 1200px container
+   leaves margin). The reading body always floats on an OPAQUE panel,
+   so this never touches legibility. Mobile suppresses it (the panel
+   covers the full width and fixed bgs are a perf hit). Lazy: a CSS
+   background, never preloaded. Theme swaps the URL via --ambient-bg-url.
+   ============================================================ */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -10;
+    pointer-events: none;
+    /* hidden by default; only the wide-gutter breakpoint turns it on */
+    display: none;
+    /* scrim ON TOP of a blurred, dimmed tavern plate */
+    background:
+        var(--ambient-scrim),
+        var(--ambient-bg-url) center center / cover no-repeat;
+    filter: blur(var(--ambient-blur));
+    /* push blur edges past the viewport so no unblurred seam shows */
+    transform: scale(1.06);
+    opacity: var(--ambient-opacity);
+    transition: opacity 0.2s ease;
+}
+
+@media (min-width: 1200px) {
+    body::before {
+        display: block;
+    }
 }
 
 /* Font weight variations for Pretendard Variable */
@@ -51,31 +312,176 @@ h1, h2, h3, h4, h5, h6 {
     font-variation-settings: "wght" 700;
 }
 
+/* --- Pixel-frame panel mixin (shared recipe) -------------- */
+/* Apply .game-panel for the beveled square game-UI look. */
+.game-panel {
+    background-color: var(--bg-light);
+    border: 2px solid var(--border-strong);
+    box-shadow:
+        inset 0 0 0 2px var(--bg-light),
+        inset 0 0 0 4px var(--border-color),
+        var(--px-shadow);
+    border-radius: var(--radius);
+}
+
+/* ============================================================
+   HORDE WAR-CAMP CHROME — Orgrimmar identity
+   Warlord portrait (logo medallion), Gorehowl axes, crimson banners.
+   All confined to chrome; never touches .post-content / .cv-content.
+   ============================================================ */
+
+/* Iron-spike frame: a thin top/bottom crimson rule with a steel inner edge,
+   used to band war banners. Applied via class .iron-band. */
+.iron-band {
+    border-top: 3px solid var(--crimson);
+    border-bottom: 3px solid var(--crimson);
+    box-shadow:
+        inset 0 4px 0 rgba(0,0,0,0.25),
+        inset 0 -4px 0 rgba(0,0,0,0.25);
+}
+
+/* --- Warlord portrait: logo framed as a bone/steel war medallion ---- */
+/* The logo is black line-art, so it MUST sit on a light bone disc and be
+   re-tinted in dark mode (filter) so it stays legible in BOTH themes. */
+.warlord-crest {
+    --crest-size: 56px;
+    width: var(--crest-size);
+    height: var(--crest-size);
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 50% 42%, var(--bone) 0 62%, #d8c49a 63% 100%);
+    border: 3px solid var(--steel);
+    border-radius: 50%;
+    box-shadow:
+        0 0 0 2px var(--crimson),
+        0 0 0 4px var(--border-strong),
+        var(--px-shadow-sm);
+    overflow: hidden;
+    transition: transform 0.12s steps(2), box-shadow 0.12s steps(2);
+}
+
+.warlord-crest img {
+    width: 74%;
+    height: 74%;
+    object-fit: contain;
+    image-rendering: auto;
+    /* the line-art is near-black ink — keep it inked on the light bone disc */
+    filter: none;
+}
+
+.warlord-crest:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 0 0 2px var(--crimson),
+        0 0 0 4px var(--border-strong),
+        var(--px-shadow);
+}
+
+/* Dark forge: keep the bone disc light so the black-ink orc still reads,
+   warmed toward ember-bone; the crimson ring brightens via its token. */
+:root[data-theme="dark"] .warlord-crest,
+:root:not([data-theme="light"]) .warlord-crest {
+    background: radial-gradient(circle at 50% 42%, #f3e6c8 0 62%, #c9b488 63% 100%);
+}
+
+/* --- Gorehowl axe sigil (inline decorative element) ----------------- */
+.axe-sigil {
+    display: inline-block;
+    width: 1.1em;
+    height: 1.1em;
+    vertical-align: -0.18em;
+    background: var(--axe-cross-url) center / contain no-repeat;
+}
+
+/* Crossed-axe section divider — a centered crest flanked by crimson rules.
+   Use <div class="axe-divider" aria-hidden="true"></div> in chrome areas. */
+.axe-divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 28px 0;
+}
+.axe-divider::before,
+.axe-divider::after {
+    content: "";
+    flex: 1;
+    height: 3px;
+    background:
+        linear-gradient(90deg, transparent, var(--crimson) 30%, var(--gold) 100%);
+}
+.axe-divider::after {
+    background:
+        linear-gradient(90deg, var(--gold) 0%, var(--crimson) 70%, transparent);
+}
+.axe-divider .axe-cross {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    background: var(--axe-cross-url) center / contain no-repeat;
+    image-rendering: pixelated;
+}
+
+/* Visible focus state for all interactive chrome */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+.tag:focus-visible,
+[tabindex]:focus-visible {
+    outline: 3px solid var(--gold-bright);
+    outline-offset: 2px;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* Header Styles */
+/* ============================================================
+   HEADER — carved-wood banner masthead
+   ============================================================ */
 .site-header {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 20px 0;
-    box-shadow: var(--shadow);
+    background-color: var(--chrome-bg);
+    background-image:
+        linear-gradient(180deg, rgba(110,13,13,0.35) 0%, transparent 40%),
+        linear-gradient(180deg, var(--chrome-bg) 0%, var(--chrome-bg-2) 100%);
+    color: var(--chrome-ink);
+    padding: 18px 0;
+    /* Horde war-banner edge: crimson over bronze */
+    border-bottom: 4px solid var(--crimson);
+    box-shadow:
+        0 4px 0 var(--gold),
+        0 8px 0 var(--shadow-color);
 }
 
 .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    order: 3;
+}
+
+.main-navigation {
+    order: 2;
+    margin-left: auto;
 }
 
 .site-branding {
     display: flex;
     align-items: center;
     gap: 15px;
+    order: 1;
 }
 
 .site-branding .logo-link {
@@ -84,14 +490,9 @@ h1, h2, h3, h4, h5, h6 {
     flex-shrink: 0;
 }
 
+/* logo now sits inside .warlord-crest, which controls sizing */
 .site-branding .site-logo {
-    height: 50px;
-    width: auto;
-    transition: transform 0.3s ease;
-}
-
-.site-branding .site-logo:hover {
-    transform: scale(1.05);
+    display: block;
 }
 
 .site-branding .branding-text {
@@ -100,58 +501,126 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .site-branding .site-title {
-    font-family: 'BBH Sans Bogle', sans-serif;
-    font-size: 28px;
+    font-family: var(--font-pixel-latin);
+    font-size: 26px;
     font-weight: 400;
-    color: white;
+    /* Silkscreen is an inherently wide pixel face — pull tracking in for legibility */
+    letter-spacing: -0.04em;
+    word-spacing: -0.06em;
+    color: var(--gold-bright);
+    /* crimson war-banner edge under the brass wordmark */
+    text-shadow:
+        1px 0 0 var(--crimson),
+        -1px 0 0 var(--crimson),
+        2px 2px 0 var(--shadow-color);
     text-decoration: none;
     display: block;
 }
 
 .site-branding .site-description {
-    font-size: 14px;
-    color: rgba(255,255,255,0.8);
-    margin-top: 5px;
+    font-family: var(--font-pixel);
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--chrome-muted);
+    margin-top: 6px;
 }
 
+/* Nav — menu tiles */
 .main-navigation .nav-menu {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 8px;
+    align-items: center;
 }
 
 .main-navigation .nav-menu a {
-    color: white;
+    font-family: var(--font-pixel);
+    font-size: 13px;
+    color: var(--chrome-ink);
     text-decoration: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    transition: background-color 0.3s;
+    padding: 11px 14px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    border: 2px solid transparent;
+    border-radius: var(--radius);
+    transition: background-color 0.12s steps(2), border-color 0.12s steps(2), transform 0.12s steps(2);
 }
 
 .main-navigation .nav-menu a:hover {
-    background-color: rgba(255,255,255,0.1);
+    background-color: var(--gold-soft);
+    border-color: var(--gold);
+    color: var(--gold-bright);
+    transform: translateY(-2px);
 }
+
+/* Theme toggle — tavern <-> dungeon */
+.theme-toggle {
+    font-family: var(--font-pixel);
+    font-size: 16px;
+    line-height: 1;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    color: var(--chrome-ink);
+    background-color: rgba(244,228,193,0.06);
+    border: 2px solid var(--gold);
+    border-radius: var(--radius);
+    box-shadow: 2px 2px 0 var(--shadow-color);
+    transition: transform 0.1s steps(2), box-shadow 0.1s steps(2);
+}
+
+.theme-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 3px 3px 0 var(--shadow-color);
+}
+
+.theme-toggle:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0 0 0 var(--shadow-color);
+}
+
+.theme-toggle .toggle-label {
+    font-size: 11px;
+}
+
+/* show the right glyph/label per theme */
+.theme-toggle .icon-dark,
+.theme-toggle .label-dark { display: none; }
+.theme-toggle .icon-light,
+.theme-toggle .label-light { display: inline; }
+:root[data-theme="dark"] .theme-toggle .icon-light,
+:root[data-theme="dark"] .theme-toggle .label-light { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-dark,
+:root[data-theme="dark"] .theme-toggle .label-dark { display: inline; }
 
 /* Hamburger Menu */
 .hamburger-menu {
     display: none;
     flex-direction: column;
-    justify-content: space-around;
-    width: 30px;
-    height: 25px;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
     background: transparent;
-    border: none;
+    border: 2px solid var(--gold);
+    border-radius: var(--radius);
     cursor: pointer;
-    padding: 0;
+    padding: 8px;
     z-index: 10;
 }
 
 .hamburger-menu span {
-    width: 30px;
+    width: 100%;
     height: 3px;
-    background: white;
-    border-radius: 10px;
-    transition: all 0.3s ease;
+    background: var(--gold-bright);
+    border-radius: 0;
+    transition: all 0.2s ease;
     transform-origin: center;
 }
 
@@ -167,19 +636,34 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateY(-8px) rotate(-45deg);
 }
 
-/* Search Styles */
+/* Search — "search scroll" input */
 .search-container {
     position: relative;
-    margin-top: 20px;
+    margin-top: 18px;
 }
 
 #search-input {
     width: 100%;
-    padding: 12px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 25px;
+    padding: 13px 18px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--ink);
+    background-color: var(--bg-panel);
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius);
+    box-shadow: inset 2px 2px 0 var(--gold-soft);
     outline: none;
+}
+
+#search-input::placeholder {
+    font-family: var(--font-pixel);
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+#search-input:focus {
+    border-color: var(--gold);
+    box-shadow: inset 0 0 0 2px var(--gold-soft), 0 0 0 3px var(--gold-bright);
 }
 
 #search-results {
@@ -188,9 +672,10 @@ h1, h2, h3, h4, h5, h6 {
     top: 100%;
     left: 0;
     right: 0;
-    background: white;
-    border-radius: 8px;
-    box-shadow: var(--shadow-lg);
+    background: var(--bg-light);
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius);
+    box-shadow: var(--px-shadow);
     max-height: 500px;
     overflow-y: auto;
     margin-top: 10px;
@@ -239,16 +724,42 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 8px;
 }
 
+/* Empty search = an empty tavern table: small crossed-axe motif + flavor.
+   Stays on the opaque results panel, so legibility is unchanged. */
 .search-no-results {
-    padding: 20px;
+    padding: 26px 20px;
     text-align: center;
     color: var(--text-light);
 }
 
+.search-no-results .axe-sigil {
+    display: block;
+    width: 28px;
+    height: 28px;
+    margin: 0 auto 12px;
+    opacity: 0.7;
+}
+
+.search-no-results .search-no-results-title {
+    font-family: var(--font-pixel);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+
+.search-no-results .search-no-results-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-light);
+}
+
 mark {
-    background-color: #fff3cd;
+    background-color: var(--gold-soft);
+    color: var(--ink);
     padding: 2px 4px;
-    border-radius: 3px;
+    border-radius: 2px;
+    box-shadow: inset 0 -2px 0 var(--gold);
 }
 
 /* Main Content */
@@ -257,64 +768,268 @@ mark {
     min-height: calc(100vh - 300px);
 }
 
-/* Home Page Styles */
+/* ============================================================
+   HOME HERO — cinematic concept banner (Orgrimmar warlord)
+   Full-bleed image + dark scrim + iron pixel frame; bone text on the
+   dark LEFT side. Chrome only — never sits behind reading body text.
+   ============================================================ */
+.hero-banner {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 340px;
+    margin-bottom: 40px;
+    /* iron pixel frame, consistent with the war-camp system */
+    border: 2px solid var(--border-strong);
+    box-shadow:
+        inset 0 0 0 3px var(--crimson),
+        inset 0 0 0 5px var(--gold),
+        var(--px-shadow);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+}
+
+.hero-banner-media,
+.hero-banner-media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+.hero-banner-media img {
+    object-fit: cover;
+    /* focus the dark, warlord-bearing LEFT of the frame under the copy */
+    object-position: var(--hero-focus-x, left) center;
+}
+
+/* Dark scrim: left + bottom heaviest so bone copy clears WCAG AA */
+.hero-banner-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--hero-scrim);
+    pointer-events: none;
+}
+
+.hero-banner-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 44px 40px;
+    text-align: left;
+    /* keep copy within the dark left band */
+    max-width: min(640px, 70%);
+    margin-left: max(20px, calc((100% - 1200px) / 2 + 20px));
+}
+
+.hero-banner .warlord-crest-hero {
+    --crest-size: 88px;
+    margin: 0 0 18px;
+    display: flex;
+    box-shadow:
+        0 0 0 3px var(--crimson),
+        0 0 0 6px var(--border-strong),
+        var(--px-shadow);
+}
+
+.hero-banner-title {
+    font-family: var(--font-pixel);
+    font-size: 30px;
+    line-height: 1.35;
+    color: var(--hero-ink);
+    text-shadow: var(--hero-text-shadow);
+    margin-bottom: 14px;
+}
+
+.hero-banner-text {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--hero-ink);
+    text-shadow: var(--hero-text-shadow);
+    margin-bottom: 10px;
+}
+
+.hero-banner-subtitle {
+    font-family: var(--font-pixel);
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--hero-ink-muted);
+    text-shadow: var(--hero-text-shadow);
+}
+
+.hero-banner .axe-divider {
+    max-width: 320px;
+    margin: 22px 0 0;
+}
+
+@media (max-width: 768px) {
+    .hero-banner {
+        min-height: 300px;
+    }
+    .hero-banner-content {
+        max-width: 100%;
+        margin-left: 0;
+        padding: 32px 22px;
+    }
+    .hero-banner .warlord-crest-hero {
+        --crest-size: 72px;
+    }
+    .hero-banner-title {
+        font-size: 22px;
+    }
+    .hero-banner-text {
+        font-size: 15px;
+    }
+    /* On narrow screens the whole frame is covered, so darken evenly. */
+    .hero-banner-scrim {
+        background:
+            linear-gradient(180deg, rgba(16,7,5,0.55) 0%, rgba(16,7,5,0.82) 100%),
+            var(--hero-scrim);
+    }
+}
+
+/* ============================================================
+   HOME — quest board
+   ============================================================ */
 .welcome-section {
     text-align: center;
-    padding: 60px 0;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: white;
-    border-radius: 12px;
+    padding: 48px 24px;
+    background-color: var(--chrome-bg);
+    background-image:
+        linear-gradient(180deg, rgba(110,13,13,0.4) 0%, transparent 55%),
+        linear-gradient(180deg, var(--chrome-bg) 0%, var(--chrome-bg-2) 100%);
+    color: var(--chrome-ink);
+    border: 2px solid var(--border-strong);
+    /* crimson inner war-banner frame over bronze */
+    box-shadow:
+        inset 0 0 0 3px var(--crimson),
+        inset 0 0 0 5px var(--gold),
+        var(--px-shadow);
+    border-radius: var(--radius);
     margin-bottom: 40px;
 }
 
+/* Home hero — 전쟁군주 배너 (warlord banner) */
+.warlord-banner .warlord-crest-hero {
+    --crest-size: 104px;
+    margin: 0 auto 22px;
+    display: flex;
+    box-shadow:
+        0 0 0 3px var(--crimson),
+        0 0 0 6px var(--border-strong),
+        var(--px-shadow);
+}
+
 .welcome-section h1 {
-    font-size: 42px;
+    font-family: var(--font-pixel);
+    font-size: 30px;
+    line-height: 1.4;
+    color: var(--gold-bright);
+    text-shadow:
+        1px 0 0 var(--crimson),
+        -1px 0 0 var(--crimson),
+        3px 3px 0 var(--shadow-color);
     margin-bottom: 15px;
 }
 
+.welcome-section .axe-divider {
+    max-width: 360px;
+    margin: 22px auto 0;
+}
+
 .welcome-text {
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 10px;
 }
 
 .welcome-subtitle {
-    font-size: 16px;
-    opacity: 0.9;
+    font-family: var(--font-pixel);
+    font-size: 12px;
+    color: var(--chrome-muted);
 }
 
 .recent-posts {
     margin-bottom: 40px;
 }
 
-.recent-posts h2 {
-    font-size: 32px;
-    margin-bottom: 30px;
+.recent-posts h2,
+.quick-links h2 {
+    font-family: var(--font-pixel);
+    font-size: 22px;
+    line-height: 1.5;
+    margin-bottom: 28px;
     color: var(--primary-color);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 8px;
+    /* crimson over bronze war-banner underline */
+    border-bottom: 4px solid var(--crimson);
+    box-shadow: 0 4px 0 var(--gold);
 }
 
-/* Post List Styles */
+/* crossed-Gorehowl sigil leading each chrome section heading */
+.recent-posts h2::before,
+.quick-links h2::before {
+    content: "";
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    background: var(--axe-cross-url) center / contain no-repeat;
+    image-rendering: pixelated;
+}
+
+/* Post List — quest scrolls */
 .posts-list {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 24px;
 }
 
 .post-item {
+    position: relative;
     background: var(--bg-light);
-    padding: 25px;
-    border-radius: 8px;
-    border-left: 4px solid var(--secondary-color);
-    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 24px;
+    border: 2px solid var(--border-strong);
+    border-left: 8px solid var(--crimson);
+    border-radius: var(--radius);
+    box-shadow: var(--px-shadow);
+    transition: transform 0.12s steps(2), box-shadow 0.12s steps(2), border-left-color 0.12s steps(2);
+}
+
+/* Gorehowl war-seal on each quest scroll (reveals on hover) */
+.post-item::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    width: 22px;
+    height: 22px;
+    background: var(--axe-cross-url) center / contain no-repeat;
+    image-rendering: pixelated;
+    opacity: 0;
+    transition: opacity 0.12s steps(2);
+    pointer-events: none;
 }
 
 .post-item:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+    transform: translate(-2px, -2px);
+    box-shadow: var(--px-shadow-lg);
+    border-left-color: var(--gold-bright);
+}
+
+.post-item:hover::after {
+    opacity: 0.85;
 }
 
 .post-item-title {
-    font-size: 24px;
-    margin-bottom: 10px;
+    font-family: var(--font-pixel);
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 12px;
 }
 
 .post-item-title a {
@@ -331,7 +1046,8 @@ mark {
     align-items: center;
     gap: 15px;
     margin-bottom: 10px;
-    font-size: 14px;
+    font-family: var(--font-pixel);
+    font-size: 11px;
     color: var(--text-light);
 }
 
@@ -341,61 +1057,74 @@ mark {
     gap: 8px;
 }
 
+/* Tags — loot chips */
 .tag {
-    background-color: var(--secondary-color);
-    color: white;
-    padding: 4px 12px;
-    border-radius: 15px;
+    font-family: var(--font-pixel);
+    font-size: 11px;
+    line-height: 1.4;
+    background-color: var(--bg-panel);
+    color: var(--secondary-strong);
+    padding: 5px 10px;
+    border: 2px solid var(--secondary-color);
+    border-radius: var(--radius);
     text-decoration: none;
-    font-size: 13px;
-    transition: background-color 0.3s;
+    transition: transform 0.1s steps(2), background-color 0.1s steps(2), color 0.1s steps(2);
+}
+
+.tag::before {
+    content: "▪ ";
+    color: var(--crimson);
 }
 
 .tag:hover {
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
+    color: var(--bg-panel);
+    transform: translateY(-2px);
 }
 
 .post-item-excerpt {
     font-size: 15px;
     color: var(--text-light);
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
-/* Quick Links */
+/* Quick Links — menu tiles */
 .quick-links {
     margin-top: 40px;
 }
 
-.quick-links h2 {
-    font-size: 32px;
-    margin-bottom: 30px;
-    color: var(--primary-color);
-}
-
 .quick-links-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
 }
 
 .quick-link-card {
     background: var(--bg-light);
-    padding: 30px;
-    border-radius: 8px;
+    padding: 28px 24px;
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius);
+    box-shadow: var(--px-shadow);
     text-decoration: none;
     text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-    border: 2px solid transparent;
+    transition: transform 0.1s steps(2), box-shadow 0.1s steps(2), border-color 0.1s steps(2);
 }
 
 .quick-link-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--secondary-color);
+    transform: translate(-2px, -2px);
+    box-shadow: var(--px-shadow-lg);
+    border-color: var(--gold);
+}
+
+.quick-link-card:active {
+    transform: translate(2px, 2px);
+    box-shadow: var(--px-shadow-sm);
 }
 
 .quick-link-card h3 {
-    font-size: 24px;
+    font-family: var(--font-pixel);
+    font-size: 16px;
+    line-height: 1.5;
     color: var(--primary-color);
     margin-bottom: 10px;
 }
@@ -412,7 +1141,9 @@ mark {
 }
 
 .empty-state h2 {
-    font-size: 28px;
+    font-family: var(--font-pixel);
+    font-size: 20px;
+    line-height: 1.5;
     color: var(--text-light);
     margin-bottom: 15px;
 }
@@ -423,28 +1154,218 @@ mark {
     margin-bottom: 10px;
 }
 
-/* Post Page Styles */
+/* ============================================================
+   TAVERN BAND — contained interior scene (home intro, 404).
+   A day/night tavern plate under a dark scrim, framed in the same
+   crimson+brass war frame as the chrome. Bone copy on the scrim
+   clears WCAG AA. Chrome only — sits ABOVE/BETWEEN reading bodies,
+   never behind reading text.
+   ============================================================ */
+.tavern-band {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border: 2px solid var(--border-strong);
+    box-shadow:
+        inset 0 0 0 3px var(--crimson),
+        inset 0 0 0 5px var(--gold),
+        var(--px-shadow);
+    border-radius: var(--radius);
+    padding: 36px 32px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.tavern-band--day {
+    --tavern-band-img: var(--tavern-day-url);
+}
+
+.tavern-band-media {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: var(--tavern-band-img, var(--ambient-bg-url)) center 40% / cover no-repeat;
+    pointer-events: none;
+}
+
+.tavern-band-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--tavern-scrim-soft);
+    pointer-events: none;
+}
+
+.tavern-band-title {
+    font-family: var(--font-pixel);
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--hero-ink);
+    text-shadow: var(--hero-text-shadow);
+    margin-bottom: 12px;
+}
+
+.tavern-band-text {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--hero-ink);
+    text-shadow: var(--hero-text-shadow);
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.tavern-band-subtitle {
+    font-family: var(--font-pixel);
+    font-size: 11px;
+    line-height: 1.7;
+    color: var(--hero-ink-muted);
+    text-shadow: var(--hero-text-shadow);
+    margin-top: 12px;
+}
+
+.tavern-band .axe-divider {
+    max-width: 300px;
+    margin: 18px auto 0;
+}
+
+/* ============================================================
+   404 — empty tavern (night). tavern-night plate + scrim + Horde copy.
+   ============================================================ */
+.tavern-404 {
+    max-width: 760px;
+    margin: 0 auto 40px;
+    min-height: 360px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* force the NIGHT room regardless of theme — the empty tavern at night */
+    --tavern-band-img: var(--tavern-night-url);
+    padding: 56px 32px;
+}
+
+.tavern-404 .tavern-band-scrim {
+    /* the empty hall is dim — lean on the heavier scrim for AA */
+    background: var(--tavern-scrim);
+}
+
+.tavern-404-code {
+    font-family: var(--font-pixel-latin);
+    font-size: 64px;
+    line-height: 1;
+    color: var(--gold-bright);
+    text-shadow:
+        1px 0 0 var(--crimson),
+        -1px 0 0 var(--crimson),
+        0 3px 8px rgba(0,0,0,0.9);
+    margin-bottom: 18px;
+}
+
+.tavern-404-title {
+    font-family: var(--font-pixel);
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--hero-ink);
+    text-shadow: var(--hero-text-shadow);
+    margin-bottom: 14px;
+}
+
+.tavern-404-text {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--hero-ink);
+    text-shadow: var(--hero-text-shadow);
+    max-width: 520px;
+    margin: 0 auto 28px;
+}
+
+.tavern-404-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 12px 28px;
+    font-family: var(--font-pixel);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--border-strong);
+    background: var(--badge-fill);
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius);
+    box-shadow: var(--px-shadow);
+    text-decoration: none;
+    transition: transform 0.1s steps(2), box-shadow 0.1s steps(2), background-color 0.1s steps(2);
+}
+
+.tavern-404-home:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--px-shadow-lg);
+    background: var(--gold-bright);
+}
+
+.tavern-404-home:active {
+    transform: translate(2px, 2px);
+    box-shadow: var(--px-shadow-sm);
+}
+
+.tavern-404-home .axe-cross {
+    width: 18px;
+    height: 18px;
+    background: var(--axe-cross-url) center / contain no-repeat;
+    image-rendering: pixelated;
+}
+
+@media (max-width: 768px) {
+    .tavern-band {
+        padding: 28px 22px;
+    }
+    .tavern-band-title {
+        font-size: 17px;
+    }
+    .tavern-404-code {
+        font-size: 48px;
+    }
+    .tavern-404 {
+        padding: 44px 22px;
+        min-height: 300px;
+    }
+}
+
+/* ============================================================
+   POST — quest scroll parchment panel
+   ============================================================ */
 .post {
     max-width: 800px;
     margin: 0 auto;
+    background: var(--bg-panel);
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius);
+    box-shadow: var(--px-shadow);
+    padding: 36px 40px;
 }
 
 .post-header {
     margin-bottom: 40px;
     padding-bottom: 20px;
-    border-bottom: 2px solid var(--border-color);
+    border-bottom: 3px solid var(--gold);
 }
 
+/* Reading heading: Pretendard bold; pixel feel via hard shadow, not glyphs */
 .post-title {
-    font-size: 36px;
+    font-size: 34px;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
     color: var(--primary-color);
     margin-bottom: 15px;
+    text-shadow: 2px 2px 0 var(--gold-soft);
 }
 
 .post-meta {
     display: flex;
     align-items: center;
     gap: 15px;
+    font-family: var(--font-pixel);
+    font-size: 11px;
     color: var(--text-light);
 }
 
@@ -549,23 +1470,24 @@ mark {
 }
 
 .post-content code {
-    background-color: var(--bg-light);
+    background-color: var(--bg-sunken);
     padding: 3px 8px;
-    border-radius: 4px;
-    font-family: "Pretendard Variable", "D2Coding", "SF Mono", "Monaco", "Cascadia Code", "Fira Code", "Consolas", "Courier New", monospace;
+    border-radius: 2px;
+    font-family: "Pretendard Variable", var(--font-mono);
     font-size: 0.88em;
-    color: #d63384;
-    border: 1px solid #e1e4e8;
+    color: var(--code-ink);
+    border: 1px solid var(--border-color);
 }
 
 .post-content pre {
-    background-color: var(--bg-light);
+    background-color: var(--bg-sunken);
     padding: 24px;
-    border-radius: 8px;
+    border-radius: var(--radius);
     overflow-x: auto;
     margin-bottom: 28px;
     line-height: 1.6;
-    border: 1px solid var(--border-color);
+    border: 2px solid var(--border-strong);
+    box-shadow: inset 2px 2px 0 rgba(0,0,0,0.08);
 }
 
 .post-content pre code {
@@ -577,13 +1499,13 @@ mark {
 }
 
 .post-content blockquote {
-    border-left: 5px solid var(--secondary-color);
+    border-left: 6px solid var(--gold);
     padding: 16px 24px;
     margin: 28px 0;
     background-color: var(--bg-light);
-    border-radius: 4px;
+    border-radius: var(--radius);
     color: var(--text-light);
-    font-style: italic;
+    font-style: normal; /* Korean has no true italic — emphasize via border/color */
     line-height: 1.8;
 }
 
@@ -626,8 +1548,10 @@ mark {
 }
 
 .post-content table th {
-    background-color: var(--bg-light);
-    font-weight: 600;
+    background-color: var(--bg-sunken);
+    font-family: var(--font-pixel);
+    font-size: 0.82em;
+    font-weight: 700;
     color: var(--primary-color);
 }
 
@@ -636,7 +1560,7 @@ mark {
 }
 
 .post-content table tr:hover {
-    background-color: #f0f2f5;
+    background-color: var(--gold-soft);
 }
 
 .post-content hr {
@@ -650,34 +1574,91 @@ mark {
     color: var(--text-color);
 }
 
+/* Korean has no true italic; emphasize with weight + color, not slant */
 .post-content em {
-    font-style: italic;
+    font-style: normal;
+    font-weight: 600;
+    color: var(--accent-color);
 }
 
+/* Quest-stamp checkboxes (roadmap "도장깨기" lists) */
+.post-content .task-list-item,
+.post-content li.task-list-item {
+    list-style: none;
+    margin-left: -1.2em;
+}
+
+.post-content input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1.15em;
+    height: 1.15em;
+    margin-right: 0.5em;
+    vertical-align: -0.18em;
+    background-color: var(--bg-sunken);
+    border: 2px solid var(--border-strong);
+    border-radius: 2px;
+    box-shadow: inset 1px 1px 0 rgba(0,0,0,0.12);
+    cursor: default;
+    position: relative;
+}
+
+/* Cleared quest = a struck-down war seal: crimson fill, brass axe-strike */
+.post-content input[type="checkbox"]:checked {
+    background-color: var(--crimson);
+    border-color: var(--border-strong);
+}
+
+.post-content input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--bone);
+    -webkit-mask: var(--axe-bullet-url) center / 80% 80% no-repeat;
+    mask: var(--axe-bullet-url) center / 80% 80% no-repeat;
+}
+
+/* Proclamation board */
 .roadmap-notice {
-    background-color: #fff3cd;
+    background-color: var(--gold-soft);
+    color: var(--text-color);
     padding: 15px 20px;
-    border-radius: 8px;
+    border: 2px solid var(--gold);
+    border-left-width: 6px;
+    border-radius: var(--radius);
     margin-top: 30px;
-    border-left: 4px solid #ffc107;
+    box-shadow: var(--px-shadow-sm);
+    font-family: var(--font-pixel);
+    font-size: 12px;
+    line-height: 1.7;
 }
 
 .post-navigation {
     display: flex;
     justify-content: space-between;
+    gap: 16px;
     margin-top: 50px;
     padding-top: 30px;
-    border-top: 2px solid var(--border-color);
+    border-top: 3px solid var(--gold);
 }
 
 .post-navigation a {
+    font-family: var(--font-pixel);
     color: var(--secondary-color);
     text-decoration: none;
-    font-size: 16px;
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 12px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius);
+    background: var(--bg-light);
+    box-shadow: var(--px-shadow-sm);
+    transition: transform 0.1s steps(2), border-color 0.1s steps(2);
 }
 
 .post-navigation a:hover {
-    text-decoration: underline;
+    border-color: var(--gold);
+    transform: translateY(-2px);
 }
 
 /* Post TOC (Table of Contents) Minimap */
@@ -707,13 +1688,13 @@ mark {
 }
 
 .toc-header {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-color);
+    font-family: var(--font-pixel);
+    font-size: 13px;
+    color: var(--primary-color);
     margin-bottom: 16px;
-    padding: 0 16px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    padding: 8px 16px;
+    border-left: 4px solid var(--gold);
+    letter-spacing: 0.02em;
 }
 
 .toc-content {
@@ -744,13 +1725,13 @@ mark {
 
 .toc-link:hover {
     color: var(--secondary-color);
-    background-color: rgba(52, 152, 219, 0.05);
+    background-color: var(--gold-soft);
 }
 
 .toc-link.active {
     color: var(--secondary-color);
-    border-left-color: var(--secondary-color);
-    background-color: rgba(52, 152, 219, 0.08);
+    border-left-color: var(--gold);
+    background-color: var(--gold-soft);
     font-weight: 500;
 }
 
@@ -810,13 +1791,18 @@ mark {
 }
 
 .page-header h1 {
-    font-size: 36px;
+    font-family: var(--font-pixel);
+    font-size: 24px;
+    line-height: 1.5;
     color: var(--primary-color);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    text-shadow: 2px 2px 0 var(--gold-soft);
 }
 
 .page-header p {
-    font-size: 16px;
+    font-family: var(--font-pixel);
+    font-size: 12px;
+    line-height: 1.6;
     color: var(--text-light);
 }
 
@@ -828,30 +1814,42 @@ mark {
     margin-bottom: 60px;
     padding: 30px;
     background: var(--bg-light);
-    border-radius: 12px;
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius);
+    box-shadow: var(--px-shadow);
 }
 
 .tag-cloud-item {
-    background-color: var(--secondary-color);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 20px;
+    font-family: var(--font-pixel);
+    font-size: 13px;
+    line-height: 1.4;
+    background-color: var(--bg-panel);
+    color: var(--secondary-strong);
+    padding: 9px 14px;
+    border: 2px solid var(--secondary-color);
+    border-radius: var(--radius);
     text-decoration: none;
-    transition: transform 0.3s, background-color 0.3s;
+    box-shadow: var(--px-shadow-sm);
+    transition: transform 0.1s steps(2), background-color 0.1s steps(2), color 0.1s steps(2);
 }
 
 .tag-cloud-item:hover {
-    transform: scale(1.1);
-    background-color: var(--primary-color);
+    transform: translate(-2px, -2px);
+    background-color: var(--secondary-color);
+    color: var(--bg-panel);
 }
 
 .tag-count {
-    opacity: 0.8;
-    font-size: 0.9em;
+    color: var(--accent-color);
+    font-weight: 700;
+    font-size: 0.85em;
 }
 
-.tags-list h2 {
-    font-size: 28px;
+.tags-list h2,
+.categories-list h2 {
+    font-family: var(--font-pixel);
+    font-size: 20px;
+    line-height: 1.5;
     color: var(--primary-color);
     margin-bottom: 30px;
 }
@@ -860,11 +1858,16 @@ mark {
     margin-bottom: 40px;
     padding: 20px;
     background: var(--bg-light);
-    border-radius: 8px;
+    border: 2px solid var(--border-strong);
+    border-left: 8px solid var(--gold);
+    border-radius: var(--radius);
+    box-shadow: var(--px-shadow);
 }
 
 .tag-section h3 {
-    font-size: 24px;
+    font-family: var(--font-pixel);
+    font-size: 18px;
+    line-height: 1.5;
     margin-bottom: 15px;
 }
 
@@ -919,19 +1922,31 @@ mark {
     color: var(--text-light);
 }
 
-.back-to-tags {
+.back-to-tags,
+.back-to-categories {
     margin-top: 40px;
     text-align: center;
 }
 
-.back-to-tags a {
+.back-to-tags a,
+.back-to-categories a {
+    font-family: var(--font-pixel);
     color: var(--secondary-color);
     text-decoration: none;
-    font-size: 16px;
+    font-size: 12px;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius);
+    background: var(--bg-light);
+    box-shadow: var(--px-shadow-sm);
+    transition: transform 0.1s steps(2), border-color 0.1s steps(2);
 }
 
-.back-to-tags a:hover {
-    text-decoration: underline;
+.back-to-tags a:hover,
+.back-to-categories a:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
 }
 
 /* Categories Page Styles */
@@ -948,43 +1963,51 @@ mark {
     margin-bottom: 60px;
     padding: 30px;
     background: var(--bg-light);
-    border-radius: 12px;
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius);
+    box-shadow: var(--px-shadow);
 }
 
 .category-cloud-item {
-    background-color: var(--accent-color);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 20px;
+    font-family: var(--font-pixel);
+    font-size: 13px;
+    line-height: 1.4;
+    background-color: var(--bg-panel);
+    color: var(--accent-color);
+    padding: 9px 14px;
+    border: 2px solid var(--accent-color);
+    border-radius: var(--radius);
     text-decoration: none;
-    transition: transform 0.3s, background-color 0.3s;
+    box-shadow: var(--px-shadow-sm);
+    transition: transform 0.1s steps(2), background-color 0.1s steps(2), color 0.1s steps(2);
 }
 
 .category-cloud-item:hover {
-    transform: scale(1.1);
-    background-color: var(--primary-color);
+    transform: translate(-2px, -2px);
+    background-color: var(--accent-color);
+    color: var(--bg-panel);
 }
 
 .category-count {
-    opacity: 0.8;
-    font-size: 0.9em;
-}
-
-.categories-list h2 {
-    font-size: 28px;
-    color: var(--primary-color);
-    margin-bottom: 30px;
+    color: var(--accent-color);
+    font-weight: 700;
+    font-size: 0.85em;
 }
 
 .category-section {
     margin-bottom: 40px;
     padding: 20px;
     background: var(--bg-light);
-    border-radius: 8px;
+    border: 2px solid var(--border-strong);
+    border-left: 8px solid var(--gold);
+    border-radius: var(--radius);
+    box-shadow: var(--px-shadow);
 }
 
 .category-section h3 {
-    font-size: 24px;
+    font-family: var(--font-pixel);
+    font-size: 18px;
+    line-height: 1.5;
     margin-bottom: 15px;
 }
 
@@ -1034,45 +2057,50 @@ mark {
     color: var(--text-light);
 }
 
-/* Series Info in Post Header */
+/* Series Info — quest-line banner */
 .series-info {
     margin-top: 20px;
     padding: 20px;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    border-radius: 12px;
-    border-left: 4px solid #6f42c1;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    background: var(--bg-light);
+    border: 2px solid var(--border-strong);
+    border-left: 8px solid var(--gold);
+    border-radius: var(--radius);
+    box-shadow: var(--px-shadow-sm);
 }
 
 .series-badge {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 16px;
+    font-family: var(--font-pixel);
+    font-size: 13px;
+    line-height: 1.5;
     color: var(--text-color);
     margin-bottom: 15px;
 }
 
 .series-badge a {
-    color: #6f42c1;
+    color: var(--secondary-color);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     transition: color 0.2s ease;
 }
 
 .series-badge a:hover {
-    color: #5a32a3;
+    color: var(--secondary-strong);
     text-decoration: underline;
 }
 
 .series-position {
     display: inline-block;
-    background-color: #6f42c1;
-    color: white;
-    padding: 2px 10px;
-    border-radius: 12px;
-    font-size: 13px;
-    font-weight: 500;
+    font-family: var(--font-pixel);
+    background-color: var(--badge-fill);
+    color: var(--border-strong);
+    padding: 4px 10px;
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius);
+    font-size: 11px;
+    font-weight: 700;
 }
 
 /* Series Navigation Links */
@@ -1082,32 +2110,34 @@ mark {
     gap: 10px;
     margin-top: 15px;
     padding-top: 15px;
-    border-top: 1px solid rgba(111, 66, 193, 0.2);
+    border-top: 2px solid var(--gold-soft);
 }
 
 .series-nav-link {
     display: inline-flex;
     align-items: center;
-    padding: 10px 15px;
-    background-color: white;
-    border: 1px solid rgba(111, 66, 193, 0.3);
-    border-radius: 8px;
-    color: #6f42c1;
+    padding: 11px 15px;
+    background-color: var(--bg-panel);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius);
+    color: var(--secondary-color);
     text-decoration: none;
-    font-size: 14px;
-    transition: all 0.3s ease;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    font-family: var(--font-pixel);
+    font-size: 12px;
+    line-height: 1.5;
+    box-shadow: var(--px-shadow-sm);
+    transition: transform 0.1s steps(2), border-color 0.1s steps(2), background-color 0.1s steps(2), color 0.1s steps(2);
 }
 
 .series-nav-link:hover {
-    background-color: #6f42c1;
-    color: white;
-    transform: translateX(5px);
-    box-shadow: 0 2px 6px rgba(111, 66, 193, 0.3);
+    background-color: var(--secondary-color);
+    color: var(--bg-panel);
+    border-color: var(--border-strong);
+    transform: translateX(4px);
 }
 
 .series-nav-link.series-prev:hover {
-    transform: translateX(-5px);
+    transform: translateX(-4px);
 }
 
 /* Series List and Section Styles */
@@ -1120,20 +2150,23 @@ mark {
 .series-section {
     margin-bottom: 40px;
     padding: 25px;
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-    border-radius: 12px;
-    border-left: 4px solid #6f42c1;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: var(--bg-light);
+    border: 2px solid var(--border-strong);
+    border-left: 8px solid var(--gold);
+    border-radius: var(--radius);
+    box-shadow: var(--px-shadow);
+    transition: transform 0.12s steps(2), box-shadow 0.12s steps(2);
 }
 
 .series-section:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 20px rgba(111, 66, 193, 0.15);
+    transform: translate(-2px, -2px);
+    box-shadow: var(--px-shadow-lg);
 }
 
 .series-section h2 {
-    font-size: 26px;
+    font-family: var(--font-pixel);
+    font-size: 18px;
+    line-height: 1.5;
     margin-bottom: 20px;
     color: var(--primary-color);
     display: flex;
@@ -1142,22 +2175,24 @@ mark {
 }
 
 .series-section h2 a {
-    color: #6f42c1;
+    color: var(--secondary-color);
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
 .series-section h2 a:hover {
-    color: #5a32a3;
+    color: var(--secondary-strong);
 }
 
 .series-count {
-    background-color: #6f42c1;
-    color: white;
+    font-family: var(--font-pixel);
+    background-color: var(--badge-fill);
+    color: var(--border-strong);
     padding: 4px 12px;
-    border-radius: 15px;
-    font-size: 14px;
-    font-weight: 500;
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius);
+    font-size: 11px;
+    font-weight: 700;
 }
 
 /* Back to Series Button */
@@ -1170,21 +2205,28 @@ mark {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 12px 30px;
-    background: linear-gradient(135deg, #6f42c1 0%, #5a32a3 100%);
-    color: white;
+    padding: 13px 28px;
+    background: var(--badge-fill);
+    color: var(--border-strong);
     text-decoration: none;
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: 25px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(111, 66, 193, 0.3);
+    font-family: var(--font-pixel);
+    font-size: 13px;
+    font-weight: 700;
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius);
+    box-shadow: var(--px-shadow);
+    transition: transform 0.1s steps(2), box-shadow 0.1s steps(2), background-color 0.1s steps(2);
 }
 
 .back-to-series a:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(111, 66, 193, 0.4);
-    background: linear-gradient(135deg, #5a32a3 0%, #6f42c1 100%);
+    transform: translate(-2px, -2px);
+    box-shadow: var(--px-shadow-lg);
+    background: var(--gold-bright);
+}
+
+.back-to-series a:active {
+    transform: translate(2px, 2px);
+    box-shadow: var(--px-shadow-sm);
 }
 
 /* Category Tree View Styles */
@@ -1208,15 +2250,17 @@ mark {
     align-items: center;
     padding: 12px 15px;
     background: var(--bg-light);
-    border-radius: 8px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: transform 0.12s steps(2), background-color 0.12s steps(2), border-color 0.12s steps(2);
     gap: 10px;
 }
 
 .tree-node-header:hover {
-    background: #e9ecef;
-    transform: translateX(5px);
+    background: var(--bg-sunken);
+    border-color: var(--gold);
+    transform: translateX(4px);
 }
 
 .tree-chevron {
@@ -1236,8 +2280,10 @@ mark {
 }
 
 .tree-label {
-    font-size: 18px;
-    font-weight: 600;
+    font-family: var(--font-pixel);
+    font-size: 15px;
+    line-height: 1.4;
+    font-weight: 700;
     color: var(--primary-color);
     text-decoration: none;
     flex: 1;
@@ -1248,19 +2294,21 @@ mark {
 }
 
 .tree-count {
-    background-color: var(--accent-color);
-    color: white;
+    font-family: var(--font-pixel);
+    background-color: var(--badge-fill);
+    color: var(--border-strong);
     padding: 3px 12px;
-    border-radius: 15px;
-    font-size: 13px;
-    font-weight: 500;
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius);
+    font-size: 11px;
+    font-weight: 700;
 }
 
 .tree-children {
     margin-left: 30px;
     margin-top: 10px;
     padding-left: 20px;
-    border-left: 2px solid #dee2e6;
+    border-left: 2px solid var(--border-color);
     max-height: 2000px;
     overflow: hidden;
     transition: max-height 0.4s ease, opacity 0.3s ease;
@@ -1278,13 +2326,13 @@ mark {
 }
 
 .leaf-node .tree-node-header {
-    background: white;
-    border: 1px solid #dee2e6;
+    background: var(--bg-panel);
+    border: 2px solid var(--border-color);
 }
 
 .leaf-node .tree-node-header:hover {
-    border-color: var(--secondary-color);
-    background: #f8f9fa;
+    border-color: var(--gold);
+    background: var(--bg-light);
 }
 
 .leaf-node .tree-icon {
@@ -1292,26 +2340,26 @@ mark {
 }
 
 .leaf-node .tree-label {
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 700;
 }
 
 .standalone-node .tree-node-header {
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-    border: 1px solid #dee2e6;
+    background: var(--bg-panel);
+    border: 2px solid var(--border-color);
 }
 
 .standalone-node .tree-node-header:hover {
-    border-color: var(--secondary-color);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border-color: var(--gold);
+    box-shadow: var(--px-shadow-sm);
 }
 
 .tree-posts {
     list-style: none;
     margin: 10px 0 0 0;
     padding: 15px;
-    background: #fafbfc;
-    border-radius: 6px;
+    background: var(--bg-sunken);
+    border-radius: var(--radius);
     max-height: 1000px;
     overflow: hidden;
     transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
@@ -1328,7 +2376,7 @@ mark {
 
 .tree-posts li {
     padding: 10px 0;
-    border-bottom: 1px solid #e9ecef;
+    border-bottom: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1356,23 +2404,24 @@ mark {
 }
 
 .parent-node > .tree-node-header {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #34495e 100%);
-    color: white;
-    font-size: 20px;
+    background: var(--chrome-bg);
+    background-image: linear-gradient(180deg, var(--chrome-bg) 0%, var(--chrome-bg-2) 100%);
+    border-color: var(--border-strong);
+    color: var(--chrome-ink);
     padding: 15px 20px;
 }
 
 .parent-node > .tree-node-header .tree-label {
-    color: white;
-    font-size: 20px;
+    color: var(--gold-bright);
+    font-size: 16px;
 }
 
 .parent-node > .tree-node-header .tree-chevron {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--chrome-muted);
 }
 
 .parent-node > .tree-node-header:hover {
-    background: linear-gradient(135deg, #34495e 0%, var(--primary-color) 100%);
+    border-color: var(--gold);
     transform: translateX(3px);
 }
 
@@ -1421,6 +2470,11 @@ mark {
 .cv-page {
     max-width: 800px;
     margin: 0 auto;
+    background: var(--bg-panel);
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius);
+    box-shadow: var(--px-shadow);
+    padding: 36px 40px;
 }
 
 .cv-header {
@@ -1431,7 +2485,56 @@ mark {
     text-align: left;
     margin-bottom: 40px;
     padding-bottom: 30px;
-    border-bottom: 2px solid var(--border-color);
+    border-bottom: 3px solid var(--gold);
+}
+
+/* CV cover splash — the Orgrimmar warlord concept image as a character-sheet
+   banner behind the name + medallion avatar. Same scrim/frame recipe as the
+   home hero so the name/avatar stay AA-legible on top. Chrome only. */
+.cv-header--cover {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border: 2px solid var(--border-strong);
+    border-bottom: 3px solid var(--gold);
+    box-shadow:
+        inset 0 0 0 3px var(--crimson),
+        inset 0 0 0 5px var(--gold),
+        var(--px-shadow-sm);
+    border-radius: var(--radius);
+    padding: 32px 32px 30px;
+    /* the medallion avatar (light bone disc) supplies its own contrast */
+}
+
+.cv-cover-media {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+}
+
+.cv-cover-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--hero-focus-x, left) center;
+}
+
+.cv-cover-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--hero-scrim);
+}
+
+.cv-header--cover .cv-header-text h1 {
+    color: var(--hero-ink);
+    text-shadow: var(--hero-text-shadow);
+}
+
+.cv-header--cover .cv-subtitle {
+    color: var(--hero-ink-muted);
+    text-shadow: var(--hero-text-shadow);
 }
 
 .cv-header-text {
@@ -1442,21 +2545,29 @@ mark {
     flex-shrink: 0;
 }
 
+/* CV avatar = warlord character-sheet portrait (crest provides the frame) */
+.warlord-crest-cv {
+    --crest-size: 124px;
+}
+
 .cv-profile-image {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
+    display: block;
+    object-fit: contain;
 }
 
 .cv-header h1 {
-    font-size: 40px;
+    font-family: var(--font-pixel);
+    font-size: 26px;
+    line-height: 1.5;
     color: var(--primary-color);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    text-shadow: 2px 2px 0 var(--gold-soft);
 }
 
 .cv-subtitle {
-    font-size: 18px;
+    font-family: var(--font-pixel);
+    font-size: 13px;
+    line-height: 1.6;
     color: var(--text-light);
 }
 
@@ -1477,16 +2588,16 @@ mark {
 }
 
 .cv-content h2 {
-    font-size: 28px;
+    font-size: 26px;
     color: var(--primary-color);
     margin-top: 40px;
     margin-bottom: 20px;
     padding-bottom: 10px;
-    border-bottom: 2px solid var(--border-color);
+    border-bottom: 3px solid var(--gold);
 }
 
 .cv-content h3 {
-    font-size: 22px;
+    font-size: 21px;
     color: var(--primary-color);
     margin-top: 30px;
     margin-bottom: 15px;
@@ -1513,8 +2624,10 @@ mark {
 }
 
 .cv-content table th {
-    background-color: var(--bg-light);
-    font-weight: 600;
+    background-color: var(--bg-sunken);
+    font-family: var(--font-pixel);
+    font-size: 0.82em;
+    font-weight: 700;
     color: var(--primary-color);
 }
 
@@ -1523,23 +2636,115 @@ mark {
 }
 
 .cv-content table tr:hover {
-    background-color: #f0f2f5;
+    background-color: var(--gold-soft);
 }
 
 .cv-footer {
     margin-top: 60px;
     padding-top: 20px;
-    border-top: 2px solid var(--border-color);
+    border-top: 3px solid var(--gold);
     text-align: center;
+    font-family: var(--font-pixel);
+    font-size: 11px;
     color: var(--text-light);
 }
 
-/* Footer Styles */
+/* ============================================================
+   BACK TO TOP — Gorehowl recall sigil
+   ============================================================ */
+.scroll-top {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 52px;
+    height: 52px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    background: var(--chrome-bg);
+    background-image: linear-gradient(180deg, var(--chrome-bg) 0%, var(--chrome-bg-2) 100%);
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius);
+    box-shadow:
+        inset 0 0 0 2px var(--crimson),
+        var(--px-shadow);
+    cursor: pointer;
+    z-index: 900;
+    transition: transform 0.1s steps(2), box-shadow 0.1s steps(2);
+}
+
+.scroll-top.is-visible {
+    display: inline-flex;
+}
+
+.scroll-top .axe-cross {
+    width: 100%;
+    height: 100%;
+    background: var(--axe-cross-url) center / contain no-repeat;
+    image-rendering: pixelated;
+}
+
+.scroll-top:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        inset 0 0 0 2px var(--gold-bright),
+        var(--px-shadow-lg);
+}
+
+.scroll-top:active {
+    transform: translate(2px, 2px);
+    box-shadow: inset 0 0 0 2px var(--crimson), var(--px-shadow-sm);
+}
+
+@media (max-width: 768px) {
+    .scroll-top {
+        right: 14px;
+        bottom: 14px;
+        width: 48px;
+        height: 48px;
+    }
+}
+
+/* ============================================================
+   FOOTER — carved-wood banner
+   ============================================================ */
+/* The footer is the TAVERN: the day/night room sits behind a dark tavern
+   scrim + a faint crimson chrome wash, so bone footer text/links keep AA.
+   Uses the same per-theme tavern plate as the ambient layer. */
 .site-footer {
-    background-color: var(--primary-color);
-    color: white;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background-color: var(--chrome-bg);
+    color: var(--chrome-ink);
     padding: 40px 0 20px;
     margin-top: 60px;
+    /* crimson over bronze war-banner top edge */
+    border-top: 4px solid var(--crimson);
+    box-shadow: inset 0 4px 0 var(--gold);
+}
+
+/* tavern plate */
+.site-footer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: var(--ambient-bg-url) center 38% / cover no-repeat;
+    pointer-events: none;
+}
+
+/* dark tavern scrim + crimson chrome wash → bone text clears AA */
+.site-footer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        linear-gradient(0deg, rgba(110,13,13,0.30) 0%, transparent 45%),
+        var(--tavern-scrim);
+    pointer-events: none;
 }
 
 .footer-content {
@@ -1561,26 +2766,36 @@ mark {
     margin-bottom: 10px;
 }
 
+.footer-info p {
+    color: var(--chrome-muted);
+    /* shadow insurance over the tavern photo behind the footer */
+    text-shadow: 0 1px 3px rgba(0,0,0,0.85);
+}
+
 .footer-links a {
-    color: white;
+    font-family: var(--font-pixel);
+    font-size: 12px;
+    color: var(--gold-bright);
     text-decoration: none;
-    opacity: 0.9;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.85);
 }
 
 .footer-links a:hover {
-    opacity: 1;
     text-decoration: underline;
 }
 
 .footer-bottom {
     text-align: center;
     padding-top: 20px;
-    border-top: 1px solid rgba(255,255,255,0.2);
-    opacity: 0.8;
+    border-top: 2px solid rgba(184,134,11,0.35);
+    font-family: var(--font-pixel);
+    font-size: 11px;
+    color: var(--chrome-muted);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.85);
 }
 
 .footer-bottom a {
-    color: white;
+    color: var(--gold-bright);
     text-decoration: underline;
 }
 
@@ -1591,7 +2806,7 @@ mark {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         gap: 15px;
     }
 
@@ -1599,14 +2814,19 @@ mark {
         flex: 1;
         min-width: 0;
         overflow: hidden;
+        order: 1;
+    }
+
+    .header-actions {
+        order: 2;
     }
 
     .site-branding .branding-text {
         overflow: hidden;
     }
 
-    .site-branding .site-logo {
-        height: 40px;
+    .site-branding .warlord-crest {
+        --crest-size: 46px;
     }
 
     .site-branding .site-title {
@@ -1632,6 +2852,7 @@ mark {
         order: 3;
         width: 100%;
         margin-top: 20px;
+        margin-left: 0;
     }
 
     .main-navigation.active {
@@ -1641,13 +2862,14 @@ mark {
     .main-navigation .nav-menu {
         flex-direction: column;
         gap: 0;
-        background-color: rgba(0, 0, 0, 0.2);
-        border-radius: 8px;
+        background-color: var(--chrome-bg-2);
+        border: 2px solid var(--gold);
+        border-radius: var(--radius);
         overflow: hidden;
     }
 
     .main-navigation .nav-menu li {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(184,134,11,0.3);
     }
 
     .main-navigation .nav-menu li:last-child {
@@ -1657,7 +2879,25 @@ mark {
     .main-navigation .nav-menu a {
         display: block;
         padding: 15px 20px;
+        border: none;
         border-radius: 0;
+    }
+
+    .main-navigation .nav-menu a:hover {
+        transform: none;
+    }
+
+    /* keep toggle + hamburger together, always visible */
+    .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+    }
+
+    .post,
+    .cv-page {
+        padding: 24px 20px;
     }
 
     .cv-logo {
@@ -1670,17 +2910,22 @@ mark {
         gap: 20px;
     }
 
-    .cv-profile-image {
-        width: 100px;
-        height: 100px;
+    .warlord-crest-cv {
+        --crest-size: 104px;
     }
 
     .welcome-section h1 {
-        font-size: 32px;
+        font-size: 22px;
     }
 
     .post-title {
-        font-size: 28px;
+        font-size: 26px;
+    }
+
+    .recent-posts h2,
+    .quick-links h2,
+    .page-header h1 {
+        font-size: 18px;
     }
 
     .footer-content {
@@ -1792,9 +3037,9 @@ mark {
     margin: 0;
     cursor: grab;
     user-select: none;
-    border-radius: 0 0 8px 8px;
+    border-radius: 0 0 var(--radius) var(--radius);
     border-top: none;
-    background-color: white !important; /* Ensure white background for zoom container */
+    background-color: var(--bg-panel) !important;
 }
 
 .mermaid-zoom-container .mermaid:active {
@@ -1803,20 +3048,24 @@ mark {
 
 /* Interactive Badge */
 .mermaid-interactive-badge {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 8px 16px;
-    font-size: 12px;
-    font-weight: 600;
+    background: var(--chrome-bg);
+    background-image: linear-gradient(180deg, var(--chrome-bg) 0%, var(--chrome-bg-2) 100%);
+    color: var(--gold-bright);
+    font-family: var(--font-pixel);
+    padding: 9px 16px;
+    font-size: 11px;
+    font-weight: 700;
     text-align: center;
-    border-radius: 8px 8px 0 0;
+    border: 2px solid var(--border-strong);
+    border-bottom: none;
+    border-radius: var(--radius) var(--radius) 0 0;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--px-shadow-sm);
     user-select: none;
-    transition: all 0.3s ease;
+    transition: transform 0.1s steps(2);
 }
 
 .mermaid-interactive-badge:hover {
@@ -1829,16 +3078,17 @@ mark {
     position: absolute;
     top: 50px;
     right: 10px;
-    background: white;
-    border: 2px solid var(--secondary-color);
+    background: var(--bg-panel);
+    border: 2px solid var(--border-strong);
     color: var(--secondary-color);
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 600;
+    font-family: var(--font-pixel);
+    padding: 9px 14px;
+    border-radius: var(--radius);
+    font-size: 11px;
+    font-weight: 700;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
+    box-shadow: var(--px-shadow-sm);
+    transition: transform 0.1s steps(2), background-color 0.1s steps(2), color 0.1s steps(2);
     z-index: 100;
     display: flex;
     align-items: center;
@@ -1847,19 +3097,19 @@ mark {
 
 .mermaid-reset-btn:hover {
     background: var(--secondary-color);
-    color: white;
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+    color: var(--bg-panel);
+    transform: translate(-1px, -1px);
 }
 
 .mermaid-reset-btn:active {
-    transform: scale(0.98);
+    transform: translate(2px, 2px);
+    box-shadow: 0 0 0 var(--shadow-color);
 }
 
 /* svg-pan-zoom Control Icons Customization */
 .svg-pan-zoom-control {
     cursor: pointer;
-    fill: white;
+    fill: var(--bg-panel);
     stroke: var(--secondary-color);
     stroke-width: 1px;
 }
@@ -1869,7 +3119,7 @@ mark {
 }
 
 .svg-pan-zoom-control-background {
-    fill: white;
+    fill: var(--bg-panel);
     opacity: 0.95;
     stroke: var(--border-color);
     stroke-width: 1px;
@@ -1970,37 +3220,32 @@ mark {
     }
 }
 
-/* Dark mode support (if you add dark mode in the future) */
-@media (prefers-color-scheme: dark) {
-    .mermaid-zoom-container .mermaid {
-        background-color: #1e1e1e;
-        border-color: #444;
-    }
+/* Dark mode (dungeon) — Mermaid surfaces follow tokens.
+   Covers both the manual toggle and the OS-default fallback. */
+:root[data-theme="dark"] .mermaid-zoom-container .mermaid,
+:root[data-theme="dark"] .mermaid {
+    background-color: var(--bg-light) !important;
+    border-color: var(--border-color);
+}
 
-    .mermaid-reset-btn {
-        background: #2d2d2d;
-        color: var(--secondary-color);
-        border-color: var(--secondary-color);
-    }
+:root[data-theme="dark"] .mermaid-reset-btn {
+    background: var(--bg-light);
+    color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
 
-    .mermaid-reset-btn:hover {
-        background: var(--secondary-color);
-        color: white;
-    }
-
-    .svg-pan-zoom-control-background {
-        fill: #2d2d2d;
-        stroke: #444;
-    }
+:root[data-theme="dark"] .svg-pan-zoom-control-background {
+    fill: var(--bg-light);
+    stroke: var(--border-color);
 }
 
 /* Animation for zoom interactions */
 @keyframes zoomPulse {
     0%, 100% {
-        box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.4);
+        box-shadow: 0 0 0 0 rgba(184, 134, 11, 0.45);
     }
     50% {
-        box-shadow: 0 0 0 10px rgba(52, 152, 219, 0);
+        box-shadow: 0 0 0 10px rgba(184, 134, 11, 0);
     }
 }
 
@@ -2008,30 +3253,35 @@ mark {
     animation: zoomPulse 0.6s ease-out;
 }
 
-/* Post Summary Box */
+/* Post Summary Box — quest briefing scroll */
 .post-summary-box {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    border-left: 4px solid var(--secondary-color);
-    border-radius: 8px;
+    background: var(--bg-light);
+    border: 2px solid var(--border-strong);
+    border-left: 8px solid var(--gold);
+    border-radius: var(--radius);
     padding: 2em;
     margin: 2em 0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: var(--px-shadow-sm);
 }
 
 .post-summary-box h3 {
+    font-family: var(--font-pixel);
     color: var(--primary-color);
     margin-top: 0;
     margin-bottom: 1.5em;
-    font-size: 1.5em;
-    border-bottom: 2px solid var(--secondary-color);
+    font-size: 1.2em;
+    line-height: 1.5;
+    border-bottom: 3px solid var(--gold);
     padding-bottom: 0.5em;
 }
 
 .post-summary-box h4 {
+    font-family: var(--font-pixel);
     color: var(--secondary-color);
     margin-top: 1.5em;
     margin-bottom: 0.75em;
-    font-size: 1.2em;
+    font-size: 1em;
+    line-height: 1.5;
 }
 
 .post-summary-box ul {
@@ -2068,14 +3318,15 @@ mark {
     }
 }
 
-/* Syntax Highlighting (Rouge) */
+/* Syntax Highlighting (Rouge) — GitHub-light palette on parchment */
 .highlight {
-    background-color: #f6f8fa;
-    border-radius: 8px;
+    background-color: var(--bg-sunken);
+    border-radius: var(--radius);
     padding: 24px;
     margin: 28px 0;
     overflow-x: auto;
-    border: 1px solid var(--border-color);
+    border: 2px solid var(--border-strong);
+    box-shadow: inset 2px 2px 0 rgba(0,0,0,0.08);
 }
 
 .highlight pre {
@@ -2173,11 +3424,109 @@ mark {
 
 /* Code block titles/captions */
 .highlight .code-header {
-    background-color: #e1e4e8;
+    background-color: var(--bg-sunken);
     padding: 8px 16px;
-    border-bottom: 1px solid var(--border-color);
-    font-size: 14px;
+    border-bottom: 2px solid var(--border-strong);
+    font-family: var(--font-pixel);
+    font-size: 12px;
     color: var(--text-color);
-    font-weight: 600;
-    border-radius: 8px 8px 0 0;
+    font-weight: 700;
+    border-radius: var(--radius) var(--radius) 0 0;
+}
+
+/* ============================================================
+   Dark (dungeon) syntax palette — readable on dark stone.
+   Mirrors a one-dark-ish theme; only applies under data-theme=dark.
+   ============================================================ */
+:root[data-theme="dark"] .post-content code {
+    background-color: var(--bg-sunken);
+}
+:root[data-theme="dark"] .highlight,
+:root[data-theme="dark"] .post-content pre {
+    background-color: #15110d;
+    box-shadow: inset 2px 2px 0 rgba(0,0,0,0.4);
+}
+:root[data-theme="dark"] .highlight pre code,
+:root[data-theme="dark"] .post-content pre code {
+    color: #d6cdbb;
+}
+:root[data-theme="dark"] .highlight .c,
+:root[data-theme="dark"] .highlight .cm,
+:root[data-theme="dark"] .highlight .c1,
+:root[data-theme="dark"] .highlight .cs { color: #7c6f5a; font-style: italic; }
+:root[data-theme="dark"] .highlight .k,
+:root[data-theme="dark"] .highlight .kd,
+:root[data-theme="dark"] .highlight .kn,
+:root[data-theme="dark"] .highlight .kp,
+:root[data-theme="dark"] .highlight .kr,
+:root[data-theme="dark"] .highlight .o,
+:root[data-theme="dark"] .highlight .ow,
+:root[data-theme="dark"] .highlight .cp { color: #e8794f; }
+:root[data-theme="dark"] .highlight .kc,
+:root[data-theme="dark"] .highlight .m,
+:root[data-theme="dark"] .highlight .mf,
+:root[data-theme="dark"] .highlight .mh,
+:root[data-theme="dark"] .highlight .mi,
+:root[data-theme="dark"] .highlight .mo,
+:root[data-theme="dark"] .highlight .il,
+:root[data-theme="dark"] .highlight .nb,
+:root[data-theme="dark"] .highlight .na,
+:root[data-theme="dark"] .highlight .no,
+:root[data-theme="dark"] .highlight .bp { color: #6cb6ff; }
+:root[data-theme="dark"] .highlight .s,
+:root[data-theme="dark"] .highlight .s1,
+:root[data-theme="dark"] .highlight .s2,
+:root[data-theme="dark"] .highlight .sb,
+:root[data-theme="dark"] .highlight .sc,
+:root[data-theme="dark"] .highlight .sd,
+:root[data-theme="dark"] .highlight .sh,
+:root[data-theme="dark"] .highlight .sx,
+:root[data-theme="dark"] .highlight .sr,
+:root[data-theme="dark"] .highlight .nt { color: #8ddb9c; }
+:root[data-theme="dark"] .highlight .kt,
+:root[data-theme="dark"] .highlight .nc,
+:root[data-theme="dark"] .highlight .nd,
+:root[data-theme="dark"] .highlight .nf,
+:root[data-theme="dark"] .highlight .nn { color: #e8c98a; }
+:root[data-theme="dark"] .highlight .nv,
+:root[data-theme="dark"] .highlight .vc,
+:root[data-theme="dark"] .highlight .vg,
+:root[data-theme="dark"] .highlight .vi { color: #f0b429; }
+:root[data-theme="dark"] .highlight .gi { color: #d6cdbb; background-color: #16301c; }
+:root[data-theme="dark"] .highlight .gd { color: #d6cdbb; background-color: #3a1717; }
+:root[data-theme="dark"] .highlight .language-python .nf,
+:root[data-theme="dark"] .highlight .language-python .nn,
+:root[data-theme="dark"] .highlight .language-javascript .nf,
+:root[data-theme="dark"] .highlight .language-typescript .nf,
+:root[data-theme="dark"] .highlight .language-typescript .kt { color: #e8c98a; }
+:root[data-theme="dark"] .highlight .language-javascript .nx,
+:root[data-theme="dark"] .highlight .language-typescript .nx { color: #d6cdbb; }
+
+/* ============================================================
+   Reduced motion — keep color/shadow state, drop transforms/anims
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+    .post-item:hover,
+    .quick-link-card:hover,
+    .tag:hover,
+    .tag-cloud-item:hover,
+    .category-cloud-item:hover,
+    .series-section:hover,
+    .series-nav-link:hover,
+    .back-to-series a:hover,
+    .post-navigation a:hover,
+    .theme-toggle:hover,
+    .tree-node-header:hover,
+    .tavern-404-home:hover,
+    .main-navigation .nav-menu a:hover {
+        transform: none !important;
+    }
 }
