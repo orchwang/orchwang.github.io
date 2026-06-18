@@ -46,7 +46,9 @@ exclude:
   - .jekyll-cache/
   - specs/
   - CLAUDE.md
+  - DESIGN.md
   - Makefile
+  - .claude/
 
 # Defaults
 defaults:

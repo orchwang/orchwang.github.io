@@ -33,62 +33,74 @@ Developers who want to:
 ### Technology Stack
 
 - **Jekyll**: Static site generator
-- **Markdown**: Content format
+- **Markdown**: Content format (kramdown / GFM, Rouge syntax highlighting)
 - **Liquid**: Templating language
-- **JavaScript**: Client-side search
+- **JavaScript**: Client-side search, mobile menu, table of contents, Mermaid rendering
 - **CSS**: Custom styling with CSS variables
 
 ### Key Features
 
-1. **Category System**: Organize posts by major themes (Roadmap, Programming, Computer-Science)
+1. **Category System**: Organize posts by major themes (Technology, Career, Language, Retrospec, BookLog), often nested (e.g. `Technology/Python`)
 2. **Tag System**: Cross-reference posts by topics
-3. **Search**: Client-side search across all content
-4. **Roadmap Tracking**: Master progress tracker with checkboxes
-5. **Responsive Design**: Mobile-friendly layout
-6. **CV Integration**: Professional portfolio page
+3. **Series System**: Group sequential posts into a learning series (e.g. `Python-Essential`)
+4. **Search**: Client-side search across all content
+5. **Roadmap Tracking**: Master progress tracker with checkboxes
+6. **Mermaid Diagrams**: Light/dark-aware diagram rendering with zoom (see `MERMAID_USAGE.md`)
+7. **CV Integration**: Professional portfolio page with auto-calculated career duration
+8. **Responsive Design**: Mobile-friendly layout
 
 ### Directory Structure
 
 ```
 .
-├── _config.yml              # Site configuration
+├── _config.yml              # Site configuration (incl. career_start_date)
 ├── _includes/               # Reusable HTML components
-│   ├── header.html         # Navigation + logo + search
-│   └── footer.html         # Footer content
-├── _layouts/               # Page templates
-│   ├── default.html        # Base layout
-│   ├── post.html          # Blog post layout
-│   ├── tag_page.html      # Tag listing layout
-│   ├── category_page.html # Category listing layout
-│   ├── series_page.html   # Series listing layout
-│   └── cv.html            # CV page layout
-├── _plugins/               # Custom Jekyll plugins
-│   ├── tag_generator.rb       # Auto-generate tag pages
-│   ├── category_generator.rb  # Auto-generate category pages
-│   └── series_generator.rb    # Auto-generate series pages
-├── _posts/                    # All learning posts organized by categories
-│   ├── Career/                # Career-related posts
-│   │   └── Roadmap/          # Roadmap posts (nested category)
-│   │       └── YYYY-MM-DD-*.md
-│   ├── Technology/            # Technology posts
-│   │   └── Python/           # Python-specific posts (nested category)
-│   │       └── YYYY-MM-DD-*.md
-│   ├── Retrospec/            # Retrospective posts
-│   │   └── YYYY-MM-DD-*.md
-│   └── (root for uncategorized)  # Posts without categories
-├── assets/                 # Static files
-│   ├── css/style.css      # Main stylesheet
+│   ├── header.html          # Navigation + logo + search
+│   └── footer.html          # Footer content
+├── _layouts/                # Page templates
+│   ├── default.html         # Base layout
+│   ├── post.html            # Blog post layout
+│   ├── tag_page.html        # Tag listing layout
+│   ├── category_page.html   # Category listing layout
+│   ├── series_page.html     # Series listing layout
+│   └── cv.html              # CV page layout
+├── _plugins/                # Custom Jekyll plugins
+│   ├── tag_generator.rb         # Auto-generate tag pages
+│   ├── category_generator.rb    # Auto-generate category pages
+│   ├── series_generator.rb      # Auto-generate series pages
+│   └── date_filters.rb          # career_duration Liquid filter (used in CV)
+├── _posts/                  # All learning posts, organized by category dirs
+│   ├── Technology/Python/       # categories: [Technology, Python]
+│   ├── Technology/PostgreSQL/   # categories: [Technology, PostgreSQL]
+│   ├── Technology/Rust/         # categories: [Technology, Rust]
+│   ├── Career/Roadmap/          # categories: [Career, Roadmap]
+│   ├── Language/English/        # categories: [Language, English]
+│   ├── Retrospec/               # categories: Retrospec (yearly retrospectives)
+│   ├── BookLog/                 # categories: BookLog (reading notes)
+│   └── (root)                   # Posts without categories
+├── assets/                  # Static files
+│   ├── css/style.css        # Main stylesheet
 │   ├── js/
-│   │   ├── search.js      # Search functionality
-│   │   ├── mobile-menu.js # Mobile hamburger menu
-│   │   └── toc.js         # Table of contents
-│   └── images/            # Images and logos
-├── pages/                  # Fixed pages
-│   ├── cv.md              # Curriculum Vitae
-│   ├── tags.md            # All tags listing
-│   ├── categories.md      # All categories listing
-│   └── series.md          # All series listing
-└── index.html             # Home page
+│   │   ├── search.js            # Search functionality
+│   │   ├── mobile-menu.js       # Mobile hamburger menu
+│   │   ├── toc.js               # Table of contents
+│   │   ├── category-tree.js     # Collapsible category tree
+│   │   ├── mermaid-init.js      # Mermaid diagram init (theme-aware)
+│   │   └── mermaid-zoom.js      # Mermaid diagram zoom/pan
+│   └── images/              # Images and logos
+├── pages/                   # Fixed pages
+│   ├── cv.md                # Curriculum Vitae
+│   ├── tags.md              # All tags listing
+│   ├── categories.md        # All categories listing
+│   └── series.md            # All series listing
+├── index.html               # Home page (recent posts + quick links)
+├── search.json              # Search index source
+├── Makefile / serve.sh      # Local dev helpers
+├── Gemfile / Gemfile.lock   # Ruby dependencies
+├── CNAME                    # Custom domain (wiki.orchwang.dev)
+├── README.md                # Setup and usage
+├── MERMAID_USAGE.md         # Mermaid diagram authoring guide
+└── .github/workflows/       # GitHub Pages build/deploy (jekyll.yml)
 ```
 
 **Important Notes on Post Organization:**
@@ -102,170 +114,73 @@ Developers who want to:
 
 ---
 
-## Understanding Sample Posts
+## Existing Content & Post Types
 
-The `_posts/` directory contains three sample posts that demonstrate the wiki's structure:
+The `_posts/` directory currently holds **24 published posts**. They fall into a few recurring types — use these as references when writing new content.
 
-### 1. Roadmap Post: `2025-10-10-backend-roadmap.md`
+### Curriculum / Roadmap Posts
 
-**Category:** `Roadmap`
-**Purpose:** Master learning tracker for backend development
+**Examples:** `Career/Roadmap/2025-10-12-python-engineer-job-description.md`, `Technology/Python/2025-10-12-python-advanced-competency-curriculum.md`, `Technology/PostgreSQL/2025-10-28-postgresql-essential-curriculum.md`
 
-**Structure:**
+**Purpose:** High-level learning trackers / curricula for a skill area.
 
-```markdown
----
-layout: post
-title: "백엔드 개발자 로드맵: 도장깨기"
-date: 2025-10-10
-categories: Roadmap
-tags: [roadmap, backend, learning]
-published: true
----
+- Checkbox tracking (`[x]` done, `[ ]` pending) where progress matters
+- Links from each completed item to its detailed post
+- Related skills grouped under clear topic headings
 
-## 1. 프로그래밍 언어 (Programming Language)
+### Technical Deep-Dive Posts
 
-- [x] Python - [[Python 기본 문법 정리](/2025/10/11/python-basics.html)]
-- [ ] Java
-- [ ] Go
+**Examples:** `Technology/Python/2025-10-22-python-gil.md`, `Technology/Python/2025-10-19-python-memory-structure-and-object-model.md`, `Technology/PostgreSQL/2025-12-06-postgresql-architecture-deep-dive.md`
 
-## 2. 자료구조 & 알고리즘
+**Purpose:** In-depth explanation of a single concept.
 
-- [x] 스택 (Stack) - [[스택의 이해와 구현](/2025/10/12/data-structure-stack.html)]
-- [ ] 큐 (Queue)
-- [ ] 트리 (Tree)
+**Typical structure:** Introduction (why it matters) → core concepts → runnable code examples → performance/complexity notes → summary + "다음 학습" (Next Learning). These usually belong to a `series` (e.g. `Python-Essential`, `PostgreSQL-Essential`, `Rust-Essential`).
 
-## 진행 상황
+### Retrospective Posts
 
-현재 완료한 항목: **2개**
-전체 항목: **약 50개**
-진행률: **4%**
-```
+**Examples:** `Retrospec/2024-01-01-2024-retrospec.md`, `Retrospec/2025-01-01-2025-retrospec.md`, `Retrospec/2026-01-01-2026-retrospec.md`
 
-**Key Features:**
+**Purpose:** Yearly reflections with book logs and learning summaries. One post per year, single `Retrospec` category.
 
-- **Checkbox tracking**: `[x]` = completed, `[ ]` = pending
-- **Linked learning**: Each completed item links to its detailed post
-- **Progress statistics**: Shows completion percentage
-- **Organized by topics**: Groups related skills together
+### Book Log Posts
 
-**When to Update:**
+**Example:** `BookLog/2026-01-02-바이브-코딩-너머-개발자-생존법.md`
 
-- Check off items when you complete learning them
-- Add links to newly created detailed posts
-- Update progress statistics
-- Add new topics as needed
+**Purpose:** Reading notes and takeaways from a book. Single `BookLog` category.
 
-### 2. Programming Post: `2025-10-11-python-basics.md`
+### Language Learning Posts
 
-**Category:** `Programming`
-**Purpose:** Detailed programming language tutorial
+**Examples:** `Language/English/2026-01-03-reading-and-writing-in-english.md`, `Language/English/2026-01-03-how-to-read-technical-documentation.md`
 
-**Structure:**
-
-- **Introduction**: What is Python and why learn it
-- **Core Concepts**: Variables, data types, control flow, functions
-- **Code Examples**: Practical, runnable code snippets
-- **Best Practices**: Pythonic patterns
-- **Next Steps**: Links to advanced topics
-
-**Content Pattern:**
-
-1. Concept explanation
-2. Syntax examples
-3. Practical use cases
-4. Common patterns
-5. "다음 학습" (Next Learning) section
-
-### 3. Computer Science Post: `2025-10-12-data-structure-stack.md`
-
-**Category:** `Computer-Science`
-**Purpose:** In-depth technical concept deep-dive
-
-**Structure:**
-
-- **Concept Definition**: What is a Stack?
-- **Operations**: Core functionality (push, pop, peek, etc.)
-- **Implementation**: Complete Python implementation
-- **Time Complexity**: Performance analysis
-- **Use Cases**: Real-world applications
-- **Practice Problems**: Example implementations
-
-**Educational Value:**
-
-- Theory + Practice combination
-- Complete working code
-- Multiple examples
-- Connections to real-world usage
+**Purpose:** Notes on language learning (English), in the `Learning-English` series.
 
 ---
 
 ## Content Categories
 
-### Roadmap
+Categories mirror the `_posts/` directory layout. Most posts use a **nested two-level** category (`[Top, Sub]`); some use a single top-level category. Re-use existing categories — only introduce a new one for a genuinely new theme.
 
-**Purpose:** Central progress tracking for learning journeys
+### Technology (nested)
 
-**Characteristics:**
+Top-level technical category, always paired with a sub-category that names the directory: `Technology/Python`, `Technology/PostgreSQL`, `Technology/Rust`. Holds curricula and deep-dive posts; most belong to a `*-Essential` series.
 
-- High-level overview of skill areas
-- Checkbox-based progress tracking
-- Links to detailed learning posts
-- Progress statistics
-- Long-term tracking document
+### Career → Roadmap (nested)
 
-**Best Practices:**
+`[Career, Roadmap]` — job descriptions, competency maps, and learning roadmaps for an engineering track.
 
-- One roadmap per major skill area (e.g., Backend, Frontend, DevOps)
-- Update regularly as you complete items
-- Keep progress statistics current
-- Use clear topic groupings
+### Language → English (nested)
 
-**Example Topics:**
+`[Language, English]` — language-learning notes (currently the `Learning-English` series).
 
-- Backend Developer Roadmap
-- Frontend Developer Roadmap
-- Data Science Roadmap
-- DevOps Engineer Roadmap
+### Retrospec (single)
 
-### Programming
+`Retrospec` — yearly retrospectives. One post per year.
 
-**Purpose:** Programming language fundamentals and patterns
+### BookLog (single)
 
-**Characteristics:**
+`BookLog` — reading notes from books.
 
-- Language-specific content
-- Syntax and idioms
-- Code examples
-- Best practices
-- Practical exercises
-
-**Typical Content:**
-
-- Language basics (Python, JavaScript, Java, Go)
-- Framework tutorials (Django, React, Spring)
-- Design patterns
-- Code quality practices
-
-### Computer-Science
-
-**Purpose:** Fundamental CS concepts and theory
-
-**Characteristics:**
-
-- Timeless concepts
-- Implementation + analysis
-- Algorithm complexity
-- Mathematical foundations
-- Problem-solving techniques
-
-**Typical Content:**
-
-- Data structures (Stack, Queue, Tree, Graph)
-- Algorithms (sorting, searching, dynamic programming)
-- System design concepts
-- Computer architecture
-- Operating systems concepts
+**Adding a sub-category:** create the matching nested directory under `_posts/` (e.g. `_posts/Technology/Go/`) and use `categories: [Technology, Go]`.
 
 ---
 
@@ -336,21 +251,23 @@ excerpt: "Brief 1-2 sentence summary for SEO and previews."
 
 ### Content Structure Template
 
+> **Note:** Do not use standalone `---` horizontal rules between sections — let headers provide separation (see "For Markdown Formatting" below). Existing posts follow this convention.
+
 ````markdown
 ---
 layout: post
 title: "Topic Name: Subtitle"
 date: YYYY-MM-DD
-categories: Category-Name
+categories: [Technology, Python]
 tags: [tag1, tag2, tag3]
+series: Python-Essential
 published: true
+excerpt: "Brief 1-2 sentence summary for SEO and previews."
 ---
 
 ## Topic Introduction
 
 Brief overview of what this post covers and why it's important.
-
----
 
 ## Main Section 1
 
@@ -362,13 +279,9 @@ Content with examples...
 // Code examples
 ```
 
----
-
 ## Main Section 2
 
 More detailed content...
-
----
 
 ## Practical Examples
 
@@ -376,13 +289,11 @@ More detailed content...
 
 Real-world use case...
 
----
-
 ## Summary
 
 Key takeaways from this post.
 
-### Next Learning
+### 다음 학습 (Next Learning)
 
 - [Related Topic 1]
 - [Related Topic 2]
@@ -400,7 +311,7 @@ Key takeaways from this post.
 **Example:**
 
 ```markdown
-Learn more about [Python Basics](/2025/10/11/python-basics.html)
+Learn more about [Python GIL](/2025/10/22/python-gil.html)
 ```
 
 **When to Link:**
@@ -451,7 +362,7 @@ Learn more about [Python Basics](/2025/10/11/python-basics.html)
 
 - Use existing tags for consistency
 - Create new tags only when needed
-- Use CamelCase for multi-word tags (e.g., `DataStructure`)
+- Use lowercase, hyphenated tags for multi-word terms (e.g., `import-system`, `coding-agent`) — matches existing posts
 - Keep tags specific and meaningful
 
 **Formatting:**
@@ -472,6 +383,7 @@ Learn more about [Python Basics](/2025/10/11/python-basics.html)
 
 - 📚 태그 (Tags)
 - 🗂️ 카테고리 (Categories)
+- 📖 시리즈 (Series)
 - 👤 CV
 
 **Purpose:** Fast navigation to main sections
@@ -499,7 +411,7 @@ Learn more about [Python Basics](/2025/10/11/python-basics.html)
 
 ### 4. Navigation Menu
 
-**Order:** 홈 | 카테고리 | 태그 | CV
+**Order:** 홈 | 카테고리 | 태그 | 시리즈 | CV
 **Keep:** Same order in header and quick links
 
 ### 5. Responsive Design
@@ -555,8 +467,8 @@ Learn more about [Python Basics](/2025/10/11/python-basics.html)
 ### Adding a New Learning Post
 
 ```bash
-# Use the custom command
-/add-post "Python Decorators" Programming "Python,Programming,Advanced"
+# Use the custom command: /add-post <title> [cat1,cat2] [tags] [date]
+/add-post "Python Decorators" Technology,Python "python,decorators,advanced"
 ```
 
 This creates:
@@ -586,28 +498,31 @@ make serve
 
 ### Existing Content
 
-- **3 sample posts** demonstrating the wiki structure
-- **1 roadmap** (Backend Developer) with 50 items, 2 completed
-- **2 detailed posts** (Python Basics, Stack Data Structure)
+- **24 published posts** across Technology, Career, Language, Retrospec, and BookLog
+- Series in use: `Python-Essential` (11), `PostgreSQL-Essential` (3), `Rust-Essential` (3), `Learning-English` (2)
+- Yearly retrospectives for 2024, 2025, and 2026
 
 ### Categories
 
-- **Roadmap**: Learning journey trackers
-- **Programming**: Language and framework tutorials
-- **Computer-Science**: CS fundamentals
+- **Technology** (nested: Python, PostgreSQL, Rust): curricula + deep-dives
+- **Career → Roadmap**: roadmaps and competency maps
+- **Language → English**: language-learning notes
+- **Retrospec**: yearly retrospectives
+- **BookLog**: book reading notes
 
-### Tags in Use
+### Tags in Use (most common)
 
-- `roadmap`, `backend`, `learning`
-- `Python`, `Programming`, `Basics`
-- `DataStructure`, `Algorithm`, `CS`, `Stack`
+- `python`, `curriculum`, `rust`, `retrospec`, `postgresql`, `booklog`
+- `memory`, `setup`, `english`, `career`, `concurrency`, `gil`, `asyncio`, `profiling`, `ownership`
 
 ### Site Features
 
-- ✅ Category pages with auto-generation
+- ✅ Category pages with auto-generation (nested category support)
 - ✅ Tag pages with auto-generation
+- ✅ Series pages with auto-generation
 - ✅ Client-side search
-- ✅ CV/portfolio page
+- ✅ CV/portfolio page with auto-calculated career duration
+- ✅ Mermaid diagram rendering (theme-aware, zoomable)
 - ✅ Logo and favicon
 - ✅ Responsive design
 - ✅ Quick links on home page
@@ -631,14 +546,13 @@ make serve
 
 ### Don'ts
 
-- ❌ Create new categories unnecessarily
+- ❌ Create new top-level categories unnecessarily (re-use Technology / Career / Language / Retrospec / BookLog)
 - ❌ Skip front matter in posts
 - ❌ Break existing links when renaming
-- ❌ Mix multiple categories per post
-- ❌ Use spaces in category names (use hyphens)
+- ❌ Use spaces in category or series names (use hyphens / CamelCase)
+- ❌ Put a post in a directory that doesn't match its `categories`
 - ❌ Ignore cross-referencing opportunities
-- ❌ Leave roadmaps outdated
-- ❌ Create posts without linking to roadmap
+- ❌ Leave a related roadmap/curriculum outdated after completing its topic
 
 ---
 
@@ -656,22 +570,22 @@ This wiki aims to be:
 
 ## Last Updated
 
-This guide reflects the project structure as of October 2025.
+This guide reflects the project structure as of June 2026.
 
 **Current Status:**
 
 - Jekyll wiki fully implemented
-- Category system operational
-- Tag system operational
-- 3 sample posts demonstrating structure
+- Category, tag, and series systems operational (with nested category support)
+- 24 published posts across Technology, Career, Language, Retrospec, BookLog
+- Mermaid diagram rendering and zoom enabled
 - Logo and branding applied
 - Search functionality working
-- CV page integrated
+- CV page with auto-calculated career duration integrated
 
 **Next Steps:**
 
 - Continue adding learning posts
-- Update roadmap progress
+- Update roadmap/curriculum progress
 - Build knowledge connections
 - Maintain consistent quality
 
@@ -679,6 +593,6 @@ This guide reflects the project structure as of October 2025.
 
 For questions or clarifications about this project, refer to:
 
-- `specs/blueprint.spec.md` - Original design specification
 - `README.md` - Setup and usage instructions
-- Sample posts in `_posts/` - Content examples
+- `MERMAID_USAGE.md` - Mermaid diagram authoring guide
+- Existing posts in `_posts/` - Content examples (e.g. `Technology/Python/2025-10-22-python-gil.md`)
