@@ -6,10 +6,14 @@ function toggleNode(header) {
     if (node) {
         node.classList.toggle('collapsed');
 
+        // Reflect expanded/collapsed state for assistive tech
+        const collapsed = node.classList.contains('collapsed');
+        header.setAttribute('aria-expanded', String(!collapsed));
+
         // Save state to localStorage
         const parent = node.getAttribute('data-parent');
         if (parent) {
-            saveTreeState(parent, node.classList.contains('collapsed'));
+            saveTreeState(parent, collapsed);
         }
     }
 }
@@ -39,12 +43,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load saved tree state
     loadTreeState();
 
-    // Add keyboard navigation support
+    // Add keyboard + ARIA support so the tree reads as expandable controls.
     document.querySelectorAll('.tree-node-header').forEach(header => {
         header.setAttribute('tabindex', '0');
+        header.setAttribute('role', 'button');
 
-        header.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
+        // Announce current expanded state (a leaf/standalone node still toggles its
+        // post list, so every header is treated as expandable).
+        const node = header.closest('.tree-node');
+        const collapsed = node && node.classList.contains('collapsed');
+        header.setAttribute('aria-expanded', String(!collapsed));
+
+        header.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
                 e.preventDefault();
                 toggleNode(this);
             }

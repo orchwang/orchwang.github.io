@@ -50,7 +50,7 @@
             searchResults.innerHTML = ''
                 + '<div class="search-no-results">'
                 +   '<span class="axe-sigil" aria-hidden="true"></span>'
-                +   '<div class="search-no-results-title">빈 잔만 남은 주막</div>'
+                +   '<div class="search-no-results-title">빈 잔만 남은 여관</div>'
                 +   '<p class="search-no-results-text">이 검색어로는 전리품을 찾지 못했소. 다른 말로 다시 출정해 보시오.</p>'
                 + '</div>';
             searchResults.style.display = 'block';

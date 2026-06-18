@@ -105,8 +105,8 @@
     --tavern-day-url-sm: url("/assets/images/tavern/tavern-day-1024.webp");
     --tavern-night-url-sm: url("/assets/images/tavern/tavern-night-1024.webp");
     --ambient-bg-url: var(--tavern-day-url);     /* day room in the gutters */
-    --ambient-blur: 7px;
-    --ambient-opacity: 0.30;
+    --ambient-blur: 9px;
+    --ambient-opacity: 0.24;
     /* Dark scrim that keeps the ambient image quiet behind the page;
        blends toward the page bg color at the center so panels float. */
     --ambient-scrim: linear-gradient(180deg, rgba(231,211,171,0.55) 0%, rgba(231,211,171,0.78) 60%, rgba(231,211,171,0.92) 100%);
@@ -182,7 +182,7 @@
     /* Night tavern in the gutters; the night plate is already vignetted,
        so it sits a touch stronger but the scrim blends to the forge floor. */
     --ambient-bg-url: var(--tavern-night-url);
-    --ambient-opacity: 0.34;
+    --ambient-opacity: 0.26;
     --ambient-scrim: linear-gradient(180deg, rgba(22,18,16,0.62) 0%, rgba(22,18,16,0.82) 60%, rgba(22,18,16,0.94) 100%);
 
     color-scheme: dark;
@@ -226,7 +226,7 @@
         --hero-ink: #f3e6c8;
         --hero-ink-muted: rgba(243,230,200,0.88);
         --ambient-bg-url: var(--tavern-night-url);
-        --ambient-opacity: 0.34;
+        --ambient-opacity: 0.26;
         --ambient-scrim: linear-gradient(180deg, rgba(22,18,16,0.62) 0%, rgba(22,18,16,0.82) 60%, rgba(22,18,16,0.94) 100%);
         color-scheme: dark;
     }
@@ -501,12 +501,13 @@ input:focus-visible,
 }
 
 .site-branding .site-title {
-    font-family: var(--font-pixel-latin);
-    font-size: 26px;
-    font-weight: 400;
-    /* Silkscreen is an inherently wide pixel face — pull tracking in for legibility */
-    letter-spacing: -0.04em;
-    word-spacing: -0.06em;
+    /* Wordmark uses Galmuri11 (--font-pixel): more compact + tighter rhythm than
+       Silkscreen, and covers Hangul/symbols so the brand reads cleanly. The pixel
+       flavor is carried by the crimson war-banner edge, not a wide Latin face. */
+    font-family: var(--font-pixel);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
     color: var(--gold-bright);
     /* crimson war-banner edge under the brass wordmark */
     text-shadow:
@@ -1239,13 +1240,15 @@ mark {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* force the NIGHT room regardless of theme — the empty tavern at night */
-    --tavern-band-img: var(--tavern-night-url);
+    /* Theme-aware room: light shows the day plate, dark shows the night plate
+       (via --ambient-bg-url, the per-theme swap token). The "불 꺼진 빈 여관" mood
+       comes from the heavier scrim below, not from forcing the night plate. */
+    --tavern-band-img: var(--ambient-bg-url);
     padding: 56px 32px;
 }
 
 .tavern-404 .tavern-band-scrim {
-    /* the empty hall is dim — lean on the heavier scrim for AA */
+    /* the empty hall is dim — lean on the heavier scrim for AA in both themes */
     background: var(--tavern-scrim);
 }
 
@@ -1338,9 +1341,12 @@ mark {
     max-width: 800px;
     margin: 0 auto;
     background: var(--bg-panel);
-    border: 2px solid var(--border-strong);
+    /* Reading surface only: keep the iron frame but in mid-bronze (not charred)
+       and trade the hard 4px-0 shadow for a softer offset+blur, so long reading
+       sessions feel calmer. Chrome (banners/cards/badges/footer) stays hard. */
+    border: 2px solid var(--border-color);
     border-radius: var(--radius);
-    box-shadow: var(--px-shadow);
+    box-shadow: 2px 3px 8px rgba(0,0,0,0.18);
     padding: 36px 40px;
 }
 
@@ -2471,9 +2477,10 @@ mark {
     max-width: 800px;
     margin: 0 auto;
     background: var(--bg-panel);
-    border: 2px solid var(--border-strong);
+    /* Reading surface: matches .post — softer frame + shadow than chrome. */
+    border: 2px solid var(--border-color);
     border-radius: var(--radius);
-    box-shadow: var(--px-shadow);
+    box-shadow: 2px 3px 8px rgba(0,0,0,0.18);
     padding: 36px 40px;
 }
 
@@ -2735,7 +2742,9 @@ mark {
     pointer-events: none;
 }
 
-/* dark tavern scrim + crimson chrome wash → bone text clears AA */
+/* dark tavern scrim + crimson chrome wash → bone text clears AA.
+   A flat charred veil is added under the firm scrim so even the brightest
+   firelight pixel of the plate cannot lift small brass links below AA. */
 .site-footer::after {
     content: "";
     position: absolute;
@@ -2743,7 +2752,8 @@ mark {
     z-index: -1;
     background:
         linear-gradient(0deg, rgba(110,13,13,0.30) 0%, transparent 45%),
-        var(--tavern-scrim);
+        var(--tavern-scrim),
+        rgba(16,8,5,0.34);
     pointer-events: none;
 }
 
@@ -2777,7 +2787,12 @@ mark {
     font-size: 12px;
     color: var(--gold-bright);
     text-decoration: none;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.85);
+    /* tight dark outline + drop halo so small brass text stays legible on any
+       firelight pixel of the tavern plate behind the footer */
+    text-shadow:
+        0 1px 2px rgba(0,0,0,0.95),
+        0 0 2px rgba(0,0,0,0.95),
+        1px 1px 0 rgba(0,0,0,0.6);
 }
 
 .footer-links a:hover {
@@ -2830,7 +2845,8 @@ mark {
     }
 
     .site-branding .site-title {
-        font-size: 20px;
+        font-size: 19px;
+        letter-spacing: -0.03em;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;

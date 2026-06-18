@@ -131,9 +131,9 @@ the dark + `prefers-color-scheme` blocks:
 |-------|-----|
 | `--tavern-day-url` / `--tavern-night-url` | The day/night tavern plate (1536 variant; `*-sm` = 1024). |
 | `--ambient-bg-url` | The **active** plate (day on `:root`, night in dark) — the single per-theme swap point for the ambient layer, footer and intro band. |
-| `--ambient-opacity` / `--ambient-blur` | Ambient layer dimming (`.30` light / `.34` dark) and `blur(7px)`. Keep low — the ambient plate must stay a *texture in the gutters*, never a focal element. |
+| `--ambient-opacity` / `--ambient-blur` | Ambient layer dimming (`.24` light / `.26` dark) and `blur(9px)`. Kept deliberately low — the ambient plate must stay a *texture in the gutters*, never a focal element. (Lowered from `.30/.34` + `7px` to reduce distraction; reading legibility is unaffected since the body always floats on an opaque panel.) |
 | `--ambient-scrim` | A bone-tinted (light) / stone-tinted (dark) gradient laid **over** the blurred plate so it fades toward the page bg and panels float. |
-| `--tavern-scrim` / `--tavern-scrim-soft` | Dark scrims for **text-bearing** tavern surfaces (footer / 404 use the firm one; the home band uses `-soft`, deepened to 0.66+ in the mid-band). Bone copy on either clears AA over a worst-case bright-firelight pixel (`-soft` mid ≈ **5.9:1**, footer bone ≈ **8.4:1**), with `--hero-text-shadow` as insurance. Same recipe in both themes. |
+| `--tavern-scrim` / `--tavern-scrim-soft` | Dark scrims for **text-bearing** tavern surfaces (footer / 404 use the firm one; the intro bands use `-soft`, ≈0.66 mid). Bone copy on either clears AA over a worst-case bright-firelight pixel (`-soft` mid ≈ **5.8:1**, footer bone ≈ **7.5:1**), with `--hero-text-shadow` as insurance. Same recipe in both themes. **Footer hardening:** the footer `::after` adds a flat `rgba(16,8,5,.34)` charred veil *under* the firm scrim, and the small brass footer links carry a tight dark text-outline halo, so even the single brightest plate pixel cannot drop them below legibility (brass link ≈ **4.2:1 light / 6.1:1 dark** worst-case). |
 
 ## 2. Typography
 
@@ -166,10 +166,18 @@ labels, counts, panel headers, quest-stamp labels.
   U+AC00–D7A3), so Korean nav/labels render in-theme. Loaded via `@font-face` from
   jsDelivr (`cdn.jsdelivr.net/npm/galmuri/dist/Galmuri11.woff2`, weights 400/700),
   matching the existing BBH-Sans-Bogle loading pattern. `font-display: swap` → Pretendard
-  shows first paint, no invisible text.
+  shows first paint, no invisible text. **Both weights are `<link rel="preload">`ed in
+  `<head>`** (700 = wordmark/labels, 400 = nav/meta) so the swap snap is minimal; the
+  preload does not block the separate Pretendard body stylesheet.
+- **Brand wordmark uses `--font-pixel` (Galmuri11), not the wide Latin face.** Silkscreen
+  is inherently wide and tracked badly on the `Orc Hwang's Wiki` apostrophe + spaces;
+  Galmuri11 is more compact, has tighter rhythm, and covers Hangul/symbols, so it wins on
+  legibility. `.site-title`: `24px` desktop / `19px` mobile, `letter-spacing -0.02em`
+  (`-0.03em` mobile), weight 700, brass with a crimson side-edge. The pixel flavor is the
+  crimson war-banner edge, not a wide Latin glyph.
 - **`--font-pixel-latin`:** `"Silkscreen", "VT323", monospace` (Google Fonts, Latin-only)
-  — optional flavor for purely-Latin display runs (the brand wordmark, decorative
-  numerals). Never used where Hangul can appear.
+  — optional flavor for purely-Latin *decorative numerals* only (e.g. the big `404` code).
+  Never used for the wordmark or where Hangul can appear.
 - **Long Hangul titles stay readable:** post `h1`/`h2`/`h3` (reading headings) are
   **Pretendard bold**, not pixel — the pixel feel is carried by a hard offset shadow /
   left frame, not the glyphs. Only *short* chrome headings (card titles, page banners,
@@ -202,9 +210,17 @@ labels, counts, panel headers, quest-stamp labels.
 
 ## 5. Components (Game-UI panels)
 
-All panels share the **pixel-frame recipe**: `--bg-light` fill, `2px solid
+All **chrome** panels share the **pixel-frame recipe**: `--bg-light` fill, `2px solid
 --border-strong` outline, inner `--border-color` bevel, hard `4px 4px 0 --shadow-color`
 shadow, square corners (radius 0–2px max).
+
+**Reading-surface exception (`.post`, `.cv-page`).** The two long-form reading panels are
+the only surfaces that *soften* the recipe: `--bg-panel` fill, a `2px solid --border-color`
+**mid-bronze** frame (not the charred `--border-strong`), and a soft `2px 3px 8px
+rgba(0,0,0,.18)` offset+blur shadow instead of the hard `4px 4px 0`. This keeps long
+reading sessions calm. Chrome (banners, cards, badges, footer, summary box, series banner,
+TOC, category tree) **keeps the hard charred frame** — the bold identity is intact; only
+the reading plate is eased.
 
 ### Hero / brand components (Horde)
 
@@ -263,18 +279,23 @@ scrim + `--hero-text-shadow` and clears AA.
   wash + `--tavern-scrim`; bone footer text/links keep AA (each carries a black
   text-shadow). The existing "Lok'tar ogar" line now literally sits in the tavern. Same
   per-theme plate as the ambient layer.
-- **Home intro band (`.tavern-band.tavern-band--day`)** — a *contained* tavern-day band
-  **below the hero**, above the recent-posts list: `.tavern-band-media` plate +
-  `.tavern-band-scrim` (`--tavern-scrim-soft`) + a short pixel title / bone copy / axe
-  divider. Deliberately kept short and framed (crimson+brass inset) so it reads as a
-  welcome strip, not a second hero.
+- **Index intro bands (`.tavern-band.tavern-band--day`)** — a *contained* tavern-day band
+  at the **top of every index listing page**: series (`/pages/series.html` — "여기는 학습
+  여관"), tags (`/pages/tags.html` — "전리품 진열대"), and categories
+  (`/pages/categories.html` — "원정 지도"). Each is the same markup: `.tavern-band-media`
+  plate + `.tavern-band-scrim` (`--tavern-scrim-soft`) + a short pixel title / bone copy /
+  axe divider, with page-specific flavor copy. Deliberately short and framed (crimson+brass
+  inset) so it reads as a welcome strip, not a second hero. (Home is the exception — it
+  leads straight from the hero into recent posts, no band.)
 - **404 (`/404.html` → `.tavern-404`)** — root `404.html` (`layout: default`,
-  `permalink: /404.html`). The **empty** tavern at **night** (pinned to
-  `--tavern-night-url` in both themes), heavier `--tavern-scrim`, a brass `404`, Horde
-  flavor copy ("이 전장엔 전리품이 없소 / 빈 잔만 남은 주막"), and a brass-coin **본진으로 귀환**
-  home button (≥ 44px, crossed-axe glyph, pressed-button motion, reduced-motion-guarded).
+  `permalink: /404.html`). The **empty tavern, theme-aware**: it reads `--ambient-bg-url`
+  (so light shows the day plate, dark the night plate — the swap matches the active theme,
+  no longer pinned to night) under the heavier `--tavern-scrim`, which keeps the dim
+  "불 꺼진 빈 여관" mood in both. Brass `404` (`--font-pixel-latin`, large = AA), Horde flavor
+  copy ("이 전장엔 전리품이 없소 / 빈 잔만 남은 여관"), and a brass-coin **본진으로 귀환** home button
+  (≥ 44px, crossed-axe glyph, pressed-button motion, reduced-motion-guarded).
 - **Empty search (`.search-no-results`)** — when `search.js` finds nothing it renders a
-  small crossed-axe `.axe-sigil` + pixel title ("빈 잔만 남은 주막") + a one-line flavor
+  small crossed-axe `.axe-sigil` + pixel title ("빈 잔만 남은 여관") + a one-line flavor
   prompt, on the opaque results panel (legibility unchanged).
 
 ### Gorehowl axe — original pixel-art SVG motif
@@ -312,8 +333,11 @@ crispEdges`, steel + brass-edge + crimson-rune; `gorehowl.svg`/`axe-bullet.svg` 
   badge; prev/next as iron buttons.
 - **`.roadmap-notice`** — **proclamation board**: amber panel.
 - **category tree** — **war map**: collapsible iron-row nodes, chevron, brass coin
-  badges; parent nodes are charred-iron header bars with brass labels.
-- **theme toggle (`.theme-toggle`)** — pixel button in banner: 🔥 던전 (to Forge) / ☀️ 주막
+  badges; parent nodes are charred-iron header bars with brass labels. Each header is a
+  keyboard control: `tabindex=0` + `role="button"` + `aria-expanded` (toggled on
+  open/close), Enter/Space via `keydown` (`category-tree.js`); visible focus ring from the
+  global `[tabindex]:focus-visible` rule.
+- **theme toggle (`.theme-toggle`)** — pixel button in banner: 🔥 던전 (to Forge) / ☀️ 여관
   (to day); ≥ 44px, visible focus, `aria-pressed`.
 - **Mermaid** — theme-aware container (zoom/pan + `zoomPulse`); frame matches panel
   recipe (see `MERMAID_USAGE.md`).
@@ -355,6 +379,11 @@ crispEdges`, steel + brass-edge + crimson-rune; `gorehowl.svg`/`axe-bullet.svg` 
   Wordmark uses the Latin pixel face with a crimson war-banner edge; Korean chrome uses
   Galmuri11.
 - Domain: `wiki.orchwang.dev` (CNAME).
+- **Social / OG image:** a global `defaults` entry in `_config.yml` feeds the Orgrimmar OG
+  (`/assets/images/hero/orgrimmar-og.jpg`, 1200×630) to `jekyll-seo-tag` for every page.
+  **Per-post override:** a post that sets `image: /assets/images/….jpg` in its front matter
+  replaces the global for that page (page front matter beats `defaults`); posts without
+  `image` fall back to the global OG. Verified via build.
 
 ### Environment art set — exterior hero + interior tavern (day/night)
 
@@ -362,12 +391,15 @@ The skin has **two scene types**, both chrome-only (never behind reading text):
 
 - **Hero (exterior vista)** — the cinematic Orgrimmar warlord overlook
   (`assets/images/hero/orgrimmar-hero-*`). Home hero banner + CV cover splash. The
-  "outside" view of the war camp.
+  "outside" view of the war camp. webp variants (1536/1024/640) are encoded from the JPG
+  master at **`cwebp -q 72`** (visually lossless here — verified ≈ 32.9 dB PSNR vs master,
+  *closer* to the master than the previous build while ~25–34% smaller: 1536 ≈ 261 KB).
+  Re-export all three sizes at the same quality so the `srcset` stays consistent.
 - **Tavern (interior, day + night pair)** — the Orgrimmar inn/feast hall
   (`assets/images/tavern/tavern-{day,night}-{1536,1024,640}.webp` + `.jpg` fallback). The
   "inside" view — where the learner sits, drinks, and plans the next 출정.
 
-**Theme 1:1 mapping is the rule** — the header toggle is literally 🔥던전 / ☀️주막, so the
+**Theme 1:1 mapping is the rule** — the header toggle is literally 🔥던전 / ☀️여관, so the
 artwork must *change the room* with the theme:
 
 | Theme | Plate | Mood |
@@ -377,10 +409,10 @@ artwork must *change the room* with the theme:
 
 The active plate is selected by a single token, **`--ambient-bg-url`**, set to
 `--tavern-day-url` on `:root` and `--tavern-night-url` in both the `[data-theme="dark"]`
-and `prefers-color-scheme: dark` blocks. The ambient background, the footer plate, and
-the home intro band all read the same token, so one swap re-skins every interior surface.
-The **404** is the exception: it is pinned to `--tavern-night-url` (the *empty* tavern at
-night) regardless of theme.
+and `prefers-color-scheme: dark` blocks. The ambient background, the footer plate, the
+index intro bands, **and the 404** all read the same token, so one swap re-skins every
+interior surface and the room always matches the active theme. The 404's "불 꺼진 빈 여관"
+mood comes from its heavier `--tavern-scrim`, not from forcing a particular plate.
 
 ## 9. Anti-patterns
 
@@ -415,5 +447,7 @@ night) regardless of theme.
   layer — the hero is the only preloaded image; the ambient/footer/band plates stay lazy
   CSS backgrounds. Decorative interior art must never delay the LCP.
 - ❌ Breaking the **theme 1:1 mapping**: light must show `tavern-day`, dark must show
-  `tavern-night` (the 404 is the sole exception — always the night plate).
+  `tavern-night` — on every interior surface, the 404 included (it follows
+  `--ambient-bg-url` like the rest; its empty-inn mood comes from a heavier scrim, not a
+  pinned night plate).
 </content>

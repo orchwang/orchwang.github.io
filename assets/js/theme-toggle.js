@@ -32,7 +32,7 @@
             btn.setAttribute('aria-pressed', String(theme === 'dark'));
             btn.setAttribute(
                 'aria-label',
-                theme === 'dark' ? '낮(주막) 테마로 전환' : '밤(던전) 테마로 전환'
+                theme === 'dark' ? '낮(여관) 테마로 전환' : '밤(던전) 테마로 전환'
             );
         }
     }

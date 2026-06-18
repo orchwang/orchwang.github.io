@@ -66,6 +66,9 @@ defaults:
   # (which reads `image`/`locale` from page front matter, not site config)
   # emits og:image / og:image:width|height|alt / twitter:image as absolute URLs.
   # The core concept image: 석양의 오그리마를 굽어보는 오크 전쟁군주.
+  # PER-POST OVERRIDE: add `image: /assets/images/...jpg` to a post's front matter
+  # and it replaces this default for that page (page front matter beats defaults);
+  # posts without `image` fall back to the global Orgrimmar OG below.
   - scope:
       path: ""
     values:

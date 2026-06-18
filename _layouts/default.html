@@ -27,6 +27,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <!-- Preload the chrome pixel face (Galmuri11) — the wordmark, nav, badges and
+         section labels all use it, so preloading softens the font-display:swap
+         snap on first paint. Body text (Pretendard) is a separate stylesheet and
+         is NOT blocked by these. 700 = wordmark/labels, 400 = nav/meta. -->
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+          href="https://cdn.jsdelivr.net/npm/galmuri@2.40.3/dist/Galmuri11-Bold.woff2">
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+          href="https://cdn.jsdelivr.net/npm/galmuri@2.40.3/dist/Galmuri11.woff2">
     <!-- Noto Sans KR (Pretendard fallback) -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Latin pixel display faces (chrome accents) -->

@@ -5,6 +5,15 @@ permalink: /pages/categories.html
 ---
 
 <div class="categories-page">
+    <section class="tavern-band tavern-band--day" aria-label="원정 지도 안내">
+        <div class="tavern-band-media" aria-hidden="true"></div>
+        <div class="tavern-band-scrim" aria-hidden="true"></div>
+        <h2 class="tavern-band-title">원정 지도</h2>
+        <p class="tavern-band-text">탁자 위에 펼쳐진 지도에는 정복할 영토(카테고리)가 갈래갈래 그려져 있소. 어느 던전부터 함락할지 길을 짚어 보시오.</p>
+        <p class="tavern-band-subtitle">Lok'tar ogar — 정복할 영토를 고르라</p>
+        <div class="axe-divider" aria-hidden="true"><span class="axe-cross"></span></div>
+    </section>
+
     <header class="page-header">
         <h1>카테고리 트리</h1>
         <p>계층적으로 구조화된 카테고리별 포스트를 찾아보세요.</p>
