@@ -9,7 +9,7 @@ permalink: /pages/tags.html
         <div class="tavern-band-media" aria-hidden="true"></div>
         <div class="tavern-band-scrim" aria-hidden="true"></div>
         <h2 class="tavern-band-title">전리품 진열대</h2>
-        <p class="tavern-band-text">출정에서 거둔 전리품(태그)이 벽을 따라 걸려 있소. 마음에 드는 전리품을 골라, 그것이 깃든 전장들을 둘러보시오.</p>
+        <p class="tavern-band-text">벽을 따라 걸린 출정의 전리품 — 태그. 원하는 전리품 선택, 깃든 전장 탐색.</p>
         <p class="tavern-band-subtitle">Lok'tar ogar — 전리품에 영광을</p>
         <div class="axe-divider" aria-hidden="true"><span class="axe-cross"></span></div>
     </section>

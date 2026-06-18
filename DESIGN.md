@@ -123,16 +123,28 @@ on `:root` and overridden (deeper) in both the `[data-theme="dark"]` and
 Verified: bone hero text composited over the scrim and a bright sunset highlight pixel is
 **≈ 13.8:1 (light) / 15.2:1 (dark)** — well past AA (4.5) and AAA (7).
 
-**Tavern / ambient tokens** (interior environment art — see §5 and §8). Defined on
-`:root`, with `--ambient-bg-url` / `--ambient-opacity` / `--ambient-scrim` overridden in
+**Page-ambient (world-map texture) tokens** (full-page background — see §5 and §8).
+The page-wide ambient layer (`body::before`) is the **아제로스 세계 해도** seamless tile, a
+**separate** token set from the tavern so swapping it never touches the tavern scenes.
+Defined on `:root`, with `--page-ambient-opacity` / `--page-ambient-scrim` overridden in
 the dark + `prefers-color-scheme` blocks:
 
 | Token | Use |
 |-------|-----|
+| `--page-ambient-url` / `--page-ambient-url-sm` | The seamless Azeroth world-map tile (`pattern/azeroth-map-1024.webp` 152 KB / `-768.webp` 90 KB; `.jpg` fallback). Verified seamless (roll / 2×2 test); avg luma ≈ 0.41 (mid-tone). |
+| `--page-ambient-tile` | Repeat scale — **960px** desktop (mobile re-tiles at **640px** via the 768px block). Big enough that the map reads as a **chart, not a repeating dot grid** (the maelstrom swirl no longer tiles tightly). |
+| `--page-ambient-opacity` | The **single dim lever** (the scrim is now thin, so the layer opacity *is* the map): **`.32` light** (a legible warm sea-chart on parchment) / **`.38` dark** (a visible night sea-chart on the dark forge floor). Earlier `.10` / `.14` values double-attenuated the map (≈3.8% effective contribution) so only the darkest island outlines survived as **repeating dots** — fixed by raising opacity *and* thinning the scrim. |
+| `--page-ambient-scrim` | A **thin** flat color wash laid **over** the repeated tile (one-color `linear-gradient` layer): **bone `rgba(231,211,171,.30)` light** tints the map toward parchment (warm, bright, low-contrast); **dark stone `rgba(18,14,12,.42)` dark** tints it toward a night sea-chart. Alpha kept **low** (was `.62`/`.74`) so the islands/sea actually show through, while still pulling the texture toward page-tone so **section titles on the page bg stay readable** (`.recent-posts h2` / `.quick-links h2` clear WCAG AA against the worst-case textured pixel: **4.6:1 light / 5.9:1 dark**). Light reads clearly bright, dark clearly dark — the toggle flips the room. No blur, no scale, no `background-attachment: fixed`; static tile → no motion. |
+
+**Tavern / scene tokens** (interior environment art — see §5 and §8). Defined on
+`:root`, with `--ambient-bg-url` overridden in the dark + `prefers-color-scheme` blocks.
+These drive the **tavern scenes only** (footer / 404 / series-day band) — they are **not**
+the page-wide texture above:
+
+| Token | Use |
+|-------|-----|
 | `--tavern-day-url` / `--tavern-night-url` | The day/night tavern plate (1536 variant; `*-sm` = 1024). |
-| `--ambient-bg-url` | The **active** plate (day on `:root`, night in dark) — the single per-theme swap point for the ambient layer, footer and intro band. |
-| `--ambient-opacity` / `--ambient-blur` | Ambient layer dimming (`.24` light / `.26` dark) and `blur(9px)`. Kept deliberately low — the ambient plate must stay a *texture in the gutters*, never a focal element. (Lowered from `.30/.34` + `7px` to reduce distraction; reading legibility is unaffected since the body always floats on an opaque panel.) |
-| `--ambient-scrim` | A bone-tinted (light) / stone-tinted (dark) gradient laid **over** the blurred plate so it fades toward the page bg and panels float. |
+| `--ambient-bg-url` | The **active** tavern plate (day on `:root`, night in dark) — the single per-theme swap point for the footer, the series/tags day-band, and the 404. (No longer feeds the page-wide ambient layer; that is now the world-map tile.) |
 | `--tavern-scrim` / `--tavern-scrim-soft` | Dark scrims for **text-bearing** tavern surfaces (footer / 404 use the firm one; the intro bands use `-soft`, ≈0.66 mid). Bone copy on either clears AA over a worst-case bright-firelight pixel (`-soft` mid ≈ **5.8:1**, footer bone ≈ **7.5:1**), with `--hero-text-shadow` as insurance. Same recipe in both themes. **Footer hardening:** the footer `::after` adds a flat `rgba(16,8,5,.34)` charred veil *under* the firm scrim, and the small brass footer links carry a tight dark text-outline halo, so even the single brightest plate pixel cannot drop them below legibility (brass link ≈ **4.2:1 light / 6.1:1 dark** worst-case). |
 
 ## 2. Typography
@@ -257,36 +269,70 @@ the reading plate is eased.
   `z-index:-2`, `.cv-cover-scrim` `z-index:-1`, `loading="lazy"` — it is below the fold).
   Name/subtitle switch to `--hero-ink` + shadow on the cover; the 124px bone-disc
   medallion avatar supplies its own contrast and harmonizes with the splash.
+- **Roadmap/curriculum post banner (`.post-banner`, `banner: wartable` opt-in)** — a
+  **war-council** strip (the 작전 지도 앞 전쟁 회의 scene) in the post *header*. The 도장깨기
+  roadmap is a conquest plan, so curricula/roadmaps open on the operations room. **Opt-in
+  by front matter:** `_layouts/post.html` renders it only when `page.banner == 'wartable'`,
+  so it never touches ordinary deep-dive posts. Markup is a `<picture>` (war-table webp
+  `srcset` 640/1024/1536 + `sizes="(max-width:800px) 100vw, 800px"`, JPG fallback
+  `wartable.jpg`, `loading="lazy"`, `decoding="async"`) as `.post-banner-media`
+  (`z-index:-2`), a `.post-banner-scrim` (`--wartable-scrim`, `z-index:-1`), and a short
+  Galmuri11 `.post-banner-caption` ("⚔️ 전쟁 회의 — 다음 정복 대상을 정하라") bottom-anchored. Framed
+  in the same crimson+brass war inset as the chrome; bone caption on the scrim +
+  `--hero-text-shadow` clears AA in both themes. **CHROME ONLY — it lives in `.post-header`,
+  above the opaque `--bg-panel` reading body, and must never bleed into `.post-content`.**
+  The scene is dark, so a single `--wartable-*` plate works in both themes (no day/night
+  pair); not preloaded (below the fold for any roadmap that has a TOC/lead paragraph above
+  it on screen — and never the LCP since it is opt-in chrome). Applied to four roadmap/
+  curriculum posts as the opt-in proof: the two `Career/Roadmap` posts, the Python advanced
+  competency curriculum, and the PostgreSQL essential curriculum.
 
-### Environment & ambient (interior tavern)
+### Environment & ambient (page texture + interior tavern)
 
 Chrome-only scene art. **Reading bodies (`.post`, `.cv-page`) are opaque `--bg-panel`
-panels that float above all of this**, so legibility cost is zero. Theme swaps the plate
-via `--ambient-bg-url` (see §1, §8). All bone copy on a tavern plate uses a `--tavern-*`
+panels that float above all of this**, so legibility cost is zero. The page-wide texture
+is the world-map tile (`--page-ambient-*`); the tavern scenes swap their plate via
+`--ambient-bg-url` (see §1, §8). All bone copy on a tavern plate uses a `--tavern-*`
 scrim + `--hero-text-shadow` and clears AA.
 
-- **Ambient tavern background (`body::before`)** — a single `position: fixed` layer at
-  `z-index: -10`: the blurred (`--ambient-blur`), dimmed (`--ambient-opacity`) tavern
-  plate under `--ambient-scrim`, `transform: scale(1.06)` so blurred edges bleed past the
-  viewport. **`display:none` by default; only enabled `@media (min-width: 1200px)`** where
-  the 1200px container leaves gutters — the room shows in the *margins only*. Mobile (panel
-  covers full width) omits it. It is a CSS background, so it is naturally **lazy** (never
-  preloaded). No `background-attachment: fixed` (mobile perf) — a fixed pseudo-layer
-  instead. Restraint is the whole point: low opacity + heavy blur + a scrim that fades to
-  the page bg, so it never competes with the reading column.
+- **Page-wide ambient texture (`body::before`) — 아제로스 세계 해도 (world-map tile).** A single
+  `position: fixed` layer at `z-index: -10`: the seamless Azeroth map tile
+  (`--page-ambient-url`, mobile uses `-url-sm`) **repeated full-bleed** at
+  `--page-ambient-tile` (**960px** desktop / **640px** mobile — large enough that the map
+  reads as a chart, not a dot grid), under a **thin** flat one-color `--page-ambient-scrim`
+  wash, with `--page-ambient-opacity` as the **single dim lever**. **No blur, no scale, no
+  gutter gating** — because it tiles, it covers the *whole* viewport (mobile included),
+  kept legible-but-quiet by the opacity + the theme scrim. **Theme is the point** (mid-tone
+  tile, avg luma ≈ 0.41): light = a legible warm sea-chart on parchment (`.32` opacity,
+  thin bone scrim `rgba(231,211,171,.30)`); dark = a darkened night sea-chart (`.38`
+  opacity, thin dark-stone scrim `rgba(18,14,12,.42)`) — the toggle visibly flips it. The
+  scrim alpha is **thin** so the islands/sea actually show through; the earlier `.10`/`.14`
+  opacity + `.62`/`.74` scrim **double-attenuated** the map (≈3.8% effective) so only the
+  darkest island outlines survived as repeating dots. Section titles painted on the page bg
+  (`.recent-posts h2` "최근 출정 기록", `.quick-links h2` "전쟁 캠프 바로가기") still clear
+  WCAG AA over the worst-case textured pixel (**4.6:1 light / 5.9:1 dark**). Static tile → no motion, so no `prefers-reduced-motion` guard. CSS background →
+  naturally **lazy**, never preloaded; no `background-attachment: fixed`. This replaced the
+  old blurred-tavern-in-the-gutters ambient layer; the tavern plate now lives only in the
+  footer / 404 / series-band scenes below.
 - **Footer = tavern (`.site-footer`)** — the footer is the inn. `::before` paints the
   active tavern plate (`background-position: center 38%`), `::after` lays a crimson chrome
   wash + `--tavern-scrim`; bone footer text/links keep AA (each carries a black
   text-shadow). The existing "Lok'tar ogar" line now literally sits in the tavern. Same
   per-theme plate as the ambient layer.
-- **Index intro bands (`.tavern-band.tavern-band--day`)** — a *contained* tavern-day band
-  at the **top of every index listing page**: series (`/pages/series.html` — "여기는 학습
-  여관"), tags (`/pages/tags.html` — "전리품 진열대"), and categories
-  (`/pages/categories.html` — "원정 지도"). Each is the same markup: `.tavern-band-media`
-  plate + `.tavern-band-scrim` (`--tavern-scrim-soft`) + a short pixel title / bone copy /
-  axe divider, with page-specific flavor copy. Deliberately short and framed (crimson+brass
-  inset) so it reads as a welcome strip, not a second hero. (Home is the exception — it
-  leads straight from the hero into recent posts, no band.)
+- **Index intro bands (`.tavern-band`)** — a *contained* band at the **top of every index
+  listing page**: series (`/pages/series.html` — "여기는 학습 여관"), tags
+  (`/pages/tags.html` — "전리품 진열대"), and categories (`/pages/categories.html` — "원정
+  지도"). Each is the same markup: `.tavern-band-media` plate + `.tavern-band-scrim` + a
+  short pixel title / bone copy / axe divider, with page-specific flavor copy. Deliberately
+  short and framed (crimson+brass inset) so it reads as a welcome strip, not a second hero.
+  (Home is the exception — it leads straight from the hero into recent posts, no band.)
+  - **Plate via modifier.** `.tavern-band--day` points `--tavern-band-img` at the tavern-day
+    plate (series, tags). **`.tavern-band--wartable`** (categories) points it at the
+    **war-table plate** and swaps `--tavern-band-scrim` to the firmer `--wartable-scrim` — so
+    the "원정 지도" band is *literally the war table*, the same battle-map the post banner uses.
+    `.tavern-band-media` reads `--tavern-band-img`; `.tavern-band-scrim` reads
+    `--tavern-band-scrim` (falling back to `--tavern-scrim-soft`). The war-table scene is dark,
+    so the categories band works in both themes under its scrim.
 - **404 (`/404.html` → `.tavern-404`)** — root `404.html` (`layout: default`,
   `permalink: /404.html`). The **empty tavern, theme-aware**: it reads `--ambient-bg-url`
   (so light shows the day plate, dark the night plate — the swap matches the active theme,
@@ -363,6 +409,13 @@ crispEdges`, steel + brass-edge + crimson-rune; `gorehowl.svg`/`axe-bullet.svg` 
 - **Keep it measured.** The learning content itself stays professional and clear; the
   war framing never leaks into technical body prose, and the flavor must not bury the
   actual label meaning (a "출정 기록" is still obviously "recent posts").
+- **Banner/band intro copy is 개조식 (terse nominal), not 구어체.** The intro line of the
+  index bands (series/tags/categories `.tavern-band-text`) and the war-council post-banner
+  caption use concise noun-ending fragments — "탁자 위 전투 지도에 갈래갈래 뻗은 정복 영토 —
+  카테고리. 첫 함락 던전 선정, 정복 경로 탐색." — **not** spoken "-소/-시오/-라" sentences.
+  Pattern: *[nominal scene] — [meta term(카테고리/태그/시리즈)]. [nominal action(s)].* The
+  battle-cry refrains ("Lok'tar ogar — …" subtitles) and the 404 error narrative keep the
+  warlord voice; everything else trends nominal.
 - Headings descriptive and scannable; no decorative `---` rules between sections.
 
 ## 8. Brand
@@ -385,9 +438,21 @@ crispEdges`, steel + brass-edge + crimson-rune; `gorehowl.svg`/`axe-bullet.svg` 
   replaces the global for that page (page front matter beats `defaults`); posts without
   `image` fall back to the global OG. Verified via build.
 
-### Environment art set — exterior hero + interior tavern (day/night)
+### Environment art set — page texture + exterior hero + interior tavern (day/night)
 
-The skin has **two scene types**, both chrome-only (never behind reading text):
+The skin has **one page-wide texture** plus **three scene types**, all chrome-only (never
+*above* reading text — the world-map texture sits *behind* it, under opaque panels):
+
+- **World-map texture (전면 텍스처) — 아제로스 세계 해도.** A seamless map tile
+  (`assets/images/pattern/azeroth-map-{1024,768}.webp` + `.jpg` fallback; islands, sea,
+  engraved coastlines, a maelstrom swirl). Painted full-bleed behind the **whole page**
+  (`body::before`), repeated at ~960px (640px mobile — big enough to read as a chart, not a
+  dot grid). It is **not** a scene plate — it is a quiet background texture. Mid-tone (avg
+  luma ≈ 0.41), so the theme is carried by opacity + a **thin** flat scrim
+  (`--page-ambient-*`): **light = a legible warm sea-chart on parchment**,
+  **dark = darkened night sea-chart**. Tokens: `--page-ambient-url` / `--page-ambient-url-sm`
+  / `--page-ambient-tile` / `--page-ambient-opacity` / `--page-ambient-scrim`. Separate from
+  the tavern set, so it never disturbs the footer / 404 / series / war-table scenes.
 
 - **Hero (exterior vista)** — the cinematic Orgrimmar warlord overlook
   (`assets/images/hero/orgrimmar-hero-*`). Home hero banner + CV cover splash. The
@@ -398,6 +463,16 @@ The skin has **two scene types**, both chrome-only (never behind reading text):
 - **Tavern (interior, day + night pair)** — the Orgrimmar inn/feast hall
   (`assets/images/tavern/tavern-{day,night}-{1536,1024,640}.webp` + `.jpg` fallback). The
   "inside" view — where the learner sits, drinks, and plans the next 출정.
+- **War-council (작전 지도 / operations room)** — a dark briefing room with a round battle
+  map (miniature spires, red-X target marks), the chieftain over the table, Horde banners
+  and torches (`assets/images/wartable/wartable-{1536,1024,640}.webp` + `.jpg` fallback).
+  **The lit center / dark edges make it text-friendly, and being a dark scene it works in
+  BOTH themes under a scrim** — so it is a **single set** (no day/night pair), held quiet by
+  `--wartable-scrim` (deepened a touch in the dark block). Used in **two** places: the
+  **roadmap/curriculum post banner** (`.post-banner`, `banner: wartable` opt-in — a
+  conquest-plan header for 도장깨기 roadmaps) and the **categories battle-map band**
+  (`.tavern-band--wartable` — the "원정 지도" intro plate *is* this war table). URL tokens:
+  `--wartable-url` / `--wartable-url-md` / `--wartable-url-sm`.
 
 **Theme 1:1 mapping is the rule** — the header toggle is literally 🔥던전 / ☀️여관, so the
 artwork must *change the room* with the theme:
@@ -438,14 +513,27 @@ mood comes from its heavier `--tavern-scrim`, not from forcing a particular plat
   coin-badges use `--badge-fill`; count digits use `--accent-color` (crimson).
 - ❌ Decorative crossed-axe/banner flourishes so heavy they crowd the reading measure —
   chrome flourish stops at the edge of the 800px reading column.
-- ❌ **Tavern / environment art behind reading body text.** The ambient `body::before`
-  plate lives at `z-index:-10` behind **opaque** panels and only shows in the ≥1200px
-  gutters; never raise its opacity, drop the blur/scrim, remove the panel opacity, or let
-  it bleed onto mobile (it is `display:none` < 1200px). Footer/band/404 plates always sit
-  under a `--tavern-*` scrim that holds bone copy at AA.
-- ❌ Preloading the tavern plates, or using `background-attachment: fixed` for the ambient
-  layer — the hero is the only preloaded image; the ambient/footer/band plates stay lazy
-  CSS backgrounds. Decorative interior art must never delay the LCP.
+- ❌ **Environment art at or above the reading body text.** The page-ambient `body::before`
+  world-map tile lives at `z-index:-10` behind **opaque** panels; the reading column sits on
+  an opaque `--bg-panel`, so the tile may be **legible** (the map must read *as a map*:
+  `--page-ambient-opacity` ≈ `.32` light / `.38` dark, scrim always **over** the tile and
+  **thin**) — but it must never raise contrast against **page-bg text** below AA. Don't
+  swing back to the old double-attenuated `.10`/`.14` opacity + `.62`/`.74` scrim (that hid
+  the map and left only repeating dots), and don't push the scrim so thin that a bright
+  island pixel drops `.recent-posts h2` / `.quick-links h2` under AA — verify both themes by
+  screenshot. Footer/band/404 tavern plates always sit under a
+  `--tavern-*` scrim that holds bone copy at AA. The world-map texture is page-wide
+  (mobile included), but only because it is a low-opacity *tile* — do not turn it into a
+  large focal plate.
+- ❌ **Bleeding the tavern day/night plate into the page-wide texture.** The page texture
+  is the separate `--page-ambient-*` world-map tile; the tavern set (`--tavern-*-url`,
+  `--ambient-bg-url`) drives only footer / 404 / series-day band. Do not re-point
+  `body::before` at `--ambient-bg-url`, and do not re-point the tavern scenes at the map
+  tile.
+- ❌ Preloading the tavern plates or the world-map tile, or using
+  `background-attachment: fixed` for the ambient layer — the hero is the only preloaded
+  image; the ambient/footer/band backgrounds stay lazy CSS backgrounds. Decorative
+  environment art must never delay the LCP.
 - ❌ Breaking the **theme 1:1 mapping**: light must show `tavern-day`, dark must show
   `tavern-night` — on every interior surface, the 404 included (it follows
   `--ambient-bg-url` like the rest; its empty-inn mood comes from a heavier scrim, not a

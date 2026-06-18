@@ -6,6 +6,7 @@ categories: [Career, Roadmap]
 series: Python-Essential
 tags: [python, career, job-description]
 published: true
+banner: wartable
 excerpt: "Python Backend Engineer 직무 기술서. Junior부터 Staff급까지 레벨별 역할, 책임, 기술 스택, 핵심 역량을 상세히 정리했습니다."
 ---
 

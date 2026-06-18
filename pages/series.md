@@ -9,7 +9,7 @@ permalink: /pages/series.html
         <div class="tavern-band-media" aria-hidden="true"></div>
         <div class="tavern-band-scrim" aria-hidden="true"></div>
         <h2 class="tavern-band-title">여기는 학습 여관</h2>
-        <p class="tavern-band-text">한 잔 들고 자리에 앉으시오 — 같은 길을 잇는 전장들이 하나의 원정으로 묶여 있소. 어느 원정(시리즈)을 떠날지 고르시오.</p>
+        <p class="tavern-band-text">한 길로 이어진 전장들의 묶음 — 원정(시리즈). 떠날 원정 선정.</p>
         <p class="tavern-band-subtitle">Lok'tar ogar — 배우는 자에게 영광을</p>
         <div class="axe-divider" aria-hidden="true"><span class="axe-cross"></span></div>
     </section>

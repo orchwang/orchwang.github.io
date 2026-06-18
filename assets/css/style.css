@@ -105,11 +105,46 @@
     --tavern-day-url-sm: url("/assets/images/tavern/tavern-day-1024.webp");
     --tavern-night-url-sm: url("/assets/images/tavern/tavern-night-1024.webp");
     --ambient-bg-url: var(--tavern-day-url);     /* day room in the gutters */
-    --ambient-blur: 9px;
-    --ambient-opacity: 0.24;
-    /* Dark scrim that keeps the ambient image quiet behind the page;
-       blends toward the page bg color at the center so panels float. */
-    --ambient-scrim: linear-gradient(180deg, rgba(231,211,171,0.55) 0%, rgba(231,211,171,0.78) 60%, rgba(231,211,171,0.92) 100%);
+
+    /* --- Page-wide ambient texture (아제로스 세계 해도) -------
+       Seamless world-map tile painted full-bleed behind the WHOLE page
+       (body::before), NOT the tavern. Separate token set so the tavern
+       scenes (footer / 404 / series band) keep their day/night plate
+       untouched. Mid-tone tile (avg luma ~0.41): the theme work is done
+       by opacity + a scrim laid OVER the tile (bone wash by day so the
+       map is a faint warm ghost on parchment; dark stone wash by night
+       so it reads as a night sea-chart). Light webp tile so even mobile
+       can show it. The reading body floats on an opaque --bg-panel, so
+       legibility cost is zero. */
+    --page-ambient-url: url("/assets/images/pattern/azeroth-map-1024.webp");
+    --page-ambient-url-sm: url("/assets/images/pattern/azeroth-map-768.webp");
+    --page-ambient-tile: 960px;        /* repeat scale — big enough that the map
+                                           reads as a chart, not a repeating dot
+                                           grid (the maelstrom swirl no longer
+                                           tiles tightly) */
+    --page-ambient-opacity: 0.32;      /* light: a legible warm sea-chart on
+                                           parchment (single dim lever — the scrim
+                                           is now thin, so the map is the layer) */
+    /* Thin bone scrim laid OVER the repeated tile — tints the mid-tone map toward
+       the parchment page (keeps it warm/bright + low-contrast so section titles
+       on the page bg stay readable) WITHOUT the old double-attenuation that hid
+       the islands. Alpha kept low so the map actually shows through. */
+    --page-ambient-scrim: rgba(231,211,171,0.30);
+
+    /* --- War-council plate (작전 지도 앞 전쟁 회의) -------------
+       A dark operations-room scene (lit central war map, dark edges).
+       Single set — the scene is dark, so it works in BOTH themes
+       under a scrim. Used by: roadmap/curriculum post banner
+       (`banner: wartable`) and the categories battle-map band. */
+    --wartable-url: url("/assets/images/wartable/wartable-1536.webp");
+    --wartable-url-md: url("/assets/images/wartable/wartable-1024.webp");
+    --wartable-url-sm: url("/assets/images/wartable/wartable-640.webp");
+    /* Scrim for text laid over the war-table; the scene's edges are dark
+       and the lit map is centered, so this leans firm at top + bottom
+       (where copy sits) and lets the bright map breathe in the middle.
+       Bone copy + --hero-text-shadow clears WCAG AA in both themes. */
+    --wartable-scrim:
+        linear-gradient(180deg, rgba(16,7,5,0.84) 0%, rgba(16,7,5,0.52) 42%, rgba(16,7,5,0.60) 70%, rgba(16,7,5,0.86) 100%);
 
     /* Tavern scrim for footer / bands — bone copy must clear AA on top.
        Heaviest at the text edge; same recipe in both themes. */
@@ -179,11 +214,19 @@
     --hero-ink: #f3e6c8;
     --hero-ink-muted: rgba(243,230,200,0.88);
 
-    /* Night tavern in the gutters; the night plate is already vignetted,
-       so it sits a touch stronger but the scrim blends to the forge floor. */
+    /* Night tavern plate for the footer / 404 / series band. */
     --ambient-bg-url: var(--tavern-night-url);
-    --ambient-opacity: 0.26;
-    --ambient-scrim: linear-gradient(180deg, rgba(22,18,16,0.62) 0%, rgba(22,18,16,0.82) 60%, rgba(22,18,16,0.94) 100%);
+
+    /* Forge-night world-chart: a thin dark-stone wash tints the mid-tone map
+       DOWN to a night sea-chart, but the wash is light enough (and opacity high
+       enough) that the islands/sea actually read on the dark forge floor —
+       no more double-attenuation that left only repeating dots. */
+    --page-ambient-opacity: 0.38;
+    --page-ambient-scrim: rgba(18,14,12,0.42);
+
+    /* Forge-night: deepen the war-table scrim a touch for AA margin. */
+    --wartable-scrim:
+        linear-gradient(180deg, rgba(8,4,3,0.88) 0%, rgba(8,4,3,0.58) 42%, rgba(8,4,3,0.66) 70%, rgba(8,4,3,0.90) 100%);
 
     color-scheme: dark;
 }
@@ -226,8 +269,10 @@
         --hero-ink: #f3e6c8;
         --hero-ink-muted: rgba(243,230,200,0.88);
         --ambient-bg-url: var(--tavern-night-url);
-        --ambient-opacity: 0.26;
-        --ambient-scrim: linear-gradient(180deg, rgba(22,18,16,0.62) 0%, rgba(22,18,16,0.82) 60%, rgba(22,18,16,0.94) 100%);
+        --page-ambient-opacity: 0.38;
+        --page-ambient-scrim: rgba(18,14,12,0.42);
+        --wartable-scrim:
+            linear-gradient(180deg, rgba(8,4,3,0.88) 0%, rgba(8,4,3,0.58) 42%, rgba(8,4,3,0.66) 70%, rgba(8,4,3,0.90) 100%);
         color-scheme: dark;
     }
 }
@@ -270,36 +315,40 @@ body {
 }
 
 /* ============================================================
-   AMBIENT TAVERN BACKGROUND — "changing the room" on theme toggle
-   A single fixed, blurred, low-opacity tavern plate behind the page,
-   visible only in the GUTTERS (>=1200px, where the 1200px container
-   leaves margin). The reading body always floats on an OPAQUE panel,
-   so this never touches legibility. Mobile suppresses it (the panel
-   covers the full width and fixed bgs are a perf hit). Lazy: a CSS
-   background, never preloaded. Theme swaps the URL via --ambient-bg-url.
-   ============================================================ */
+   PAGE-WIDE AMBIENT TEXTURE — 아제로스 세계 해도 (seamless map tile)
+   A single fixed, low-opacity world-map tile REPEATED full-bleed behind
+   the whole page (body::before). NOT the tavern: the tavern day/night
+   plate still drives the footer, 404 and series band via --ambient-bg-url
+   — those are untouched. Theme work is done by --page-ambient-opacity +
+   a flat scrim laid OVER the tile (bone wash by day → faint warm ghost
+   on parchment; dark stone wash by night → night sea-chart). A static
+   tile, so no blur, no scale, no motion (and no reduced-motion guard
+   needed). Shown across the FULL viewport (it tiles, so no gutter
+   gating) including mobile, kept subtle. The reading body floats on an
+   OPAQUE --bg-panel, so legibility cost is zero. Lazy CSS background;
+   never preloaded. Small webp tile on mobile. */
 body::before {
     content: "";
     position: fixed;
     inset: 0;
     z-index: -10;
     pointer-events: none;
-    /* hidden by default; only the wide-gutter breakpoint turns it on */
-    display: none;
-    /* scrim ON TOP of a blurred, dimmed tavern plate */
+    /* flat theme scrim ON TOP of the repeated map tile */
     background:
-        var(--ambient-scrim),
-        var(--ambient-bg-url) center center / cover no-repeat;
-    filter: blur(var(--ambient-blur));
-    /* push blur edges past the viewport so no unblurred seam shows */
-    transform: scale(1.06);
-    opacity: var(--ambient-opacity);
+        linear-gradient(var(--page-ambient-scrim), var(--page-ambient-scrim)),
+        var(--page-ambient-url) top left / var(--page-ambient-tile) repeat;
+    opacity: var(--page-ambient-opacity);
     transition: opacity 0.2s ease;
 }
 
-@media (min-width: 1200px) {
+/* Mobile: lighter webp tile + a slightly smaller repeat so the swirl
+   stays subtle on narrow screens. Texture stays gentle, panel still
+   opaque over it. */
+@media (max-width: 768px) {
     body::before {
-        display: block;
+        background:
+            linear-gradient(var(--page-ambient-scrim), var(--page-ambient-scrim)),
+            var(--page-ambient-url-sm) top left / 640px repeat;
     }
 }
 
@@ -1181,11 +1230,20 @@ mark {
     --tavern-band-img: var(--tavern-day-url);
 }
 
+/* Battle-map band: the categories intro plate IS the war table.
+   Same band recipe, but the plate is the war-council scene and the
+   scrim leans on the firmer wartable recipe so bone copy clears AA
+   over the lit central map. Works in both themes (dark scene). */
+.tavern-band--wartable {
+    --tavern-band-img: var(--wartable-url);
+    --tavern-band-scrim: var(--wartable-scrim);
+}
+
 .tavern-band-media {
     position: absolute;
     inset: 0;
     z-index: -2;
-    background: var(--tavern-band-img, var(--ambient-bg-url)) center 40% / cover no-repeat;
+    background: var(--tavern-band-img, var(--ambient-bg-url)) center 42% / cover no-repeat;
     pointer-events: none;
 }
 
@@ -1193,7 +1251,7 @@ mark {
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: var(--tavern-scrim-soft);
+    background: var(--tavern-band-scrim, var(--tavern-scrim-soft));
     pointer-events: none;
 }
 
@@ -1348,6 +1406,75 @@ mark {
     border-radius: var(--radius);
     box-shadow: 2px 3px 8px rgba(0,0,0,0.18);
     padding: 36px 40px;
+}
+
+/* War-council banner — roadmap/curriculum opt-in (`banner: wartable`).
+   The 도장깨기 roadmap = a conquest plan, so its header carries the
+   operations-room scene (전쟁 회의). CHROME ONLY: it sits in .post-header,
+   above the opaque reading body, and never touches .post-content.
+   <picture> plate (lazy, responsive webp + jpg fallback) under a firm
+   --wartable-scrim, framed in the same crimson+brass war inset as the
+   bands. Bone pixel caption clears AA via scrim + --hero-text-shadow. */
+.post-banner {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    margin-bottom: 28px;
+    border: 2px solid var(--border-strong);
+    box-shadow:
+        inset 0 0 0 3px var(--crimson),
+        inset 0 0 0 5px var(--gold),
+        var(--px-shadow);
+    border-radius: var(--radius);
+    min-height: 132px;
+    display: flex;
+    align-items: flex-end;
+    padding: 18px 22px;
+}
+
+.post-banner-media,
+.post-banner-media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.post-banner-media {
+    z-index: -2;
+}
+
+.post-banner-media img {
+    object-fit: cover;
+    object-position: center 42%;
+}
+
+.post-banner-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--wartable-scrim);
+    pointer-events: none;
+}
+
+.post-banner-caption {
+    font-family: var(--font-pixel);
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--hero-ink);
+    text-shadow: var(--hero-text-shadow);
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .post-banner {
+        min-height: 104px;
+        padding: 14px 16px;
+    }
+    .post-banner-caption {
+        font-size: 11px;
+    }
 }
 
 .post-header {

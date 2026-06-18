@@ -6,6 +6,7 @@ categories: [Technology, PostgreSQL]
 series: PostgreSQL-Essential
 tags: [postgresql, curriculum]
 published: true
+banner: wartable
 excerpt: "PostgreSQL 기초부터 고급 주제까지 체계적으로 학습할 수 있는 종합 커리큘럼입니다. 아키텍처, 쿼리 최적화, 성능 튜닝을 포함합니다."
 ---
 

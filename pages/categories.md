@@ -5,11 +5,11 @@ permalink: /pages/categories.html
 ---
 
 <div class="categories-page">
-    <section class="tavern-band tavern-band--day" aria-label="원정 지도 안내">
+    <section class="tavern-band tavern-band--wartable" aria-label="원정 지도 안내">
         <div class="tavern-band-media" aria-hidden="true"></div>
         <div class="tavern-band-scrim" aria-hidden="true"></div>
         <h2 class="tavern-band-title">원정 지도</h2>
-        <p class="tavern-band-text">탁자 위에 펼쳐진 지도에는 정복할 영토(카테고리)가 갈래갈래 그려져 있소. 어느 던전부터 함락할지 길을 짚어 보시오.</p>
+        <p class="tavern-band-text">탁자 위 전투 지도에 갈래갈래 뻗은 정복 영토 — 카테고리. 첫 함락 던전 선정, 정복 경로 탐색.</p>
         <p class="tavern-band-subtitle">Lok'tar ogar — 정복할 영토를 고르라</p>
         <div class="axe-divider" aria-hidden="true"><span class="axe-cross"></span></div>
     </section>

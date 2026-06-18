@@ -5,6 +5,25 @@ layout: default
 <div class="post-wrapper">
     <article class="post">
         <header class="post-header">
+            {% if page.banner == 'wartable' %}
+            <div class="post-banner" aria-label="전쟁 회의 — 정복 계획">
+                <picture class="post-banner-media">
+                    <source
+                        type="image/webp"
+                        srcset="{{ '/assets/images/wartable/wartable-640.webp' | relative_url }} 640w, {{ '/assets/images/wartable/wartable-1024.webp' | relative_url }} 1024w, {{ '/assets/images/wartable/wartable-1536.webp' | relative_url }} 1536w"
+                        sizes="(max-width: 800px) 100vw, 800px">
+                    <img
+                        src="{{ '/assets/images/wartable/wartable.jpg' | relative_url }}"
+                        srcset="{{ '/assets/images/wartable/wartable-1024.webp' | relative_url }} 1024w, {{ '/assets/images/wartable/wartable-1536.webp' | relative_url }} 1536w"
+                        sizes="(max-width: 800px) 100vw, 800px"
+                        alt="어두운 작전 회의실의 원형 전투 지도 앞에서 다음 정복 대상을 정하는 오크 전쟁 회의"
+                        width="1536" height="1024"
+                        loading="lazy" decoding="async">
+                </picture>
+                <div class="post-banner-scrim" aria-hidden="true"></div>
+                <p class="post-banner-caption">⚔️ 전쟁 회의 — 다음 정복 대상 선정</p>
+            </div>
+            {% endif %}
             <h1 class="post-title">{{ page.title }}</h1>
             <div class="post-meta">
                 <time datetime="{{ page.date | date_to_xmlschema }}">
