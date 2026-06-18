@@ -236,16 +236,30 @@ the reading plate is eased.
 
 ### Hero / brand components (Horde)
 
-- **Warlord portrait (`.warlord-crest`)** — the wiki's black-ink orc logo
-  (`logo/orchwang.png`) framed as a **war medallion**: a light **bone radial-gradient
-  disc**, a `--steel` ring, then a `--crimson` ring and a charred `--border-strong`
-  outline (round). The logo image sits at 74% inside.
-  - ⚠️ **The logo is black line-art** — it would vanish on the dark page. The medallion
-    fixes this: the disc **stays a light bone gradient in BOTH themes** (the dark override
-    only warms it to `#f3e6c8`/`#c9b488`), so the inked orc face is legible everywhere. Do
-    **not** put the bare logo on a dark surface; always wrap it in `.warlord-crest`.
-  - Sizing via `--crest-size`: header `56px` (`46px` mobile), home hero `104px`, CV
-    `124px` (`104px` mobile). Used as: header masthead crest, home **전쟁군주 배너** hero,
+- **Orc portrait frame (`.orc-portrait`)** — the **shared circular RPG-portrait recipe** for
+  ALL avatar/crest art. The avatar set (`avatar/*.webp`, `avatar/front-orc.png`) is clean
+  **black line-art orc busts, background-transparent and normalized** to one 512² canvas (same
+  head height, centered — so every avatar renders at a consistent size). The frame sits the bust
+  on a **light interior** (`--portrait-bg`, theme-independent) so the black linework reads in
+  **both** themes. A layered ring frames each into a circular portrait that reads on **any**
+  surface. Recipe (inner→outer, all **tokenized** — no raw hex): (1) inner charred edge
+  `border 2px var(--border-strong)`, (2) brass band `0 0 0 2px var(--gold)`, (3) outer charred
+  outline `0 0 0 4px var(--border-strong)`, (4) hard pixel drop shadow (`var(--px-shadow-sm)`).
+  **Circular** (`border-radius: 50%`) — corners clip slightly (accepted). The `--portrait-bg`
+  interior carries the contrast, so **no dark interior / bone disc / re-tint filter** is needed.
+  Used by the context/state avatars: 404 `struggling`, empty-search `yawn`, empty-state `soap`,
+  footer `side`. (`crying` is a spare alt; `santa` is seasonal — see below.)
+- **Warlord crest (`.warlord-crest`)** — the **brand portrait**: the same `.orc-portrait`
+  recipe, but with a **crimson identity band** over the brass (`0 0 0 2px var(--crimson)`,
+  then charred outline). The bust (`front-orc` for header/CV; `laugh-orc` for the hero
+  battle-cry) fills the **circular** crest via `object-fit: cover`.
+  - ⚠️ Art is **transparent black line-art** → the `--portrait-bg` light interior shows behind
+    it, the **frame** supplies the boundary. Do not switch the interior dark or add a re-tint
+    filter; always wrap avatar art in `.orc-portrait`/`.warlord-crest`.
+  - **Seasonal:** in December, `assets/js/seasonal.js` swaps every `<picture data-santa>`
+    (header crest + home hero) to `santa-orc.webp` (the Santa-hat orc) client-side.
+  - Sizing via `--crest-size`: header `56px` (`46px` mobile), home hero `88px`/banner `104px`,
+    CV `124px` (`104px` mobile). Used as: header masthead crest, home **전쟁군주 배너** hero,
     and CV **character-sheet avatar**.
 - **War-banner masthead (`.site-header`)** — charred black-iron with a faint crimson top
   wash and a **crimson-over-brass** bottom edge; brass wordmark (`--font-pixel-latin`)
@@ -267,8 +281,9 @@ the reading plate is eased.
 - **CV cover splash (`.cv-header--cover`)** — the same concept image as a character-sheet
   banner behind the CV name + warlord-crest avatar (`<picture>` in `.cv-cover-media`
   `z-index:-2`, `.cv-cover-scrim` `z-index:-1`, `loading="lazy"` — it is below the fold).
-  Name/subtitle switch to `--hero-ink` + shadow on the cover; the 124px bone-disc
-  medallion avatar supplies its own contrast and harmonizes with the splash.
+  Name/subtitle switch to `--hero-ink` + shadow on the cover; the 124px framed orc-portrait
+  crest (dark-square interior + crimson/charred frame) supplies its own contrast and
+  harmonizes with the splash.
 - **Roadmap/curriculum post banner (`.post-banner`, `banner: wartable` opt-in)** — a
   **war-council** strip (the 작전 지도 앞 전쟁 회의 scene) in the post *header*. The 도장깨기
   roadmap is a conquest plan, so curricula/roadmaps open on the operations room. **Opt-in
@@ -420,10 +435,14 @@ crispEdges`, steel + brass-edge + crimson-rune; `gorehowl.svg`/`axe-bullet.svg` 
 
 ## 8. Brand
 
-- Logo: `assets/images/logo/orchwang.png` — a black line-art **orc warlord face** (tusks,
-  angry brow, beard). **Always framed in `.warlord-crest`** (bone-disc war medallion) so
-  the black ink stays legible on any background and in either theme — header crest, home
-  hero banner, CV character-sheet avatar, favicon set.
+- Logo / avatar: the brand face is the **orc bust avatar** (`assets/images/avatar/front-orc.png`
+  + `.webp`) — a clean **black line-art warlord** (tusks, angry brow, beard) on white, in the
+  same hand-drawn style as the original mark. **Always framed in `.warlord-crest`/`.orc-portrait`**
+  (the circular portrait frame, see §5) — header crest, home hero, CV character-sheet avatar,
+  favicon set (regenerated from this bust). A full **expression set** — `front`, `laugh`,
+  `struggling`, `soap`, `side`, `yawn`, `crying`, plus seasonal `santa` — maps emotions to
+  states (hero / 404 / empty / search / footer); in December the crest + hero swap to the Santa
+  orc via `seasonal.js`. (`logo/orchwang.png` remains the original line-art mark.)
 - Original pixel art: the **Gorehowl** axe family (`assets/images/pixel/*.svg`) — drawn
   in-repo as rect-cell pixel SVGs, never sourced from Blizzard art. This is an *homage*
   (Grom Hellscream / Horde), built entirely from the wiki's own assets.

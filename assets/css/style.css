@@ -81,6 +81,7 @@
 
     --chrome-bg: #2a1512;      /* charred-iron war-camp banner/footer */
     --chrome-bg-2: #1a0c0a;
+    --portrait-bg: #f7efdb;    /* light interior for avatar portraits — theme-independent so transparent black-line-art busts read in BOTH themes */
     --chrome-ink: #f2e3c4;     /* bone text on chrome */
     --chrome-muted: rgba(242,227,196,0.78);
 
@@ -389,9 +390,41 @@ h1, h2, h3, h4, h5, h6 {
         inset 0 -4px 0 rgba(0,0,0,0.25);
 }
 
-/* --- Warlord portrait: logo framed as a bone/steel war medallion ---- */
-/* The logo is black line-art, so it MUST sit on a light bone disc and be
-   re-tinted in dark mode (filter) so it stays legible in BOTH themes. */
+/* ============================================================
+   ORC PORTRAIT FRAME — shared dark RPG-portrait recipe
+   ------------------------------------------------------------
+   The avatar/logo art is a bright grey pixel-orc bust on a SOLID
+   BLACK square. That black is *intended* as the dark interior of an
+   RPG character portrait; a layered pixel border turns the bare black
+   box into a framed portrait that reads on ANY surface (dark chrome,
+   image scrims, bone reading panels) in BOTH themes.
+
+   Recipe (the load-bearing part) = layered rings, inner→outer:
+     1. inner charred edge   — border 2px var(--border-strong)
+     2. brass band           — box-shadow ring var(--gold)
+     3. outer charred outline — box-shadow ring var(--border-strong)
+     4. hard pixel drop shadow (game-UI lift)
+   All ring colors are TOKENS (no raw hex). The frame supplies the
+   contrast, so no bone disc / re-tint filter is needed any more.
+   Square corners (radius var(--radius)) match the pixel-frame system.
+   ============================================================ */
+.orc-portrait {
+    display: block;
+    background-color: var(--portrait-bg);   /* light interior — transparent line-art bust reads on it */
+    border: 2px solid var(--border-strong);
+    box-shadow:
+        0 0 0 2px var(--gold),            /* brass band */
+        0 0 0 4px var(--border-strong),   /* outer charred outline */
+        var(--px-shadow-sm);              /* hard pixel lift */
+    border-radius: 50%;                   /* circular RPG portrait (corners clip — OK) */
+    image-rendering: auto;                /* upscaled pixel busts: keep antialiased */
+    pointer-events: none;
+    user-select: none;
+}
+
+/* --- Warlord crest: the brand portrait (header · hero · CV) -------- */
+/* The orc face fills a black square; the portrait frame makes it a
+   crest on any background, so the old bone disc + dark re-tint are gone. */
 .warlord-crest {
     --crest-size: 56px;
     width: var(--crest-size);
@@ -400,24 +433,24 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: radial-gradient(circle at 50% 42%, var(--bone) 0 62%, #d8c49a 63% 100%);
-    border: 3px solid var(--steel);
-    border-radius: 50%;
+    background-color: var(--portrait-bg);
+    border: 2px solid var(--border-strong);
+    /* crest = portrait frame + a crimson identity band over the brass */
     box-shadow:
         0 0 0 2px var(--crimson),
         0 0 0 4px var(--border-strong),
         var(--px-shadow-sm);
+    border-radius: 50%;                   /* circular warlord crest (face stays centered) */
     overflow: hidden;
     transition: transform 0.12s steps(2), box-shadow 0.12s steps(2);
 }
 
 .warlord-crest img {
-    width: 74%;
-    height: 74%;
-    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;        /* the bust fills the framed square */
     image-rendering: auto;
-    /* the line-art is near-black ink — keep it inked on the light bone disc */
-    filter: none;
+    display: block;
 }
 
 .warlord-crest:hover {
@@ -428,11 +461,66 @@ h1, h2, h3, h4, h5, h6 {
         var(--px-shadow);
 }
 
-/* Dark forge: keep the bone disc light so the black-ink orc still reads,
-   warmed toward ember-bone; the crimson ring brightens via its token. */
-:root[data-theme="dark"] .warlord-crest,
-:root:not([data-theme="light"]) .warlord-crest {
-    background: radial-gradient(circle at 50% 42%, #f3e6c8 0 62%, #c9b488 63% 100%);
+/* ============================================================
+   AVATAR MASCOT SET — the wiki owner's orc, 6 expressions.
+   Bright grey pixel-art busts on a SOLID BLACK SQUARE. Each one is a
+   framed RPG portrait (see .orc-portrait above): the black square is the
+   intended dark interior, the layered charred→brass→charred frame makes
+   it read on ANY surface (dark tavern scrims for 404/search/footer, bone
+   reading panels for empty states) in BOTH themes — no transparency, no
+   drop-shadow halo needed. Pure CHROME — never on the reading-body
+   surface, never inside .post-content. Hover lift gives the pressed-
+   game-UI feel (reduced-motion handled by the global guard).
+   All these inherit the .orc-portrait recipe (markup adds the class).
+   ============================================================ */
+
+/* 404 — struggling-orc ("길을 잃었소"), framed over the dark tavern scrim */
+.tavern-404-orc {
+    width: 132px;
+    height: 132px;
+    margin: 0 auto 14px;
+}
+
+/* Empty search — thinking-orc ("무엇을 찾으시오"), framed on the results panel */
+.search-no-results-orc {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 14px;
+}
+
+/* Empty states (no posts/series/categories/tags) — soaping-orc, on bone panel */
+.empty-state-orc {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 20px;
+}
+
+/* Footer accent — gazing-orc ("영토를 굽어보다"), framed portrait in the tavern */
+.footer-orc {
+    width: 84px;
+    height: 84px;
+    align-self: flex-end;
+    margin-left: auto;
+    flex-shrink: 0;
+    transition: transform 0.12s steps(2), box-shadow 0.12s steps(2);
+}
+.footer-orc:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 0 0 2px var(--gold-bright),
+        0 0 0 4px var(--border-strong),
+        var(--px-shadow);
+}
+
+@media (max-width: 768px) {
+    .footer-orc {
+        align-self: center;
+        margin: 4px auto 0;
+        width: 72px;
+        height: 72px;
+    }
+    .tavern-404-orc { width: 108px; height: 108px; }
+    .empty-state-orc { width: 104px; height: 104px; }
 }
 
 /* --- Gorehowl axe sigil (inline decorative element) ----------------- */
@@ -2686,7 +2774,8 @@ mark {
 
 .cv-profile-image {
     display: block;
-    object-fit: contain;
+    /* the bust fills the framed crest square (see .warlord-crest img) */
+    object-fit: cover;
 }
 
 .cv-header h1 {

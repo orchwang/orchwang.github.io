@@ -21,7 +21,10 @@ title: 홈
         <div class="hero-banner-scrim" aria-hidden="true"></div>
         <div class="hero-banner-content">
             <span class="warlord-crest warlord-crest-hero">
-                <img src="{{ '/assets/images/logo/orchwang.png' | relative_url }}" alt="전쟁군주 문장 — Orc Hwang" class="site-logo">
+                <picture data-santa>
+                    <source type="image/webp" srcset="{{ '/assets/images/avatar/laugh-orc.webp' | relative_url }}">
+                    <img src="{{ '/assets/images/avatar/front-orc.png' | relative_url }}" alt="환호하는 전쟁군주 — Lok'tar!" class="site-logo" width="88" height="88" decoding="async">
+                </picture>
             </span>
             <h1 class="hero-banner-title">{{ site.title }}</h1>
             <p class="hero-banner-text">{{ site.description }}</p>
@@ -62,8 +65,10 @@ title: 홈
     </section>
     {% else %}
     <section class="empty-state">
-        <h2>아직 포스트가 없습니다</h2>
-        <p>첫 포스트를 작성해보세요!</p>
+        <img class="orc-portrait empty-state-orc" src="{{ '/assets/images/avatar/soap-orc.webp' | relative_url }}"
+             alt="" aria-hidden="true" width="360" height="360" loading="lazy" decoding="async">
+        <h2>아직 출정 기록이 없소</h2>
+        <p>첫 전장으로 출정하시오 — 첫 포스트를 작성해보세요!</p>
         <p>_posts 디렉토리에 마크다운 파일을 추가하면 됩니다.</p>
     </section>
     {% endif %}

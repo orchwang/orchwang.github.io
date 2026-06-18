@@ -4,7 +4,10 @@
             <div class="site-branding">
                 <a href="{{ '/' | relative_url }}" class="logo-link" aria-label="홈으로 — 전쟁군주의 문장">
                     <span class="warlord-crest">
-                        <img src="{{ '/assets/images/logo/orchwang.png' | relative_url }}" alt="Orc Hwang 전쟁군주 문장" class="site-logo">
+                        <picture data-santa>
+                            <source type="image/webp" srcset="{{ '/assets/images/avatar/front-orc.webp' | relative_url }}">
+                            <img src="{{ '/assets/images/avatar/front-orc.png' | relative_url }}" alt="전쟁군주 — Orc Hwang" class="site-logo" width="56" height="56" decoding="async">
+                        </picture>
                     </span>
                 </a>
                 <div class="branding-text">

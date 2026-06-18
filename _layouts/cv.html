@@ -29,9 +29,13 @@ layout: default
             </div>
             <div class="cv-header-image">
                 <span class="warlord-crest warlord-crest-cv">
-                    <img src="{{ '/assets/images/logo/orchwang.png' | relative_url }}"
-                         alt="{{ page.title }} — 전쟁군주 캐릭터 시트"
-                         class="cv-profile-image">
+                    <picture>
+                        <source type="image/webp" srcset="{{ '/assets/images/avatar/front-orc.webp' | relative_url }}">
+                        <img src="{{ '/assets/images/avatar/front-orc.png' | relative_url }}"
+                             alt="{{ page.title }} — 전쟁군주 캐릭터 시트"
+                             class="cv-profile-image" width="124" height="124"
+                             loading="lazy" decoding="async">
+                    </picture>
                 </span>
             </div>
         </header>

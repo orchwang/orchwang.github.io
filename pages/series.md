@@ -52,7 +52,9 @@ permalink: /pages/series.html
     </div>
     {% else %}
     <div class="empty-state">
-        <p>아직 생성된 시리즈가 없습니다.</p>
+        <img class="orc-portrait empty-state-orc" src="{{ '/assets/images/avatar/soap-orc.webp' | relative_url }}"
+             alt="" aria-hidden="true" width="360" height="360" loading="lazy" decoding="async">
+        <p>아직 떠난 원정이 없소 — 생성된 시리즈가 없습니다.</p>
         <p>포스트의 front matter에 <code>series</code> 필드를 추가하여 시리즈를 만들 수 있습니다.</p>
     </div>
     {% endif %}

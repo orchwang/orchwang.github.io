@@ -248,6 +248,10 @@ excerpt: "Brief 1-2 sentence summary for SEO and previews."
   - `false` = Draft post, hidden from builds
   - **Always include this field** when creating or updating posts
 - `excerpt`: Brief 1-2 sentence summary for SEO and post previews (always include)
+- `banner`: *(optional)* set `banner: wartable` on roadmap/curriculum posts to render the
+  war-council header banner. See `DESIGN.md` §5 and `ASSETS.md`.
+- `image`: *(optional)* per-post social/OG image path; falls back to the site default
+  (Orgrimmar) when omitted.
 
 ### Content Structure Template
 
@@ -594,5 +598,10 @@ This guide reflects the project structure as of June 2026.
 For questions or clarifications about this project, refer to:
 
 - `README.md` - Setup and usage instructions
+- `DESIGN.md` - **Design system contract** (Warsong Codex pixel-RPG: colors, typography,
+  components, voice, anti-patterns). The authority for the look — do not undo it; reconcile.
+- `ASSETS.md` - Image/asset pipeline (optimization recipes, naming, source→use map) +
+  design extension cookbook (themed bands, opt-in banners, page ambient)
+- `CHANGELOG.md` - Design/UI change history + key decisions and gotchas (v1.0.0, v2.0.0)
 - `MERMAID_USAGE.md` - Mermaid diagram authoring guide
 - Existing posts in `_posts/` - Content examples (e.g. `Technology/Python/2025-10-22-python-gil.md`)

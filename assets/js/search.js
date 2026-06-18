@@ -49,8 +49,8 @@
         if (results.length === 0) {
             searchResults.innerHTML = ''
                 + '<div class="search-no-results">'
-                +   '<span class="axe-sigil" aria-hidden="true"></span>'
-                +   '<div class="search-no-results-title">빈 잔만 남은 여관</div>'
+                +   '<img class="orc-portrait search-no-results-orc" src="/assets/images/avatar/yawn-orc.webp" alt="" aria-hidden="true" width="360" height="360" loading="lazy" decoding="async">'
+                +   '<div class="search-no-results-title">무엇을 찾으시오</div>'
                 +   '<p class="search-no-results-text">이 검색어로는 전리품을 찾지 못했소. 다른 말로 다시 출정해 보시오.</p>'
                 + '</div>';
             searchResults.style.display = 'block';

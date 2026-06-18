@@ -19,6 +19,14 @@ permalink: /pages/tags.html
         <p>태그별로 포스트를 찾아보세요.</p>
     </header>
 
+    {% if site.tags.size == 0 %}
+    <div class="empty-state">
+        <img class="orc-portrait empty-state-orc" src="{{ '/assets/images/avatar/soap-orc.webp' | relative_url }}"
+             alt="" aria-hidden="true" width="360" height="360" loading="lazy" decoding="async">
+        <p>아직 거둔 전리품이 없소 — 등록된 태그가 없습니다.</p>
+        <p>포스트의 front matter에 <code>tags</code> 필드를 추가하면 됩니다.</p>
+    </div>
+    {% else %}
     <div class="tag-cloud">
         {% assign sorted_tags = site.tags | sort %}
         {% for tag in sorted_tags %}
@@ -56,4 +64,5 @@ permalink: /pages/tags.html
             </div>
         {% endfor %}
     </div>
+    {% endif %}
 </div>

@@ -34,6 +34,14 @@ permalink: /pages/categories.html
         {% endif %}
     {% endfor %}
 
+    {% if site.categories.size == 0 %}
+    <div class="empty-state">
+        <img class="orc-portrait empty-state-orc" src="{{ '/assets/images/avatar/soap-orc.webp' | relative_url }}"
+             alt="" aria-hidden="true" width="360" height="360" loading="lazy" decoding="async">
+        <p>아직 정복한 영토가 없소 — 분류된 카테고리가 없습니다.</p>
+        <p>포스트의 front matter에 <code>categories</code> 필드를 추가하면 됩니다.</p>
+    </div>
+    {% else %}
     <div class="category-tree">
         {% assign sorted_categories = site.categories | sort %}
 
@@ -121,4 +129,5 @@ permalink: /pages/categories.html
             {% endif %}
         {% endfor %}
     </div>
+    {% endif %}
 </div>
