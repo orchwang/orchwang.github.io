@@ -47,50 +47,50 @@ flowchart TD
 
 > 완료한 항목에는 상세 포스트 링크가 연결됩니다. 학습이 진행될 때마다 체크박스와 진행률을 갱신합니다.
 
-- 현재 완료한 항목: **0개**
+- 현재 완료한 항목: **21개**
 - 전체 항목: **21개**
-- 진행률: **0%**
+- 진행률: **100%** 🎉
 
 ## 1단계: Domain-Driven Design — 도메인 중심 사고
 
 Eric Evans의 *Domain-Driven Design: Tackling Complexity in the Heart of Software* 는 소프트웨어의 복잡성이 기술이 아니라 **도메인**에 있다고 선언하며, 도메인을 코드로 옮기는 사고법을 정립한 책입니다. 모든 아키텍처 결정의 출발점인 "무엇을 만드는가"에 대한 언어와 모델을 다룹니다.
 
-- [ ] **유비쿼터스 언어 (Ubiquitous Language)**: 개발자와 도메인 전문가가 공유하는 단일 언어를 코드·대화·문서에 일관되게 사용
-- [ ] **도메인 모델 (Domain Model)**: 엔티티(Entity)·값 객체(Value Object)·애그리거트(Aggregate)로 도메인 지식을 구조화
-- [ ] **바운디드 컨텍스트 (Bounded Context)**: 모델이 유효한 경계를 명확히 긋고 컨텍스트 간 관계를 정의
-- [ ] **컨텍스트 맵 (Context Map)**: 여러 바운디드 컨텍스트의 통합 패턴(Shared Kernel, ACL 등)을 지도로 표현
-- [ ] **전술적 설계 (Tactical Design)**: Repository·Factory·Domain Service로 모델의 무결성을 유지
+- [x] **유비쿼터스 언어 (Ubiquitous Language)**: 개발자와 도메인 전문가가 공유하는 단일 언어를 코드·대화·문서에 일관되게 사용 — [[상세](/2026/06/19/domain-driven-design.html)]
+- [x] **도메인 모델 (Domain Model)**: 엔티티(Entity)·값 객체(Value Object)·애그리거트(Aggregate)로 도메인 지식을 구조화 — [[상세](/2026/06/19/domain-driven-design.html)]
+- [x] **바운디드 컨텍스트 (Bounded Context)**: 모델이 유효한 경계를 명확히 긋고 컨텍스트 간 관계를 정의 — [[상세](/2026/06/19/domain-driven-design.html)]
+- [x] **컨텍스트 맵 (Context Map)**: 여러 바운디드 컨텍스트의 통합 패턴(Shared Kernel, ACL 등)을 지도로 표현 — [[상세](/2026/06/19/domain-driven-design.html)]
+- [x] **전술적 설계 (Tactical Design)**: Repository·Factory·Domain Service로 모델의 무결성을 유지 — [[상세](/2026/06/19/domain-driven-design.html)]
 
 ## 2단계: Software Architecture in Practice — 아키텍처 이론과 품질 속성
 
 Bass·Clements·Kazman의 *Software Architecture in Practice, 4th ed.* 는 아키텍처를 직관이 아닌 **공학**으로 다룹니다. "좋은 아키텍처"를 측정 가능한 품질 속성으로 정의하고, 이를 달성하는 전술(Tactics)을 체계적으로 제시합니다.
 
-- [ ] **품질 속성 (Quality Attributes)**: 가용성·성능·보안·수정 가능성 등 비기능 요구사항을 1차 시민으로 다루기
-- [ ] **품질 속성 시나리오 (QA Scenarios)**: 자극·응답·측정으로 요구사항을 정량적이고 검증 가능하게 기술
-- [ ] **아키텍처 전술 (Tactics)**: 각 품질 속성을 달성하기 위한 설계 결정 카탈로그 활용
-- [ ] **아키텍처 패턴 (Architectural Patterns)**: Layered·Microservices·Event-Driven 등 패턴과 전술의 관계
-- [ ] **아키텍처 평가 (ATAM)**: 트레이드오프 분석으로 설계 위험을 조기에 식별하기
-- [ ] **아키텍처 문서화 (Views & Beyond)**: 이해관계자별 관점(View)으로 아키텍처를 소통 가능하게 기록
+- [x] **품질 속성 (Quality Attributes)**: 가용성·성능·보안·수정 가능성 등 비기능 요구사항을 1차 시민으로 다루기 — [[상세](/2026/06/19/software-architecture-in-practice.html)]
+- [x] **품질 속성 시나리오 (QA Scenarios)**: 자극·응답·측정으로 요구사항을 정량적이고 검증 가능하게 기술 — [[상세](/2026/06/19/software-architecture-in-practice.html)]
+- [x] **아키텍처 전술 (Tactics)**: 각 품질 속성을 달성하기 위한 설계 결정 카탈로그 활용 — [[상세](/2026/06/19/software-architecture-in-practice.html)]
+- [x] **아키텍처 패턴 (Architectural Patterns)**: Layered·Microservices·Event-Driven 등 패턴과 전술의 관계 — [[상세](/2026/06/19/software-architecture-in-practice.html)]
+- [x] **아키텍처 평가 (ATAM)**: 트레이드오프 분석으로 설계 위험을 조기에 식별하기 — [[상세](/2026/06/19/software-architecture-in-practice.html)]
+- [x] **아키텍처 문서화 (Views & Beyond)**: 이해관계자별 관점(View)으로 아키텍처를 소통 가능하게 기록 — [[상세](/2026/06/19/software-architecture-in-practice.html)]
 
 ## 3단계: Designing Data-Intensive Applications — 분산 데이터 시스템 실전
 
 Martin Kleppmann의 *Designing Data-Intensive Applications* 는 현대 백엔드 아키텍처의 핵심인 분산 데이터 시스템을 신뢰성·확장성·유지보수성이라는 세 축으로 꿰뚫습니다. 이론과 실제 시스템의 동작을 잇는 가장 실전적인 교과서입니다.
 
-- [ ] **세 가지 관심사**: 신뢰성(Reliability)·확장성(Scalability)·유지보수성(Maintainability)의 의미와 트레이드오프
-- [ ] **데이터 모델과 스토리지 엔진**: 관계형·문서·그래프 모델, LSM-Tree와 B-Tree의 차이
-- [ ] **복제와 파티셔닝 (Replication & Partitioning)**: 단일 리더·다중 리더·리더리스 복제와 샤딩 전략
-- [ ] **트랜잭션과 격리 수준 (Transactions)**: ACID의 실제 의미, 격리 수준과 동시성 이상 현상
-- [ ] **분산 시스템의 난제**: 부분 실패, 시계 문제, 합의(Consensus)와 CAP 정리
-- [ ] **배치와 스트림 처리 (Batch & Stream)**: 데이터 통합과 이벤트 기반 아키텍처의 기초
+- [x] **세 가지 관심사**: 신뢰성(Reliability)·확장성(Scalability)·유지보수성(Maintainability)의 의미와 트레이드오프 — [[상세](/2026/06/19/designing-data-intensive-applications.html)]
+- [x] **데이터 모델과 스토리지 엔진**: 관계형·문서·그래프 모델, LSM-Tree와 B-Tree의 차이 — [[상세](/2026/06/19/designing-data-intensive-applications.html)]
+- [x] **복제와 파티셔닝 (Replication & Partitioning)**: 단일 리더·다중 리더·리더리스 복제와 샤딩 전략 — [[상세](/2026/06/19/designing-data-intensive-applications.html)]
+- [x] **트랜잭션과 격리 수준 (Transactions)**: ACID의 실제 의미, 격리 수준과 동시성 이상 현상 — [[상세](/2026/06/19/designing-data-intensive-applications.html)]
+- [x] **분산 시스템의 난제**: 부분 실패, 시계 문제, 합의(Consensus)와 CAP 정리 — [[상세](/2026/06/19/designing-data-intensive-applications.html)]
+- [x] **배치와 스트림 처리 (Batch & Stream)**: 데이터 통합과 이벤트 기반 아키텍처의 기초 — [[상세](/2026/06/19/designing-data-intensive-applications.html)]
 
 ## 4단계: The Software Architect Elevator — 아키텍트의 역할과 소프트스킬
 
 Gregor Hohpe의 *The Software Architect Elevator* 는 아키텍트가 임원실(비즈니스)과 기계실(코드) 사이의 "엘리베이터"를 오르내리며 양쪽을 잇는 존재임을 강조합니다. 기술 역량만으로는 채울 수 없는 아키텍트의 조직적·전략적 역할을 다룹니다.
 
-- [ ] **아키텍트 엘리베이터 (The Elevator)**: 비즈니스 전략과 기술 구현을 오가며 양쪽을 통역하는 역할
-- [ ] **의사결정과 트레이드오프 소통**: 옵션을 제시하고 결정의 근거와 비용을 이해관계자에게 설명하기
-- [ ] **조직과 아키텍처 (Conway의 법칙)**: 시스템 구조와 조직 구조의 상호작용을 설계에 반영
-- [ ] **기술 리더십과 변화 주도**: 표준·플랫폼·문화를 통해 조직의 엔지니어링 수준을 끌어올리기
+- [x] **아키텍트 엘리베이터 (The Elevator)**: 비즈니스 전략과 기술 구현을 오가며 양쪽을 통역하는 역할 — [[상세](/2026/06/19/software-architect-elevator.html)]
+- [x] **의사결정과 트레이드오프 소통**: 옵션을 제시하고 결정의 근거와 비용을 이해관계자에게 설명하기 — [[상세](/2026/06/19/software-architect-elevator.html)]
+- [x] **조직과 아키텍처 (Conway의 법칙)**: 시스템 구조와 조직 구조의 상호작용을 설계에 반영 — [[상세](/2026/06/19/software-architect-elevator.html)]
+- [x] **기술 리더십과 변화 주도**: 표준·플랫폼·문화를 통해 조직의 엔지니어링 수준을 끌어올리기 — [[상세](/2026/06/19/software-architect-elevator.html)]
 
 ## 핵심 포인트
 
