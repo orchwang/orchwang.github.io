@@ -3272,6 +3272,24 @@ mark {
     border-radius: 0 0 var(--radius) var(--radius);
     border-top: none;
     background-color: var(--bg-panel) !important;
+    /* Fixed-size viewport — svg-pan-zoom fits/centers the diagram inside it.
+       Block (not flex) and a definite height so fit() has a stable box. */
+    display: block;
+    height: clamp(420px, 70vh, 640px);
+    min-height: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* Inside the zoom container svg-pan-zoom must own the SVG box: let it fill the
+   viewport. This overrides the global `.mermaid svg { height: auto !important }`
+   whose !important otherwise blocks fit/center and clips the diagram. */
+.mermaid-zoom-container .mermaid svg {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    display: block;
 }
 
 .mermaid-zoom-container .mermaid:active {

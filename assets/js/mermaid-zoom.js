@@ -176,11 +176,26 @@ window.initMermaidZoom = function() {
                 }
             });
 
-            // Add double-click to reset zoom
+            // Fit + center once layout settles, and on resize. The library's
+            // initial fit can run before the SVG has its final box, which leaves
+            // the diagram offset and clipped — re-fitting on the next frame fixes it.
+            const refit = function() {
+                panZoomInstance.resize();
+                panZoomInstance.fit();
+                panZoomInstance.center();
+            };
+            requestAnimationFrame(refit);
+            setTimeout(refit, 200);
+            let resizeTimer;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(refit, 150);
+            });
+
+            // Double-click resets to the fitted, centered view
             svg.addEventListener('dblclick', function(e) {
                 e.preventDefault();
-                panZoomInstance.resetZoom();
-                panZoomInstance.center();
+                refit();
             });
 
             // Add keyboard shortcuts
@@ -201,8 +216,7 @@ window.initMermaidZoom = function() {
                         break;
                     case '0':
                         e.preventDefault();
-                        panZoomInstance.resetZoom();
-                        panZoomInstance.center();
+                        refit();
                         break;
                 }
             };
@@ -216,8 +230,7 @@ window.initMermaidZoom = function() {
             resetBtn.innerHTML = '⟲ Reset View';
             resetBtn.title = 'Reset zoom and center diagram';
             resetBtn.onclick = function() {
-                panZoomInstance.resetZoom();
-                panZoomInstance.center();
+                refit();
             };
             container.appendChild(resetBtn);
 
