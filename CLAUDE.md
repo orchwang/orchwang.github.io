@@ -122,7 +122,7 @@ Developers who want to:
 
 ## Existing Content & Post Types
 
-The `_posts/` directory currently holds **68 published posts**. They fall into a few recurring types — use these as references when writing new content.
+The `_posts/` directory currently holds **74 published posts**. They fall into a few recurring types — use these as references when writing new content.
 
 ### Curriculum / Roadmap Posts
 
@@ -522,7 +522,7 @@ make serve
 
 ### Existing Content
 
-- **68 published posts** across Technology, Engineering, Career, Language, Retrospec, BookLog, and Articles
+- **74 published posts** across Technology, Engineering, Career, Language, Retrospec, BookLog, and Articles
 - Series in use: `Python-Essential` (11), `Rust-Essential` (10), `Process-Essential` (8), `OO-Design-Essential` (7), `Testing-Refactoring-Essential` (5), `Architecture-Essential` (5), `Craftsmanship-Essential` (5), `PostgreSQL-Essential` (3), `Learning-English` (2)
 - **Engineering Essentials**: all 5 series complete (curriculum 100%) — 5 curricula + 25 stage deep-dives (30 posts) covering OO-Design, Architecture, Testing-Refactoring, Process, Craftsmanship
 - Yearly retrospectives for 2024, 2025, and 2026
@@ -539,7 +539,7 @@ make serve
 
 ### Tags in Use (most common)
 
-- `python`, `rust`, `engineering`, `curriculum`, `retrospec`, `postgresql`, `booklog`, `articles`
+- `python`, `rust`, `engineering`, `curriculum`, `retrospec`, `postgresql`, `booklog`, `articles`, `video`
 - `design-patterns`, `architecture`, `tdd`, `refactoring`, `ddd`, `oop`, `agile`, `craftsmanship`
 - `memory`, `setup`, `english`, `career`, `concurrency`, `gil`, `asyncio`, `profiling`, `ownership`
 
@@ -604,9 +604,9 @@ This guide reflects the project structure as of June 2026.
 
 - Jekyll wiki fully implemented
 - Category, tag, and series systems operational (with nested category support)
-- 68 published posts across Technology, Engineering, Career, Language, Retrospec, BookLog, Articles
+- 74 published posts across Technology, Engineering, Career, Language, Retrospec, BookLog, Articles
 - Engineering Essentials: 5 `*-Essential` series complete (OO-Design, Architecture, Testing-Refactoring, Process, Craftsmanship) — 30 posts, all curricula at 100%
-- Articles category + `article-manager` subagent: one analysis/intro post per external article (7 posts so far, AI/engineering themed)
+- Articles category + `article-manager` subagent: one analysis/intro post per external article (13 posts so far — AI/engineering articles plus YouTube video summaries via yt-dlp transcript extraction)
 - Mermaid diagram rendering and zoom enabled
 - Logo and branding applied
 - Search functionality working
