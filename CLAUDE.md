@@ -82,6 +82,7 @@ Developers who want to:
 │   ├── Language/English/        # categories: [Language, English]
 │   ├── Retrospec/               # categories: Retrospec (yearly retrospectives)
 │   ├── BookLog/                 # categories: BookLog (reading notes)
+│   ├── Articles/                # categories: Articles (external article analyses)
 │   └── (root)                   # Posts without categories
 ├── assets/                  # Static files
 │   ├── css/style.css        # Main stylesheet
@@ -121,7 +122,7 @@ Developers who want to:
 
 ## Existing Content & Post Types
 
-The `_posts/` directory currently holds **61 published posts**. They fall into a few recurring types — use these as references when writing new content.
+The `_posts/` directory currently holds **68 published posts**. They fall into a few recurring types — use these as references when writing new content.
 
 ### Curriculum / Roadmap Posts
 
@@ -152,6 +153,12 @@ The `_posts/` directory currently holds **61 published posts**. They fall into a
 **Example:** `BookLog/2026-01-02-바이브-코딩-너머-개발자-생존법.md`
 
 **Purpose:** Reading notes and takeaways from a book. Single `BookLog` category.
+
+### Article Analysis Posts
+
+**Example:** `Articles/2026-06-19-the-founders-playbook.md`
+
+**Purpose:** Analyse and introduce a single external article (one post per article). Single `Articles` category, no series. Managed by the **`article-manager` subagent**: given an article URL, it fetches the piece and writes a Korean analysis/intro post. Structure: 원문 정보 → TL;DR → 왜 골랐나 → 핵심 내용 → 분석과 인사이트 → 적용 포인트 → 더 읽어보기.
 
 ### Language Learning Posts
 
@@ -188,6 +195,10 @@ Top-level category for software-engineering fundamentals drawn from classic book
 ### BookLog (single)
 
 `BookLog` — reading notes from books.
+
+### Articles (single)
+
+`Articles` — analyses and introductions of external articles (one post per article), curated via the **`article-manager` subagent**. No series, no banner; single `Articles` category in `_posts/Articles/`.
 
 **Adding a sub-category:** create the matching nested directory under `_posts/` (e.g. `_posts/Technology/Go/`) and use `categories: [Technology, Go]`.
 
@@ -511,7 +522,7 @@ make serve
 
 ### Existing Content
 
-- **61 published posts** across Technology, Engineering, Career, Language, Retrospec, and BookLog
+- **68 published posts** across Technology, Engineering, Career, Language, Retrospec, BookLog, and Articles
 - Series in use: `Python-Essential` (11), `Rust-Essential` (10), `Process-Essential` (8), `OO-Design-Essential` (7), `Testing-Refactoring-Essential` (5), `Architecture-Essential` (5), `Craftsmanship-Essential` (5), `PostgreSQL-Essential` (3), `Learning-English` (2)
 - **Engineering Essentials**: all 5 series complete (curriculum 100%) — 5 curricula + 25 stage deep-dives (30 posts) covering OO-Design, Architecture, Testing-Refactoring, Process, Craftsmanship
 - Yearly retrospectives for 2024, 2025, and 2026
@@ -524,10 +535,11 @@ make serve
 - **Language → English**: language-learning notes
 - **Retrospec**: yearly retrospectives
 - **BookLog**: book reading notes
+- **Articles**: external article analyses (one post per article, via `article-manager`)
 
 ### Tags in Use (most common)
 
-- `python`, `rust`, `engineering`, `curriculum`, `retrospec`, `postgresql`, `booklog`
+- `python`, `rust`, `engineering`, `curriculum`, `retrospec`, `postgresql`, `booklog`, `articles`
 - `design-patterns`, `architecture`, `tdd`, `refactoring`, `ddd`, `oop`, `agile`, `craftsmanship`
 - `memory`, `setup`, `english`, `career`, `concurrency`, `gil`, `asyncio`, `profiling`, `ownership`
 
@@ -592,8 +604,9 @@ This guide reflects the project structure as of June 2026.
 
 - Jekyll wiki fully implemented
 - Category, tag, and series systems operational (with nested category support)
-- 61 published posts across Technology, Engineering, Career, Language, Retrospec, BookLog
+- 68 published posts across Technology, Engineering, Career, Language, Retrospec, BookLog, Articles
 - Engineering Essentials: 5 `*-Essential` series complete (OO-Design, Architecture, Testing-Refactoring, Process, Craftsmanship) — 30 posts, all curricula at 100%
+- Articles category + `article-manager` subagent: one analysis/intro post per external article (7 posts so far, AI/engineering themed)
 - Mermaid diagram rendering and zoom enabled
 - Logo and branding applied
 - Search functionality working
