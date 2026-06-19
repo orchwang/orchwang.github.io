@@ -73,6 +73,11 @@ Developers who want to:
 │   ├── Technology/Python/       # categories: [Technology, Python]
 │   ├── Technology/PostgreSQL/   # categories: [Technology, PostgreSQL]
 │   ├── Technology/Rust/         # categories: [Technology, Rust]
+│   ├── Engineering/OO-Design/           # categories: [Engineering, OO-Design]
+│   ├── Engineering/Architecture/        # categories: [Engineering, Architecture]
+│   ├── Engineering/Testing-Refactoring/ # categories: [Engineering, Testing-Refactoring]
+│   ├── Engineering/Process/             # categories: [Engineering, Process]
+│   ├── Engineering/Craftsmanship/       # categories: [Engineering, Craftsmanship]
 │   ├── Career/Roadmap/          # categories: [Career, Roadmap]
 │   ├── Language/English/        # categories: [Language, English]
 │   ├── Retrospec/               # categories: Retrospec (yearly retrospectives)
@@ -116,7 +121,7 @@ Developers who want to:
 
 ## Existing Content & Post Types
 
-The `_posts/` directory currently holds **24 published posts**. They fall into a few recurring types — use these as references when writing new content.
+The `_posts/` directory currently holds **61 published posts**. They fall into a few recurring types — use these as references when writing new content.
 
 ### Curriculum / Roadmap Posts
 
@@ -163,6 +168,10 @@ Categories mirror the `_posts/` directory layout. Most posts use a **nested two-
 ### Technology (nested)
 
 Top-level technical category, always paired with a sub-category that names the directory: `Technology/Python`, `Technology/PostgreSQL`, `Technology/Rust`. Holds curricula and deep-dive posts; most belong to a `*-Essential` series.
+
+### Engineering (nested)
+
+Top-level category for software-engineering fundamentals drawn from classic books, always paired with a sub-category that names the directory: `Engineering/OO-Design`, `Engineering/Architecture`, `Engineering/Testing-Refactoring`, `Engineering/Process`, `Engineering/Craftsmanship`. Each sub-category is a completed `*-Essential` series: a master-roadmap **curriculum** post (`banner: wartable`, 도장깨기 checkboxes) plus per-book **stage** deep-dives. Stage posts use ascending `date` times (`00:01:00`, `00:02:00`, …) so the series page lists curriculum → stage 1 → stage 2 … in order.
 
 ### Career → Roadmap (nested)
 
@@ -502,13 +511,15 @@ make serve
 
 ### Existing Content
 
-- **24 published posts** across Technology, Career, Language, Retrospec, and BookLog
-- Series in use: `Python-Essential` (11), `PostgreSQL-Essential` (3), `Rust-Essential` (3), `Learning-English` (2)
+- **61 published posts** across Technology, Engineering, Career, Language, Retrospec, and BookLog
+- Series in use: `Python-Essential` (11), `Rust-Essential` (10), `Process-Essential` (8), `OO-Design-Essential` (7), `Testing-Refactoring-Essential` (5), `Architecture-Essential` (5), `Craftsmanship-Essential` (5), `PostgreSQL-Essential` (3), `Learning-English` (2)
+- **Engineering Essentials**: all 5 series complete (curriculum 100%) — 5 curricula + 25 stage deep-dives (30 posts) covering OO-Design, Architecture, Testing-Refactoring, Process, Craftsmanship
 - Yearly retrospectives for 2024, 2025, and 2026
 
 ### Categories
 
 - **Technology** (nested: Python, PostgreSQL, Rust): curricula + deep-dives
+- **Engineering** (nested: OO-Design, Architecture, Testing-Refactoring, Process, Craftsmanship): classic-book curricula + per-book stage deep-dives
 - **Career → Roadmap**: roadmaps and competency maps
 - **Language → English**: language-learning notes
 - **Retrospec**: yearly retrospectives
@@ -516,7 +527,8 @@ make serve
 
 ### Tags in Use (most common)
 
-- `python`, `curriculum`, `rust`, `retrospec`, `postgresql`, `booklog`
+- `python`, `rust`, `engineering`, `curriculum`, `retrospec`, `postgresql`, `booklog`
+- `design-patterns`, `architecture`, `tdd`, `refactoring`, `ddd`, `oop`, `agile`, `craftsmanship`
 - `memory`, `setup`, `english`, `career`, `concurrency`, `gil`, `asyncio`, `profiling`, `ownership`
 
 ### Site Features
@@ -580,7 +592,8 @@ This guide reflects the project structure as of June 2026.
 
 - Jekyll wiki fully implemented
 - Category, tag, and series systems operational (with nested category support)
-- 24 published posts across Technology, Career, Language, Retrospec, BookLog
+- 61 published posts across Technology, Engineering, Career, Language, Retrospec, BookLog
+- Engineering Essentials: 5 `*-Essential` series complete (OO-Design, Architecture, Testing-Refactoring, Process, Craftsmanship) — 30 posts, all curricula at 100%
 - Mermaid diagram rendering and zoom enabled
 - Logo and branding applied
 - Search functionality working
