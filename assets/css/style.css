@@ -83,6 +83,7 @@
     --chrome-bg-2: #1a0c0a;
     --portrait-bg: #f7efdb;    /* light interior for avatar portraits — theme-independent so transparent black-line-art busts read in BOTH themes */
     --chrome-ink: #f2e3c4;     /* bone text on chrome */
+    --mermaid-line: #3a2e22;   /* diagram edge/arrow color — dark ink for the light canvas */
     --chrome-muted: rgba(242,227,196,0.78);
 
     /* Hero / cover scrim over the Orgrimmar concept image.
@@ -204,6 +205,7 @@
     --chrome-bg: #1a0c0a;         /* black-iron war banner */
     --chrome-bg-2: #0d0605;
     --chrome-ink: #ede2cf;
+    --mermaid-line: #d8c9a8;      /* diagram edge/arrow — light bone for the dark canvas */
     --chrome-muted: rgba(237,226,207,0.72);
 
     --code-ink: #e8633a;
@@ -262,6 +264,7 @@
         --chrome-bg: #1a0c0a;
         --chrome-bg-2: #0d0605;
         --chrome-ink: #ede2cf;
+        --mermaid-line: #d8c9a8;
         --chrome-muted: rgba(237,226,207,0.72);
         --code-ink: #e8633a;
         --hero-scrim:
@@ -3255,6 +3258,26 @@ mark {
 /* Center align mermaid diagrams */
 .post-content .mermaid {
     text-align: center;
+}
+
+/* Edge / arrow contrast. Mermaid renders with the default (light) theme, so its
+   dark-grey links + arrowheads vanish on the dark-mode canvas (var(--bg-panel)).
+   Re-color them with a theme-aware token — CSS applies to the live SVG, so it
+   follows the ☀️/🔥 toggle without re-rendering the diagram. */
+.mermaid .edgePaths path,
+.mermaid .edgePath path,
+.mermaid path.flowchart-link,
+.mermaid .flowchart-link,
+.mermaid .messageLine0,
+.mermaid .messageLine1,
+.mermaid .relation {
+    stroke: var(--mermaid-line) !important;
+}
+.mermaid .arrowheadPath,
+.mermaid marker path,
+.mermaid .marker {
+    fill: var(--mermaid-line) !important;
+    stroke: var(--mermaid-line) !important;
 }
 
 /* Mermaid Zoom Container */
