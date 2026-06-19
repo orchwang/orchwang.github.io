@@ -49,67 +49,67 @@ flowchart TD
 
 > 완료한 항목에는 상세 포스트 링크가 연결됩니다. 학습이 진행될 때마다 체크박스와 진행률을 갱신합니다.
 
-- 현재 완료한 항목: **0개**
+- 현재 완료한 항목: **28개**
 - 전체 항목: **28개**
-- 진행률: **0%**
+- 진행률: **100%** 🎉
 
 ## 1단계: Head First Design Patterns — 패턴 입문·직관
 
 Eric Freeman의 **Head First Design Patterns**(1·2판 모두 포함)은 디자인 패턴을 처음 만나는 사람에게 가장 친절한 입문서입니다. "상속보다 합성", "변하는 것을 캡슐화하라" 같은 설계 원칙을 그림과 이야기로 풀어내며, GoF를 읽기 전에 패턴의 **직관**을 기르는 단계로 가장 먼저 둡니다.
 
-- [ ] **OO 설계 원칙**: 변하는 부분 캡슐화, 합성 선호(Favor Composition), 인터페이스에 프로그래밍
-- [ ] **생성·구조 패턴 입문**: Strategy, Observer, Decorator의 직관과 동기
-- [ ] **팩토리 계열**: Simple Factory, Factory Method, Abstract Factory의 차이
-- [ ] **행동 패턴 입문**: Command, Adapter, Facade, Template Method
-- [ ] **설계 원칙 종합**: 느슨한 결합(Loose Coupling)과 OCP를 패턴으로 연결하기
+- [x] **OO 설계 원칙**: 변하는 부분 캡슐화, 합성 선호(Favor Composition), 인터페이스에 프로그래밍 — [[상세](/2026/06/19/head-first-design-patterns.html)]
+- [x] **생성·구조 패턴 입문**: Strategy, Observer, Decorator의 직관과 동기 — [[상세](/2026/06/19/head-first-design-patterns.html)]
+- [x] **팩토리 계열**: Simple Factory, Factory Method, Abstract Factory의 차이 — [[상세](/2026/06/19/head-first-design-patterns.html)]
+- [x] **행동 패턴 입문**: Command, Adapter, Facade, Template Method — [[상세](/2026/06/19/head-first-design-patterns.html)]
+- [x] **설계 원칙 종합**: 느슨한 결합(Loose Coupling)과 OCP를 패턴으로 연결하기 — [[상세](/2026/06/19/head-first-design-patterns.html)]
 
 ## 2단계: Design Patterns (GoF) — 23개 패턴 정전
 
 Gamma, Helm, Johnson, Vlissides가 쓴 **Design Patterns: Elements of Reusable Object-Oriented Software**는 디자인 패턴의 정전입니다. 23개 패턴을 생성(Creational)·구조(Structural)·행동(Behavioral) 세 범주로 체계화하며, 각 패턴의 의도·구조·결과(Consequences)를 엄밀하게 정의합니다. 입문서로 직관을 얻은 뒤 이 책으로 어휘를 정확히 다집니다.
 
-- [ ] **생성 패턴(Creational)**: Singleton, Factory Method, Abstract Factory, Builder, Prototype
-- [ ] **구조 패턴(Structural)**: Adapter, Bridge, Composite, Decorator, Facade, Flyweight, Proxy
-- [ ] **행동 패턴(Behavioral) I**: Chain of Responsibility, Command, Interpreter, Iterator, Mediator
-- [ ] **행동 패턴(Behavioral) II**: Memento, Observer, State, Strategy, Template Method, Visitor
-- [ ] **패턴 선택 기준**: 의도·결과·트레이드오프로 패턴 고르기, 패턴 남용 경계
+- [x] **생성 패턴(Creational)**: Singleton, Factory Method, Abstract Factory, Builder, Prototype — [[상세](/2026/06/19/gof-design-patterns.html)]
+- [x] **구조 패턴(Structural)**: Adapter, Bridge, Composite, Decorator, Facade, Flyweight, Proxy — [[상세](/2026/06/19/gof-design-patterns.html)]
+- [x] **행동 패턴(Behavioral) I**: Chain of Responsibility, Command, Interpreter, Iterator, Mediator — [[상세](/2026/06/19/gof-design-patterns.html)]
+- [x] **행동 패턴(Behavioral) II**: Memento, Observer, State, Strategy, Template Method, Visitor — [[상세](/2026/06/19/gof-design-patterns.html)]
+- [x] **패턴 선택 기준**: 의도·결과·트레이드오프로 패턴 고르기, 패턴 남용 경계 — [[상세](/2026/06/19/gof-design-patterns.html)]
 
 ## 3단계: Hands-On Design Patterns with Swift — 현대 언어 적용
 
 GoF의 예제는 C++/Smalltalk 시대의 것이라, 현대 언어에서는 그대로 옮기기보다 **언어 기능에 맞춰 재해석**해야 합니다. **Hands-On Design Patterns with Swift**는 프로토콜, 제네릭, 클로저, 값 타입(Value Type) 등 현대 언어 기능으로 패턴을 어떻게 더 간결하게 구현하는지 보여 줍니다. 정전을 익힌 직후 실제 코드로 옮기는 단계입니다.
 
-- [ ] **언어 기능과 패턴**: Protocol·Generic·Closure로 패턴 재구현
-- [ ] **값 타입 시대의 패턴**: Struct/Enum 중심 설계와 불변성(Immutability)
-- [ ] **함수형 영향**: 고차 함수와 클로저로 대체되는 행동 패턴
-- [ ] **안티패턴·관용구**: 현대 언어에서 불필요해진 패턴과 새 관용구
+- [x] **언어 기능과 패턴**: Protocol·Generic·Closure로 패턴 재구현 — [[상세](/2026/06/19/design-patterns-swift.html)]
+- [x] **값 타입 시대의 패턴**: Struct/Enum 중심 설계와 불변성(Immutability) — [[상세](/2026/06/19/design-patterns-swift.html)]
+- [x] **함수형 영향**: 고차 함수와 클로저로 대체되는 행동 패턴 — [[상세](/2026/06/19/design-patterns-swift.html)]
+- [x] **안티패턴·관용구**: 현대 언어에서 불필요해진 패턴과 새 관용구 — [[상세](/2026/06/19/design-patterns-swift.html)]
 
 ## 4단계: Object-Oriented Software Construction (Meyer) — OO 원리·DbC
 
 Bertrand Meyer의 **Object-Oriented Software Construction**은 패턴 너머의 **원리**를 다룹니다. 객체지향이 왜 신뢰성·재사용성·확장성에 유리한지 이론적으로 파고들며, 그 핵심으로 **계약에 의한 설계(Design by Contract)** — 사전조건(Precondition)·사후조건(Postcondition)·불변식(Invariant) — 를 제시합니다. 패턴을 "왜 그렇게 설계하는가"의 관점에서 다시 바라보게 하는 단계입니다.
 
-- [ ] **OO 원리**: 모듈성·정보 은닉·재사용성·확장성의 기준
-- [ ] **계약에 의한 설계(DbC)**: Precondition, Postcondition, Class Invariant
-- [ ] **상속과 다형성**: LSP와 올바른 상속, 추상 클래스의 역할
-- [ ] **예외와 신뢰성**: 계약 위반으로서의 예외, 방어적 설계와의 차이
+- [x] **OO 원리**: 모듈성·정보 은닉·재사용성·확장성의 기준 — [[상세](/2026/06/19/object-oriented-software-construction.html)]
+- [x] **계약에 의한 설계(DbC)**: Precondition, Postcondition, Class Invariant — [[상세](/2026/06/19/object-oriented-software-construction.html)]
+- [x] **상속과 다형성**: LSP와 올바른 상속, 추상 클래스의 역할 — [[상세](/2026/06/19/object-oriented-software-construction.html)]
+- [x] **예외와 신뢰성**: 계약 위반으로서의 예외, 방어적 설계와의 차이 — [[상세](/2026/06/19/object-oriented-software-construction.html)]
 
 ## 5단계: Object-Oriented Analysis and Design with Applications (Booch) — OOAD 분석·설계
 
 Grady Booch의 **Object-Oriented Analysis and Design with Applications(3rd ed.)**는 한 클래스를 넘어 **시스템 전체를 객체로 모델링**하는 방법을 다룹니다. 도메인을 분석해 객체를 식별하고, 책임을 배분하며, 협력 관계를 설계하는 OOAD 프로세스와 표기법(UML 포함)을 익히는 단계로, 패턴을 더 큰 그림 안에서 배치하는 안목을 길러 줍니다.
 
-- [ ] **객체 모델의 4요소**: 추상화·캡슐화·모듈성·계층구조
-- [ ] **객체·클래스 식별**: 도메인 분석에서 객체와 책임 도출
-- [ ] **관계와 협력**: 연관·집합·의존, 책임 주도 설계(RDD)
-- [ ] **표기법과 프로세스**: UML로 구조·행위 모델링, 반복적 설계
-- [ ] **아키텍처적 시야**: 시스템 수준에서 패턴과 모듈 배치
+- [x] **객체 모델의 4요소**: 추상화·캡슐화·모듈성·계층구조 — [[상세](/2026/06/19/object-oriented-analysis-and-design.html)]
+- [x] **객체·클래스 식별**: 도메인 분석에서 객체와 책임 도출 — [[상세](/2026/06/19/object-oriented-analysis-and-design.html)]
+- [x] **관계와 협력**: 연관·집합·의존, 책임 주도 설계(RDD) — [[상세](/2026/06/19/object-oriented-analysis-and-design.html)]
+- [x] **표기법과 프로세스**: UML로 구조·행위 모델링, 반복적 설계 — [[상세](/2026/06/19/object-oriented-analysis-and-design.html)]
+- [x] **아키텍처적 시야**: 시스템 수준에서 패턴과 모듈 배치 — [[상세](/2026/06/19/object-oriented-analysis-and-design.html)]
 
 ## 6단계: Dependency Injection (van Deursen & Seemann) — DI/IoC·결합도 관리
 
 마지막 단계는 좋은 객체 설계를 실제 애플리케이션 규모로 지탱하는 핵심 기술, **의존성 주입(Dependency Injection)**입니다. Steven van Deursen과 Mark Seemann의 책은 DI를 "프레임워크 사용법"이 아니라 **제어의 역전(IoC)과 결합도 관리의 원리**로 다룹니다. 앞 단계에서 배운 추상화·패턴을 어떻게 조립(Composition)하고 생명주기를 관리하는지 배우며 시리즈를 마무리합니다.
 
-- [ ] **DI의 본질**: 제어의 역전(IoC)과 의존성 주입의 차이, 왜 필요한가
-- [ ] **주입 방식**: 생성자·메서드·속성 주입과 Composition Root
-- [ ] **DI 안티패턴**: Service Locator, Control Freak, 과도한 추상화 경계
-- [ ] **생명주기·범위**: Singleton·Scoped·Transient와 객체 수명 관리
-- [ ] **DI 컨테이너**: 컨테이너 활용과 Pure DI의 트레이드오프
+- [x] **DI의 본질**: 제어의 역전(IoC)과 의존성 주입의 차이, 왜 필요한가 — [[상세](/2026/06/19/dependency-injection.html)]
+- [x] **주입 방식**: 생성자·메서드·속성 주입과 Composition Root — [[상세](/2026/06/19/dependency-injection.html)]
+- [x] **DI 안티패턴**: Service Locator, Control Freak, 과도한 추상화 경계 — [[상세](/2026/06/19/dependency-injection.html)]
+- [x] **생명주기·범위**: Singleton·Scoped·Transient와 객체 수명 관리 — [[상세](/2026/06/19/dependency-injection.html)]
+- [x] **DI 컨테이너**: 컨테이너 활용과 Pure DI의 트레이드오프 — [[상세](/2026/06/19/dependency-injection.html)]
 
 ## 핵심 포인트
 
