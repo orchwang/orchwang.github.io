@@ -47,48 +47,48 @@ flowchart TD
 
 > 완료한 항목에는 상세 포스트 링크가 연결됩니다. 학습이 진행될 때마다 체크박스와 진행률을 갱신합니다.
 
-- 현재 완료한 항목: **0개**
+- 현재 완료한 항목: **19개**
 - 전체 항목: **19개**
-- 진행률: **0%**
+- 진행률: **100%** 🎉
 
 ## 1단계: Structure and Interpretation of Computer Programs (SICP) — 추상화와 프로그래밍의 본질
 
 Abelson & Sussman의 SICP는 "프로그램은 사람이 읽기 위해 쓰고, 기계가 실행하는 것은 부수적"이라는 관점에서 추상화의 힘을 가르칩니다. 언어 문법이 아니라 복잡성을 통제하는 사고 도구를 익히는 단계입니다.
 
-- [ ] **프로시저 추상화(Procedural Abstraction)**: 함수로 과정을 캡슐화하고, 블랙박스로 합성하기
-- [ ] **재귀와 반복(Recursion & Iteration)**: 재귀적 과정·반복적 과정과 프로세스의 형태(shape) 이해
-- [ ] **고차 함수(Higher-Order Procedures)**: 함수를 인자·반환값으로 다루며 패턴을 추상화
-- [ ] **데이터 추상화(Data Abstraction)**: 생성자·선택자와 추상화 장벽(abstraction barrier)
-- [ ] **상태·환경·평가 모델(State & Evaluation)**: 환경 모델, 대입(assignment)과 상태가 만드는 복잡성
-- [ ] **메타순환 평가기(Metacircular Evaluator)**: 평가가 곧 데이터라는 통찰과 언어로 언어 만들기
+- [x] **프로시저 추상화(Procedural Abstraction)**: 함수로 과정을 캡슐화하고, 블랙박스로 합성하기 — [[상세](/2026/06/19/sicp.html)]
+- [x] **재귀와 반복(Recursion & Iteration)**: 재귀적 과정·반복적 과정과 프로세스의 형태(shape) 이해 — [[상세](/2026/06/19/sicp.html)]
+- [x] **고차 함수(Higher-Order Procedures)**: 함수를 인자·반환값으로 다루며 패턴을 추상화 — [[상세](/2026/06/19/sicp.html)]
+- [x] **데이터 추상화(Data Abstraction)**: 생성자·선택자와 추상화 장벽(abstraction barrier) — [[상세](/2026/06/19/sicp.html)]
+- [x] **상태·환경·평가 모델(State & Evaluation)**: 환경 모델, 대입(assignment)과 상태가 만드는 복잡성 — [[상세](/2026/06/19/sicp.html)]
+- [x] **메타순환 평가기(Metacircular Evaluator)**: 평가가 곧 데이터라는 통찰과 언어로 언어 만들기 — [[상세](/2026/06/19/sicp.html)]
 
 ## 2단계: The Pragmatic Programmer (20th Anniversary Edition) — 실용주의 장인정신
 
 Andrew Hunt & David Thomas의 책은 추상적 이상이 아니라 매일 반복하는 작은 실천 습관으로 장인정신을 정의합니다. "깨진 창문을 방치하지 마라" 같은 원칙을 일하는 방식으로 체화하는 단계입니다.
 
-- [ ] **DRY와 직교성(Orthogonality)**: 지식의 중복 제거와 결합도 낮추기
-- [ ] **깨진 창문 이론 & 충분히 좋은 소프트웨어**: 작은 부패를 방치하지 않는 태도와 실용적 품질 기준
-- [ ] **예광탄과 프로토타이핑(Tracer Bullets)**: 끝에서 끝까지 빠르게 연결하고 학습하기
-- [ ] **계약에 의한 설계와 방어적 코딩**: assertion, 단언, 일찍 죽기(crash early)
-- [ ] **리팩터링·테스트·자동화 습관**: 코드를 정원처럼 가꾸고 반복 작업을 도구로 처리
-- [ ] **지식 포트폴리오와 평범한 장인정신**: 꾸준한 학습 투자와 책임지는 직업윤리
+- [x] **DRY와 직교성(Orthogonality)**: 지식의 중복 제거와 결합도 낮추기 — [[상세](/2026/06/19/pragmatic-programmer.html)]
+- [x] **깨진 창문 이론 & 충분히 좋은 소프트웨어**: 작은 부패를 방치하지 않는 태도와 실용적 품질 기준 — [[상세](/2026/06/19/pragmatic-programmer.html)]
+- [x] **예광탄과 프로토타이핑(Tracer Bullets)**: 끝에서 끝까지 빠르게 연결하고 학습하기 — [[상세](/2026/06/19/pragmatic-programmer.html)]
+- [x] **계약에 의한 설계와 방어적 코딩**: assertion, 단언, 일찍 죽기(crash early) — [[상세](/2026/06/19/pragmatic-programmer.html)]
+- [x] **리팩터링·테스트·자동화 습관**: 코드를 정원처럼 가꾸고 반복 작업을 도구로 처리 — [[상세](/2026/06/19/pragmatic-programmer.html)]
+- [x] **지식 포트폴리오와 평범한 장인정신**: 꾸준한 학습 투자와 책임지는 직업윤리 — [[상세](/2026/06/19/pragmatic-programmer.html)]
 
 ## 3단계: Software Design Decoded — 전문가가 설계를 사고하는 66가지 방식
 
 Marian Petre & André van der Hoek는 실제 전문가 설계자들을 관찰해 그들이 "무엇을 다르게 생각하는가"를 66개의 짧은 통찰로 정리했습니다. 정답 절차가 아니라 사고 습관을 체득하는 단계입니다.
 
-- [ ] **문제 재구성(Reframing the Problem)**: 주어진 문제를 의심하고 더 나은 문제로 바꾸기
-- [ ] **스케치와 외부화(Sketching)**: 생각을 종이·화이트보드로 꺼내 함께 추론하기
-- [ ] **트레이드오프와 제약 다루기**: 제약을 적으로 보지 않고 설계의 지렛대로 활용
-- [ ] **시뮬레이션과 멘탈 모델**: 머릿속에서 시나리오를 돌려 설계를 검증하기
-- [ ] **협업·소통으로서의 설계**: 설계를 대화·합의·공유된 이해로 다루기
+- [x] **문제 재구성(Reframing the Problem)**: 주어진 문제를 의심하고 더 나은 문제로 바꾸기 — [[상세](/2026/06/19/software-design-decoded.html)]
+- [x] **스케치와 외부화(Sketching)**: 생각을 종이·화이트보드로 꺼내 함께 추론하기 — [[상세](/2026/06/19/software-design-decoded.html)]
+- [x] **트레이드오프와 제약 다루기**: 제약을 적으로 보지 않고 설계의 지렛대로 활용 — [[상세](/2026/06/19/software-design-decoded.html)]
+- [x] **시뮬레이션과 멘탈 모델**: 머릿속에서 시나리오를 돌려 설계를 검증하기 — [[상세](/2026/06/19/software-design-decoded.html)]
+- [x] **협업·소통으로서의 설계**: 설계를 대화·합의·공유된 이해로 다루기 — [[상세](/2026/06/19/software-design-decoded.html)]
 
 ## 4단계: We Programmers — Ada에서 AI까지, 프로그래밍의 역사와 문화
 
 이 책은 Ada Lovelace에서 현대 AI 시대까지 프로그래머라는 직업의 계보를 따라가며, 우리가 선 자리를 역사적·문화적 맥락에서 비춰 줍니다. 기술 습득을 넘어 직업적 정체성과 시야를 넓히는 교양 단계입니다.
 
-- [ ] **프로그래밍의 계보(Ada to AI)**: 선구자들의 발자취와 패러다임의 변천
-- [ ] **장인정신의 문화와 직업윤리**: 세대를 잇는 가치와 책임의 전통
+- [x] **프로그래밍의 계보(Ada to AI)**: 선구자들의 발자취와 패러다임의 변천 — [[상세](/2026/06/19/we-programmers.html)]
+- [x] **장인정신의 문화와 직업윤리**: 세대를 잇는 가치와 책임의 전통 — [[상세](/2026/06/19/we-programmers.html)]
 
 ## 핵심 포인트
 
