@@ -2,7 +2,7 @@
 layout: post
 title: "Martin Fowler의 Fragments로 읽는 LLM 시대의 균형 감각"
 date: 2026-06-19
-categories: Articles
+categories: [Articles, AI-Essays]
 tags: [articles, ai, llm, ddd]
 published: true
 excerpt: "Martin Fowler가 사이트에 남긴 짧은 fragment 모음(2026-06-16)을 읽고, LLM 시대 프로그래밍의 즐거움·DDD·열광과 회의의 간극·플랫폼 중앙화에 대한 네 개의 메모를 개발자 관점에서 간결히 정리·분석한다."

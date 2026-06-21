@@ -2,7 +2,7 @@
 layout: post
 title: "AI는 왜 소프트웨어 엔지니어를 대체하지 못했나: 'AI 워싱' 해고 서사와 decide-execute-deliver 샌드위치"
 date: 2026-06-19
-categories: Articles
+categories: [Articles, AI-Industry]
 tags: [articles, ai, career, coding-agent]
 published: true
 excerpt: "Arvind Narayanan과 Sayash Kapoor가 'AI as Normal Technology'에 쓴 글을 읽고, 'AI가 엔지니어를 해고했다'는 서사의 실체(AI 워싱)와 일을 decide-execute-deliver 세 층으로 보는 프레임을 개발자 관점에서 분석·정리한다."

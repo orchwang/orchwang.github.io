@@ -2,7 +2,7 @@
 layout: post
 title: "The Founder's Playbook: AI 네이티브 스타트업을 만드는 4단계"
 date: 2026-06-19
-categories: Articles
+categories: [Articles, AI-Industry]
 tags: [articles, ai, startup, claude]
 published: true
 excerpt: "Anthropic이 펴낸 'The Founder's Playbook'을 읽고, AI 네이티브 스타트업의 Idea·MVP·Launch·Scale 4단계와 제품 활용 매트릭스를 개발자 관점에서 분석·정리한다."

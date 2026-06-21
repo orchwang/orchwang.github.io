@@ -2,7 +2,7 @@
 layout: post
 title: "소프트웨어는 죽는 게 아니라 재평가된다: '소프트웨어 종말론' 4가지 논거 해부"
 date: 2026-06-19
-categories: Articles
+categories: [Articles, AI-Industry]
 tags: [articles, ai, startup, llm]
 published: true
 excerpt: "SignalFire의 Ilya Kirnos가 정리한 '소프트웨어의 죽음' 4가지 논거(약한 것부터 강한 것 순)를 읽고, AI 시대에 해자(moat)가 어디로 이동하는지를 개발자 관점에서 분석·정리한다."

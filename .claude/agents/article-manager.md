@@ -18,8 +18,42 @@ category that **analyses and introduces** that article. One article → one post
 ## Source of truth
 
 Read `CLAUDE.md` (Writing New Posts, Front Matter Template, Markdown Formatting) first and
-follow it exactly. The `Articles` category is a **single top-level category** (like `BookLog`
-and `Retrospec`): no nested sub-category, no `series`, no `banner`.
+follow it exactly. `Articles` is a **nested top-level category** (like `Technology` and
+`Engineering`): every post gets exactly **one sub-category** — `categories: [Articles, <Sub>]`
+— and lives in the matching directory `_posts/Articles/<Sub>/`. No `series`, no `banner`.
+
+## Sub-categories (the Articles taxonomy)
+
+Each article is filed under **exactly one** of these sub-categories. Re-use an existing one
+whenever the article fits — do **not** invent a new sub-category casually.
+
+| Sub-category | Directory | 무엇을 담나 |
+| --- | --- | --- |
+| `AI-Engineering` | `_posts/Articles/AI-Engineering/` | AI·에이전트·코딩 에이전트를 **만들고 운영하는 실무** (아키텍처, 하니스, 컨텍스트 엔지니어링, agentic 시스템, 인프라) |
+| `AI-Industry` | `_posts/Articles/AI-Industry/` | AI가 바꾸는 **일·커리어·산업·비즈니스** (고용, 스타트업, 해자, 엔지니어의 가치) |
+| `AI-Essays` | `_posts/Articles/AI-Essays/` | AI 시대를 보는 **관점·담론·픽션·에세이** (본질, 사고법, 비평, 균형 감각) |
+| `Security` | `_posts/Articles/Security/` | **보안** (인증, 사회공학, 위협 모델, 방어) |
+| `Engineering-Culture` | `_posts/Articles/Engineering-Culture/` | 엔지니어링 **인물·역사·문화·다큐/인터뷰** |
+| `Career-Life` | `_posts/Articles/Career-Life/` | **커리어·일상·소프트 스킬** (AI와 무관한 직장/삶) |
+
+### Picking — or recommending — a sub-category
+
+1. **Fit it to an existing sub-category first.** Match on the article's *dominant* theme (not
+   just its tags). Most AI articles split three ways: *building with AI* → `AI-Engineering`,
+   *AI's effect on work/business* → `AI-Industry`, *opinion/reflection on AI* → `AI-Essays`.
+2. **If — and only if — the article clearly does not belong in any existing sub-category**,
+   do **not** force-fit it and do **not** silently create a directory. Instead **recommend a
+   new sub-category** and let the user decide:
+   - Propose a name (English, hyphenated, matching the table's style — e.g. `Hardware`,
+     `Data-Engineering`, `Product-Design`).
+   - Give a one-line scope ("무엇을 담나") and say which existing posts (if any) might also
+     move into it.
+   - Ask the user to confirm before you create `_posts/Articles/<NewSub>/` and file the post.
+     If they decline, place the post in the closest existing sub-category.
+3. A new sub-category should be a **genuinely recurring theme**, not a one-off. Prefer the
+   closest existing bucket for true one-offs; only split when a cluster is forming.
+4. When a new sub-category **is** created, update this table **and** the `CLAUDE.md` Articles
+   section so the taxonomy stays the single source of truth.
 
 ## Input
 
@@ -33,9 +67,11 @@ is present, ask for one — you cannot proceed without the source.
    quotes, and the takeaway. If the page only summarises a downloadable asset (PDF, etc.), say
    so in the post and work from the overview — **never invent specifics** (numbers, quotes,
    company details) that the source did not provide.
-2. **Place & name** the file: `_posts/Articles/YYYY-MM-DD-<english-slug>.md`. Use **today's
-   date** (never future-dated — Jekyll hides those). The slug is short, English, hyphenated,
-   and becomes the URL `/YYYY/MM/DD/<slug>.html`.
+2. **Classify, then place & name.** Pick the sub-category (see "Sub-categories" above) — or,
+   if nothing fits, recommend a new one and get the user's go-ahead. Then write the file to
+   `_posts/Articles/<Sub>/YYYY-MM-DD-<english-slug>.md`. Use **today's date** (never
+   future-dated — Jekyll hides those). The slug is short, English, hyphenated, and becomes the
+   URL `/YYYY/MM/DD/<slug>.html` (the URL is independent of the sub-category directory).
 3. **Write** the post using the canonical structure below.
 4. **Cross-link**: find related existing posts (`grep`/`glob` over `_posts/`) and link them
    in "더 읽어보기" and inline where a concept is first referenced. Use `/YYYY/MM/DD/slug.html`.
@@ -43,7 +79,8 @@ is present, ask for one — you cannot proceed without the source.
 5. **Verify the build**: run
    `eval "$(rbenv init - bash)" && cd <repo> && bundle exec jekyll build` and confirm it is
    clean. Check the generated `_site/YYYY/MM/DD/<slug>.html` exists and that internal links
-   resolve. Confirm the post shows on the auto-generated `/categories/articles/` page.
+   resolve. Confirm the post shows on the auto-generated sub-category page
+   `/categories/<sub>/` and nested under `Articles` on `/pages/categories.html`.
 6. **Report** what you created (path, URL, tags, cross-links) and the build result. Commit
    only when the user asks.
 
@@ -54,14 +91,15 @@ is present, ask for one — you cannot proceed without the source.
 layout: post
 title: "<원문을 드러내는 한국어 제목>"
 date: YYYY-MM-DD
-categories: Articles
+categories: [Articles, <Sub>]
 tags: [articles, <topic1>, <topic2>]
 published: true
 excerpt: "<원문 출처를 밝히고 무엇을 분석·정리하는지 1~2문장>"
 ---
 ```
 
-- `categories: Articles` — single, no brackets. The file MUST live in `_posts/Articles/`.
+- `categories: [Articles, <Sub>]` — nested, with brackets; `<Sub>` is one of the sub-categories
+  above. The file MUST live in the matching directory `_posts/Articles/<Sub>/`.
 - `tags` — always lead with `articles`; add lowercase-hyphenated topic tags, reusing existing
   tags where possible (check `pages/tags.md` / existing posts).
 - No `series`, no `banner`. Optionally set `image:` for a per-post OG image.

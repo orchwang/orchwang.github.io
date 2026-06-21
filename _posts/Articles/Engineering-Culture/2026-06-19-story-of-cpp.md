@@ -2,7 +2,7 @@
 layout: post
 title: "C++의 이야기: 세상에서 가장 영향력 있는 언어의 40년 — CultRepo 다큐멘터리 정리"
 date: 2026-06-19
-categories: Articles
+categories: [Articles, Engineering-Culture]
 tags: [articles, video, cpp, history]
 published: true
 excerpt: "CultRepo의 다큐멘터리 'The Story of C++'(71분)를 자막 기반으로 정리한다. Bell Labs의 C with Classes에서 시작해 표준화·STL·C++ 겨울·Modern C++·안전성 논쟁까지, 40년 언어사를 엔지니어 관점에서 짚는다."

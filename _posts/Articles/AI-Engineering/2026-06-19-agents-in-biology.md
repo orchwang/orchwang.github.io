@@ -2,7 +2,7 @@
 layout: post
 title: "생물학에 AI 에이전트를 들이는 길: 결정론적 검색 계층이 모델 성능보다 중요했다 (Anthropic)"
 date: 2026-06-19
-categories: Articles
+categories: [Articles, AI-Engineering]
 tags: [articles, ai, llm, rag, science]
 published: true
 excerpt: "Anthropic의 'Paving the way for agents in biology'를 읽고, 바이러스 데이터 검색에 결정론적 실행 계층(gget virus)을 더했더니 모델 교체보다 정확도·재현성이 더 크게 좋아졌다는 발견을 개발자 관점에서 분석·정리한다."

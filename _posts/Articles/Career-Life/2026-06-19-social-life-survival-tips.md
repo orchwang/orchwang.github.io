@@ -2,7 +2,7 @@
 layout: post
 title: "사회생활 생존 꿀팁 30가지 — 호이쏘이 유튜브 영상 정리"
 date: 2026-06-19
-categories: Articles
+categories: [Articles, Career-Life]
 tags: [articles, video, career, life]
 published: true
 excerpt: "호이쏘이(HOY SOY) 채널의 '모르면 개고생하는 사회생활 생존 꿀팁 30가지' 영상을 자막 기반으로 정리하고, 직장·커리어 관점에서 특히 와닿는 것들을 골라 분석한다. Articles 카테고리의 첫 영상 정리."
