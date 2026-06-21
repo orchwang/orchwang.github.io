@@ -2,7 +2,7 @@
 layout: post
 title: "SQLite 창시자 Richard Hipp 인터뷰: 26년, 자작 도구, 그리고 AI — Debug with Lewis 영상 정리"
 date: 2026-06-19
-categories: Articles
+categories: [Articles, Engineering-Culture]
 tags: [articles, video, sqlite, database]
 published: true
 excerpt: "세상에서 가장 널리 쓰이는 소프트웨어 라이브러리 SQLite의 창시자 Richard Hipp 인터뷰(66분)를 자막 기반으로 정리한다. 탄생 비화부터 라이선스 대신 기도문, '공짜 강아지' 풀 리퀘스트론, DO-178B 테스트, Turso 포크, AI까지."

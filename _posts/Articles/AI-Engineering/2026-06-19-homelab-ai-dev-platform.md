@@ -2,7 +2,7 @@
 layout: post
 title: "내 홈랩 AI Dev Platform: OpenCode와 GitOps로 안전하게 AI에게 인프라를 맡기기"
 date: 2026-06-19
-categories: Articles
+categories: [Articles, AI-Engineering]
 tags: [articles, ai, coding-agent, gitops, devops]
 published: true
 excerpt: "Rsgm's Blog의 'My Homelab AI Dev Platform'을 읽고, OpenCode 코딩 에이전트를 격리된 VM에 두고 PR 리뷰와 GitOps로 인프라 변경을 안전하게 흘려보내는 self-hosted AI 개발 파이프라인을 개발자 관점에서 분석·정리한다."

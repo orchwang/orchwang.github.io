@@ -2,7 +2,7 @@
 layout: post
 title: "사기의 미래는 이미 와 있다: LLM이 바꾸는 사회공학 공격의 경제학"
 date: 2026-06-20
-categories: Articles
+categories: [Articles, Security]
 tags: [articles, security, llm, ai, scam, phishing, social-engineering]
 published: true
 excerpt: "Manish Goregaokar의 'The future of the con is already here'를 읽고, LLM이 표적 사기(targeted scam)의 비용 구조를 무너뜨려 '사기를 for 루프로 돌리는 세계'를 어떻게 여는지, 그리고 우리의 보안 휴리스틱이 왜 재보정되어야 하는지를 분석·정리한다."

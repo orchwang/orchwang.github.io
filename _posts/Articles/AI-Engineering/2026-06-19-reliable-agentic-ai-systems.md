@@ -2,7 +2,7 @@
 layout: post
 title: "신뢰할 수 있는 Agentic AI 시스템 만들기: PRINCE 사례로 보는 컨텍스트·하니스 엔지니어링"
 date: 2026-06-19
-categories: Articles
+categories: [Articles, AI-Engineering]
 tags: [articles, ai, llm, rag, architecture]
 published: true
 excerpt: "Martin Fowler 사이트에 실린 Thoughtworks의 PRINCE 사례 연구를 읽고, 프로덕션 agentic AI의 신뢰성을 만드는 두 축 — context engineering과 harness engineering — 을 개발자 관점에서 분석·정리한다."

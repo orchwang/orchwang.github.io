@@ -2,7 +2,7 @@
 layout: post
 title: "CLI 인증, 제대로 하는 법: 왜 기본값은 Device Flow여야 하는가"
 date: 2026-06-20
-categories: Articles
+categories: [Articles, Security]
 tags: [articles, oauth, cli, authentication, security, device-flow]
 published: true
 excerpt: "ABGEO의 'CLI Authentication, the Right Way'를 읽고, CLI 도구가 OAuth 인증으로 loopback flow 대신 Device Authorization Grant(RFC 8628)를 기본값으로 써야 하는 이유를 개발자 관점에서 분석·정리한다."

@@ -82,7 +82,13 @@ Developers who want to:
 │   ├── Language/English/        # categories: [Language, English]
 │   ├── Retrospec/               # categories: Retrospec (yearly retrospectives)
 │   ├── BookLog/                 # categories: BookLog (reading notes)
-│   ├── Articles/                # categories: Articles (external article analyses)
+│   ├── Articles/                # external article analyses (nested sub-categories)
+│   │   ├── AI-Engineering/          # categories: [Articles, AI-Engineering]
+│   │   ├── AI-Industry/            # categories: [Articles, AI-Industry]
+│   │   ├── AI-Essays/              # categories: [Articles, AI-Essays]
+│   │   ├── Security/               # categories: [Articles, Security]
+│   │   ├── Engineering-Culture/    # categories: [Articles, Engineering-Culture]
+│   │   └── Career-Life/            # categories: [Articles, Career-Life]
 │   └── (root)                   # Posts without categories
 ├── assets/                  # Static files
 │   ├── css/style.css        # Main stylesheet
@@ -156,9 +162,9 @@ The `_posts/` directory currently holds **74 published posts**. They fall into a
 
 ### Article Analysis Posts
 
-**Example:** `Articles/2026-06-19-the-founders-playbook.md`
+**Example:** `Articles/AI-Industry/2026-06-19-the-founders-playbook.md`
 
-**Purpose:** Analyse and introduce a single external article (one post per article). Single `Articles` category, no series. Managed by the **`article-manager` subagent**: given an article URL, it fetches the piece and writes a Korean analysis/intro post. Structure: 원문 정보 → TL;DR → 왜 골랐나 → 핵심 내용 → 분석과 인사이트 → 적용 포인트 → 더 읽어보기.
+**Purpose:** Analyse and introduce a single external article (one post per article). Nested `Articles` category — every post gets exactly one sub-category (`[Articles, <Sub>]`) and lives in the matching directory; no series, no banner. Managed by the **`article-manager` subagent**: given an article URL, it fetches the piece, classifies it into a sub-category (or recommends a new one when nothing fits), and writes a Korean analysis/intro post. Structure: 원문 정보 → TL;DR → 왜 골랐나 → 핵심 내용 → 분석과 인사이트 → 적용 포인트 → 더 읽어보기.
 
 ### Language Learning Posts
 
@@ -196,11 +202,22 @@ Top-level category for software-engineering fundamentals drawn from classic book
 
 `BookLog` — reading notes from books.
 
-### Articles (single)
+### Articles (nested)
 
-`Articles` — analyses and introductions of external articles (one post per article), curated via the **`article-manager` subagent**. No series, no banner; single `Articles` category in `_posts/Articles/`.
+`Articles` — analyses and introductions of external articles (one post per article), curated via the **`article-manager` subagent**. No series, no banner. Like `Technology`/`Engineering`, it is a **nested** category: every post is filed under exactly one sub-category and lives in the matching directory.
 
-**Adding a sub-category:** create the matching nested directory under `_posts/` (e.g. `_posts/Technology/Go/`) and use `categories: [Technology, Go]`.
+| Sub-category | 무엇을 담나 |
+| --- | --- |
+| `AI-Engineering` | AI·에이전트·코딩 에이전트를 **만들고 운영하는 실무** (아키텍처, 하니스, 컨텍스트 엔지니어링, agentic 시스템, 인프라) |
+| `AI-Industry` | AI가 바꾸는 **일·커리어·산업·비즈니스** (고용, 스타트업, 해자, 엔지니어의 가치) |
+| `AI-Essays` | AI 시대를 보는 **관점·담론·픽션·에세이** (본질, 사고법, 비평, 균형 감각) |
+| `Security` | **보안** (인증, 사회공학, 위협 모델, 방어) |
+| `Engineering-Culture` | 엔지니어링 **인물·역사·문화·다큐/인터뷰** |
+| `Career-Life` | **커리어·일상·소프트 스킬** (AI와 무관한 직장/삶) |
+
+The `article-manager` subagent files each new article into the best-fitting sub-category and, when an article clearly doesn't fit any existing one, **recommends a new sub-category** (English, hyphenated) for the user to confirm before creating it — keeping this table and the agent's taxonomy in sync.
+
+**Adding a sub-category:** create the matching nested directory under `_posts/` (e.g. `_posts/Technology/Go/` or `_posts/Articles/Data-Engineering/`) and use the nested form (`categories: [Technology, Go]` / `categories: [Articles, Data-Engineering]`).
 
 ---
 
@@ -535,7 +552,7 @@ make serve
 - **Language → English**: language-learning notes
 - **Retrospec**: yearly retrospectives
 - **BookLog**: book reading notes
-- **Articles**: external article analyses (one post per article, via `article-manager`)
+- **Articles** (nested: AI-Engineering, AI-Industry, AI-Essays, Security, Engineering-Culture, Career-Life): external article analyses (one post per article, via `article-manager`)
 
 ### Tags in Use (most common)
 
@@ -606,7 +623,7 @@ This guide reflects the project structure as of June 2026.
 - Category, tag, and series systems operational (with nested category support)
 - 74 published posts across Technology, Engineering, Career, Language, Retrospec, BookLog, Articles
 - Engineering Essentials: 5 `*-Essential` series complete (OO-Design, Architecture, Testing-Refactoring, Process, Craftsmanship) — 30 posts, all curricula at 100%
-- Articles category + `article-manager` subagent: one analysis/intro post per external article (13 posts so far — AI/engineering articles plus YouTube video summaries via yt-dlp transcript extraction)
+- Articles category + `article-manager` subagent: one analysis/intro post per external article (17 posts so far — AI/engineering articles plus YouTube video summaries via yt-dlp transcript extraction), now organized into 6 nested sub-categories (AI-Engineering, AI-Industry, AI-Essays, Security, Engineering-Culture, Career-Life); the subagent recommends a new sub-category when an article fits none
 - Mermaid diagram rendering and zoom enabled
 - Logo and branding applied
 - Search functionality working

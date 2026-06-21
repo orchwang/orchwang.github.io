@@ -2,7 +2,7 @@
 layout: post
 title: "코드가 공짜가 된 시대의 '취향(taste)': 30x AI 엔지니어가 되는 법 (Pratik Bhavsar)"
 date: 2026-06-19
-categories: Articles
+categories: [Articles, AI-Industry]
 tags: [articles, ai, career, craftsmanship]
 published: true
 excerpt: "Pratik Bhavsar의 'How to Be a 30x AI Engineer with a Taste'를 읽고, 코드 생성이 commodity가 된 시대에 '취향(taste = 내부 평가 함수의 품질)'이 왜 가장 값진 엔지니어링 기술이 되었는지, 그것을 어떻게 기르는지 개발자 관점에서 분석·정리한다."

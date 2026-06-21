@@ -2,7 +2,7 @@
 layout: post
 title: "Intent Debt: 에이전트가 대신 갚아줄 수 없는 단 하나의 부채 (Addy Osmani)"
 date: 2026-06-21
-categories: Articles
+categories: [Articles, AI-Engineering]
 tags: [articles, ai, technical-debt, agentic-engineering, documentation]
 published: true
 excerpt: "Addy Osmani의 'The Intent Debt'를 읽고, 기술 부채·인지 부채·의도 부채로 나누는 Triple Debt 모델과 '에이전트가 유일하게 대신 갚아줄 수 없는 부채는 의도 부채'라는 주장을 개발자 관점에서 분석·정리한다."

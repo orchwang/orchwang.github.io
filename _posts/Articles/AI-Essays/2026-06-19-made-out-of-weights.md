@@ -2,7 +2,7 @@
 layout: post
 title: "그것들은 가중치로 만들어졌다: Terry Bisson 패러디로 읽는 LLM의 본질과 의식 질문 (Max Leiter)"
 date: 2026-06-19
-categories: Articles
+categories: [Articles, AI-Essays]
 tags: [articles, ai, llm]
 published: true
 excerpt: "Max Leiter의 짧은 픽션 'They're Made Out of Weights'를 읽고, Terry Bisson의 SF 단편을 패러디한 이 대화가 LLM의 작동 원리(가중치·층·토큰 예측)와 기계 의식이라는 질문을 어떻게 던지는지 개발자 관점에서 분석·정리한다."

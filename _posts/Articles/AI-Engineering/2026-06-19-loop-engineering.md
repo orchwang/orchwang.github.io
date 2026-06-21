@@ -2,7 +2,7 @@
 layout: post
 title: "Loop Engineering: 에이전트를 프롬프트하는 대신 프롬프트하는 시스템을 설계하라 (Addy Osmani)"
 date: 2026-06-19
-categories: Articles
+categories: [Articles, AI-Engineering]
 tags: [articles, ai, coding-agent, llm]
 published: true
 excerpt: "Beyond Vibe Coding 저자 Addy Osmani가 쓴 'Loop Engineering'을 읽고, 에이전트를 직접 프롬프트하는 대신 에이전트를 프롬프트하는 루프를 설계한다는 전환과 그 다섯 구성 요소를 개발자 관점에서 분석·정리한다."

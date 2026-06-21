@@ -2,7 +2,7 @@
 layout: post
 title: "LLM이 써 줄 인시던트 리포트의 미래가 두렵다 (Lorin Hochstein)"
 date: 2026-06-19
-categories: Articles
+categories: [Articles, AI-Essays]
 tags: [articles, ai, incident-response, sre, writing]
 published: true
 excerpt: "Lorin Hochstein의 'I am dreading our LLM-written incident report future'를 읽고, LLM으로 리포트의 '재료를 모으는 일'과 리포트 자체를 '쓰는 일'을 가르는 결정적 차이, 그리고 '쓰기는 곧 사고하기'라는 명제를 개발자 관점에서 분석·정리한다."
