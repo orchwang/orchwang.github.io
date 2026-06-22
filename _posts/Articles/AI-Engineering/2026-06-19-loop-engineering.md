@@ -8,6 +8,57 @@ published: true
 excerpt: "Beyond Vibe Coding 저자 Addy Osmani가 쓴 'Loop Engineering'을 읽고, 에이전트를 직접 프롬프트하는 대신 에이전트를 프롬프트하는 루프를 설계한다는 전환과 그 다섯 구성 요소를 개발자 관점에서 분석·정리한다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="레버리지의 이동 그림: 예전에는 사람이 에이전트를 직접 프롬프트했지만, loop engineering에서는 사람이 루프를 설계하고 그 루프가 에이전트를 프롬프트한다. 다만 검증의 책임은 여전히 사람에게 남는다." viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg">
+  <title>Loop Engineering — 프롬프트하는 사람에서 루프를 설계하는 사람으로</title>
+  <!-- LEFT: before — human prompts the agent directly -->
+  <text x="120" y="38" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700" opacity="0.7">예전: 직접 프롬프트</text>
+  <!-- person (before) -->
+  <circle cx="60" cy="150" r="14" fill="none" stroke="currentColor" stroke-width="2.5"/>
+  <line x1="60" y1="164" x2="60" y2="200" stroke="currentColor" stroke-width="2.5"/>
+  <text x="60" y="222" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">사람</text>
+  <!-- arrow person -> agent -->
+  <line x1="84" y1="150" x2="150" y2="150" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#lh-arrow)"/>
+  <text x="117" y="138" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.8">프롬프트</text>
+  <!-- agent (before) -->
+  <rect x="158" y="132" width="52" height="36" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="184" y="155" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">에이전트</text>
+  <!-- divider -->
+  <line x1="262" y1="40" x2="262" y2="260" stroke="currentColor" stroke-width="1.5" opacity="0.3" stroke-dasharray="4 5"/>
+  <!-- RIGHT: after — human designs the loop, loop prompts the agent -->
+  <text x="448" y="38" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">지금: 루프를 설계</text>
+  <!-- person (after) — steps out, designs -->
+  <circle cx="318" cy="150" r="14" fill="none" stroke="currentColor" stroke-width="2.5"/>
+  <line x1="318" y1="164" x2="318" y2="200" stroke="currentColor" stroke-width="2.5"/>
+  <text x="318" y="222" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">사람</text>
+  <!-- arrow person -> designs loop -->
+  <line x1="342" y1="150" x2="386" y2="150" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#lh-arrow)"/>
+  <text x="364" y="138" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.8">설계</text>
+  <!-- the loop circle -->
+  <circle cx="468" cy="150" r="58" fill="none" stroke="var(--accent-color)" stroke-width="4"/>
+  <!-- arrowheads on the loop to show rotation -->
+  <path d="M468,92 l-9,-7 l3,11 z" fill="var(--accent-color)"/>
+  <path d="M468,208 l9,7 l-3,-11 z" fill="var(--accent-color)"/>
+  <text x="468" y="146" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">루프</text>
+  <text x="468" y="164" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.85">자율 사이클</text>
+  <!-- loop prompts the agent -->
+  <line x1="528" y1="150" x2="566" y2="150" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#lh-arrow)"/>
+  <text x="547" y="138" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.8">프롬프트</text>
+  <rect x="574" y="132" width="52" height="36" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="600" y="148" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">에이전트</text>
+  <text x="600" y="161" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">×N</text>
+  <!-- verification stays with the human (gold tether) -->
+  <path d="M318,200 C318,250 468,256 468,210" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-dasharray="3 4"/>
+  <text x="393" y="276" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">검증·책임은 사람에게 남는다</text>
+  <defs>
+    <marker id="lh-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>레버리지가 "에이전트를 직접 프롬프트하는 사람"에서 "에이전트를 프롬프트하는 루프를 설계하는 사람"으로 이동한다 — 단, 검증과 책임은 위임되지 않고 사람에게 남는다. 이 글의 핵심 전환.</figcaption>
+</figure>
+
 ## 원문 정보
 
 > - **제목**: Loop Engineering
@@ -20,6 +71,28 @@ excerpt: "Beyond Vibe Coding 저자 Addy Osmani가 쓴 'Loop Engineering'을 읽
 ## 한 줄 요약 (TL;DR)
 
 원문의 정의를 그대로 옮기면, "loop engineering이란 에이전트를 프롬프트하는 사람의 자리를 당신 스스로 대체하는 것이다. 대신 그 일을 하는 시스템을 설계한다"(*Loop engineering is replacing yourself as the person who prompts the agent. You design the system that does it instead.*). 즉 프롬프트를 한 번씩 던지는 일에서, 일을 스스로 발견하고 위임하고 검증하고 다음을 결정하는 **자율 루프를 설계하는 일**로 레버리지가 이동한다는 주장이다.
+
+### 한눈에 보기
+
+이 글의 척추는 하나의 사슬이다 — 레버리지가 *프롬프트하는 사람*에서 *루프를 설계하는 사람*으로 옮겨가고, 그 루프는 **다섯 부품 + 상태(state)** 로 구성되며, 한 사이클을 돌아 다음으로 이어진다. 다만 검증·이해·책임은 끝까지 사람의 몫으로 남고, 결국 loop engineering은 일을 줄이는 게 아니라 **레버리지의 지점을 옮기는 일**이다.
+
+```mermaid
+flowchart TD
+    A["레버리지의 이동<br/>프롬프트하는 사람 → 루프를 설계하는 사람"] --> B["루프를 이루는 다섯 부품"]
+    B --> B1["Automations<br/>(루프의 심장 박동)"]
+    B --> B2["Worktrees<br/>(병렬 격리)"]
+    B --> B3["Skills<br/>(지식 누적)"]
+    B --> B4["Plugins/Connectors<br/>(실제 도구에 닿음)"]
+    B --> B5["Sub-agents<br/>(생성·검증 분리)"]
+    B1 --> C["+ State(상태)로<br/>다음 사이클로 이어짐"]
+    B2 --> C
+    B3 --> C
+    B4 --> C
+    B5 --> C
+    C --> D["자율 루프가 한 사이클을 돈다<br/>(발견→위임→검증→다음 결정)"]
+    D --> E["루프가 대신 못 하는 것<br/>검증·이해·책임은 사람에게 (comprehension debt 경계)"]
+    E --> F["결론: 일을 줄이는 게 아니라<br/>레버리지의 지점을 옮기는 일"]
+```
 
 ## 왜 이 글을 골랐나
 
@@ -43,9 +116,65 @@ excerpt: "Beyond Vibe Coding 저자 Addy Osmani가 쓴 'Loop Engineering'을 읽
 
 여기에 더해 진행 상태를 markdown이나 Linear에 기록하는 **State(상태)** 가 루프를 다음 사이클로 이어준다.
 
+<figure class="post-figure">
+<svg role="img" aria-label="루프를 이루는 다섯 부품을 하나의 원형 루프로 배치한 그림: Automations(심장 박동), Worktrees(병렬 격리), Sub-agents(생성·검증 분리), Plugins/Connectors(실제 도구), Skills(지식 누적). 가운데 State(상태)가 한 사이클을 다음 사이클로 이어준다." viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg">
+  <title>루프를 이루는 다섯 부품 + State</title>
+  <!-- the loop ring -->
+  <circle cx="320" cy="200" r="130" fill="none" stroke="var(--accent-color)" stroke-width="3" opacity="0.55"/>
+  <!-- rotation arrowheads on the ring (clockwise) -->
+  <path d="M320,70 l9,-7 l-3,12 z" fill="var(--accent-color)" transform="rotate(72 320 200)"/>
+  <path d="M320,70 l9,-7 l-3,12 z" fill="var(--accent-color)" transform="rotate(216 320 200)"/>
+  <!-- center: State -->
+  <circle cx="320" cy="200" r="40" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="3"/>
+  <text x="320" y="196" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">State</text>
+  <text x="320" y="213" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.8">상태 기록</text>
+  <text x="320" y="226" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">→ 다음 사이클</text>
+  <!-- 5 nodes on the ring -->
+  <!-- node 1: Automations (top) -->
+  <circle cx="320" cy="70" r="26" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
+  <text x="320" y="68" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">Auto-</text>
+  <text x="320" y="81" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">mations</text>
+  <text x="320" y="34" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.8">루프의 심장 박동</text>
+  <!-- node 2: Worktrees (top-right) -->
+  <circle cx="444" cy="124" r="26" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
+  <text x="444" y="121" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">Work-</text>
+  <text x="444" y="134" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">trees</text>
+  <text x="498" y="98" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.8">병렬 격리</text>
+  <!-- node 3: Sub-agents (bottom-right) -->
+  <circle cx="444" cy="276" r="26" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
+  <text x="444" y="273" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">Sub-</text>
+  <text x="444" y="286" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">agents</text>
+  <text x="506" y="304" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.8">생성·검증 분리</text>
+  <!-- node 4: Plugins/Connectors (bottom-left) -->
+  <circle cx="196" cy="276" r="26" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
+  <text x="196" y="273" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">Plugins/</text>
+  <text x="196" y="286" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">Connectors</text>
+  <text x="138" y="304" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.8">실제 도구에 닿음</text>
+  <!-- node 5: Skills (top-left) -->
+  <circle cx="196" cy="124" r="26" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
+  <text x="196" y="128" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">Skills</text>
+  <text x="140" y="98" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.8">지식 누적</text>
+  <!-- caption strip inside frame: maker/checker note -->
+  <text x="320" y="392" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.75">다섯 부품이 한 바퀴를 돌고, State가 그 결과를 다음 바퀴로 넘긴다</text>
+</svg>
+<figcaption>루프를 이루는 다섯 부품(Automations · Worktrees · Skills · Plugins/Connectors · Sub-agents)이 하나의 원을 이루고, 가운데 State(상태)가 한 사이클의 결과를 다음 사이클로 이어준다 — Codex와 Claude Code가 이름만 다를 뿐 같은 능력을 구현한다.</figcaption>
+</figure>
+
 ### 하나의 루프가 도는 모습
 
 원문이 그리는 예시는 이렇다. 아침에 automation이 triage skill을 돌려 CI 실패·이슈·커밋을 읽고 발견 사항을 markdown 또는 Linear에 적는다. 격리된 worktree를 열어 한 sub-agent가 수정 초안을 만들고, 두 번째 sub-agent가 그것을 리뷰한다. connector가 PR을 열고 티켓을 갱신한다. state 파일이 진행 상황을 추적해 다음 사이클에 루프가 이어서 재개한다.
+
+```mermaid
+flowchart LR
+    A["아침 Automation<br/>스케줄에 따라 기상"] --> B["Triage Skill<br/>CI 실패·이슈·커밋을 읽음"]
+    B --> C["발견 사항을 기록<br/>(markdown / Linear)"]
+    C --> D["격리된 Worktree를 연다"]
+    D --> E["Sub-agent ①<br/>수정 초안 작성 (maker)"]
+    E --> F["Sub-agent ②<br/>리뷰 (checker)"]
+    F --> G["Connector<br/>PR 열기 · 티켓 갱신"]
+    G --> H["State 파일에<br/>진행 상황 기록"]
+    H -.->|다음 사이클로 재개| A
+```
 
 ### 루프가 *대신 해주지 않는* 것
 
