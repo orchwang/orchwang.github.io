@@ -99,27 +99,31 @@ flowchart TD
 
 ## 핵심 내용
 
-원문의 흐름을 따라 정리한다. (인용은 모두 원문 본문에 실재하는 문장을 옮긴 것이다.)
+원문의 흐름을 따라 정리한다. (남긴 영문 인용은 모두 원문 본문에 실재하는 문장을 옮긴 것이다.)
 
 ### 도입: "이상한 논법 묶음"을 의심하다
 
-저자는 AI 시대에 인간의 가치를 옹호하는 **"이상한 논법 묶음(a weird collection of arguments)"**을 먼저 도마에 올린다. 그 논법들은 모두 *능력 격차*에 기대고 있다 — AI는 어떤 일을 *"could never"*(절대 못 한다) 하거나, 사람이 *"better"*(더 잘한다), 혹은 사람 결과물에는 AI가 적어도 *"not consistently"*(일관되게는 아니다) 재현 못 하는 *"subtle stylistic reasons"*(미묘한 스타일적 이유)가 있다는 식이다.
+저자는 AI 시대에 인간의 가치를 옹호하려고 사람들이 들이미는 한 무더기의 논법부터 도마에 올린다. AI는 어떤 일은 결코 못 한다거나, 같은 일이라도 사람이 더 잘한다거나, 사람 손에서 나온 결과물에는 AI가 적어도 일관되게는 재현하지 못하는 미묘한 스타일적 차이가 있다는 식의 주장들이다. 저자가 보기에 이 논법들은 하나같이 *능력 격차*라는 같은 토대 위에 서 있고, 모델이 좋아질 때마다 방어선이 슬금슬금 뒤로 물러나는 골대 옮기기에 가깝다.
 
 ### 진단: 이 방어선은 조건부라서 위태롭다
 
-저자는 이 논법들이 결국 한 문장으로 환원된다고 본다 — *"Humans are valuable if they produce high-quality output."*(인간은 고품질 결과물을 낼 때 가치 있다.) 문제는 이 명제가 통째로 **"존재하지만 좁아지는 인간–AI 능력 격차(the existing-but-narrowing human-AI capability gap)"**에 의존한다는 점이다.
-
-그 격차는 *"certainly existed in the past (2023-era ChatGPT)"*(과거엔 분명히 있었고), 지금도 *"may still exist"*(아직 있을 수 있지만), 미래에도 버틸지는 *"I do not know"*(알 수 없다). 즉 이 방어선은 **시점 의존적인 스냅숏** 위에 서 있고, 기술이 바뀌면 함께 무너진다.
+이 논법들을 끝까지 밀어붙이면 결국 "인간은 고품질 결과물을 낼 때 가치 있다"는 한 문장으로 환원된다. 문제는 이 명제가 통째로 *존재하지만 좁아지고 있는* 인간–AI 능력 격차에 매달려 있다는 점이다. 그 격차는 2023년 무렵의 ChatGPT를 떠올리면 과거엔 분명히 있었고, 지금도 어느 정도 남아 있을 수 있지만, 미래에도 버틸지는 저자 스스로도 알 수 없다고 인정한다. 결국 이 방어선은 *지금 이 순간의 스냅숏* 위에 세워져 있어, 프런티어 모델이 한 칸 올라설 때마다 함께 흔들린다.
 
 ### 대안: "그냥 그렇게 말하면 된다"
 
-저자가 내미는 대안은 단순하다 — *"Humans are valuable."*(인간은 가치 있다.) 조건절이 없다. *"You can just say it... You do not need to qualify it."*(그냥 그렇게 말하면 된다… 단서를 붙일 필요가 없다.) 이 진술이 **robust(견고)**한 이유는, 벤치마크 점수나 프런티어 모델의 성능 같은 **외부 변수에 의존하지 않기** 때문이다. 능력 격차가 좁아지든 사라지든, 명제는 흔들리지 않는다.
+그래서 저자가 내미는 대안은 조건절을 통째로 떼어 버리는 것이다.
+
+> "Humans are valuable. You can just say it... You do not need to qualify it."
+
+인간은 가치 있다 — 그냥 그렇게 말하면 되고, 단서를 붙일 필요가 없다는 것이다. 이 진술이 견고한 이유는 역설적으로 *아무것에도 기대지 않기* 때문이다. 벤치마크 점수나 최신 프런티어 모델의 성능 같은 외부 변수와 무관하므로, 능력 격차가 좁아지든 아예 사라지든 명제 자체는 끄떡없다. 가치를 능력에 묶어 두는 한 그 가치는 늘 인질로 잡혀 있지만, 묶음을 풀면 비로소 안전해진다.
 
 ### 새 근거: 창작은 '의도를 형식으로 증류하는 것'
 
-그렇다면 인간 창작의 고유함은 어디서 오는가. 저자는 품질을 두 성분으로 나눈다 — **의도(intent)**와 **물질적 형식(material form)**. 핵심 문장은 이것이다 — *"Creation is the distillation of intent into form."*(창작이란 의도를 형식으로 증류하는 것이다.)
+그렇다면 인간 창작의 고유함은 대체 어디서 오는가. 저자는 결과물을 *의도(intent)*와 *물질적 형식(material form)*이라는 두 성분으로 나눈 뒤, 창작을 이렇게 정의한다.
 
-인간은 보통 이 증류에 공을 들인다 — *"A human iteratively (sometimes painstakingly) shapes and reshapes their creation until it sufficiently matches what's in their mind's eye."*(인간은 마음속 그림에 충분히 맞을 때까지 반복적으로, 때로는 고통스럽게 작품을 빚고 또 빚는다.) 반면 생성형 AI는 **"최소한의 의도로 상당한 형식(substantial form with minimally applied intent)"**을 만들어낸다.
+> "Creation is the distillation of intent into form."
+
+창작이란 머릿속의 의도를 형식으로 증류해 내는 일이라는 것이다. 인간은 보통 이 증류에 공을 들인다. 마음속 그림에 충분히 들어맞을 때까지 반복적으로, 때로는 고통스럽게 작품을 빚고 또 고쳐 빚는다. 그렇게 다듬는 동안 의도는 형식 곳곳에 스며들어, 완성된 형식 너머로 비쳐 보인다. 반면 생성형 AI는 *최소한의 의도만으로도 상당한 형식*을 만들어낸다 — 형식의 부피는 비슷하지만 그 뒤에 깔린 의도의 밀도는 비교가 되지 않는다.
 
 <figure class="post-figure">
 <svg role="img" aria-label="'의도→형식' 증류 파이프라인 두 줄의 대비. 위쪽(인간): 꽉 찬 의도 덩어리가 '반복' 화살표 고리를 여러 번 돌며 정밀하게 다듬어져 형식으로 증류된다 — 형식 뒤에 의도가 빽빽하다. 아래쪽(AI): 거의 빈 의도에서 화살표 하나로 곧장 풍성한 형식이 쏟아진다 — 같은 크기의 형식이지만 뒤에 깔린 의도는 희박하다." viewBox="0 0 640 330" xmlns="http://www.w3.org/2000/svg">
@@ -199,13 +203,21 @@ flowchart TD
 
 ### 재정의: 'AI slop'은 품질이 아니라 의도의 문제
 
-여기서 저자는 'AI slop'이라는 말을 다시 푼다. slop이 거슬리는 진짜 이유는 품질이 낮아서가 아니라, **"형식 뒤의 의도를 알아보기 어렵기(it's difficult to identify the intent behind the form)"** 때문이다. 사람도 slop을 만든다 — AI는 다만 **"의도 없는 형식을 만드는 진입 장벽을 낮췄을(lowered the entry barrier for creating intentless form)"** 뿐이다.
+이 렌즈를 손에 쥐면 'AI slop'이라는 말도 새로 풀린다. slop이 거슬리는 진짜 이유는 품질이 낮아서가 아니라, 형식 뒤의 의도를 도무지 알아보기 어렵기 때문이라는 것이다. 사람 역시 얼마든지 slop을 만든다. AI가 한 일은 *의도 없는 형식*을 찍어내는 진입 장벽을 한껏 낮춘 것뿐이다.
 
-저자가 든 예가 신랄하다 — *"If you're going to use an LLM to write me an email, I'd much rather you just send me the prompt; at least then I'd have an idea of what you actually meant to say."*(LLM으로 내게 이메일을 쓸 거라면, 차라리 그 프롬프트를 보내달라. 그래야 적어도 네가 진짜 무슨 말을 하려 했는지 알 수 있으니까.) 사직서를 별 고민 없이 AI에게 시켜 받은 뒤 그대로 내는 상황도 같은 맥락이다 — 형식은 있지만 그 안에 분간 가능한 의도가 없다.
+저자가 인용한 예가 신랄하다.
+
+> "If you're going to use an LLM to write me an email, I'd much rather you just send me the prompt; at least then I'd have an idea of what you actually meant to say."
+
+LLM으로 이메일을 써 보낼 거라면 차라리 그 프롬프트를 보내라 — 그래야 적어도 상대가 진짜 무슨 말을 하려 했는지 알 수 있다는 것이다. 사직서를 별 고민 없이 AI에 맡겨 받은 그대로 제출하는 장면도 같은 맥락이다. 형식은 멀쩡히 갖춰져 있지만, 그 안에서 분간할 만한 의도는 사라지고 없다.
 
 ### 결론: 생성형 AI의 병리
 
-저자는 이렇게 닫는다 — *"The pathology of generative AI is that it too easily allows substantial form without discernible intent. That mistake is harder to make when creating by hand."*(생성형 AI의 병리는, 분간 가능한 의도 없이도 상당한 형식을 너무 쉽게 허락한다는 것이다. 손으로 직접 만들 때는 그런 실수를 저지르기가 더 어렵다.)
+그래서 저자는 이렇게 글을 닫는다.
+
+> "The pathology of generative AI is that it too easily allows substantial form without discernible intent. That mistake is harder to make when creating by hand."
+
+생성형 AI의 병리는 분간 가능한 의도 없이도 상당한 형식을 너무 쉽게 허락한다는 데 있고, 손으로 직접 만들 때는 그런 실수를 저지르기가 훨씬 어렵다는 것이다. 형식과 의도가 한 몸으로 굳던 손작업과 달리, 생성형 AI는 둘을 손쉽게 떼어 놓을 수 있게 만들었다는 진단이다.
 
 ## 분석과 인사이트
 
