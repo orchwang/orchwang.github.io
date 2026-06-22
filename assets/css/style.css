@@ -3526,6 +3526,81 @@ mark {
     animation: zoomPulse 0.6s ease-out;
 }
 
+/* ============================================================
+   POST FIGURE — in-body illustration frame (hand-authored inline SVG)
+   ------------------------------------------------------------
+   The companion to Mermaid for *drawn* explainers: the post-illustrator
+   subagent emits hand-authored inline SVG wrapped in
+     <figure class="post-figure"> <svg…> <figcaption>…</figcaption> </figure>
+   (header variant adds .post-figure--header). It lives INSIDE .post-content.
+
+   Why an OPAQUE war-scroll panel (not transparent art): per DESIGN.md §9,
+   environment/illustration art must never sit *under* reading text. By
+   painting the figure on an opaque --bg-panel plate (the same reading
+   surface the post body floats on) it reads as CONTENT — a framed scroll
+   diagram — not as imagery bleeding behind prose. Same easing as the
+   reading plate (.post / .post-summary-box): bone --bg-panel fill,
+   mid-bronze --border-color frame, soft offset+blur shadow — calm, not
+   the hard charred chrome frame.
+
+   The SVG uses currentColor + var(--…) tokens for its strokes/fills, so
+   the figure sets a legible reading ink (--text-color) as its inherited
+   `color`; currentColor then resolves to high-contrast ink in BOTH themes
+   (13.7:1 light / 12.6:1 dark on --bg-panel). No raw hex; no motion. */
+.post-figure {
+    /* opaque reading-surface plate — reads as content, not imagery-under-text */
+    background: var(--bg-panel);
+    color: var(--text-color);          /* currentColor in the SVG = legible ink, both themes */
+    border: 2px solid var(--border-color);   /* mid-bronze reading frame (not charred chrome) */
+    border-radius: var(--radius);
+    box-shadow: 2px 3px 8px rgba(0,0,0,0.18); /* soft offset+blur, matches .post reading plate */
+    max-width: 100%;
+    margin: 2rem auto;                 /* centered in the 800px reading column */
+    padding: 1.5em 1.5em 1.25em;
+}
+
+.post-figure svg,
+.post-figure img {
+    /* full illustration, shown whole (never cropped): scale to the reading
+       width, keep natural aspect — for both hand-authored SVG and raster art */
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: calc(var(--radius) - 2px);
+}
+
+.post-figure figcaption {
+    /* Pretendard (Korean → never a pixel font, §9), muted, centered, AA in both themes */
+    font-family: var(--font-body);
+    font-size: 0.82em;
+    line-height: 1.6;
+    color: var(--text-light);          /* 6.0:1 light / 6.7:1 dark on --bg-panel */
+    text-align: center;
+    word-break: keep-all;
+    word-wrap: break-word;
+    margin-top: 0.75rem;
+}
+
+/* Header variant — first thing in the post body: full reading width, no top
+   margin, a touch more padding so it carries the opening with calm presence. */
+.post-figure--header {
+    margin-top: 0;
+    margin-bottom: 2.5rem;
+    padding: 1.75em 1.5em 1.5em;
+}
+
+@media (max-width: 768px) {
+    .post-figure {
+        margin: 1.5rem auto;
+        padding: 1.25em 1.15em 1em;
+    }
+    .post-figure--header {
+        margin-top: 0;
+        margin-bottom: 2rem;
+    }
+}
+
 /* Post Summary Box — quest briefing scroll */
 .post-summary-box {
     background: var(--bg-light);

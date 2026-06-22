@@ -402,6 +402,27 @@ crispEdges`, steel + brass-edge + crimson-rune; `gorehowl.svg`/`axe-bullet.svg` 
   (to day); ≥ 44px, visible focus, `aria-pressed`.
 - **Mermaid** — theme-aware container (zoom/pan + `zoomPulse`); frame matches panel
   recipe (see `MERMAID_USAGE.md`).
+- **`.post-figure` (+ `.post-figure--header`)** — **in-body illustration frame** for
+  hand-authored inline SVG (the `post-illustrator` subagent's companion to Mermaid: a
+  header illustration + explanatory concept drawings). Contract:
+  `<figure class="post-figure"><svg role="img" aria-label="…" viewBox="…">…</svg>
+  <figcaption>…</figcaption></figure>`; the header variant adds `--header`. Lives **inside
+  `.post-content`**. Rendered as an **opaque war-scroll panel** (`--bg-panel` fill,
+  mid-bronze `--border-color` frame, soft `2px 3px 8px rgba(0,0,0,.18)` offset+blur shadow
+  — the *reading-surface* easing of `.post` / `.post-summary-box`, not the hard charred
+  chrome frame), centered in the 800px reading column with ~2rem vertical margin. **Opaque
+  panel = content, not imagery-under-text** — the §9 contract bans illustration/environment
+  art *under* reading prose, so this paints the drawing onto the same opaque reading plate
+  the body floats on, where it reads as a framed scroll diagram rather than a background.
+  The SVG is `display:block; max-width:100%; height:auto; margin:0 auto` and colors itself
+  with `currentColor` + `var(--…)` tokens; the figure sets `color: var(--text-color)` so
+  `currentColor` resolves to legible ink in **both** themes (≈ 13.7:1 light / 12.6:1 dark
+  on `--bg-panel`). The `<figcaption>` is **Pretendard** (Korean → never a pixel font, §9),
+  small, muted `--text-light`, centered, `word-break: keep-all` — AA in both themes
+  (≈ 6.0:1 light / 6.7:1 dark on `--bg-panel`; never small gold-on-bone). `--header` is the
+  top-of-post variant: full reading width, top margin 0 (first thing in the body), a touch
+  more padding/presence — tasteful chrome, not loud. Token-only (no new hex); no motion, so
+  no `prefers-reduced-motion` guard needed.
 - **TOC** (`toc.js`), **mobile hamburger** (`mobile-menu.js`), **search** (`search.js`)
   — unchanged behavior, re-skinned to the pixel frame. Search's **empty state** carries
   tavern flavor (see *Empty search* above).
