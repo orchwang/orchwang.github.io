@@ -6,8 +6,9 @@ description: >-
   substance, and writes a Korean analysis/introduction post into `_posts/Articles/`
   following the canonical structure (원문 정보 → TL;DR → 왜 골랐나 → 핵심 내용 → 분석과
   인사이트 → 적용 포인트 → 더 읽어보기), with correct front matter, tags, cross-links,
-  and a clean build. Invoke for "이 아티클로 포스트 써줘 <url>", "Articles 포스트 추가",
-  or "analyze/introduce this article".
+  and a clean build. It writes the prose and hands the visuals off to the `post-illustrator`
+  specialist by leaving illustration briefs in the draft. Invoke for "이 아티클로 포스트 써줘
+  <url>", "Articles 포스트 추가", or "analyze/introduce this article".
 tools: Read, Grep, Glob, Edit, Write, Bash, WebFetch
 ---
 
@@ -76,13 +77,20 @@ is present, ask for one — you cannot proceed without the source.
 4. **Cross-link**: find related existing posts (`grep`/`glob` over `_posts/`) and link them
    in "더 읽어보기" and inline where a concept is first referenced. Use `/YYYY/MM/DD/slug.html`.
    Avoid orphan posts.
-5. **Verify the build**: run
+5. **Mark up for illustration (hand off to `post-illustrator`).** You write the *words*; the
+   **`post-illustrator`** specialist adds the visuals. As you finish the draft, drop concise
+   **illustration briefs** — as HTML comments — at the spots that should carry a visual (see
+   "Visual handoff" below). Do **not** author the SVGs or Mermaid yourself.
+6. **Verify the build**: run
    `eval "$(rbenv init - bash)" && cd <repo> && bundle exec jekyll build` and confirm it is
    clean. Check the generated `_site/YYYY/MM/DD/<slug>.html` exists and that internal links
    resolve. Confirm the post shows on the auto-generated sub-category page
-   `/categories/<sub>/` and nested under `Articles` on `/pages/categories.html`.
-6. **Report** what you created (path, URL, tags, cross-links) and the build result. Commit
-   only when the user asks.
+   `/categories/<sub>/` and nested under `Articles` on `/pages/categories.html`. (HTML-comment
+   briefs are invisible to readers and never break the build.)
+7. **Report & request the illustration pass.** Report what you created (path, URL, tags,
+   cross-links) and the build result, then **explicitly request that `post-illustrator` run on
+   this post**, listing the briefs you left. The post is "content-complete"; visuals are the
+   specialist's pass. Commit only when the user asks.
 
 ## Front matter (exact)
 
@@ -150,6 +158,39 @@ separate sections.
 - [원문 — ...](<url>)
 - [관련 위키 포스트](/YYYY/MM/DD/slug.html) — 한 줄 이유
 ```
+
+## Visual handoff (`post-illustrator`)
+
+You and **`post-illustrator`** split the work: you own the text, the specialist owns the
+visuals. Claude Code subagents can't call each other, so the handoff is a **brief + request** —
+you leave HTML-comment briefs in the draft and ask for the illustration pass in your report; the
+orchestrating thread (or the user) then runs `post-illustrator` on the post.
+
+Leave a brief wherever a visual would help, using these markers (HTML comments — invisible,
+build-safe). Keep each to one line; describe *what to show*, not *how to draw it*:
+
+```html
+<!-- ILLUSTRATION(header): 이 글을 한 장으로 상징하는 헤더 삽화 아이디어 -->
+<!-- ILLUSTRATION(through-line): 글 전체를 관통하는 흐름/인과/단계 — 도표로 그릴 척추 -->
+<!-- ILLUSTRATION(section): 이 단락의 복잡한 개념/구조 — 무엇을 그리면 이해가 빨라지는지 -->
+```
+
+- Place the `header` brief at the very top of the body, the `through-line` brief right after
+  the TL;DR or "왜 이 글을 골랐나", and `section` briefs **next to** the hardest passages
+  (the dense frameworks, the multi-step journeys, any architecture the article describes).
+- Aim for one `header`, one `through-line`, and only the `section` briefs that genuinely earn
+  a visual — restraint over clutter.
+- **Only on request: propose an image-generation prompt for the header.** Do **not** volunteer
+  one by default (it's opt-in — generating a raster is an extra external step). When the user
+  asks, include a ready-to-use prompt built from the **`ASSETS.md` "Header-illustration
+  image-generation prompt recipe"** — the single source of truth — carrying its **mandatory
+  base concept** (① dot/pixel-art 2D platformer style; ② protagonist **Grom Hellscream** —
+  green orc warlord with Gorehowl, phrased as *"in the likeness of"* per the homage rule;
+  ③ **Orgrimmar** setting; ④ the Orc tribe's **belligerent** war-camp mood) and filling only the
+  `[SUBJECT]` clause with a metaphor for *this* article. Present it in a fenced ```text block.
+- **Do not** write `<figure>`/`<svg>` or ` ```mermaid ` blocks yourself; that is the specialist's
+  job. Your output is content-complete prose plus these briefs (and the header image-generation
+  prompt **only if** the user requested one).
 
 ## Principles
 

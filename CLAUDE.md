@@ -164,13 +164,25 @@ The `_posts/` directory currently holds **74 published posts**. They fall into a
 
 **Example:** `Articles/AI-Industry/2026-06-19-the-founders-playbook.md`
 
-**Purpose:** Analyse and introduce a single external article (one post per article). Nested `Articles` category — every post gets exactly one sub-category (`[Articles, <Sub>]`) and lives in the matching directory; no series, no banner. Managed by the **`article-manager` subagent**: given an article URL, it fetches the piece, classifies it into a sub-category (or recommends a new one when nothing fits), and writes a Korean analysis/intro post. Structure: 원문 정보 → TL;DR → 왜 골랐나 → 핵심 내용 → 분석과 인사이트 → 적용 포인트 → 더 읽어보기.
+**Purpose:** Analyse and introduce a single external article (one post per article). Nested `Articles` category — every post gets exactly one sub-category (`[Articles, <Sub>]`) and lives in the matching directory; no series, no banner. Managed by the **`article-manager` subagent**: given an article URL, it fetches the piece, classifies it into a sub-category (or recommends a new one when nothing fits), and writes a Korean analysis/intro post. Structure: 원문 정보 → TL;DR → 왜 골랐나 → 핵심 내용 → 분석과 인사이트 → 적용 포인트 → 더 읽어보기. `article-manager` writes the *prose* and leaves `<!-- ILLUSTRATION(…) -->` briefs, then hands the **visuals** off to the **`post-illustrator` subagent** (see below).
 
 ### Language Learning Posts
 
 **Examples:** `Language/English/2026-01-03-reading-and-writing-in-english.md`, `Language/English/2026-01-03-how-to-read-technical-documentation.md`
 
 **Purpose:** Notes on language learning (English), in the `Learning-English` series.
+
+### Post Visuals — Illustrations & Charts (`post-illustrator`)
+
+Not a post type, but a **visual pass** any post can receive. The **`post-illustrator` subagent**
+reads a finished/drafted post and adds visual aids that earn their place:
+
+- **Header illustration** — a hand-authored **inline SVG** at the top of the body (theme-aware via `currentColor` / `var(--…)` tokens), wrapped as `<figure class="post-figure post-figure--header">`. **On request** (opt-in, not automatic — it adds an external generation step), it can **propose an image-generation prompt** for a richer raster header (the user generates it externally, then it's wired as a **full `.post-figure` illustration** — shown whole, never a cropped banner). The prompt's **mandatory base concept** — dot/pixel-art platformer style · **Grom Hellscream** protagonist · **Orgrimmar** · Orc-tribe belligerence — and the full skeleton live in `ASSETS.md` ("Header-illustration image-generation prompt recipe"), the single source of truth shared by `post-illustrator` and `article-manager`.
+- **Through-line chart** — one Mermaid diagram capturing the post's spine (the journey / causal chain / layered model), placed near the top or in a "한눈에 보기" subsection.
+- **Explanatory illustrations** — inline-SVG concept drawings for the 1–3 hardest passages.
+- **Architecture/structure diagrams** — Mermaid (`flowchart`, `sequenceDiagram`, `classDiagram`, `erDiagram`, `stateDiagram-v2`) for any system/flow/data-model the post describes.
+
+It obeys `DESIGN.md` (no imagery behind reading text — figures sit on opaque `--bg-panel` panels; no hardcoded colors; readable in both themes; Mermaid uses the default theme + the `--mermaid-line` token like the existing 39 posts). Illustrations use the `.post-figure` figure component (owned by **`design-curator`**). It is **additive** — it never rewrites prose. Invoke with "이 포스트에 삽화/도표 넣어줘", "illustrate this post", or run it as the illustration pass after `article-manager` (which leaves `<!-- ILLUSTRATION(…) -->` briefs for it to fulfil).
 
 ---
 
