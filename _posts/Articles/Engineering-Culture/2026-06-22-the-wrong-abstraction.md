@@ -201,6 +201,11 @@ flowchart TD
 
 이 에세이는 한 문장으로 요약된다 — **"중복은 잘못된 추상화보다 싸다."** 우리가 신입 때 배운 "중복은 악"이라는 교리에 정면으로 단서를 다는 말이다. DRY는 여전히 옳지만, 그것을 지키려고 만든 추상화가 누더기가 됐다면, **틀렸음을 인정하고 풀어 헤치는 것**이야말로 좋은 설계자의 규율이다. 코드는 한 번 정하면 끝나는 게 아니라 계속 자라며 진실이 드러나고, 그 새 진실 앞에서 어제의 경계선을 지울 수 있는 용기가 — 결국 — 설계의 일부다.
 
+저자도 이 글을 행동을 촉구하는 한마디로 맺는다.
+
+> *"Advance in a better direction. Do it. You'll improve your own life, and the lives of all who follow."*
+> ("더 나은 방향으로 나아가라. 실행하라. 당신 자신의 삶과, 당신을 뒤따를 모든 이의 삶이 나아질 것이다.")
+
 ### 더 읽어보기
 
 - [원문 — The Wrong Abstraction (Sandi Metz, sandimetz.com)](https://sandimetz.com/blog/2016/1/20/the-wrong-abstraction)
