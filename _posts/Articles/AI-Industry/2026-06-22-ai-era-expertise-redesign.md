@@ -6,7 +6,54 @@ categories: [Articles, AI-Industry]
 tags: [articles, ai, llm, career, technical-debt]
 published: true
 excerpt: "하용호의 인프런 밋업 발표자료 'AI시대, 나의 전문성을 재설계하는 법'(슬라이드 165장)을 정리·분석한다. 회사의 AX 5단계, 기술·인지·의도 3대 부채, 생산에서 검증으로 옮겨가는 일의 무게중심, 그리고 '스킬 숙련자에서 운영 책임자로'라는 전문가의 재정의를 다룬다."
+image: /assets/images/articles/ai-era-expertise-redesign-og.jpg
 ---
+
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="AI 전환의 J-curve 지도: 환호로 출발해 검증 비용과 3대 부채의 구덩이를 지나 검증 중심의 전문가로 이륙하는 곡선" viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg">
+  <title>AX J-curve와 전문성 재설계의 지도</title>
+  <!-- baseline -->
+  <line x1="40" y1="250" x2="600" y2="250" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+  <!-- the J-curve path: 환호(높음) → 구덩이(검증 비용) → 이륙 -->
+  <path d="M56,120 C120,90 150,150 200,210 C240,255 320,262 400,212 C470,170 540,96 596,60"
+        fill="none" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round"/>
+  <!-- start node: 환호 -->
+  <circle cx="56" cy="120" r="9" fill="var(--secondary-color)" stroke="currentColor" stroke-width="1.5"/>
+  <text x="56" y="104" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">환호</text>
+  <!-- the pit: 검증 비용 / 3대 부채 -->
+  <text x="300" y="288" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">검증 비용 · 3대 부채</text>
+  <!-- three debt markers descending into the pit -->
+  <g font-size="11" fill="currentColor" text-anchor="middle">
+    <circle cx="232" cy="234" r="6" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+    <text x="232" y="218" font-size="11">기술</text>
+    <circle cx="300" cy="250" r="6" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+    <text x="300" y="234" font-size="11">인지</text>
+    <circle cx="368" cy="234" r="6" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+    <text x="368" y="218" font-size="11">의도</text>
+  </g>
+  <!-- verification gate before takeoff -->
+  <g stroke="var(--gold)" stroke-width="3" fill="none">
+    <line x1="468" y1="116" x2="468" y2="178"/>
+    <line x1="492" y1="100" x2="492" y2="166"/>
+  </g>
+  <text x="480" y="92" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">검증 레이어</text>
+  <!-- takeoff node: 운영 책임자 -->
+  <circle cx="596" cy="60" r="10" fill="var(--accent-color)" stroke="currentColor" stroke-width="1.5"/>
+  <text x="588" y="44" text-anchor="end" font-size="13" fill="currentColor" font-weight="700">운영 책임자</text>
+  <!-- axis hint -->
+  <text x="40" y="245" text-anchor="start" font-size="10" fill="currentColor" opacity="0.6">생산</text>
+  <text x="600" y="245" text-anchor="end" font-size="10" fill="currentColor" opacity="0.6">검증</text>
+</svg>
+<figcaption>AI 전환(AX)은 환호로 출발해 검증 비용과 기술·인지·의도 3대 부채의 구덩이를 지나며, 검증 레이어를 쌓아 건넌 사람이 "운영 책임자"로 이륙한다 — 이 글의 지도.</figcaption>
+</figure>
+
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/articles/ai-era-expertise-redesign-640.webp 640w, /assets/images/articles/ai-era-expertise-redesign-1024.webp 1024w, /assets/images/articles/ai-era-expertise-redesign-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/articles/ai-era-expertise-redesign.jpg" alt="도트 플랫포머 풍으로 그린 그롬 헬스크림 — AX의 J-curve 구덩이를 뛰어넘어 검증의 관문을 지나 오그리마의 지휘대에 오르는 오크 워로드" width="1717" height="916" loading="lazy" decoding="async">
+</picture>
+<figcaption>도트 플랫포머 풍으로 그린 이 글의 한 장면 — 그롬 헬스크림이 AX의 구덩이를 넘어 "생산의 전사에서 검증의 운영 책임자로".</figcaption>
+</figure>
 
 ## 원문 정보
 
@@ -21,6 +68,25 @@ excerpt: "하용호의 인프런 밋업 발표자료 'AI시대, 나의 전문성
 ## 한 줄 요약 (TL;DR)
 
 AI 전환(AX)은 회사를 곧장 빠르게 만들지 않고 **검증 비용(Verification Tax)과 3대 부채(기술·인지·의도)**라는 구덩이를 지나게 하며, 그 구덩이를 건너고 나면 사람의 일은 *생산*에서 *검증*으로 옮겨간다. 그래서 살아남는 전문가는 "스킬의 숙련자"가 아니라 **"자신의 도메인 AI를 만들고 운영하며, 옳은 가치 판단·지지받는 취향·납득되는 책임을 지는 운영 책임자"**다.
+
+### 한눈에 보기
+
+발표 전체를 관통하는 인과 사슬은 하나다 — 회사의 AX 5단계가 J-curve의 구덩이를 만들고, 그 구덩이의 정체가 3대 부채이며, 부채는 검증 레이어로 풀리고, 그 결과 일의 무게중심과 전문가의 정의가 바뀐다.
+
+```mermaid
+flowchart TD
+    A["회사의 AX 5단계<br/>(환호→정체→신남→의구심→재설계)"] --> B["AI J-curve Trap<br/>검증 비용(Verification Tax)"]
+    B --> C["3대 부채로 정체"]
+    C --> C1["기술부채<br/>국소 최적화, 전역 무지"]
+    C --> C2["인지부채<br/>있는데 이해 못 함"]
+    C --> C3["의도부채<br/>존재조차 안 함"]
+    C1 --> D["해법: 일의 무게중심을<br/>생산 → 검증으로"]
+    C2 --> D
+    C3 --> D
+    D --> E["검증 레이어 3종 + 암묵지 박제"]
+    E --> F["전문가의 재정의<br/>스킬 숙련자 → 운영 책임자"]
+    F --> G["옳은 가치 판단 ·<br/>지지받는 취향 · 납득되는 책임"]
+```
 
 ## 왜 이 글을 골랐나
 
@@ -56,11 +122,91 @@ AI 전환(AX)은 회사를 곧장 빠르게 만들지 않고 **검증 비용(Ver
 - **인지부채(Cognitive debt)**: "팀이 지금 시스템을 얼마나 함께 이해하고 있는가." 과거엔 본인 손으로 절차적으로 만들어 맥락 파악이 자연스럽게 일어났지만, 이제 결과가 "와르륵" 나오면서 **파악은 의도적으로 따로 해야 하는 일**이 됐다. 그런데 회사는 그 시간을 확보해 주지 않는다. 그래서 **인지적 항복(cognitive surrender)**이 일어난다 — 결론 부분만 보고 전체 검토는 포기, 그대로 다음 사람에게 넘기고 다음 사람도 반복. Karpathy의 "thinking은 아웃소스해도 understanding은 못 한다"를 인용하며, 사람들이 understanding까지 항복해 버린다고 지적한다. 발표자가 받은 실제 사례: AI가 "뉴스 트래픽 증가 없음"이라 보고했지만, AI 기준 평균에선 급증이 아니어도 **이 회사 도메인에선 20~30% 증가가 매우 큰 유입**이었다. 인지부채는 특히 복잡한 **장애 상황**에서 대형사고로 이어진다 — AI가 내놓은 대안들의 맥락을 사람이 못 읽으면 무엇이 옳은지 판단할 수 없기 때문이다.
 - **의도부채(Intent debt)**: "왜 이 상품은 24시간 유지해야 하나", "이 시간 제한이 왜 5초인가", "왜 A 고객사는 매출을 절반만 잡나" — "그거 아는 분 퇴사하셨는데요." 산출물도 있고 시스템도 도는데 **당시의 의도가 휘발**된 상태. 인지부채는 "있는데 이해 못 한 것", 의도부채는 "존재조차 안 하는 것". 예전엔 팀이 회의·메시지·코멘트로 맥락을 타인의 머릿속에 백업했지만, AX로 1인+에이전트 작업이 늘며 의도가 **"휘발될 프롬프트"에만** 남는다. 의도부채 관리 체계 없이 선제 해고했던 회사들(**Google, Salesforce, Duolingo, Klarna, CNET**)이 더 높은 연봉에 재채용한 사례를 들며, **"아직까지는 사람 머리가 암묵지의 제일 좋은 저장장치였다"**고 정리한다.
 
+<figure class="post-figure">
+<svg role="img" aria-label="3대 부채가 기술에서 인지, 의도로 갈수록 깊어지는 모델: 기술부채는 코드, 인지부채는 있는데 이해 못 함, 의도부채는 존재조차 안 함" viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg">
+  <title>AI 시대의 3대 부채 — 갈수록 깊어지는 부채</title>
+  <!-- depth axis label -->
+  <text x="20" y="40" font-size="12" fill="currentColor" opacity="0.7" font-weight="700">얕음</text>
+  <text x="20" y="296" font-size="12" fill="currentColor" opacity="0.7" font-weight="700">깊음</text>
+  <line x1="44" y1="52" x2="44" y2="284" stroke="currentColor" stroke-width="1.5" opacity="0.4" marker-end="none"/>
+  <polygon points="44,290 40,278 48,278" fill="currentColor" opacity="0.4"/>
+  <!-- tier 1: 기술부채 -->
+  <rect x="80" y="48" width="540" height="68" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
+  <text x="96" y="76" font-size="15" fill="currentColor" font-weight="700">기술부채</text>
+  <text x="96" y="98" font-size="12.5" fill="currentColor">국소 최적화, 전역 무지 — 그럴싸한 코드가 운영에서 깨진다</text>
+  <!-- tier 2: 인지부채 -->
+  <rect x="80" y="126" width="540" height="68" rx="3" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2.5"/>
+  <text x="96" y="154" font-size="15" fill="currentColor" font-weight="700">인지부채</text>
+  <text x="96" y="176" font-size="12.5" fill="currentColor">"<tspan font-weight="700">있는데 이해 못 함</tspan>" — 결론만 보고 검토를 항복(cognitive surrender)</text>
+  <!-- tier 3: 의도부채 -->
+  <rect x="80" y="204" width="540" height="68" rx="3" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="3"/>
+  <text x="96" y="232" font-size="15" fill="currentColor" font-weight="700">의도부채</text>
+  <text x="96" y="254" font-size="12.5" fill="currentColor">"<tspan font-weight="700">존재조차 안 함</tspan>" — 왜 그랬는지가 휘발("그분 퇴사하셨는데요")</text>
+  <!-- deepening arrow on the right edge -->
+  <line x1="636" y1="60" x2="636" y2="262" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <polygon points="636,270 631,256 641,256" fill="var(--accent-color)"/>
+</svg>
+<figcaption>기술 → 인지 → 의도로 갈수록 부채는 깊어진다. 인지부채는 "있는데 이해 못 한 것", 의도부채는 "존재조차 안 하는 것" — 검증·리뷰로는 의도부채를 잡지 못하는 이유다.</figcaption>
+</figure>
+
 ### 일의 무게중심: 생산 → 검증
 
 부채는 하나씩이 아니라 복합적으로 풀린다. 그 흐름은 **사람의 역할 변화 + 시스템**이다. 과거 회사원은 "생산+검증"을 했지만, 미래 회사원은 **생산은 AI에 맡기고 검증에 집중**한다. 다만 AI가 쏟아내는 걸 다 검증하면 지치므로 **검증 대상을 나눠야** 한다 — 코드·중간 상태는 검증 안 하고 **결과물은 철저 검증**(인지 대상 자체를 줄여 인지부채도 줄인다). "오리처럼 생기고 헤엄치고 날고 울고 오리알을 낳으면 오리라 믿어라" — 사람이 세밀하게 만든 **수백 개의 검증 레이어**를 통과하면 세부 구현을 몰라도 믿을 수 있고, 그 레이어를 만드는 과정에서 더해지는 암묵지가 의도부채를 해결한다.
 
 발표는 검증 레이어를 세 종류로 나눈다: **Binary Checks**(통과/실패, test case — 가장 많이 만든다), **Quantitative Metrics**(처리량·Latency 등 숫자), **Qualitative Rubrics**(정성적 기준 — LLM as a judge로 1~5 스케일 평가). 만드는 과정(build-time)뿐 아니라, 제품 자체가 비결정적 AI Agent라면 **run-time 검증**도 필요하다. 좋은 검증을 만들려면 **도메인 understanding**이 필요하고, 그래서 **전문가가 좋은 검증 레이어를 만든다**. 결과물을 만드는 스킬과 좋고 나쁨을 구분하는 안목은 다른 능력임을 착각하지 말라고 한다. 회사도 KPI를 초기 "생산량"에서 점차 **"당신이 추가한 검증량과 구조"**로 옮긴다. 검증 레이어가 믿을 만해지면 Karpathy의 auto research, 데이블의 auto research처럼 **사람이 잘 때도 AI가 24시간 돌며(Loop) 스스로를 개선**하게 만들 수 있다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="일의 무게중심이 생산에서 검증으로 이동하고, 사람이 만드는 검증 레이어는 Binary Checks, Quantitative Metrics, Qualitative Rubrics 세 종류로 build-time과 run-time에 걸쳐 작동한다" viewBox="0 0 640 340" xmlns="http://www.w3.org/2000/svg">
+  <title>무게중심 이동(생산→검증)과 검증 레이어 3종</title>
+  <!-- top: role shift 과거 vs 미래 -->
+  <text x="20" y="28" font-size="13" fill="currentColor" font-weight="700">일의 무게중심 이동</text>
+  <!-- 과거 bar: 생산 큰 / 검증 작음 -->
+  <text x="40" y="58" font-size="12" fill="currentColor">과거</text>
+  <rect x="92" y="46" width="320" height="20" fill="var(--bg-sunken)" stroke="currentColor" stroke-width="1.5"/>
+  <text x="252" y="61" text-anchor="middle" font-size="11.5" fill="currentColor">생산(사람)</text>
+  <rect x="412" y="46" width="120" height="20" fill="var(--secondary-color)" opacity="0.5" stroke="currentColor" stroke-width="1.5"/>
+  <text x="472" y="61" text-anchor="middle" font-size="11.5" fill="currentColor">검증</text>
+  <!-- 미래 bar: 생산 AI / 검증 큼 사람 -->
+  <text x="40" y="92" font-size="12" fill="currentColor">미래</text>
+  <rect x="92" y="80" width="120" height="20" fill="var(--bg-sunken)" stroke="currentColor" stroke-width="1.5"/>
+  <text x="152" y="95" text-anchor="middle" font-size="11.5" fill="currentColor">생산(AI)</text>
+  <rect x="212" y="80" width="320" height="20" fill="var(--accent-color)" opacity="0.85" stroke="currentColor" stroke-width="1.5"/>
+  <text x="372" y="95" text-anchor="middle" font-size="11.5" fill="var(--bg-panel)" font-weight="700">검증(사람의 집중)</text>
+  <!-- divider -->
+  <line x1="40" y1="124" x2="600" y2="124" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+  <!-- bottom: 검증 레이어 3종 -->
+  <text x="20" y="152" font-size="13" fill="currentColor" font-weight="700">검증 레이어 3종 (도메인 understanding으로 쌓는다)</text>
+  <!-- three layer cards -->
+  <g>
+    <rect x="40" y="166" width="172" height="96" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
+    <text x="126" y="192" text-anchor="middle" font-size="13.5" fill="currentColor" font-weight="700">Binary Checks</text>
+    <text x="126" y="214" text-anchor="middle" font-size="11.5" fill="currentColor">통과 / 실패</text>
+    <text x="126" y="232" text-anchor="middle" font-size="11.5" fill="currentColor">test case</text>
+    <text x="126" y="252" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.7">(가장 많이)</text>
+  </g>
+  <g>
+    <rect x="234" y="166" width="172" height="96" rx="3" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2.5"/>
+    <text x="320" y="192" text-anchor="middle" font-size="13.5" fill="currentColor" font-weight="700">Quantitative</text>
+    <text x="320" y="210" text-anchor="middle" font-size="13.5" fill="currentColor" font-weight="700">Metrics</text>
+    <text x="320" y="232" text-anchor="middle" font-size="11.5" fill="currentColor">처리량 · Latency</text>
+    <text x="320" y="250" text-anchor="middle" font-size="11.5" fill="currentColor">숫자 지표</text>
+  </g>
+  <g>
+    <rect x="428" y="166" width="172" height="96" rx="3" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="3"/>
+    <text x="514" y="192" text-anchor="middle" font-size="13.5" fill="currentColor" font-weight="700">Qualitative</text>
+    <text x="514" y="210" text-anchor="middle" font-size="13.5" fill="currentColor" font-weight="700">Rubrics</text>
+    <text x="514" y="232" text-anchor="middle" font-size="11.5" fill="currentColor">LLM as a judge</text>
+    <text x="514" y="250" text-anchor="middle" font-size="11.5" fill="currentColor">1~5 정성 평가</text>
+  </g>
+  <!-- build-time / run-time span -->
+  <line x1="40" y1="284" x2="600" y2="284" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+  <text x="160" y="306" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">build-time 검증</text>
+  <text x="480" y="306" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">+ run-time 검증</text>
+  <text x="480" y="324" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.7">(비결정적 AI Agent 제품일 때)</text>
+  <text x="160" y="324" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.7">(만드는 과정)</text>
+</svg>
+<figcaption>사람의 일은 생산에서 검증으로 옮겨가고, 검증은 Binary → Quantitative → Qualitative 세 레이어로 build-time(만드는 과정)과 run-time(돌아가는 제품)에 걸쳐 설계된다. 결과물만 검증해 인지 대상 자체를 줄이는 것이 핵심.</figcaption>
+</figure>
 
 의도부채는 더 적극적으로 푼다. 문제의 근원은 **암묵지(tacit knowledge)** — "내가 아는데, 안다는 사실을 모르는 지식". 누가 물어봐 주고 문서화하면 된다. 발표는 Matt Pocock의 **grill-me** 스킬(계획의 모든 측면을 AI가 집요하게 질문해 내 암묵지를 끌어내는 것)과 **grill-with-docs**(그 과정을 MD 문서로 남겨 재활용)를 소개하며, 핵심은 세부 스킬이 아니라 **"질문자는 당신이 아니라 AI"라는 역할 역전의 관점**이라고 강조한다. 개인을 넘어 확장하려면 **Company-wide 메모리**(부서 간 중복 시행착오를 줄이는 공통 메모리, continuous learning)가 필요하다 — Harvey가 이런 체계로 기존 대비 6배 벤치마크 상승을 확보한 사례, Anthropic의 기업용 공용 메모리, memory.store, mem0, 한국 개발자가 만든 seCall 등을 든다. 발표자 본인도 N개의 잡을 감당하려 구독제 Claude Code 위에 레이어를 얹어 **자신의 페르소나·기억을 추출한 "가상의 나 Agent"**를 만들어 쓴다고 공유한다.
 
