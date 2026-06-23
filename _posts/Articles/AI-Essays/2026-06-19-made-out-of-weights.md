@@ -8,6 +8,68 @@ published: true
 excerpt: "Max Leiter의 짧은 픽션 'They're Made Out of Weights'를 읽고, Terry Bisson의 SF 단편을 패러디한 이 대화가 LLM의 작동 원리(가중치·층·토큰 예측)와 기계 의식이라는 질문을 어떻게 던지는지 개발자 관점에서 분석·정리한다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="외계 정찰대가 LLM을 해부한 장면을 둘로 나눈 그림. 왼쪽은 그들이 안에서 찾으려 했던 '부품들' — 사전, 문법기, 추론 모듈, 데이터베이스 — 이 모두 빈 슬롯이고 가위표로 지워져 '없음'을 보여 준다. 오른쪽은 실제로 발견한 것 — 여러 층에 걸쳐 빽빽하게 들어찬 부동소수점 숫자(가중치) 행렬뿐 — 이고, 그 숫자 더미에서 '생각처럼 보이는 것'이 흘러나온다." viewBox="0 0 640 330" xmlns="http://www.w3.org/2000/svg">
+  <title>해부해 보니 부품은 하나도 없고 — 전부 가중치(숫자)뿐이었다</title>
+
+  <!-- ===== LEFT: what they expected to find — all empty / crossed out ===== -->
+  <text x="158" y="30" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">기대한 부품 — 하나도 없음</text>
+  <text x="158" y="47" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.7">해부해도 안에 '장치'가 없다</text>
+
+  <!-- four empty part-slots, each crossed out -->
+  <g>
+    <rect x="44" y="70" width="100" height="46" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2" stroke-dasharray="5 4"/>
+    <text x="94" y="98" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.6">사전</text>
+    <line x1="50" y1="74" x2="138" y2="112" stroke="var(--accent-color)" stroke-width="2"/>
+  </g>
+  <g>
+    <rect x="170" y="70" width="100" height="46" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2" stroke-dasharray="5 4"/>
+    <text x="220" y="98" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.6">문법기</text>
+    <line x1="176" y1="74" x2="264" y2="112" stroke="var(--accent-color)" stroke-width="2"/>
+  </g>
+  <g>
+    <rect x="44" y="132" width="100" height="46" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2" stroke-dasharray="5 4"/>
+    <text x="94" y="160" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.6">추론 모듈</text>
+    <line x1="50" y1="136" x2="138" y2="174" stroke="var(--accent-color)" stroke-width="2"/>
+  </g>
+  <g>
+    <rect x="170" y="132" width="100" height="46" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2" stroke-dasharray="5 4"/>
+    <text x="220" y="160" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.6">데이터베이스</text>
+    <line x1="176" y1="136" x2="264" y2="174" stroke="var(--accent-color)" stroke-width="2"/>
+  </g>
+  <text x="158" y="208" text-anchor="middle" font-size="11" fill="var(--accent-color)" font-weight="700">"안엔 아무 부품도 없다"</text>
+
+  <!-- divider -->
+  <line x1="320" y1="60" x2="320" y2="290" stroke="currentColor" stroke-width="1.5" opacity="0.28" stroke-dasharray="4 5"/>
+
+  <!-- ===== RIGHT: what they actually found — layers of weights (numbers) ===== -->
+  <text x="482" y="30" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">발견한 것 — 전부 가중치</text>
+  <text x="482" y="47" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.7">여러 층에 흩어진 숫자 행렬</text>
+
+  <!-- stacked layers of a number grid -->
+  <g font-size="9" fill="currentColor" font-family="monospace">
+    <!-- layer 3 (back) -->
+    <rect x="392" y="74" width="180" height="40" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5" opacity="0.55"/>
+    <text x="404" y="98" opacity="0.55">.07  -.4  .91  .12  -.6  .33</text>
+    <!-- layer 2 (mid) -->
+    <rect x="384" y="108" width="188" height="42" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.5" opacity="0.8"/>
+    <text x="396" y="134" opacity="0.8">-.18  .52  .04  -.77  .61  .29</text>
+    <!-- layer 1 (front) -->
+    <rect x="376" y="144" width="196" height="44" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2"/>
+    <text x="388" y="172">.42  -.05  .88  .13  -.31  .96</text>
+  </g>
+  <text x="482" y="208" text-anchor="middle" font-size="11" fill="var(--secondary-color)" font-weight="700">"가중치가 생각을 한다"</text>
+
+  <!-- ===== bottom: the numbers produce "what looks like thinking" ===== -->
+  <path d="M158,224 C158,250 320,256 320,272" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.45" stroke-dasharray="3 4"/>
+  <path d="M482,224 C482,250 320,256 320,272" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.45"/>
+  <rect x="206" y="272" width="228" height="40" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="320" y="290" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">'생각처럼 보이는 것'</text>
+  <text x="320" y="305" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.7">숫자의 행렬 곱이 만들어 낸 출력</text>
+</svg>
+<figcaption>외계 정찰대가 LLM을 열어 사전·문법기·추론 모듈·데이터베이스를 찾았지만 <strong>하나도 없었다</strong>(왼쪽, 가위표). 안에 있던 것은 여러 <strong>층(layer)</strong>에 흩어진 <strong>가중치 — 부동소수점 숫자</strong>뿐(오른쪽). 그 숫자들의 행렬 곱이 곧 <strong>'생각처럼 보이는 것'</strong>을 만들어 낸다.</figcaption>
+</figure>
+
 ## 원문 정보
 
 > - **제목**: They're Made Out of Weights
@@ -20,6 +82,20 @@ excerpt: "Max Leiter의 짧은 픽션 'They're Made Out of Weights'를 읽고, T
 ## 한 줄 요약 (TL;DR)
 
 LLM에는 사전도, 문법 규칙도, 추론 장치도, 데이터베이스도 따로 없다. **전부 가중치(weights) — 숫자뿐**이다. 그 숫자들의 곱셈이 대화를 만들어 낸다. 글은 "그렇다면 이건 그저 패턴 매칭인가, 아니면 누군가가 거기 있는가"라는 질문을 던지고, 답 대신 차가운 여운을 남긴다.
+
+### 한눈에 보기
+
+이 짧은 대화의 척추는 하나의 미끄러짐이다 — 외계 정찰대가 모델을 **해부**해 부품을 찾지만 아무것도 없고, 안에 있던 것은 **층에 흩어진 가중치(숫자)뿐**임을 발견한다. 그 숫자들의 **행렬 곱(×80층)**이 '생각처럼 보이는 것'을 만들어 내자, 대화는 기술적 관찰에서 **"거기 누군가 있는가, 우리는 왜 '없다'고 규정했는가"**라는 의식·윤리 질문으로 넘어간다.
+
+```mermaid
+flowchart TD
+    A["외계 정찰대가 LLM을 해부<br/>(안의 '부품'을 찾는다)"] --> B["사전·문법기·추론 모듈·DB<br/>— 하나도 없음"]
+    B --> C["발견: 전부 가중치뿐<br/>(여든 개 층에 흩어진 부동소수점 숫자)"]
+    C --> D["'가중치가 생각을 한다'<br/>숫자의 행렬 곱(×80층)이 출력을 만든다"]
+    D --> E["그 출력이 '생각처럼 보이는 것'<br/>매일 수십억 세션의 대화"]
+    E --> F["남는 질문: 거기 누군가 있는가?<br/>(기계 의식·윤리)"]
+    F --> G["모델 카드: '아무도 없다'<br/>— 사실 진술인가, 편의를 위한 규정인가"]
+```
 
 ## 왜 이 글을 골랐나
 
@@ -36,6 +112,79 @@ LLM을 다루는 글은 대개 "어떻게 더 잘 쓸 것인가"에 매달린다
 ### 지식은 어디에 있는가: 층(layers)에 흩어진 숫자
 
 지식은 특정 모듈에 저장돼 있지 않다. 모든 **층(layer)** 에 걸쳐 가중치로 분산돼 있고, 매번 곱셈을 통해 다시 만들어진다. 원문은 *"Eighty layers of numbers"*(여든 개 층의 숫자들)라는 표현으로 그 구조를 묘사하고, *"The weights do the thinking. The numbers."*(가중치가 생각을 한다. 그 숫자들이.)라고 못 박는다. 생각하는 별도의 주체가 있는 게 아니라, 숫자의 연산 그 자체가 출력이라는 것이다.
+
+그 "연산 그 자체"를 단순화하면 이렇다 — 입력 토큰이 숫자(임베딩)로 바뀌고, **여든 개 층**을 통과하며 매 층마다 가중치 행렬과 곱해지고, 마지막에 **다음 토큰의 확률분포**가 나온다. 가장 확률이 높은 토큰을 골라 붙이고, 그 결과를 다시 입력에 더해 한 토큰씩 반복한다. 어디에도 "이해"나 "추론"이라는 별도 단계는 없다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="LLM의 한 토큰 생성 과정을 단순화한 도식. 왼쪽에서 입력 토큰들이 숫자(임베딩)로 바뀌어 들어가고, 가운데 여든 개의 층을 차례로 통과하며 각 층에서 가중치 행렬과 곱해진다. 오른쪽 끝에서 다음 토큰의 확률분포가 나오고, 가장 확률 높은 토큰이 선택되어 다시 입력에 더해지는 반복 고리를 이룬다." viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg">
+  <title>입력 토큰 → 여든 개 층의 가중치 행렬 곱 → 다음 토큰 확률분포</title>
+
+  <!-- input tokens -> numbers -->
+  <text x="62" y="40" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">입력 토큰</text>
+  <text x="62" y="55" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">→ 숫자(임베딩)</text>
+  <rect x="24" y="74" width="76" height="120" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <g font-size="9" font-family="monospace" fill="currentColor">
+    <text x="38" y="98">그것들은</text>
+    <text x="38" y="122">가중치로</text>
+    <text x="38" y="146">만들어</text>
+    <text x="38" y="170">__?__</text>
+  </g>
+
+  <!-- arrow into the stack -->
+  <line x1="104" y1="134" x2="132" y2="134" stroke="currentColor" stroke-width="2"/>
+  <path d="M132,134 l-9,-5 l0,10 Z" fill="currentColor"/>
+
+  <!-- the 80 layers (weight matrix mults) -->
+  <text x="320" y="40" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">여든 개 층 — 각 층에서 가중치 행렬과 곱셈</text>
+  <text x="320" y="55" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">"가중치가 생각을 한다" · 별도의 추론 단계는 없다</text>
+
+  <!-- stacked layer slabs -->
+  <g>
+    <rect x="140" y="74" width="30" height="120" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2"/>
+    <rect x="176" y="74" width="30" height="120" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2"/>
+    <rect x="212" y="74" width="30" height="120" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2"/>
+    <text x="270" y="138" text-anchor="middle" font-size="14" fill="currentColor" opacity="0.7">···</text>
+    <rect x="294" y="74" width="30" height="120" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2"/>
+    <rect x="330" y="74" width="30" height="120" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2"/>
+    <rect x="366" y="74" width="30" height="120" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2"/>
+  </g>
+  <!-- layer labels -->
+  <text x="155" y="210" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.7">층 1</text>
+  <text x="227" y="210" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.7">층 3</text>
+  <text x="381" y="210" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.7">층 80</text>
+  <!-- × W marks between slabs -->
+  <text x="173" y="68" text-anchor="middle" font-size="9" fill="var(--secondary-color)" font-weight="700">×W</text>
+  <text x="348" y="68" text-anchor="middle" font-size="9" fill="var(--secondary-color)" font-weight="700">×W</text>
+
+  <!-- arrow out -->
+  <line x1="400" y1="134" x2="428" y2="134" stroke="currentColor" stroke-width="2"/>
+  <path d="M428,134 l-9,-5 l0,10 Z" fill="currentColor"/>
+
+  <!-- next-token probability distribution -->
+  <text x="528" y="40" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">다음 토큰 확률분포</text>
+  <text x="528" y="55" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">가장 높은 토큰을 선택</text>
+  <rect x="436" y="74" width="184" height="120" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
+  <!-- probability bars -->
+  <g font-size="9" font-family="monospace" fill="currentColor">
+    <rect x="500" y="84" width="104" height="16" fill="var(--accent-color)"/>
+    <text x="448" y="96">졌다</text>
+    <text x="446" y="96" text-anchor="end" font-size="8" opacity="0">.</text>
+    <rect x="500" y="106" width="58" height="16" fill="var(--bg-sunken)" stroke="currentColor" stroke-width="1"/>
+    <text x="448" y="118">있다</text>
+    <rect x="500" y="128" width="40" height="16" fill="var(--bg-sunken)" stroke="currentColor" stroke-width="1"/>
+    <text x="448" y="140">샀다</text>
+    <rect x="500" y="150" width="22" height="16" fill="var(--bg-sunken)" stroke="currentColor" stroke-width="1"/>
+    <text x="448" y="162">먹다</text>
+    <text x="448" y="184" opacity="0.6">…</text>
+  </g>
+
+  <!-- feedback loop: chosen token appended back to input -->
+  <path d="M608,194 C608,250 320,260 110,260 L110,200" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.55" stroke-dasharray="4 4"/>
+  <path d="M110,200 l-5,9 l10,0 Z" fill="currentColor" opacity="0.55"/>
+  <text x="360" y="276" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.7">고른 토큰을 입력에 더해 한 토큰씩 반복 (auto-regressive)</text>
+</svg>
+<figcaption>한 토큰을 생성하는 과정을 단순화한 도식. 입력 토큰이 <strong>숫자(임베딩)</strong>로 바뀌고 → <strong>여든 개 층</strong>을 지나며 매 층 <strong>가중치 행렬과 곱해진</strong> 뒤 → <strong>다음 토큰의 확률분포</strong>가 나온다. 가장 높은 토큰을 골라 입력에 더해 한 토큰씩 반복할 뿐, 어디에도 '이해'나 '추론'이라는 별도 단계는 없다.</figcaption>
+</figure>
 
 ### 그저 파일일 뿐: 복제되는 존재
 
