@@ -1,0 +1,29 @@
+# ============================================================
+# 메인 페이지 "명예의 전당" (Featured Articles) — 직접 지정하는 전리품.
+#
+# 선반 왼쪽 → 오른쪽 순서대로 적습니다. 진열대는 적은 개수에 맞춰 가운데 정렬됩니다.
+#   url    : 포스트 주소 (/YYYY/MM/DD/slug.html). 사이트에서 그 글의 주소를 복사해 넣으면 됩니다.
+#   trophy : 사용할 전리품 무기 이미지 번호 (assets/images/trophy/trophy-N.{webp,png}).
+#            1=뇌전 망치 · 2=흑녹 글레이브 · 3=서리 창검 · 4=오크 전투도끼 · 5=장검
+#   label  : (선택) 명패에 띄울 짧은 표시명. 비워두면 포스트 제목을 사용합니다.
+#            명패 제목은 2줄로 고정되고 넘치면 …로 잘리므로, 긴 제목은 label 로 줄이면 깔끔합니다.
+#            (전체 제목은 링크 hover 툴팁/이미지 alt 에 그대로 남습니다.)
+#
+# url 이 실제 포스트와 안 맞으면 그 칸은 조용히 비워집니다(빈 좌대).
+# 날짜 등 나머지는 포스트에서 자동으로 끌어옵니다. 진열대는 항목 개수에 맞춰 가운데 정렬(1~5개).
+# ============================================================
+
+- url: /2026/06/22/karpathy-llm-coding-guidelines.html
+  trophy: 1
+
+- url: /2026/06/23/the-untrainable.html
+  trophy: 2
+
+- url: /2026/06/19/made-out-of-weights.html
+  trophy: 3
+
+- url: /2026/06/19/the-founders-playbook.html
+  trophy: 4
+
+- url: /2026/06/20/the-future-of-the-con-is-already-here.html
+  trophy: 5

@@ -37,7 +37,7 @@ title: 홈
     <section class="recent-posts">
         <h2>최근 출정 기록</h2>
         <div class="posts-list">
-            {% for post in site.posts limit:10 %}
+            {% for post in site.posts limit:5 %}
             <article class="post-item">
                 <h3 class="post-item-title">
                     <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
@@ -63,6 +63,76 @@ title: 홈
             {% endfor %}
         </div>
     </section>
+
+    {% comment %} ===== Featured Articles — 명예의 전당 (전리품 진열) ===== {% endcomment %}
+    {% assign featured = site.data.featured | where_exp: "f", "f.url" %}
+    {% if featured and featured.size > 0 %}
+    <section class="trophy-hall" aria-label="명예의 전당 — Featured Articles">
+        <h2>명예의 전당 <span class="trophy-hall-en">Featured</span></h2>
+        <p class="trophy-hall-sub">손수 고른 전리품 — 오크의 자랑. 선반에 걸어 둔 다섯 정복기.</p>
+        <ul class="trophy-shelf">
+            {% for item in featured limit:5 %}
+            {% assign fp = site.posts | where: "url", item.url | first %}
+            {% if fp %}
+            {% assign tn = item.trophy | default: forloop.index %}
+            {% assign tname = item.label | default: fp.title %}
+            <li class="trophy-slot">
+                <a class="trophy" href="{{ fp.url | relative_url }}" title="{{ fp.title | escape }}">
+                    <span class="trophy-banner">
+                        <picture>
+                            <source type="image/webp" srcset="{{ '/assets/images/trophy/trophy-' | append: tn | append: '.webp' | relative_url }}">
+                            <img src="{{ '/assets/images/trophy/trophy-' | append: tn | append: '.png' | relative_url }}"
+                                 alt="전리품 — {{ fp.title | escape }}" width="384" height="600" loading="lazy" decoding="async">
+                        </picture>
+                    </span>
+                    <span class="trophy-plate">
+                        <span class="trophy-name">{{ tname }}</span>
+                    </span>
+                </a>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+        <div class="trophy-ledge" aria-hidden="true"></div>
+    </section>
+    {% endif %}
+
+    {% comment %} ===== Latest Series — 최근 갱신된 원정 ===== {% endcomment %}
+    {% assign active_series = "" | split: "" %}
+    {% for post in site.posts %}
+        {% if post.series %}
+            {% unless active_series contains post.series %}
+                {% assign active_series = active_series | push: post.series %}
+            {% endunless %}
+        {% endif %}
+    {% endfor %}
+    {% if active_series.size > 0 %}
+    <section class="latest-series" aria-label="최근 갱신된 원정 — Latest Series">
+        <h2>진행 중인 원정 <span class="trophy-hall-en">Latest Series</span></h2>
+        <p class="trophy-hall-sub">가장 최근에 진군한 다섯 원정 — 마지막으로 함락한 전장.</p>
+        <div class="campaign-list">
+            {% assign top_series = active_series | slice: 0, 5 %}
+            {% for series_name in top_series %}
+                {% assign sposts = site.posts | where: "series", series_name %}
+                {% assign latest = sposts | first %}
+                <a class="campaign-card" href="{{ site.baseurl }}/series/{{ series_name | slugify }}/">
+                    <span class="campaign-head">
+                        <span class="campaign-name">📖 {{ series_name }}</span>
+                        <span class="campaign-count">{{ sposts.size }}장</span>
+                    </span>
+                    <span class="campaign-latest-label">최신 장</span>
+                    <span class="campaign-latest-title">{{ latest.title }}</span>
+                    <time class="campaign-latest-date" datetime="{{ latest.date | date_to_xmlschema }}">
+                        {{ latest.date | date: "%Y년 %m월 %d일" }} 갱신
+                    </time>
+                </a>
+            {% endfor %}
+        </div>
+        <div class="campaign-more">
+            <a href="{{ '/pages/series.html' | relative_url }}">모든 원정 보기 →</a>
+        </div>
+    </section>
+    {% endif %}
     {% else %}
     <section class="empty-state">
         <img class="orc-portrait empty-state-orc" src="{{ '/assets/images/avatar/soap-orc.webp' | relative_url }}"
