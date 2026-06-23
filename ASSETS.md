@@ -15,6 +15,7 @@ assets/images/
   tavern/    tavern-day-* · tavern-night-*               (inn scene, day=light / night=dark)
   wartable/  wartable-{640,1024,1536}.webp + .jpg        (war-council scene)
   pattern/   azeroth-map-{768,1024}.webp + .jpg          (seamless world-map tile)
+  trophy/    trophy-{1..N}.webp + .png                   (weapon-banner trophy cutouts, alpha — home Featured shelf)
   pixel/     gorehowl.svg · axe-cross.svg · axe-bullet.svg (original pixel-art motifs)
   avatar/    front-orc.webp+png · laugh · struggling · soap · side · yawn · crying · santa  (orc mascot expression set)
   logo/      orchwang.png                                (original line-art mark, source)
@@ -33,6 +34,7 @@ assets/images/
 | Inn feast — bright | `tavern/tavern-day-*` | Series 여관 band, footer & 404 (light theme) |
 | Inn feast — dark | `tavern/tavern-night-*` | Footer & 404 (dark theme) |
 | Grom war-council | `wartable/wartable-*` | Roadmap/curriculum post banner (`banner: wartable`), category band |
+| Weapon-banner trophy cutouts (transparent, externally processed) | `trophy/trophy-{1..N}.webp`+`.png` | Home **명예의 전당** Featured shelf — each picks a post via `_data/featured.yml` (`trophy: N`) |
 | Azeroth world map (tile) | `pattern/azeroth-map-*` | Page-wide ambient `body::before` (theme-aware) |
 | Hand-authored SVG | `pixel/*.svg` | Heading sigils, dividers, checkbox stamp, scroll-top |
 | Orc mascot set (B&W line-art) | `avatar/*-orc.webp` (+ `front-orc.png`) | Crest=`front`, hero=`laugh`, 404=`struggling`, empty-state=`soap`, footer=`side`, empty-search=`yawn`; `crying` spare; `santa` seasonal |
@@ -93,6 +95,23 @@ magick SRC.png -resize 768x  -quality 72 -define webp:method=6 OUT-768.webp
 ```bash
 cwebp -q 72 master.png -o OUT.webp     # the hero set was re-encoded this way (-25–34%)
 ```
+
+### Import trophy cutouts (home Featured shelf)
+The home-shelf trophies are **transparent weapon-banner cutouts**, processed externally and
+dropped in `~/Downloads/trophy-*.png` (the source masters are not committed). They hang on
+the dark armory band, so they need no background — just normalize each to one canvas so the
+banners line up, and emit an **alpha** WebP + PNG fallback:
+```bash
+for i in 1 2 3 4 5; do
+  magick ~/Downloads/trophy-$i.png -trim +repage -resize x600 \
+    -background none -gravity center -extent 384x600 +repage /tmp/tn_$i.png
+  magick /tmp/tn_$i.png -strip assets/images/trophy/trophy-$i.png
+  cwebp -q 90 -alpha_q 95 /tmp/tn_$i.png -o assets/images/trophy/trophy-$i.webp
+done
+```
+`-background none` keeps the cutout transparent (the shelf CSS supplies the dark armory band
++ bronze ledge behind it). The shelf adapts to however many trophies exist (centered row).
+To re-pick which post each trophy points at — or add/remove trophies — edit `_data/featured.yml`.
 
 ## Header-illustration image-generation prompt recipe
 
