@@ -8,6 +8,66 @@ published: true
 excerpt: "Manish Goregaokar의 'The future of the con is already here'를 읽고, LLM이 표적 사기(targeted scam)의 비용 구조를 무너뜨려 '사기를 for 루프로 돌리는 세계'를 어떻게 여는지, 그리고 우리의 보안 휴리스틱이 왜 재보정되어야 하는지를 분석·정리한다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="사기의 분포를 두 봉우리로 그린 그래프. 가로축은 '정교함', 세로축은 '공격 물량'. 왼쪽에 솟은 큰 봉우리는 '싸고 어설픈 살포형(spray-and-pray)', 오른쪽에 솟은 작은 봉우리는 '비싸고 정교한 표적형(targeted)'이며, 그 둘 사이 가운데는 텅 빈 골짜기다. 그 빈 골짜기 위로 LLM이라 적힌 오크 룬 돌이 새로운 봉우리를 채워 올린다 — '정교하면서도 싼' 영역. 봉우리 아래로 화살이 비처럼 쏟아지며 'for 루프로 돌리는 사기'를 나타낸다." viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg">
+  <title>사기는 이분화되어 있었다 — 싼 살포형과 비싼 표적형. LLM이 그 빈 가운데를 채운다.</title>
+
+  <!-- axes -->
+  <line x1="58" y1="40" x2="58" y2="252" stroke="currentColor" stroke-width="2"/>
+  <line x1="58" y1="252" x2="612" y2="252" stroke="currentColor" stroke-width="2"/>
+  <text x="20" y="150" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.8" transform="rotate(-90 20 150)">공격 물량</text>
+  <text x="612" y="270" text-anchor="end" font-size="10.5" fill="currentColor" opacity="0.8">정교함 →</text>
+
+  <!-- LEFT PEAK: cheap spray-and-pray (large) -->
+  <path d="M58,252 C120,252 130,70 175,70 C220,70 230,252 292,252 Z"
+        fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="175" y="120" text-anchor="middle" font-size="11.5" fill="currentColor" font-weight="700">싼 살포형</text>
+  <text x="175" y="138" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">spray-and-pray</text>
+  <text x="175" y="156" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">비표적 · 싸다</text>
+
+  <!-- RIGHT PEAK: expensive targeted (small, tall-ish but narrow) -->
+  <path d="M470,252 C500,252 506,110 528,110 C550,110 556,252 586,252 Z"
+        fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="528" y="150" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">표적형</text>
+  <text x="528" y="167" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">표적 · 비싸다</text>
+
+  <!-- THE EMPTY VALLEY between them -->
+  <text x="378" y="232" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.55">빈 가운데</text>
+  <line x1="318" y1="246" x2="438" y2="246" stroke="currentColor" stroke-width="1.2" opacity="0.4" stroke-dasharray="3 5"/>
+
+  <!-- THE NEW PEAK LLM fills in the middle — crimson accent, dashed-becoming-solid -->
+  <path d="M320,252 C356,252 362,96 386,96 C410,96 416,252 452,252 Z"
+        fill="none" stroke="var(--accent-color)" stroke-width="2.5" stroke-dasharray="5 4"/>
+  <text x="386" y="146" text-anchor="middle" font-size="10.5" fill="var(--accent-color)" font-weight="700">정교 + 싸다</text>
+
+  <!-- LLM rune-stone dropping in to raise the new peak -->
+  <g transform="translate(386 64)">
+    <rect x="-26" y="-22" width="52" height="40" rx="3" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+    <text x="0" y="4" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">LLM</text>
+  </g>
+  <line x1="386" y1="86" x2="386" y2="94" stroke="var(--accent-color)" stroke-width="2"/>
+  <path d="M381,89 l5,7 l5,-7 Z" fill="var(--accent-color)"/>
+
+  <!-- arrows raining down from the new peak = "fraud as a for loop" -->
+  <g stroke="var(--secondary-color)" stroke-width="1.6" opacity="0.85">
+    <line x1="356" y1="176" x2="350" y2="206"/>
+    <line x1="372" y1="186" x2="368" y2="214"/>
+    <line x1="388" y1="180" x2="384" y2="210"/>
+    <line x1="404" y1="186" x2="400" y2="214"/>
+    <line x1="418" y1="176" x2="414" y2="206"/>
+  </g>
+  <g fill="var(--secondary-color)" opacity="0.85">
+    <path d="M347,206 l3,6 l3,-6 Z"/>
+    <path d="M365,214 l3,6 l3,-6 Z"/>
+    <path d="M381,210 l3,6 l3,-6 Z"/>
+    <path d="M397,214 l3,6 l3,-6 Z"/>
+    <path d="M411,206 l3,6 l3,-6 Z"/>
+  </g>
+  <text x="386" y="280" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.7">사기를 for 루프로</text>
+</svg>
+<figcaption>사기는 오래도록 이분화(bimodal)되어 있었다 — 싸고 어설픈 살포형과, 비싸고 정교한 표적형. LLM은 그 텅 빈 가운데, '정교하면서도 싼' 영역을 채워 표적 사기를 for 루프로 돌릴 수 있게 한다.</figcaption>
+</figure>
+
 ## 원문 정보
 
 > - **제목**: The future of the con is already here, it's just not evenly distributed
@@ -20,6 +80,23 @@ excerpt: "Manish Goregaokar의 'The future of the con is already here'를 읽고
 ## 한 줄 요약 (TL;DR)
 
 사기는 오랫동안 **이분화(bimodal)** 되어 있었다. 싸지만 어설픈 살포형(spray-and-pray)과, 정교하지만 비싼 표적형(targeted). LLM은 이 분포의 **빈 가운데** — "정교하면서도 싼" 영역 — 를 채운다. 한 명을 조사하고, 맞춤형으로 속이고, 목소리·영상을 합성하고, 침투 후 자산을 찾아내는 일을 사람 없이 자동화하면서, **"사기를 `for` 루프로 돌릴 수 있는 세계"** 가 열린다. 비용의 전제 위에 세워진 우리의 직관과 제도는 아직 재보정되지 않았다.
+
+### 한눈에 보기
+
+이 글의 척추는 하나의 인과 사슬이다. **공격의 한계비용이 0에 수렴** → 사기의 이분화 분포가 무너지고 → "표적형을 대규모로"가 가능해지며 → 비용·역량을 대리하던 **휴리스틱이 깨지고** → 그래서 우리 쪽 직관을 **재보정**해야 한다.
+
+```mermaid
+flowchart TD
+    A["LLM이 사기 노동을 자동화<br/>(조사·맞춤화·합성·감시)"] --> B["공격의 한계비용 → 0"]
+    B --> C["이분화 분포가 무너진다<br/>'정교 + 싸다'의 빈 가운데가 채워짐"]
+    C --> D["표적 사기를 for 루프로<br/>(확장 = 인내 · 합성 · 새 표적)"]
+    D --> E{"옛 휴리스틱이 깨진다"}
+    E -->|"비용의 대리지표"| F["유창한 글·강한 웹 존재 =<br/>더는 '진짜 사람'의 신호가 아니다"]
+    E -->|"역량의 척도"| G["목소리·영상 =<br/>더는 위조 불가의 증거가 아니다"]
+    F --> H["재보정<br/>새 휴리스틱 + 더 나은 기술"]
+    G --> H
+    H --> I["골격 탐지(긴급·비밀·비정상 채널)<br/>다채널 검증·구두 암호<br/>하드웨어 2FA(FIDO2/WebAuthn)"]
+```
 
 ## 왜 이 글을 골랐나
 
@@ -38,6 +115,24 @@ excerpt: "Manish Goregaokar의 'The future of the con is already here'를 읽고
 ### The Hook — 침투는 어떻게 이루어졌나
 
 공격 지점은 NDA 서명 플랫폼의 **로그인**이었다. "sign in with <service>" 흐름이 진짜처럼 보이는 가짜 Google/iCloud 로그인(이메일은 미리 채워진)으로 유도하고, 비밀번호를 가로채고, 사용자의 "예 누르기" 2FA를 **실제 계정으로 중계(relay)** 해 로그인한 뒤 세션 쿠키를 저장한다. 사용자에게는 정상 로그인 화면만 보인다.
+
+이 **중계(relay) 피싱**의 핵심은, 공격자가 사용자와 진짜 서비스 사이에 끼어 자격증명과 2FA 승인을 *실시간으로 흘려보내며* 세션을 가로챈다는 데 있다 — 사용자 화면엔 정상 로그인만 보인다.
+
+```mermaid
+sequenceDiagram
+    actor U as 사용자(마크)
+    participant F as 가짜 로그인 페이지<br/>(피싱 사이트)
+    participant G as 진짜 서비스<br/>(Google/iCloud)
+    U->>F: NDA 서명하려 "sign in with..." 클릭
+    F-->>U: 진짜처럼 보이는 로그인 화면<br/>(이메일 미리 채워짐)
+    U->>F: 비밀번호 입력
+    F->>G: 가로챈 비밀번호를 실제 계정에 중계(relay)
+    G-->>U: "예 누르기" 2FA 푸시 발송
+    U->>G: 승인 ("예")
+    G-->>F: 로그인 성공 → 세션 쿠키 발급
+    F->>F: 세션 쿠키 저장(지속 접근 확보)
+    F-->>U: 정상 로그인 화면만 표시<br/>(사용자는 아무 이상 못 느낌)
+```
 
 이후 공격자는 탐지되지 않은 접근을 유지하며 패턴을 관찰하고, 경고 이메일을 미리 걸러내 알림이 도달하지 못하게 한다("불을 지르기 전에 화재경보기부터 꺼둔다"). 클라우드 파일을 내려받고 카드를 개설한다. **침투가 끝난 뒤의 면접과 탈락 통보는 의심을 피하고 자격증명을 더 오래 쥐기 위한 연극**이었다.
 
@@ -100,6 +195,45 @@ excerpt: "Manish Goregaokar의 'The future of the con is already here'를 읽고
 저자는 실제 일화를 나눈다. 아는 사람과 금융 거래를 하기 전, "LLM 시대의 조심성"을 이유로 영상통화를 청했더니 상대가 "언제쯤 이런 질문을 받을까 했다"며, 몇 해 전 통화의 구체적이고 기억할 만한 순간을 언급하며 통화를 열었다고.
 
 거친 규칙 하나: **당신이 *받는* 커뮤니케이션의 진위는 믿을 수 없지만, 당신이 의도적으로 *보내는* 곳은 대체로 믿을 수 있다.** 내가 작성한 이메일은 그 받은편지함에 닿고, 내가 건 전화는 그 기기에 닿는다. 그러나 `from:` 헤더와 발신자 표시(caller ID)는 위조 가능하다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="인증의 방향성을 그린 그림. 가운데에 '나'를 둔다. 왼쪽에서 들어오는 화살(내가 받는 연락 — 이메일 from 헤더, 발신자 표시)은 끊긴 점선이고 빨간 물음표가 붙어 '위조 가능, 믿지 마라'라고 적혀 있다. 오른쪽으로 나가는 화살(내가 먼저 거는 공식 채널)은 굵은 실선이고 초록 자물쇠가 붙어 '대체로 믿을 수 있다'라고 적혀 있다." viewBox="0 0 640 240" xmlns="http://www.w3.org/2000/svg">
+  <title>받는 것은 못 믿고, 보내는 것은 믿는다 — 인증의 방향성</title>
+
+  <!-- center: 나 (a simple orc bust) -->
+  <circle cx="320" cy="120" r="34" fill="var(--bg-light)" stroke="currentColor" stroke-width="2.5"/>
+  <path d="M310,138 q-2,8 2,11" fill="none" stroke="currentColor" stroke-width="2"/>
+  <path d="M330,138 q2,8 -2,11" fill="none" stroke="currentColor" stroke-width="2"/>
+  <circle cx="310" cy="114" r="2.8" fill="currentColor"/>
+  <circle cx="330" cy="114" r="2.8" fill="currentColor"/>
+  <path d="M320,90 q4,-14 -5,-18" fill="none" stroke="currentColor" stroke-width="2"/>
+  <text x="320" y="178" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">나</text>
+
+  <!-- LEFT: incoming = untrusted (broken dashed arrow) -->
+  <text x="120" y="38" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">받는 연락</text>
+  <text x="120" y="55" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">from 헤더 · 발신자 표시</text>
+  <line x1="60" y1="120" x2="270" y2="120" stroke="var(--accent-color)" stroke-width="2.5" stroke-dasharray="7 6"/>
+  <path d="M270,120 l-16,-7 l0,14 Z" fill="var(--accent-color)"/>
+  <!-- red question mark on the line -->
+  <circle cx="165" cy="120" r="14" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="165" y="125" text-anchor="middle" font-size="15" fill="var(--accent-color)" font-weight="700">?</text>
+  <text x="120" y="200" text-anchor="middle" font-size="10.5" fill="var(--accent-color)" font-weight="700">위조 가능 · 믿지 마라</text>
+
+  <!-- RIGHT: outgoing = trusted (solid bold arrow) -->
+  <text x="520" y="38" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">내가 먼저 거는 채널</text>
+  <text x="520" y="55" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">아는 공식 번호·주소</text>
+  <line x1="370" y1="120" x2="580" y2="120" stroke="var(--secondary-color)" stroke-width="3"/>
+  <path d="M580,120 l-16,-7 l0,14 Z" fill="var(--secondary-color)"/>
+  <!-- green lock on the line -->
+  <g transform="translate(475 120)">
+    <rect x="-11" y="-3" width="22" height="17" rx="2" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2.5"/>
+    <path d="M-6,-3 v-6 a6,6 0 0 1 12,0 v6" fill="none" stroke="var(--secondary-color)" stroke-width="2.5"/>
+    <circle cx="0" cy="5" r="2.2" fill="var(--secondary-color)"/>
+  </g>
+  <text x="520" y="200" text-anchor="middle" font-size="10.5" fill="var(--secondary-color)" font-weight="700">대체로 믿을 수 있다</text>
+</svg>
+<figcaption>인증의 방향성을 뒤집는 한 줄 — 내게 들어오는 연락(from 헤더·발신자 표시)은 위조되니 믿지 말고, 내가 아는 공식 채널로 *내가 먼저* 거는 곳은 대체로 믿는다. 하드웨어 2FA가 도메인을 묶는 원리와 같다.</figcaption>
+</figure>
 
 휴리스틱 너머로는 보안 모범사례를 따른다 — SMS나 인증 앱이 아니라 **하드웨어 2FA(FIDO2/WebAuthn)**. 도메인이 암호학적 교환에 묶이므로 피싱 사이트가 서명을 통과시킬 수 없다. 저자는 제도와 시스템이 결국 적응해 더 나은 보호장치를 세우리라 기대한다(방어자도 같은 능력을 얻는다 — Mozilla의 AI Firefox 레드팀, Android의 사칭 통화 탐지). 그러나 시간이 걸리고 군비경쟁이 될 것이며, 그동안 **사기는 폭증할 것**이다.
 
