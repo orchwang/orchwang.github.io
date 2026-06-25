@@ -89,7 +89,8 @@ Developers who want to:
 │   │   ├── Security/               # categories: [Articles, Security]
 │   │   ├── Engineering-Culture/    # categories: [Articles, Engineering-Culture]
 │   │   ├── Career-Life/            # categories: [Articles, Career-Life]
-│   │   └── Systems-Programming/    # categories: [Articles, Systems-Programming]
+│   │   ├── Systems-Programming/    # categories: [Articles, Systems-Programming]
+│   │   └── ML-Theory/              # categories: [Articles, ML-Theory]
 │   └── (root)                   # Posts without categories
 ├── assets/                  # Static files
 │   ├── css/style.css        # Main stylesheet
@@ -228,6 +229,7 @@ Top-level category for software-engineering fundamentals drawn from classic book
 | `Engineering-Culture` | 엔지니어링 **인물·역사·문화·다큐/인터뷰** |
 | `Career-Life` | **커리어·일상·소프트 스킬** (AI와 무관한 직장/삶) |
 | `Systems-Programming` | **저수준·시스템 프로그래밍** 기술 심화 (동시성·병렬성, 메모리 모델, lock-free·wait-free 자료구조, 컴파일러·런타임, 성능 엔지니어링 — C/C++/Rust 등) |
+| `ML-Theory` | 딥러닝·머신러닝의 **이론·수학·기초 원리** (학습 동역학, 일반화 이론, 신경망의 수학적 해석, 표현력·수렴 분석) |
 
 The `article-manager` subagent files each new article into the best-fitting sub-category and, when an article clearly doesn't fit any existing one, **recommends a new sub-category** (English, hyphenated) for the user to confirm before creating it — keeping this table and the agent's taxonomy in sync.
 
@@ -566,7 +568,7 @@ make serve
 - **Language → English**: language-learning notes
 - **Retrospec**: yearly retrospectives
 - **BookLog**: book reading notes
-- **Articles** (nested: AI-Engineering, AI-Industry, AI-Essays, Security, Engineering-Culture, Career-Life, Systems-Programming): external article analyses (one post per article, via `article-manager`)
+- **Articles** (nested: AI-Engineering, AI-Industry, AI-Essays, Security, Engineering-Culture, Career-Life, Systems-Programming, ML-Theory): external article analyses (one post per article, via `article-manager`)
 
 ### Tags in Use (most common)
 
@@ -637,7 +639,7 @@ This guide reflects the project structure as of June 2026.
 - Category, tag, and series systems operational (with nested category support)
 - 74 published posts across Technology, Engineering, Career, Language, Retrospec, BookLog, Articles
 - Engineering Essentials: 5 `*-Essential` series complete (OO-Design, Architecture, Testing-Refactoring, Process, Craftsmanship) — 30 posts, all curricula at 100%
-- Articles category + `article-manager` subagent: one analysis/intro post per external article (17 posts so far — AI/engineering articles plus YouTube video summaries via yt-dlp transcript extraction), now organized into 7 nested sub-categories (AI-Engineering, AI-Industry, AI-Essays, Security, Engineering-Culture, Career-Life, Systems-Programming); the subagent recommends a new sub-category when an article fits none
+- Articles category + `article-manager` subagent: one analysis/intro post per external article (17 posts so far — AI/engineering articles plus YouTube video summaries via yt-dlp transcript extraction), now organized into 8 nested sub-categories (AI-Engineering, AI-Industry, AI-Essays, Security, Engineering-Culture, Career-Life, Systems-Programming, ML-Theory); the subagent recommends a new sub-category when an article fits none
 - Mermaid diagram rendering and zoom enabled
 - Logo and branding applied
 - Search functionality working
