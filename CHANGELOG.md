@@ -3,6 +3,30 @@
 Notable design/UI changes to the wiki. Format: [Keep a Changelog](https://keepachangelog.com/).
 See [`DESIGN.md`](DESIGN.md) (design system) and [`ASSETS.md`](ASSETS.md) (asset pipeline).
 
+## [2.1.0] — 2026-06-25
+
+### Changed
+- **Post content widened to the home-page width.** Articles now fill the default `1200px`
+  `.container` (≈ 1160px usable) — the same band as the home page — instead of the old
+  800px reading column. Prose, illustrations and Mermaid charts all read at full width.
+- **`.post-wrapper`** is no longer a flex row with an in-flow sidebar; it fills the shared
+  `.container`. The reading plate `.post-wrapper .post` sets `max-width: none` to override
+  the base `.post` 800px cap (the bug that kept the body pinned at 800px).
+
+### Added
+- **On-demand outline (TOC)** — the right TOC is now a slide-out panel, **default closed**,
+  opened by a right-edge `.toc-toggle` bookmark tab; closes on Esc / click-away / picking a
+  section (`toc.js`). Available at all widths (no longer hidden < 1200px). Scoped to
+  `#post-toc`; the CV page keeps its sticky `.cv-toc-sidebar`.
+
+### Decisions
+- Diagnosed the "too narrow" complaint as **two** problems: prose width vs. figure/chart
+  width. An intermediate design kept prose at ~900px and let only figures/charts break out
+  wider; the owner preferred the **whole** content at home-page width, so the breakout grid
+  was dropped in favour of a single full-width reading plate. The slide-out TOC (freeing the
+  old ~290px sidebar) stays — that is what makes the full width usable on every load. The
+  breakout pattern can be re-layered on `.post-content` later if long lines need reining in.
+
 ## [2.0.0] — 2026-06-18
 
 ### Added

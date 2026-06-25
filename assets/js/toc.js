@@ -90,6 +90,78 @@
 
         // Initialize scroll spy
         initScrollSpy(headings);
+
+        // Wire the on-demand slide-out toggle (post pages only)
+        initTocToggle(tocSidebar);
+    }
+
+    // Turn the post outline into an on-demand slide-out panel.
+    // The CV page keeps its own sticky sidebar, so this only applies to #post-toc.
+    function initTocToggle(tocSidebar) {
+        if (tocSidebar.id !== 'post-toc') {
+            return;
+        }
+
+        // Pull-out tab handle (default closed)
+        const toggle = document.createElement('button');
+        toggle.type = 'button';
+        toggle.className = 'toc-toggle';
+        toggle.setAttribute('aria-controls', 'post-toc');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', '목차 열기');
+        toggle.innerHTML =
+            '<span class="toc-toggle-icon" aria-hidden="true">📑</span>' +
+            '<span class="toc-toggle-label">목차</span>';
+        document.body.appendChild(toggle);
+
+        // Close (✕) inside the panel
+        const closeBtn = document.createElement('button');
+        closeBtn.type = 'button';
+        closeBtn.className = 'toc-close';
+        closeBtn.setAttribute('aria-label', '목차 닫기');
+        closeBtn.innerHTML = '✕';
+        tocSidebar.appendChild(closeBtn);
+
+        function onKey(e) {
+            if (e.key === 'Escape') {
+                close();
+                toggle.focus();
+            }
+        }
+
+        function onDocClick(e) {
+            if (!tocSidebar.contains(e.target) && !toggle.contains(e.target)) {
+                close();
+            }
+        }
+
+        function open() {
+            tocSidebar.classList.add('is-open');
+            toggle.setAttribute('aria-expanded', 'true');
+            document.addEventListener('keydown', onKey);
+            document.addEventListener('click', onDocClick);
+        }
+
+        function close() {
+            tocSidebar.classList.remove('is-open');
+            toggle.setAttribute('aria-expanded', 'false');
+            document.removeEventListener('keydown', onKey);
+            document.removeEventListener('click', onDocClick);
+        }
+
+        toggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            tocSidebar.classList.contains('is-open') ? close() : open();
+        });
+
+        closeBtn.addEventListener('click', close);
+
+        // Picking a section auto-dismisses the panel
+        tocSidebar.addEventListener('click', function(e) {
+            if (e.target.closest('.toc-link')) {
+                close();
+            }
+        });
     }
 
     // Initialize scroll spy to highlight active section

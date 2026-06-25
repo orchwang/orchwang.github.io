@@ -210,15 +210,23 @@ labels, counts, panel headers, quest-stamp labels.
 
 ## 4. Layout
 
-- **Reading column capped at `max-width: 800px`** (≈ 40–45 Hangul chars/line). Do not
-  widen. Full-width chrome (banner/footer).
-- **Breakpoints:** `1200px` (container + TOC sidebar collapse), `768px` (mobile + nav
-  collapse). Touch: `(hover: none) and (pointer: coarse)`; tap targets ≥ 44px.
+- **Post content spans the home-page width.** The article fills the default `1200px`
+  `.container` (≈ 1160px usable) — the *same* band as the home page — so prose,
+  illustrations and Mermaid charts all read at full width (the prior 800px column was the
+  #1 readability complaint). `.post-wrapper .post` sets `max-width: none` to override the
+  base `.post` 800px reading-plate cap; nothing else constrains the width.
+- **Reading-width note:** the old 800px measure is retired. If long text lines ever need
+  reining in, re-narrow `.post-content` (not `.post`) — keep the plate at home-page width
+  and the breakout-figure pattern can return on top of it.
+- **Breakpoints:** `1200px` (shared `.container` shell), `768px` (mobile + nav collapse).
+  Touch: `(hover: none) and (pointer: coarse)`; tap targets ≥ 44px.
 - **Banner header:** Horde war-banner masthead — warlord crest medallion (`--crest-size`
   56px) + brass pixel wordmark + theme toggle + pixel nav (`홈 | 카테고리 | 태그 | 시리즈 |
   CV`) styled as war-camp tiles + a search-input slot. Crimson-over-brass bottom edge.
-- **Post page:** bone war-scroll panel → content → sticky TOC ("목차 / map").
-  CV uses a 124px warlord-crest avatar on a character-sheet panel.
+- **Post page:** bone war-scroll panel → content → **on-demand outline** ("목차"). The TOC
+  is a right-edge **slide-out panel, default closed** (a `.toc-toggle` bookmark tab opens
+  it; Esc / click-away / picking a section closes it), freeing the full width for content
+  on every load. CV keeps its own **sticky** sidebar (`.cv-toc-sidebar`) — unchanged.
 
 ## 5. Components (Game-UI panels)
 
