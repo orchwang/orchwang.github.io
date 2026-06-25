@@ -132,6 +132,7 @@ date: 2025-10-12
 |-------|-----------|
 | **Primary** | Python, Django, Django Channels, FastAPI, DRF (Django REST Framework) |
 | **Secondary** | JavaScript, Alpine JS, Tailwind CSS, Java |
+| **Learning** | Go, Rust |
 
 ### 💾 Databases & Caching
 
