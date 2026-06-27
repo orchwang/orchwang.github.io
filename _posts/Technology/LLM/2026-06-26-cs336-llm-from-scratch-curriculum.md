@@ -73,9 +73,9 @@ flowchart TD
 
 > 완료한 항목에는 상세 포스트 링크가 연결됩니다. 학습이 진행될 때마다 체크박스와 진행률을 갱신합니다.
 
-- 현재 완료한 항목: **6개**
+- 현재 완료한 항목: **9개**
 - 전체 항목: **51개**
-- 진행률: **12%**
+- 진행률: **18%**
 
 ## 1단계: 개요와 토크나이제이션 (Lecture 1)
 
@@ -95,11 +95,11 @@ flowchart TD
 
 ## 3단계: 아키텍처와 하이퍼파라미터 (Lecture 3)
 
-**[유닛 2 · 아키텍처 & 시스템]** 원조 Transformer에서 현대 LLM으로 오며 굳어진 **설계 표준**을 정리합니다. 정규화 위치, 정규화·활성화 함수, 위치 인코딩, 그리고 깊이·너비·헤드 수 같은 하이퍼파라미터의 실전 기본값을 다룹니다.
+**[유닛 2 · 아키텍처 & 시스템]** 원조 Transformer에서 현대 LLM으로 오며 굳어진 **설계 표준**을 정리합니다. 정규화 위치, 정규화·활성화 함수, 위치 인코딩, 그리고 깊이·너비·헤드 수 같은 하이퍼파라미터의 실전 기본값을 다룹니다. 자세한 내용은 [CS336 3강 — 아키텍처와 하이퍼파라미터: 현대 트랜스포머의 합의](/2026/06/26/cs336-lecture-3-architectures-hyperparameters.html) 포스트에서 다룹니다.
 
-- [ ] **Transformer 변형**: Pre-norm vs Post-norm, RMSNorm, SwiGLU/GeGLU 등 현대 LLM의 표준 선택
-- [ ] **위치 인코딩**: 절대/상대 인코딩의 한계와 RoPE(회전 위치 인코딩)
-- [ ] **하이퍼파라미터 실전값**: 너비/깊이 비율, 헤드 수·차원, FFN 배율 등 검증된 기본 설정
+- [x] **Transformer 변형**: Pre-norm vs Post-norm, RMSNorm, SwiGLU/GeGLU 등 현대 LLM의 표준 선택 — [[상세](/2026/06/26/cs336-lecture-3-architectures-hyperparameters.html)]
+- [x] **위치 인코딩**: 절대/상대 인코딩의 한계와 RoPE(회전 위치 인코딩) — [[상세](/2026/06/26/cs336-lecture-3-architectures-hyperparameters.html)]
+- [x] **하이퍼파라미터 실전값**: 너비/깊이 비율, 헤드 수·차원, FFN 배율 등 검증된 기본 설정 — [[상세](/2026/06/26/cs336-lecture-3-architectures-hyperparameters.html)]
 
 ## 4단계: Mixture of Experts (Lecture 4)
 
@@ -243,5 +243,6 @@ CS336이 던지는 메시지는 분명합니다 — **언어 모델은 마법이
 
 - [CS336 1강 — 개요와 토크나이제이션: BPE를 밑바닥부터](/2026/06/26/cs336-lecture-1-overview-and-tokenization.html) — 첫 단계, 토크나이제이션과 BPE 밑바닥 구현
 - [CS336 2강 — PyTorch와 자원 회계: 6ND와 메모리를 냅킨에 계산하기](/2026/06/26/cs336-lecture-2-pytorch-resource-accounting.html) — 둘째 단계, FLOPs·메모리 회계와 6ND
+- [CS336 3강 — 아키텍처와 하이퍼파라미터: 현대 트랜스포머의 합의](/2026/06/26/cs336-lecture-3-architectures-hyperparameters.html) — 셋째 단계, Pre-norm·RMSNorm·SwiGLU·RoPE
 - [Data Engineering Essential Curriculum](/2026/06/25/data-engineering-essential-curriculum.html) — 모델에 먹일 데이터를 만드는 파이프라인의 토대
 - [Python Advanced Competency Curriculum](/2025/10/12/python-advanced-competency-curriculum.html) — LLM 구현의 기반 언어, Python 심화
