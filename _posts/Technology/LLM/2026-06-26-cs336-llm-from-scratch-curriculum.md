@@ -73,9 +73,9 @@ flowchart TD
 
 > 완료한 항목에는 상세 포스트 링크가 연결됩니다. 학습이 진행될 때마다 체크박스와 진행률을 갱신합니다.
 
-- 현재 완료한 항목: **9개**
+- 현재 완료한 항목: **12개**
 - 전체 항목: **51개**
-- 진행률: **18%**
+- 진행률: **24%**
 
 ## 1단계: 개요와 토크나이제이션 (Lecture 1)
 
@@ -103,11 +103,11 @@ flowchart TD
 
 ## 4단계: Mixture of Experts (Lecture 4)
 
-**[유닛 2 · 아키텍처 & 시스템]** **연산은 고정한 채 파라미터만 키우는** 희소(sparse) 아키텍처. 토큰마다 일부 전문가(expert)만 활성화하는 MoE의 원리와, 그것을 실제로 학습 가능하게 만드는 라우팅·로드 밸런싱을 다룹니다.
+**[유닛 2 · 아키텍처 & 시스템]** **연산은 고정한 채 파라미터만 키우는** 희소(sparse) 아키텍처. 토큰마다 일부 전문가(expert)만 활성화하는 MoE의 원리와, 그것을 실제로 학습 가능하게 만드는 라우팅·로드 밸런싱을 다룹니다. 자세한 내용은 [CS336 4강 — Mixture of Experts: 연산은 그대로, 파라미터만 키우기](/2026/06/26/cs336-lecture-4-mixture-of-experts.html) 포스트에서 다룹니다.
 
-- [ ] **MoE의 핵심 아이디어**: 희소 활성화로 파라미터 ↑·토큰당 연산 고정, 밀집(dense) 모델과의 비교
-- [ ] **라우팅과 게이팅**: top-k 라우팅, 로드 밸런싱 손실, 전문가 용량(capacity)과 토큰 드롭
-- [ ] **실전 MoE**: 대표 MoE 모델 사례와 학습 안정성·시스템상의 과제
+- [x] **MoE의 핵심 아이디어**: 희소 활성화로 파라미터 ↑·토큰당 연산 고정, 밀집(dense) 모델과의 비교 — [[상세](/2026/06/26/cs336-lecture-4-mixture-of-experts.html)]
+- [x] **라우팅과 게이팅**: top-k 라우팅, 로드 밸런싱 손실, 전문가 용량(capacity)과 토큰 드롭 — [[상세](/2026/06/26/cs336-lecture-4-mixture-of-experts.html)]
+- [x] **실전 MoE**: 대표 MoE 모델 사례와 학습 안정성·시스템상의 과제 — [[상세](/2026/06/26/cs336-lecture-4-mixture-of-experts.html)]
 
 ## 5단계: GPU (Lecture 5)
 
@@ -244,5 +244,6 @@ CS336이 던지는 메시지는 분명합니다 — **언어 모델은 마법이
 - [CS336 1강 — 개요와 토크나이제이션: BPE를 밑바닥부터](/2026/06/26/cs336-lecture-1-overview-and-tokenization.html) — 첫 단계, 토크나이제이션과 BPE 밑바닥 구현
 - [CS336 2강 — PyTorch와 자원 회계: 6ND와 메모리를 냅킨에 계산하기](/2026/06/26/cs336-lecture-2-pytorch-resource-accounting.html) — 둘째 단계, FLOPs·메모리 회계와 6ND
 - [CS336 3강 — 아키텍처와 하이퍼파라미터: 현대 트랜스포머의 합의](/2026/06/26/cs336-lecture-3-architectures-hyperparameters.html) — 셋째 단계, Pre-norm·RMSNorm·SwiGLU·RoPE
+- [CS336 4강 — Mixture of Experts: 연산은 그대로, 파라미터만 키우기](/2026/06/26/cs336-lecture-4-mixture-of-experts.html) — 넷째 단계, MoE 라우팅·부하 분산·DeepSeek V3
 - [Data Engineering Essential Curriculum](/2026/06/25/data-engineering-essential-curriculum.html) — 모델에 먹일 데이터를 만드는 파이프라인의 토대
 - [Python Advanced Competency Curriculum](/2025/10/12/python-advanced-competency-curriculum.html) — LLM 구현의 기반 언어, Python 심화
