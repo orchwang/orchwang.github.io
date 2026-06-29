@@ -73,9 +73,9 @@ flowchart TD
 
 > 완료한 항목에는 상세 포스트 링크가 연결됩니다. 학습이 진행될 때마다 체크박스와 진행률을 갱신합니다.
 
-- 현재 완료한 항목: **12개**
+- 현재 완료한 항목: **33개**
 - 전체 항목: **51개**
-- 진행률: **24%**
+- 진행률: **65%**
 
 ## 1단계: 개요와 토크나이제이션 (Lecture 1)
 
@@ -111,59 +111,59 @@ flowchart TD
 
 ## 5단계: GPU (Lecture 5)
 
-**[유닛 2 · 아키텍처 & 시스템]** 모델이 실제로 돌아가는 **하드웨어**를 이해하는 단계. SM·메모리 계층·텐서 코어 같은 GPU 구조와, compute-bound vs memory-bound를 가르는 **루프라인(roofline)** 사고를 익혀, 왜 어떤 연산은 빠르고 어떤 연산은 느린지 설명합니다.
+**[유닛 2 · 아키텍처 & 시스템]** 모델이 실제로 돌아가는 **하드웨어**를 이해하는 단계. SM·메모리 계층·텐서 코어 같은 GPU 구조와, compute-bound vs memory-bound를 가르는 **루프라인(roofline)** 사고를 익혀, 왜 어떤 연산은 빠르고 어떤 연산은 느린지 설명합니다. 자세한 내용은 [CS336 5강 — GPU: 병목은 연산이 아니라 메모리다](/2026/06/26/cs336-lecture-5-gpus.html) 포스트에서 다룹니다.
 
-- [ ] **GPU 구조**: SM(스트리밍 멀티프로세서), 메모리 계층(HBM↔SRAM/레지스터), 텐서 코어
-- [ ] **성능 모델**: 산술 강도(arithmetic intensity)와 루프라인, compute-bound vs memory-bound
-- [ ] **왜 행렬곱인가**: 행렬곱이 GPU에 잘 맞는 이유와, 메모리 이동이 성능을 지배하는 지점
+- [x] **GPU 구조**: SM(스트리밍 멀티프로세서), 메모리 계층(HBM↔SRAM/레지스터), 텐서 코어 — [[상세](/2026/06/26/cs336-lecture-5-gpus.html)]
+- [x] **성능 모델**: 산술 강도(arithmetic intensity)와 루프라인, compute-bound vs memory-bound — [[상세](/2026/06/26/cs336-lecture-5-gpus.html)]
+- [x] **왜 행렬곱인가**: 행렬곱이 GPU에 잘 맞는 이유와, 메모리 이동이 성능을 지배하는 지점 — [[상세](/2026/06/26/cs336-lecture-5-gpus.html)]
 
 ## 6단계: 커널과 Triton (Lecture 6)
 
-**[유닛 2 · 아키텍처 & 시스템]** GPU를 한계까지 짜내는 **커널 최적화**. 메모리 이동을 줄이는 커널 퓨전(fusion)의 원리를 배우고, **Triton**으로 커스텀 커널을 작성하며, 그 정점인 **FlashAttention**이 어떻게 메모리 효율적으로 어텐션을 계산하는지 이해합니다.
+**[유닛 2 · 아키텍처 & 시스템]** GPU 코드를 **빠르게 만드는 실전**. 벤치마킹·프로파일링으로 병목을 찾고, 메모리 이동을 줄이는 커널 퓨전(fusion)의 원리를 배우며, **Triton**·`torch.compile`로 커스텀 커널을 작성합니다(그 동기가 되는 목표가 FlashAttention — 알고리즘 자체는 5단계에서 다룹니다). 자세한 내용은 [CS336 6강 — 커널과 Triton: 측정하고, 퓨즈하라](/2026/06/26/cs336-lecture-6-kernels-triton.html) 포스트에서 다룹니다.
 
-- [ ] **커널 퓨전**: 연산을 합쳐 HBM 왕복을 줄이기, 메모리 바운드 연산의 최적화
-- [ ] **Triton 프로그래밍**: 블록 단위로 커스텀 GPU 커널 작성하기
-- [ ] **FlashAttention**: 타일링과 온라인 softmax로 메모리 효율적 어텐션 구현
+- [x] **벤치마킹·프로파일링**: warm-up·`cuda.synchronize`로 정확히 재기, 프로파일러로 병목 찾기(CPU/GPU 비동기 실행) — [[상세](/2026/06/26/cs336-lecture-6-kernels-triton.html)]
+- [x] **커널 퓨전**: 여러 연산을 한 커널로 합쳐 HBM 왕복 줄이기(GELU 8배 가속) — [[상세](/2026/06/26/cs336-lecture-6-kernels-triton.html)]
+- [x] **Triton과 torch.compile**: 블록 관점의 커스텀 커널, 자동 퓨전, 그리고 도구 선택 기준 — [[상세](/2026/06/26/cs336-lecture-6-kernels-triton.html)]
 
 ## 7단계: 병렬화 1 — 데이터 병렬 (Lecture 7)
 
-**[유닛 2 · 아키텍처 & 시스템]** 한 장의 GPU로는 큰 모델을 학습할 수 없습니다. 여러 GPU에 일을 나누는 첫 축, **데이터 병렬화**와 그 통신 비용, 그리고 메모리를 분산하는 **ZeRO/FSDP**를 다룹니다.
+**[유닛 2 · 아키텍처 & 시스템]** 한 장의 GPU로는 큰 모델을 학습할 수 없습니다. 여러 GPU에 일을 나누는 첫 축, **데이터 병렬화**와 그 통신 비용, 그리고 메모리를 분산하는 **ZeRO/FSDP**를 다룹니다. 자세한 내용은 [CS336 7강 — 병렬화 1: 데이터 병렬과 ZeRO/FSDP](/2026/06/26/cs336-lecture-7-parallelism-1-data-parallel.html) 포스트에서 다룹니다.
 
-- [ ] **집합 통신(collective)**: all-reduce·all-gather·reduce-scatter와 통신 비용 모델
-- [ ] **데이터 병렬화**: 동기 SGD, 그래디언트 동기화, 스케일링 한계
-- [ ] **ZeRO / FSDP**: 옵티마이저 상태·그래디언트·파라미터 샤딩으로 메모리 분산
+- [x] **집합 통신(collective)**: all-reduce·all-gather·reduce-scatter와 통신 비용 모델(all-reduce = reduce-scatter + all-gather) — [[상세](/2026/06/26/cs336-lecture-7-parallelism-1-data-parallel.html)]
+- [x] **데이터 병렬화**: 동기 SGD, 그래디언트 동기화, 파라미터당 16바이트 메모리와 배치 크기 한계 — [[상세](/2026/06/26/cs336-lecture-7-parallelism-1-data-parallel.html)]
+- [x] **ZeRO / FSDP**: 옵티마이저 상태·그래디언트·파라미터 샤딩으로 메모리 분산 — [[상세](/2026/06/26/cs336-lecture-7-parallelism-1-data-parallel.html)]
 
 ## 8단계: 병렬화 2 — 텐서·파이프라인 병렬 (Lecture 8)
 
-**[유닛 2 · 아키텍처 & 시스템]** 모델 자체를 쪼개는 병렬화. **텐서 병렬**(한 레이어를 여러 GPU로)과 **파이프라인 병렬**(레이어들을 단계로), 그리고 이들을 데이터 병렬과 조합하는 **3D 병렬화**로 초대형 모델을 학습하는 법을 다룹니다.
+**[유닛 2 · 아키텍처 & 시스템]** 모델 자체를 쪼개는 병렬화. **텐서 병렬**(한 레이어를 여러 GPU로)과 **파이프라인 병렬**(레이어들을 단계로), 그리고 이들을 데이터 병렬과 조합하는 **3D 병렬화**로 초대형 모델을 학습하는 법을 다룹니다. 자세한 내용은 [CS336 8강 — 병렬화 2: 텐서·파이프라인 병렬과 3D 병렬화](/2026/06/26/cs336-lecture-8-parallelism-2-tensor-pipeline.html) 포스트에서 다룹니다.
 
-- [ ] **텐서 병렬(Tensor Parallelism)**: 행렬곱을 GPU 간에 분할, 통신 지점과 비용
-- [ ] **파이프라인 병렬(Pipeline Parallelism)**: 레이어 분할, 마이크로배치와 버블(bubble) 최소화
-- [ ] **3D 병렬화**: 데이터·텐서·파이프라인 병렬의 조합과 통신-연산 오버랩
+- [x] **텐서 병렬(Tensor Parallelism)**: 행렬곱을 GPU 간에 분할, 통신 지점과 비용 — [[상세](/2026/06/26/cs336-lecture-8-parallelism-2-tensor-pipeline.html)]
+- [x] **파이프라인 병렬(Pipeline Parallelism)**: 레이어 분할, 마이크로배치와 버블(bubble) 최소화 — [[상세](/2026/06/26/cs336-lecture-8-parallelism-2-tensor-pipeline.html)]
+- [x] **3D 병렬화**: 데이터·텐서·파이프라인 병렬의 조합과 통신-연산 오버랩 — [[상세](/2026/06/26/cs336-lecture-8-parallelism-2-tensor-pipeline.html)]
 
 ## 9단계: 스케일링 법칙 1 (Lecture 9)
 
-**[유닛 3 · 스케일링 & 추론]** "작게 실험해서 크게 예측한다." 손실이 모델·데이터·연산의 거듭제곱으로 줄어드는 **스케일링 법칙**과, 주어진 연산 예산에서 모델 크기와 데이터 양의 최적 배분을 알려주는 **Chinchilla**를 다룹니다.
+**[유닛 3 · 스케일링 & 추론]** "작게 실험해서 크게 예측한다." 손실이 모델·데이터·연산의 거듭제곱으로 줄어드는 **스케일링 법칙**과, 주어진 연산 예산에서 모델 크기와 데이터 양의 최적 배분을 알려주는 **Chinchilla**를 다룹니다. 자세한 내용은 [CS336 9강 — 스케일링 법칙 1: 작게 실험해 크게 예측하기](/2026/06/26/cs336-lecture-9-scaling-laws-1.html) 포스트에서 다룹니다.
 
-- [ ] **스케일링 법칙의 형태**: 손실 = f(파라미터·데이터·연산)의 거듭제곱 법칙, 멱법칙(power law) 직관
-- [ ] **Chinchilla와 compute-optimal**: 고정 연산에서 모델 크기 ↔ 토큰 수의 최적 비율
-- [ ] **스케일링 실험 설계**: IsoFLOP 곡선, 작은 모델에서 큰 모델의 성능 외삽
+- [x] **스케일링 법칙의 형태**: 손실 = f(파라미터·데이터·연산)의 거듭제곱 법칙, 멱법칙(power law) 직관 — [[상세](/2026/06/26/cs336-lecture-9-scaling-laws-1.html)]
+- [x] **Chinchilla와 compute-optimal**: 고정 연산에서 모델 크기 ↔ 토큰 수의 최적 비율(≈20토큰/파라미터) — [[상세](/2026/06/26/cs336-lecture-9-scaling-laws-1.html)]
+- [x] **스케일링 실험 설계**: IsoFLOP 곡선, 작은 모델에서 큰 모델의 성능 외삽 — [[상세](/2026/06/26/cs336-lecture-9-scaling-laws-1.html)]
 
 ## 10단계: 추론 (Inference) (Lecture 10)
 
-**[유닛 3 · 스케일링 & 추론]** 학습이 끝난 모델을 **실제로 서빙**할 때의 경제학. prefill과 decode의 비대칭, KV 캐시, 그리고 양자화·speculative decoding·배칭 같은 추론 최적화 기법을 다룹니다.
+**[유닛 3 · 스케일링 & 추론]** 학습이 끝난 모델을 **실제로 서빙**할 때의 경제학. prefill과 decode의 비대칭, KV 캐시, 그리고 양자화·speculative decoding·배칭 같은 추론 최적화 기법을 다룹니다. 자세한 내용은 [CS336 10강 — 추론(Inference): KV 캐시와 메모리 한계의 게임](/2026/06/26/cs336-lecture-10-inference.html) 포스트에서 다룹니다.
 
-- [ ] **추론의 두 단계**: prefill(병렬) vs decode(순차)의 비대칭, 지연 vs 처리량
-- [ ] **KV 캐시**: 캐시의 메모리 비용과 컨텍스트 길이·배치 크기의 제약
-- [ ] **추론 최적화**: 양자화, speculative decoding, 연속 배칭(continuous batching)
+- [x] **추론의 두 단계**: prefill(병렬·연산 한계) vs decode(순차·메모리 한계)의 비대칭, 지연 vs 처리량 — [[상세](/2026/06/26/cs336-lecture-10-inference.html)]
+- [x] **KV 캐시**: 캐시의 메모리 비용과 그것을 줄이는 아키텍처(GQA·MLA·local attention) — [[상세](/2026/06/26/cs336-lecture-10-inference.html)]
+- [x] **추론 최적화**: 양자화, speculative decoding(무손실), 연속 배칭·PagedAttention — [[상세](/2026/06/26/cs336-lecture-10-inference.html)]
 
 ## 11단계: 스케일링 법칙 2 (Lecture 11)
 
-**[유닛 3 · 스케일링 & 추론]** 스케일링 법칙을 **실무 의사결정**으로 잇는 단계. 작은 모델에서 튜닝한 하이퍼파라미터를 큰 모델로 옮기는 **하이퍼파라미터 전이(muP 등)**와, 스케일링으로 학습 레시피를 결정하는 방법을 다룹니다.
+**[유닛 3 · 스케일링 & 추론]** 스케일링 법칙을 **실무 의사결정**으로 잇는 단계. 작은 모델에서 튜닝한 하이퍼파라미터를 큰 모델로 옮기는 **하이퍼파라미터 전이(muP 등)**와, 스케일링으로 학습 레시피를 결정하는 방법을 다룹니다. 자세한 내용은 [CS336 11강 — 스케일링 법칙 2: 실전 레시피와 muP](/2026/06/26/cs336-lecture-11-scaling-laws-2.html) 포스트에서 다룹니다.
 
-- [ ] **하이퍼파라미터 전이**: muP(maximal update parameterization), 작은 모델에서 큰 모델로 학습률 전이
-- [ ] **스케일링으로 레시피 정하기**: 아키텍처·데이터·옵티마이저 선택을 스케일링 실험으로 검증
-- [ ] **실전 스케일링의 함정**: 외삽의 한계, 데이터 한계(data-constrained) 스케일링
+- [x] **하이퍼파라미터 전이**: muP(maximal update parameterization), 작은 모델에서 큰 모델로 학습률 전이 — [[상세](/2026/06/26/cs336-lecture-11-scaling-laws-2.html)]
+- [x] **스케일링으로 레시피 정하기**: 실전 사례(Cerebras·MiniCPM·DeepSeek)와 WSD 학습률로 한 번에 Chinchilla — [[상세](/2026/06/26/cs336-lecture-11-scaling-laws-2.html)]
+- [x] **실전 스케일링의 함정**: "20토큰/파라미터는 출발점", IsoFLOP은 재현되나 비율은 커짐 — [[상세](/2026/06/26/cs336-lecture-11-scaling-laws-2.html)]
 
 ## 12단계: 평가 (Evaluation) (Lecture 12)
 
@@ -245,5 +245,12 @@ CS336이 던지는 메시지는 분명합니다 — **언어 모델은 마법이
 - [CS336 2강 — PyTorch와 자원 회계: 6ND와 메모리를 냅킨에 계산하기](/2026/06/26/cs336-lecture-2-pytorch-resource-accounting.html) — 둘째 단계, FLOPs·메모리 회계와 6ND
 - [CS336 3강 — 아키텍처와 하이퍼파라미터: 현대 트랜스포머의 합의](/2026/06/26/cs336-lecture-3-architectures-hyperparameters.html) — 셋째 단계, Pre-norm·RMSNorm·SwiGLU·RoPE
 - [CS336 4강 — Mixture of Experts: 연산은 그대로, 파라미터만 키우기](/2026/06/26/cs336-lecture-4-mixture-of-experts.html) — 넷째 단계, MoE 라우팅·부하 분산·DeepSeek V3
+- [CS336 5강 — GPU: 병목은 연산이 아니라 메모리다](/2026/06/26/cs336-lecture-5-gpus.html) — 다섯째 단계, GPU 구조·루프라인·타일링·Flash Attention
+- [CS336 6강 — 커널과 Triton: 측정하고, 퓨즈하라](/2026/06/26/cs336-lecture-6-kernels-triton.html) — 여섯째 단계, 벤치마킹·프로파일링·커널 퓨전·Triton
+- [CS336 7강 — 병렬화 1: 데이터 병렬과 ZeRO/FSDP](/2026/06/26/cs336-lecture-7-parallelism-1-data-parallel.html) — 일곱째 단계, 집합 통신·데이터 병렬·ZeRO/FSDP
+- [CS336 8강 — 병렬화 2: 텐서·파이프라인 병렬과 3D 병렬화](/2026/06/26/cs336-lecture-8-parallelism-2-tensor-pipeline.html) — 여덟째 단계, 텐서·파이프라인·3D 병렬화 (유닛 2 완료)
+- [CS336 9강 — 스케일링 법칙 1: 작게 실험해 크게 예측하기](/2026/06/26/cs336-lecture-9-scaling-laws-1.html) — 아홉째 단계, 멱법칙·Chinchilla·컴퓨트 최적 (유닛 3 시작)
+- [CS336 10강 — 추론(Inference): KV 캐시와 메모리 한계의 게임](/2026/06/26/cs336-lecture-10-inference.html) — 열째 단계, prefill/decode·KV 캐시·speculative decoding
+- [CS336 11강 — 스케일링 법칙 2: 실전 레시피와 muP](/2026/06/26/cs336-lecture-11-scaling-laws-2.html) — 열한째 단계, 실전 사례·WSD·muP (유닛 3 완료)
 - [Data Engineering Essential Curriculum](/2026/06/25/data-engineering-essential-curriculum.html) — 모델에 먹일 데이터를 만드는 파이프라인의 토대
 - [Python Advanced Competency Curriculum](/2025/10/12/python-advanced-competency-curriculum.html) — LLM 구현의 기반 언어, Python 심화
