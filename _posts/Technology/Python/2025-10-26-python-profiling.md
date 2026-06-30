@@ -9,6 +9,80 @@ published: true
 excerpt: "Python 애플리케이션의 성능 병목 지점을 찾고 최적화하기 위한 프로파일링 도구와 기법을 알아봅니다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="Python 프로파일링의 다섯 단계가 하나의 순환 고리로 이어진 그림. ① 측정에서 시작해 ② 핫스팟 식별로 이동하고, ③ 분석 단계에서 cProfile·line_profiler·memory_profiler 세 도구로 병목의 정체를 파헤친 뒤, ④ 최적화를 거쳐 ⑤ 재측정으로 검증한다. 재측정에서 목표를 달성하면 고리를 빠져나가 완료로 가고, 미달이면 화살표가 다시 측정으로 돌아가 순환을 반복한다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>Python 프로파일링 워크플로 — 측정 → 핫스팟 식별 → 분석(cProfile·line_profiler·memory_profiler) → 최적화 → 재측정의 순환 고리</title>
+
+  <!-- ===== cyclic five-step loop ===== -->
+  <!-- step 1: 측정 -->
+  <rect x="40" y="40" width="100" height="48" rx="4" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="90" y="60" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">① 측정</text>
+  <text x="90" y="76" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">전체 실행 시간</text>
+
+  <!-- step 2: 핫스팟 식별 -->
+  <rect x="290" y="40" width="100" height="48" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="340" y="60" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">② 핫스팟 식별</text>
+  <text x="340" y="76" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">80%를 먹는 20%</text>
+
+  <!-- step 3: 분석 (with three tool chips) -->
+  <rect x="540" y="40" width="100" height="48" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="590" y="60" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">③ 분석</text>
+  <text x="590" y="76" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">병목의 정체 파악</text>
+
+  <!-- step 4: 최적화 -->
+  <rect x="290" y="200" width="100" height="48" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="340" y="220" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">④ 최적화</text>
+  <text x="340" y="236" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">핫스팟만 손봄</text>
+
+  <!-- step 5: 재측정 -->
+  <rect x="40" y="200" width="100" height="48" rx="4" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <text x="90" y="220" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">⑤ 재측정</text>
+  <text x="90" y="236" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">검증</text>
+
+  <!-- analysis tool chips under step 3 -->
+  <g font-size="8" font-weight="700">
+    <rect x="540" y="100" width="100" height="20" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.4"/>
+    <text x="590" y="113.5" text-anchor="middle" fill="currentColor">cProfile · 함수별</text>
+    <rect x="540" y="124" width="100" height="20" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.4"/>
+    <text x="590" y="137.5" text-anchor="middle" fill="currentColor">line_profiler · 라인별</text>
+    <rect x="540" y="148" width="100" height="20" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.4"/>
+    <text x="590" y="161.5" text-anchor="middle" fill="currentColor">memory_profiler · 메모리</text>
+  </g>
+  <line x1="590" y1="88" x2="590" y2="98" stroke="var(--secondary-color)" stroke-width="1.6" stroke-dasharray="3 2"/>
+
+  <!-- forward arrows along the loop -->
+  <line x1="140" y1="64" x2="288" y2="64" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#pf-arrow)"/>
+  <line x1="390" y1="64" x2="538" y2="64" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#pf-arrow)"/>
+  <!-- step3 → step4 (down the right, across to center-bottom) -->
+  <path d="M590 175 L590 224 L392 224" fill="none" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#pf-arrow)"/>
+  <!-- step4 → step5 -->
+  <line x1="288" y1="224" x2="142" y2="224" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#pf-arrow)"/>
+
+  <!-- loop-back: 재측정 → 측정 (목표 미달이면 다시) -->
+  <line x1="90" y1="200" x2="90" y2="90" stroke="var(--accent-color)" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#pf-arrow-accent)"/>
+  <text x="98" y="150" text-anchor="start" font-size="8.5" fill="currentColor" opacity="0.85" font-weight="700">목표 미달 → 반복</text>
+
+  <!-- exit: 완료 -->
+  <line x1="140" y1="236" x2="200" y2="236" stroke="currentColor" stroke-width="1.6" opacity="0.55"/>
+  <text x="172" y="231" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.7">목표 달성</text>
+  <rect x="200" y="262" width="0" height="0"/>
+  <text x="172" y="252" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700" opacity="0.8">→ 완료</text>
+
+  <!-- title strip -->
+  <text x="340" y="22" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">추측하지 말고 — 측정하고 고치고 다시 측정한다</text>
+
+  <defs>
+    <marker id="pf-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+    <marker id="pf-arrow-accent" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--accent-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>이 글을 관통하는 프로파일링 루프 — <strong>측정 → 핫스팟 식별 → 분석 → 최적화 → 재측정</strong>. 분석 단계에서는 cProfile(함수별)·line_profiler(라인별)·memory_profiler(메모리)로 병목의 정체를 파악합니다. 재측정에서 목표에 미달하면 다시 측정으로 돌아가 순환을 반복하고, 달성하면 루프를 빠져나갑니다. 핵심은 추측이 아니라 데이터로 고치는 것입니다.</figcaption>
+</figure>
+
 <div class="post-summary-box" markdown="1">
 
 ## 📊 이 글에서 배울 내용
@@ -93,6 +167,85 @@ flowchart TD
 2. **메모리 프로파일링**: 메모리 사용량 추적
 3. **라인별 프로파일링**: 각 라인의 실행 시간 분석
 4. **샘플링 프로파일링**: 실행 중인 프로그램의 주기적 샘플링
+
+이 도구들을 가르는 가장 근본적인 축은 측정 **방식**입니다. cProfile처럼 모든 호출을 빠짐없이 기록하는 **결정론적(deterministic)** 방식과, py-spy처럼 일정 주기로 스택을 엿보는 **샘플링(sampling)** 방식은 정확도와 오버헤드를 정반대로 맞바꿉니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="결정론적 프로파일러와 샘플링 프로파일러의 차이를 위아래 두 타임라인으로 비교한 그림. 위쪽 결정론적 프로파일러는 모든 함수의 진입과 종료마다 빠짐없이 후크를 걸어 호출 하나하나를 정확히 기록하지만 그만큼 오버헤드가 크다. 아래쪽 샘플링 프로파일러는 일정 간격으로만 콜스택을 들여다보므로 오버헤드가 작아 프로덕션에 적합하지만, 표본을 찍는 순간 사이에 끝나버린 아주 짧은 함수는 놓칠 수 있다." viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg">
+  <title>결정론적 프로파일러(모든 호출 기록·정확·고오버헤드) vs 샘플링 프로파일러(주기적 표본·저오버헤드·짧은 함수 누락 가능)</title>
+
+  <!-- ===== TOP: deterministic ===== -->
+  <text x="20" y="34" text-anchor="start" font-size="12" fill="currentColor" font-weight="700">결정론적 — cProfile / line_profiler</text>
+  <text x="20" y="50" text-anchor="start" font-size="8.5" fill="currentColor" opacity="0.8">모든 함수 진입·종료에 후크 → 호출을 빠짐없이 기록 (정확하지만 오버헤드 ↑)</text>
+  <!-- execution timeline bar -->
+  <line x1="40" y1="86" x2="620" y2="86" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+  <!-- function call blocks on the timeline -->
+  <rect x="60" y="74" width="90" height="24" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.4"/>
+  <text x="105" y="90" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">funcA</text>
+  <rect x="170" y="74" width="40" height="24" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.4"/>
+  <text x="190" y="90" text-anchor="middle" font-size="7.5" fill="currentColor" font-weight="700">tiny</text>
+  <rect x="230" y="74" width="150" height="24" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.4"/>
+  <text x="305" y="90" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">funcB</text>
+  <rect x="400" y="74" width="30" height="24" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.4"/>
+  <text x="415" y="90" text-anchor="middle" font-size="7" fill="currentColor" font-weight="700">t2</text>
+  <rect x="450" y="74" width="160" height="24" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.4"/>
+  <text x="530" y="90" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">funcC</text>
+  <!-- hooks at every boundary -->
+  <g stroke="var(--accent-color)" stroke-width="2">
+    <line x1="60" y1="68" x2="60" y2="104"/>
+    <line x1="150" y1="68" x2="150" y2="104"/>
+    <line x1="170" y1="68" x2="170" y2="104"/>
+    <line x1="210" y1="68" x2="210" y2="104"/>
+    <line x1="230" y1="68" x2="230" y2="104"/>
+    <line x1="380" y1="68" x2="380" y2="104"/>
+    <line x1="400" y1="68" x2="400" y2="104"/>
+    <line x1="430" y1="68" x2="430" y2="104"/>
+    <line x1="450" y1="68" x2="450" y2="104"/>
+    <line x1="610" y1="68" x2="610" y2="104"/>
+  </g>
+  <text x="335" y="122" text-anchor="middle" font-size="8" fill="var(--accent-color)" font-weight="700">↑ 모든 경계마다 후크 — 짧은 함수도 놓치지 않음</text>
+
+  <!-- divider -->
+  <line x1="40" y1="146" x2="620" y2="146" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== BOTTOM: sampling ===== -->
+  <text x="20" y="172" text-anchor="start" font-size="12" fill="currentColor" font-weight="700">샘플링 — py-spy / Scalene</text>
+  <text x="20" y="188" text-anchor="start" font-size="8.5" fill="currentColor" opacity="0.8">일정 간격으로만 콜스택을 표본 추출 (저오버헤드 → 프로덕션 적합, 짧은 함수는 누락 가능)</text>
+  <!-- same timeline, same blocks -->
+  <line x1="40" y1="232" x2="620" y2="232" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+  <rect x="60" y="220" width="90" height="24" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.4"/>
+  <text x="105" y="236" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">funcA</text>
+  <rect x="170" y="220" width="40" height="24" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.4" opacity="0.45"/>
+  <text x="190" y="236" text-anchor="middle" font-size="7.5" fill="currentColor" font-weight="700" opacity="0.6">tiny</text>
+  <rect x="230" y="220" width="150" height="24" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.4"/>
+  <text x="305" y="236" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">funcB</text>
+  <rect x="400" y="220" width="30" height="24" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.4" opacity="0.45"/>
+  <text x="415" y="236" text-anchor="middle" font-size="7" fill="currentColor" font-weight="700" opacity="0.6">t2</text>
+  <rect x="450" y="220" width="160" height="24" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.4"/>
+  <text x="530" y="236" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">funcC</text>
+  <!-- evenly spaced sample ticks (some land on tiny gaps and miss the short fns) -->
+  <g stroke="var(--gold)" stroke-width="2">
+    <line x1="90" y1="214" x2="90" y2="250"/>
+    <line x1="170" y1="214" x2="170" y2="250"/>
+    <line x1="250" y1="214" x2="250" y2="250"/>
+    <line x1="330" y1="214" x2="330" y2="250"/>
+    <line x1="490" y1="214" x2="490" y2="250"/>
+    <line x1="570" y1="214" x2="570" y2="250"/>
+  </g>
+  <g fill="var(--gold)">
+    <circle cx="90" cy="212" r="3"/>
+    <circle cx="170" cy="212" r="3"/>
+    <circle cx="250" cy="212" r="3"/>
+    <circle cx="330" cy="212" r="3"/>
+    <circle cx="490" cy="212" r="3"/>
+    <circle cx="570" cy="212" r="3"/>
+  </g>
+  <text x="335" y="270" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8" font-weight="700">● 일정 간격 표본 — 흐릿해진 tiny·t2는 표본 사이에 끝나 누락됨</text>
+
+  <defs></defs>
+</svg>
+<figcaption>두 측정 방식의 차이 — <strong>결정론적</strong> 프로파일러(위)는 함수의 모든 진입·종료에 후크를 걸어 호출을 빠짐없이 정확히 기록하지만 오버헤드가 큽니다. <strong>샘플링</strong> 프로파일러(아래)는 일정 간격으로만 콜스택을 들여다보므로 오버헤드가 작아 프로덕션에 안전하지만, 표본 사이에 끝나버리는 아주 짧은 함수(<code>tiny</code>·<code>t2</code>)는 놓칠 수 있습니다.</figcaption>
+</figure>
 
 ## 내장 프로파일링 도구
 
@@ -657,6 +810,55 @@ Flame Graph는 함수 호출 스택을 시각화한 차트입니다:
 - **X축 (너비)**: CPU 시간 사용량 (넓을수록 더 많은 시간 소비)
 - **Y축 (높이)**: 호출 스택 깊이 (위로 갈수록 더 깊은 호출)
 - **색상**: 무작위 (의미 없음, 시각적 구분용)
+
+<figure class="post-figure">
+<svg role="img" aria-label="Flame Graph 읽는 법을 도식화한 그림. 맨 아래 main 함수가 전체 너비를 차지하고, 그 위로 호출된 함수들이 블록으로 쌓인다. 위로 갈수록 호출 스택이 깊어지고, 가로로 넓은 블록일수록 더 많은 CPU 시간을 소비한다. 가운데의 가장 넓은 블록 hot_loop가 핫스팟이며, 그 위 평평한 상단(plateau)이 실제 일이 벌어지는 잎(leaf) 지점이다. 좁은 블록들은 시간을 거의 쓰지 않으므로 최적화 대상이 아니다." viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg">
+  <title>Flame Graph 읽는 법 — 가로 너비 = CPU 시간, 세로 높이 = 콜스택 깊이, 가장 넓은 블록 = 핫스팟, 평평한 상단 = 실제 작업이 일어나는 잎</title>
+
+  <!-- axis hints -->
+  <text x="340" y="22" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.85">가로 = CPU 시간 (넓을수록 오래)  ·  세로 = 콜스택 깊이 (위로 갈수록 깊음)</text>
+  <line x1="40" y1="248" x2="640" y2="248" stroke="currentColor" stroke-width="1.5" marker-end="url(#fg-arrow)"/>
+  <text x="640" y="266" text-anchor="end" font-size="8.5" fill="currentColor" opacity="0.75">→ CPU 시간(샘플 수)</text>
+  <line x1="40" y1="248" x2="40" y2="44" stroke="currentColor" stroke-width="1.5" marker-end="url(#fg-arrow)"/>
+  <text x="34" y="46" text-anchor="end" font-size="8.5" fill="currentColor" opacity="0.75" transform="rotate(-90 34 46)">↑ 스택 깊이</text>
+
+  <!-- level 0: main spans the whole width -->
+  <rect x="48" y="224" width="584" height="22" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.4"/>
+  <text x="340" y="239" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">main()  — 전체 실행</text>
+
+  <!-- level 1 -->
+  <rect x="48" y="198" width="150" height="22" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.4"/>
+  <text x="123" y="213" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">setup()</text>
+  <rect x="202" y="198" width="430" height="22" rx="2" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.2"/>
+  <text x="417" y="213" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">process_data()</text>
+
+  <!-- level 2 -->
+  <rect x="48" y="172" width="70" height="22" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.4"/>
+  <text x="83" y="187" text-anchor="middle" font-size="7.5" fill="currentColor" font-weight="700">load()</text>
+  <rect x="210" y="172" width="360" height="22" rx="2" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.2"/>
+  <text x="390" y="187" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">transform()</text>
+
+  <!-- level 3: the widest leaf = hotspot -->
+  <rect x="220" y="146" width="300" height="22" rx="2" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.6"/>
+  <text x="370" y="161" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">hot_loop()  ← 가장 넓은 블록 = 핫스팟</text>
+
+  <!-- plateau marker on top of hotspot -->
+  <line x1="220" y1="140" x2="520" y2="140" stroke="var(--gold)" stroke-width="2" stroke-dasharray="4 2"/>
+  <text x="370" y="132" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700" opacity="0.9">평평한 상단(plateau) = 실제 작업이 일어나는 잎(leaf)</text>
+
+  <!-- callout: narrow block = ignore -->
+  <line x1="83" y1="170" x2="83" y2="108" stroke="var(--secondary-color)" stroke-width="1.4" stroke-dasharray="3 2"/>
+  <text x="83" y="100" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8" font-weight="700">좁은 블록</text>
+  <text x="83" y="89" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">시간 거의 안 씀 → 무시</text>
+
+  <defs>
+    <marker id="fg-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="currentColor"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>Flame Graph 해석 — 맨 아래 <code>main()</code>이 전체를 받치고 위로 갈수록 호출 스택이 깊어집니다. <strong>가로로 넓은 블록일수록 CPU 시간을 많이 쓴 함수</strong>이고, 가장 넓은 블록(<code>hot_loop</code>)이 핫스팟입니다. 그 위의 평평한 상단(plateau)이 실제 작업이 벌어지는 잎(leaf) 지점이며, 좁은 블록은 시간을 거의 쓰지 않으니 최적화 대상이 아닙니다.</figcaption>
+</figure>
 
 **읽는 팁:**
 

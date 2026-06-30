@@ -9,6 +9,93 @@ published: true
 excerpt: "dbg! 매크로와 gdb/lldb 디버깅, criterion 벤치마킹과 flamegraph 프로파일링으로 Rust 코드를 추적하고 성능을 측정하는 방법을 다룹니다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="Rust 코드를 추적하고 성능을 측정하는 순환 워크플로를 한 장에 담은 그림. 가운데를 시계 방향으로 도는 다섯 단계가 있다. 빌드에서 실행으로, 실행에서 문제 관측으로, 관측에서 원인 파악으로, 원인 파악에서 수정으로, 수정에서 다시 빌드로 화살표가 이어진다. 원인 파악 단계 옆에는 두 갈래 도구가 붙어 있는데, 위쪽 논리 버그 갈래에는 dbg! 매크로와 rust-gdb/rust-lldb 디버거가, 아래쪽 성능 갈래에는 criterion 벤치마크와 perf/flamegraph 프로파일러가 놓여 있다." viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
+  <title>Rust 디버깅·프로파일링 워크플로 — 빌드→실행→관측→원인 파악(디버거/프로파일러)→수정→재측정의 순환과 도구들</title>
+
+  <!-- ===== LEFT: the cyclic workflow ===== -->
+  <text x="160" y="24" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">측정-수정 순환</text>
+
+  <!-- five stages around a ring (center 160,170 r=110) -->
+  <!-- 1 빌드 (top) -->
+  <rect x="120" y="48" width="80" height="34" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="160" y="69" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">빌드</text>
+  <!-- 2 실행 (right) -->
+  <rect x="232" y="120" width="80" height="34" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="272" y="141" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">실행</text>
+  <!-- 3 문제 관측 (bottom-right) -->
+  <rect x="196" y="232" width="96" height="34" rx="4" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="244" y="253" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">문제 관측</text>
+  <!-- 4 원인 파악 (bottom-left) -->
+  <rect x="28" y="232" width="96" height="34" rx="4" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+  <text x="76" y="253" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">원인 파악</text>
+  <!-- 5 수정 (left) -->
+  <rect x="8" y="120" width="80" height="34" rx="4" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2"/>
+  <text x="48" y="141" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">수정</text>
+
+  <!-- clockwise arrows between stages -->
+  <path d="M200,72 Q252,86 268,116" fill="none" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#dp-arrow)"/>
+  <path d="M280,156 Q286,196 262,228" fill="none" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#dp-arrow)"/>
+  <path d="M196,249 L128,249" fill="none" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#dp-arrow)"/>
+  <path d="M58,230 Q40,196 46,156" fill="none" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#dp-arrow)"/>
+  <path d="M70,118 Q92,84 118,74" fill="none" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#dp-arrow)"/>
+  <!-- re-measure hint -->
+  <text x="160" y="172" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.6" font-weight="700">재측정</text>
+  <text x="160" y="186" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.55">until 충분히 정확·충분히 빠름</text>
+
+  <!-- divider -->
+  <line x1="356" y1="40" x2="356" y2="280" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== RIGHT: tools hanging off "원인 파악" ===== -->
+  <text x="524" y="24" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">원인 파악 도구</text>
+
+  <!-- branch label -->
+  <rect x="384" y="56" width="124" height="28" rx="4" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+  <text x="446" y="74" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">증상에 따라 갈래</text>
+
+  <!-- logic-bug branch -->
+  <line x1="446" y1="84" x2="446" y2="112" stroke="var(--secondary-color)" stroke-width="2"/>
+  <line x1="446" y1="112" x2="404" y2="112" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#dp-arrow)"/>
+  <text x="396" y="106" text-anchor="end" font-size="8.5" fill="currentColor" opacity="0.75" font-weight="700">논리 버그</text>
+  <rect x="392" y="120" width="120" height="30" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="452" y="139" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">dbg! / backtrace</text>
+  <rect x="392" y="156" width="120" height="30" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="452" y="175" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">rust-gdb / lldb</text>
+
+  <!-- perf branch -->
+  <line x1="446" y1="84" x2="446" y2="208" stroke="var(--secondary-color)" stroke-width="2"/>
+  <line x1="446" y1="208" x2="404" y2="208" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#dp-arrow)"/>
+  <text x="396" y="202" text-anchor="end" font-size="8.5" fill="currentColor" opacity="0.75" font-weight="700">성능</text>
+  <rect x="392" y="216" width="120" height="30" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="452" y="235" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">criterion 벤치</text>
+  <rect x="392" y="252" width="120" height="30" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="452" y="271" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">perf / flamegraph</text>
+
+  <!-- second column: outputs / notes -->
+  <g font-size="8.5">
+    <rect x="524" y="120" width="132" height="30" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.5"/>
+    <text x="590" y="139" text-anchor="middle" fill="currentColor" font-weight="700">값·호출 스택 추적</text>
+    <rect x="524" y="156" width="132" height="30" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.5"/>
+    <text x="590" y="175" text-anchor="middle" fill="currentColor" font-weight="700">중단점·스텝 실행</text>
+    <rect x="524" y="216" width="132" height="30" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.5"/>
+    <text x="590" y="235" text-anchor="middle" fill="currentColor" font-weight="700">통계적 시간 측정</text>
+    <rect x="524" y="252" width="132" height="30" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.5"/>
+    <text x="590" y="271" text-anchor="middle" fill="currentColor" font-weight="700">핫스팟 시각화 (release)</text>
+  </g>
+  <line x1="512" y1="135" x2="524" y2="135" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
+  <line x1="512" y1="171" x2="524" y2="171" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
+  <line x1="512" y1="231" x2="524" y2="231" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
+  <line x1="512" y1="267" x2="524" y2="267" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
+
+  <defs>
+    <marker id="dp-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>이 글의 한 장 요약 — 왼쪽은 <strong>측정-수정 순환</strong>(빌드→실행→문제 관측→원인 파악→수정→재측정), 오른쪽은 <strong>원인 파악 도구</strong>가 증상에 따라 두 갈래로 갈리는 모습. 논리 버그는 <code>dbg!</code>·backtrace·<code>rust-gdb</code>/<code>lldb</code>로 값과 실행을 추적하고, 성능 문제는 <code>criterion</code>으로 측정하고 <code>perf</code>/flamegraph로 핫스팟을 찾는다.</figcaption>
+</figure>
+
 ## 들어가며
 
 이 글은 Rust-Essential 로드맵의 7단계로, 코드를 추적하고 성능을 측정하는 도구들을 다룹니다. 이전 단계인 [Rust 스마트 포인터, 동시성, 그리고 프로젝트](/2026/01/09/rust-smart-pointers-concurrency-and-projects.html)에서 만든 프로그램이 올바르게 동작하는지, 그리고 충분히 빠른지를 확인할 차례입니다. 전체 학습 경로는 [Rust Essential Curriculum](/2026/01/02/rust-essential-curriculum.html)에서 확인할 수 있습니다.
@@ -26,6 +113,23 @@ excerpt: "dbg! 매크로와 gdb/lldb 디버깅, criterion 벤치마킹과 flameg
 </div>
 
 ## 디버깅
+
+문제의 **증상**이 도구를 정합니다. 값이 이상하거나 panic이 나는 **논리 버그**라면 먼저 가벼운 추적(`dbg!`/backtrace)으로 시작해 필요할 때 디버거로 내려가고, "느리다"는 **성능 문제**라면 먼저 `criterion`으로 숫자를 확인한 뒤 flamegraph로 핫스팟을 찾습니다. 아래 흐름이 그 선택의 지도입니다.
+
+```mermaid
+flowchart TD
+    S["무엇이 문제인가?"] -->|"값이 틀리거나 panic<br/>(논리 버그)"| L1["dbg! 매크로<br/>RUST_BACKTRACE"]
+    S -->|"느리다<br/>(성능)"| P1["criterion 벤치마크<br/>먼저 숫자로 확인"]
+    L1 -->|"값만으론 부족<br/>흐름을 멈춰 보고 싶다"| L2["rust-gdb / rust-lldb<br/>중단점·스텝 실행"]
+    L1 -->|"원인 파악됨"| FIX["수정"]
+    L2 --> FIX
+    P1 -->|"어느 함수가 느린가?"| P2["cargo flamegraph<br/>(release 빌드)"]
+    P2 -->|"더 깊은 분석"| P3["perf / Instruments"]
+    P1 --> FIX
+    P2 --> FIX
+    P3 --> FIX
+    FIX -->|"재측정"| S
+```
 
 ### println!의 한계
 
@@ -204,6 +308,63 @@ cargo flamegraph --release
 # 인자가 필요한 바이너리라면 -- 뒤에 전달
 cargo flamegraph --release -- --input data.txt
 ```
+
+flamegraph는 한 번 읽는 법을 익히면 누적된 CPU 시간을 한눈에 보여줍니다. **가로 폭은 시간**(넓을수록 그 함수에서 오래 머묾), **세로 높이는 호출 스택 깊이**(위로 갈수록 더 안쪽에서 호출된 함수)입니다. 색은 보통 의미가 없고, **넓은 막대**가 최적화 대상이라는 점만 기억하면 됩니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="flamegraph를 읽는 법을 설명하는 도식. 아래쪽 넓은 막대 main에서 위로 갈수록 좁아지는 막대들이 쌓여 호출 스택을 이룬다. 가로축은 시간으로, 막대가 넓을수록 그 함수에서 보낸 누적 시간이 길다. 세로축은 스택 깊이로, 위로 갈수록 더 안쪽에서 호출된 함수다. 가장 넓은 상단 막대 parse가 최적화 대상으로 강조되어 있다." viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg">
+  <title>flamegraph 읽는 법 — 가로 폭=누적 시간, 세로 높이=호출 스택 깊이, 넓은 막대가 최적화 대상</title>
+
+  <!-- axes labels -->
+  <text x="320" y="22" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.8">가로 = 시간(누적), 세로 = 스택 깊이</text>
+
+  <!-- vertical axis: stack depth -->
+  <line x1="70" y1="60" x2="70" y2="248" stroke="currentColor" stroke-width="1.5" marker-end="url(#fg-up)"/>
+  <text x="40" y="158" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700" opacity="0.8" transform="rotate(-90 40 158)">스택 깊이 ↑</text>
+
+  <!-- horizontal axis: time -->
+  <line x1="70" y1="248" x2="612" y2="248" stroke="currentColor" stroke-width="1.5" marker-end="url(#fg-right)"/>
+  <text x="340" y="276" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700" opacity="0.8">시간(샘플 수) →</text>
+
+  <!-- ===== flame bars (bottom = level 0, widest) ===== -->
+  <!-- level 0: main spans full width -->
+  <rect x="74" y="218" width="528" height="26" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
+  <text x="338" y="235" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">main  (100%)</text>
+
+  <!-- level 1 -->
+  <rect x="74" y="190" width="312" height="26" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
+  <text x="230" y="207" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">run</text>
+  <rect x="388" y="190" width="214" height="26" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
+  <text x="495" y="207" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">flush</text>
+
+  <!-- level 2 -->
+  <rect x="74" y="162" width="252" height="26" rx="2" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.4"/>
+  <text x="200" y="179" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">parse  ← 가장 넓음</text>
+  <rect x="388" y="162" width="120" height="26" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
+  <text x="448" y="179" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">write</text>
+
+  <!-- level 3 -->
+  <rect x="74" y="134" width="150" height="26" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
+  <text x="149" y="151" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">tokenize</text>
+  <rect x="228" y="134" width="98" height="26" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
+  <text x="277" y="151" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">alloc</text>
+
+  <!-- callout for the widest top bar -->
+  <line x1="200" y1="160" x2="200" y2="96" stroke="var(--accent-color)" stroke-width="1.6" stroke-dasharray="4 3"/>
+  <rect x="120" y="64" width="300" height="30" rx="4" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="270" y="83" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">넓은 막대 = 시간을 많이 씀 → 최적화 1순위</text>
+
+  <defs>
+    <marker id="fg-up" markerWidth="8" markerHeight="8" refX="4" refY="2" orient="auto">
+      <path d="M4,0 L8,8 L0,8 z" fill="currentColor"/>
+    </marker>
+    <marker id="fg-right" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="currentColor"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>flamegraph 읽는 법 — <strong>가로 폭은 누적 시간</strong>(넓을수록 그 함수에서 오래 머묾), <strong>세로 높이는 호출 스택 깊이</strong>(위로 갈수록 더 안쪽 호출). 아래 <code>main</code>은 전체의 100%를 차지하고, 그 위로 갈라진 막대 중 가장 넓은 <code>parse</code>가 최적화 1순위다. 색은 대개 의미 없고 폭만 본다.</figcaption>
+</figure>
 
 생성된 `flamegraph.svg`를 브라우저로 열면 넓은 막대(시간을 많이 쓴 함수)부터 살펴보며 최적화 우선순위를 정할 수 있습니다.
 

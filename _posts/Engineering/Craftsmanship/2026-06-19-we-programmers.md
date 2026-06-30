@@ -9,6 +9,84 @@ published: true
 excerpt: "Ada Lovelace에서 현대 AI까지, 프로그래머라는 직업의 계보와 장인정신의 문화를 따라가며 시야를 넓히는 Craftsmanship Essential 시리즈의 마지막 교양 캡스톤."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="We Programmers의 핵심을 한 장에 담은 그림. 위쪽에는 1843년 Ada Lovelace의 알고리즘에서 1950년대 Grace Hopper의 컴파일러, 1968년 Dijkstra의 구조화, 1970년대 Kay의 객체지향, 1990년대 인터넷·오픈소스, 2020년대 AI 코딩으로 이어지는 역사의 강이 하나의 타임라인으로 흐른다. 그 흐름이 가운데의 펼쳐진 두루마리, 즉 오늘의 프로그래머로 모인다. 아래쪽에는 그 두루마리를 떠받치는 세 개의 주춧돌 — 상상, 표현, 책임 — 이 전문직 윤리의 토대로 놓여 있다." viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
+  <title>We Programmers — 역사의 강(선구자들) → 오늘의 우리(두루마리) → 전문직의 토대(상상·표현·책임)</title>
+
+  <!-- ===== TOP: the river of history as a timeline ===== -->
+  <text x="340" y="22" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">역사의 강 — 우리는 어디에서 왔는가</text>
+
+  <!-- timeline spine -->
+  <line x1="44" y1="64" x2="636" y2="64" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#wp-arrow)"/>
+
+  <!-- milestones: node + year + who -->
+  <g font-size="8" text-anchor="middle">
+    <circle cx="70" cy="64" r="6" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+    <text x="70" y="46" fill="currentColor" font-weight="700">1843</text>
+    <text x="70" y="86" fill="currentColor" opacity="0.85">Ada</text>
+
+    <circle cx="165" cy="64" r="6" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+    <text x="165" y="46" fill="currentColor" font-weight="700">1950s</text>
+    <text x="165" y="86" fill="currentColor" opacity="0.85">Hopper</text>
+
+    <circle cx="260" cy="64" r="6" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+    <text x="260" y="46" fill="currentColor" font-weight="700">1968</text>
+    <text x="260" y="86" fill="currentColor" opacity="0.85">Dijkstra</text>
+
+    <circle cx="355" cy="64" r="6" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+    <text x="355" y="46" fill="currentColor" font-weight="700">1970s</text>
+    <text x="355" y="86" fill="currentColor" opacity="0.85">Kay · OOP</text>
+
+    <circle cx="455" cy="64" r="6" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+    <text x="455" y="46" fill="currentColor" font-weight="700">1990s</text>
+    <text x="455" y="86" fill="currentColor" opacity="0.85">Web · OSS</text>
+
+    <circle cx="560" cy="64" r="7" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+    <text x="560" y="46" fill="currentColor" font-weight="700">2020s</text>
+    <text x="560" y="86" fill="currentColor" opacity="0.85">AI 코딩</text>
+  </g>
+
+  <!-- converging lines from the timeline into the scroll -->
+  <line x1="165" y1="98" x2="300" y2="150" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+  <line x1="355" y1="98" x2="340" y2="150" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+  <line x1="560" y1="98" x2="382" y2="150" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+
+  <!-- ===== MIDDLE: today's programmer as an open scroll ===== -->
+  <g>
+    <!-- scroll rollers -->
+    <rect x="214" y="150" width="14" height="74" rx="7" fill="var(--bg-sunken)" stroke="var(--gold)" stroke-width="2"/>
+    <rect x="452" y="150" width="14" height="74" rx="7" fill="var(--bg-sunken)" stroke="var(--gold)" stroke-width="2"/>
+    <!-- parchment -->
+    <rect x="226" y="156" width="228" height="62" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+    <text x="340" y="184" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">We, Programmers</text>
+    <text x="340" y="204" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.85">오늘의 우리 — 하나의 직업 공동체</text>
+  </g>
+
+  <!-- pillars descending from the scroll -->
+  <line x1="290" y1="224" x2="290" y2="250" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+  <line x1="340" y1="224" x2="340" y2="250" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+  <line x1="390" y1="224" x2="390" y2="250" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+
+  <!-- ===== BOTTOM: three pillars of professional ethic ===== -->
+  <text x="340" y="270" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.75">변하지 않는 토대 — 장인정신의 약속</text>
+  <g font-size="10" font-weight="700" text-anchor="middle">
+    <rect x="206" y="280" width="92" height="30" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="252" y="299" fill="currentColor">상상</text>
+    <rect x="306" y="280" width="92" height="30" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+    <text x="352" y="299" fill="currentColor">표현</text>
+    <rect x="406" y="280" width="92" height="30" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="452" y="299" fill="currentColor">책임</text>
+  </g>
+
+  <defs>
+    <marker id="wp-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>이 글의 한 장 요약 — 위쪽 <strong>역사의 강</strong>은 Ada(1843)에서 AI 코딩(2020s)까지 선구자들의 발자취가 흐르는 타임라인이고, 그 흐름이 가운데 <strong>오늘의 우리</strong>라는 두루마리로 모인다. 두루마리를 떠받치는 세 주춧돌 <strong>상상·표현·책임</strong>은 도구가 바뀌어도 무너지지 않는 장인정신의 토대다.</figcaption>
+</figure>
+
 ## 들어가며
 
 이 글은 [Craftsmanship Essential Curriculum](/2026/06/19/craftsmanship-essential-curriculum.html)의 **4단계이자 마지막**입니다. 우리는 긴 여정을 걸어왔습니다. SICP로 추상화를 통해 사고하는 법을 배웠고, *The Pragmatic Programmer*로 매일의 실천을 익혔으며, 직전 3단계 [Software Design Decoded: 전문가의 설계 사고](/2026/06/19/software-design-decoded.html)에서는 숙련된 설계자가 어떻게 문제를 바라보고 결정을 내리는지를 들여다봤습니다. 그 단계가 "전문가의 머릿속"으로 들어가는 여정이었다면, 이번 단계는 시선을 정반대로 돌립니다. 한 개인의 사고에서 벗어나, 우리 직업 전체가 지나온 **시간의 강**을 거슬러 올라가는 것입니다.
@@ -79,6 +157,69 @@ flowchart LR
 ### 세대를 잇는 가치: 도제에서 코드 리뷰까지
 
 중세 길드의 장인은 도제(apprentice) → 직인(journeyman) → 장인(master)의 단계를 거쳤습니다. 윗세대가 아랫세대에게 단지 기술뿐 아니라 **태도와 기준**을 전수했죠. 프로그래밍 문화는 이 전통을 고스란히 물려받았습니다. 오늘날의 코드 리뷰, 페어 프로그래밍, 멘토링, 오픈소스 기여는 모두 "더 숙련된 이가 곁에서 기준을 보여주는" 도제 방식의 변형입니다. 우리는 코드를 통해 세대 간 대화를 나눕니다. 잘 쓰인 코드와 정직한 커밋 메시지는 다음 세대에게 남기는 **편지**입니다.
+
+다음 그림은 길드의 전수 단계가 어떻게 오늘의 실천으로 옮겨졌는지를 나란히 보여줍니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="길드의 전수 전통이 현대 프로그래밍 문화로 이어지는 그림. 위쪽 줄에는 도제, 직인, 장인의 세 단계가 화살표로 이어지고, 그 아래로 각각이 현대의 실천 — 코드 리뷰, 페어 프로그래밍·멘토링, 오픈소스 기여 — 로 내려와 대응된다. 세 단계를 하나로 묶는 띠에는 전수되는 것은 기술이 아니라 태도와 기준이라는 문장이 적혀 있다." viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg">
+  <title>세대를 잇는 전수 — 길드의 도제·직인·장인이 코드 리뷰·멘토링·오픈소스로 이어진다</title>
+
+  <!-- top label -->
+  <text x="320" y="24" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">길드의 전통 — 단계를 밟는 전수</text>
+
+  <!-- top row: guild stages -->
+  <g font-weight="700" text-anchor="middle">
+    <rect x="40" y="40" width="150" height="46" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="115" y="62" font-size="11" fill="currentColor">도제</text>
+    <text x="115" y="78" font-size="8" font-weight="400" fill="currentColor" opacity="0.8">apprentice — 배우는 이</text>
+
+    <rect x="245" y="40" width="150" height="46" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="320" y="62" font-size="11" fill="currentColor">직인</text>
+    <text x="320" y="78" font-size="8" font-weight="400" fill="currentColor" opacity="0.8">journeyman — 함께 짓는 이</text>
+
+    <rect x="450" y="40" width="150" height="46" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+    <text x="525" y="62" font-size="11" fill="currentColor">장인</text>
+    <text x="525" y="78" font-size="8" font-weight="400" fill="currentColor" opacity="0.8">master — 기준을 세우는 이</text>
+  </g>
+  <!-- stage progression arrows -->
+  <line x1="190" y1="63" x2="243" y2="63" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#wp2-arrow)"/>
+  <line x1="395" y1="63" x2="448" y2="63" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#wp2-arrow)"/>
+
+  <!-- descent arrows to modern practice -->
+  <line x1="115" y1="86" x2="115" y2="138" stroke="var(--secondary-color)" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#wp2-arrow)"/>
+  <line x1="320" y1="86" x2="320" y2="138" stroke="var(--secondary-color)" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#wp2-arrow)"/>
+  <line x1="525" y1="86" x2="525" y2="138" stroke="var(--secondary-color)" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#wp2-arrow)"/>
+
+  <!-- middle label -->
+  <text x="320" y="160" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">오늘의 실천 — 같은 전통의 변형</text>
+
+  <!-- bottom row: modern practices -->
+  <g font-weight="700" text-anchor="middle">
+    <rect x="40" y="172" width="150" height="46" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+    <text x="115" y="194" font-size="10.5" fill="currentColor">코드 리뷰</text>
+    <text x="115" y="210" font-size="8" font-weight="400" fill="currentColor" opacity="0.8">곁에서 기준을 본다</text>
+
+    <rect x="245" y="172" width="150" height="46" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+    <text x="320" y="194" font-size="10.5" fill="currentColor">페어 · 멘토링</text>
+    <text x="320" y="210" font-size="8" font-weight="400" fill="currentColor" opacity="0.8">곁에서 함께 짓는다</text>
+
+    <rect x="450" y="172" width="150" height="46" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+    <text x="525" y="194" font-size="10.5" fill="currentColor">오픈소스 기여</text>
+    <text x="525" y="210" font-size="8" font-weight="400" fill="currentColor" opacity="0.8">기준을 세상에 남긴다</text>
+  </g>
+
+  <!-- unifying band -->
+  <rect x="40" y="246" width="560" height="34" rx="3" fill="var(--bg-sunken)" stroke="currentColor" stroke-width="1.5"/>
+  <text x="320" y="267" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">전수되는 것은 기술이 아니라 — 태도와 기준</text>
+
+  <defs>
+    <marker id="wp2-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>세대를 잇는 전수 — 길드의 <strong>도제 → 직인 → 장인</strong>이 오늘날 <strong>코드 리뷰 · 페어/멘토링 · 오픈소스 기여</strong>로 이어진다. 도구는 바뀌었지만 "더 숙련된 이가 곁에서 기준을 보여준다"는 전수의 구조와, 전수되는 것이 기술이 아니라 <strong>태도와 기준</strong>이라는 본질은 그대로다.</figcaption>
+</figure>
 
 ### 직업윤리: 우리가 만드는 것은 결과를 낳는다
 

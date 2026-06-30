@@ -9,6 +9,94 @@ published: true
 excerpt: "Alistair Cockburn의 유스케이스 작성법을 따라 액터의 목표를 중심으로 주 성공 시나리오와 확장을 기술하고, 목표 수준·범위·전제·보장으로 요구사항을 계약처럼 명세하는 방법을 다룹니다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="유스케이스의 핵심을 한 장으로 담은 그림. 왼쪽에는 주 액터가 목표를 발화하고, 가운데로 굵게 뻗은 줄기가 주 성공 시나리오(정상 흐름)로 1·2·3·4 단계를 거쳐 목표 달성에 이른다. 그 줄기의 2단계와 3단계에서 가지가 옆으로 갈라져 확장(예외 흐름)이 되는데, 2a 확장은 다시 본 줄기로 복귀하고 3a 확장은 대안 결과로 종료한다. 오른쪽에는 목표 수준을 나타내는 세로 척도가 있어 위에서부터 구름(Summary), 물결의 바다 표면(User-goal), 물고기와 조개(Subfunction) 순으로 배치된다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>유스케이스 — 액터의 목표를 주 성공 시나리오(정상 흐름) + 확장(예외 흐름)으로, 목표 수준 위에 기술한다</title>
+
+  <!-- ===== LEFT: primary actor speaks the goal ===== -->
+  <text x="58" y="24" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">주 액터</text>
+  <circle cx="58" cy="150" r="11" fill="none" stroke="currentColor" stroke-width="2"/>
+  <line x1="58" y1="161" x2="58" y2="182" stroke="currentColor" stroke-width="2"/>
+  <line x1="44" y1="170" x2="72" y2="170" stroke="currentColor" stroke-width="2"/>
+  <line x1="58" y1="182" x2="48" y2="200" stroke="currentColor" stroke-width="2"/>
+  <line x1="58" y1="182" x2="68" y2="200" stroke="currentColor" stroke-width="2"/>
+  <rect x="24" y="96" width="74" height="26" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="61" y="113" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">목표 발화</text>
+  <line x1="61" y1="122" x2="61" y2="138" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#uc-arrow)"/>
+
+  <!-- ===== CENTER: Main Success Scenario spine ===== -->
+  <text x="290" y="24" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">주 성공 시나리오 (정상 흐름)</text>
+  <line x1="92" y1="150" x2="498" y2="150" stroke="var(--secondary-color)" stroke-width="5" marker-end="url(#uc-arrow-lg)"/>
+  <!-- step nodes on the spine -->
+  <g font-size="10" font-weight="700">
+    <circle cx="140" cy="150" r="14" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
+    <text x="140" y="154" text-anchor="middle" fill="currentColor">1</text>
+    <circle cx="232" cy="150" r="14" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
+    <text x="232" y="154" text-anchor="middle" fill="currentColor">2</text>
+    <circle cx="324" cy="150" r="14" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
+    <text x="324" y="154" text-anchor="middle" fill="currentColor">3</text>
+    <circle cx="416" cy="150" r="14" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
+    <text x="416" y="154" text-anchor="middle" fill="currentColor">4</text>
+  </g>
+  <rect x="500" y="134" width="84" height="32" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <text x="542" y="148" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">목표 달성</text>
+  <text x="542" y="160" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">성공 보장</text>
+
+  <!-- 2a extension: branches DOWN, then rejoins the spine -->
+  <line x1="232" y1="164" x2="232" y2="210" stroke="var(--accent-color)" stroke-width="2" stroke-dasharray="4 3"/>
+  <rect x="192" y="210" width="80" height="30" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="232" y="223" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">2a 확장</text>
+  <text x="232" y="234" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">조건 처리 후 복귀</text>
+  <path d="M272 222 H300 V164" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#uc-arrow-c)"/>
+
+  <!-- 3a extension: branches UP, ends in alternate outcome -->
+  <line x1="324" y1="136" x2="324" y2="92" stroke="var(--accent-color)" stroke-width="2" stroke-dasharray="4 3"/>
+  <rect x="284" y="62" width="80" height="30" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="324" y="75" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">3a 확장</text>
+  <text x="324" y="86" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">대안 결과로 종료</text>
+  <line x1="364" y1="77" x2="404" y2="77" stroke="var(--accent-color)" stroke-width="2" stroke-dasharray="4 3"/>
+  <rect x="406" y="62" width="58" height="30" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="435" y="81" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">종료</text>
+
+  <!-- divider -->
+  <line x1="600" y1="40" x2="600" y2="262" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== RIGHT: goal level scale (sea / kite / clam) ===== -->
+  <text x="640" y="24" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">목표 수준</text>
+  <!-- cloud (Summary) -->
+  <g stroke="currentColor" stroke-width="1.8" fill="none">
+    <circle cx="632" cy="62" r="8"/>
+    <circle cx="644" cy="58" r="10"/>
+    <circle cx="654" cy="64" r="7"/>
+  </g>
+  <text x="640" y="86" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85">Summary ☁</text>
+  <!-- sea surface (User-goal) -->
+  <line x1="612" y1="150" x2="668" y2="150" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <path d="M612 150 q7 -6 14 0 t14 0 t14 0 t14 0" fill="none" stroke="var(--accent-color)" stroke-width="1.6"/>
+  <text x="640" y="142" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">User-goal 🌊</text>
+  <!-- fish / clam (Subfunction) -->
+  <g stroke="currentColor" stroke-width="1.6" fill="none">
+    <path d="M624 214 q10 -9 22 0 q-10 9 -22 0 z"/>
+    <path d="M646 214 l8 -5 v10 z"/>
+    <path d="M620 232 q8 8 16 0 q-2 -8 -8 -8 q-6 0 -8 8 z"/>
+  </g>
+  <text x="640" y="252" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85">Subfunction 🐟</text>
+
+  <defs>
+    <marker id="uc-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+    <marker id="uc-arrow-lg" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 z" fill="var(--secondary-color)"/>
+    </marker>
+    <marker id="uc-arrow-c" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--accent-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>유스케이스 한 장 요약 — 왼쪽의 <strong>주 액터</strong>가 목표를 발화하면, 가운데로 곧게 뻗은 굵은 줄기가 <strong>주 성공 시나리오</strong>(정상 흐름, 1→2→3→4→목표 달성)이고, 거기서 옆으로 갈라지는 점선 가지가 <strong>확장</strong>(예외 흐름)이다. <strong>2a</strong>처럼 일부는 처리 후 본 줄기로 복귀하고, <strong>3a</strong>처럼 일부는 대안 결과로 종료한다. 오른쪽 세로 척도는 <strong>목표 수준</strong> — 구름(Summary)·바다 표면(User-goal)·물고기(Subfunction).</figcaption>
+</figure>
+
 ## 들어가며
 
 이 글은 `Process-Essential` 시리즈의 **4단계**입니다. 전체 흐름은 [Process Essential Curriculum](/2026/06/19/process-essential-curriculum.html)에서 확인할 수 있습니다.
@@ -55,6 +143,61 @@ Cockburn의 처방은 단순합니다. **항상 액터의 목표에서 출발하
 - ☁️ **Summary 수준(하늘색·구름)**: 여러 user-goal을 묶는 큰 목표. 시간 단위가 길고 맥락을 제공합니다. 예: "고객 주문을 처리한다"(주문 → 결제 → 배송 → 정산을 포괄).
 - 🌊 **User-goal 수준(바다색·물결)**: 핵심 수준. 한 명의 주 액터가 한 번 앉은 자리에서 끝낼 수 있는 의미 있는 목표. 예: "상품을 구매한다", "환불을 신청한다". 대부분의 유스케이스는 여기에 위치해야 합니다.
 - 🐟 **Subfunction 수준(물고기·조개)**: user-goal을 이루기 위한 하위 단계. 예: "신용카드를 검증한다", "주소를 자동완성한다". 너무 잘게 쪼개면 문서가 폭발하므로, 여러 유스케이스에서 반복되거나 복잡할 때만 별도로 분리합니다.
+
+아래 그림은 이 세 수준이 수면(sea-level)을 기준으로 어떻게 위아래로 배치되는지를 한눈에 보여줍니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="목표 수준을 바다 표면 비유로 나타낸 그림. 수평선이 바다 표면(sea-level)이고, 그 위 하늘에는 여러 user-goal을 묶는 큰 목표인 Summary 수준이 구름으로 떠 있다. 수면 위에는 한 명의 주 액터가 한 번에 끝낼 수 있는 핵심 목표인 User-goal 수준이 놓이고, 대부분의 유스케이스가 여기에 위치해야 한다. 수면 아래 물속에는 user-goal을 이루기 위한 하위 단계인 Subfunction 수준이 물고기와 조개로 가라앉아 있다." viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg">
+  <title>목표 수준 — 바다 표면(sea-level) 비유: Summary(구름) · User-goal(수면) · Subfunction(물속)</title>
+
+  <!-- sky band -->
+  <rect x="20" y="20" width="600" height="120" rx="4" fill="var(--bg-light)" opacity="0.45"/>
+  <!-- water band -->
+  <rect x="20" y="160" width="600" height="140" rx="4" fill="var(--bg-sunken)" opacity="0.55"/>
+
+  <!-- sea-level line -->
+  <line x1="20" y1="150" x2="620" y2="150" stroke="var(--accent-color)" stroke-width="3"/>
+  <path d="M20 150 q12 -7 24 0 t24 0 t24 0 t24 0 t24 0 t24 0 t24 0 t24 0 t24 0 t24 0 t24 0 t24 0 t24 0 t24 0 t24 0 t24 0 t24 0 t24 0 t24 0 t24 0 t24 0 t24 0 t24 0 t24 0" fill="none" stroke="var(--accent-color)" stroke-width="1.6" opacity="0.8"/>
+  <text x="40" y="143" font-size="11" fill="currentColor" font-weight="700">바다 표면 (sea-level)</text>
+
+  <!-- ===== Summary level (cloud, in the sky) ===== -->
+  <g stroke="currentColor" stroke-width="2" fill="var(--bg-panel)">
+    <circle cx="120" cy="66" r="16"/>
+    <circle cx="146" cy="56" r="22"/>
+    <circle cx="176" cy="68" r="15"/>
+    <rect x="118" y="64" width="60" height="20" rx="9" stroke="none"/>
+  </g>
+  <text x="148" y="64" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">Summary ☁</text>
+  <text x="148" y="80" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.85">여러 user-goal을 묶는 큰 목표</text>
+  <text x="148" y="116" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">예: "고객 주문을 처리한다"</text>
+
+  <!-- ===== User-goal level (boat on the surface) ===== -->
+  <g stroke="currentColor" stroke-width="2" fill="var(--bg-panel)">
+    <path d="M404 150 l16 28 h64 l16 -28 z"/>
+  </g>
+  <line x1="452" y1="150" x2="452" y2="108" stroke="currentColor" stroke-width="2"/>
+  <path d="M452 110 l34 14 l-34 14 z" fill="var(--accent-color)" stroke="none"/>
+  <text x="452" y="103" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">User-goal 🌊</text>
+  <text x="535" y="170" text-anchor="start" font-size="9.5" fill="currentColor" opacity="0.85">핵심 수준 —</text>
+  <text x="535" y="184" text-anchor="start" font-size="9.5" fill="currentColor" opacity="0.85">대부분의 유스케이스가</text>
+  <text x="535" y="198" text-anchor="start" font-size="9.5" fill="currentColor" opacity="0.85">여기에 위치</text>
+
+  <!-- ===== Subfunction level (fish + clam, underwater) ===== -->
+  <g stroke="currentColor" stroke-width="1.8" fill="none">
+    <path d="M96 232 q20 -16 44 0 q-20 16 -44 0 z"/>
+    <path d="M140 232 l14 -9 v18 z"/>
+    <circle cx="108" cy="230" r="1.8" fill="currentColor"/>
+    <path d="M188 246 q14 14 28 0 q-3 -15 -14 -15 q-11 0 -14 15 z"/>
+    <line x1="202" y1="231" x2="202" y2="246"/>
+    <line x1="195" y1="234" x2="195" y2="246"/>
+    <line x1="209" y1="234" x2="209" y2="246"/>
+  </g>
+  <text x="150" y="280" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">Subfunction 🐟</text>
+  <text x="150" y="296" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.85">user-goal을 이루기 위한 하위 단계</text>
+  <text x="430" y="280" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">예: "신용카드를 검증한다"</text>
+</svg>
+<figcaption>목표 수준의 바다 표면 비유 — 핵심 목표를 수면(<strong>User-goal</strong>)에 두고, 그것을 묶는 큰 목표는 하늘(<strong>Summary</strong>·구름)로, 그것을 이루는 하위 단계는 물속(<strong>Subfunction</strong>·물고기/조개)으로 배치한다. 대부분의 유스케이스는 수면 수준에 있어야 한다.</figcaption>
+</figure>
 
 수준을 의식하면 한 유스케이스 안에서 추상화 단계가 뒤섞이는 것을 막을 수 있습니다. 주 성공 시나리오의 각 단계는 대체로 같은 수준(보통 sea-level 바로 한 단계 아래)에서 균일하게 기술되어야 읽기 좋습니다.
 

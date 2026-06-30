@@ -9,6 +9,83 @@ published: true
 excerpt: "Head First Design Patterns로 디자인 패턴의 직관을 잡는다. 변하는 부분을 캡슐화하고 합성을 선호하라는 OO 설계 원칙을 Strategy·Observer·Decorator·Factory 계열을 통해 익힌다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="이 책을 관통하는 세 가지 OO 설계 원칙을 한 장으로 묶은 그림. 왼쪽은 '변하는 부분을 캡슐화하라' — 변하지 않는 뼈대 옆에서 변하는 조각을 별도 캡슐로 떼어 가둔 모습. 가운데는 '합성을 선호하라' — 상속으로 행동을 박아둔 경직된 계층 대신, 행동 객체를 슬롯에 끼워 런타임에 갈아 끼우는 모습. 오른쪽은 '인터페이스에 프로그래밍하라' — 클라이언트가 구체 구현이 아니라 상위 인터페이스만 바라보고, 그 뒤로 여러 구현이 교체 가능하게 매달린 모습. 세 원칙이 아래의 느슨한 결합과 OCP로 합류한다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>Head First Design Patterns의 세 토대 원칙 — 변하는 것 캡슐화 · 합성 선호 · 인터페이스에 프로그래밍</title>
+
+  <!-- ===== LEFT: Encapsulate what varies ===== -->
+  <text x="116" y="22" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">변하는 것 캡슐화</text>
+  <!-- stable skeleton -->
+  <rect x="40" y="46" width="62" height="120" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="71" y="100" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">변하지</text>
+  <text x="71" y="114" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">않는 뼈대</text>
+  <!-- the varying piece pulled out into a capsule -->
+  <line x1="102" y1="76" x2="126" y2="76" stroke="var(--secondary-color)" stroke-width="2" stroke-dasharray="3 3" marker-end="url(#hf-arrow)"/>
+  <rect x="130" y="58" width="62" height="36" rx="16" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="161" y="80" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">변하는 A</text>
+  <line x1="102" y1="120" x2="126" y2="120" stroke="var(--secondary-color)" stroke-width="2" stroke-dasharray="3 3" marker-end="url(#hf-arrow)"/>
+  <rect x="130" y="102" width="62" height="36" rx="16" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="161" y="124" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">변하는 B</text>
+  <text x="116" y="186" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.85" font-weight="700">변하는 부분을 캡슐로 가둔다</text>
+
+  <!-- divider -->
+  <line x1="226" y1="40" x2="226" y2="200" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== MIDDLE: Favor composition ===== -->
+  <text x="340" y="22" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">합성을 선호</text>
+  <!-- host object with a behavior slot -->
+  <rect x="262" y="60" width="74" height="74" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="299" y="80" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">객체</text>
+  <text x="299" y="93" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.75">has-a</text>
+  <!-- the slot -->
+  <rect x="274" y="100" width="50" height="24" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2" stroke-dasharray="4 3"/>
+  <text x="299" y="116" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">슬롯</text>
+  <!-- swappable behavior chips queued to the right -->
+  <line x1="336" y1="112" x2="362" y2="98" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#hf-arrow)"/>
+  <line x1="336" y1="112" x2="362" y2="126" stroke="var(--secondary-color)" stroke-width="2" stroke-dasharray="3 3" marker-end="url(#hf-arrow)"/>
+  <rect x="366" y="84" width="52" height="26" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="392" y="101" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">행동 1</text>
+  <rect x="366" y="118" width="52" height="26" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="392" y="135" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">행동 2</text>
+  <text x="340" y="186" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.85" font-weight="700">행동을 런타임에 갈아 끼운다</text>
+
+  <!-- divider -->
+  <line x1="452" y1="40" x2="452" y2="200" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== RIGHT: Program to an interface ===== -->
+  <text x="566" y="22" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">인터페이스에 프로그래밍</text>
+  <rect x="476" y="56" width="68" height="34" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="510" y="77" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">클라이언트</text>
+  <line x1="510" y1="90" x2="510" y2="106" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#hf-arrow)"/>
+  <!-- the interface, the only thing client sees -->
+  <rect x="468" y="108" width="84" height="30" rx="15" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <text x="510" y="127" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">«인터페이스»</text>
+  <!-- interchangeable implementations hang below -->
+  <line x1="492" y1="138" x2="492" y2="152" stroke="var(--secondary-color)" stroke-width="1.8" marker-end="url(#hf-arrow)"/>
+  <line x1="528" y1="138" x2="528" y2="152" stroke="var(--secondary-color)" stroke-width="1.8" stroke-dasharray="3 3" marker-end="url(#hf-arrow)"/>
+  <rect x="464" y="154" width="56" height="22" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="492" y="169" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">구현 X</text>
+  <rect x="524" y="154" width="56" height="22" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="552" y="169" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">구현 Y</text>
+  <text x="566" y="192" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.85" font-weight="700">구현이 아닌 상위 타입에 의존</text>
+
+  <!-- ===== confluence: principles → loose coupling + OCP ===== -->
+  <line x1="116" y1="200" x2="332" y2="226" stroke="var(--secondary-color)" stroke-width="1.6" opacity="0.7" marker-end="url(#hf-arrow)"/>
+  <line x1="340" y1="200" x2="340" y2="226" stroke="var(--secondary-color)" stroke-width="1.6" opacity="0.7" marker-end="url(#hf-arrow)"/>
+  <line x1="566" y1="200" x2="348" y2="226" stroke="var(--secondary-color)" stroke-width="1.6" opacity="0.7" marker-end="url(#hf-arrow)"/>
+  <rect x="236" y="230" width="208" height="40" rx="4" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <text x="340" y="248" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">느슨한 결합 · OCP</text>
+  <text x="340" y="262" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">세 원칙이 합류하는 곳 — 패턴이 태어난다</text>
+
+  <defs>
+    <marker id="hf-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>이 책을 관통하는 세 토대 원칙 — <strong>변하는 것 캡슐화</strong>(바뀌는 조각을 별도 캡슐로 가둠), <strong>합성을 선호</strong>(행동 객체를 슬롯에 끼워 런타임에 교체), <strong>인터페이스에 프로그래밍</strong>(구현이 아닌 상위 타입에 의존). 세 원칙은 모두 <strong>느슨한 결합</strong>과 <strong>OCP</strong>로 합류하고, 그 자리에서 Strategy·Observer·Decorator 같은 패턴이 태어난다.</figcaption>
+</figure>
+
 ## 들어가며
 
 이 글은 `OO-Design-Essential` 시리즈의 **1단계**입니다. 전체 학습 흐름은 [OO-Design Essential Curriculum](/2026/06/19/oo-design-essential-curriculum.html)에서 볼 수 있습니다.
@@ -110,6 +187,59 @@ flowchart TD
 ```
 
 이 한 장의 그림에 세 원칙이 모두 들어 있습니다. **변하는 부분을 인터페이스로 캡슐화**하고, **합성**으로 주입하며, `Duck`은 **인터페이스에 프로그래밍**합니다.
+
+위 그림이 정적인 *구조*를 보여 줬다면, 합성이 진짜 빛을 발하는 순간은 **런타임**입니다 — 같은 `Duck`이 코드를 한 줄도 바꾸지 않고 행동 객체만 갈아 끼우는 장면을 시간 축으로 펼쳐 봅시다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="Strategy 패턴에서 합성으로 행동을 런타임에 교체하는 장면을 시간 축으로 그린 그림. 가운데에 같은 Duck 객체가 하나 있고, 그 안의 행동 슬롯에 처음에는 '날지 못한다' 행동 객체가 끼워져 perform_fly가 '날지 못한다'를 출력한다. set_fly_behavior 호출이 슬롯의 객체를 '날개로 난다' 행동으로 바꿔 끼우고, 그 뒤 같은 perform_fly가 이번에는 '날개로 난다'를 출력한다. Duck 자신의 코드는 전혀 바뀌지 않는다." viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg">
+  <title>Strategy — 합성으로 행동을 런타임에 갈아 끼우기 (set_fly_behavior로 슬롯의 객체만 교체)</title>
+
+  <!-- timeline -->
+  <line x1="40" y1="42" x2="600" y2="42" stroke="currentColor" stroke-width="1.4" opacity="0.35" marker-end="url(#st-arrow)"/>
+  <text x="44" y="32" font-size="9" fill="currentColor" opacity="0.7" font-weight="700">시간 →</text>
+
+  <!-- ===== STATE 1: before ===== -->
+  <text x="150" y="68" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.8">① 처음</text>
+  <rect x="74" y="80" width="152" height="96" rx="5" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="150" y="100" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">Duck (동일 객체)</text>
+  <!-- slot holding FlyNoWay -->
+  <rect x="92" y="112" width="116" height="34" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2" stroke-dasharray="4 3"/>
+  <text x="150" y="126" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">행동 슬롯</text>
+  <text x="150" y="139" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">FlyNoWay</text>
+  <text x="150" y="166" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85">perform_fly() → "날지 못한다"</text>
+
+  <!-- transition: set_fly_behavior -->
+  <line x1="226" y1="128" x2="288" y2="128" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#st-arrow)"/>
+  <text x="257" y="118" text-anchor="middle" font-size="8.5" fill="var(--accent-color)" font-weight="700">set_fly_</text>
+  <text x="257" y="129" text-anchor="middle" font-size="8.5" fill="var(--accent-color)" font-weight="700">behavior()</text>
+  <text x="257" y="148" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">슬롯 객체만 교체</text>
+
+  <!-- ===== STATE 2: after ===== -->
+  <text x="446" y="68" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.8">② 교체 후</text>
+  <rect x="370" y="80" width="152" height="96" rx="5" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="446" y="100" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">Duck (동일 객체)</text>
+  <!-- slot holding FlyWithWings -->
+  <rect x="388" y="112" width="116" height="34" rx="3" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="446" y="126" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">행동 슬롯</text>
+  <text x="446" y="139" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">FlyWithWings</text>
+  <text x="446" y="166" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85">perform_fly() → "날개로 난다"</text>
+
+  <!-- the queued-out old behavior, discarded -->
+  <line x1="446" y1="176" x2="446" y2="196" stroke="currentColor" stroke-width="1.4" opacity="0.4" stroke-dasharray="3 3"/>
+
+  <!-- bottom note -->
+  <rect x="120" y="210" width="400" height="48" rx="5" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+  <text x="320" y="231" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">Duck 자신의 코드는 한 줄도 바뀌지 않는다</text>
+  <text x="320" y="249" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">상속이라면 클래스 계층을 다시 짜야 할 일을, 합성은 객체 교체 한 번으로 끝낸다</text>
+
+  <defs>
+    <marker id="st-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>합성이 빛나는 순간 — 같은 <code>Duck</code> 객체의 <strong>행동 슬롯</strong>에 끼운 전략 객체만 <code>set_fly_behavior()</code>로 교체하면, 같은 <code>perform_fly()</code>가 다른 결과를 낸다. 상속처럼 클래스 계층을 다시 설계할 필요 없이, 런타임에 행동을 갈아 끼우는 것이 Strategy의 핵심이다.</figcaption>
+</figure>
 
 ## Observer: 상태 변화를 느슨하게 알리는 패턴
 

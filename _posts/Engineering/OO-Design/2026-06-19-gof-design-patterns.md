@@ -9,6 +9,72 @@ published: true
 excerpt: "GoF의 23개 디자인 패턴을 생성·구조·행동 세 가족으로 정리하고, 의도·구조·결과(Consequences)의 엄밀함으로 패턴을 고르고 남용을 경계하는 법을 다룹니다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="GoF 23개 디자인 패턴을 세 가족으로 묶은 그림. 왼쪽은 생성 패턴으로, 거푸집에서 객체 하나를 빚어내는 모습으로 객체 생성의 캡슐화를 나타낸다. 가운데는 구조 패턴으로, 작은 블록들이 더 큰 구조로 조립되는 모습이다. 오른쪽은 행동 패턴으로, 여러 노드가 화살표로 연결되어 책임과 메시지를 주고받는 통신망으로 표현된다. 세 가족이 각각 생성 다섯 개, 구조 일곱 개, 행동 열한 개의 패턴을 담는다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>GoF 23 패턴의 세 가족 — 생성(객체를 빚다) · 구조(조립하다) · 행동(협력하다)</title>
+
+  <!-- ===== LEFT: Creational — mold shaping one object ===== -->
+  <text x="116" y="26" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700" opacity="0.78">생성 (Creational)</text>
+  <text x="116" y="44" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">객체를 어떻게 만드는가 · 5</text>
+  <!-- mold / crucible -->
+  <path d="M58 96 L174 96 L160 188 L72 188 Z" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <line x1="50" y1="96" x2="182" y2="96" stroke="var(--gold)" stroke-width="3"/>
+  <!-- emerging forged object -->
+  <rect x="98" y="118" width="36" height="36" rx="4" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <line x1="116" y1="118" x2="116" y2="154" stroke="var(--accent-color)" stroke-width="1.5" opacity="0.6"/>
+  <line x1="98" y1="136" x2="134" y2="136" stroke="var(--accent-color)" stroke-width="1.5" opacity="0.6"/>
+  <!-- rising spark / shaping arrow -->
+  <line x1="116" y1="112" x2="116" y2="82" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#gof-arrow)"/>
+  <text x="116" y="214" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.82" font-weight="700">거푸집에서 빚어냄</text>
+  <text x="116" y="232" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.65">Factory · Builder · Singleton …</text>
+
+  <!-- divider -->
+  <line x1="234" y1="56" x2="234" y2="240" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== MIDDLE: Structural — assembling blocks ===== -->
+  <text x="340" y="26" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700" opacity="0.78">구조 (Structural)</text>
+  <text x="340" y="44" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">객체를 어떻게 조립하는가 · 7</text>
+  <!-- assembled composite -->
+  <rect x="296" y="120" width="40" height="40" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <rect x="340" y="120" width="40" height="40" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <rect x="318" y="78" width="40" height="40" rx="3" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <rect x="384" y="120" width="20" height="40" rx="3" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="2"/>
+  <!-- joints connecting them -->
+  <line x1="336" y1="140" x2="340" y2="140" stroke="var(--secondary-color)" stroke-width="3"/>
+  <line x1="338" y1="118" x2="338" y2="120" stroke="var(--secondary-color)" stroke-width="3"/>
+  <line x1="380" y1="140" x2="384" y2="140" stroke="var(--secondary-color)" stroke-width="3"/>
+  <text x="340" y="186" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.82" font-weight="700">블록을 큰 구조로 조립</text>
+  <text x="340" y="204" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.65">Adapter · Decorator · Composite …</text>
+
+  <!-- divider -->
+  <line x1="446" y1="56" x2="446" y2="240" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== RIGHT: Behavioral — communicating nodes ===== -->
+  <text x="566" y="26" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700" opacity="0.78">행동 (Behavioral)</text>
+  <text x="566" y="44" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">객체가 어떻게 협력하는가 · 11</text>
+  <!-- subject node -->
+  <circle cx="566" cy="92" r="16" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="566" y="96" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">주체</text>
+  <!-- observer / collaborator nodes -->
+  <circle cx="500" cy="158" r="13" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <circle cx="566" cy="170" r="13" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <circle cx="632" cy="158" r="13" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <!-- notify arrows -->
+  <line x1="554" y1="103" x2="508" y2="148" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#gof-arrow)"/>
+  <line x1="566" y1="108" x2="566" y2="155" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#gof-arrow)"/>
+  <line x1="578" y1="103" x2="624" y2="148" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#gof-arrow)"/>
+  <text x="566" y="206" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.82" font-weight="700">노드끼리 책임·통지</text>
+  <text x="566" y="224" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.65">Strategy · Observer · State …</text>
+
+  <defs>
+    <marker id="gof-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>GoF 23개 패턴은 <strong>목적</strong>에 따라 세 가족으로 갈린다 — <strong>생성</strong>(객체를 거푸집에서 빚어내듯 생성을 캡슐화), <strong>구조</strong>(작은 블록을 더 큰 구조로 조립), <strong>행동</strong>(노드들이 화살표로 책임과 통지를 주고받음). 어떤 변화를 흡수하려는지가 곧 어느 가족에서 패턴을 고를지를 정한다.</figcaption>
+</figure>
+
 ## 들어가며
 
 이 글은 `OO-Design-Essential` 시리즈의 **2단계**입니다. 전체 흐름은 [OO-Design Essential Curriculum](/2026/06/19/oo-design-essential-curriculum.html)에서 확인할 수 있습니다.
@@ -139,7 +205,38 @@ print(SeaLogistics().plan())   # 해상으로 컨테이너를 배송
 
 ## 대표 구현 2 — Decorator (구조)
 
-상속으로 기능을 늘리면 조합 폭발이 일어납니다. Decorator는 동일 인터페이스를 구현한 래퍼로 **런타임에** 책임을 겹겹이 쌓습니다.
+상속으로 기능을 늘리면 조합 폭발이 일어납니다. Decorator는 동일 인터페이스를 구현한 래퍼로 **런타임에** 책임을 겹겹이 쌓습니다. 핵심은 데코레이터(`AddOn`)가 컴포넌트(`Coffee`)를 *구현하는 동시에* 같은 컴포넌트 하나를 *품고 있다*는 점 — 이 자기참조 구조 덕분에 `Shot(Milk(Espresso()))`처럼 래퍼를 양파 껍질처럼 무한히 겹칠 수 있습니다.
+
+```mermaid
+classDiagram
+    class Coffee {
+        <<abstract>>
+        +cost() int
+        +desc() str
+    }
+    class Espresso {
+        +cost() int
+        +desc() str
+    }
+    class AddOn {
+        <<abstract>>
+        -wrappee : Coffee
+    }
+    class Milk {
+        +cost() int
+        +desc() str
+    }
+    class Shot {
+        +cost() int
+        +desc() str
+    }
+    Coffee <|-- Espresso : 구체 컴포넌트
+    Coffee <|-- AddOn : 같은 인터페이스 구현
+    AddOn <|-- Milk
+    AddOn <|-- Shot
+    AddOn o-- Coffee : 컴포넌트를 품음(wrappee)
+```
+
 
 ```python
 from abc import ABC, abstractmethod

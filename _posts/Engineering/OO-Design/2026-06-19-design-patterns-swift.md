@@ -9,6 +9,78 @@ published: true
 excerpt: "GoF 패턴을 그대로 베끼지 말고 현대 언어 기능으로 재해석한다. Protocol·Generic·Closure, 값 타입과 불변성, 고차 함수가 디자인 패턴을 어떻게 바꾸는지 Swift 코드로 살펴본다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="GoF 디자인 패턴을 Swift 언어 기능으로 재해석하는 과정을 한 장에 담은 그림. 왼쪽에는 GoF 시대의 무거운 클래스 상속 계층 — 추상 인터페이스 한 개 아래로 여러 구현 클래스가 쌓인 탑 — 이 놓이고, 가운데의 '재해석' 화살표를 지나 오른쪽에서는 같은 의도가 Swift의 가벼운 도구 네 가지로 흩어진다. Closure 한 줄(Strategy·Command), Protocol과 Extension(Decorator·믹스인), Value Type인 struct와 enum(State·Memento), 그리고 Generic(타입 안전한 Factory)이다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>GoF 패턴 → Swift 재해석 — 무거운 클래스 상속 계층이 Closure · Protocol+Extension · Value Type · Generic 네 가지 언어 도구로 가벼워진다</title>
+
+  <!-- ===== LEFT: GoF heavy class hierarchy ===== -->
+  <text x="118" y="26" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">GoF (1994)</text>
+  <!-- abstract interface at the top -->
+  <rect x="66" y="50" width="104" height="30" rx="2" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.2" stroke-dasharray="5 3"/>
+  <text x="118" y="69" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">«interface»</text>
+  <!-- inheritance lines down to concrete classes -->
+  <line x1="118" y1="80" x2="56" y2="108" stroke="currentColor" stroke-width="1.6" opacity="0.7"/>
+  <line x1="118" y1="80" x2="118" y2="108" stroke="currentColor" stroke-width="1.6" opacity="0.7"/>
+  <line x1="118" y1="80" x2="180" y2="108" stroke="currentColor" stroke-width="1.6" opacity="0.7"/>
+  <!-- three concrete classes -->
+  <rect x="26" y="110" width="60" height="26" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="56" y="127" text-anchor="middle" font-size="8" fill="currentColor">ConcreteA</text>
+  <rect x="88" y="110" width="60" height="26" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="118" y="127" text-anchor="middle" font-size="8" fill="currentColor">ConcreteB</text>
+  <rect x="150" y="110" width="60" height="26" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="180" y="127" text-anchor="middle" font-size="8" fill="currentColor">ConcreteC</text>
+  <!-- a second tier to convey "heavy hierarchy" -->
+  <line x1="56" y1="136" x2="56" y2="158" stroke="currentColor" stroke-width="1.6" opacity="0.55"/>
+  <line x1="180" y1="136" x2="180" y2="158" stroke="currentColor" stroke-width="1.6" opacity="0.55"/>
+  <rect x="26" y="160" width="60" height="24" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.4" opacity="0.7"/>
+  <text x="56" y="176" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.85">SubA1</text>
+  <rect x="150" y="160" width="60" height="24" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.4" opacity="0.7"/>
+  <text x="180" y="176" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.85">SubC1</text>
+  <text x="118" y="206" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.8" font-weight="700">무거운 상속 계층</text>
+  <text x="118" y="221" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.65">언어가 부족해 클래스로 우회</text>
+
+  <!-- ===== CENTER: re-interpret arrow ===== -->
+  <line x1="234" y1="118" x2="296" y2="118" stroke="var(--secondary-color)" stroke-width="3" marker-end="url(#dp-arrow)"/>
+  <text x="265" y="106" text-anchor="middle" font-size="11" fill="var(--secondary-color)" font-weight="700">재해석</text>
+  <text x="265" y="138" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">의도는 유지</text>
+  <text x="265" y="149" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">구현은 교체</text>
+
+  <!-- ===== RIGHT: four lightweight Swift tools ===== -->
+  <text x="498" y="26" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">Swift 재해석</text>
+  <g font-weight="700">
+    <!-- Closure -->
+    <rect x="318" y="44" width="166" height="40" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+    <text x="332" y="62" font-size="9.5" fill="currentColor">Closure</text>
+    <text x="332" y="76" font-size="7.5" font-weight="400" fill="currentColor" opacity="0.8">{ $0 * 0.5 } — Strategy · Command</text>
+    <!-- Protocol + Extension -->
+    <rect x="318" y="92" width="166" height="40" rx="3" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2"/>
+    <text x="332" y="110" font-size="9.5" fill="currentColor">Protocol + Extension</text>
+    <text x="332" y="124" font-size="7.5" font-weight="400" fill="currentColor" opacity="0.8">기본 구현 공급 — Decorator · 믹스인</text>
+    <!-- Value Type -->
+    <rect x="318" y="140" width="166" height="40" rx="3" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="2"/>
+    <text x="332" y="158" font-size="9.5" fill="currentColor">Value Type</text>
+    <text x="332" y="172" font-size="7.5" font-weight="400" fill="currentColor" opacity="0.8">struct · enum — State · Memento</text>
+    <!-- Generic -->
+    <rect x="318" y="188" width="166" height="40" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="332" y="206" font-size="9.5" fill="currentColor">Generic</text>
+    <text x="332" y="220" font-size="7.5" font-weight="400" fill="currentColor" opacity="0.8">타입 안전한 재사용 — Factory</text>
+  </g>
+
+  <!-- ===== shared vocabulary band underneath ===== -->
+  <rect x="498" y="240" width="160" height="34" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+  <text x="578" y="255" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">패턴 = 공유 어휘</text>
+  <text x="578" y="267" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.75">이름은 남고, 구현만 가벼워진다</text>
+  <line x1="498" y1="240" x2="401" y2="232" stroke="currentColor" stroke-width="1.4" opacity="0.4" stroke-dasharray="3 3"/>
+
+  <defs>
+    <marker id="dp-arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>이 글의 한 장 요약 — 왼쪽은 GoF 시대의 <strong>무거운 클래스 상속 계층</strong>(추상 인터페이스 + 여러 구현·하위 클래스), 가운데 <strong>재해석</strong> 화살표를 지나 오른쪽에서 같은 의도가 Swift의 네 가지 가벼운 도구 — <strong>Closure</strong>(Strategy·Command), <strong>Protocol+Extension</strong>(Decorator·믹스인), <strong>Value Type</strong>(State·Memento), <strong>Generic</strong>(Factory) — 로 흩어진다. 패턴이라는 <strong>공유 어휘</strong>는 남고, 구현 메커니즘만 가벼워진다.</figcaption>
+</figure>
+
 ## 들어가며
 
 이 글은 `OO-Design-Essential` 시리즈의 **3단계**입니다. 전체 흐름은 [OO-Design Essential Curriculum](/2026/06/19/oo-design-essential-curriculum.html)에서 확인할 수 있습니다.
@@ -67,7 +139,62 @@ print(blackFriday.total(of: 20000)) // 10000.0
 print(member.total(of: 20000))      // 19000.0
 ```
 
-구현 클래스 3개가 클로저 리터럴 1줄로 줄었습니다. 전략이 복잡해지면 그때 프로토콜로 승격하면 됩니다.
+구현 클래스 3개가 클로저 리터럴 1줄로 줄었습니다. 전략이 복잡해지면 그때 프로토콜로 승격하면 됩니다. 핵심은 "행동(behavior)" 자체가 **일급 값**이 되었다는 점입니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="고전 Strategy 패턴과 Swift 클로저 방식을 나란히 비교한 그림. 왼쪽은 전략 인터페이스 한 개와 그 아래 세 개의 구현 클래스가 화살표로 연결된 무거운 구조이고, 오른쪽은 같은 세 전략이 각각 한 줄짜리 클로저 리터럴로 표현된 가벼운 구조다. 가운데 화살표는 클래스 계층 전체가 함수 값으로 흡수됨을 나타낸다." viewBox="0 0 660 250" xmlns="http://www.w3.org/2000/svg">
+  <title>Strategy 재해석 — 인터페이스 + 구현 클래스 3개가 클로저 리터럴 3줄로 흡수된다</title>
+
+  <!-- ===== LEFT: classic Strategy ===== -->
+  <text x="135" y="24" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.75">고전 OO — 클래스 계층</text>
+  <!-- interface -->
+  <rect x="80" y="42" width="110" height="30" rx="2" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.2" stroke-dasharray="5 3"/>
+  <text x="135" y="56" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">«DiscountStrategy»</text>
+  <text x="135" y="67" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">apply(to:)</text>
+  <!-- lines to 3 implementations -->
+  <line x1="135" y1="72" x2="56" y2="104" stroke="currentColor" stroke-width="1.6" opacity="0.7"/>
+  <line x1="135" y1="72" x2="135" y2="104" stroke="currentColor" stroke-width="1.6" opacity="0.7"/>
+  <line x1="135" y1="72" x2="214" y2="104" stroke="currentColor" stroke-width="1.6" opacity="0.7"/>
+  <rect x="22" y="106" width="68" height="44" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="56" y="124" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">BlackFriday</text>
+  <text x="56" y="138" text-anchor="middle" font-size="7" fill="currentColor" opacity="0.8">apply { ... }</text>
+  <rect x="101" y="106" width="68" height="44" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="135" y="124" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">Member</text>
+  <text x="135" y="138" text-anchor="middle" font-size="7" fill="currentColor" opacity="0.8">apply { ... }</text>
+  <rect x="180" y="106" width="68" height="44" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="214" y="124" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">NoDiscount</text>
+  <text x="214" y="138" text-anchor="middle" font-size="7" fill="currentColor" opacity="0.8">apply { ... }</text>
+  <text x="135" y="174" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.7">타입 4개 · 파일 4개</text>
+
+  <!-- ===== CENTER arrow ===== -->
+  <line x1="276" y1="100" x2="338" y2="100" stroke="var(--secondary-color)" stroke-width="3" marker-end="url(#st-arrow)"/>
+  <text x="307" y="88" text-anchor="middle" font-size="9.5" fill="var(--secondary-color)" font-weight="700">함수 = 값</text>
+  <text x="307" y="120" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">계층이 값으로</text>
+  <text x="307" y="131" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">흡수됨</text>
+
+  <!-- ===== RIGHT: closures ===== -->
+  <text x="500" y="24" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.75">Swift — 클로저 리터럴</text>
+  <!-- the Checkout holder -->
+  <rect x="364" y="42" width="272" height="30" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+  <text x="500" y="61" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">var discount: (Double) -&gt; Double</text>
+  <line x1="500" y1="72" x2="500" y2="92" stroke="currentColor" stroke-width="1.6" opacity="0.6"/>
+  <!-- three closure literals -->
+  <rect x="364" y="94" width="272" height="24" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="1.8"/>
+  <text x="500" y="110" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">{ $0 * 0.5 }</text>
+  <rect x="364" y="122" width="272" height="24" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="1.8"/>
+  <text x="500" y="138" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">{ $0 - 1000 }</text>
+  <rect x="364" y="150" width="272" height="24" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="1.8"/>
+  <text x="500" y="166" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">{ $0 }</text>
+  <text x="500" y="192" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.7">타입 1개 · 리터럴 3줄</text>
+
+  <defs>
+    <marker id="st-arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>Strategy 재해석 — 전략 인터페이스와 구현 클래스 3개(타입 4개)가 <strong>한 줄짜리 클로저 리터럴 3줄</strong>로 줄어든다. 행동을 캡슐화하는 가장 가벼운 단위가 클래스가 아니라 <code>(Double) -&gt; Double</code> 함수 값이기 때문이다. Command·Template Method도 같은 원리로 흡수된다.</figcaption>
+</figure>
 
 ### Iterator: 직접 구현 → `Sequence` / `IteratorProtocol`
 
@@ -276,6 +403,54 @@ func load(_ id: Int) -> Result<String, Error> {
 ```
 
 `protocol`의 기본 구현(default implementation)은 다중 상속 없이 행동을 공유하게 해주고, `Result`·`Optional`·`enum`은 예외/널 분기를 **타입 시스템 안에서** 다루게 합니다. 이것이 *Hands-On Design Patterns with Swift*가 강조하는 핵심입니다. **패턴을 외우기보다, 언어가 무엇을 이미 제공하는지를 먼저 보라.**
+
+<figure class="post-figure">
+<svg role="img" aria-label="프로토콜 지향 프로그래밍에서 기본 구현이 퍼지는 방식을 그린 그림. 위쪽에는 요구사항만 선언한 Greetable 프로토콜과, greet() 기본 동작을 제공하는 extension이 한 쌍으로 묶여 있다. 아래쪽에는 이 프로토콜을 채택한 세 개의 값 타입 — struct User, struct Robot, enum Guest — 이 나란히 놓이고, extension에서 내려오는 점선 화살표가 세 타입 모두에 greet() 동작을 공급한다. 상속 계층 없이도 행동이 수평으로 공유됨을 보여준다." viewBox="0 0 660 250" xmlns="http://www.w3.org/2000/svg">
+  <title>Protocol + Extension — extension의 기본 구현이 채택한 모든 값 타입에 행동을 공급한다 (상속 없는 믹스인)</title>
+
+  <text x="330" y="22" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.75">프로토콜 지향 — 기본 구현이 수평으로 퍼진다</text>
+
+  <!-- protocol (requirement) -->
+  <rect x="116" y="40" width="172" height="46" rx="3" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2.2"/>
+  <text x="202" y="58" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">protocol Greetable</text>
+  <text x="202" y="74" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85">요구: var name { get }</text>
+
+  <!-- extension (default impl) -->
+  <rect x="372" y="40" width="172" height="46" rx="3" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="2.2"/>
+  <text x="458" y="58" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">extension Greetable</text>
+  <text x="458" y="74" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85">기본 구현: greet() { ... }</text>
+  <!-- pairing line between protocol and extension -->
+  <line x1="288" y1="63" x2="372" y2="63" stroke="currentColor" stroke-width="1.6" opacity="0.5"/>
+
+  <!-- dashed arrows: default impl flows down to each conforming type -->
+  <line x1="430" y1="86" x2="120" y2="150" stroke="var(--secondary-color)" stroke-width="1.8" opacity="0.85" stroke-dasharray="5 3" marker-end="url(#pp-arrow)"/>
+  <line x1="448" y1="86" x2="330" y2="150" stroke="var(--secondary-color)" stroke-width="1.8" opacity="0.85" stroke-dasharray="5 3" marker-end="url(#pp-arrow)"/>
+  <line x1="466" y1="86" x2="540" y2="150" stroke="var(--secondary-color)" stroke-width="1.8" opacity="0.85" stroke-dasharray="5 3" marker-end="url(#pp-arrow)"/>
+  <text x="486" y="118" text-anchor="middle" font-size="8" fill="var(--secondary-color)" font-weight="700">greet() 공급</text>
+
+  <!-- three conforming value types -->
+  <g font-weight="700">
+    <rect x="50" y="154" width="140" height="48" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="120" y="173" text-anchor="middle" font-size="9" fill="currentColor">struct User</text>
+    <text x="120" y="189" text-anchor="middle" font-size="7.5" font-weight="400" fill="currentColor" opacity="0.8">+ greet() 무료</text>
+    <rect x="260" y="154" width="140" height="48" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="330" y="173" text-anchor="middle" font-size="9" fill="currentColor">struct Robot</text>
+    <text x="330" y="189" text-anchor="middle" font-size="7.5" font-weight="400" fill="currentColor" opacity="0.8">+ greet() 무료</text>
+    <rect x="470" y="154" width="140" height="48" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="540" y="173" text-anchor="middle" font-size="9" fill="currentColor">enum Guest</text>
+    <text x="540" y="189" text-anchor="middle" font-size="7.5" font-weight="400" fill="currentColor" opacity="0.8">+ greet() 무료</text>
+  </g>
+
+  <text x="330" y="226" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.7">상속 계층(부모 클래스) 없이 — struct·enum도 행동을 공유한다</text>
+
+  <defs>
+    <marker id="pp-arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>프로토콜 지향(Protocol-Oriented) 관용구 — <code>extension</code>에 담은 <strong>기본 구현</strong>이 그 프로토콜을 채택한 모든 타입으로 내려가 행동을 공급한다. 부모 클래스를 상속하지 않고도 <code>struct</code>·<code>enum</code> 같은 값 타입까지 동작을 <strong>수평으로 공유</strong>하므로, 단순한 Decorator·믹스인이 다중 상속 없이 대체된다.</figcaption>
+</figure>
 
 ### 그래도 패턴 지식이 필요한 이유
 

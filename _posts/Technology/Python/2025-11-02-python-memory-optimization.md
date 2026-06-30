@@ -9,6 +9,110 @@ published: true
 excerpt: "Python 애플리케이션의 메모리 사용량을 최적화하는 필수 기법과 모범 사례를 학습합니다. 메모리 프로파일링, 데이터 구조 선택, 가비지 컬렉션 관리 등을 다룹니다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="Python 메모리 최적화 4대 기법을 한 장으로 묶은 그림. 왼쪽에는 tracemalloc이 메모리 막대를 측정하는 자(눈금)로 표현된다. 가운데 위에는 리스트가 1·2·3·…·N 칸을 모두 채워 무겁고, 그 아래 제너레이터는 공식 한 칸만 두고 값을 하나씩 흘려보내 가볍다. 가운데 아래에는 이터레이터가 파일을 청크 단위로 한 조각씩 끌어온다. 오른쪽에는 __dict__를 단 무거운 객체와 __slots__로 dict를 떼어낸 가벼운 객체가 위아래로 대비된다. 전체적으로 측정 → 지연 평가 → 스트리밍 → 구조 최적화의 흐름을 보여준다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>Python 메모리 최적화 — tracemalloc(측정) · Generator/Iterator(지연·스트리밍) · __slots__(구조 최적화)</title>
+
+  <!-- ===== LEFT: tracemalloc = a measuring ruler against a memory bar ===== -->
+  <text x="92" y="24" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">측정</text>
+  <!-- memory bar -->
+  <rect x="44" y="44" width="34" height="200" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <rect x="44" y="150" width="34" height="94" rx="3" fill="var(--accent-color)" opacity="0.35" stroke="var(--accent-color)" stroke-width="1.5"/>
+  <text x="61" y="200" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">사용</text>
+  <!-- ruler / ticks -->
+  <line x1="92" y1="44" x2="92" y2="244" stroke="var(--secondary-color)" stroke-width="2"/>
+  <line x1="86" y1="64" x2="98" y2="64" stroke="var(--secondary-color)" stroke-width="1.6"/>
+  <line x1="86" y1="104" x2="98" y2="104" stroke="var(--secondary-color)" stroke-width="1.6"/>
+  <line x1="86" y1="144" x2="98" y2="144" stroke="var(--secondary-color)" stroke-width="1.6"/>
+  <line x1="86" y1="184" x2="98" y2="184" stroke="var(--secondary-color)" stroke-width="1.6"/>
+  <line x1="86" y1="224" x2="98" y2="224" stroke="var(--secondary-color)" stroke-width="1.6"/>
+  <text x="116" y="148" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">tracemalloc</text>
+  <text x="116" y="162" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">라인 단위 추적</text>
+  <text x="92" y="262" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.8" font-weight="700">먼저 잰다</text>
+
+  <!-- divider -->
+  <line x1="158" y1="40" x2="158" y2="252" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== MIDDLE TOP: list (heavy) vs generator (light) ===== -->
+  <text x="338" y="24" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">지연 평가 · 스트리밍</text>
+  <!-- list: all cells filled -->
+  <text x="186" y="56" font-size="8.5" fill="currentColor" font-weight="700">리스트 — 전부 적재 (무거움)</text>
+  <g stroke="currentColor" stroke-width="1.4">
+    <rect x="186" y="62" width="22" height="20" rx="2" fill="var(--accent-color)" opacity="0.30"/>
+    <rect x="210" y="62" width="22" height="20" rx="2" fill="var(--accent-color)" opacity="0.30"/>
+    <rect x="234" y="62" width="22" height="20" rx="2" fill="var(--accent-color)" opacity="0.30"/>
+    <rect x="258" y="62" width="22" height="20" rx="2" fill="var(--accent-color)" opacity="0.30"/>
+    <rect x="282" y="62" width="22" height="20" rx="2" fill="var(--accent-color)" opacity="0.30"/>
+    <rect x="306" y="62" width="22" height="20" rx="2" fill="var(--accent-color)" opacity="0.30"/>
+  </g>
+  <text x="334" y="76" font-size="8" fill="currentColor" opacity="0.85">… N칸</text>
+
+  <!-- generator: one formula cell, values trickle out one at a time -->
+  <text x="186" y="110" font-size="8.5" fill="currentColor" font-weight="700">제너레이터 — 한 칸만, 하나씩 (가벼움)</text>
+  <rect x="186" y="116" width="58" height="24" rx="3" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2"/>
+  <text x="215" y="132" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">공식 x²</text>
+  <line x1="244" y1="128" x2="276" y2="128" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#mo-arrow)"/>
+  <circle cx="292" cy="128" r="7" fill="none" stroke="currentColor" stroke-width="1.6"/>
+  <circle cx="318" cy="128" r="6" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.7"/>
+  <circle cx="342" cy="128" r="5" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+  <text x="392" y="132" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">필요할 때 생성</text>
+
+  <!-- MIDDLE BOTTOM: iterator pulling file chunks -->
+  <text x="186" y="172" font-size="8.5" fill="currentColor" font-weight="700">이터레이터 — 파일을 청크로</text>
+  <path d="M186 180 h44 v52 h-44 z" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+  <line x1="192" y1="192" x2="224" y2="192" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <line x1="192" y1="202" x2="224" y2="202" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <line x1="192" y1="212" x2="224" y2="212" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <line x1="192" y1="222" x2="224" y2="222" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <text x="208" y="246" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">파일</text>
+  <line x1="232" y1="206" x2="262" y2="206" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#mo-arrow)"/>
+  <rect x="266" y="194" width="40" height="24" rx="3" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="1.8"/>
+  <text x="286" y="210" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">청크</text>
+  <text x="338" y="210" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">한 조각씩</text>
+  <text x="338" y="262" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.8" font-weight="700">올리지 말고 흘려보낸다</text>
+
+  <!-- divider -->
+  <line x1="436" y1="40" x2="436" y2="252" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== RIGHT: __dict__ object (heavy) vs __slots__ object (light) ===== -->
+  <text x="566" y="24" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">구조 최적화</text>
+  <!-- __dict__ object -->
+  <rect x="462" y="48" width="80" height="34" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="502" y="69" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">객체 헤더</text>
+  <line x1="502" y1="82" x2="502" y2="98" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#mo-arrow)"/>
+  <rect x="556" y="48" width="100" height="68" rx="3" fill="var(--accent-color)" opacity="0.18" stroke="var(--accent-color)" stroke-width="1.8"/>
+  <text x="606" y="64" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">__dict__</text>
+  <text x="606" y="80" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.85">id · name · email</text>
+  <text x="606" y="94" text-anchor="middle" font-size="7" fill="currentColor" opacity="0.7">해시 테이블</text>
+  <text x="606" y="108" text-anchor="middle" font-size="7" fill="currentColor" opacity="0.7">오버헤드 큼</text>
+  <line x1="542" y1="65" x2="554" y2="78" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#mo-arrow)"/>
+  <text x="502" y="132" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85" font-weight="700">__dict__ 객체 — 무거움</text>
+
+  <!-- __slots__ object -->
+  <rect x="462" y="158" width="80" height="34" rx="3" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2"/>
+  <text x="502" y="179" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">객체 헤더</text>
+  <g font-size="7.5" fill="currentColor">
+    <rect x="556" y="158" width="100" height="14" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.2"/>
+    <text x="606" y="168" text-anchor="middle">id</text>
+    <rect x="556" y="174" width="100" height="14" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.2"/>
+    <text x="606" y="184" text-anchor="middle">name</text>
+    <rect x="556" y="190" width="100" height="14" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.2"/>
+    <text x="606" y="200" text-anchor="middle">email</text>
+  </g>
+  <line x1="542" y1="175" x2="554" y2="178" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#mo-arrow)"/>
+  <text x="606" y="218" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">dict 제거 · 고정 슬롯</text>
+  <text x="502" y="240" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85" font-weight="700">__slots__ 객체 — 가벼움</text>
+  <text x="566" y="262" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.8" font-weight="700">dict를 떼어 58% 절감</text>
+
+  <defs>
+    <marker id="mo-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>이 글의 4대 기법을 한 장으로 — <strong>측정</strong>(tracemalloc으로 먼저 잰다), <strong>지연 평가·스트리밍</strong>(리스트는 전부 적재하지만 제너레이터는 공식 한 칸만 두고 값을 하나씩, 이터레이터는 파일을 청크로 흘려보냄), <strong>구조 최적화</strong>(__dict__를 떼어낸 __slots__ 객체로 58% 절감). 흐름은 측정 → 지연 → 스트리밍 → 구조 순이다.</figcaption>
+</figure>
+
 ## 소개
 
 메모리 최적화는 Python 프로그래밍의 핵심 기술입니다. 대용량 데이터를 처리하는 데이터 파이프라인이나 장시간 실행되는 서버 애플리케이션에서 메모리 효율성은 시스템의 성능과 안정성을 결정짓는 중요한 요소입니다.
@@ -214,6 +318,75 @@ print(f"메모리 절약: {(list_memory - gen_memory) / 1024 / 1024:.2f} MB")
 제너레이터: 0.11 KB
 메모리 절약: 8.01 MB
 ```
+
+제너레이터가 메모리를 아끼는 진짜 이유는 **시간 축**에 있습니다. 리스트는 모든 값을 *동시에* 메모리에 올려두지만, 제너레이터는 호출될 때마다 값 하나를 계산해 넘겨주고는 곧바로 버립니다. 그래서 어느 순간이든 메모리에 살아 있는 값은 **항상 단 하나**입니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="제너레이터가 메모리를 아끼는 원리를 시간 축으로 보여주는 그림. 위쪽 리스트는 값 1부터 N까지 모든 칸이 동시에 메모리에 채워져 한 덩어리로 무겁게 남는다. 아래쪽 제너레이터는 next()를 호출할 때마다 값 하나만 계산해 넘기고 곧바로 버리며, 시간 t1·t2·t3로 진행해도 메모리에 살아 있는 값은 언제나 단 하나뿐이다. 이전 값은 흐리게 사라진 모습으로 표현된다." viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg">
+  <title>제너레이터의 절약 원리 — 리스트는 전부 동시 적재, 제너레이터는 시간이 흘러도 한 번에 한 값만</title>
+
+  <!-- ===== TOP: list holds everything at once ===== -->
+  <text x="20" y="40" font-size="11" fill="currentColor" font-weight="700">리스트 — 모든 값이 동시에 메모리에 상주</text>
+  <g stroke="currentColor" stroke-width="1.5">
+    <rect x="20" y="52" width="48" height="34" rx="3" fill="var(--accent-color)" opacity="0.30"/>
+    <rect x="72" y="52" width="48" height="34" rx="3" fill="var(--accent-color)" opacity="0.30"/>
+    <rect x="124" y="52" width="48" height="34" rx="3" fill="var(--accent-color)" opacity="0.30"/>
+    <rect x="176" y="52" width="48" height="34" rx="3" fill="var(--accent-color)" opacity="0.30"/>
+    <rect x="228" y="52" width="48" height="34" rx="3" fill="var(--accent-color)" opacity="0.30"/>
+    <rect x="280" y="52" width="48" height="34" rx="3" fill="var(--accent-color)" opacity="0.30"/>
+  </g>
+  <g font-size="9" fill="currentColor" font-weight="700" text-anchor="middle">
+    <text x="44" y="73">값1</text><text x="96" y="73">값2</text><text x="148" y="73">값3</text>
+    <text x="200" y="73">값4</text><text x="252" y="73">값5</text><text x="304" y="73">…N</text>
+  </g>
+  <line x1="340" y1="69" x2="380" y2="69" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#gn-arrow)"/>
+  <rect x="384" y="50" width="120" height="38" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="444" y="68" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">메모리 = 값 × N</text>
+  <text x="444" y="81" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">한 덩어리로 무겁다</text>
+
+  <!-- divider -->
+  <line x1="20" y1="110" x2="620" y2="110" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== BOTTOM: generator, one live value across time ===== -->
+  <text x="20" y="138" font-size="11" fill="currentColor" font-weight="700">제너레이터 — 시간이 흘러도 살아 있는 값은 언제나 하나</text>
+
+  <!-- time axis -->
+  <line x1="40" y1="252" x2="560" y2="252" stroke="currentColor" stroke-width="1.6" marker-end="url(#gn-arrow)"/>
+  <text x="572" y="256" font-size="8.5" fill="currentColor" opacity="0.8">시간</text>
+
+  <!-- t1 -->
+  <text x="100" y="166" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">next() ① t1</text>
+  <rect x="72" y="174" width="56" height="40" rx="3" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2"/>
+  <text x="100" y="198" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">값1</text>
+  <line x1="100" y1="214" x2="100" y2="248" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- t2: value1 fades, value2 is live -->
+  <text x="260" y="166" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">next() ② t2</text>
+  <rect x="200" y="180" width="46" height="32" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+  <text x="223" y="200" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700" opacity="0.4">값1 버림</text>
+  <rect x="252" y="174" width="56" height="40" rx="3" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2"/>
+  <text x="280" y="198" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">값2</text>
+  <line x1="280" y1="214" x2="280" y2="248" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- t3 -->
+  <text x="440" y="166" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">next() ③ t3</text>
+  <rect x="380" y="180" width="46" height="32" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+  <text x="403" y="200" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700" opacity="0.4">값2 버림</text>
+  <rect x="432" y="174" width="56" height="40" rx="3" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2"/>
+  <text x="460" y="198" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">값3</text>
+  <line x1="460" y1="214" x2="460" y2="248" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+
+  <text x="540" y="200" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.85">…</text>
+  <text x="290" y="282" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.85" font-weight="700">메모리 = 값 × 1 (상수) — N과 무관하게 일정</text>
+
+  <defs>
+    <marker id="gn-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>제너레이터의 절약 원리는 <strong>시간 축</strong>에 있다. 리스트는 값 N개를 한꺼번에 메모리에 올려 <code>값 × N</code>만큼 차지하지만(위), 제너레이터는 <code>next()</code>를 호출할 때마다 값 하나만 계산해 넘기고 이전 값은 버리므로(아래), 시간이 흘러도 살아 있는 값은 늘 하나 — 메모리는 N과 무관하게 <code>상수</code>로 일정하다.</figcaption>
+</figure>
 
 ### 리스트 vs 제너레이터 메모리 사용 비교
 

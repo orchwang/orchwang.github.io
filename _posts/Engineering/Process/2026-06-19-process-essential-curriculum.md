@@ -10,6 +10,66 @@ banner: wartable
 excerpt: "Pressman의 큰 그림부터 XP, 사용자 스토리·유스케이스, CI, Essence까지 7권의 고전으로 애자일 프로세스와 요구사항을 도장깨기 방식으로 정복하는 마스터 로드맵입니다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="Process-Essential 7단계 학습 여정을 왼쪽에서 오른쪽으로 오르는 세 단의 계단으로 그린 그림. 가장 낮은 단은 기초로 1단계 소프트웨어 공학 개관과 2단계 XP·애자일 가치가 놓이고, 가운데 단은 핵심으로 3단계 사용자 스토리, 4단계 유스케이스 작성법, 5단계 유스케이스 주도 개발이 놓이며, 가장 높은 단은 응용으로 6단계 지속적 통합(CI)과 7단계 Essence·SEMAT가 놓인다. 계단 전체를 가로지르며 프로세스 축과 요구사항 축이라는 두 줄기가 함께 오르고, 마지막에 완주 깃발이 꽂혀 있다." viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
+  <title>Process-Essential 학습 여정 — 기초(공학·애자일)에서 핵심(요구사항·유스케이스)을 거쳐 응용(CI·Essence)까지 오르는 7단계 계단</title>
+
+  <!-- ===== two through-line axes climbing across all stages ===== -->
+  <text x="40" y="34" font-size="11.5" fill="currentColor" font-weight="700" opacity="0.8">프로세스 · 요구사항 두 축이 함께 오른다</text>
+  <line x1="44" y1="264" x2="606" y2="120" stroke="var(--secondary-color)" stroke-width="2.5" stroke-dasharray="2 5" opacity="0.7"/>
+  <line x1="44" y1="276" x2="606" y2="132" stroke="var(--accent-color)" stroke-width="2.5" stroke-dasharray="2 5" opacity="0.7"/>
+
+  <!-- ===== FOUNDATION step (lowest) ===== -->
+  <rect x="36" y="206" width="192" height="84" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="132" y="226" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.75">기초 · 큰 그림과 애자일 가치</text>
+  <rect x="48" y="234" width="80" height="46" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="88" y="252" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">1단계</text>
+  <text x="88" y="266" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85">공학 개관</text>
+  <rect x="136" y="234" width="80" height="46" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="176" y="252" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">2단계</text>
+  <text x="176" y="266" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85">XP·애자일</text>
+
+  <!-- ===== CORE step (middle) ===== -->
+  <rect x="236" y="138" width="284" height="84" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="378" y="158" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.75">핵심 · 요구사항과 유스케이스</text>
+  <rect x="248" y="166" width="80" height="46" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="288" y="184" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">3단계</text>
+  <text x="288" y="198" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85">사용자 스토리</text>
+  <rect x="336" y="166" width="80" height="46" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="376" y="184" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">4단계</text>
+  <text x="376" y="198" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85">유스케이스</text>
+  <rect x="424" y="166" width="80" height="46" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="464" y="184" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">5단계</text>
+  <text x="464" y="198" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85">UC 주도</text>
+
+  <!-- ===== APPLY step (highest) ===== -->
+  <rect x="428" y="70" width="216" height="84" rx="4" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.2"/>
+  <text x="536" y="90" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.75">응용 · 현대적 실천</text>
+  <rect x="440" y="98" width="92" height="46" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="486" y="116" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">6단계</text>
+  <text x="486" y="130" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85">지속적 통합</text>
+  <rect x="540" y="98" width="92" height="46" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="586" y="116" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">7단계</text>
+  <text x="586" y="130" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85">Essence</text>
+
+  <!-- ===== summit flag (완주) ===== -->
+  <line x1="600" y1="70" x2="600" y2="34" stroke="var(--gold)" stroke-width="2.5"/>
+  <path d="M600,36 L632,44 L600,52 z" fill="var(--gold)" stroke="var(--gold)" stroke-width="1"/>
+  <text x="596" y="28" text-anchor="end" font-size="10" fill="currentColor" font-weight="700">완주 🎉</text>
+
+  <!-- ===== climb arrows between steps ===== -->
+  <path d="M226,224 L246,210" fill="none" stroke="var(--gold)" stroke-width="2.5" marker-end="url(#pe-arrow)"/>
+  <path d="M514,156 L534,142" fill="none" stroke="var(--gold)" stroke-width="2.5" marker-end="url(#pe-arrow)"/>
+
+  <defs>
+    <marker id="pe-arrow" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 z" fill="var(--gold)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>7단계 학습 여정을 오르는 세 단의 계단 — <strong>기초</strong>(공학 개관·XP 애자일 가치)에서 <strong>핵심</strong>(사용자 스토리·유스케이스·UC 주도 개발)을 거쳐 <strong>응용</strong>(지속적 통합·Essence)으로 올라간다. 계단 전체를 가로지르는 두 줄기는 이 시리즈가 함께 다지는 <strong>프로세스</strong>와 <strong>요구사항</strong> 두 축으로, 마지막에 완주 깃발이 꽂힌다.</figcaption>
+</figure>
+
 ## 소개
 
 좋은 코드를 짜는 능력만으로는 좋은 소프트웨어가 만들어지지 않습니다. "무엇을 만들 것인가"를 정의하는 **요구사항(Requirements)**, 그 요구사항을 작동하는 결과물로 흘려보내는 **프로세스(Process)**가 함께 단단해야 합니다. 애자일은 이 두 축을 무겁게 만들지 않으면서도 변화에 유연하게 대응하는 방법을 제시하며, 그 뿌리에는 수십 년에 걸쳐 검증된 고전들이 있습니다.

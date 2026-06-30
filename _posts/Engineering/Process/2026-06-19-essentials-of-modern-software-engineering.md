@@ -9,6 +9,65 @@ published: true
 excerpt: "SEMAT와 Essence는 끝없는 방법론 전쟁을 넘어, 모든 소프트웨어 개발에 공통된 본질(Kernel)과 일곱 개의 Alpha로 팀의 상태를 추적하는 길을 제시한다. Process-Essential 시리즈의 마지막 단계."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="Essence의 핵심 구조를 한 장으로 담은 그림. 아래쪽에는 모든 소프트웨어 개발의 공통 본질인 Kernel이라는 넓은 토대가 깔려 있고, 그 위에 세 개의 관심 영역(Customer 고객, Solution 솔루션, Endeavour 노력)이 기둥처럼 서 있다. 각 영역 안에는 진행 상태를 추적하는 일곱 개의 Alpha가 들어 있다. 고객 영역에는 Opportunity와 Stakeholders, 솔루션 영역에는 Requirements와 Software System, 노력 영역에는 Work, Team, Way of Working이 있다. 오른쪽 위에는 Alpha가 정해진 상태들을 한 칸씩 거쳐 진행한다는 것을 보여주는 작은 진행 막대가 있다." viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
+  <title>Essence — 공통 토대 Kernel 위에 선 3개 관심 영역과 7개 Alpha, 그리고 상태로 진행하는 Alpha</title>
+
+  <text x="340" y="26" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700" opacity="0.8">Essence Kernel — 방법론과 무관한 공통 본질</text>
+
+  <!-- ===== Customer area ===== -->
+  <rect x="28" y="56" width="196" height="148" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="126" y="78" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">Customer · 고객</text>
+  <rect x="44" y="92" width="164" height="48" rx="3" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2"/>
+  <text x="126" y="113" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">Opportunity</text>
+  <text x="126" y="128" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">기회</text>
+  <rect x="44" y="146" width="164" height="48" rx="3" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2"/>
+  <text x="126" y="167" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">Stakeholders</text>
+  <text x="126" y="182" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">이해관계자</text>
+
+  <!-- ===== Solution area ===== -->
+  <rect x="242" y="56" width="196" height="148" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="340" y="78" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">Solution · 솔루션</text>
+  <rect x="258" y="92" width="164" height="48" rx="3" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="340" y="113" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">Requirements</text>
+  <text x="340" y="128" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">요구사항</text>
+  <rect x="258" y="146" width="164" height="48" rx="3" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="340" y="167" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">Software System</text>
+  <text x="340" y="182" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">소프트웨어 시스템</text>
+
+  <!-- ===== Endeavour area ===== -->
+  <rect x="456" y="56" width="196" height="148" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="554" y="78" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">Endeavour · 노력</text>
+  <rect x="472" y="92" width="164" height="30" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+  <text x="554" y="106" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">Work</text>
+  <text x="554" y="117" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">작업</text>
+  <rect x="472" y="126" width="164" height="30" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+  <text x="554" y="140" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">Team</text>
+  <text x="554" y="151" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">팀</text>
+  <rect x="472" y="160" width="164" height="34" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+  <text x="554" y="176" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">Way of Working</text>
+  <text x="554" y="188" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">일하는 방식</text>
+
+  <!-- ===== Kernel foundation ===== -->
+  <rect x="28" y="216" width="624" height="40" rx="4" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <text x="340" y="240" text-anchor="middle" font-size="11.5" fill="currentColor" font-weight="700">7 Alphas · 공통 토대 — 어떤 방법론을 쓰든 항상 존재한다</text>
+
+  <!-- ===== Alpha state progression strip ===== -->
+  <text x="44" y="290" text-anchor="start" font-size="9.5" fill="currentColor" opacity="0.85" font-weight="700">각 Alpha는 상태(State)를 한 칸씩 거쳐 진행:</text>
+  <circle cx="306" cy="287" r="6" fill="var(--secondary-color)" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="312" y1="287" x2="356" y2="287" stroke="currentColor" stroke-width="1.8"/>
+  <circle cx="362" cy="287" r="6" fill="var(--secondary-color)" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="368" y1="287" x2="412" y2="287" stroke="currentColor" stroke-width="1.8"/>
+  <circle cx="418" cy="287" r="7" fill="var(--accent-color)" stroke="currentColor" stroke-width="2"/>
+  <line x1="425" y1="287" x2="469" y2="287" stroke="currentColor" stroke-width="1.8" stroke-dasharray="4 4" opacity="0.6"/>
+  <circle cx="475" cy="287" r="6" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.6"/>
+  <line x1="481" y1="287" x2="525" y2="287" stroke="currentColor" stroke-width="1.8" stroke-dasharray="4 4" opacity="0.6"/>
+  <circle cx="531" cy="287" r="6" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.6"/>
+  <text x="418" y="308" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">현재 상태</text>
+</svg>
+<figcaption>Essence의 한 장 요약 — 모든 소프트웨어 개발의 공통 본질을 추린 <strong>Kernel</strong>이 토대를 이루고, 그 위에 세 관심 영역(<strong>Customer · Solution · Endeavour</strong>)과 그 안의 <strong>일곱 Alpha</strong>가 선다. 각 Alpha는 정해진 <strong>상태(State)</strong>를 한 칸씩 거쳐 진행하며, 팀은 방법론 이름이 아니라 이 진행 상태로 개발을 이야기한다.</figcaption>
+</figure>
+
 ## 들어가며
 
 이 글은 `Process-Essential` 시리즈의 **7단계이자 마지막**입니다. 시리즈의 큰 그림은 [Process Essential Curriculum](/2026/06/19/process-essential-curriculum.html)에서 다시 확인할 수 있습니다.
@@ -174,6 +233,74 @@ flowchart TB
 ### 추상을 손에 잡히게: Alpha State Card
 
 Alpha와 상태가 아무리 잘 정의되어 있어도, 팀이 매일 쓰지 않으면 죽은 이론입니다. Essence는 이를 위해 **Alpha State Card**라는 물리적/시각적 도구를 제공합니다. 각 카드 앞면에는 Alpha 이름과 현재 상태, 뒷면에는 그 상태에 도달했는지 판단하는 체크리스트가 있습니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="Alpha State Card 한 장의 앞면과 뒷면을 나란히 보여주는 그림. 왼쪽 앞면 카드에는 Requirements라는 Alpha 이름과, Conceived에서 Fulfilled까지 여섯 상태가 점으로 이어진 진행 막대가 있고 현재 상태인 Coherent에 표시가 되어 있다. 오른쪽 뒷면 카드에는 다음 상태인 Acceptable에 도달했는지 판단하는 체크리스트가 있는데, 일부 항목은 체크되어 있고 일부는 비어 있다. 두 카드는 같은 카드의 앞뒤임을 나타내는 뒤집기 화살표로 연결되어 있다." viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
+  <title>Alpha State Card — 앞면(이름·현재 상태 진행 막대)과 뒷면(다음 상태 도달 체크리스트)</title>
+
+  <!-- ===== FRONT card ===== -->
+  <text x="166" y="24" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.75">앞면 — 이름 · 현재 상태</text>
+  <rect x="40" y="36" width="252" height="232" rx="6" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="2.5"/>
+  <text x="60" y="68" text-anchor="start" font-size="15" fill="currentColor" font-weight="700">Requirements</text>
+  <text x="60" y="86" text-anchor="start" font-size="9" fill="currentColor" opacity="0.8">요구사항 · Solution 영역</text>
+
+  <!-- vertical state track -->
+  <line x1="74" y1="108" x2="74" y2="248" stroke="currentColor" stroke-width="1.6" opacity="0.5"/>
+
+  <circle cx="74" cy="112" r="5" fill="var(--secondary-color)" stroke="currentColor" stroke-width="1.5"/>
+  <text x="90" y="116" text-anchor="start" font-size="9.5" fill="currentColor" opacity="0.8">Conceived · 착안됨</text>
+  <circle cx="74" cy="140" r="5" fill="var(--secondary-color)" stroke="currentColor" stroke-width="1.5"/>
+  <text x="90" y="144" text-anchor="start" font-size="9.5" fill="currentColor" opacity="0.8">Bounded · 범위 정해짐</text>
+  <circle cx="74" cy="168" r="8" fill="var(--accent-color)" stroke="currentColor" stroke-width="2.5"/>
+  <text x="92" y="172" text-anchor="start" font-size="10.5" fill="currentColor" font-weight="700">Coherent · 일관됨</text>
+  <text x="92" y="186" text-anchor="start" font-size="8.5" fill="currentColor" opacity="0.8">← 지금 여기</text>
+  <circle cx="74" cy="200" r="6" fill="none" stroke="currentColor" stroke-width="1.8"/>
+  <text x="90" y="204" text-anchor="start" font-size="9.5" fill="currentColor" opacity="0.6">Acceptable · 수용 가능</text>
+  <circle cx="74" cy="224" r="5" fill="none" stroke="currentColor" stroke-width="1.6" opacity="0.6"/>
+  <text x="90" y="228" text-anchor="start" font-size="9.5" fill="currentColor" opacity="0.5">Addressed · 충족 중</text>
+  <circle cx="74" cy="248" r="5" fill="none" stroke="currentColor" stroke-width="1.6" opacity="0.6"/>
+  <text x="90" y="252" text-anchor="start" font-size="9.5" fill="currentColor" opacity="0.5">Fulfilled · 완전 충족</text>
+
+  <!-- flip arrows -->
+  <g opacity="0.85">
+    <path d="M308,128 C340,120 360,120 388,128" fill="none" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#sc-arrow)"/>
+    <path d="M388,176 C360,184 340,184 308,176" fill="none" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#sc-arrow)"/>
+    <text x="348" y="158" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.75">뒤집기</text>
+  </g>
+
+  <!-- ===== BACK card ===== -->
+  <text x="514" y="24" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.75">뒷면 — 다음 상태 체크리스트</text>
+  <rect x="388" y="36" width="252" height="232" rx="6" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="408" y="66" text-anchor="start" font-size="11" fill="currentColor" font-weight="700">→ Acceptable 에 도달했는가?</text>
+  <text x="408" y="82" text-anchor="start" font-size="8.5" fill="currentColor" opacity="0.75">수용 가능 상태의 체크리스트</text>
+
+  <!-- checklist item 1 (checked) -->
+  <rect x="408" y="100" width="16" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/>
+  <path d="M411,108 L415,113 L422,103" fill="none" stroke="var(--secondary-color)" stroke-width="2.5"/>
+  <text x="432" y="113" text-anchor="start" font-size="9.5" fill="currentColor">이해관계자가 요구사항을 수용 가능하다고 본다</text>
+  <!-- checklist item 2 (checked) -->
+  <rect x="408" y="128" width="16" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/>
+  <path d="M411,136 L415,141 L422,131" fill="none" stroke="var(--secondary-color)" stroke-width="2.5"/>
+  <text x="432" y="141" text-anchor="start" font-size="9.5" fill="currentColor">충분한 요구사항이 명세되었다</text>
+  <!-- checklist item 3 (empty) -->
+  <rect x="408" y="156" width="16" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.7"/>
+  <text x="432" y="169" text-anchor="start" font-size="9.5" fill="currentColor" opacity="0.7">우선순위가 명확히 합의되었다</text>
+  <!-- checklist item 4 (empty) -->
+  <rect x="408" y="184" width="16" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.7"/>
+  <text x="432" y="197" text-anchor="start" font-size="9.5" fill="currentColor" opacity="0.7">상충하는 요구사항이 해소되었다</text>
+
+  <line x1="408" y1="218" x2="620" y2="218" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+  <text x="408" y="240" text-anchor="start" font-size="9" fill="currentColor" opacity="0.85" font-weight="700">남은 항목 = 다음에 할 일</text>
+  <text x="408" y="256" text-anchor="start" font-size="8.5" fill="currentColor" opacity="0.75">체크리스트가 곧 "다음 행동"을 알려 준다</text>
+
+  <defs>
+    <marker id="sc-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>Alpha State Card 한 장 — <strong>앞면</strong>은 Alpha 이름과 상태 진행 막대로 "지금 어디에 있는지"(예: Requirements가 <strong>Coherent</strong>)를 보여주고, <strong>뒷면</strong>은 다음 상태(→ Acceptable)에 도달했는지 판단하는 <strong>체크리스트</strong>를 담는다. 아직 비어 있는 항목이 바로 팀의 "다음 행동"이 된다.</figcaption>
+</figure>
 
 팀은 테이블 위에 일곱 장의 카드를 펼쳐 놓고 묻습니다.
 

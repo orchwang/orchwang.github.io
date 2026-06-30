@@ -9,6 +9,67 @@ published: true
 excerpt: "Eric Evans의 DDD를 통해 소프트웨어 복잡성은 기술이 아니라 도메인에 있다는 사실을 짚고, 유비쿼터스 언어·도메인 모델·바운디드 컨텍스트·전술적 설계로 도메인 지식을 코드에 녹이는 법을 정리한다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="Domain-Driven Design의 척추를 한 장으로 묶은 그림. 한가운데에 도메인 모델이 있고, 그 위에는 모든 것의 토대인 유비쿼터스 언어가 대화·문서·코드를 하나의 단어로 묶는다. 왼쪽은 전략적 설계로, 여러 바운디드 컨텍스트가 각자의 모델 경계를 갖고 컨텍스트 맵으로 이어진다. 오른쪽은 전술적 설계로, 엔티티·값 객체가 애그리거트 루트라는 일관성 경계 안에 묶인다." viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
+  <title>Domain-Driven Design의 척추 — 유비쿼터스 언어(토대) · 도메인 모델(중심) · 전략적 설계(바운디드 컨텍스트/컨텍스트 맵) · 전술적 설계(엔티티·값 객체·애그리거트)</title>
+
+  <!-- ===== TOP: Ubiquitous Language as the foundation that ties talk/docs/code ===== -->
+  <text x="340" y="22" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">유비쿼터스 언어 — 하나의 단어로 묶기</text>
+  <rect x="120" y="32" width="120" height="26" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="180" y="49" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">대화</text>
+  <rect x="280" y="32" width="120" height="26" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="340" y="49" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">문서</text>
+  <rect x="440" y="32" width="120" height="26" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="500" y="49" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">코드</text>
+  <line x1="180" y1="58" x2="320" y2="84" stroke="var(--secondary-color)" stroke-width="1.8" marker-end="url(#dd-arrow)"/>
+  <line x1="340" y1="58" x2="340" y2="84" stroke="var(--secondary-color)" stroke-width="1.8" marker-end="url(#dd-arrow)"/>
+  <line x1="500" y1="58" x2="360" y2="84" stroke="var(--secondary-color)" stroke-width="1.8" marker-end="url(#dd-arrow)"/>
+
+  <!-- ===== CENTER: Domain Model ===== -->
+  <rect x="250" y="90" width="180" height="44" rx="4" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <text x="340" y="110" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">도메인 모델</text>
+  <text x="340" y="126" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">복잡성의 심장</text>
+
+  <!-- branches down to strategic (left) and tactical (right) -->
+  <line x1="300" y1="134" x2="200" y2="172" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#dd-arrow)"/>
+  <line x1="380" y1="134" x2="480" y2="172" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#dd-arrow)"/>
+
+  <!-- divider -->
+  <line x1="340" y1="180" x2="340" y2="296" stroke="currentColor" stroke-width="1" opacity="0.22"/>
+
+  <!-- ===== LEFT: Strategic design — bounded contexts + context map ===== -->
+  <text x="170" y="184" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.85">전략적 설계 — 모델의 경계</text>
+  <rect x="40" y="198" width="116" height="42" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="98" y="216" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">대출 컨텍스트</text>
+  <text x="98" y="230" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">Loan · BookCopy</text>
+  <rect x="184" y="198" width="116" height="42" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="242" y="216" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">카탈로그 컨텍스트</text>
+  <text x="242" y="230" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">Title · ISBN</text>
+  <line x1="156" y1="219" x2="184" y2="219" stroke="var(--secondary-color)" stroke-width="1.8" stroke-dasharray="4 3" marker-end="url(#dd-arrow)"/>
+  <text x="170" y="266" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85">컨텍스트 맵으로 연결</text>
+  <text x="170" y="282" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">같은 "책"이 컨텍스트마다 다른 모델</text>
+
+  <!-- ===== RIGHT: Tactical design — aggregate boundary holds entity + value object ===== -->
+  <text x="510" y="184" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.85">전술적 설계 — 모델의 빌딩 블록</text>
+  <rect x="392" y="196" width="236" height="74" rx="4" fill="none" stroke="var(--gold)" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="510" y="211" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700" opacity="0.85">애그리거트 (일관성 경계)</text>
+  <rect x="404" y="220" width="100" height="40" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="454" y="238" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">엔티티</text>
+  <text x="454" y="251" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">식별자로 추적</text>
+  <rect x="516" y="220" width="100" height="40" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="566" y="238" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">값 객체</text>
+  <text x="566" y="251" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">값으로 비교</text>
+  <text x="510" y="290" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">루트만이 불변식을 지킨다</text>
+
+  <defs>
+    <marker id="dd-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>DDD의 척추 한 장 요약 — 맨 위 <strong>유비쿼터스 언어</strong>가 대화·문서·코드를 하나의 단어로 묶어 한가운데 <strong>도메인 모델</strong>을 떠받치고, 거기서 두 갈래가 갈린다. 왼쪽 <strong>전략적 설계</strong>는 바운디드 컨텍스트로 모델의 경계를 긋고 컨텍스트 맵으로 잇고, 오른쪽 <strong>전술적 설계</strong>는 엔티티·값 객체를 애그리거트라는 일관성 경계 안에 묶는다.</figcaption>
+</figure>
+
 ## 들어가며
 
 이 글은 `Architecture-Essential` 시리즈의 **1단계**입니다. 전체 학습 지도는 [Architecture Essential Curriculum](/2026/06/19/architecture-essential-curriculum.html)에서 확인할 수 있습니다.
@@ -119,6 +180,56 @@ class LoanPeriod:
 
 애그리거트는 이 불변식을 지키는 **일관성의 경계**입니다. 묶음을 대표하는 하나의 엔티티를 **애그리거트 루트(Aggregate Root)**로 두고, 외부에서는 오직 루트를 통해서만 내부에 접근합니다. 루트가 게이트키퍼 역할을 하며 불변식을 보장합니다.
 
+<figure class="post-figure">
+<svg role="img" aria-label="애그리거트 루트가 일관성 경계를 지키는 구조 그림. 점선으로 그려진 애그리거트 경계 안에 MemberLoans라는 루트 엔티티가 있고, 그 아래 Loan 엔티티 세 개가 내부에 묶여 있다. 외부 코드가 루트의 open_loan 메서드를 통과하면 동시 대출 5권 한도라는 불변식 검사를 거쳐 허용되고, 내부 컬렉션에 직접 접근하려는 경로는 차단된다." viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg">
+  <title>애그리거트 루트가 일관성 경계를 지킨다 — 외부는 오직 루트 메서드를 통과해 불변식 검사를 거치고, 내부 직접 접근은 차단된다</title>
+
+  <!-- aggregate boundary -->
+  <rect x="276" y="40" width="332" height="252" rx="8" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-dasharray="7 5"/>
+  <text x="442" y="62" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.85">애그리거트 경계 (일관성 단위)</text>
+
+  <!-- aggregate root -->
+  <rect x="330" y="78" width="224" height="52" rx="4" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="442" y="100" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">MemberLoans · 루트</text>
+  <text x="442" y="118" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85">불변식: 동시 대출 ≤ 5권</text>
+
+  <!-- internal entities, hidden behind the root -->
+  <line x1="442" y1="130" x2="442" y2="158" stroke="var(--secondary-color)" stroke-width="1.6" opacity="0.7"/>
+  <line x1="442" y1="150" x2="360" y2="190" stroke="var(--secondary-color)" stroke-width="1.6" opacity="0.7"/>
+  <line x1="442" y1="150" x2="524" y2="190" stroke="var(--secondary-color)" stroke-width="1.6" opacity="0.7"/>
+  <rect x="322" y="192" width="76" height="40" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="360" y="216" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">Loan</text>
+  <rect x="404" y="192" width="76" height="40" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="442" y="216" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">Loan</text>
+  <rect x="486" y="192" width="76" height="40" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="524" y="216" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">Loan</text>
+  <text x="442" y="258" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.75">내부 엔티티는 외부에 직접 노출되지 않는다</text>
+
+  <!-- allowed path: through the root method -->
+  <circle cx="60" cy="118" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
+  <text x="60" y="146" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">외부 코드</text>
+  <text x="60" y="160" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.75">(서비스·UI)</text>
+  <line x1="70" y1="114" x2="328" y2="100" stroke="var(--secondary-color)" stroke-width="2.4" marker-end="url(#agg-arrow)"/>
+  <rect x="120" y="78" width="120" height="24" rx="3" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="1.6"/>
+  <text x="180" y="94" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">open_loan() 통과</text>
+  <text x="172" y="118" text-anchor="middle" font-size="8" fill="var(--secondary-color)" font-weight="700">✓ 허용 — 불변식 검사 후</text>
+
+  <!-- blocked path: direct access to internals -->
+  <line x1="70" y1="200" x2="316" y2="212" stroke="var(--accent-color)" stroke-width="2.2" stroke-dasharray="6 4"/>
+  <line x1="186" y1="198" x2="206" y2="218" stroke="var(--accent-color)" stroke-width="2.6"/>
+  <line x1="206" y1="198" x2="186" y2="218" stroke="var(--accent-color)" stroke-width="2.6"/>
+  <text x="150" y="244" text-anchor="middle" font-size="8.5" fill="var(--accent-color)" font-weight="700">✗ 차단 — ._loans 직접 접근</text>
+  <text x="150" y="258" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">한도 검사를 우회하게 됨</text>
+
+  <defs>
+    <marker id="agg-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>애그리거트 루트는 게이트키퍼다 — 외부 코드가 루트 메서드(<code>open_loan()</code>)를 통과할 때만 "동시 대출 5권" 불변식 검사를 거쳐 허용되고, 내부 컬렉션(<code>._loans</code>)에 직접 손대는 경로는 차단된다. 그래서 일관성 규칙이 경계 안 한 곳에서만 강제된다.</figcaption>
+</figure>
+
 ```python
 class MemberLoans:
     """애그리거트 루트: '회원의 대출 묶음' 전체의 일관성을 책임진다."""
@@ -152,6 +263,58 @@ class MemberLoans:
 - **회원 컨텍스트(Membership)**: `Account`, `MembershipLevel` — "누가 회원인가"
 
 각 컨텍스트는 자기만의 모델을 갖고, "책"이라는 단어가 컨텍스트마다 다른 코드를 가리켜도 괜찮습니다. 오히려 그것이 건강한 신호입니다. 경계를 분명히 그으면, 한 컨텍스트의 모델을 단순하고 일관되게 유지할 수 있습니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="같은 단어 책이 바운디드 컨텍스트마다 다른 의미를 갖는 구조 그림. 가운데 위에 책이라는 하나의 단어가 있고, 거기서 세 갈래가 갈라져 각각 다른 경계 안으로 들어간다. 대출 컨텍스트에서는 물리적 장서 한 권인 BookCopy, 카탈로그 컨텍스트에서는 ISBN으로 식별되는 서지 정보인 Title, 구매 컨텍스트에서는 주문 단위 상품인 OrderItem을 가리킨다. 각 경계 안에서는 그 의미가 단 하나로 고정된다." viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg">
+  <title>바운디드 컨텍스트 — 같은 단어 "책"이 경계마다 다른 모델을 가리키고, 경계 안에서는 그 뜻이 단 하나다</title>
+
+  <!-- the shared word -->
+  <rect x="262" y="20" width="116" height="38" rx="4" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <text x="320" y="40" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">"책" (Book)</text>
+  <text x="320" y="53" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">하나의 단어</text>
+
+  <!-- splits into three contexts -->
+  <line x1="285" y1="58" x2="120" y2="112" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#bc-arrow)"/>
+  <line x1="320" y1="58" x2="320" y2="112" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#bc-arrow)"/>
+  <line x1="355" y1="58" x2="520" y2="112" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#bc-arrow)"/>
+
+  <!-- context 1: Lending -->
+  <rect x="34" y="116" width="172" height="150" rx="6" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="120" y="136" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">대출 컨텍스트</text>
+  <text x="120" y="150" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.75">Lending</text>
+  <rect x="56" y="166" width="128" height="44" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="120" y="186" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">BookCopy</text>
+  <text x="120" y="200" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.85">물리적 장서 한 권</text>
+  <text x="120" y="246" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">"누가 어떤 장서를 빌렸나"</text>
+
+  <!-- context 2: Catalog -->
+  <rect x="234" y="116" width="172" height="150" rx="6" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="320" y="136" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">카탈로그 컨텍스트</text>
+  <text x="320" y="150" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.75">Catalog</text>
+  <rect x="256" y="166" width="128" height="44" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="320" y="186" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">Title</text>
+  <text x="320" y="200" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.85">ISBN 서지 정보</text>
+  <text x="320" y="246" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">"어떤 책이 존재하나"</text>
+
+  <!-- context 3: Purchasing -->
+  <rect x="434" y="116" width="172" height="150" rx="6" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="520" y="136" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">구매 컨텍스트</text>
+  <text x="520" y="150" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.75">Purchasing</text>
+  <rect x="456" y="166" width="128" height="44" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="520" y="186" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">OrderItem</text>
+  <text x="520" y="200" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.85">주문 단위 상품</text>
+  <text x="520" y="246" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">"무엇을 사들이나"</text>
+
+  <text x="320" y="288" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700" opacity="0.8">경계 안에서는 "책"의 뜻이 단 하나로 고정된다 — 경계를 넘으면 다른 모델</text>
+
+  <defs>
+    <marker id="bc-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>바운디드 컨텍스트는 모델이 유효한 경계다 — 같은 단어 "책"이 대출 컨텍스트에서는 <code>BookCopy</code>(물리적 장서), 카탈로그에서는 <code>Title</code>(ISBN 서지), 구매에서는 <code>OrderItem</code>(주문 상품)을 가리킨다. 경계 안에서 의미가 단 하나로 고정되기에 각 모델을 단순하게 지킬 수 있다.</figcaption>
+</figure>
 
 ## 컨텍스트 맵: 컨텍스트 간 통합 패턴
 

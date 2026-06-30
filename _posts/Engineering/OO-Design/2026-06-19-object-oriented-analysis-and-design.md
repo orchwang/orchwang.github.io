@@ -9,6 +9,88 @@ published: true
 excerpt: "Grady Booch의 OOAD를 길잡이 삼아 객체 모델의 4요소, 객체·클래스 식별, 관계와 책임 주도 설계, UML 표기법과 반복적 프로세스, 그리고 아키텍처적 시야까지 시스템 전체를 객체로 모델링하는 법을 정리한다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="객체지향 분석과 설계(OOAD)의 흐름을 한 장으로 그린 그림. 왼쪽은 흐릿한 도메인 서술(요구사항 문장)에서 명사와 동사가 단서로 떠오르는 모습이고, 가운데 위로 갈수록 추상화가 또렷해지며 협력하는 객체들의 그물(Member·Loan·Copy·FeePolicy)로 응결된다. 이 응결의 중심에는 책임 주도 설계(RDD)가 있어 각 객체가 책임과 협력자를 갖는다. 아래쪽에는 도메인 분석에서 구조 모델링, 행위 모델링, 검증·리팩터링으로 이어졌다가 다시 도메인 분석으로 돌아오는 반복적·점진적 사이클이 화살표 고리로 표현된다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>OOAD의 흐름 — 흐릿한 도메인 서술에서 책임 주도 설계로 응결되는 협력 객체의 그물, 그리고 그것을 다듬는 반복적 사이클</title>
+
+  <!-- ===== LEFT: fuzzy domain narrative → nouns/verbs ===== -->
+  <text x="116" y="24" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">도메인 서술</text>
+  <rect x="30" y="40" width="172" height="92" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6" stroke-dasharray="4 3" opacity="0.85"/>
+  <line x1="44" y1="58" x2="188" y2="58" stroke="currentColor" stroke-width="2" opacity="0.4"/>
+  <line x1="44" y1="74" x2="178" y2="74" stroke="currentColor" stroke-width="2" opacity="0.4"/>
+  <line x1="44" y1="90" x2="188" y2="90" stroke="currentColor" stroke-width="2" opacity="0.4"/>
+  <line x1="44" y1="106" x2="170" y2="106" stroke="currentColor" stroke-width="2" opacity="0.4"/>
+  <text x="78" y="63" text-anchor="middle" font-size="9" fill="var(--accent-color)" font-weight="700">회원</text>
+  <text x="150" y="79" text-anchor="middle" font-size="9" fill="var(--accent-color)" font-weight="700">대출</text>
+  <text x="70" y="95" text-anchor="middle" font-size="9" fill="var(--accent-color)" font-weight="700">책·사본</text>
+  <text x="116" y="150" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.8" font-weight="700">명사 → 객체 · 동사 → 책임</text>
+
+  <!-- arrow: abstraction sharpens -->
+  <line x1="206" y1="86" x2="246" y2="86" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#oo-arrow)"/>
+  <text x="226" y="78" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.7" font-weight="700">추상화</text>
+
+  <!-- ===== MIDDLE: web of collaborating objects, RDD at the heart ===== -->
+  <text x="386" y="24" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">협력하는 객체의 그물</text>
+  <!-- collaboration edges -->
+  <line x1="386" y1="86" x2="310" y2="56" stroke="currentColor" stroke-width="1.6" opacity="0.55"/>
+  <line x1="386" y1="86" x2="466" y2="56" stroke="currentColor" stroke-width="1.6" opacity="0.55"/>
+  <line x1="386" y1="86" x2="316" y2="124" stroke="currentColor" stroke-width="1.6" opacity="0.55"/>
+  <line x1="386" y1="86" x2="460" y2="124" stroke="currentColor" stroke-width="1.6" opacity="0.55"/>
+  <line x1="310" y1="56" x2="316" y2="124" stroke="currentColor" stroke-width="1.4" opacity="0.4"/>
+  <line x1="466" y1="56" x2="460" y2="124" stroke="currentColor" stroke-width="1.4" opacity="0.4"/>
+  <!-- RDD core -->
+  <circle cx="386" cy="86" r="26" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <text x="386" y="83" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">RDD</text>
+  <text x="386" y="95" text-anchor="middle" font-size="6.5" fill="currentColor" opacity="0.8">책임·협력</text>
+  <!-- object nodes -->
+  <g font-size="8.5" font-weight="700">
+    <circle cx="310" cy="56" r="17" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+    <text x="310" y="59" text-anchor="middle" fill="currentColor">Member</text>
+    <circle cx="466" cy="56" r="17" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+    <text x="466" y="59" text-anchor="middle" fill="currentColor">Loan</text>
+    <circle cx="316" cy="124" r="17" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="316" y="127" text-anchor="middle" fill="currentColor">Copy</text>
+    <circle cx="460" cy="124" r="20" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="460" y="123" text-anchor="middle" font-size="7.5" fill="currentColor">Fee</text>
+    <text x="460" y="131" text-anchor="middle" font-size="7.5" fill="currentColor">Policy</text>
+  </g>
+  <text x="386" y="162" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.8" font-weight="700">각 객체가 책임을 지고 협력으로 연결</text>
+
+  <!-- divider before the process ribbon -->
+  <line x1="40" y1="190" x2="640" y2="190" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== BOTTOM: iterative & incremental cycle ===== -->
+  <text x="340" y="212" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.75">반복적·점진적으로 다듬기</text>
+  <g font-size="9" font-weight="700">
+    <rect x="58" y="226" width="120" height="34" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="118" y="247" text-anchor="middle" fill="currentColor">도메인 분석</text>
+    <rect x="222" y="226" width="120" height="34" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="282" y="247" text-anchor="middle" fill="currentColor">구조 모델링</text>
+    <rect x="386" y="226" width="120" height="34" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="446" y="247" text-anchor="middle" fill="currentColor">행위 모델링</text>
+    <rect x="550" y="226" width="100" height="34" rx="4" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+    <text x="600" y="244" text-anchor="middle" font-size="8.5" fill="currentColor">검증·</text>
+    <text x="600" y="254" text-anchor="middle" font-size="8.5" fill="currentColor">리팩터링</text>
+  </g>
+  <line x1="178" y1="243" x2="218" y2="243" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#oo-arrow)"/>
+  <line x1="342" y1="243" x2="382" y2="243" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#oo-arrow)"/>
+  <line x1="506" y1="243" x2="546" y2="243" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#oo-arrow)"/>
+  <!-- feedback loop back to analysis -->
+  <path d="M600 260 L600 282 L118 282 L118 262" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#oo-arrow-accent)"/>
+  <text x="359" y="296" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.7" font-weight="700">부족한 점을 발견하면 다시 분석으로</text>
+
+  <defs>
+    <marker id="oo-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+    <marker id="oo-arrow-accent" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--accent-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>OOAD의 척추를 한 장으로 — 흐릿한 <strong>도메인 서술</strong>에서 명사·동사를 단서로 추상화가 또렷해지면서, <strong>책임 주도 설계(RDD)</strong>를 중심으로 책임을 지고 협력하는 <strong>객체의 그물</strong>로 응결됩니다. 그리고 이 모델은 도메인 분석 → 구조 모델링 → 행위 모델링 → 검증·리팩터링의 <strong>반복적·점진적</strong> 사이클로 다듬어집니다.</figcaption>
+</figure>
+
 ## 들어가며
 
 이 글은 `OO-Design-Essential` 시리즈의 **5단계**입니다. 전체 학습 지도는 [OO-Design Essential Curriculum](/2026/06/19/oo-design-essential-curriculum.html)에서 확인할 수 있습니다.

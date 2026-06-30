@@ -9,6 +9,79 @@ published: true
 excerpt: "Rust 개발 환경 설정부터 Hello World, 그리고 변수와 제어문 등 기초 문법을 다룹니다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="Rust 기초의 한 장 요약 그림. 위쪽 띠는 개발 환경의 토대로, 왼쪽부터 rustup(툴체인 관리자) → cargo(빌드·패키지 시스템) → rustc(컴파일러) → 실행 파일로 이어지는 화살표 흐름을 보여준다. 아래쪽에는 이 글이 익히는 기본 문법 네 기둥이 카드로 놓여 있다: 변수와 가변성(let / let mut), 데이터 타입(스칼라·복합), 함수(fn, 반환), 흐름 제어(if / loop / for)." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>Rust 기초 — 환경의 토대(rustup→cargo→rustc→실행 파일)와 기본 문법 네 기둥(변수·타입·함수·흐름 제어)</title>
+
+  <!-- ===== TOP: toolchain pipeline ===== -->
+  <text x="340" y="24" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">개발 환경의 토대</text>
+
+  <!-- rustup -->
+  <rect x="24" y="40" width="118" height="56" rx="4" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="83" y="64" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">rustup</text>
+  <text x="83" y="82" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">툴체인 관리자</text>
+  <line x1="142" y1="68" x2="178" y2="68" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#rs-arrow)"/>
+
+  <!-- cargo -->
+  <rect x="180" y="40" width="118" height="56" rx="4" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="239" y="64" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">cargo</text>
+  <text x="239" y="82" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">빌드·패키지</text>
+  <line x1="298" y1="68" x2="334" y2="68" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#rs-arrow)"/>
+
+  <!-- rustc -->
+  <rect x="336" y="40" width="118" height="56" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="395" y="64" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">rustc</text>
+  <text x="395" y="82" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">컴파일러</text>
+  <line x1="454" y1="68" x2="490" y2="68" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#rs-arrow)"/>
+
+  <!-- binary -->
+  <rect x="492" y="40" width="164" height="56" rx="4" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <text x="574" y="64" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">실행 파일</text>
+  <text x="574" y="82" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">Hello, world!</text>
+
+  <!-- divider -->
+  <line x1="24" y1="124" x2="656" y2="124" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== BOTTOM: four syntax pillars ===== -->
+  <text x="340" y="152" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">기본 문법 네 기둥</text>
+
+  <!-- pillar 1: variables -->
+  <rect x="24" y="168" width="150" height="100" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="99" y="192" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">변수·가변성</text>
+  <text x="99" y="216" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.85">let — 불변</text>
+  <text x="99" y="234" text-anchor="middle" font-size="9.5" fill="var(--accent-color)" font-weight="700">let mut — 가변</text>
+  <text x="99" y="254" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.7">기본은 immutable</text>
+
+  <!-- pillar 2: types -->
+  <rect x="186" y="168" width="150" height="100" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="261" y="192" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">데이터 타입</text>
+  <text x="261" y="216" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.85">스칼라: i32·f64·bool·char</text>
+  <text x="261" y="234" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.85">복합: tuple·array</text>
+  <text x="261" y="254" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.7">정적 타입 + 추론</text>
+
+  <!-- pillar 3: functions -->
+  <rect x="348" y="168" width="150" height="100" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="423" y="192" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">함수</text>
+  <text x="423" y="216" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.85">fn add(x, y) -&gt; i32</text>
+  <text x="423" y="234" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.85">표현식 = 반환값</text>
+  <text x="423" y="254" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.7">세미콜론 없으면 반환</text>
+
+  <!-- pillar 4: control flow -->
+  <rect x="510" y="168" width="146" height="100" rx="4" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="2"/>
+  <text x="583" y="192" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">흐름 제어</text>
+  <text x="583" y="216" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.85">if — 표현식</text>
+  <text x="583" y="234" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.85">loop · while · for</text>
+  <text x="583" y="254" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.7">break로 값 반환</text>
+
+  <defs>
+    <marker id="rs-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>이 글의 한 장 요약 — 위쪽은 <strong>개발 환경의 토대</strong>(rustup으로 툴체인을 깔고 → cargo가 빌드·패키지를 묶고 → rustc가 컴파일해 → 실행 파일이 나옴), 아래쪽은 이 글에서 익히는 <strong>기본 문법 네 기둥</strong>(변수·가변성, 데이터 타입, 함수, 흐름 제어).</figcaption>
+</figure>
+
 ## 들어가며
 
 Rust 학습 로드맵의 첫 번째 단계인 기초 문법과 환경 설정에 대해 다룹니다. Rust를 시작하기 위해 필요한 도구를 설치하고, 간단한 프로그램을 작성하며 언어의 기본적인 구성 요소를 익혀봅시다.
@@ -84,6 +157,19 @@ fn main() {
 
 ```bash
 cargo run
+```
+
+`cargo`를 중심으로 한 개발 사이클은 다음과 같이 돌아갑니다. 한 도구가 프로젝트 생성부터 빌드·실행·테스트·의존성 추가까지 전 과정을 일관되게 묶어줍니다.
+
+```mermaid
+flowchart LR
+    A["cargo new<br/>프로젝트 생성"] --> B["코드 작성<br/>src/main.rs"]
+    B --> C["cargo build<br/>컴파일"]
+    C --> D["cargo run<br/>빌드 + 실행"]
+    D -->|"코드 수정"| B
+    D --> E["cargo test<br/>테스트"]
+    B -.->|"의존성 추가"| F["cargo add<br/>Cargo.toml"]
+    F -.-> C
 ```
 
 ## 3. 기본 문법

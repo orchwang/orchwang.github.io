@@ -9,6 +9,107 @@ published: true
 excerpt: "Rust의 표준 컬렉션(Vec, String, HashMap)과 Result·panic!·? 연산자를 활용한 견고한 에러 처리 방식을 다룹니다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="Rust 에러 처리와 컬렉션을 한 장으로 묶은 그림. 왼쪽은 에러 처리 모델로, Result(T, E)가 성공 Ok(T)와 실패 Err(E)의 두 갈래로 갈리고, Ok에서는 값을 꺼내 계속 진행하며 Err에서는 ? 연산자가 호출자에게 에러를 조기 전파한다. 그 아래에는 복구 불가능한 panic!이 프로그램을 즉시 중단시키는 모습을 X 표시로 나타낸다. 오른쪽은 세 가지 핵심 컬렉션으로, Vec은 칸이 이어진 동적 배열, String은 UTF-8 바이트가 이어진 소유 문자열, HashMap은 키에서 값으로 이어지는 매핑으로 그려진다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>Rust 에러 처리(Result의 Ok/Err 분기 · ? 전파 · panic!)와 핵심 컬렉션(Vec · String · HashMap)</title>
+
+  <!-- ===== LEFT: error-handling model ===== -->
+  <text x="170" y="24" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">에러 처리</text>
+
+  <!-- a fallible call -->
+  <rect x="40" y="48" width="96" height="30" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="88" y="67" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">실패할 수 있는 호출</text>
+
+  <!-- Result<T, E> hub -->
+  <rect x="48" y="92" width="80" height="30" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+  <text x="88" y="111" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">Result&lt;T, E&gt;</text>
+  <line x1="88" y1="78" x2="88" y2="90" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#re-arrow)"/>
+
+  <!-- branch to Ok -->
+  <line x1="78" y1="122" x2="46" y2="150" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#re-arrow)"/>
+  <rect x="14" y="152" width="68" height="44" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="48" y="170" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">Ok(T)</text>
+  <text x="48" y="186" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">값을 꺼냄</text>
+  <line x1="48" y1="196" x2="48" y2="218" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#re-arrow)"/>
+  <text x="48" y="234" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85" font-weight="700">계속 진행 ✓</text>
+
+  <!-- branch to Err -->
+  <line x1="98" y1="122" x2="130" y2="150" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#re-arrow)"/>
+  <rect x="96" y="152" width="68" height="44" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="130" y="170" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">Err(E)</text>
+  <text x="130" y="186" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">? 로 전파</text>
+  <line x1="164" y1="174" x2="196" y2="174" stroke="var(--accent-color)" stroke-width="2" marker-end="url(#re-arrow)"/>
+  <text x="218" y="170" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85" font-weight="700">호출자에게</text>
+  <text x="218" y="182" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85" font-weight="700">조기 반환</text>
+
+  <!-- panic! -->
+  <rect x="14" y="252" width="150" height="30" rx="3" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="66" y="271" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">panic!</text>
+  <text x="128" y="271" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">즉시 중단 ✕</text>
+
+  <!-- divider -->
+  <line x1="262" y1="40" x2="262" y2="288" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== RIGHT: collections ===== -->
+  <text x="470" y="24" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">핵심 컬렉션</text>
+
+  <!-- Vec<T> -->
+  <text x="290" y="58" font-size="9.5" fill="currentColor" font-weight="700">Vec&lt;T&gt;</text>
+  <text x="290" y="71" font-size="7.5" fill="currentColor" opacity="0.7">동적 배열</text>
+  <g>
+    <rect x="370" y="46" width="26" height="26" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+    <rect x="398" y="46" width="26" height="26" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+    <rect x="426" y="46" width="26" height="26" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+    <rect x="454" y="46" width="26" height="26" rx="2" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2" stroke-dasharray="3 2"/>
+    <text x="383" y="63" text-anchor="middle" font-size="9" fill="currentColor">1</text>
+    <text x="411" y="63" text-anchor="middle" font-size="9" fill="currentColor">2</text>
+    <text x="439" y="63" text-anchor="middle" font-size="9" fill="currentColor">3</text>
+    <text x="467" y="63" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.6">+</text>
+  </g>
+  <text x="612" y="63" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">push로 늘어남</text>
+
+  <!-- String -->
+  <text x="290" y="130" font-size="9.5" fill="currentColor" font-weight="700">String</text>
+  <text x="290" y="143" font-size="7.5" fill="currentColor" opacity="0.7">UTF-8 소유</text>
+  <g>
+    <rect x="370" y="118" width="22" height="26" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+    <rect x="392" y="118" width="22" height="26" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+    <rect x="414" y="118" width="22" height="26" rx="2" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="1.8"/>
+    <rect x="436" y="118" width="22" height="26" rx="2" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="1.8"/>
+    <rect x="458" y="118" width="22" height="26" rx="2" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="1.8"/>
+    <text x="381" y="135" text-anchor="middle" font-size="8" fill="currentColor">h</text>
+    <text x="403" y="135" text-anchor="middle" font-size="8" fill="currentColor">i</text>
+    <text x="447" y="135" text-anchor="middle" font-size="7.5" fill="currentColor" font-weight="700">안</text>
+  </g>
+  <text x="612" y="135" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">1자 = 여러 바이트</text>
+
+  <!-- HashMap<K, V> -->
+  <text x="290" y="208" font-size="9.5" fill="currentColor" font-weight="700">HashMap</text>
+  <text x="290" y="221" font-size="7.5" fill="currentColor" opacity="0.7">키→값</text>
+  <g>
+    <rect x="370" y="190" width="60" height="24" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+    <text x="400" y="206" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">"Blue"</text>
+    <line x1="430" y1="202" x2="468" y2="202" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#re-arrow)"/>
+    <rect x="470" y="190" width="44" height="24" rx="3" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2"/>
+    <text x="492" y="206" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">10</text>
+
+    <rect x="370" y="222" width="60" height="24" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+    <text x="400" y="238" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">"Red"</text>
+    <line x1="430" y1="234" x2="468" y2="234" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#re-arrow)"/>
+    <rect x="470" y="222" width="44" height="24" rx="3" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2"/>
+    <text x="492" y="238" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">50</text>
+  </g>
+  <text x="600" y="220" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">get → Option&lt;&amp;V&gt;</text>
+
+  <defs>
+    <marker id="re-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>이 글의 한 장 요약 — 왼쪽은 <strong>에러 처리 모델</strong>: <code>Result&lt;T, E&gt;</code>가 <code>Ok(T)</code>(값을 꺼내 계속)와 <code>Err(E)</code>(<code>?</code>로 호출자에게 조기 전파)로 갈리고, 복구 불가능한 <code>panic!</code>은 프로그램을 즉시 중단합니다. 오른쪽은 <strong>핵심 컬렉션</strong>: <code>Vec</code>(동적 배열) · <code>String</code>(UTF-8 소유 문자열) · <code>HashMap</code>(키→값 매핑).</figcaption>
+</figure>
+
 ## 들어가며
 
 이번 글은 Rust Essential 로드맵의 4단계로, 실전에서 가장 자주 쓰는 표준 컬렉션과 견고한 에러 처리 방식을 다룹니다. 직전 글 [Rust 구조체, 열거형, 패턴 매칭](/2026/01/06/rust-structs-enums-pattern-matching.html)에서 익힌 `enum`과 `match`는 이번에 살펴볼 `Option`/`Result` 처리의 기반이 됩니다. 전체 학습 흐름은 [Rust Essential Curriculum](/2026/01/02/rust-essential-curriculum.html)에서 확인할 수 있습니다.
@@ -189,6 +290,21 @@ fn main() {
 
 `panic!`은 프로그램을 즉시 중단시키는 복구 불가능한 에러입니다. 잘못된 인덱스 접근이나 명백한 버그처럼 더 이상 진행할 수 없는 상황에서 발생합니다.
 
+에러를 만났을 때 `panic!`으로 중단할지 `Result`로 돌려줄지는 다음 기준으로 가릅니다.
+
+```mermaid
+flowchart TD
+    A["에러가 발생했다"] --> B{"호출자가 합리적으로<br/>복구할 수 있는가?"}
+    B -->|"예: 파일 없음, 입력 파싱 실패,<br/>네트워크 오류 등 예상 가능한 실패"| C["복구 가능 에러<br/>(recoverable)"]
+    B -->|"아니오: 계약 위반·명백한 버그<br/>(범위 밖 인덱스, 불변식 깨짐)"| D["복구 불가능 에러<br/>(unrecoverable)"]
+    C --> E["Result&lt;T, E&gt; 반환"]
+    E --> F["match로 분기 ·<br/>? 로 전파"]
+    D --> G["panic!"]
+    G --> H["프로그램 즉시 중단<br/>(RUST_BACKTRACE로 추적)"]
+```
+
+이 글의 나머지는 위 두 갈래 — 복구 불가능한 `panic!`과 복구 가능한 `Result` — 를 차례로 살펴봅니다.
+
 ```rust
 fn main() {
     let v = vec![1, 2, 3];
@@ -269,6 +385,52 @@ fn main() {
 ```
 
 `?`가 없었다면 매번 `match`로 `Err`을 분기하고 `return`해야 하지만, `?` 한 글자로 같은 흐름을 간결하게 표현할 수 있습니다.
+
+아래 그림은 `expr?` 한 표현이 `Ok`냐 `Err`이냐에 따라 어떻게 갈라지는지를 보여줍니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="? 연산자의 동작 흐름. 가운데 expr? 표현이 Result를 받아 두 갈래로 갈린다. 위쪽 Ok(value) 갈래에서는 value를 꺼내 다음 줄로 계속 진행하고, 아래쪽 Err(e) 갈래에서는 함수를 즉시 빠져나가 return Err(e)로 호출자에게 에러를 전파한다." viewBox="0 0 640 240" xmlns="http://www.w3.org/2000/svg">
+  <title>? 연산자 — Ok면 값을 꺼내 계속, Err면 함수에서 즉시 return Err로 전파</title>
+
+  <!-- expr? -->
+  <rect x="32" y="98" width="120" height="44" rx="4" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+  <text x="92" y="118" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">expr?</text>
+  <text x="92" y="134" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">Result&lt;T, E&gt;</text>
+
+  <!-- split point -->
+  <line x1="152" y1="120" x2="196" y2="120" stroke="var(--secondary-color)" stroke-width="2"/>
+  <circle cx="200" cy="120" r="5" fill="none" stroke="currentColor" stroke-width="2"/>
+
+  <!-- Ok branch (up) -->
+  <line x1="204" y1="116" x2="248" y2="66" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#qm-arrow)"/>
+  <text x="226" y="86" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700" opacity="0.85">Ok(v)</text>
+  <rect x="252" y="40" width="150" height="48" rx="4" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="327" y="60" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">value(v)를 꺼냄</text>
+  <text x="327" y="76" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">표현식의 값이 됨</text>
+  <line x1="402" y1="64" x2="446" y2="64" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#qm-arrow)"/>
+  <rect x="450" y="40" width="160" height="48" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="530" y="60" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">다음 줄로 계속 ✓</text>
+  <text x="530" y="76" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">정상 경로</text>
+
+  <!-- Err branch (down) -->
+  <line x1="204" y1="124" x2="248" y2="174" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#qm-arrow)"/>
+  <text x="226" y="166" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700" opacity="0.85">Err(e)</text>
+  <rect x="252" y="152" width="150" height="48" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="327" y="172" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">함수 즉시 탈출</text>
+  <text x="327" y="188" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">남은 줄은 실행 안 됨</text>
+  <line x1="402" y1="176" x2="446" y2="176" stroke="var(--accent-color)" stroke-width="2" marker-end="url(#qm-arrow)"/>
+  <rect x="450" y="152" width="160" height="48" rx="4" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="530" y="172" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">return Err(e)</text>
+  <text x="530" y="188" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">호출자에게 전파</text>
+
+  <defs>
+    <marker id="qm-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption><code>?</code> 연산자의 두 갈래 — <code>Ok(v)</code>이면 안의 값 <code>v</code>를 꺼내 표현식의 값으로 삼아 그대로 진행하고, <code>Err(e)</code>이면 남은 줄을 건너뛰고 함수에서 즉시 <code>return Err(e)</code>로 호출자에게 에러를 전파합니다. 그래서 <code>?</code>를 쓰는 함수는 <code>Result</code>(또는 <code>Option</code>)를 반환해야 합니다.</figcaption>
+</figure>
 
 ## 마무리
 

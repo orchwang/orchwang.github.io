@@ -9,6 +9,79 @@ published: true
 excerpt: "Gregor Hohpe의 The Software Architect Elevator를 따라 임원실과 기계실을 오가는 아키텍트의 역할을 정리합니다. 트레이드오프 소통, Conway의 법칙, 기술 리더십까지 다루며 Architecture-Essential 시리즈를 마무리합니다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="아키텍트 엘리베이터 은유를 한 장으로 담은 건물 단면도. 맨 위층은 임원실(penthouse)로 비즈니스 전략·예산·리스크를 다루고, 맨 아래층은 기계실(engine room)로 코드·인프라·운영을 다룬다. 두 층 사이를 수직 엘리베이터 샤프트가 관통하고, 그 안의 엘리베이터 칸에 아키텍트가 타고 있다. 샤프트를 따라 두 방향 화살표가 흐른다. 아래로 내려가는 화살표는 비즈니스 목표를 설계 제약으로 번역하고, 위로 올라가는 화살표는 기술 제약을 비즈니스 리스크로 번역한다. 가운데 중간 관리 계층은 정보를 걸러내는 필터로 표시된다." viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
+  <title>아키텍트 엘리베이터 — 임원실과 기계실 사이를 오르내리며 양쪽 언어를 통역하는 아키텍트</title>
+
+  <!-- ===== building outer frame ===== -->
+  <rect x="40" y="28" width="600" height="264" rx="6" fill="none" stroke="currentColor" stroke-width="2" opacity="0.55"/>
+
+  <!-- ===== PENTHOUSE (top floor) ===== -->
+  <rect x="40" y="28" width="600" height="68" rx="6" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="2"/>
+  <rect x="40" y="62" width="600" height="34" fill="var(--bg-light)" opacity="0"/>
+  <text x="84" y="56" font-size="13" fill="currentColor" font-weight="700">임원실 (Penthouse)</text>
+  <text x="84" y="76" font-size="10.5" fill="currentColor" opacity="0.82">비즈니스 전략 · 예산 · 시장 · 리스크</text>
+  <text x="84" y="90" font-size="9" fill="currentColor" opacity="0.65">관심사: &#39;언제 출시?&#39; · &#39;비용은?&#39; · &#39;경쟁사 대비?&#39;</text>
+
+  <!-- ===== ENGINE ROOM (bottom floor) ===== -->
+  <rect x="40" y="224" width="600" height="68" rx="6" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="84" y="252" font-size="13" fill="currentColor" font-weight="700">기계실 (Engine Room)</text>
+  <text x="84" y="272" font-size="10.5" fill="currentColor" opacity="0.82">코드 · 인프라 · 배포 · 장애 대응</text>
+  <text x="84" y="286" font-size="9" fill="currentColor" opacity="0.65">관심사: &#39;기술 부채&#39; · &#39;확장성&#39; · &#39;운영 부담&#39;</text>
+
+  <!-- ===== middle management filter layer (the lossy floors) ===== -->
+  <text x="120" y="162" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.6" font-weight="700">중간 계층</text>
+  <text x="120" y="176" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.5">정보가 걸러지고</text>
+  <text x="120" y="187" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.5">왜곡되는 층들</text>
+  <g stroke="currentColor" stroke-width="1.4" opacity="0.3">
+    <line x1="60" y1="118" x2="180" y2="118"/>
+    <line x1="60" y1="146" x2="180" y2="146"/>
+    <line x1="60" y1="174" x2="180" y2="174"/>
+    <line x1="60" y1="202" x2="180" y2="202"/>
+  </g>
+  <g stroke="currentColor" stroke-width="1.4" opacity="0.3">
+    <line x1="500" y1="118" x2="620" y2="118"/>
+    <line x1="500" y1="146" x2="620" y2="146"/>
+    <line x1="500" y1="174" x2="620" y2="174"/>
+    <line x1="500" y1="202" x2="620" y2="202"/>
+  </g>
+
+  <!-- ===== elevator shaft (the spine) ===== -->
+  <rect x="300" y="96" width="80" height="128" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2" opacity="0.95"/>
+
+  <!-- down arrow: business goal -> design constraint -->
+  <line x1="316" y1="104" x2="316" y2="214" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#el-down)"/>
+  <!-- up arrow: tech constraint -> business risk -->
+  <line x1="364" y1="216" x2="364" y2="106" stroke="var(--accent-color)" stroke-width="2.5" marker-end="url(#el-up)"/>
+
+  <!-- elevator car with the architect mid-ride -->
+  <rect x="320" y="142" width="40" height="36" rx="3" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="2.5"/>
+  <!-- architect figure: head + shoulders -->
+  <circle cx="340" cy="154" r="5" fill="none" stroke="currentColor" stroke-width="2"/>
+  <path d="M331 170 q9 -11 18 0" fill="none" stroke="currentColor" stroke-width="2"/>
+  <text x="340" y="196" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">아키텍트</text>
+
+  <!-- translation labels along the shaft -->
+  <text x="246" y="150" text-anchor="end" font-size="9" fill="currentColor" opacity="0.85" font-weight="700">하행 ↓</text>
+  <text x="246" y="163" text-anchor="end" font-size="8.5" fill="currentColor" opacity="0.7">비즈니스 목표를</text>
+  <text x="246" y="174" text-anchor="end" font-size="8.5" fill="currentColor" opacity="0.7">설계 제약으로</text>
+
+  <text x="434" y="150" text-anchor="start" font-size="9" fill="currentColor" opacity="0.85" font-weight="700">↑ 상행</text>
+  <text x="434" y="163" text-anchor="start" font-size="8.5" fill="currentColor" opacity="0.7">기술 제약을</text>
+  <text x="434" y="174" text-anchor="start" font-size="8.5" fill="currentColor" opacity="0.7">비즈니스 리스크로</text>
+
+  <defs>
+    <marker id="el-down" markerWidth="9" markerHeight="9" refX="4.5" refY="7" orient="auto">
+      <path d="M0,0 L9,0 L4.5,8 z" fill="var(--secondary-color)"/>
+    </marker>
+    <marker id="el-up" markerWidth="9" markerHeight="9" refX="4.5" refY="1" orient="auto">
+      <path d="M4.5,0 L9,8 L0,8 z" fill="var(--accent-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>이 글의 척추가 되는 <strong>아키텍트 엘리베이터</strong> 은유 — 위층 <strong>임원실</strong>(전략·예산·리스크)과 아래층 <strong>기계실</strong>(코드·인프라·운영) 사이를 중간 계층이 정보를 걸러내며 갈라놓는다. 아키텍트는 한 층에 머무는 거주민이 아니라 샤프트를 오르내리는 탑승자다. 내려갈 때는 비즈니스 목표를 설계 제약으로, 올라갈 때는 기술 제약을 비즈니스 리스크로 <strong>통역</strong>한다.</figcaption>
+</figure>
+
 ## 들어가며
 
 이 글은 `Architecture-Essential` 시리즈의 **4단계이자 마지막**입니다. 전체 학습 지도는 [Architecture Essential Curriculum](/2026/06/19/architecture-essential-curriculum.html)에서 다시 확인할 수 있습니다.

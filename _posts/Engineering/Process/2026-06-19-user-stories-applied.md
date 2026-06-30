@@ -9,6 +9,88 @@ published: true
 excerpt: "사용자 스토리는 완결된 명세서가 아니라 '대화를 위한 약속'입니다. 3C와 INVEST, 스토리 분할, 스토리 포인트 추정, 인수 조건까지 Mike Cohn의 User Stories Applied를 정리합니다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="사용자 스토리의 세 기둥을 한 장으로 묶은 그림. 왼쪽에는 역할-목표-가치 세 칸으로 이루어진 스토리 카드가 있고 '누가·무엇을·왜'를 담는다. 가운데에는 Card에서 Conversation을 거쳐 Confirmation으로 이어지며 다시 카드로 되돌아오는 3C 순환, 즉 '대화를 위한 약속'이 그려진다. 오른쪽에는 INVEST 여섯 글자가 좋은 스토리의 여섯 가지 품질 렌즈로 나열된다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>사용자 스토리의 세 기둥 — 역할·목표·가치 카드 · 3C 대화의 약속 · INVEST 품질 렌즈</title>
+
+  <!-- ===== LEFT: the story card (role / goal / value) ===== -->
+  <text x="110" y="24" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">스토리 카드</text>
+  <rect x="34" y="40" width="152" height="172" rx="6" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <!-- role -->
+  <rect x="48" y="56" width="124" height="42" rx="3" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="110" y="74" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">역할 (누가)</text>
+  <text x="110" y="89" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">As a &lt;role&gt;</text>
+  <!-- goal -->
+  <rect x="48" y="106" width="124" height="42" rx="3" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2"/>
+  <text x="110" y="124" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">목표 (무엇을)</text>
+  <text x="110" y="139" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">I want &lt;goal&gt;</text>
+  <!-- value -->
+  <rect x="48" y="156" width="124" height="42" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+  <text x="110" y="174" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">가치 (왜)</text>
+  <text x="110" y="189" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">so that &lt;benefit&gt;</text>
+
+  <!-- divider -->
+  <line x1="226" y1="40" x2="226" y2="244" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== MIDDLE: 3C cycle (promise for a conversation) ===== -->
+  <text x="340" y="24" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">대화의 약속 (3C)</text>
+  <!-- Card node -->
+  <rect x="296" y="46" width="88" height="36" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="340" y="64" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">Card</text>
+  <text x="340" y="76" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">짧은 약속</text>
+  <!-- Conversation node -->
+  <rect x="296" y="124" width="88" height="40" rx="3" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2"/>
+  <text x="340" y="142" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">Conversation</text>
+  <text x="340" y="155" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">세부를 채움</text>
+  <!-- Confirmation node -->
+  <rect x="296" y="206" width="88" height="40" rx="3" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="2"/>
+  <text x="340" y="224" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">Confirmation</text>
+  <text x="340" y="237" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">완료를 검증</text>
+  <!-- down arrows -->
+  <line x1="340" y1="82" x2="340" y2="122" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#us-arrow)"/>
+  <line x1="340" y1="164" x2="340" y2="204" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#us-arrow)"/>
+  <!-- feedback loop back to Card -->
+  <path d="M388,226 C424,226 424,64 388,64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="4 3" marker-end="url(#us-arrow-fb)"/>
+  <text x="406" y="148" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.75" font-weight="700" transform="rotate(90 406 148)">재협상</text>
+
+  <!-- divider -->
+  <line x1="452" y1="40" x2="452" y2="244" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== RIGHT: INVEST quality lenses ===== -->
+  <text x="566" y="24" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">INVEST 품질</text>
+  <g font-size="9">
+    <rect x="478" y="42" width="176" height="26" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.6"/>
+    <text x="492" y="59" font-size="12" fill="var(--accent-color)" font-weight="700">I</text>
+    <text x="508" y="59" fill="currentColor" font-weight="700">Independent · 독립적</text>
+    <rect x="478" y="74" width="176" height="26" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.6"/>
+    <text x="492" y="91" font-size="12" fill="var(--accent-color)" font-weight="700">N</text>
+    <text x="508" y="91" fill="currentColor" font-weight="700">Negotiable · 협상 가능</text>
+    <rect x="478" y="106" width="176" height="26" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.6"/>
+    <text x="492" y="123" font-size="12" fill="var(--accent-color)" font-weight="700">V</text>
+    <text x="508" y="123" fill="currentColor" font-weight="700">Valuable · 가치 있는</text>
+    <rect x="478" y="138" width="176" height="26" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.6"/>
+    <text x="492" y="155" font-size="12" fill="var(--accent-color)" font-weight="700">E</text>
+    <text x="508" y="155" fill="currentColor" font-weight="700">Estimable · 추정 가능</text>
+    <rect x="478" y="170" width="176" height="26" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.6"/>
+    <text x="492" y="187" font-size="12" fill="var(--accent-color)" font-weight="700">S</text>
+    <text x="508" y="187" fill="currentColor" font-weight="700">Small · 작은</text>
+    <rect x="478" y="202" width="176" height="26" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.6"/>
+    <text x="492" y="219" font-size="12" fill="var(--accent-color)" font-weight="700">T</text>
+    <text x="508" y="219" fill="currentColor" font-weight="700">Testable · 테스트 가능</text>
+  </g>
+
+  <defs>
+    <marker id="us-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+    <marker id="us-arrow-fb" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="currentColor"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>사용자 스토리를 떠받치는 세 기둥 — 왼쪽은 <strong>역할·목표·가치</strong>를 담는 카드(누가·무엇을·왜), 가운데는 Card→Conversation→Confirmation으로 돌고 다시 카드로 <strong>재협상</strong>되는 <strong>3C 대화의 약속</strong>, 오른쪽은 좋은 스토리를 점검하는 <strong>INVEST</strong> 여섯 렌즈. 스토리는 명세서가 아니라 대화의 출발점이다.</figcaption>
+</figure>
+
 ## 들어가며
 
 이 글은 `Process-Essential` 시리즈의 **3단계**입니다. 전체 학습 지도는 [Process Essential Curriculum](/2026/06/19/process-essential-curriculum.html)에서 확인할 수 있습니다.
@@ -57,6 +139,49 @@ excerpt: "사용자 스토리는 완결된 명세서가 아니라 '대화를 위
 ```
 
 여기서 핵심은 "결제일 화면에 캘린더 위젯을 띄우고 D-3에 푸시 알림을 보낸다" 같은 **구현 방법을 적지 않았다**는 점입니다. 그 방법은 개발 직전의 대화에서 결정합니다. 스토리는 의도(intent)를 붙들고, 해법(solution)은 열어 둡니다. 이 절제가 스토리의 본질입니다.
+
+이 "일부러 비워 둔다"는 발상을 그림으로 보면 다음과 같습니다. 카드는 의도를 붙들고, 빈칸은 개발 직전의 대화가 채웁니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="스토리 카드가 의도는 붙들고 해법은 비워 두는 모습. 왼쪽 카드에는 역할·목표·가치, 즉 '무엇을·왜'가 채워져 있고, 가운데 점선으로 비워 둔 '어떻게' 칸이 있다. 그 빈칸이 오른쪽의 개발 직전 대화로 채워진다는 화살표가 이어진다. 명세를 적게 쓰는 것은 게으름이 아니라 전략이라는 메시지." viewBox="0 0 640 230" xmlns="http://www.w3.org/2000/svg">
+  <title>스토리는 의도를 붙들고 해법을 비워 둔다 — 빈칸을 대화가 채운다</title>
+
+  <!-- LEFT: the card, intent filled -->
+  <rect x="24" y="40" width="180" height="150" rx="6" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="114" y="32" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">스토리 카드</text>
+  <rect x="38" y="54" width="152" height="34" rx="3" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="1.8"/>
+  <text x="114" y="69" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">무엇을 (목표)</text>
+  <text x="114" y="82" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">결제일을 미리 확인</text>
+  <rect x="38" y="94" width="152" height="34" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="1.8"/>
+  <text x="114" y="109" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">왜 (가치)</text>
+  <text x="114" y="122" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">구독 끊김 방지</text>
+  <!-- the deliberately empty "how" slot -->
+  <rect x="38" y="134" width="152" height="42" rx="3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="5 4" opacity="0.7"/>
+  <text x="114" y="150" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700" opacity="0.7">어떻게 (해법)</text>
+  <text x="114" y="164" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.55">일부러 비워 둠</text>
+
+  <!-- arrow: blank slot filled by conversation -->
+  <line x1="212" y1="155" x2="392" y2="155" stroke="var(--accent-color)" stroke-width="2.4" marker-end="url(#fill-arrow)"/>
+  <text x="302" y="146" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">개발 직전</text>
+
+  <!-- RIGHT: conversation fills the blank -->
+  <rect x="404" y="60" width="212" height="120" rx="6" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="510" y="84" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">대화 (Conversation)</text>
+  <text x="510" y="106" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85">개발자 · 기획자 · 테스터가</text>
+  <text x="510" y="122" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85">"이 경우엔 어떻게 동작하죠?"</text>
+  <text x="510" y="144" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85">→ 캘린더 위젯 · D-3 알림 …</text>
+  <text x="510" y="166" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.7" font-weight="700">바뀐 상황까지 반영</text>
+
+  <text x="320" y="206" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.8" font-weight="700">명세를 적게 쓰는 것은 게으름이 아니라 전략이다</text>
+
+  <defs>
+    <marker id="fill-arrow" markerWidth="9" markerHeight="9" refX="6.5" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 z" fill="var(--accent-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>스토리는 <strong>의도</strong>(무엇을·왜)는 카드에 붙들어 두고 <strong>해법</strong>(어떻게)은 점선 칸으로 비워 둔다. 그 빈칸은 개발 직전의 대화가 채우므로, 그 사이 바뀐 상황까지 반영할 수 있다.</figcaption>
+</figure>
 
 ## 스토리의 3C: Card · Conversation · Confirmation
 
@@ -121,6 +246,65 @@ INVEST는 통과/실패를 가르는 시험이 아니라, 스토리를 다듬을
 ## 스토리 분할: 에픽을 작고 가치 있게 쪼개기
 
 큰 스토리, 즉 한 이터레이션에 담기 어려운 스토리를 **에픽(epic)**이라 부릅니다. 에픽은 그대로 개발할 수 없으니 작은 스토리로 분할해야 합니다. 분할의 황금률은 **"각 조각이 여전히 사용자 가치를 가질 것"**입니다. 화면 레이어, 비즈니스 로직, DB 레이어처럼 **기술 계층으로 가르는 수평 분할은 피합니다**. 각 조각이 단독으로는 아무 가치가 없기 때문입니다. 대신 가치를 보존하는 **수직 분할**을 사용합니다.
+
+두 분할 방식의 차이를 그림으로 보면 분명합니다. 같은 에픽을 어느 방향으로 자르느냐가 조각의 가치를 가릅니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="에픽을 수평으로 자르는 방식과 수직으로 자르는 방식의 비교. 왼쪽은 UI, 로직, DB의 세 기술 계층을 가로로 잘라 각 조각이 단독으로는 사용자 가치가 없는 수평 분할로, 가위와 금지 표시가 붙어 있다. 오른쪽은 같은 블록을 세로로 잘라 각 조각이 UI부터 DB까지 관통하며 단독으로도 사용자 가치를 가지는 수직 분할로, 각 조각에 체크 표시가 붙어 있다." viewBox="0 0 640 270" xmlns="http://www.w3.org/2000/svg">
+  <title>스토리 분할 — 수평(기술 계층) 분할은 가치를 잃고, 수직(기능 관통) 분할은 가치를 보존한다</title>
+
+  <!-- LEFT: horizontal slicing (bad) -->
+  <text x="150" y="26" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">수평 분할 (기술 계층)</text>
+  <!-- three horizontal layers -->
+  <rect x="56" y="44" width="188" height="38" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="150" y="68" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">UI 화면 레이어</text>
+  <rect x="56" y="86" width="188" height="38" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="150" y="110" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">비즈니스 로직</text>
+  <rect x="56" y="128" width="188" height="38" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="150" y="152" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">DB 레이어</text>
+  <!-- horizontal cut lines -->
+  <line x1="46" y1="84" x2="254" y2="84" stroke="var(--secondary-color)" stroke-width="2" stroke-dasharray="5 4"/>
+  <line x1="46" y1="126" x2="254" y2="126" stroke="var(--secondary-color)" stroke-width="2" stroke-dasharray="5 4"/>
+  <text x="150" y="190" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.85" font-weight="700">각 조각 단독으로는 가치 없음</text>
+  <!-- forbidden mark -->
+  <circle cx="150" cy="222" r="15" fill="none" stroke="currentColor" stroke-width="2.4" opacity="0.85"/>
+  <line x1="140" y1="232" x2="160" y2="212" stroke="currentColor" stroke-width="2.4" opacity="0.85"/>
+
+  <!-- divider -->
+  <line x1="320" y1="40" x2="320" y2="244" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- RIGHT: vertical slicing (good) -->
+  <text x="490" y="26" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">수직 분할 (기능 관통)</text>
+  <!-- three vertical slices each spanning all layers -->
+  <rect x="396" y="44" width="58" height="122" rx="3" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2"/>
+  <rect x="461" y="44" width="58" height="122" rx="3" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2"/>
+  <rect x="526" y="44" width="58" height="122" rx="3" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2"/>
+  <!-- faint layer guides across the slices -->
+  <line x1="396" y1="84" x2="584" y2="84" stroke="currentColor" stroke-width="0.8" opacity="0.3"/>
+  <line x1="396" y1="126" x2="584" y2="126" stroke="currentColor" stroke-width="0.8" opacity="0.3"/>
+  <g font-size="8" fill="currentColor" opacity="0.7" text-anchor="middle">
+    <text x="370" y="68">UI</text>
+    <text x="370" y="108">로직</text>
+    <text x="370" y="150">DB</text>
+  </g>
+  <g font-size="8.5" font-weight="700" fill="currentColor">
+    <text x="425" y="108" text-anchor="middle">신용카드</text>
+    <text x="490" y="108" text-anchor="middle">실패 안내</text>
+    <text x="555" y="108" text-anchor="middle">포인트</text>
+  </g>
+  <!-- vertical cut lines -->
+  <line x1="459" y1="36" x2="459" y2="174" stroke="var(--gold)" stroke-width="2" stroke-dasharray="5 4"/>
+  <line x1="524" y1="36" x2="524" y2="174" stroke="var(--gold)" stroke-width="2" stroke-dasharray="5 4"/>
+  <text x="490" y="190" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.85" font-weight="700">조각마다 단독으로 가치 있음</text>
+  <!-- check marks under each slice -->
+  <g stroke="var(--accent-color)" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M418,218 l5,6 l9,-12"/>
+    <path d="M483,218 l5,6 l9,-12"/>
+    <path d="M548,218 l5,6 l9,-12"/>
+  </g>
+</svg>
+<figcaption>같은 에픽도 <strong>자르는 방향</strong>이 가치를 가른다. 왼쪽 <strong>수평 분할</strong>은 UI·로직·DB 기술 계층으로 잘라 조각마다 단독 가치가 없고, 오른쪽 <strong>수직 분할</strong>은 한 기능이 모든 계층을 관통하도록 잘라 조각마다 사용자 가치를 보존한다.</figcaption>
+</figure>
 
 자주 쓰는 분할 패턴은 다음과 같습니다.
 

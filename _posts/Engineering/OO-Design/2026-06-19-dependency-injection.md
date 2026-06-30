@@ -9,6 +9,94 @@ published: true
 excerpt: "Dependency Injection을 프레임워크 사용법이 아니라 IoC와 결합도 관리의 기술로 다룬다. 주입 방식, Composition Root, 안티패턴, 생명주기, 컨테이너 vs Pure DI까지 정리하며 OO-Design Essential 시리즈를 마무리한다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="의존성 주입의 핵심을 한 장으로 담은 그림. 왼쪽은 강결합으로, OrderService 상자 안에서 화살표가 톱니바퀴(구체 클래스 new)를 직접 만들어 객체가 스스로 의존성을 생성하고 그 구현에 단단히 묶인다. 가운데는 제어의 역전을 뜻하는 굵은 화살표가 바깥에서 안으로 향한다. 오른쪽은 의존성 주입으로, Composition Root가 위에서 톱니바퀴를 만들어 OrderService에 외부로부터 꽂아 넣고, OrderService는 구체가 아니라 추상화(인터페이스)에만 의존한다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>의존성 주입의 본질 — 객체가 의존성을 직접 만드는 강결합(왼쪽)에서, Composition Root가 외부에서 주입하는 제어의 역전(오른쪽)으로</title>
+
+  <!-- ===== LEFT: Control Freak — object creates its own dependency inside ===== -->
+  <text x="120" y="26" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">강결합 (직접 생성)</text>
+  <!-- outer service box -->
+  <rect x="36" y="58" width="168" height="150" rx="5" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="120" y="82" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">OrderService</text>
+  <!-- inner concrete dependency it builds itself -->
+  <text x="120" y="106" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.75">self._gw = StripeGateway()</text>
+  <line x1="120" y1="116" x2="120" y2="138" stroke="var(--accent-color)" stroke-width="2.4" marker-end="url(#di-arrow-a)"/>
+  <text x="143" y="132" text-anchor="start" font-size="8" fill="currentColor" opacity="0.7">new</text>
+  <!-- gear (concrete class) created internally -->
+  <g transform="translate(120,168)">
+    <circle r="22" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.4"/>
+    <circle r="8" fill="none" stroke="var(--accent-color)" stroke-width="2"/>
+    <g stroke="var(--accent-color)" stroke-width="2.4">
+      <line x1="0" y1="-22" x2="0" y2="-30"/>
+      <line x1="0" y1="22" x2="0" y2="30"/>
+      <line x1="-22" y1="0" x2="-30" y2="0"/>
+      <line x1="22" y1="0" x2="30" y2="0"/>
+      <line x1="-15.5" y1="-15.5" x2="-21" y2="-21"/>
+      <line x1="15.5" y1="-15.5" x2="21" y2="-21"/>
+      <line x1="-15.5" y1="15.5" x2="-21" y2="21"/>
+      <line x1="15.5" y1="15.5" x2="21" y2="21"/>
+    </g>
+  </g>
+  <text x="120" y="224" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">구체 클래스에 단단히 묶임</text>
+
+  <!-- ===== MIDDLE: Inversion of Control arrow ===== -->
+  <text x="340" y="120" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.8">제어의 역전</text>
+  <text x="340" y="136" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.65">Inversion of Control</text>
+  <line x1="386" y1="158" x2="294" y2="158" stroke="var(--gold)" stroke-width="4" marker-end="url(#di-arrow-gold)"/>
+  <text x="340" y="180" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.7">밖에서 안으로 주입</text>
+
+  <!-- ===== RIGHT: Dependency Injection — assembled from outside ===== -->
+  <text x="560" y="26" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">의존성 주입 (외부 조립)</text>
+  <!-- Composition Root on top -->
+  <rect x="478" y="46" width="164" height="32" rx="4" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.2"/>
+  <text x="560" y="66" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">Composition Root</text>
+  <!-- gear built by the root -->
+  <g transform="translate(516,118)">
+    <circle r="18" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2.2"/>
+    <circle r="6.5" fill="none" stroke="var(--secondary-color)" stroke-width="1.8"/>
+    <g stroke="var(--secondary-color)" stroke-width="2.2">
+      <line x1="0" y1="-18" x2="0" y2="-25"/>
+      <line x1="0" y1="18" x2="0" y2="25"/>
+      <line x1="-18" y1="0" x2="-25" y2="0"/>
+      <line x1="18" y1="0" x2="25" y2="0"/>
+      <line x1="-12.7" y1="-12.7" x2="-17.6" y2="-17.6"/>
+      <line x1="12.7" y1="-12.7" x2="17.6" y2="-17.6"/>
+      <line x1="-12.7" y1="12.7" x2="-17.6" y2="17.6"/>
+      <line x1="12.7" y1="12.7" x2="17.6" y2="17.6"/>
+    </g>
+  </g>
+  <text x="516" y="152" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.75">StripeGateway</text>
+  <!-- root creates the gear -->
+  <line x1="540" y1="80" x2="522" y2="98" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#di-arrow-sec)"/>
+  <text x="556" y="92" text-anchor="start" font-size="7.5" fill="currentColor" opacity="0.7">생성</text>
+  <!-- root injects gear into the service -->
+  <line x1="534" y1="124" x2="566" y2="138" stroke="var(--secondary-color)" stroke-width="2.4" marker-end="url(#di-arrow-sec)"/>
+  <text x="556" y="124" text-anchor="start" font-size="7.5" fill="currentColor" opacity="0.7">주입</text>
+  <!-- service box depending on abstraction (dashed slot) -->
+  <rect x="500" y="146" width="142" height="72" rx="5" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="571" y="170" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">OrderService</text>
+  <!-- abstraction slot -->
+  <rect x="588" y="180" width="44" height="26" rx="4" fill="none" stroke="var(--secondary-color)" stroke-width="2" stroke-dasharray="4 3"/>
+  <text x="610" y="197" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.85">: 추상화</text>
+  <text x="525" y="196" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">인터페이스만</text>
+  <text x="525" y="208" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">의존</text>
+  <text x="560" y="240" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">구현 교체·테스트가 자유로움</text>
+
+  <defs>
+    <marker id="di-arrow-a" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--accent-color)"/>
+    </marker>
+    <marker id="di-arrow-gold" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 z" fill="var(--gold)"/>
+    </marker>
+    <marker id="di-arrow-sec" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>의존성 주입의 한 장 요약 — <strong>왼쪽(강결합)</strong>은 OrderService가 <code>new</code>로 구체 클래스를 스스로 만들어 그 구현에 묶이고, <strong>가운데</strong>의 <strong>제어의 역전(IoC)</strong>으로 생성·조립의 책임이 바깥으로 넘어간다. <strong>오른쪽(DI)</strong>은 Composition Root가 의존성을 만들어 OrderService에 <strong>주입</strong>하고, OrderService는 구체가 아닌 <strong>추상화</strong>에만 의존해 교체·테스트가 자유로워진다.</figcaption>
+</figure>
+
 ## 들어가며
 
 이 글은 `OO-Design-Essential` 시리즈의 **6단계이자 마지막**입니다. 전체 지도는 [OO-Design Essential Curriculum](/2026/06/19/oo-design-essential-curriculum.html)에서 다시 확인할 수 있습니다.
@@ -73,6 +161,59 @@ class OrderService:
 ```
 
 이제 `OrderService`는 `PaymentGateway`라는 추상화에만 의존합니다(이것이 SOLID의 DIP, 의존성 역전 원칙입니다). 테스트에서는 가짜(fake)를, 운영에서는 Stripe를 주입하면 됩니다. 결합도가 컴파일 시점의 구체 클래스에서 런타임의 조립 결정으로 옮겨졌습니다.
+
+아래 그림은 이 두 코드의 의존 구조 차이를 나란히 보여줍니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="강결합 코드와 의존성 주입 코드의 의존 구조를 좌우로 비교한 그림. 왼쪽 Before에서는 OrderService가 화살표로 StripeGateway라는 구체 클래스에 직접 의존하며, 테스트용 가짜로 교체할 길이 없다. 오른쪽 After에서는 OrderService가 PaymentGateway라는 추상화 인터페이스에만 의존하고, 그 인터페이스를 StripeGateway와 FakeGateway 두 구현이 함께 실현하므로, 운영에서는 Stripe를 테스트에서는 가짜를 자유롭게 주입할 수 있다." viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg">
+  <title>강결합(Before) vs 의존성 주입(After) — 구체 클래스 직접 의존에서 추상화 의존으로</title>
+
+  <!-- ===== LEFT: Before — direct dependency on concrete ===== -->
+  <text x="160" y="26" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.8">Before — 강결합</text>
+  <rect x="96" y="52" width="128" height="40" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="160" y="76" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">OrderService</text>
+  <line x1="160" y1="92" x2="160" y2="140" stroke="var(--accent-color)" stroke-width="2.4" marker-end="url(#cmp-arrow-a)"/>
+  <text x="172" y="120" text-anchor="start" font-size="8" fill="currentColor" opacity="0.75">직접 의존</text>
+  <rect x="96" y="142" width="128" height="44" rx="4" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.4"/>
+  <text x="160" y="162" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">StripeGateway</text>
+  <text x="160" y="177" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.75">구체 클래스</text>
+  <text x="160" y="214" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.85">교체·테스트 분리 불가</text>
+
+  <!-- divider -->
+  <line x1="340" y1="40" x2="340" y2="240" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== RIGHT: After — depends on abstraction, two implementations ===== -->
+  <text x="510" y="26" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.8">After — 의존성 주입</text>
+  <rect x="446" y="52" width="128" height="40" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="510" y="76" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">OrderService</text>
+  <line x1="510" y1="92" x2="510" y2="110" stroke="var(--secondary-color)" stroke-width="2.4" marker-end="url(#cmp-arrow-s)"/>
+  <text x="522" y="106" text-anchor="start" font-size="8" fill="currentColor" opacity="0.75">의존</text>
+  <!-- abstraction interface -->
+  <rect x="438" y="112" width="144" height="42" rx="4" fill="none" stroke="var(--gold)" stroke-width="2.4" stroke-dasharray="5 3"/>
+  <text x="510" y="132" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">PaymentGateway</text>
+  <text x="510" y="146" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">추상화 (인터페이스)</text>
+  <!-- two implementations realize the abstraction -->
+  <line x1="476" y1="154" x2="452" y2="190" stroke="var(--secondary-color)" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#cmp-arrow-s)"/>
+  <line x1="544" y1="154" x2="568" y2="190" stroke="var(--secondary-color)" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#cmp-arrow-s)"/>
+  <rect x="402" y="192" width="96" height="38" rx="4" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="450" y="211" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">StripeGateway</text>
+  <text x="450" y="223" text-anchor="middle" font-size="7" fill="currentColor" opacity="0.75">운영 주입</text>
+  <rect x="522" y="192" width="96" height="38" rx="4" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="570" y="211" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">FakeGateway</text>
+  <text x="570" y="223" text-anchor="middle" font-size="7" fill="currentColor" opacity="0.75">테스트 주입</text>
+  <text x="510" y="252" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.85">무엇을 주입할지 외부가 결정</text>
+
+  <defs>
+    <marker id="cmp-arrow-a" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--accent-color)"/>
+    </marker>
+    <marker id="cmp-arrow-s" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption><strong>Before</strong>는 OrderService가 구체 클래스 StripeGateway에 직접 의존해 교체나 테스트 분리가 막혀 있다. <strong>After</strong>는 추상화 <code>PaymentGateway</code>에만 의존하고, 그 인터페이스를 StripeGateway·FakeGateway가 함께 실현하므로 운영엔 Stripe를, 테스트엔 가짜를 외부에서 골라 주입한다 — 결합도가 구체에서 추상으로 옮겨진다.</figcaption>
+</figure>
 
 ## 주입 방식: 생성자·메서드·속성, 그리고 Composition Root
 
@@ -197,6 +338,66 @@ container.register(OrderService, lifetime="transient")
 # resolve 가 의존성을 추적해 그래프를 자동 조립한다
 service = container.resolve(OrderService)
 ```
+
+아래 그림은 컨테이너가 등록 규칙만 보고 의존성을 추적해 객체 그래프를 자동으로 엮는 과정을 나타냅니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="DI 컨테이너가 객체 그래프를 자동 조립하는 과정을 보여주는 그림. 왼쪽에는 등록 표가 있어 PaymentGateway는 StripeGateway로 싱글톤, OrderRepository는 PostgresOrderRepository로 스코프드, OrderService는 트랜지언트로 등록되어 있다. 오른쪽에는 resolve(OrderService) 호출이 들어오면 컨테이너가 OrderService가 필요로 하는 PaymentGateway와 OrderRepository를 등록 규칙에서 추적해 각각 구현을 만들어 OrderService에 주입한 완성된 객체 그래프를 돌려준다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>DI 컨테이너 — 등록(registration) 규칙으로부터 객체 그래프를 자동 조립(resolve)</title>
+
+  <!-- ===== LEFT: registration table ===== -->
+  <text x="150" y="26" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.8">등록 (register)</text>
+  <rect x="34" y="44" width="232" height="172" rx="5" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <!-- row 1 -->
+  <text x="50" y="76" font-size="8.5" fill="currentColor" font-weight="700">PaymentGateway</text>
+  <text x="50" y="89" font-size="7.5" fill="currentColor" opacity="0.75">→ StripeGateway</text>
+  <rect x="196" y="64" width="58" height="20" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="1.6"/>
+  <text x="225" y="78" text-anchor="middle" font-size="7.5" fill="currentColor" font-weight="700">singleton</text>
+  <line x1="50" y1="98" x2="250" y2="98" stroke="currentColor" stroke-width="0.8" opacity="0.2"/>
+  <!-- row 2 -->
+  <text x="50" y="120" font-size="8.5" fill="currentColor" font-weight="700">OrderRepository</text>
+  <text x="50" y="133" font-size="7.5" fill="currentColor" opacity="0.75">→ PostgresOrderRepository</text>
+  <rect x="196" y="108" width="58" height="20" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="1.6"/>
+  <text x="225" y="122" text-anchor="middle" font-size="7.5" fill="currentColor" font-weight="700">scoped</text>
+  <line x1="50" y1="142" x2="250" y2="142" stroke="currentColor" stroke-width="0.8" opacity="0.2"/>
+  <!-- row 3 -->
+  <text x="50" y="164" font-size="8.5" fill="currentColor" font-weight="700">OrderService</text>
+  <text x="50" y="177" font-size="7.5" fill="currentColor" opacity="0.75">→ OrderService</text>
+  <rect x="196" y="152" width="58" height="20" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="1.6"/>
+  <text x="225" y="166" text-anchor="middle" font-size="7.5" fill="currentColor" font-weight="700">transient</text>
+  <text x="150" y="202" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.7">규칙: 무엇을 · 어떤 수명으로</text>
+
+  <!-- ===== MIDDLE: resolve arrow ===== -->
+  <line x1="270" y1="130" x2="330" y2="130" stroke="var(--secondary-color)" stroke-width="3" marker-end="url(#ctr-arrow-s)"/>
+  <text x="300" y="118" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">resolve</text>
+  <text x="300" y="150" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">의존성 추적</text>
+
+  <!-- ===== RIGHT: auto-assembled object graph ===== -->
+  <text x="500" y="26" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.8">자동 조립된 그래프</text>
+  <rect x="438" y="44" width="124" height="34" rx="4" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.4"/>
+  <text x="500" y="65" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">OrderService</text>
+  <!-- two injected deps -->
+  <line x1="476" y1="78" x2="448" y2="118" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#ctr-arrow-s)"/>
+  <line x1="524" y1="78" x2="552" y2="118" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#ctr-arrow-s)"/>
+  <rect x="386" y="120" width="116" height="38" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="444" y="139" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">StripeGateway</text>
+  <text x="444" y="151" text-anchor="middle" font-size="7" fill="currentColor" opacity="0.7">: PaymentGateway</text>
+  <rect x="510" y="120" width="124" height="38" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="572" y="139" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">PostgresOrderRepo</text>
+  <text x="572" y="151" text-anchor="middle" font-size="7" fill="currentColor" opacity="0.7">: OrderRepository</text>
+  <text x="500" y="186" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85">호출 한 번 → 완성된 객체 반환</text>
+
+  <!-- ground note -->
+  <text x="340" y="246" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.75" font-weight="700">컨테이너가 사람 대신 객체 그래프를 엮는다 — 단, 와이어링은 런타임으로 미뤄진다</text>
+
+  <defs>
+    <marker id="ctr-arrow-s" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>DI 컨테이너는 <strong>등록 규칙</strong>(어떤 추상화를 어떤 구현으로, 어떤 수명으로)만 받아 두고, <code>resolve(OrderService)</code> 한 번에 필요한 의존성을 <strong>스스로 추적</strong>해 완성된 객체 그래프를 돌려준다. 대규모 그래프의 보일러플레이트를 줄여 주지만, 와이어링이 <strong>런타임으로 미뤄져</strong> 구성 오류를 늦게 발견하는 트레이드오프가 따른다.</figcaption>
+</figure>
 
 트레이드오프는 이렇습니다. 컨테이너는 편하지만, 와이어링이 런타임으로 미뤄져 **구성 오류를 늦게 발견**하고, 마법이 동작 추적을 어렵게 만들며, 잘못 쓰면 Service Locator로 퇴화하기 쉽습니다. 책의 균형 잡힌 권고는 **"규모가 작거나 명확성이 중요하면 Pure DI로 시작하고, 그래프가 충분히 커져 손 조립의 비용이 명백해질 때 컨테이너를 도입하라"**는 것입니다. 어느 쪽이든 변하지 않는 원칙은 하나입니다. **조립은 Composition Root 한 곳에 머물러야 한다.**
 

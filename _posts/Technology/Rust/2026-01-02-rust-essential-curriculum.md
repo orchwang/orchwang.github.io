@@ -10,6 +10,68 @@ banner: wartable
 excerpt: "Rust를 기초 문법부터 소유권, 트레이트, 동시성, TDD까지 8단계로 정복하는 종합 학습 로드맵입니다. 도장깨기 방식으로 진행 상황을 추적합니다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="Rust 학습 여정을 왼쪽에서 오른쪽으로 올라가는 다섯 개의 정거장으로 그린 그림. 바닥에서 출발해 소유권·빌림, 구조체·열거형 타입, 트레이트·제네릭, 동시성을 차례로 거쳐 맨 위 오른쪽 실전 프로젝트 깃발에 도달한다. 각 정거장은 도장깨기처럼 채워진 표식으로 표현된다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>Rust 학습 여정 — 소유권·빌림 → 타입(구조체·열거형) → 트레이트·제네릭 → 동시성 → 실전</title>
+
+  <!-- ascending guide path (dashed climb) -->
+  <polyline points="64,236 196,200 328,160 460,120 596,76" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="5 6" opacity="0.4"/>
+
+  <!-- ===== Station 1: 소유권 · 빌림 (foundation) ===== -->
+  <rect x="34" y="216" width="92" height="48" rx="4" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="80" y="236" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">소유권 · 빌림</text>
+  <text x="80" y="252" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">메모리 안전의 토대</text>
+  <text x="80" y="206" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.6" font-weight="700">1–2</text>
+  <line x1="126" y1="224" x2="158" y2="208" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#rust-arrow)"/>
+
+  <!-- ===== Station 2: 타입 (structs / enums) ===== -->
+  <rect x="166" y="180" width="92" height="48" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="212" y="200" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">타입</text>
+  <text x="212" y="216" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">구조체 · 열거형 · match</text>
+  <text x="212" y="170" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.6" font-weight="700">3–4</text>
+  <line x1="258" y1="188" x2="290" y2="172" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#rust-arrow)"/>
+
+  <!-- ===== Station 3: 트레이트 · 제네릭 ===== -->
+  <rect x="298" y="140" width="92" height="48" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="344" y="160" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">트레이트 · 제네릭</text>
+  <text x="344" y="176" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">추상화 · 라이프타임</text>
+  <text x="344" y="130" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.6" font-weight="700">5</text>
+  <line x1="390" y1="148" x2="422" y2="132" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#rust-arrow)"/>
+
+  <!-- ===== Station 4: 동시성 ===== -->
+  <rect x="430" y="100" width="92" height="48" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="476" y="120" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">동시성</text>
+  <text x="476" y="136" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">스레드 · Arc · Mutex</text>
+  <text x="476" y="90" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.6" font-weight="700">6</text>
+  <line x1="522" y1="108" x2="554" y2="92" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#rust-arrow)"/>
+
+  <!-- ===== Station 5: 실전 (summit flag) ===== -->
+  <rect x="560" y="56" width="86" height="50" rx="4" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <text x="603" y="78" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">실전</text>
+  <text x="603" y="94" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">프로젝트 · 디버깅 · TDD</text>
+  <text x="603" y="46" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.6" font-weight="700">7–8</text>
+  <!-- summit flag -->
+  <line x1="640" y1="56" x2="640" y2="30" stroke="currentColor" stroke-width="2"/>
+  <path d="M640,32 L660,38 L640,44 z" fill="var(--gold)" stroke="var(--gold)" stroke-width="1"/>
+
+  <!-- start marker -->
+  <circle cx="34" cy="278" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+  <text x="48" y="282" text-anchor="start" font-size="9" fill="currentColor" opacity="0.7">학습 시작</text>
+
+  <!-- foundation → summit caption rail -->
+  <text x="80" y="20" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.7">기초</text>
+  <text x="344" y="20" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.7">핵심</text>
+  <text x="603" y="20" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.7">응용</text>
+
+  <defs>
+    <marker id="rust-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>이 커리큘럼이 오르는 길 한 장 요약 — <strong>소유권 · 빌림</strong>(메모리 안전의 토대)에서 출발해 <strong>타입</strong>(구조체 · 열거형 · 패턴 매칭), <strong>트레이트 · 제네릭</strong>(추상화), <strong>동시성</strong>을 차례로 딛고 맨 위 <strong>실전</strong>(프로젝트 · 디버깅 · TDD)에 도달합니다. 한 단씩 도장을 깨며 올라가는 8단계 학습 여정.</figcaption>
+</figure>
+
 ## 소개
 
 Rust는 가비지 컬렉터(GC) 없이도 메모리 안전성과 데이터 레이스 없는 동시성을 컴파일 타임에 보장하는 시스템 프로그래밍 언어입니다. 그만큼 학습 곡선(Learning Curve)이 가파른 것으로 유명하지만, 체계적인 순서로 접근하면 "컴파일러와의 싸움"을 "컴파일러와의 협업"으로 바꿀 수 있습니다.

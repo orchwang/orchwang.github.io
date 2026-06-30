@@ -9,6 +9,73 @@ published: true
 excerpt: "Kent Beck의 Extreme Programming Explained를 따라 XP의 가치·원칙·실천, 짧은 피드백 루프, 변경 비용 곡선과 점진적 설계, 계획 게임까지 '변화를 끌어안는' 애자일의 핵심을 정리합니다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="XP의 핵심 구조를 한 장에 담은 그림. 왼쪽에는 가치·원칙·실천의 3층 피라미드가 있다. 맨 아래 넓은 단은 가치(의사소통·단순성·피드백·용기·존중), 가운데 단은 원칙(빠른 피드백·점진성·작은 단계), 맨 위 단은 실천(페어 프로그래밍·TDD·지속적 통합·작은 릴리스)이다. 위로 올라갈수록 추상이 구체로 좁혀진다. 오른쪽에는 그 실천들이 돌리는 짧은 피드백 루프가 있다. 코드 작성에서 시작해 테스트는 초 단위, 페어 리뷰는 분 단위, 지속적 통합은 시간 단위, 작은 릴리스는 일·주 단위로 점점 큰 원을 그리며 돌고, 고객 피드백이 다시 코드 작성으로 돌아온다. 가운데 화살표가 3층 구조에서 피드백 루프로 연결되어, 가치가 실천을 통해 변화를 끌어안는 루프로 작동함을 나타낸다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>XP의 핵심 구조 — 가치·원칙·실천의 3층 사다리가 짧은 피드백 루프를 돌려 변화를 끌어안는다</title>
+
+  <!-- ===== LEFT: value → principle → practice pyramid (abstract → concrete, bottom → top) ===== -->
+  <text x="150" y="22" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">가치 → 원칙 → 실천</text>
+
+  <!-- bottom tier: Values (widest = most abstract foundation) -->
+  <polygon points="44,236 256,236 226,188 74,188" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="150" y="208" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">가치 (Value)</text>
+  <text x="150" y="224" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">의사소통·단순성·피드백·용기·존중</text>
+
+  <!-- middle tier: Principles -->
+  <polygon points="74,184 226,184 200,136 100,136" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="150" y="158" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">원칙 (Principle)</text>
+  <text x="150" y="173" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">빠른 피드백·점진성·작은 단계</text>
+
+  <!-- top tier: Practices (narrowest = most concrete) -->
+  <polygon points="100,132 200,132 150,64 150,64" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="150" y="108" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">실천 (Practice)</text>
+  <text x="150" y="122" text-anchor="middle" font-size="7" fill="currentColor" opacity="0.8">페어·TDD·CI·작은 릴리스</text>
+
+  <!-- abstraction axis -->
+  <line x1="32" y1="236" x2="32" y2="72" stroke="currentColor" stroke-width="1.5" opacity="0.5" marker-end="url(#xp-arrow)"/>
+  <text x="22" y="156" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.7" transform="rotate(-90 22 156)">추상 → 구체</text>
+  <text x="150" y="256" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.8" font-weight="700">신념을 행동으로 번역하는 사다리</text>
+
+  <!-- bridge: practices drive the loop -->
+  <line x1="210" y1="98" x2="300" y2="120" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#xp-arrow)"/>
+  <text x="256" y="100" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.75" font-weight="700">실천이 돌린다</text>
+
+  <!-- divider -->
+  <line x1="340" y1="40" x2="340" y2="236" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+
+  <!-- ===== RIGHT: nested feedback loop (inner = fast, outer = slow) ===== -->
+  <text x="514" y="22" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">짧은 피드백 루프</text>
+
+  <!-- concentric rings, inner fastest -->
+  <circle cx="514" cy="150" r="84" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.45"/>
+  <circle cx="514" cy="150" r="62" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.55"/>
+  <circle cx="514" cy="150" r="40" fill="none" stroke="var(--accent-color)" stroke-width="2"/>
+
+  <!-- center: write code -->
+  <text x="514" y="146" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">코드 작성</text>
+  <text x="514" y="160" text-anchor="middle" font-size="7" fill="currentColor" opacity="0.75">변화의 시작점</text>
+
+  <!-- ring labels with cadence, placed on the arcs -->
+  <text x="514" y="100" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">테스트 · 초</text>
+  <text x="514" y="76" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">페어 리뷰 · 분</text>
+  <text x="514" y="216" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">지속적 통합 · 시간</text>
+  <text x="514" y="240" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">작은 릴리스 · 일·주</text>
+
+  <!-- rotating arrows on the outer ring to imply the loop turning -->
+  <path d="M 590 130 A 80 80 0 0 1 590 170" fill="none" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#xp-arrow)"/>
+  <path d="M 438 170 A 80 80 0 0 1 438 130" fill="none" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#xp-arrow)"/>
+  <text x="616" y="150" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.75" font-weight="700">고객<tspan x="616" dy="10">피드백</tspan></text>
+  <text x="514" y="256" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.8" font-weight="700">안쪽일수록 빠르게 오류를 거른다</text>
+
+  <defs>
+    <marker id="xp-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>XP를 한 장으로 — 왼쪽은 <strong>가치 → 원칙 → 실천</strong>의 3층 사다리(아래로 갈수록 추상적인 신념, 위로 갈수록 구체적인 행동), 오른쪽은 그 실천들이 돌리는 <strong>짧은 피드백 루프</strong>(안쪽 테스트는 초 단위, 바깥쪽 릴리스는 일·주 단위). 가치가 실천을 통해 빠른 루프로 변환되어 "변화를 끌어안는다".</figcaption>
+</figure>
+
 ## 들어가며
 
 이 글은 `Process-Essential` 시리즈의 **2단계**입니다. 전체 지도는 [Process Essential Curriculum](/2026/06/19/process-essential-curriculum.html)에서 확인할 수 있습니다.
@@ -69,6 +136,56 @@ XP 2판은 다섯 가지 핵심 가치를 제시합니다.
 ### 가치를 잇는 실천들
 
 이 가치들은 따로 노는 슬로건이 아니라 실천을 통해 서로를 강화합니다. 예를 들어 **페어 프로그래밍**은 의사소통(둘이 끊임없이 대화)·피드백(즉각적인 코드 리뷰)·용기(혼자보다 과감해짐)를 동시에 충족시킵니다. **TDD**는 피드백(테스트가 즉시 옳고 그름을 알려줌)과 단순성(테스트를 통과하는 최소 코드만 작성)을 함께 만족시킵니다. 하나의 실천이 여러 가치를 떠받치고, 여러 실천이 하나의 가치를 떠받치는 **그물 구조**가 XP의 강건함을 만듭니다.
+
+아래 그림은 그 그물의 일부입니다. 실천(왼쪽)에서 가치(오른쪽)로 향하는 선이 여러 갈래로 교차하는 모습에 주목하세요.
+
+<figure class="post-figure">
+<svg role="img" aria-label="XP 실천과 가치가 여러 대 여러로 얽힌 그물 구조 그림. 왼쪽에는 세 가지 실천(페어 프로그래밍, TDD, 지속적 통합)이 세로로 놓이고, 오른쪽에는 네 가지 가치(의사소통, 피드백, 단순성, 용기)가 세로로 놓인다. 페어 프로그래밍은 의사소통·피드백·용기 세 가치로 선이 뻗고, TDD는 피드백·단순성 두 가치로, 지속적 통합은 피드백·용기로 선이 뻗는다. 그래서 피드백 가치에는 세 실천이 모두 모여들고, 페어 프로그래밍에서는 세 가닥이 갈라져 나간다. 하나의 실천이 여러 가치를, 여러 실천이 하나의 가치를 떠받치는 다대다 그물임을 보여 준다." viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg">
+  <title>실천과 가치의 그물 구조 — 하나의 실천이 여러 가치를, 여러 실천이 하나의 가치를 떠받친다</title>
+
+  <text x="150" y="26" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">실천 (Practice)</text>
+  <text x="500" y="26" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">가치 (Value)</text>
+
+  <!-- ===== reinforcing links (drawn first, behind the nodes) ===== -->
+  <!-- Pair Programming → 의사소통 / 피드백 / 용기 -->
+  <line x1="232" y1="78" x2="408" y2="70" stroke="var(--secondary-color)" stroke-width="2"/>
+  <line x1="232" y1="80" x2="408" y2="130" stroke="var(--secondary-color)" stroke-width="2"/>
+  <line x1="232" y1="84" x2="408" y2="250" stroke="var(--secondary-color)" stroke-width="2"/>
+  <!-- TDD → 피드백 / 단순성 -->
+  <line x1="232" y1="146" x2="408" y2="130" stroke="var(--accent-color)" stroke-width="2"/>
+  <line x1="232" y1="148" x2="408" y2="190" stroke="var(--accent-color)" stroke-width="2"/>
+  <!-- CI → 피드백 / 용기 -->
+  <line x1="232" y1="210" x2="408" y2="132" stroke="var(--gold)" stroke-width="2"/>
+  <line x1="232" y1="214" x2="408" y2="250" stroke="var(--gold)" stroke-width="2"/>
+
+  <!-- ===== practice nodes (left) ===== -->
+  <g font-size="9.5" font-weight="700">
+    <rect x="64" y="62" width="168" height="36" rx="4" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2"/>
+    <text x="148" y="84" text-anchor="middle" fill="currentColor">페어 프로그래밍</text>
+    <rect x="64" y="128" width="168" height="36" rx="4" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2"/>
+    <text x="148" y="150" text-anchor="middle" fill="currentColor">TDD</text>
+    <rect x="64" y="194" width="168" height="36" rx="4" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+    <text x="148" y="216" text-anchor="middle" fill="currentColor">지속적 통합 (CI)</text>
+  </g>
+
+  <!-- ===== value nodes (right) ===== -->
+  <g font-size="9.5" font-weight="700">
+    <rect x="408" y="52" width="156" height="36" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="486" y="74" text-anchor="middle" fill="currentColor">의사소통</text>
+    <rect x="408" y="112" width="156" height="36" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="486" y="134" text-anchor="middle" fill="currentColor">피드백</text>
+    <rect x="408" y="172" width="156" height="36" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="486" y="194" text-anchor="middle" fill="currentColor">단순성</text>
+    <rect x="408" y="232" width="156" height="36" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="486" y="254" text-anchor="middle" fill="currentColor">용기</text>
+  </g>
+
+  <!-- highlight: 피드백 is the hub where all three converge -->
+  <text x="320" y="130" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.0">hub</text>
+  <text x="320" y="20" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">다대다 — 하나가 여럿을, 여럿이 하나를</text>
+</svg>
+<figcaption>가치와 실천은 일대일이 아니라 <strong>다대다 그물</strong>로 얽힌다. <strong>페어 프로그래밍</strong> 하나가 의사소통·피드백·용기를 동시에 떠받치고(한 가닥이 셋으로 갈라짐), <strong>피드백</strong> 하나에는 페어·TDD·CI 세 실천이 모두 모여든다. 이 중복된 보강이 어느 한 실천을 빼더라도 가치가 무너지지 않게 하는 XP의 강건함이다.</figcaption>
+</figure>
 
 ## 짧은 피드백 루프: XP를 작동시키는 심장
 

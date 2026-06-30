@@ -10,6 +10,90 @@ banner: wartable
 excerpt: "10년차 백엔드 엔지니어를 위한 Python 심화 커리큘럼. Internals, 성능 최적화, 아키텍처, 테스팅, 운영 자동화, 코드 품질까지 실전 중심으로 구성했습니다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="Python 심화 역량 커리큘럼을 한 장에 담은 그림. 왼쪽 아래의 인터프리터 내부 톱니바퀴에서 출발해, 메모리·GIL·바이트코드·임포트라는 내부 메커니즘 토대를 딛고, 성능 프로파일링과 비동기 동시성을 거쳐, 타입·아키텍처와 테스트 품질을 지나, 맨 위 기술 리더의 시스템 품질 정상으로 한 단씩 올라가는 여덟 계단의 등반으로 표현된다. 오른쪽 위에는 깃발이 꽂힌 정상이 있다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>Python 심화 역량 — 인터프리터 내부에서 시스템 품질 정상까지, 여덟 단계의 등반</title>
+
+  <!-- ground line -->
+  <line x1="24" y1="266" x2="656" y2="266" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
+
+  <!-- ===== LEFT: interpreter internals (the foundation, gears) ===== -->
+  <g stroke="currentColor" fill="none">
+    <circle cx="70" cy="232" r="26" stroke-width="2.5"/>
+    <circle cx="70" cy="232" r="9" stroke-width="2"/>
+    <g stroke-width="2.5">
+      <line x1="70" y1="200" x2="70" y2="210"/>
+      <line x1="70" y1="254" x2="70" y2="264"/>
+      <line x1="38" y1="232" x2="48" y2="232"/>
+      <line x1="92" y1="232" x2="102" y2="232"/>
+      <line x1="47" y1="209" x2="54" y2="216"/>
+      <line x1="86" y1="248" x2="93" y2="255"/>
+      <line x1="93" y1="209" x2="86" y2="216"/>
+      <line x1="54" y1="248" x2="47" y2="255"/>
+    </g>
+  </g>
+  <circle cx="118" cy="240" r="14" fill="none" stroke="var(--secondary-color)" stroke-width="2"/>
+  <circle cx="118" cy="240" r="5" fill="none" stroke="var(--secondary-color)" stroke-width="1.8"/>
+  <text x="84" y="290" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700" opacity="0.85">인터프리터 내부 (토대)</text>
+
+  <!-- ===== STAIRCASE: 8 stages, each a step higher ===== -->
+  <!-- step geometry: x grows right, y shrinks (climbs). w=58 per step -->
+  <g font-weight="700">
+    <!-- step 1 -->
+    <rect x="150" y="222" width="62" height="40" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="181" y="240" text-anchor="middle" font-size="13" fill="currentColor">1</text>
+    <text x="181" y="254" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85">Internals</text>
+    <!-- step 2 -->
+    <rect x="212" y="200" width="62" height="62" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="243" y="218" text-anchor="middle" font-size="13" fill="currentColor">2</text>
+    <text x="243" y="232" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85">Profiling</text>
+    <!-- step 3 -->
+    <rect x="274" y="178" width="62" height="84" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="305" y="196" text-anchor="middle" font-size="13" fill="currentColor">3</text>
+    <text x="305" y="210" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85">Async</text>
+    <!-- step 4 -->
+    <rect x="336" y="156" width="62" height="106" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="367" y="174" text-anchor="middle" font-size="13" fill="currentColor">4</text>
+    <text x="367" y="188" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85">Typing</text>
+    <!-- step 5 -->
+    <rect x="398" y="134" width="62" height="128" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="429" y="152" text-anchor="middle" font-size="13" fill="currentColor">5</text>
+    <text x="429" y="166" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85">Testing</text>
+    <!-- step 6 -->
+    <rect x="460" y="112" width="62" height="150" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+    <text x="491" y="130" text-anchor="middle" font-size="13" fill="currentColor">6</text>
+    <text x="491" y="144" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85">Reliability</text>
+    <!-- step 7 -->
+    <rect x="522" y="90" width="62" height="172" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+    <text x="553" y="108" text-anchor="middle" font-size="13" fill="currentColor">7</text>
+    <text x="553" y="122" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85">Tooling</text>
+    <!-- step 8 (summit) -->
+    <rect x="584" y="68" width="62" height="194" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+    <text x="615" y="100" text-anchor="middle" font-size="13" fill="currentColor">8</text>
+    <text x="615" y="114" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85">Capstone</text>
+  </g>
+
+  <!-- summit flag -->
+  <line x1="615" y1="68" x2="615" y2="40" stroke="var(--gold)" stroke-width="2.5"/>
+  <path d="M615,42 L640,49 L615,56 z" fill="var(--accent-color)"/>
+
+  <!-- climbing arrow tracing the stair edge -->
+  <path d="M150,222 L212,200 L274,178 L336,156 L398,134 L460,112 L522,90 L584,68"
+        fill="none" stroke="var(--secondary-color)" stroke-width="2.5"
+        stroke-linecap="round" stroke-linejoin="round" marker-end="url(#climb-arrow)" opacity="0.9"/>
+
+  <!-- top label -->
+  <text x="615" y="290" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700" opacity="0.85">시스템 품질 정상</text>
+
+  <defs>
+    <marker id="climb-arrow" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>이 커리큘럼의 한 장 요약 — <strong>인터프리터 내부</strong>(메모리·GIL·바이트코드·임포트)라는 토대 위에서, Internals → Profiling → Async → Typing → Testing → Reliability → Tooling → Capstone의 <strong>여덟 계단</strong>을 한 단씩 올라 "코드" 중심에서 "시스템 품질" 중심으로 사고를 전환하는 등반.</figcaption>
+</figure>
+
 아래는 10년차 백엔드 엔지니어 / Lead급 개발자가 갖춰야 할 "Python 심화 역량 커리큘럼" 입니다.
 
 단순한 문법 학습이 아니라,
@@ -19,6 +103,48 @@ excerpt: "10년차 백엔드 엔지니어를 위한 Python 심화 커리큘럼. 
 ## 🧠 Python Advanced Competency Curriculum
 
 (10년차 백엔드 엔지니어용 — 실전 중심 심화 커리큘럼)
+
+### 🗺️ 한눈에 보기 — 전체 학습 경로
+
+여덟 영역은 따로 노는 주제 목록이 아니라 하나의 척추로 이어집니다. **언어 내부 이해**가 토대가 되어 성능과 동시성을 떠받치고, 그 위에 **구조와 품질**이 쌓여, 마지막에 **실무 캡스톤**으로 수렴합니다.
+
+```mermaid
+flowchart TB
+    subgraph FND["① 토대 · Internals"]
+        MEM["메모리·객체 모델<br/>(__slots__/gc/weakref)"] --> GIL["GIL<br/>(Thread vs Process vs Async)"]
+        GIL --> BC["Bytecode<br/>(dis / ceval)"]
+        BC --> IMP["Import 시스템<br/>(importlib/meta_path)"]
+        IMP --> EXC["Exception Internals<br/>(traceback)"]
+    end
+
+    subgraph PERF["② 성능 · Performance"]
+        PROF["프로파일링<br/>(cProfile/py-spy/scalene)"] --> OPT["메모리·핫스팟 최적화<br/>(tracemalloc/Cython/Numba)"]
+    end
+
+    subgraph CONC["③ 동시성 · Concurrency"]
+        ASYNC["asyncio Deep Dive<br/>(event loop/TaskGroup)"] --> DIST["병렬·분산<br/>(pool/Ray/Dask/Celery)"]
+    end
+
+    subgraph ARCH["④ 구조 · Architecture"]
+        TYPE["Typing 심화<br/>(Protocol/Generic/pydantic)"] --> DDD["DDD·DI·패턴<br/>(계층 분리)"]
+    end
+
+    subgraph QUAL["⑤ 품질 · Quality"]
+        TEST["pytest·TDD<br/>(hypothesis/coverage)"] --> REL["보안·신뢰성<br/>(retry/circuit breaker/SLO)"]
+    end
+
+    TOOL["⑥ Tooling·자동화<br/>(uv/ruff/CI/docs)"]
+    CAP(["⑦ Capstone<br/>고성능 async 백엔드"])
+
+    EXC --> PROF
+    OPT --> ASYNC
+    DIST --> TYPE
+    DDD --> TEST
+    REL --> TOOL
+    TOOL --> CAP
+```
+
+이 글의 §1~§8은 위 경로를 순서대로 펼친 것입니다. 아래 "권장 학습 순서"의 6개월 로드맵도 같은 척추를 따라갑니다.
 
 ## 📘 1. Python Internals — 언어 내부 메커니즘 이해
 
@@ -47,6 +173,21 @@ excerpt: "10년차 백엔드 엔지니어를 위한 Python 심화 커리큘럼. 
 ## 🧩 3. Advanced Concurrency Model
 
 **목표**: 비동기, 병렬, 이벤트 기반 구조를 상황에 맞게 설계할 수 있다.
+
+이 영역의 핵심은 "어떤 동시성 모델을 고를 것인가"입니다. GIL 때문에 CPU-bound와 IO-bound의 선택지가 갈리는데, 그 결정 흐름을 한 장으로 정리하면 다음과 같습니다.
+
+```mermaid
+flowchart TD
+    START["동시성이 필요한 작업"] --> Q1{"병목이 무엇인가?"}
+    Q1 -->|"IO-bound<br/>(네트워크/DB/디스크)"| Q2{"태스크 수가<br/>많고 가벼운가?"}
+    Q1 -->|"CPU-bound<br/>(연산/인코딩/ML)"| PROC["multiprocessing<br/>ProcessPool / Ray·Dask<br/>(GIL 우회, 코어 활용)"]
+    Q2 -->|"예 (수천~수만)"| ASY["asyncio<br/>event loop + TaskGroup<br/>(단일 스레드 협력형)"]
+    Q2 -->|"아니오 (블로킹 API)"| THR["ThreadPool<br/>(GIL이 IO 대기 중 양보)"]
+    ASY --> NOTE["backpressure·cancellation<br/>설계가 핵심"]
+    PROC --> NOTE2["직렬화·프로세스 간 통신<br/>비용을 함께 본다"]
+```
+
+이 분기는 §1의 GIL 이해와 §2의 프로파일링(병목이 IO인지 CPU인지 측정)에 그대로 의존합니다 — 그래서 토대가 먼저인 것입니다.
 
 | 주제                             | 세부 내용                                                              | 실습 / 목표                         |
 | -------------------------------- | ---------------------------------------------------------------------- | ----------------------------------- |

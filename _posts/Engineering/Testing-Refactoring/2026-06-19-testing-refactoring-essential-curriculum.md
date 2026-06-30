@@ -10,6 +10,95 @@ banner: wartable
 excerpt: "TDD와 리팩터링을 네 권의 고전(TDD By Example, Seven Years After, Refactoring, GOOS)으로 정복하는 마스터 로드맵입니다. 도장깨기 방식으로 진행 상황을 추적합니다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="테스트와 리팩터링을 한 장으로 묶은 그림. 왼쪽 위에는 Red-Green-Refactor 사이클이 빨강 막대(실패)에서 초록 막대(통과)를 거쳐 다듬기로 돌아오는 순환 화살표로 그려진다. 가운데 아래에는 테스트가 만드는 안전망이 그물코로 펼쳐지고, 그 위에서 거칠게 쌓인 코드 블록이 가지런한 블록으로 리팩터링되며 설계가 다듬어진다. 오른쪽에는 네 권의 고전이 1단계 TDD By Example, 2단계 Seven Years After, 3단계 Refactoring, 4단계 GOOS 순서로 오르막 계단처럼 쌓여 있다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>Testing-Refactoring Essential — Red-Green-Refactor 사이클 · 테스트가 떠받치는 안전망 위의 리팩터링 · 네 권의 고전 여정</title>
+
+  <!-- ===== LEFT-TOP: Red-Green-Refactor cycle ===== -->
+  <text x="108" y="22" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">사이클</text>
+  <!-- cycle ring -->
+  <circle cx="108" cy="86" r="44" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="4 4" opacity="0.5"/>
+  <!-- Red (fail) -->
+  <rect x="78" y="40" width="60" height="18" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.4"/>
+  <text x="108" y="53" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">Red 실패</text>
+  <!-- Green (pass) -->
+  <rect x="118" y="100" width="58" height="18" rx="3" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2.4"/>
+  <text x="147" y="113" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">Green 통과</text>
+  <!-- Refactor (clean) -->
+  <rect x="40" y="100" width="58" height="18" rx="3" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="2.4"/>
+  <text x="69" y="113" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">Refactor</text>
+  <!-- arrows around the ring -->
+  <path d="M138 52 A44 44 0 0 1 150 96" fill="none" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#tr-arrow)"/>
+  <path d="M118 116 A44 44 0 0 1 96 116" fill="none" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#tr-arrow)"/>
+  <path d="M66 96 A44 44 0 0 1 78 54" fill="none" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#tr-arrow)"/>
+  <text x="108" y="158" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.8" font-weight="700">작은 보폭으로 순환</text>
+
+  <!-- ===== BOTTOM-CENTER: safety net + refactoring (messy -> tidy) ===== -->
+  <text x="300" y="22" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">안전망 위의 리팩터링</text>
+  <!-- messy stacked blocks (before) -->
+  <rect x="208" y="62" width="40" height="14" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6" transform="rotate(-6 228 69)"/>
+  <rect x="214" y="78" width="40" height="14" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6" transform="rotate(5 234 85)"/>
+  <rect x="204" y="94" width="40" height="14" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6" transform="rotate(-3 224 101)"/>
+  <text x="226" y="128" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">거친 구조</text>
+  <!-- transform arrow -->
+  <line x1="262" y1="86" x2="318" y2="86" stroke="var(--secondary-color)" stroke-width="2.4" marker-end="url(#tr-arrow)"/>
+  <text x="290" y="78" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85" font-weight="700">동작 보존</text>
+  <!-- tidy aligned blocks (after) -->
+  <rect x="330" y="60" width="46" height="14" rx="2" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <rect x="330" y="78" width="46" height="14" rx="2" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <rect x="330" y="96" width="46" height="14" rx="2" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="353" y="128" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">다듬은 설계</text>
+  <!-- safety net (test net) under both -->
+  <g stroke="var(--gold)" stroke-width="1.6" opacity="0.9">
+    <line x1="196" y1="150" x2="392" y2="150"/>
+    <line x1="208" y1="150" x2="200" y2="172"/>
+    <line x1="232" y1="150" x2="224" y2="172"/>
+    <line x1="256" y1="150" x2="248" y2="172"/>
+    <line x1="280" y1="150" x2="272" y2="172"/>
+    <line x1="304" y1="150" x2="296" y2="172"/>
+    <line x1="328" y1="150" x2="320" y2="172"/>
+    <line x1="352" y1="150" x2="344" y2="172"/>
+    <line x1="376" y1="150" x2="368" y2="172"/>
+    <line x1="200" y1="161" x2="384" y2="161"/>
+  </g>
+  <text x="300" y="186" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.8" font-weight="700">테스트 = 변경의 안전망</text>
+
+  <!-- divider -->
+  <line x1="430" y1="36" x2="430" y2="196" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== RIGHT: four classics as ascending staircase ===== -->
+  <text x="556" y="22" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">네 권의 여정</text>
+  <!-- step 1 -->
+  <rect x="452" y="150" width="92" height="40" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="498" y="167" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">1 · TDD</text>
+  <text x="498" y="180" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">By Example</text>
+  <!-- step 2 -->
+  <rect x="478" y="116" width="92" height="40" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="524" y="133" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">2 · 7 Years</text>
+  <text x="524" y="146" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">After 회고</text>
+  <!-- step 3 -->
+  <rect x="504" y="82" width="92" height="40" rx="3" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2"/>
+  <text x="550" y="99" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">3 · Refactoring</text>
+  <text x="550" y="112" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">구조 개선</text>
+  <!-- step 4 -->
+  <rect x="530" y="48" width="98" height="40" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.4"/>
+  <text x="579" y="65" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">4 · GOOS</text>
+  <text x="579" y="78" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">실전 OO · mock</text>
+  <!-- climbing arrows -->
+  <line x1="540" y1="150" x2="552" y2="134" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#tr-arrow)"/>
+  <line x1="566" y1="116" x2="578" y2="100" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#tr-arrow)"/>
+  <line x1="592" y1="82" x2="604" y2="66" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#tr-arrow)"/>
+  <text x="556" y="208" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.8" font-weight="700">기초 → 핵심 → 응용</text>
+
+  <defs>
+    <marker id="tr-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>이 커리큘럼의 한 장 요약 — 왼쪽은 <strong>Red-Green-Refactor</strong> 사이클(실패→통과→다듬기를 작은 보폭으로 순환), 가운데는 <strong>테스트가 떠받치는 안전망</strong> 위에서 거친 구조를 동작 보존한 채 다듬는 리팩터링, 오른쪽은 네 권의 고전을 <strong>기초→핵심→응용</strong>으로 오르는 학습 여정(① TDD By Example · ② Seven Years After · ③ Refactoring · ④ GOOS).</figcaption>
+</figure>
+
 ## 소개
 
 테스트와 리팩터링은 "한 번 잘 짠 코드"를 "계속 변화할 수 있는 코드"로 바꾸는 엔지니어링의 핵심 실천입니다. 테스트는 변경에 대한 안전망(Safety Net)을 만들어 주고, 리팩터링은 그 안전망 위에서 동작을 바꾸지 않은 채 설계를 개선하게 해 줍니다. 이 둘이 맞물릴 때 비로소 코드는 두려움 없이 진화할 수 있습니다. 그래서 테스트와 리팩터링은 특정 언어나 프레임워크에 종속되지 않는, 모든 개발자가 평생 갈고닦아야 할 보편 역량입니다.

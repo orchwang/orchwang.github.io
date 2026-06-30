@@ -9,6 +9,75 @@ published: true
 excerpt: "Python의 import 시스템 내부 동작 원리를 깊이 있게 탐구합니다. sys.modules, importlib, meta path finder, 그리고 lazy import까지 상세히 다룹니다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="Python import 문 한 줄이 모듈 객체로 바뀌기까지의 흐름을 한 장으로 묶은 그림. 왼쪽의 import 문이 먼저 sys.modules 캐시를 확인하고, 캐시에 있으면 곧바로 모듈을 반환한다. 캐시에 없으면 Finder가 모듈 위치를 찾아 ModuleSpec을 만들고, Loader가 빈 모듈 객체를 생성해 실행 전에 sys.modules에 먼저 등록한 뒤 모듈 코드를 실행한다. 마지막으로 완성된 모듈이 현재 네임스페이스의 이름에 바인딩된다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>Python import 메커니즘 — import 문 → sys.modules 캐시 → Finder/Loader → 네임스페이스 바인딩</title>
+
+  <!-- ===== import statement (source) ===== -->
+  <rect x="20" y="120" width="120" height="56" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="80" y="144" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">import 문</text>
+  <text x="80" y="160" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">import json</text>
+
+  <!-- ===== sys.modules cache gate ===== -->
+  <line x1="140" y1="148" x2="170" y2="148" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#imp-arrow)"/>
+  <rect x="172" y="116" width="120" height="64" rx="4" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <text x="232" y="140" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">sys.modules</text>
+  <text x="232" y="156" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">캐시 확인</text>
+  <text x="232" y="170" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.7">{ 'json': … }</text>
+
+  <!-- cache hit → straight to return -->
+  <path d="M232,116 C232,70 470,70 470,108" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#imp-arrow-a)"/>
+  <text x="350" y="62" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700" opacity="0.85">캐시 적중 → 바로 반환</text>
+
+  <!-- cache miss → finder -->
+  <line x1="292" y1="148" x2="322" y2="148" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#imp-arrow)"/>
+  <text x="307" y="140" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.75" font-weight="700">미스</text>
+
+  <!-- ===== Finder ===== -->
+  <rect x="324" y="116" width="92" height="64" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="370" y="138" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">Finder</text>
+  <text x="370" y="153" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">위치 탐색</text>
+  <text x="370" y="167" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">→ ModuleSpec</text>
+
+  <!-- ===== Loader ===== -->
+  <line x1="416" y1="148" x2="446" y2="148" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#imp-arrow)"/>
+  <rect x="448" y="116" width="92" height="64" rx="4" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="494" y="138" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">Loader</text>
+  <text x="494" y="153" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">모듈 생성·</text>
+  <text x="494" y="167" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">코드 실행</text>
+
+  <!-- loader writes back into cache BEFORE exec -->
+  <path d="M470,116 C440,86 262,86 232,112" fill="none" stroke="var(--secondary-color)" stroke-width="1.8" stroke-dasharray="3 3" marker-end="url(#imp-arrow)"/>
+  <text x="350" y="100" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8" font-weight="700">실행 전 캐시에 먼저 등록 (순환 import 방지)</text>
+
+  <!-- ===== namespace binding (result) ===== -->
+  <line x1="494" y1="180" x2="494" y2="214" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#imp-arrow)"/>
+  <rect x="412" y="216" width="164" height="56" rx="4" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+  <text x="494" y="240" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">네임스페이스 바인딩</text>
+  <text x="494" y="256" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">현재 스코프의 이름 = 모듈</text>
+
+  <!-- cache-hit also lands at binding -->
+  <rect x="436" y="100" width="68" height="0" />
+  <line x1="470" y1="108" x2="470" y2="116" stroke="var(--accent-color)" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#imp-arrow-a)"/>
+
+  <!-- caption-ish stage labels -->
+  <text x="80" y="200" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.6" font-weight="700">① 요청</text>
+  <text x="232" y="200" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.6" font-weight="700">② 캐시</text>
+  <text x="370" y="200" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.6" font-weight="700">③ 탐색</text>
+  <text x="494" y="200" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.6" font-weight="700">④ 로드</text>
+
+  <defs>
+    <marker id="imp-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+    <marker id="imp-arrow-a" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--accent-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>import 한 줄이 모듈 객체가 되기까지 — ① <strong>import 문</strong>이 ② <strong>sys.modules 캐시</strong>를 먼저 확인하고(적중하면 붉은 점선으로 곧장 반환), 미스면 ③ <strong>Finder</strong>가 ModuleSpec을 만들고 ④ <strong>Loader</strong>가 빈 모듈을 생성해 <em>실행 전에</em> 캐시에 먼저 등록한 뒤 코드를 실행합니다. 끝으로 완성된 모듈이 현재 네임스페이스의 이름에 바인딩됩니다.</figcaption>
+</figure>
+
 ## Introduction
 
 Python의 import 시스템은 모듈을 로드하고 관리하는 핵심 메커니즘입니다. 단순히 `import` 키워드를 사용하는 것을 넘어, Python이 어떻게 모듈을 찾고, 로드하고, 캐싱하는지 이해하면 더 효율적인 코드를 작성하고 복잡한 문제를 디버깅할 수 있습니다.
@@ -240,6 +309,65 @@ Python이 `import mypackage.module`을 실행할 때:
 4. **Execute Module**: 모듈 코드 실행
 5. **Cache Module**: `sys.modules`에 저장
 
+<figure class="post-figure">
+<svg role="img" aria-label="import 프로세스 5단계를 가로 파이프라인으로 그린 그림. 캐시 확인, 모듈 탐색, 모듈 생성, 코드 실행, 캐시 저장의 다섯 단계가 차례로 이어진다. 캐시 확인 단계에서 적중하면 곧바로 모듈을 반환하는 분기가 위로 빠진다. 그리고 핵심적으로 캐시 저장(5단계)이 실제로는 코드 실행(4단계)보다 먼저 일어나, 빈 모듈을 미리 캐시에 넣은 뒤 코드를 실행함으로써 순환 import를 막는다는 점이 강조된다." viewBox="0 0 680 250" xmlns="http://www.w3.org/2000/svg">
+  <title>import 프로세스 5단계 파이프라인 — 캐시 저장이 코드 실행보다 먼저 일어난다</title>
+
+  <!-- early-return branch -->
+  <path d="M86,96 C86,52 150,52 150,52 L150,52" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-dasharray="5 4"/>
+  <rect x="150" y="36" width="150" height="32" rx="4" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="225" y="56" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">캐시 적중 → 즉시 반환</text>
+
+  <!-- stage 1: cache check -->
+  <rect x="22" y="96" width="118" height="56" rx="4" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <text x="81" y="116" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">① 캐시 확인</text>
+  <text x="81" y="131" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">sys.modules</text>
+  <text x="81" y="144" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">에 있나?</text>
+  <line x1="86" y1="96" x2="86" y2="68" stroke="var(--accent-color)" stroke-width="2" stroke-dasharray="5 4"/>
+
+  <!-- stage 2: find -->
+  <line x1="140" y1="124" x2="166" y2="124" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#p5-arrow)"/>
+  <rect x="168" y="96" width="108" height="56" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="222" y="116" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">② 모듈 탐색</text>
+  <text x="222" y="131" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">Finder</text>
+  <text x="222" y="144" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">→ spec</text>
+
+  <!-- stage 3: create -->
+  <line x1="276" y1="124" x2="302" y2="124" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#p5-arrow)"/>
+  <rect x="304" y="96" width="108" height="56" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="358" y="116" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">③ 모듈 생성</text>
+  <text x="358" y="131" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">빈 module</text>
+  <text x="358" y="144" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">객체</text>
+
+  <!-- stage 5 (cache) BEFORE stage 4 (exec) — drawn next, with a back-arrow note -->
+  <line x1="412" y1="124" x2="438" y2="124" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#p5-arrow)"/>
+  <rect x="440" y="96" width="108" height="56" rx="4" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <text x="494" y="116" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">⑤ 캐시 저장</text>
+  <text x="494" y="131" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">실행 前 등록</text>
+  <text x="494" y="144" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">→ 순환 방지</text>
+
+  <!-- stage 4: exec (comes AFTER cache) -->
+  <line x1="548" y1="124" x2="574" y2="124" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#p5-arrow)"/>
+  <rect x="576" y="96" width="92" height="56" rx="4" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="622" y="116" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">④ 코드 실행</text>
+  <text x="622" y="131" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">exec_module</text>
+  <text x="622" y="144" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">(module)</text>
+
+  <!-- emphasis note: 5 before 4 -->
+  <rect x="440" y="178" width="228" height="46" rx="4" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="1.5"/>
+  <text x="554" y="197" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">번호는 개념 순서, 실제 실행은</text>
+  <text x="554" y="211" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">⑤ 캐시 저장 → ④ 코드 실행 순</text>
+  <line x1="494" y1="152" x2="494" y2="178" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="3 3"/>
+
+  <defs>
+    <marker id="p5-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>5단계 import 파이프라인. ① <strong>캐시 확인</strong>에서 적중하면 붉은 점선처럼 즉시 반환됩니다. 미스면 ② 탐색 → ③ 생성으로 빈 모듈을 만든 뒤, <strong>핵심은 순서</strong>입니다 — ⑤ <strong>캐시 저장이 ④ 코드 실행보다 먼저</strong> 일어나, 미완성 모듈을 미리 sys.modules에 등록해 두기 때문에 코드 실행 중 같은 모듈을 다시 import해도 순환에 빠지지 않습니다.</figcaption>
+</figure>
+
 ```python
 import sys
 import importlib.util
@@ -291,6 +419,72 @@ for finder in sys.meta_path:
 1. **BuiltinImporter**: 내장 모듈(sys, builtins 등) 처리
 2. **FrozenImporter**: 동결(frozen) 모듈 처리
 3. **PathFinder**: sys.path 기반 파일 시스템 모듈 검색
+
+`sys.meta_path`의 본질은 **순서가 있는 finder 리스트**라는 점입니다. Python은 모듈을 찾을 때 이 리스트를 위에서부터 차례로 훑으며 각 finder에게 `find_spec`을 물어보고, 처음으로 `spec`을 돌려주는 finder가 승자가 됩니다. 그래서 커스텀 finder를 `sys.meta_path.insert(0, ...)`로 맨 앞에 끼워 넣으면, 표준 finder들보다 **먼저** 가로채어 import 동작을 확장하거나 재정의할 수 있습니다 — 이것이 import hook의 작동 원리입니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="sys.meta_path가 순서 있는 finder 리스트임을 보여주는 그림. 위에서부터 인덱스 0에 끼워 넣은 커스텀 finder, 그 아래로 표준 finder인 BuiltinImporter, FrozenImporter, PathFinder가 차례로 쌓여 있다. 들어온 모듈 이름이 맨 위의 커스텀 finder부터 차례로 find_spec 질문을 받고, 처음으로 spec을 돌려주는 finder가 승자가 되어 Loader로 넘어간다. 아무도 못 찾으면 ImportError가 난다." viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg">
+  <title>sys.meta_path — 순서 있는 finder 리스트와 import hook (insert(0)로 가로채기)</title>
+
+  <!-- incoming module name -->
+  <rect x="20" y="120" width="104" height="44" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="72" y="140" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">모듈 이름</text>
+  <text x="72" y="155" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">"custom_x"</text>
+  <line x1="124" y1="142" x2="158" y2="142" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#mp-arrow)"/>
+
+  <!-- meta_path stack label -->
+  <text x="320" y="24" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.75">sys.meta_path — 위에서부터 find_spec() 질문</text>
+
+  <!-- finder rows: each gets the question top-down -->
+  <!-- index 0: custom finder (inserted) -->
+  <rect x="160" y="36" width="320" height="42" rx="4" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="178" y="55" font-size="9" fill="currentColor" font-weight="700">[0]</text>
+  <text x="320" y="55" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">CustomFinder  (insert(0)으로 끼워 넣음)</text>
+  <text x="320" y="70" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">먼저 가로챔 → import hook</text>
+
+  <!-- index 1 -->
+  <rect x="160" y="86" width="320" height="38" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="178" y="105" font-size="9" fill="currentColor" font-weight="700">[1]</text>
+  <text x="320" y="109" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">BuiltinImporter — 내장 모듈</text>
+
+  <!-- index 2 -->
+  <rect x="160" y="132" width="320" height="38" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="178" y="151" font-size="9" fill="currentColor" font-weight="700">[2]</text>
+  <text x="320" y="155" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">FrozenImporter — 동결 모듈</text>
+
+  <!-- index 3 -->
+  <rect x="160" y="178" width="320" height="38" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="178" y="197" font-size="9" fill="currentColor" font-weight="700">[3]</text>
+  <text x="320" y="201" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">PathFinder — sys.path 파일 검색</text>
+
+  <!-- top-down traversal arrows on the left edge -->
+  <line x1="150" y1="78" x2="150" y2="84" stroke="var(--secondary-color)" stroke-width="1.6" stroke-dasharray="3 3" marker-end="url(#mp-arrow)"/>
+  <line x1="150" y1="124" x2="150" y2="130" stroke="var(--secondary-color)" stroke-width="1.6" stroke-dasharray="3 3" marker-end="url(#mp-arrow)"/>
+  <line x1="150" y1="170" x2="150" y2="176" stroke="var(--secondary-color)" stroke-width="1.6" stroke-dasharray="3 3" marker-end="url(#mp-arrow)"/>
+  <text x="138" y="135" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.7" font-weight="700" transform="rotate(-90 138 135)">못 찾으면 다음으로</text>
+
+  <!-- winner → loader -->
+  <path d="M480,57 C520,57 520,120 540,120" fill="none" stroke="var(--accent-color)" stroke-width="2.2" marker-end="url(#mp-arrow-a)"/>
+  <rect x="540" y="100" width="120" height="44" rx="4" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <text x="600" y="120" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">spec 반환 → Loader</text>
+  <text x="600" y="134" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">처음 찾은 finder가 승자</text>
+
+  <!-- nobody found → ImportError -->
+  <line x1="320" y1="216" x2="320" y2="244" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#mp-arrow)"/>
+  <rect x="244" y="246" width="152" height="28" rx="4" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="320" y="264" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">모두 None → ImportError</text>
+
+  <defs>
+    <marker id="mp-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+    <marker id="mp-arrow-a" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--accent-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption><code>sys.meta_path</code>는 <strong>순서 있는 finder 리스트</strong>입니다. 모듈 이름이 들어오면 위에서부터 각 finder에게 <code>find_spec()</code>을 묻고, 처음으로 <code>spec</code>을 돌려준 finder가 승자가 되어 Loader로 넘어갑니다. 커스텀 finder를 <code>insert(0)</code>으로 맨 앞에 끼워 넣으면 표준 finder들보다 <strong>먼저 가로채</strong>므로 import 동작을 확장·재정의할 수 있고(=import hook), 아무도 못 찾으면 <code>ImportError</code>가 납니다. 아래 다이어그램은 같은 과정을 흐름도로 보여줍니다.</figcaption>
+</figure>
 
 **Import 검색 순서:**
 

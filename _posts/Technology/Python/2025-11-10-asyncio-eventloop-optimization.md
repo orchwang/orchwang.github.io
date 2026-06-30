@@ -9,6 +9,64 @@ published: true
 excerpt: "Python asyncio 이벤트 루프의 작동 원리를 이해하고, 동시성 처리 성능을 극대화하는 최적화 기법을 학습합니다. 실전 웹 크롤러 최적화 프로젝트 포함."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="asyncio 이벤트 루프의 한 바퀴를 한 장으로 그린 그림. 왼쪽의 준비된 콜백 큐에서 코루틴이 하나씩 꺼내져 이벤트 루프(가운데 원형 회전 화살표)에서 실행된다. 코루틴이 await로 I/O를 만나면 아직 준비되지 않았으므로 제어를 루프에 양보하고 위쪽 I/O 대기 영역으로 빠진다. 단일 스레드이므로 그동안 루프는 큐의 다음 콜백을 실행한다. 아래쪽 selector(select/epoll)가 소켓이 준비되면 그 코루틴을 깨워 다시 준비 큐로 돌려보내고, 루프가 멈춘 지점부터 재개한다." viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
+  <title>asyncio 이벤트 루프 한 바퀴 — 준비 큐 → 루프가 콜백 실행 → await로 I/O 양보 → selector가 깨우면 재개</title>
+
+  <!-- ===== LEFT: ready callback queue ===== -->
+  <text x="92" y="30" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.78">준비된 콜백 큐</text>
+  <g font-size="9" font-weight="700">
+    <rect x="36" y="48" width="112" height="30" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+    <text x="92" y="67" text-anchor="middle" fill="currentColor">coro A (ready)</text>
+    <rect x="36" y="86" width="112" height="30" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="92" y="105" text-anchor="middle" fill="currentColor">coro B</text>
+    <rect x="36" y="124" width="112" height="30" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="92" y="143" text-anchor="middle" fill="currentColor">coro C</text>
+  </g>
+  <text x="92" y="178" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.75">FIFO로 꺼냄 →</text>
+
+  <!-- queue head feeds the loop -->
+  <line x1="150" y1="63" x2="232" y2="120" stroke="var(--secondary-color)" stroke-width="2.2" marker-end="url(#el-arrow)"/>
+  <text x="186" y="84" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">실행할 콜백</text>
+
+  <!-- ===== CENTER: the event loop (single thread) ===== -->
+  <circle cx="300" cy="160" r="64" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <!-- circular spin arrow -->
+  <path d="M300 108 A52 52 0 1 1 252 178" fill="none" stroke="var(--secondary-color)" stroke-width="2.4" marker-end="url(#el-arrow)"/>
+  <text x="300" y="150" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">Event Loop</text>
+  <text x="300" y="168" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85">단일 스레드</text>
+  <text x="300" y="184" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.7">한 번에 하나씩 실행</text>
+
+  <!-- ===== TOP RIGHT: await yields to I/O wait ===== -->
+  <line x1="346" y1="118" x2="468" y2="74" stroke="var(--secondary-color)" stroke-width="2.2" marker-end="url(#el-arrow)"/>
+  <text x="408" y="86" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">await → 양보</text>
+  <rect x="470" y="48" width="172" height="64" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8" stroke-dasharray="5 4"/>
+  <text x="556" y="72" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">I/O 대기 중</text>
+  <text x="556" y="90" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">소켓·타이머 준비 대기</text>
+  <text x="556" y="103" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">(아직 ready 아님)</text>
+
+  <!-- ===== BOTTOM RIGHT: selector wakes ready sockets ===== -->
+  <rect x="470" y="208" width="172" height="64" rx="4" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="556" y="232" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">selector</text>
+  <text x="556" y="249" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85">select / epoll / kqueue</text>
+  <text x="556" y="262" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85">준비된 fd를 감지</text>
+  <!-- I/O-wait drops down into selector watch -->
+  <line x1="556" y1="112" x2="556" y2="206" stroke="currentColor" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#el-arrow)"/>
+  <text x="606" y="162" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.75">감시</text>
+
+  <!-- selector wakes coroutine: re-enqueue back to ready queue -->
+  <path d="M470 250 Q300 296 148 150" fill="none" stroke="var(--accent-color)" stroke-width="2.2" marker-end="url(#el-arrow)"/>
+  <text x="300" y="296" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">준비되면 깨워서 다시 큐로 → 멈춘 지점부터 재개</text>
+
+  <defs>
+    <marker id="el-arrow" markerWidth="9" markerHeight="9" refX="6.5" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 z" fill="var(--accent-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>이벤트 루프 한 바퀴 — <strong>준비된 콜백 큐</strong>에서 코루틴을 하나씩 꺼내 <strong>단일 스레드</strong> 루프가 실행하고, <code>await</code>로 I/O를 만나면 제어를 <strong>양보</strong>해 대기 영역으로 빠집니다. 그 사이 루프는 큐의 다음 콜백을 돌리고, <strong>selector</strong>(select/epoll)가 소켓이 준비됐음을 감지하면 그 코루틴을 깨워 다시 큐에 넣어 <strong>멈춘 지점부터 재개</strong>합니다.</figcaption>
+</figure>
+
 ## 소개
 
 Python asyncio는 단일 스레드에서 수천 개의 동시 연결을 효율적으로 처리할 수 있는 강력한 비동기 프로그래밍 프레임워크입니다. 특히 I/O 바운드 작업이 많은 웹 서버, API 클라이언트, 크롤러 등에서 탁월한 성능을 발휘합니다.
@@ -138,6 +196,61 @@ sequenceDiagram
 
     ELoop-->>App: 모든 결과 반환
 ```
+
+위 시퀀스의 핵심은 **`await`에서 코루틴이 제어를 이벤트 루프에 양보하고, I/O가 끝나면 멈춘 바로 그 줄부터 재개된다**는 점입니다. 단일 스레드의 시간 축 하나로 보면 이렇게 됩니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="단일 스레드 시간 축 위에서 두 코루틴이 await로 제어를 양보하고 재개되는 타임라인. 위쪽 줄은 Task 1, 아래쪽 줄은 Task 2이며, 가운데 굵은 가로선이 하나뿐인 CPU 시간 축이다. Task 1이 잠깐 실행되다 await sleep에서 양보하면 같은 시간 축에서 Task 2가 곧바로 실행된다. 두 코루틴이 모두 대기에 들어간 구간에서는 어느 코루틴도 CPU를 쓰지 않고 비어 있다. 0.5초 시점에 Task 2가 깨어나 멈춘 지점부터 재개되고, 1초 시점에 Task 1이 재개된다. 대기 시간이 겹쳐 흐르기 때문에 합산이 아니라 가장 긴 1초만에 끝난다." viewBox="0 0 680 270" xmlns="http://www.w3.org/2000/svg">
+  <title>await에서 양보하고 재개되는 타임라인 — 단일 스레드, 대기는 겹쳐 흐른다</title>
+
+  <!-- single shared CPU time axis -->
+  <line x1="60" y1="150" x2="636" y2="150" stroke="currentColor" stroke-width="2.5" marker-end="url(#tl-arrow)"/>
+  <text x="60" y="174" font-size="8.5" fill="currentColor" opacity="0.7">0s</text>
+  <line x1="350" y1="144" x2="350" y2="156" stroke="currentColor" stroke-width="1.5"/>
+  <text x="350" y="174" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.7">0.5s</text>
+  <line x1="600" y1="144" x2="600" y2="156" stroke="currentColor" stroke-width="1.5"/>
+  <text x="600" y="174" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.7">1.0s</text>
+  <text x="648" y="166" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.7">단일 스레드 CPU 시간</text>
+
+  <!-- Task 1 lane (upper) -->
+  <text x="50" y="60" text-anchor="end" font-size="10" fill="currentColor" font-weight="700">Task 1</text>
+  <rect x="60" y="48" width="46" height="22" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="83" y="63" text-anchor="middle" font-size="8" fill="currentColor">실행</text>
+  <!-- yields down to the axis -->
+  <line x1="106" y1="70" x2="118" y2="148" stroke="var(--secondary-color)" stroke-width="1.8" stroke-dasharray="3 3" marker-end="url(#tl-arrow)"/>
+  <text x="132" y="104" text-anchor="middle" font-size="7.5" fill="currentColor" font-weight="700">await</text>
+  <!-- Task1 waiting (sleep 1s) -->
+  <rect x="112" y="48" width="488" height="22" rx="3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="5 4" opacity="0.7"/>
+  <text x="356" y="63" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">await asyncio.sleep(1) — 대기 (CPU 양보)</text>
+  <!-- resume at 1.0s -->
+  <line x1="600" y1="148" x2="600" y2="72" stroke="var(--accent-color)" stroke-width="1.8" stroke-dasharray="3 3" marker-end="url(#tl-arrow)"/>
+  <text x="600" y="40" text-anchor="middle" font-size="7.5" fill="currentColor" font-weight="700">재개·완료</text>
+
+  <!-- Task 2 lane (lower) -->
+  <text x="50" y="242" text-anchor="end" font-size="10" fill="currentColor" font-weight="700">Task 2</text>
+  <!-- Task2 starts right after Task1 yields -->
+  <rect x="118" y="226" width="40" height="22" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="138" y="241" text-anchor="middle" font-size="8" fill="currentColor">실행</text>
+  <line x1="118" y1="152" x2="124" y2="224" stroke="var(--secondary-color)" stroke-width="1.8" stroke-dasharray="3 3"/>
+  <line x1="158" y1="226" x2="170" y2="152" stroke="var(--secondary-color)" stroke-width="1.8" stroke-dasharray="3 3" marker-end="url(#tl-arrow)"/>
+  <text x="184" y="206" text-anchor="middle" font-size="7.5" fill="currentColor" font-weight="700">await</text>
+  <!-- Task2 waiting (sleep 0.5s) -->
+  <rect x="164" y="226" width="186" height="22" rx="3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="5 4" opacity="0.7"/>
+  <text x="257" y="241" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">sleep(0.5) — 대기</text>
+  <!-- Task2 resume at 0.5s -->
+  <line x1="350" y1="152" x2="350" y2="226" stroke="var(--accent-color)" stroke-width="1.8" stroke-dasharray="3 3" marker-end="url(#tl-arrow)"/>
+  <rect x="350" y="226" width="40" height="22" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="370" y="241" text-anchor="middle" font-size="8" fill="currentColor">재개</text>
+  <text x="370" y="266" text-anchor="middle" font-size="7.5" fill="currentColor" font-weight="700">멈춘 줄부터</text>
+
+  <defs>
+    <marker id="tl-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="currentColor"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>두 코루틴이 하나의 CPU 시간 축을 나눠 쓰는 모습 — <code>await</code> 지점(점선 화살표)에서 CPU를 <strong>양보</strong>하면 다른 코루틴이 곧바로 실행되고, 대기가 끝난 코루틴은 <strong>멈춘 줄부터 재개</strong>됩니다. 두 대기(1초·0.5초)가 <strong>겹쳐 흐르므로</strong> 합(1.5초)이 아니라 가장 긴 1초 만에 끝납니다.</figcaption>
+</figure>
 
 ### Event Loop 접근 및 제어
 
@@ -865,7 +978,66 @@ asyncio.run(timeout_strategies())
 
 ## 5. 실전 프로젝트: 웹 크롤러 최적화
 
-실제 웹 크롤러를 단계적으로 최적화하는 과정입니다.
+실제 웹 크롤러를 단계적으로 최적화하는 과정입니다. 본격적으로 들어가기 전에, 비동기 코드 안에서 **동기(blocking) 호출 하나가 이벤트 루프 전체를 어떻게 멈추는지**를 짚고 갑니다. 이것이 `requests.get()` 같은 동기 라이브러리를 코루틴 안에서 그대로 쓰면 안 되는 이유입니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="blocking 호출이 이벤트 루프를 막는 문제를 await와 비교한 그림. 왼쪽은 await sleep을 만난 코루틴이 제어를 루프에 양보해 다른 코루틴 B, C가 그 사이 실행되는 협력적 흐름. 오른쪽은 코루틴 안에서 requests.get 같은 동기 blocking 호출을 하면 단일 스레드가 그 호출에 갇혀 이벤트 루프가 멈추고, 대기 중인 B와 C가 실행되지 못한 채 큐에 묶여 있는 모습." viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg">
+  <title>await(양보) vs blocking 호출(루프 정지) — 동기 호출은 단일 스레드를 통째로 점유한다</title>
+
+  <!-- ===== LEFT: await yields, others run ===== -->
+  <text x="170" y="26" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">await — 양보 (정상)</text>
+  <line x1="44" y1="120" x2="312" y2="120" stroke="currentColor" stroke-width="2.2" opacity="0.85"/>
+  <text x="44" y="142" font-size="8" fill="currentColor" opacity="0.7">시간 →</text>
+
+  <rect x="48" y="92" width="60" height="26" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="78" y="109" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">A 실행</text>
+  <line x1="108" y1="105" x2="120" y2="105" stroke="var(--secondary-color)" stroke-width="1.8" marker-end="url(#bl-arrow)"/>
+  <text x="118" y="84" text-anchor="middle" font-size="7.5" fill="currentColor" font-weight="700">await</text>
+  <!-- A waiting, B and C run in the gap -->
+  <rect x="122" y="92" width="60" height="26" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="152" y="109" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">B 실행</text>
+  <rect x="186" y="92" width="60" height="26" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="216" y="109" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">C 실행</text>
+  <rect x="250" y="92" width="58" height="26" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="279" y="109" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">A 재개</text>
+  <text x="170" y="178" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85">A가 대기하는 동안 B·C가 CPU를 씀 — 루프가 계속 돈다</text>
+
+  <!-- divider -->
+  <line x1="340" y1="40" x2="340" y2="244" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== RIGHT: blocking call freezes the loop ===== -->
+  <text x="510" y="26" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">blocking 호출 — 루프 정지 (문제)</text>
+  <line x1="372" y1="120" x2="640" y2="120" stroke="currentColor" stroke-width="2.2" opacity="0.85"/>
+  <text x="372" y="142" font-size="8" fill="currentColor" opacity="0.7">시간 →</text>
+
+  <rect x="376" y="92" width="56" height="26" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="404" y="109" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">A 실행</text>
+  <!-- A makes a blocking sync call: thread is stuck the whole bar -->
+  <rect x="434" y="92" width="160" height="26" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="514" y="109" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">requests.get() — 스레드 점유</text>
+  <text x="514" y="84" text-anchor="middle" font-size="7.5" fill="currentColor" font-weight="700" opacity="0.85">양보 없음</text>
+
+  <!-- B, C stuck waiting in the ready queue, never scheduled -->
+  <rect x="596" y="92" width="40" height="26" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.6" stroke-dasharray="4 3"/>
+  <text x="616" y="109" text-anchor="middle" font-size="7" fill="currentColor" opacity="0.7">…</text>
+  <g font-size="8" font-weight="700">
+    <rect x="438" y="156" width="72" height="24" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.4" stroke-dasharray="4 3" opacity="0.8"/>
+    <text x="474" y="172" text-anchor="middle" fill="currentColor" opacity="0.8">B 대기</text>
+    <rect x="518" y="156" width="72" height="24" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.4" stroke-dasharray="4 3" opacity="0.8"/>
+    <text x="554" y="172" text-anchor="middle" fill="currentColor" opacity="0.8">C 대기</text>
+  </g>
+  <line x1="514" y1="120" x2="514" y2="154" stroke="currentColor" stroke-width="1.4" stroke-dasharray="3 3" opacity="0.7"/>
+  <text x="514" y="200" text-anchor="middle" font-size="8.5" fill="var(--accent-color)" font-weight="700">루프가 막혀 B·C가 실행되지 못함</text>
+  <text x="510" y="224" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">→ run_in_executor / aiohttp 같은 비동기 I/O로 풀어야 함</text>
+
+  <defs>
+    <marker id="bl-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>왼쪽은 <code>await</code>로 제어를 <strong>양보</strong>해 A가 대기하는 동안 B·C가 실행되는 정상 흐름. 오른쪽은 코루틴 안에서 <code>requests.get()</code> 같은 <strong>동기 blocking 호출</strong>을 하면 단일 스레드가 그 호출에 갇혀 <strong>이벤트 루프 전체가 멈추고</strong> 큐의 B·C가 실행되지 못합니다. 동기 라이브러리는 <code>aiohttp</code>로 바꾸거나 <code>loop.run_in_executor()</code>로 별도 스레드에 밀어내야 합니다.</figcaption>
+</figure>
 
 ### Step 1: 동기 방식 (비효율적)
 

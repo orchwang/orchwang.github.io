@@ -10,6 +10,78 @@ banner: wartable
 excerpt: "Python Backend Engineer 직무 기술서. Junior부터 Staff급까지 레벨별 역할, 책임, 기술 스택, 핵심 역량을 상세히 정리했습니다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="Python Backend Engineer 직무 기술서를 한 장으로 요약한 그림. 왼쪽에는 Junior에서 Mid, Senior, Lead로 한 단씩 올라가는 네 칸짜리 성장 계단이 있고 각 칸 위에 역할 초점(기능 구현, 서비스 운영, 시스템 설계, 기술 전략)이 적혀 있다. 오른쪽에는 직무가 요구하는 역량을 쌓아 올린 탑이 있는데, 아래에서 위로 언어 기본기, 프레임워크와 DB, 인프라와 운영, 그리고 꼭대기에 리더십·소프트스킬이 놓여 있다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>Python Backend Engineer 직무 기술서 — 레벨 성장 계단(Junior→Lead)과 요구 역량 스택</title>
+
+  <!-- ===== LEFT: level growth staircase ===== -->
+  <text x="176" y="24" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">레벨 성장 계단</text>
+
+  <!-- Junior -->
+  <rect x="40" y="206" width="76" height="48" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="78" y="227" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">Junior</text>
+  <text x="78" y="242" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">기능 구현</text>
+
+  <!-- Mid -->
+  <rect x="116" y="166" width="76" height="88" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="154" y="187" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">Mid</text>
+  <text x="154" y="202" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">서비스 운영</text>
+
+  <!-- Senior -->
+  <rect x="192" y="126" width="76" height="128" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="230" y="147" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">Senior</text>
+  <text x="230" y="162" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">시스템 설계</text>
+
+  <!-- Lead -->
+  <rect x="268" y="86" width="76" height="168" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <text x="306" y="107" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">Lead</text>
+  <text x="306" y="122" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">기술 전략</text>
+
+  <!-- rising arrows between steps -->
+  <line x1="118" y1="200" x2="132" y2="180" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#jd-arrow)"/>
+  <line x1="194" y1="160" x2="208" y2="140" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#jd-arrow)"/>
+  <line x1="270" y1="120" x2="284" y2="100" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#jd-arrow)"/>
+  <text x="176" y="276" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.8" font-weight="700">책임 범위가 한 단씩 ↑</text>
+
+  <!-- divider -->
+  <line x1="396" y1="40" x2="396" y2="262" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== RIGHT: competency stack tower ===== -->
+  <text x="540" y="24" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">요구 역량 스택</text>
+
+  <!-- top: leadership / soft skills -->
+  <rect x="446" y="48" width="188" height="36" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <text x="540" y="64" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">리더십 · 소프트스킬</text>
+  <text x="540" y="77" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">멘토링 · 의사결정 · 커뮤니케이션</text>
+
+  <!-- infra / ops -->
+  <rect x="446" y="90" width="188" height="36" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="540" y="106" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">인프라 · 운영</text>
+  <text x="540" y="119" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">Docker · K8s · CI/CD · 관측성</text>
+
+  <!-- framework / db -->
+  <rect x="446" y="132" width="188" height="36" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="540" y="148" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">프레임워크 · DB</text>
+  <text x="540" y="161" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">Django · FastAPI · PostgreSQL · Redis</text>
+
+  <!-- base: language fundamentals -->
+  <rect x="446" y="174" width="188" height="40" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="540" y="192" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">언어 기본기</text>
+  <text x="540" y="205" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">Python · Type Hint · asyncio · OOP</text>
+
+  <!-- foundation label -->
+  <line x1="446" y1="222" x2="634" y2="222" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+  <text x="540" y="276" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.8" font-weight="700">기본기 위에 역량을 쌓아 올림</text>
+
+  <defs>
+    <marker id="jd-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>이 직무 기술서의 한 장 요약 — 왼쪽은 <strong>레벨 성장 계단</strong>(Junior→Mid→Senior→Lead로 책임 범위가 한 단씩 넓어지며 초점이 기능 구현에서 기술 전략으로 이동), 오른쪽은 <strong>요구 역량 스택</strong>(언어 기본기를 토대로 프레임워크·DB, 인프라·운영, 그리고 리더십·소프트스킬을 쌓아 올림). 아래로 갈수록 모든 레벨의 공통 토대, 위로 갈수록 상위 레벨에서 두드러지는 역량입니다.</figcaption>
+</figure>
+
 ## 🧩 Python Backend Engineer — 직무 기술서 (Job Description)
 
 ## 🧠 개요 (Overview)
@@ -27,6 +99,29 @@ Python Backend Engineer는 Python 기반의 서버 애플리케이션과 API 서
 - **관측성**: Prometheus, Grafana, ELK, Sentry
 - **CI/CD**: GitHub Actions, ArgoCD, Jenkins
 - **기타**: REST/GraphQL, gRPC, OAuth2, OpenAPI, pytest
+
+### 🗺️ 한눈에 보기 (역량 카테고리 맵)
+
+위 기술 스택을 직무가 요구하는 **여섯 가지 역량 카테고리**로 묶으면 이렇게 정리됩니다. 아래 레벨별 책임은 결국 이 카테고리들을 얼마나 깊고 넓게 다루느냐의 차이입니다.
+
+```mermaid
+flowchart LR
+    JD(["Python Backend<br/>Engineer"])
+
+    JD --> L["언어 기본기"]
+    JD --> F["프레임워크"]
+    JD --> D["데이터베이스"]
+    JD --> I["인프라"]
+    JD --> O["관측성 · CI/CD"]
+    JD --> S["소프트스킬 · 리더십"]
+
+    L --> L1["Python 3.10+<br/>Type Hint · asyncio · OOP"]
+    F --> F1["Django · DRF<br/>FastAPI · Celery"]
+    D --> D1["PostgreSQL · Redis<br/>ClickHouse"]
+    I --> I1["Docker · K8s<br/>Terraform · AWS/GCP"]
+    O --> O1["Prometheus · Grafana<br/>ELK · Sentry · GitHub Actions"]
+    S --> S1["코드 리뷰 · 멘토링<br/>설계 의사결정 · 협업"]
+```
 
 ## 🧩 레벨별 역할 및 책임 (Role & Responsibility by Level)
 

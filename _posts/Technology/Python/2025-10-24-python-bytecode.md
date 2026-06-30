@@ -9,6 +9,88 @@ published: true
 excerpt: "Python이 코드를 효율적으로 실행하기 위해 사용하는 중간 표현인 바이트코드에 대해 알아봅니다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="Python 컴파일·실행 파이프라인을 한 장에 담은 그림. 왼쪽부터 소스 코드(.py 파일)가 파서를 거쳐 추상 구문 트리(AST)가 되고, 컴파일러가 이를 바이트코드 명령어 목록으로 바꾼 뒤, 스택 기반 가상 머신(PVM)이 명령어를 하나씩 읽어 값 스택을 push/pop하며 실행한다. 바이트코드는 .pyc 파일로 캐싱된다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>Python 바이트코드 파이프라인 — 소스(.py) → 파서/AST → 컴파일러/바이트코드 → 스택 기반 PVM 실행</title>
+
+  <!-- ===== STAGE 1: source .py ===== -->
+  <rect x="20" y="96" width="92" height="64" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="66" y="120" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">소스 코드</text>
+  <text x="66" y="136" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.75">.py 파일</text>
+  <text x="66" y="151" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.6">a + b</text>
+  <text x="66" y="180" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.8" font-weight="700">사람이 작성</text>
+
+  <line x1="114" y1="128" x2="138" y2="128" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#bc-arrow)"/>
+  <text x="126" y="118" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">파서</text>
+
+  <!-- ===== STAGE 2: AST ===== -->
+  <rect x="140" y="96" width="92" height="64" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="186" y="116" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">AST</text>
+  <text x="186" y="129" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">구문 트리</text>
+  <!-- tiny tree glyph -->
+  <circle cx="186" cy="140" r="3.2" fill="none" stroke="var(--accent-color)" stroke-width="1.6"/>
+  <circle cx="174" cy="152" r="3.2" fill="none" stroke="currentColor" stroke-width="1.4"/>
+  <circle cx="198" cy="152" r="3.2" fill="none" stroke="currentColor" stroke-width="1.4"/>
+  <line x1="184" y1="142.5" x2="176" y2="149.5" stroke="currentColor" stroke-width="1.2"/>
+  <line x1="188" y1="142.5" x2="196" y2="149.5" stroke="currentColor" stroke-width="1.2"/>
+  <text x="186" y="180" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.8" font-weight="700">파서가 생성</text>
+
+  <line x1="234" y1="128" x2="258" y2="128" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#bc-arrow)"/>
+  <text x="246" y="118" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">컴파일러</text>
+
+  <!-- ===== STAGE 3: bytecode ===== -->
+  <rect x="260" y="96" width="104" height="64" rx="4" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.4"/>
+  <text x="312" y="114" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">바이트코드</text>
+  <text x="270" y="130" font-size="7.5" fill="currentColor" opacity="0.8" font-family="monospace">LOAD_FAST a</text>
+  <text x="270" y="141" font-size="7.5" fill="currentColor" opacity="0.8" font-family="monospace">LOAD_FAST b</text>
+  <text x="270" y="152" font-size="7.5" fill="currentColor" opacity="0.8" font-family="monospace">BINARY_ADD</text>
+  <text x="312" y="180" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.8" font-weight="700">중간 표현</text>
+
+  <!-- bytecode caches to .pyc (downward) -->
+  <line x1="312" y1="160" x2="312" y2="196" stroke="var(--secondary-color)" stroke-width="1.6" stroke-dasharray="3 3" marker-end="url(#bc-arrow)"/>
+  <rect x="266" y="198" width="92" height="26" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.4"/>
+  <text x="312" y="215" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85">.pyc 캐시</text>
+
+  <line x1="366" y1="128" x2="390" y2="128" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#bc-arrow)"/>
+  <text x="378" y="118" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">실행</text>
+
+  <!-- ===== STAGE 4: stack-based PVM ===== -->
+  <rect x="392" y="64" width="268" height="160" rx="5" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.4"/>
+  <text x="526" y="84" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">스택 기반 가상 머신 (PVM)</text>
+  <text x="526" y="98" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.7">ceval.c — Fetch → Decode → Execute</text>
+
+  <!-- instruction pointer reading bytecode list -->
+  <rect x="408" y="112" width="96" height="96" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="456" y="127" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.75" font-weight="700">명령어 포인터</text>
+  <text x="416" y="146" font-size="8" fill="var(--accent-color)" font-family="monospace" font-weight="700">▶ LOAD_FAST</text>
+  <text x="416" y="162" font-size="8" fill="currentColor" opacity="0.6" font-family="monospace">  LOAD_FAST</text>
+  <text x="416" y="178" font-size="8" fill="currentColor" opacity="0.6" font-family="monospace">  BINARY_ADD</text>
+  <text x="416" y="194" font-size="8" fill="currentColor" opacity="0.6" font-family="monospace">  RETURN</text>
+
+  <!-- push/pop arrows between pointer and value stack -->
+  <line x1="506" y1="150" x2="540" y2="150" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#bc-arrow)"/>
+  <text x="523" y="144" text-anchor="middle" font-size="7" fill="currentColor" opacity="0.7">push</text>
+  <line x1="540" y1="172" x2="506" y2="172" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#bc-arrow)"/>
+  <text x="523" y="184" text-anchor="middle" font-size="7" fill="currentColor" opacity="0.7">pop</text>
+
+  <!-- value stack -->
+  <rect x="544" y="112" width="100" height="96" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="594" y="127" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.75" font-weight="700">값 스택</text>
+  <rect x="556" y="178" width="76" height="20" rx="2" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.2"/>
+  <text x="594" y="192" text-anchor="middle" font-size="8" fill="currentColor" font-family="monospace">b</text>
+  <rect x="556" y="154" width="76" height="20" rx="2" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.2"/>
+  <text x="594" y="168" text-anchor="middle" font-size="8" fill="currentColor" font-family="monospace">a</text>
+  <text x="594" y="146" text-anchor="middle" font-size="7" fill="currentColor" opacity="0.55">top ↑</text>
+
+  <defs>
+    <marker id="bc-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>이 글의 한 장 요약 — 사람이 쓴 <strong>소스 코드(.py)</strong>가 파서를 거쳐 <strong>AST</strong>가 되고, 컴파일러가 이를 <strong>바이트코드</strong> 명령어 목록으로 바꾼 뒤(<code>.pyc</code>로 캐싱), <strong>스택 기반 가상 머신(PVM)</strong>이 명령어를 하나씩 읽어 <strong>값 스택</strong>에 push/pop하며 실행한다. 바이트코드는 사람이 아니라 이 PVM을 위해 설계된 중간 표현이다.</figcaption>
+</figure>
+
 ## 소개
 
 Python 바이트코드는 Python 인터프리터가 실행하는 중간 표현 형태입니다. Python 스크립트를 실행하면, 소스 코드가 먼저 바이트코드로 컴파일되고, 이후 Python Virtual Machine(PVM)에 의해 실행됩니다. 바이트코드를 이해하면 더 효율적인 코드를 작성하고 성능 문제를 디버깅하는 데 도움이 됩니다.
@@ -202,6 +284,74 @@ dis.dis(multiply)
 - **세 번째 열**: Opcode 이름 (LOAD_FAST, BINARY_MULTIPLY 등)
 - **네 번째 열**: Opcode의 인자 (숫자)
 - **괄호 안**: 인자의 실제 의미 (변수명, 상수값 등)
+
+여기서 헷갈리기 쉬운 점은 **네 번째 열의 숫자(인자)와 괄호 안의 의미가 어떻게 연결되는가**입니다. 인자는 값 자체가 아니라, 함수가 컴파일될 때 함께 만들어지는 **code object** 안의 테이블을 가리키는 **인덱스**입니다. 예컨대 `LOAD_FAST 0`은 "0번 인자를 직접 올려라"가 아니라 "`co_varnames[0]`이 가리키는 지역 변수를 올려라"라는 뜻이고, `dis`는 그 테이블을 대신 조회해 괄호 안에 실제 이름을 보여줍니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="code object의 구조와 디스어셈블 출력의 연결을 보여주는 그림. 왼쪽에는 컴파일된 code object 안에 co_code(원시 바이트), co_varnames, co_consts, co_names 같은 테이블이 들어 있다. 가운데 바이트코드 명령어 LOAD_FAST 0의 인자 0은 co_varnames 테이블의 0번 칸을 가리키는 인덱스이며, 화살표가 co_varnames의 0번 항목 a로 연결된다. 오른쪽에는 dis가 그 테이블을 조회해 출력한 결과로, 인자 0 옆 괄호 안에 실제 변수 이름 a가 표시된다." viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
+  <title>code object의 구조 — 인자(숫자)는 co_varnames·co_consts·co_names 테이블의 인덱스이고, dis가 그 값을 조회해 괄호 안에 보여준다</title>
+
+  <text x="20" y="28" font-size="11" fill="currentColor" font-weight="700" opacity="0.8">함수 = 코드(code object) + 데이터 테이블</text>
+
+  <!-- ===== LEFT: code object container ===== -->
+  <rect x="20" y="44" width="232" height="244" rx="5" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.2"/>
+  <text x="136" y="64" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">code object</text>
+  <text x="136" y="77" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.6" font-family="monospace">add.__code__</text>
+
+  <!-- co_code -->
+  <rect x="34" y="88" width="204" height="38" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="42" y="103" font-size="8.5" fill="currentColor" font-weight="700" font-family="monospace">co_code</text>
+  <text x="42" y="118" font-size="7.5" fill="currentColor" opacity="0.7">원시 바이트 (opcode+인자)</text>
+
+  <!-- co_varnames -->
+  <rect x="34" y="132" width="204" height="46" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="42" y="147" font-size="8.5" fill="currentColor" font-weight="700" font-family="monospace">co_varnames</text>
+  <rect x="42" y="153" width="40" height="18" rx="2" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.2"/>
+  <text x="62" y="166" text-anchor="middle" font-size="8" fill="currentColor" font-family="monospace">[0] a</text>
+  <rect x="86" y="153" width="40" height="18" rx="2" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.2"/>
+  <text x="106" y="166" text-anchor="middle" font-size="8" fill="currentColor" font-family="monospace">[1] b</text>
+
+  <!-- co_consts -->
+  <rect x="34" y="184" width="204" height="44" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="42" y="199" font-size="8.5" fill="currentColor" font-weight="700" font-family="monospace">co_consts</text>
+  <rect x="42" y="205" width="46" height="18" rx="2" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.2"/>
+  <text x="65" y="218" text-anchor="middle" font-size="8" fill="currentColor" font-family="monospace">[0] None</text>
+
+  <!-- co_names -->
+  <rect x="34" y="234" width="204" height="44" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="42" y="249" font-size="8.5" fill="currentColor" font-weight="700" font-family="monospace">co_names</text>
+  <text x="42" y="264" font-size="7.5" fill="currentColor" opacity="0.7">전역·속성 이름 (print 등)</text>
+
+  <!-- ===== MIDDLE: instruction with index arg ===== -->
+  <rect x="288" y="120" width="132" height="58" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="354" y="140" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700" font-family="monospace">LOAD_FAST</text>
+  <text x="354" y="158" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.7">opcode</text>
+  <circle cx="354" cy="168" r="8" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="354" y="171" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700" font-family="monospace">0</text>
+  <text x="354" y="194" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.65">인자 = 인덱스</text>
+
+  <!-- index -> co_varnames[0] arrow -->
+  <path d="M288,168 C250,168 248,162 130,162" fill="none" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#co-arrow)"/>
+  <text x="218" y="118" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.75">테이블 0번 조회</text>
+
+  <!-- ===== RIGHT: dis output ===== -->
+  <line x1="420" y1="149" x2="452" y2="149" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#co-arrow)"/>
+  <text x="436" y="142" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">dis</text>
+  <rect x="454" y="120" width="206" height="58" rx="4" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.2"/>
+  <text x="462" y="139" font-size="8.5" fill="currentColor" opacity="0.65" font-family="monospace">dis.dis(add):</text>
+  <text x="462" y="158" font-size="9" fill="currentColor" font-weight="700" font-family="monospace">LOAD_FAST  <tspan fill="var(--accent-color)">0</tspan> <tspan>(</tspan><tspan fill="var(--accent-color)" font-weight="700">a</tspan><tspan>)</tspan></text>
+  <text x="462" y="172" font-size="7.5" fill="currentColor" opacity="0.7">인덱스 0 → 이름 a 를 대신 조회</text>
+
+  <text x="340" y="306" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.85"><tspan font-weight="700">정리:</tspan> 인자는 값이 아니라 인덱스 — 같은 숫자 <tspan font-family="monospace">0</tspan>도 어느 테이블(varnames·consts·names)을 보느냐에 따라 가리키는 대상이 달라진다.</text>
+
+  <defs>
+    <marker id="co-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>code object의 구조 — 컴파일된 함수는 명령어 바이트(<code>co_code</code>)와 함께 <code>co_varnames</code>·<code>co_consts</code>·<code>co_names</code> 같은 데이터 테이블을 품는다. 명령어의 인자는 값이 아니라 이 테이블을 가리키는 <strong>인덱스</strong>이고, <code>dis</code>가 인덱스를 대신 조회해 괄호 안에 실제 이름·값을 보여준다. 그래서 같은 숫자라도 어느 테이블을 보느냐에 따라 의미가 달라진다.</figcaption>
+</figure>
 
 #### dis.Bytecode 클래스
 
@@ -441,6 +591,82 @@ CPython은 **스택 기반 가상 머신**입니다:
 2. **Decode**: Opcode와 인자를 해석
 3. **Execute**: Switch 문으로 해당 opcode 실행
 4. **Repeat**: 다음 명령어로 이동하여 반복
+
+스택 머신에서 각 opcode는 **값 스택을 어떻게 바꾸는지**로 정의됩니다. 아래는 대표적인 세 부류 — 값을 올리는 `LOAD`, 값을 내려 저장하는 `STORE`, 두 값을 꺼내 연산 결과를 다시 올리는 `BINARY_OP` — 가 스택에 미치는 효과입니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="스택 기반 가상 머신에서 세 종류의 opcode가 값 스택을 어떻게 바꾸는지 보여주는 그림. LOAD 계열은 값을 하나 스택 위에 push하고, STORE 계열은 스택 맨 위 값을 하나 pop하여 변수에 저장하며, BINARY_OP 계열은 위 두 값을 pop한 뒤 연산 결과 하나를 다시 push한다. 각 경우 실행 전 스택과 실행 후 스택을 화살표로 연결해 비교한다." viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg">
+  <title>스택 머신의 opcode별 스택 효과 — LOAD(push) · STORE(pop) · BINARY_OP(2 pop + 1 push)</title>
+
+  <!-- ===== ROW 1: LOAD = push ===== -->
+  <text x="20" y="40" font-size="11" fill="currentColor" font-weight="700" font-family="monospace">LOAD_FAST a</text>
+  <text x="20" y="55" font-size="8.5" fill="currentColor" opacity="0.7">변수 값을 스택 위에 올림 (push 1)</text>
+  <!-- before -->
+  <text x="190" y="38" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.6">실행 전</text>
+  <rect x="160" y="44" width="60" height="22" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.3"/>
+  <text x="190" y="59" text-anchor="middle" font-size="8.5" fill="currentColor" font-family="monospace">x</text>
+  <line x1="230" y1="55" x2="262" y2="55" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#sm-arrow)"/>
+  <!-- after -->
+  <text x="312" y="38" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.6">실행 후</text>
+  <rect x="282" y="20" width="60" height="22" rx="2" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="312" y="35" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700" font-family="monospace">a</text>
+  <rect x="282" y="44" width="60" height="22" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.3"/>
+  <text x="312" y="59" text-anchor="middle" font-size="8.5" fill="currentColor" font-family="monospace">x</text>
+  <text x="372" y="33" font-size="9" fill="var(--accent-color)" font-weight="700">+ a 올라감</text>
+
+  <line x1="20" y1="84" x2="660" y2="84" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+
+  <!-- ===== ROW 2: STORE = pop ===== -->
+  <text x="20" y="124" font-size="11" fill="currentColor" font-weight="700" font-family="monospace">STORE_FAST c</text>
+  <text x="20" y="139" font-size="8.5" fill="currentColor" opacity="0.7">맨 위 값을 내려 변수에 저장 (pop 1)</text>
+  <!-- before -->
+  <text x="190" y="106" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.6">실행 전</text>
+  <rect x="160" y="112" width="60" height="22" rx="2" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="190" y="127" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700" font-family="monospace">v</text>
+  <rect x="160" y="136" width="60" height="22" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.3"/>
+  <text x="190" y="151" text-anchor="middle" font-size="8.5" fill="currentColor" font-family="monospace">x</text>
+  <line x1="230" y1="135" x2="262" y2="135" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#sm-arrow)"/>
+  <!-- after -->
+  <text x="312" y="106" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.6">실행 후</text>
+  <rect x="282" y="136" width="60" height="22" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.3"/>
+  <text x="312" y="151" text-anchor="middle" font-size="8.5" fill="currentColor" font-family="monospace">x</text>
+  <text x="372" y="131" font-size="9" fill="currentColor" font-weight="700" opacity="0.85">v 내려가 c에 저장</text>
+
+  <line x1="20" y1="176" x2="660" y2="176" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+
+  <!-- ===== ROW 3: BINARY_OP = 2 pop + 1 push ===== -->
+  <text x="20" y="222" font-size="11" fill="currentColor" font-weight="700" font-family="monospace">BINARY_ADD</text>
+  <text x="20" y="237" font-size="8.5" fill="currentColor" opacity="0.7">위 두 값을 꺼내 더한 뒤 결과를 올림</text>
+  <text x="20" y="251" font-size="8.5" fill="currentColor" opacity="0.7">(pop 2, push 1)</text>
+  <!-- before: a then b on top -->
+  <text x="190" y="196" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.6">실행 전</text>
+  <rect x="160" y="202" width="60" height="22" rx="2" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="190" y="217" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700" font-family="monospace">b</text>
+  <rect x="160" y="226" width="60" height="22" rx="2" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="190" y="241" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700" font-family="monospace">a</text>
+  <rect x="160" y="250" width="60" height="22" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.3"/>
+  <text x="190" y="265" text-anchor="middle" font-size="8.5" fill="currentColor" font-family="monospace">x</text>
+  <line x1="230" y1="237" x2="262" y2="237" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#sm-arrow)"/>
+  <!-- after: a+b on top -->
+  <text x="312" y="196" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.6">실행 후</text>
+  <rect x="282" y="226" width="60" height="22" rx="2" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.2"/>
+  <text x="312" y="241" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700" font-family="monospace">a+b</text>
+  <rect x="282" y="250" width="60" height="22" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.3"/>
+  <text x="312" y="265" text-anchor="middle" font-size="8.5" fill="currentColor" font-family="monospace">x</text>
+  <text x="372" y="231" font-size="9" fill="currentColor" font-weight="700" opacity="0.85">a, b 빠지고 합이 올라감</text>
+
+  <!-- legend -->
+  <line x1="20" y1="292" x2="660" y2="292" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+  <text x="20" y="316" font-size="9" fill="currentColor" opacity="0.85"><tspan font-weight="700">핵심:</tspan> 모든 연산은 스택 맨 위(top)에서만 일어난다 — 레지스터 이름 없이, opcode가 정의하는 push/pop 규칙만으로 계산이 진행된다.</text>
+
+  <defs>
+    <marker id="sm-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>스택 머신의 opcode별 스택 효과 — <code>LOAD</code>는 값 하나를 <strong>push</strong>하고, <code>STORE</code>는 맨 위 값을 <strong>pop</strong>해 변수에 저장하며, <code>BINARY_ADD</code>는 위 두 값을 <strong>pop</strong>해 연산한 뒤 결과 하나를 다시 <strong>push</strong>한다. 모든 계산이 스택 맨 위에서만 일어나기에 명령어가 단순하고 균일하다.</figcaption>
+</figure>
 
 **인터프리터 루프 동작 흐름:**
 

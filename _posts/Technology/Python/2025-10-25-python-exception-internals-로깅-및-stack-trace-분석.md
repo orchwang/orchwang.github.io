@@ -9,6 +9,81 @@ published: true
 excerpt: "Python의 예외 처리 내부 구조와 로깅 메커니즘, 그리고 Stack trace 분석 방법을 상세히 다룹니다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="Python 예외 전파를 한 장으로 그린 그림. 왼쪽에는 level_1이 level_2를, level_2가 level_3을 호출한 콜스택이 위에서 아래로 쌓여 있고, 가장 깊은 level_3에서 raise로 예외가 발생한다. 가운데에는 발생한 예외가 콜스택을 거꾸로 거슬러 올라가며(unwinding) 각 프레임에서 자신을 잡아 줄 except 핸들러를 찾는 과정이 위로 향하는 화살표로 그려진다. level_3과 level_2에는 매칭되는 except가 없어 통과하고, level_1에서 except가 예외를 잡는다. 오른쪽에는 그 전파 과정에서 프레임마다 한 칸씩 만들어진 traceback 노드가 tb_next로 이어진 연결 리스트로 구성되어, 가장 안쪽 프레임이 리스트의 끝(tb_next=None)이 된다." viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
+  <title>Python 예외 전파 — raise → 콜스택을 거슬러 올라가며 except 탐색(unwinding) → traceback 연결 리스트 구성</title>
+
+  <!-- ===== LEFT: call stack (level_1 → level_2 → level_3) ===== -->
+  <text x="118" y="24" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">콜스택 (호출 방향 ↓)</text>
+
+  <rect x="44" y="42" width="148" height="40" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="118" y="60" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">level_1()</text>
+  <text x="118" y="74" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">except 가 여기서 잡음</text>
+
+  <rect x="44" y="106" width="148" height="40" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="118" y="124" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">level_2()</text>
+  <text x="118" y="138" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">핸들러 없음 → 통과</text>
+
+  <rect x="44" y="170" width="148" height="44" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.4"/>
+  <text x="118" y="189" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">level_3()</text>
+  <text x="118" y="203" text-anchor="middle" font-size="8.5" fill="var(--accent-color)" font-weight="700">raise — 예외 발생</text>
+
+  <!-- call-down arrows (caller → callee) -->
+  <line x1="118" y1="82" x2="118" y2="104" stroke="currentColor" stroke-width="1.6" opacity="0.45" marker-end="url(#exc-arrow-dim)"/>
+  <line x1="118" y1="146" x2="118" y2="168" stroke="currentColor" stroke-width="1.6" opacity="0.45" marker-end="url(#exc-arrow-dim)"/>
+
+  <!-- divider -->
+  <line x1="232" y1="40" x2="232" y2="280" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== MIDDLE: unwinding (search up the stack for a handler) ===== -->
+  <text x="330" y="24" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">전파 (unwinding ↑)</text>
+
+  <!-- upward arrow spine -->
+  <line x1="330" y1="206" x2="330" y2="70" stroke="var(--secondary-color)" stroke-width="3" marker-end="url(#exc-arrow)"/>
+
+  <text x="330" y="226" text-anchor="middle" font-size="9" fill="var(--accent-color)" font-weight="700">level_3 에서 시작</text>
+  <text x="346" y="186" text-anchor="start" font-size="8.5" fill="currentColor" opacity="0.85">level_3: except 매칭 ✗</text>
+  <text x="346" y="142" text-anchor="start" font-size="8.5" fill="currentColor" opacity="0.85">level_2: except 매칭 ✗</text>
+  <text x="346" y="84" text-anchor="start" font-size="9" fill="currentColor" font-weight="700">level_1: except 매칭 ✓</text>
+
+  <!-- catch marker at top -->
+  <circle cx="330" cy="66" r="12" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.4"/>
+  <text x="330" y="70" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">잡힘</text>
+
+  <!-- divider -->
+  <line x1="432" y1="40" x2="432" y2="280" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== RIGHT: traceback linked list grows during propagation ===== -->
+  <text x="556" y="24" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">traceback 연결 리스트</text>
+
+  <rect x="466" y="44" width="180" height="42" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="556" y="62" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">tb (level_1)</text>
+  <text x="556" y="78" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">tb_frame · tb_lineno · tb_next →</text>
+
+  <rect x="466" y="116" width="180" height="42" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="556" y="134" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">tb (level_2)</text>
+  <text x="556" y="150" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">tb_frame · tb_lineno · tb_next →</text>
+
+  <rect x="466" y="188" width="180" height="42" rx="3" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.2"/>
+  <text x="556" y="206" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">tb (level_3)</text>
+  <text x="556" y="222" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">tb_frame · tb_lineno · tb_next = None</text>
+
+  <line x1="556" y1="86" x2="556" y2="114" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#exc-arrow)"/>
+  <line x1="556" y1="158" x2="556" y2="186" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#exc-arrow)"/>
+  <text x="556" y="252" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">가장 안쪽 프레임 = 리스트의 끝</text>
+
+  <defs>
+    <marker id="exc-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+    <marker id="exc-arrow-dim" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="currentColor"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>예외 전파의 한 장 요약 — 왼쪽 <strong>콜스택</strong>은 level_1 → level_2 → level_3 순으로 호출이 깊어지고 가장 안쪽 level_3에서 <strong>raise</strong>가 일어납니다. 가운데처럼 예외는 콜스택을 <strong>거꾸로 거슬러 올라가며(unwinding)</strong> 각 프레임의 except를 검사하다 level_1에서 잡힙니다. 그 과정에서 프레임마다 한 칸씩 오른쪽의 <strong>traceback 노드</strong>가 만들어져 tb_next로 이어진 연결 리스트가 되고, 가장 안쪽 프레임이 리스트의 끝(tb_next = None)이 됩니다.</figcaption>
+</figure>
+
 ## Introduction
 
 Python에서 예외(Exception)는 프로그램 실행 중 발생하는 오류를 처리하는 핵심 메커니즘입니다. 이 글에서는 Python 예외의 내부 동작 원리, 효과적인 로깅 전략, 그리고 Stack trace를 분석하는 방법을 깊이 있게 살펴봅니다.
@@ -221,6 +296,71 @@ typedef struct _frame {
     // ... 기타 필드
 } PyFrameObject;
 ```
+
+여기서 헷갈리기 쉬운 부분은 **두 개의 연결 방향이 서로 반대**라는 점입니다. Traceback 노드는 `tb_next`로 **바깥쪽(호출자)에서 안쪽(예외 발생 지점)으로** 이어지지만, Frame 객체는 `f_back`으로 **안쪽에서 바깥쪽(호출자)으로** 거슬러 올라갑니다. 같은 콜스택을 두 자료구조가 정반대 방향으로 가리키는 셈입니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="traceback 노드와 frame 객체가 같은 콜스택을 서로 반대 방향으로 가리키는 구조를 보여 주는 그림. 위쪽 줄에는 traceback 노드 세 개가 tb_next 화살표로 왼쪽(level_1, 바깥쪽 호출자)에서 오른쪽(level_3, 예외 발생 지점)으로 이어진다. 아래쪽 줄에는 같은 자리에 frame 객체 세 개가 있고, f_back 화살표는 반대로 오른쪽(level_3)에서 왼쪽(level_1)으로 거슬러 올라간다. 각 traceback 노드는 점선으로 같은 위치의 frame 객체를 tb_frame으로 참조한다." viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg">
+  <title>traceback 의 tb_next(바깥→안) 와 frame 의 f_back(안→바깥) — 같은 콜스택, 반대 방향</title>
+
+  <!-- ===== top row: traceback nodes, tb_next goes outer → inner ===== -->
+  <text x="20" y="30" font-size="11" fill="currentColor" font-weight="700" opacity="0.8">Traceback 체인</text>
+  <text x="620" y="30" text-anchor="end" font-size="9" fill="var(--secondary-color)" font-weight="700">tb_next: 바깥 → 안 ▶</text>
+
+  <rect x="24" y="44" width="160" height="52" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="104" y="64" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">tb (level_1)</text>
+  <text x="104" y="80" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">tb_frame ↓ · tb_next →</text>
+
+  <rect x="240" y="44" width="160" height="52" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="320" y="64" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">tb (level_2)</text>
+  <text x="320" y="80" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">tb_frame ↓ · tb_next →</text>
+
+  <rect x="456" y="44" width="160" height="52" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.2"/>
+  <text x="536" y="64" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">tb (level_3)</text>
+  <text x="536" y="80" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">tb_frame ↓ · tb_next = None</text>
+
+  <line x1="184" y1="70" x2="238" y2="70" stroke="var(--secondary-color)" stroke-width="2.4" marker-end="url(#fc-arrow)"/>
+  <line x1="400" y1="70" x2="454" y2="70" stroke="var(--secondary-color)" stroke-width="2.4" marker-end="url(#fc-arrow)"/>
+
+  <!-- tb_frame references (dashed, down to frames) -->
+  <line x1="104" y1="96" x2="104" y2="160" stroke="currentColor" stroke-width="1.4" stroke-dasharray="4 3" opacity="0.6" marker-end="url(#fc-arrow-dim)"/>
+  <line x1="320" y1="96" x2="320" y2="160" stroke="currentColor" stroke-width="1.4" stroke-dasharray="4 3" opacity="0.6" marker-end="url(#fc-arrow-dim)"/>
+  <line x1="536" y1="96" x2="536" y2="160" stroke="currentColor" stroke-width="1.4" stroke-dasharray="4 3" opacity="0.6" marker-end="url(#fc-arrow-dim)"/>
+  <text x="118" y="128" font-size="7.5" fill="currentColor" opacity="0.6">tb_frame</text>
+
+  <!-- ===== bottom row: frame objects, f_back goes inner → outer ===== -->
+  <rect x="24" y="162" width="160" height="52" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="104" y="182" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">Frame (level_1)</text>
+  <text x="104" y="198" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">f_back = None</text>
+
+  <rect x="240" y="162" width="160" height="52" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="320" y="182" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">Frame (level_2)</text>
+  <text x="320" y="198" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">f_back → level_1</text>
+
+  <rect x="456" y="162" width="160" height="52" rx="3" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.2"/>
+  <text x="536" y="182" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">Frame (level_3)</text>
+  <text x="536" y="198" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">f_back → level_2</text>
+
+  <line x1="456" y1="200" x2="402" y2="200" stroke="var(--gold)" stroke-width="2.4" marker-end="url(#fc-arrow-gold)"/>
+  <line x1="240" y1="200" x2="186" y2="200" stroke="var(--gold)" stroke-width="2.4" marker-end="url(#fc-arrow-gold)"/>
+
+  <text x="20" y="248" font-size="11" fill="currentColor" font-weight="700" opacity="0.8">Frame 체인</text>
+  <text x="620" y="248" text-anchor="end" font-size="9" fill="var(--gold)" font-weight="700">◀ f_back: 안 → 바깥(호출자)</text>
+
+  <defs>
+    <marker id="fc-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+    <marker id="fc-arrow-gold" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--gold)"/>
+    </marker>
+    <marker id="fc-arrow-dim" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="currentColor"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>같은 콜스택을 가리키는 두 연결 방향 — 위쪽 <strong>Traceback 체인</strong>의 <code>tb_next</code>는 바깥쪽 호출자(level_1)에서 예외 발생 지점(level_3)으로 향하고, 아래쪽 <strong>Frame 체인</strong>의 <code>f_back</code>은 정반대로 안쪽(level_3)에서 호출자(level_1)로 거슬러 올라갑니다. 각 traceback 노드는 점선(<code>tb_frame</code>)으로 같은 위치의 frame을 참조합니다. tb 체인을 따라가며 traceback을 출력하고, f_back을 따라가며 콜스택을 재구성하는 이유가 여기에 있습니다.</figcaption>
+</figure>
 
 ### Traceback 객체 탐색
 

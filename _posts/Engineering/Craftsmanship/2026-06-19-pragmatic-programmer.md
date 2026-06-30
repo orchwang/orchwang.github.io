@@ -9,6 +9,99 @@ published: true
 excerpt: "The Pragmatic Programmer가 말하는 장인의 일상 습관을 정리한다. DRY와 직교성, 깨진 창문 이론, 예광탄, 계약에 의한 설계와 일찍 죽기, 리팩터링·자동화, 지식 포트폴리오까지 매일의 작은 실천으로 풀어낸다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="실용주의 장인의 네 가지 습관을 한 장으로 묶은 그림. 왼쪽 위는 DRY로, 같은 지식이 흩어진 세 조각이 권위 있는 단 하나의 표현으로 모인다. 오른쪽 위는 직교성으로, 한 모듈을 바꿔도 옆 모듈로 파급되지 않게 축이 분리되어 있다. 왼쪽 아래는 깨진 창문을 즉시 고치는 태도로, 금 간 칸 하나를 멀쩡한 격자로 되돌린다. 오른쪽 아래는 지식 포트폴리오로, 꾸준히 쌓아 올리는 계단형 막대가 위를 향한다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>실용주의 장인의 습관 — DRY(지식의 단일 표현) · 직교성(결합 끊기) · 깨진 창문 고치기 · 지식 포트폴리오</title>
+
+  <!-- ===== TOP-LEFT: DRY — scattered knowledge converges to one authority ===== -->
+  <text x="116" y="24" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">DRY</text>
+  <!-- three scattered duplicates -->
+  <rect x="24" y="44" width="40" height="22" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="44" y="59" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.8">규칙</text>
+  <rect x="24" y="80" width="40" height="22" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="44" y="95" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.8">규칙</text>
+  <rect x="24" y="116" width="40" height="22" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="44" y="131" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.8">규칙</text>
+  <!-- converging arrows -->
+  <line x1="66" y1="55" x2="138" y2="86" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#pp-arrow)"/>
+  <line x1="66" y1="91" x2="138" y2="91" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#pp-arrow)"/>
+  <line x1="66" y1="127" x2="138" y2="96" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#pp-arrow)"/>
+  <!-- single authoritative source -->
+  <rect x="142" y="74" width="64" height="34" rx="4" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <text x="174" y="89" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">단 하나</text>
+  <text x="174" y="101" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">권위 있는 표현</text>
+  <text x="116" y="156" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.8" font-weight="700">지식은 한 곳에만</text>
+
+  <!-- divider -->
+  <line x1="244" y1="36" x2="244" y2="160" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== TOP-RIGHT: Orthogonality — independent axes, change stays contained ===== -->
+  <text x="468" y="24" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">직교성</text>
+  <!-- axes -->
+  <line x1="300" y1="140" x2="300" y2="48" stroke="currentColor" stroke-width="1.6" opacity="0.6" marker-end="url(#pp-arrowc)"/>
+  <line x1="300" y1="140" x2="396" y2="140" stroke="currentColor" stroke-width="1.6" opacity="0.6" marker-end="url(#pp-arrowc)"/>
+  <text x="288" y="56" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.7">UI</text>
+  <text x="392" y="156" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.7">DB</text>
+  <!-- module being changed -->
+  <rect x="318" y="92" width="44" height="30" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="340" y="111" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">변경</text>
+  <!-- neighbor unaffected -->
+  <rect x="420" y="60" width="64" height="30" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="452" y="79" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85">무관 모듈</text>
+  <!-- blocked ripple: dashed arrow with X -->
+  <line x1="364" y1="100" x2="416" y2="80" stroke="var(--secondary-color)" stroke-width="2" stroke-dasharray="4 4" opacity="0.55"/>
+  <g stroke="var(--accent-color)" stroke-width="2.5">
+    <line x1="386" y1="84" x2="396" y2="94"/>
+    <line x1="396" y1="84" x2="386" y2="94"/>
+  </g>
+  <text x="468" y="156" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.8" font-weight="700">변경이 새지 않는다</text>
+
+  <!-- horizontal divider -->
+  <line x1="40" y1="178" x2="640" y2="178" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== BOTTOM-LEFT: Broken windows — fix the cracked pane at once ===== -->
+  <text x="116" y="200" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">깨진 창문 고치기</text>
+  <!-- window grid -->
+  <rect x="58" y="214" width="116" height="62" rx="3" fill="var(--bg-sunken)" stroke="currentColor" stroke-width="1.8"/>
+  <line x1="116" y1="214" x2="116" y2="276" stroke="currentColor" stroke-width="1.4" opacity="0.6"/>
+  <line x1="58" y1="245" x2="174" y2="245" stroke="currentColor" stroke-width="1.4" opacity="0.6"/>
+  <!-- one repaired pane highlighted -->
+  <rect x="60" y="216" width="54" height="27" rx="2" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <!-- crack mark being removed (X cross-out) -->
+  <g stroke="var(--accent-color)" stroke-width="2">
+    <line x1="125" y1="252" x2="165" y2="270"/>
+    <line x1="165" y1="252" x2="125" y2="270"/>
+  </g>
+  <text x="116" y="293" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.8" font-weight="700">작은 부패를 즉시 고친다</text>
+
+  <!-- divider -->
+  <line x1="244" y1="190" x2="244" y2="288" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== BOTTOM-RIGHT: Knowledge portfolio — steady, rising investment ===== -->
+  <text x="468" y="200" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">지식 포트폴리오</text>
+  <!-- baseline -->
+  <line x1="300" y1="278" x2="640" y2="278" stroke="currentColor" stroke-width="1.4" opacity="0.5"/>
+  <!-- rising staircase bars -->
+  <rect x="320" y="262" width="34" height="16" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.4"/>
+  <rect x="364" y="248" width="34" height="30" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.4"/>
+  <rect x="408" y="232" width="34" height="46" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.4"/>
+  <rect x="452" y="216" width="34" height="62" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <!-- rising trend arrow -->
+  <line x1="326" y1="256" x2="476" y2="206" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#pp-arrow)"/>
+  <text x="468" y="295" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.8" font-weight="700">꾸준히 쌓는 학습 투자</text>
+
+  <defs>
+    <marker id="pp-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+    <marker id="pp-arrowc" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="currentColor"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>실용주의 장인의 일상 습관을 한 장으로 — <strong>DRY</strong>(흩어진 지식을 권위 있는 단 하나의 표현으로) · <strong>직교성</strong>(축을 분리해 한 모듈의 변경이 옆으로 새지 않게) · <strong>깨진 창문 고치기</strong>(작은 부패를 즉시 손봄) · <strong>지식 포트폴리오</strong>(꾸준한 학습 투자). 거창한 천재성이 아니라 매일 쌓는 작은 습관의 총합이다.</figcaption>
+</figure>
+
 ## 들어가며
 
 이 글은 `Craftsmanship-Essential` 시리즈의 **2단계**입니다. 전체 학습 경로는 [Craftsmanship Essential Curriculum](/2026/06/19/craftsmanship-essential-curriculum.html)에서 확인할 수 있습니다.
@@ -75,11 +168,117 @@ def discount_rate(age):      return 0.1 if is_adult(age) else 0.0
 
 이제 성인 기준이 18세로 바뀌어도 고칠 곳은 단 한 군데입니다. DRY의 목적은 타이핑을 아끼는 게 아니라, **변경 지점을 하나로 모으는 것**입니다.
 
+아래 그림은 *우연한 코드 중복*과 *지식의 중복*이 왜 다른지를 보여줍니다 — DRY가 겨냥하는 것은 후자뿐입니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="DRY가 겨냥하는 지식의 중복을 우연한 코드 중복과 대비한 그림. 왼쪽은 우연한 중복으로, 모양만 같고 변하는 이유가 서로 다른 두 코드 조각이라 합치지 않아도 된다. 오른쪽은 지식의 중복으로, 성인 기준 19세라는 같은 비즈니스 규칙이 세 곳에 복제되어 있어 규칙이 바뀌면 모두 고쳐야 하고 하나라도 놓치면 버그가 된다. 화살표는 이 셋을 권위 있는 단 하나의 상수 ADULT_AGE로 모은다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>DRY는 우연한 코드 중복이 아니라 지식(비즈니스 규칙)의 중복을 겨냥한다</title>
+
+  <!-- ===== LEFT: incidental code duplication — leave it alone ===== -->
+  <text x="158" y="26" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">우연한 코드 중복</text>
+  <rect x="40" y="52" width="100" height="46" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="90" y="72" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85">x &gt; 0 검사</text>
+  <text x="90" y="86" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">(잔액 검증)</text>
+  <rect x="178" y="52" width="100" height="46" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="228" y="72" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85">x &gt; 0 검사</text>
+  <text x="228" y="86" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">(재고 검증)</text>
+  <!-- "do not merge" note -->
+  <text x="158" y="124" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">모양만 같고, 변하는 이유는 다르다</text>
+  <text x="158" y="148" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">→ 합치지 않는다</text>
+
+  <!-- divider -->
+  <line x1="340" y1="40" x2="340" y2="270" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== RIGHT: knowledge duplication — the real DRY target ===== -->
+  <text x="510" y="26" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">지식의 중복</text>
+  <!-- three copies of the same rule -->
+  <rect x="372" y="48" width="120" height="30" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="1.8"/>
+  <text x="432" y="67" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.9">age &gt;= 19  (가입)</text>
+  <rect x="372" y="86" width="120" height="30" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="1.8"/>
+  <text x="432" y="105" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.9">age &gt;= 19  (구매)</text>
+  <rect x="372" y="124" width="120" height="30" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="1.8"/>
+  <text x="432" y="143" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.9">age &gt;= 19  (할인)</text>
+  <text x="432" y="174" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.75">같은 비즈니스 규칙이 세 곳에</text>
+  <!-- converge to single authority -->
+  <line x1="494" y1="63" x2="556" y2="206" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#dry-arrow)"/>
+  <line x1="494" y1="101" x2="556" y2="210" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#dry-arrow)"/>
+  <line x1="494" y1="139" x2="556" y2="214" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#dry-arrow)"/>
+  <rect x="488" y="200" width="148" height="40" rx="4" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <text x="562" y="218" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">ADULT_AGE = 19</text>
+  <text x="562" y="232" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">권위 있는 단 하나의 표현</text>
+  <text x="432" y="268" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700" opacity="0.85">→ 한 곳으로 모은다</text>
+
+  <defs>
+    <marker id="dry-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>DRY가 겨냥하는 건 <strong>지식의 중복</strong>이지 우연한 코드 중복이 아니다. 왼쪽처럼 모양만 같고 변하는 이유가 다른 코드는 굳이 합치지 않는다. 오른쪽처럼 같은 비즈니스 규칙(성인 기준 19세)이 흩어져 있으면, 권위 있는 단 하나의 표현(<code>ADULT_AGE</code>)으로 모아 변경 지점을 하나로 만든다.</figcaption>
+</figure>
+
 ### 직교성: 서로 영향을 주지 않게 분리한다
 
 직교성(orthogonality)은 기하학에서 빌려온 말로, "한 축을 움직여도 다른 축은 변하지 않는다"는 뜻입니다. 소프트웨어에서는 **한 모듈을 바꿔도 무관한 모듈은 영향을 받지 않는** 성질을 말합니다.
 
 데이터베이스 코드와 화면 코드가 직교적이라면, DB를 PostgreSQL에서 다른 것으로 바꿔도 UI는 손댈 필요가 없습니다. 직교성이 깨진 시스템에서는 한 곳의 변경이 예상치 못한 곳으로 파급되어, "이걸 고치면 저기가 깨진다"는 공포가 생깁니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="직교성이 결합도를 어떻게 낮추는지를 대비한 그림. 왼쪽은 결합된 시스템으로, DB 모듈을 바꾸면 변경이 화면과 결제 모듈로 연쇄적으로 파급되어 이걸 고치면 저기가 깨지는 공포가 생긴다. 오른쪽은 직교적인 시스템으로, DB 모듈을 바꿔도 화면과 결제 모듈로 향하는 파급이 끊겨 변경이 한 모듈 안에 갇힌다." viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg">
+  <title>직교성은 결합을 끊어 한 모듈의 변경이 다른 모듈로 파급되지 않게 한다</title>
+
+  <!-- ===== LEFT: coupled — change ripples out ===== -->
+  <text x="166" y="26" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">결합된 시스템</text>
+  <!-- DB module (changed) -->
+  <rect x="58" y="118" width="64" height="36" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="90" y="140" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">DB 변경</text>
+  <!-- UI module (affected) -->
+  <rect x="206" y="56" width="64" height="36" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="238" y="78" text-anchor="middle" font-size="9" fill="currentColor">화면</text>
+  <!-- Payment module (affected) -->
+  <rect x="206" y="180" width="64" height="36" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="238" y="202" text-anchor="middle" font-size="9" fill="currentColor">결제</text>
+  <!-- ripple arrows reach the neighbors -->
+  <line x1="122" y1="128" x2="204" y2="84" stroke="var(--secondary-color)" stroke-width="2.2" marker-end="url(#orth-arrow)"/>
+  <line x1="122" y1="144" x2="204" y2="190" stroke="var(--secondary-color)" stroke-width="2.2" marker-end="url(#orth-arrow)"/>
+  <!-- impact marks on neighbors -->
+  <text x="238" y="112" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85" font-weight="700">깨짐</text>
+  <text x="238" y="236" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85" font-weight="700">깨짐</text>
+  <text x="166" y="262" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700" opacity="0.85">변경이 옆으로 파급된다</text>
+
+  <!-- divider -->
+  <line x1="340" y1="40" x2="340" y2="252" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== RIGHT: orthogonal — change contained ===== -->
+  <text x="510" y="26" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">직교적인 시스템</text>
+  <!-- DB module (changed) -->
+  <rect x="402" y="118" width="64" height="36" rx="3" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="434" y="140" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">DB 변경</text>
+  <!-- UI module (unaffected) -->
+  <rect x="556" y="56" width="64" height="36" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="588" y="78" text-anchor="middle" font-size="9" fill="currentColor">화면</text>
+  <!-- Payment module (unaffected) -->
+  <rect x="556" y="180" width="64" height="36" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="588" y="202" text-anchor="middle" font-size="9" fill="currentColor">결제</text>
+  <!-- blocked ripples: dashed + X -->
+  <line x1="466" y1="128" x2="548" y2="84" stroke="var(--secondary-color)" stroke-width="2" stroke-dasharray="4 4" opacity="0.5"/>
+  <line x1="466" y1="144" x2="548" y2="190" stroke="var(--secondary-color)" stroke-width="2" stroke-dasharray="4 4" opacity="0.5"/>
+  <g stroke="var(--gold)" stroke-width="2.5">
+    <line x1="500" y1="98" x2="512" y2="110"/>
+    <line x1="512" y1="98" x2="500" y2="110"/>
+    <line x1="500" y1="162" x2="512" y2="174"/>
+    <line x1="512" y1="162" x2="500" y2="174"/>
+  </g>
+  <text x="510" y="262" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700" opacity="0.85">변경이 한 모듈에 갇힌다</text>
+
+  <defs>
+    <marker id="orth-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>직교성은 <strong>결합을 끊어</strong> 변경의 파급을 막는다. 결합된 시스템(왼쪽)에서는 DB를 바꾸면 화면·결제까지 연쇄로 깨지지만("이걸 고치면 저기가 깨진다"), 직교적인 시스템(오른쪽)에서는 같은 변경이 그 모듈 안에 갇힌다.</figcaption>
+</figure>
 
 DRY와 직교성은 한 쌍입니다. **DRY는 중복을 없애 변경 지점을 하나로 모으고, 직교성은 결합을 끊어 그 변경이 다른 곳으로 새어나가지 않게 막습니다.** 둘이 함께 작동할 때 시스템은 변경에 유연해집니다.
 

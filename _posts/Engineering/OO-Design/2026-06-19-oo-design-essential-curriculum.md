@@ -10,6 +10,73 @@ banner: wartable
 excerpt: "객체지향 설계와 디자인 패턴을 6권의 고전으로 정복하는 마스터 로드맵입니다. 패턴 입문부터 GoF 정전, 현대 언어 적용, 계약에 의한 설계, OOAD, DI까지 도장깨기 방식으로 추적합니다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="객체지향 설계 학습 여정을 한 장으로 묶은 그림. 왼쪽 아래에서 오른쪽 위로 세 단계의 계단이 오른다. 첫 계단 '기초'에는 Head First(패턴 입문)와 GoF(23개 패턴 정전) 두 권이 패턴 어휘를 쌓고, 둘째 계단 '핵심'에는 Swift(현대 언어 적용)·Meyer(OO 원리와 계약에 의한 설계)·Booch(분석과 설계) 세 권이 설계 근육을 키우며, 마지막 계단 '응용'에는 Dependency Injection 한 권이 결합도 관리로 마무리한다. 계단을 가로지르는 세로 축에는 아래에서 위로 원리, 패턴, 분석·설계, 결합도 관리가 층층이 쌓여 있다." viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
+  <title>OO-Design Essential — 6권으로 오르는 설계 학습 여정 (기초 → 핵심 → 응용)</title>
+
+  <!-- ===== left axis: conceptual layers stacking upward ===== -->
+  <text x="34" y="30" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.7">설계 깊이</text>
+  <line x1="34" y1="44" x2="34" y2="262" stroke="currentColor" stroke-width="1.6" opacity="0.5" marker-end="url(#oo-up)"/>
+  <text x="50" y="252" font-size="8.5" fill="currentColor" opacity="0.75">원리</text>
+  <text x="50" y="200" font-size="8.5" fill="currentColor" opacity="0.75">패턴</text>
+  <text x="50" y="140" font-size="8.5" fill="currentColor" opacity="0.75">분석·설계</text>
+  <text x="50" y="78" font-size="8.5" fill="currentColor" opacity="0.75">결합도 관리</text>
+
+  <!-- ground line -->
+  <line x1="84" y1="270" x2="660" y2="270" stroke="currentColor" stroke-width="1.4" opacity="0.35"/>
+
+  <!-- ===== STAGE 1: 기초 (lowest step) ===== -->
+  <rect x="92" y="206" width="172" height="64" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5" opacity="0.55"/>
+  <text x="178" y="226" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">기초 · 패턴 어휘</text>
+  <rect x="102" y="234" width="74" height="28" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="139" y="248" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">Head First</text>
+  <text x="139" y="257" text-anchor="middle" font-size="6.5" fill="currentColor" opacity="0.8">패턴 입문</text>
+  <rect x="182" y="234" width="74" height="28" rx="3" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2"/>
+  <text x="219" y="248" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">GoF</text>
+  <text x="219" y="257" text-anchor="middle" font-size="6.5" fill="currentColor" opacity="0.8">23개 정전</text>
+
+  <!-- ===== STAGE 2: 핵심 (middle step) ===== -->
+  <rect x="276" y="134" width="232" height="136" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5" opacity="0.55"/>
+  <text x="392" y="154" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">핵심 · 설계 근육</text>
+  <rect x="286" y="162" width="68" height="42" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="320" y="180" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">Swift</text>
+  <text x="320" y="192" text-anchor="middle" font-size="6.5" fill="currentColor" opacity="0.8">현대 언어</text>
+  <rect x="358" y="162" width="68" height="42" rx="3" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2"/>
+  <text x="392" y="180" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">Meyer</text>
+  <text x="392" y="192" text-anchor="middle" font-size="6.5" fill="currentColor" opacity="0.8">OO 원리·DbC</text>
+  <rect x="430" y="162" width="68" height="42" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="464" y="180" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">Booch</text>
+  <text x="464" y="192" text-anchor="middle" font-size="6.5" fill="currentColor" opacity="0.8">OOAD</text>
+  <text x="392" y="232" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">현대 적용 · 원리 · 분석/설계</text>
+
+  <!-- ===== STAGE 3: 응용 (highest step) ===== -->
+  <rect x="520" y="62" width="132" height="208" rx="4" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.2" opacity="0.85"/>
+  <text x="586" y="82" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">응용 · 결합도</text>
+  <rect x="532" y="92" width="108" height="46" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.2"/>
+  <text x="586" y="112" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">DI / IoC</text>
+  <text x="586" y="125" text-anchor="middle" font-size="6.5" fill="currentColor" opacity="0.8">의존성 주입</text>
+  <text x="586" y="170" text-anchor="middle" font-size="20" opacity="0.85">🏁</text>
+  <text x="586" y="200" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">설계 지식을</text>
+  <text x="586" y="212" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.7">규모로 조립</text>
+
+  <!-- ascending arrows between steps -->
+  <line x1="266" y1="226" x2="296" y2="200" stroke="var(--secondary-color)" stroke-width="2.4" marker-end="url(#oo-arrow)"/>
+  <line x1="500" y1="160" x2="532" y2="128" stroke="var(--secondary-color)" stroke-width="2.4" marker-end="url(#oo-arrow)"/>
+
+  <text x="372" y="298" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.85" font-weight="700">6권을 순서대로 오르면 — 어휘를 익히고, 근육을 키우고, 규모로 조립한다</text>
+
+  <defs>
+    <marker id="oo-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+    <marker id="oo-up" markerWidth="8" markerHeight="8" refX="4" refY="2" orient="auto">
+      <path d="M0,8 L4,0 L8,8 z" fill="currentColor"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>이 시리즈의 한 장 요약 — 6권의 고전을 <strong>기초(패턴 어휘)</strong> → <strong>핵심(설계 근육)</strong> → <strong>응용(결합도 관리)</strong> 세 계단으로 오른다. 왼쪽 세로 축은 학습이 깊어질수록 <strong>원리 → 패턴 → 분석·설계 → 결합도 관리</strong>로 쌓여 가는 설계의 층을 나타낸다. 패턴을 외우는 단계를 넘어, 마지막엔 의존성 주입으로 결합도를 의식적으로 관리한다.</figcaption>
+</figure>
+
 ## 소개
 
 좋은 소프트웨어와 그렇지 않은 소프트웨어를 가르는 가장 큰 변수는 문법 지식이 아니라 **설계 감각**입니다. 같은 기능을 구현하더라도 객체 사이의 책임을 어떻게 나누고, 변경에 어떻게 대응하며, 결합도(Coupling)를 어떻게 관리하느냐에 따라 코드의 수명은 극적으로 달라집니다. 디자인 패턴은 선배 엔지니어들이 수십 년간 반복해서 마주친 설계 문제와 그 검증된 해법을 이름 붙여 정리한 공용 어휘이며, 객체지향(Object-Oriented) 원리는 그 어휘를 떠받치는 토대입니다.

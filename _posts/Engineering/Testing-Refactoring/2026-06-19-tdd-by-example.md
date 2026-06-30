@@ -9,6 +9,58 @@ published: true
 excerpt: "Red-Green-Refactor 사이클, Test-First, Fake It/Triangulation, To-Do List, 그리고 xUnit 패턴을 Kent Beck의 Money 예제로 Python + pytest로 직접 키워 가며 익힙니다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="TDD의 Red-Green-Refactor 사이클을 한 장에 담은 그림. 세 박자가 시계 방향 원을 이룬다. 위쪽 Red는 실패하는 테스트를 먼저 쓰는 단계로 X 표시가 붙은 빨간 막대, 오른쪽 아래 Green은 테스트를 통과시키는 최소 구현 단계로 체크 표시가 붙은 초록 막대, 왼쪽 아래 Refactor는 초록을 유지한 채 중복을 제거하고 설계를 다듬는 정리 단계의 빗자루 모양이다. 가운데에는 항상 초록으로 돌아오는 짧은 거리를 유지하라는 짧은 보폭 표시가 있고, 세 단계는 화살표로 끝없이 순환한다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>TDD 사이클 — Red(실패 테스트) → Green(최소 구현) → Refactor(정리) → 다시 Red</title>
+
+  <!-- ===== cyclic arrows between the three beats ===== -->
+  <!-- Red(top) -> Green(bottom-right) -->
+  <path d="M 408 92 A 150 150 0 0 1 452 210" fill="none" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#tdd-arrow)"/>
+  <!-- Green(bottom-right) -> Refactor(bottom-left) -->
+  <path d="M 388 248 A 150 150 0 0 1 292 248" fill="none" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#tdd-arrow)"/>
+  <!-- Refactor(bottom-left) -> Red(top) -->
+  <path d="M 228 210 A 150 150 0 0 1 272 92" fill="none" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#tdd-arrow)"/>
+
+  <!-- ===== center: short-distance / baby-steps marker ===== -->
+  <circle cx="340" cy="170" r="46" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5" opacity="0.85"/>
+  <text x="340" y="162" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">짧은 보폭</text>
+  <text x="340" y="180" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.8">언제나 초록으로</text>
+  <text x="340" y="194" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.8">돌아올 거리</text>
+
+  <!-- ===== Red node (top) ===== -->
+  <circle cx="340" cy="58" r="42" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="3"/>
+  <!-- failing-test bar with X -->
+  <rect x="318" y="40" width="44" height="10" rx="2" fill="none" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <line x1="324" y1="34" x2="334" y2="44" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <line x1="334" y1="34" x2="324" y2="44" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="340" y="72" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">Red</text>
+  <text x="340" y="118" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.85" font-weight="700">실패하는 테스트 먼저</text>
+
+  <!-- ===== Green node (bottom-right) ===== -->
+  <circle cx="486" cy="232" r="42" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="3"/>
+  <!-- passing-test bar with check -->
+  <rect x="464" y="214" width="44" height="10" rx="2" fill="none" stroke="var(--secondary-color)" stroke-width="2.5"/>
+  <path d="M 470 219 L 476 225 L 488 211" fill="none" stroke="var(--secondary-color)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="486" y="246" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">Green</text>
+  <text x="486" y="292" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.85" font-weight="700">통과시킬 최소 구현</text>
+
+  <!-- ===== Refactor node (bottom-left) ===== -->
+  <circle cx="194" cy="232" r="42" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="3"/>
+  <!-- broom / tidy-up motif -->
+  <line x1="206" y1="208" x2="186" y2="226" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 186 226 L 176 234 M 184 228 L 175 237 M 182 230 L 174 240" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"/>
+  <text x="194" y="246" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">Refactor</text>
+  <text x="194" y="292" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.85" font-weight="700">중복 제거·설계 개선</text>
+
+  <defs>
+    <marker id="tdd-arrow" markerWidth="9" markerHeight="9" refX="6.5" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>TDD의 심장은 <strong>세 박자의 순환</strong> — <strong>Red</strong>(실패하는 테스트를 먼저 쓰고) → <strong>Green</strong>(통과시킬 최소 구현으로 초록 막대를 만들고) → <strong>Refactor</strong>(초록을 유지한 채 중복을 걷어내) → 다시 Red. 가운데의 <strong>짧은 보폭</strong>은 언제나 초록으로 돌아올 수 있는 거리를 유지하라는 이 책의 핵심 규율이다.</figcaption>
+</figure>
+
 ## 들어가며
 
 이 글은 `Testing-Refactoring-Essential` 시리즈의 **1단계**입니다. 전체 학습 흐름이 궁금하다면 먼저 [Testing-Refactoring Essential Curriculum](/2026/06/19/testing-refactoring-essential-curriculum.html)에서 네 권의 고전으로 짜인 로드맵을 확인하세요.
@@ -133,6 +185,58 @@ class Dollar:
 ```
 
 > 실무에서는 일반화가 자명할 때 Triangulation 없이 곧바로 진짜 구현(Obvious Implementation)으로 점프하기도 합니다. Fake It → Triangulation은 **확신이 없을 때** 안전하게 일반화로 건너가는 다리입니다.
+
+세 전략은 "얼마나 확신하느냐"라는 **자신감의 눈금** 위에 놓입니다. 확신이 낮을수록 보폭을 줄여 가짜 구현에서 출발하고, 확신이 높을수록 곧바로 진짜 구현으로 건너뜁니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="가짜 구현, 삼각측량, 명백한 구현 세 전략을 자신감의 눈금 위에 배치한 그림. 왼쪽 끝은 확신이 낮은 구간으로 상수를 그대로 반환하는 가짜 구현, 가운데는 두 번째 예제를 추가해 일반화를 강제하는 삼각측량, 오른쪽 끝은 확신이 높은 구간으로 곧바로 진짜 코드를 쓰는 명백한 구현이다. 아래에는 왼쪽으로 갈수록 보폭이 작고 안전하며 오른쪽으로 갈수록 보폭이 크고 빠르다는 화살표가 있다." viewBox="0 0 680 250" xmlns="http://www.w3.org/2000/svg">
+  <title>구현 전략의 스펙트럼 — Fake It · Triangulation · Obvious Implementation을 자신감 눈금 위에 배치</title>
+
+  <!-- confidence axis -->
+  <text x="340" y="26" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">자신감(확신)의 눈금</text>
+  <line x1="60" y1="48" x2="620" y2="48" stroke="currentColor" stroke-width="2" marker-end="url(#tri-arrow)"/>
+  <text x="60" y="40" text-anchor="start" font-size="9" fill="currentColor" opacity="0.8">낮음</text>
+  <text x="612" y="40" text-anchor="end" font-size="9" fill="currentColor" opacity="0.8">높음</text>
+
+  <!-- ===== Fake It (left) ===== -->
+  <rect x="56" y="70" width="180" height="92" rx="4" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="146" y="92" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">Fake It</text>
+  <text x="146" y="108" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.85">가짜 구현</text>
+  <text x="146" y="130" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">return 10</text>
+  <text x="146" y="148" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">상수를 박아 초록부터</text>
+
+  <!-- ===== Triangulation (center) ===== -->
+  <rect x="250" y="70" width="180" height="92" rx="4" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <text x="340" y="92" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">Triangulation</text>
+  <text x="340" y="108" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.85">삼각측량</text>
+  <text x="340" y="130" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">예제 2개 → 일반화</text>
+  <text x="340" y="148" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">두 번째 점이 방향을 강제</text>
+
+  <!-- ===== Obvious Implementation (right) ===== -->
+  <rect x="444" y="70" width="180" height="92" rx="4" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2.5"/>
+  <text x="534" y="92" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">Obvious Impl.</text>
+  <text x="534" y="108" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.85">명백한 구현</text>
+  <text x="534" y="130" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">amount * mult</text>
+  <text x="534" y="148" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">곧바로 진짜 코드</text>
+
+  <!-- step-size gradient note -->
+  <line x1="146" y1="186" x2="534" y2="186" stroke="var(--secondary-color)" stroke-width="2" stroke-dasharray="4 4"/>
+  <circle cx="146" cy="186" r="4" fill="var(--accent-color)"/>
+  <circle cx="340" cy="186" r="6" fill="var(--gold)"/>
+  <circle cx="534" cy="186" r="9" fill="var(--secondary-color)"/>
+  <text x="146" y="214" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.85">작은 보폭 · 가장 안전</text>
+  <text x="340" y="214" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.85">중간 보폭</text>
+  <text x="534" y="214" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.85">큰 보폭 · 가장 빠름</text>
+  <text x="340" y="236" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">확신이 낮을수록 왼쪽에서 출발 → 확신이 서면 오른쪽으로 점프</text>
+
+  <defs>
+    <marker id="tri-arrow" markerWidth="9" markerHeight="9" refX="6.5" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 z" fill="currentColor"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>구현 전략은 하나의 <strong>스펙트럼</strong>이다 — <strong>Fake It</strong>(상수를 박아 초록부터 확보) → <strong>Triangulation</strong>(두 번째 예제로 일반화를 강제) → <strong>Obvious Implementation</strong>(곧바로 진짜 코드). 확신이 낮을수록 보폭을 줄여 왼쪽에서 출발하고, 확신이 서면 오른쪽으로 점프한다. 점의 크기는 한 번에 내딛는 보폭을 뜻한다.</figcaption>
+</figure>
 
 ## Refactor: 동치(equality)와 부수효과 제거
 

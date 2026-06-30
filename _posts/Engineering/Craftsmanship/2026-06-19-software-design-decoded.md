@@ -9,6 +9,82 @@ published: true
 excerpt: "Software Design Decoded가 관찰한 전문가들의 설계 사고 습관을 정리한다. 문제 재구성, 스케치, 트레이드오프, 시뮬레이션, 협업이라는 다섯 가지 생각하는 방식이 코드 이전의 설계를 어떻게 살아 움직이게 하는지 다룬다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="전문가의 설계 사고를 한 장으로 묶은 그림. 다섯 가지 생각하는 습관 — 문제 재구성, 스케치와 외부화, 트레이드오프와 제약, 시뮬레이션과 멘탈 모델, 협업과 소통 — 이 각자의 작은 통찰 아이콘으로 표현되어, 가운데의 큰 머리 모양 안에 모인 하나의 핵심으로 화살표를 따라 수렴한다. 가운데 핵심은 설계 감각이라 적혀 있고, 그 위에는 문제 이해에서 출발해 대안 탐색, 트레이드오프, 단순화로 이어지는 네 개의 사고 축이 가로로 놓여 다섯 습관이 어떤 흐름 위에서 작동하는지를 보여 준다." viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
+  <title>전문가의 설계 사고 — 다섯 가지 생각 습관이 모여 하나의 '설계 감각'을 이룬다 (문제 이해 → 대안 탐색 → 트레이드오프 → 단순화)</title>
+
+  <!-- ===== TOP: the thinking axis the five habits ride on ===== -->
+  <text x="340" y="22" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.7">설계 사고의 축</text>
+  <g font-size="9" font-weight="700">
+    <rect x="40" y="32" width="118" height="26" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+    <text x="99" y="49" text-anchor="middle" fill="currentColor">문제 이해</text>
+    <rect x="194" y="32" width="118" height="26" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+    <text x="253" y="49" text-anchor="middle" fill="currentColor">대안 탐색</text>
+    <rect x="348" y="32" width="118" height="26" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+    <text x="407" y="49" text-anchor="middle" fill="currentColor">트레이드오프</text>
+    <rect x="502" y="32" width="118" height="26" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+    <text x="561" y="49" text-anchor="middle" fill="currentColor">단순화</text>
+  </g>
+  <line x1="158" y1="45" x2="190" y2="45" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#sd-arrow)"/>
+  <line x1="312" y1="45" x2="344" y2="45" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#sd-arrow)"/>
+  <line x1="466" y1="45" x2="498" y2="45" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#sd-arrow)"/>
+
+  <!-- ===== CENTER: the 'design sense' head the habits converge into ===== -->
+  <circle cx="340" cy="206" r="62" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <circle cx="340" cy="206" r="52" fill="none" stroke="currentColor" stroke-width="1" opacity="0.35"/>
+  <text x="340" y="200" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">설계 감각</text>
+  <text x="340" y="220" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">thinking habits</text>
+
+  <!-- ===== FIVE habit nodes around/under the head ===== -->
+  <!-- 1. 문제 재구성 (far left) -->
+  <g font-size="9" font-weight="700">
+    <rect x="30" y="96" width="120" height="40" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="90" y="113" text-anchor="middle" fill="currentColor">문제 재구성</text>
+    <text x="90" y="127" text-anchor="middle" font-size="7.5" font-weight="400" fill="currentColor" opacity="0.8">진짜 문제를 의심</text>
+  </g>
+  <line x1="148" y1="132" x2="284" y2="186" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#sd-arrow)"/>
+
+  <!-- 2. 스케치 (left) -->
+  <g font-size="9" font-weight="700">
+    <rect x="22" y="160" width="120" height="40" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="82" y="177" text-anchor="middle" fill="currentColor">스케치·외부화</text>
+    <text x="82" y="191" text-anchor="middle" font-size="7.5" font-weight="400" fill="currentColor" opacity="0.8">생각을 손 밖으로</text>
+  </g>
+  <line x1="142" y1="194" x2="278" y2="204" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#sd-arrow)"/>
+
+  <!-- 3. 트레이드오프 (bottom center) -->
+  <g font-size="9" font-weight="700">
+    <rect x="280" y="280" width="120" height="36" rx="4" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+    <text x="340" y="296" text-anchor="middle" fill="currentColor">트레이드오프·제약</text>
+    <text x="340" y="309" text-anchor="middle" font-size="7.5" font-weight="400" fill="currentColor" opacity="0.8">한계를 지렛대로</text>
+  </g>
+  <line x1="340" y1="278" x2="340" y2="270" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#sd-arrow)"/>
+
+  <!-- 4. 시뮬레이션 (right) -->
+  <g font-size="9" font-weight="700">
+    <rect x="538" y="160" width="120" height="40" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="598" y="177" text-anchor="middle" fill="currentColor">시뮬레이션</text>
+    <text x="598" y="191" text-anchor="middle" font-size="7.5" font-weight="400" fill="currentColor" opacity="0.8">머릿속 "만약 ~라면?"</text>
+  </g>
+  <line x1="538" y1="194" x2="402" y2="204" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#sd-arrow)"/>
+
+  <!-- 5. 협업 (far right) -->
+  <g font-size="9" font-weight="700">
+    <rect x="530" y="96" width="120" height="40" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="590" y="113" text-anchor="middle" fill="currentColor">협업·소통</text>
+    <text x="590" y="127" text-anchor="middle" font-size="7.5" font-weight="400" fill="currentColor" opacity="0.8">같은 그림을 함께</text>
+  </g>
+  <line x1="532" y1="132" x2="396" y2="186" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#sd-arrow)"/>
+
+  <defs>
+    <marker id="sd-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>전문가의 설계 사고를 한 장으로 — 위쪽은 <strong>문제 이해 → 대안 탐색 → 트레이드오프 → 단순화</strong>로 이어지는 사고의 축, 아래쪽은 그 위에서 작동하는 다섯 가지 생각 습관(<strong>문제 재구성·스케치·트레이드오프·시뮬레이션·협업</strong>)이 가운데 하나의 <strong>설계 감각</strong>으로 수렴하는 모습이다. 전문성은 고정된 절차가 아니라 이 작은 습관들의 반복에서 나온다.</figcaption>
+</figure>
+
 ## 들어가며
 
 이 글은 `Craftsmanship-Essential` 시리즈의 **3단계**입니다. 시리즈 전체 지도는 [Craftsmanship Essential Curriculum](/2026/06/19/craftsmanship-essential-curriculum.html)에서 확인할 수 있습니다.
@@ -40,6 +116,62 @@ excerpt: "Software Design Decoded가 관찰한 전문가들의 설계 사고 습
 **개념.** 문제 재구성(reframing)은 요구사항을 의심하고, 그 뒤에 숨은 진짜 목표를 찾아내며, 더 다루기 좋은 형태로 문제를 다시 진술하는 행위입니다. 전문가는 문제와 해법 사이를 끊임없이 오갑니다. 해법을 스케치하다가 "아, 진짜 문제는 이게 아니었구나"를 깨닫고 문제 정의로 되돌아갑니다. 문제와 해법은 함께 진화합니다.
 
 **구체적 시나리오.** 기획자가 "사용자가 주문 내역을 빠르게 찾을 수 있게 검색 기능을 추가해 주세요"라고 요청했다고 합시다. 초보는 곧장 검색창과 인덱싱을 설계합니다. 전문가는 한 단계 멈춥니다. "사용자가 왜 주문을 찾으려 할까?" 관찰해 보니 대부분은 **가장 최근 주문 하나**를 다시 보려는 것이었습니다. 그렇다면 진짜 문제는 "검색"이 아니라 "최근 주문을 즉시 보이게 하기"였습니다. 재구성된 문제의 해법은 검색 엔진이 아니라, 홈 화면 상단의 작은 카드 하나일 수 있습니다. 훨씬 싸고, 더 잘 맞는 답입니다.
+
+아래 그림은 이 한 번의 재구성이 해법의 비용을 어떻게 바꾸는지를 보여 줍니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="문제 재구성이 해법을 바꾸는 과정을 보여 주는 그림. 왼쪽에는 기획자가 요청한 주어진 문제 '주문 검색 기능을 추가해 달라'가 있고, 그 아래에는 비싼 해법인 검색 엔진과 인덱싱이 무거운 비용으로 표시된다. 가운데에는 전문가가 던지는 질문 '사용자는 왜 주문을 찾으려 하는가?'가 두 문제를 잇는다. 오른쪽에는 관찰로 드러난 진짜 문제 '가장 최근 주문 하나를 다시 보기'가 있고, 그 아래에는 값싼 해법인 홈 화면 상단의 작은 최근 주문 카드 하나가 가벼운 비용으로 표시된다. 주어진 문제에서 진짜 문제로 옮겨 가자 해법이 무거운 것에서 가벼운 것으로 바뀐다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>문제 재구성 — 주어진 문제(비싼 해법)에서 '왜?'를 물어 진짜 문제(값싼 해법)로 옮겨 가기</title>
+
+  <!-- ===== LEFT: the given problem + its expensive solution ===== -->
+  <text x="120" y="26" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.7">주어진 문제</text>
+  <rect x="30" y="40" width="180" height="58" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="120" y="64" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">"주문 검색 기능을</text>
+  <text x="120" y="80" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">추가해 주세요"</text>
+
+  <line x1="120" y1="98" x2="120" y2="186" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#rf-arrow)"/>
+  <text x="120" y="148" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.7">곧장 풀면</text>
+
+  <rect x="24" y="190" width="192" height="74" rx="4" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="120" y="212" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">검색 엔진 · 인덱싱</text>
+  <text x="120" y="232" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.85">무거운 해법</text>
+  <text x="120" y="252" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">💰💰💰</text>
+
+  <!-- ===== CENTER: the reframing question ===== -->
+  <g>
+    <rect x="248" y="118" width="184" height="64" rx="32" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="2.5"/>
+    <text x="340" y="142" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">"사용자는 왜</text>
+    <text x="340" y="159" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">주문을 찾으려 하는가?"</text>
+    <text x="340" y="175" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.7">관찰 → 재구성</text>
+  </g>
+  <line x1="216" y1="69" x2="284" y2="120" stroke="currentColor" stroke-width="1.6" stroke-dasharray="4 4" opacity="0.65" marker-end="url(#rf-arrow-d)"/>
+  <line x1="396" y1="120" x2="460" y2="69" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#rf-arrow)"/>
+
+  <!-- ===== RIGHT: the real problem + its cheap solution ===== -->
+  <text x="560" y="26" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.7">진짜 문제</text>
+  <rect x="470" y="40" width="180" height="58" rx="4" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2.5"/>
+  <text x="560" y="64" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">"가장 최근 주문 하나를</text>
+  <text x="560" y="80" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">즉시 다시 보기"</text>
+
+  <line x1="560" y1="98" x2="560" y2="186" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#rf-arrow)"/>
+  <text x="560" y="148" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.7">맞는 해법은</text>
+
+  <rect x="464" y="190" width="192" height="74" rx="4" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <text x="560" y="212" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">홈 상단 '최근 주문' 카드</text>
+  <text x="560" y="232" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.85">가벼운 해법</text>
+  <text x="560" y="252" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">💰</text>
+
+  <defs>
+    <marker id="rf-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+    <marker id="rf-arrow-d" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="currentColor"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>같은 요청도 <strong>"왜?"</strong> 한 번을 끼워 넣으면 푸는 문제가 달라진다. "주문 검색"이라는 주어진 문제를 곧장 풀면 검색 엔진이라는 무거운 해법으로 가지만, 관찰로 진짜 목표("최근 주문 하나를 다시 보기")를 찾아 문제를 재구성하면 카드 하나라는 훨씬 값싼 해법이 맞는 답이 된다.</figcaption>
+</figure>
 
 이 습관은 2단계의 "사용자가 진짜 원하는 것을 파악하라"는 실용주의 원칙과 정확히 맞닿아 있습니다. 다만 여기서는 그것이 코딩 이전, 설계의 출발선에서 작동합니다.
 

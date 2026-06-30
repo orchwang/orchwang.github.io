@@ -9,6 +9,78 @@ published: true
 excerpt: "잦은 커밋·자동 빌드·빠른 피드백으로 통합 지옥을 없애는 Continuous Integration의 원칙과 파이프라인, 그리고 지속적 배포로 이어지는 길을 정리합니다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="Continuous Integration의 흐름을 한 장으로 담은 그림. 왼쪽에서 여러 개발자가 작은 단위로 자주 커밋하면 CI 서버가 빌드를 자동으로 트리거하고, 의존성 설치와 컴파일, 단위 테스트, 통합·종단 테스트, 정적 분석과 커버리지를 단계별 파이프라인으로 통과시킨다. 모두 통과하면 메인라인에 머지되어 배포 후보 산출물이 되고, 한 단계라도 실패하면 즉시 빨간 알림이 되어 커밋한 개발자에게 되돌아가 최우선으로 수정한 뒤 다시 커밋하는 루프를 이룬다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>Continuous Integration — 잦은 커밋이 자동 파이프라인을 거쳐 초록(머지)이 되거나 빨강(즉시 수정 루프)으로 되돌아온다</title>
+
+  <!-- ===== LEFT: developers commit frequently ===== -->
+  <text x="56" y="24" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.75">잦은 커밋</text>
+  <circle cx="38" cy="66" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
+  <circle cx="38" cy="108" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
+  <circle cx="38" cy="150" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
+  <text x="38" y="178" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.7">개발자들</text>
+  <line x1="50" y1="66" x2="96" y2="100" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#ci-arrow)"/>
+  <line x1="50" y1="108" x2="96" y2="108" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#ci-arrow)"/>
+  <line x1="50" y1="150" x2="96" y2="116" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#ci-arrow)"/>
+
+  <!-- ===== CI server trigger ===== -->
+  <rect x="100" y="88" width="74" height="44" rx="3" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="137" y="106" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">CI 서버</text>
+  <text x="137" y="120" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">빌드 트리거</text>
+
+  <!-- ===== MIDDLE: pipeline stages (fast → slow) ===== -->
+  <text x="386" y="24" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.75">자동 파이프라인 — 빠른 것부터, 실패하면 멈춤</text>
+  <line x1="174" y1="110" x2="198" y2="110" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#ci-arrow)"/>
+  <rect x="200" y="90" width="84" height="40" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="242" y="107" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">설치·컴파일</text>
+  <text x="242" y="120" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.75">단일 명령</text>
+  <line x1="284" y1="110" x2="300" y2="110" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#ci-arrow)"/>
+  <rect x="302" y="90" width="84" height="40" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="344" y="107" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">단위 테스트</text>
+  <text x="344" y="120" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.75">빠름</text>
+  <line x1="386" y1="110" x2="402" y2="110" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#ci-arrow)"/>
+  <rect x="404" y="90" width="84" height="40" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="446" y="107" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">통합·종단</text>
+  <text x="446" y="120" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.75">느림</text>
+  <line x1="488" y1="110" x2="504" y2="110" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#ci-arrow)"/>
+  <rect x="506" y="90" width="84" height="40" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="548" y="107" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">정적 분석</text>
+  <text x="548" y="120" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.75">+ 커버리지</text>
+
+  <!-- gate -->
+  <line x1="590" y1="110" x2="606" y2="110" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#ci-arrow)"/>
+  <path d="M636,88 L658,110 L636,132 L614,110 Z" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+  <text x="636" y="106" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">전부</text>
+  <text x="636" y="117" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">통과?</text>
+
+  <!-- ===== GREEN: merge / deploy candidate ===== -->
+  <line x1="636" y1="132" x2="636" y2="178" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#ci-arrow)"/>
+  <text x="600" y="158" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700" opacity="0.85">예 · 초록</text>
+  <rect x="556" y="180" width="118" height="44" rx="3" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="615" y="199" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">메인라인 머지</text>
+  <text x="615" y="213" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">배포 후보 산출물</text>
+
+  <!-- ===== RED: broken build feedback loop back to developers ===== -->
+  <text x="332" y="252" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.75">빨강이면 즉시 알림 → 최우선 수정 → 다시 커밋 (루프가 닫힌다)</text>
+  <line x1="614" y1="110" x2="332" y2="110" stroke="var(--gold)" stroke-width="2" stroke-dasharray="5 4" opacity="0.85"/>
+  <line x1="332" y1="110" x2="332" y2="268" stroke="var(--gold)" stroke-width="2" stroke-dasharray="5 4" opacity="0.85"/>
+  <rect x="240" y="270" width="184" height="24" rx="3" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="2"/>
+  <text x="332" y="286" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">빨간 빌드 — 팀에 알림 · 최우선 수정</text>
+  <line x1="240" y1="282" x2="44" y2="282" stroke="var(--gold)" stroke-width="2" stroke-dasharray="5 4" opacity="0.85"/>
+  <line x1="44" y1="282" x2="44" y2="165" stroke="var(--gold)" stroke-width="2" stroke-dasharray="5 4" opacity="0.85" marker-end="url(#ci-arrow-gold)"/>
+
+  <defs>
+    <marker id="ci-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+    <marker id="ci-arrow-gold" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--gold)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>CI 한 장 요약 — 여러 개발자가 <strong>작게 자주 커밋</strong>하면 CI 서버가 빌드를 자동 트리거하고, <strong>빠른 것(단위)부터 느린 것(통합·종단)·정적 분석</strong> 순의 파이프라인을 통과시킨다. 전부 통과하면 메인라인에 머지되어 배포 후보가 되고(초록), 한 단계라도 실패하면 곧장 알림이 되어 개발자에게 되돌아가 <strong>최우선으로 고친 뒤 다시 커밋</strong>하는 루프(금색 점선)를 이룬다.</figcaption>
+</figure>
+
 ## 들어가며
 
 이 글은 `Process-Essential` 시리즈의 **6단계**입니다. 전체 지도는 [Process Essential Curriculum](/2026/06/19/process-essential-curriculum.html)에서 확인할 수 있습니다.
@@ -36,6 +108,59 @@ excerpt: "잦은 커밋·자동 빌드·빠른 피드백으로 통합 지옥을 
 ## CI의 원칙: 잦은 커밋, 자동 빌드, 빠른 피드백
 
 **왜 필요한가.** 통합 지옥의 진짜 원인은 "변경량 × 시간"입니다. 두 개발자가 일주일간 따로 작업하면, 합칠 때 충돌할 수 있는 코드의 양과 서로의 가정이 어긋날 가능성이 폭발적으로 늘어납니다. 반면 하루에도 여러 번 작은 단위로 합치면, 충돌은 작고 원인은 명확하며 즉시 고칠 수 있습니다. CI의 모든 실천은 이 단순한 산술을 자동화로 보장하려는 것입니다.
+
+다음 그림은 그 산술을 두 개발자의 시간선으로 대비한 것입니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="잦은 통합과 늦은 통합을 두 시간선으로 비교한 그림. 위쪽 늦은 통합 시간선에서는 두 개발자가 일주일 내내 따로 작업한 큰 변경 덩어리가 마지막에 한 번에 부딪쳐, 충돌이 크고 원인이 뒤엉킨 통합 지옥이 된다. 아래쪽 잦은 통합 시간선에서는 같은 기간에 작은 단위로 여러 번 메인라인에 합쳐, 매번의 충돌이 작고 원인이 명확해 즉시 고칠 수 있다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>잦은 통합 vs 늦은 통합 — 같은 변경량이라도 합치는 간격이 머지 고통의 크기를 가른다</title>
+
+  <!-- ===== TOP: late integration (one big painful merge) ===== -->
+  <text x="20" y="30" font-size="11" fill="currentColor" font-weight="700" opacity="0.8">늦은 통합 — 미뤘다가 한 번에</text>
+  <text x="20" y="46" font-size="8.5" fill="currentColor" opacity="0.7">큰 변경 × 긴 시간 = 충돌도 크고 원인도 뒤엉킴</text>
+  <!-- mainline timeline -->
+  <line x1="40" y1="100" x2="600" y2="100" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+  <text x="20" y="104" font-size="8" fill="currentColor" opacity="0.7">메인</text>
+  <!-- two long divergent branches -->
+  <path d="M60,100 C200,60 460,60 596,98" fill="none" stroke="var(--secondary-color)" stroke-width="2.5"/>
+  <path d="M60,100 C200,140 460,140 596,102" fill="none" stroke="var(--secondary-color)" stroke-width="2.5"/>
+  <text x="300" y="58" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.75">개발자 A — 일주일치 변경</text>
+  <text x="300" y="148" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.75">개발자 B — 일주일치 변경</text>
+  <!-- big collision burst at the end -->
+  <path d="M600,100 l16,-12 l-6,10 l14,-2 l-12,8 l13,6 l-16,-1 l5,12 l-13,-8 l-4,13 l-2,-14 l-11,9 l7,-13 l-15,2 l13,-7 l-15,-7 l16,1 z" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+  <text x="610" y="103" text-anchor="middle" font-size="7.5" fill="currentColor" font-weight="700">충돌</text>
+  <text x="636" y="84" font-size="9" fill="currentColor" font-weight="700" opacity="0.9">통합 지옥</text>
+
+  <!-- divider -->
+  <line x1="20" y1="170" x2="660" y2="170" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+
+  <!-- ===== BOTTOM: frequent integration (many tiny merges) ===== -->
+  <text x="20" y="198" font-size="11" fill="currentColor" font-weight="700" opacity="0.8">잦은 통합 — 매일 작게 여러 번</text>
+  <text x="20" y="214" font-size="8.5" fill="currentColor" opacity="0.7">작은 변경 × 짧은 간격 = 충돌이 작고 원인이 명확, 즉시 수정</text>
+  <line x1="40" y1="262" x2="600" y2="262" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+  <text x="20" y="266" font-size="8" fill="currentColor" opacity="0.7">메인</text>
+  <!-- repeated short hops touching mainline -->
+  <g fill="none" stroke="var(--accent-color)" stroke-width="2.5">
+    <path d="M70,262 q22,-22 44,0"/>
+    <path d="M158,262 q22,-22 44,0"/>
+    <path d="M246,262 q22,-22 44,0"/>
+    <path d="M334,262 q22,-22 44,0"/>
+    <path d="M422,262 q22,-22 44,0"/>
+    <path d="M510,262 q22,-22 44,0"/>
+  </g>
+  <!-- small merge dots on the mainline -->
+  <g fill="var(--gold)">
+    <circle cx="114" cy="262" r="3.5"/>
+    <circle cx="202" cy="262" r="3.5"/>
+    <circle cx="290" cy="262" r="3.5"/>
+    <circle cx="378" cy="262" r="3.5"/>
+    <circle cx="466" cy="262" r="3.5"/>
+    <circle cx="554" cy="262" r="3.5"/>
+  </g>
+  <text x="320" y="290" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">작은 통합이 매일 반복 — 합치는 일이 사건이 아니라 배경 작업이 된다</text>
+</svg>
+<figcaption>같은 변경량이라도 <strong>합치는 간격</strong>이 고통의 크기를 가른다. 위처럼 미루면 두 갈래가 길게 벌어졌다가 마지막에 큰 충돌(통합 지옥)로 부딪치고, 아래처럼 작게 자주 합치면 매번의 충돌이 작고 원인이 명확해 즉시 고칠 수 있다. CI는 이 "작게 자주"를 자동화로 강제한다.</figcaption>
+</figure>
 
 CI는 보통 세 가지 원칙으로 요약됩니다.
 

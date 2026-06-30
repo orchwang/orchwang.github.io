@@ -10,6 +10,73 @@ banner: wartable
 excerpt: "소프트웨어 장인정신과 기초를 SICP·Pragmatic Programmer·Software Design Decoded·We Programmers 4권의 고전으로 4단계에 걸쳐 정복하는 마스터 로드맵입니다. 도장깨기 방식으로 진행 상황을 추적합니다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="소프트웨어 장인정신 학습 여정을 대장간 장면으로 묘사한 그림. 왼쪽부터 오른쪽으로 네 개의 모루가 한 단씩 높아지는 계단으로 놓여 있다. 1단계 모루에는 추상화를 뜻하는 겹친 상자(SICP·기초)가, 2단계 모루에는 매일의 실천을 뜻하는 망치(Pragmatic), 3단계 모루에는 설계 사고를 뜻하는 펼친 컴퍼스(Design Decoded), 4단계 모루에는 직업의 역사를 뜻하는 두루마리(We Programmers)가 놓인다. 세 단계 묶음 — 기초·핵심·응용 — 이 위쪽 띠로 표시되고, 맨 오른쪽 위에는 완주를 뜻하는 별이 빛난다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>장인정신 학습 여정 — 추상화(기초) → 실천·설계(핵심) → 역사·문화(응용)</title>
+
+  <!-- ===== top phase band ===== -->
+  <text x="100" y="26" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.7">기초 · 사고의 토대</text>
+  <line x1="38" y1="34" x2="162" y2="34" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
+  <text x="346" y="26" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.7">핵심 · 장인의 실천</text>
+  <line x1="208" y1="34" x2="484" y2="34" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
+  <text x="592" y="26" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.7">응용 · 시야 넓히기</text>
+  <line x1="530" y1="34" x2="654" y2="34" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
+
+  <!-- ===== ground line ===== -->
+  <line x1="20" y1="270" x2="660" y2="270" stroke="currentColor" stroke-width="1.5" opacity="0.35"/>
+
+  <!-- progress arrow connecting the four stages -->
+  <path d="M70 210 C 180 170, 250 160, 300 142 S 470 100, 600 70" fill="none" stroke="var(--gold)" stroke-width="2" stroke-dasharray="5 5" opacity="0.8"/>
+
+  <!-- ===== STAGE 1: SICP — abstraction (stacked boxes) ===== -->
+  <rect x="46" y="226" width="108" height="14" rx="2" fill="var(--bg-sunken)" stroke="currentColor" stroke-width="1.5"/>
+  <rect x="62" y="240" width="76" height="30" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="100" y="259" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.7">모루 ①</text>
+  <!-- abstraction = nested boxes -->
+  <rect x="74" y="180" width="52" height="40" rx="2" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2"/>
+  <rect x="84" y="190" width="32" height="20" rx="1.5" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.5"/>
+  <rect x="92" y="196" width="16" height="8" rx="1" fill="none" stroke="currentColor" stroke-width="1.3"/>
+  <text x="100" y="162" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">SICP</text>
+  <text x="100" y="174" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">추상화</text>
+
+  <!-- ===== STAGE 2: Pragmatic — daily practice (hammer) ===== -->
+  <rect x="226" y="218" width="108" height="14" rx="2" fill="var(--bg-sunken)" stroke="currentColor" stroke-width="1.5"/>
+  <rect x="242" y="232" width="76" height="38" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="280" y="255" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.7">모루 ②</text>
+  <!-- hammer -->
+  <rect x="262" y="168" width="40" height="16" rx="2" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+  <rect x="277" y="184" width="10" height="28" rx="2" fill="var(--bg-sunken)" stroke="currentColor" stroke-width="1.5"/>
+  <text x="282" y="150" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">Pragmatic</text>
+  <text x="282" y="162" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">실천</text>
+
+  <!-- ===== STAGE 3: Design Decoded — design sense (compass) ===== -->
+  <rect x="406" y="206" width="108" height="14" rx="2" fill="var(--bg-sunken)" stroke="currentColor" stroke-width="1.5"/>
+  <rect x="422" y="220" width="76" height="50" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="460" y="249" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.7">모루 ③</text>
+  <!-- compass (open caliper) -->
+  <circle cx="460" cy="150" r="5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+  <line x1="458" y1="154" x2="446" y2="194" stroke="var(--secondary-color)" stroke-width="2.4"/>
+  <line x1="462" y1="154" x2="474" y2="194" stroke="var(--secondary-color)" stroke-width="2.4"/>
+  <text x="460" y="134" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">Design Decoded</text>
+  <text x="460" y="146" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">설계 사고</text>
+
+  <!-- ===== STAGE 4: We Programmers — history (scroll) ===== -->
+  <rect x="538" y="194" width="108" height="14" rx="2" fill="var(--bg-sunken)" stroke="currentColor" stroke-width="1.5"/>
+  <rect x="554" y="208" width="76" height="62" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="592" y="243" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.7">모루 ④</text>
+  <!-- scroll -->
+  <rect x="572" y="150" width="40" height="36" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+  <line x1="580" y1="160" x2="604" y2="160" stroke="currentColor" stroke-width="1.3" opacity="0.7"/>
+  <line x1="580" y1="168" x2="604" y2="168" stroke="currentColor" stroke-width="1.3" opacity="0.7"/>
+  <line x1="580" y1="176" x2="596" y2="176" stroke="currentColor" stroke-width="1.3" opacity="0.7"/>
+  <!-- completion star -->
+  <path d="M610 96 l4 9 10 1 -7.5 7 2 10 -8.5 -5 -8.5 5 2 -10 -7.5 -7 10 -1 z" fill="var(--gold)" stroke="currentColor" stroke-width="1"/>
+  <text x="592" y="124" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">We Programmers</text>
+  <text x="592" y="136" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">역사 · 문화</text>
+</svg>
+<figcaption>장인정신을 벼리는 네 개의 모루 — <strong>SICP</strong>(추상화, 기초)로 사고의 토대를 다지고, <strong>Pragmatic</strong>(실천)과 <strong>Software Design Decoded</strong>(설계 사고)라는 핵심으로 일하는 법을 익힌 뒤, <strong>We Programmers</strong>(역사·문화)라는 응용으로 시야를 넓혀 완주(★)에 이른다. 한 단씩 높아지는 모루가 곧 도장깨기의 누적이다.</figcaption>
+</figure>
+
 ## 소개
 
 좋은 코드를 빠르게 만들어 내는 능력은 프레임워크나 언어 문법이 아니라, 추상화를 다루는 사고력과 매일의 작은 실천 습관에서 나옵니다. 도구는 몇 년이면 낡지만 "어떻게 생각하고 어떻게 일하는가"라는 장인정신(Craftsmanship)은 경력 전체를 관통합니다. 이 분야가 필수인 이유는 분명합니다. 같은 문제를 받아도 장인은 더 단순하고, 더 바꾸기 쉽고, 더 오래가는 해법을 내놓기 때문입니다.
@@ -21,6 +88,8 @@ excerpt: "소프트웨어 장인정신과 기초를 SICP·Pragmatic Programmer·
 ## 학습 흐름
 
 4단계는 아래 순서대로 진행하는 것을 권장합니다. **기초**(추상화·프로그래밍의 본질)로 사고의 토대를 다지고, **핵심**(실용주의 실천·전문가의 설계 사고)으로 장인의 일하는 법을 익힌 뒤, **응용(교양)**(역사·문화)으로 시야를 넓히는 흐름입니다.
+
+아래 다이어그램은 커리큘럼 전체의 척추입니다 — 각 단계를 정복하면 무엇을 얻는지(오른쪽 갈래), 그리고 그것들이 어떻게 하나의 장인 토대로 쌓이는지를 함께 보여 줍니다.
 
 ```mermaid
 flowchart TD
@@ -41,6 +110,16 @@ flowchart TD
 
     S1 --> S2 --> S3 --> S4
     S4 --> Done([시리즈 완주 🎉])
+
+    S1 -. 얻는 것 .-> G1["복잡성을 통제하는<br/>추상화 사고력"]
+    S2 -. 얻는 것 .-> G2["매일 반복하는<br/>실천 습관"]
+    S3 -. 얻는 것 .-> G3["전문가의<br/>설계 사고법"]
+    S4 -. 얻는 것 .-> G4["직업적 정체성과<br/>역사적 시야"]
+
+    G1 --> Foundation["흔들리지 않는<br/>장인의 토대"]
+    G2 --> Foundation
+    G3 --> Foundation
+    G4 --> Foundation
 ```
 
 ## 학습 진행 현황

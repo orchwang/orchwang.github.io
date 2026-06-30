@@ -9,6 +9,64 @@ published: true
 excerpt: "Bertrand Meyer의 Object-Oriented Software Construction을 따라 객체지향의 원리와 계약에 의한 설계(Design by Contract)를 정리합니다. Precondition·Postcondition·Class Invariant, LSP, 그리고 방어적 프로그래밍과의 차이를 Python 예제로 다룹니다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="계약에 의한 설계(Design by Contract)를 한 장으로 담은 그림. 왼쪽의 호출자(Client)는 사전조건이라는 문을 지킬 의무를 지고, 그 문을 통과하면 가운데 공급자(Supplier)의 메서드 본문으로 들어간다. 본문은 사후조건이라는 문에서 결과를 보장하고, 위아래를 감싸는 클래스 불변식의 띠가 호출 전후 항상 참으로 유지된다. 사전조건 문 위반은 호출자 버그, 사후조건 문 위반은 공급자 버그로 책임이 갈린다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>계약에 의한 설계 — 호출자·공급자의 권리와 의무를 사전조건·사후조건·불변식의 세 문으로 나눈 그림</title>
+
+  <!-- ===== Class invariant: top & bottom band wrapping the whole call ===== -->
+  <rect x="24" y="40" width="632" height="22" rx="4" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="1.8"/>
+  <text x="340" y="55" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">Class Invariant — 호출 전후 항상 참 (안정 상태)</text>
+  <rect x="24" y="238" width="632" height="22" rx="4" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="1.8"/>
+  <text x="340" y="253" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">Class Invariant — 종료 시 불변식 복원</text>
+
+  <!-- ===== LEFT: Client (caller) ===== -->
+  <rect x="40" y="104" width="118" height="92" rx="5" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
+  <text x="99" y="134" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">호출자</text>
+  <text x="99" y="152" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.8">Client</text>
+  <text x="99" y="174" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85">의무: 사전조건 충족</text>
+  <text x="99" y="187" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85">권리: 사후조건 보장</text>
+
+  <!-- ===== Gate 1: Precondition (caller's obligation) ===== -->
+  <line x1="158" y1="150" x2="190" y2="150" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#dbc-arrow)"/>
+  <rect x="194" y="92" width="92" height="116" rx="5" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="240" y="118" text-anchor="middle" font-size="11.5" fill="currentColor" font-weight="700">Pre-</text>
+  <text x="240" y="133" text-anchor="middle" font-size="11.5" fill="currentColor" font-weight="700">condition</text>
+  <text x="240" y="151" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85">사전조건 (문)</text>
+  <text x="240" y="178" text-anchor="middle" font-size="8" fill="var(--accent-color)" font-weight="700">위반 →</text>
+  <text x="240" y="190" text-anchor="middle" font-size="8" fill="var(--accent-color)" font-weight="700">호출자 버그</text>
+
+  <!-- ===== MIDDLE: Supplier body ===== -->
+  <line x1="286" y1="150" x2="318" y2="150" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#dbc-arrow)"/>
+  <rect x="322" y="104" width="118" height="92" rx="5" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
+  <text x="381" y="134" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">공급자</text>
+  <text x="381" y="152" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.8">Supplier 본문</text>
+  <text x="381" y="174" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85">권리: 사전조건 가정</text>
+  <text x="381" y="187" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85">의무: 사후조건 달성</text>
+
+  <!-- ===== Gate 2: Postcondition (supplier's obligation) ===== -->
+  <line x1="440" y1="150" x2="472" y2="150" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#dbc-arrow)"/>
+  <rect x="476" y="92" width="92" height="116" rx="5" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="522" y="118" text-anchor="middle" font-size="11.5" fill="currentColor" font-weight="700">Post-</text>
+  <text x="522" y="133" text-anchor="middle" font-size="11.5" fill="currentColor" font-weight="700">condition</text>
+  <text x="522" y="151" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85">사후조건 (문)</text>
+  <text x="522" y="178" text-anchor="middle" font-size="8" fill="var(--accent-color)" font-weight="700">위반 →</text>
+  <text x="522" y="190" text-anchor="middle" font-size="8" fill="var(--accent-color)" font-weight="700">공급자 버그</text>
+
+  <!-- ===== RIGHT: guaranteed result ===== -->
+  <line x1="568" y1="150" x2="600" y2="150" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#dbc-arrow)"/>
+  <circle cx="624" cy="150" r="18" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <text x="624" y="146" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">결과</text>
+  <text x="624" y="158" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">보장</text>
+
+  <defs>
+    <marker id="dbc-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>이 글의 척추 — 메서드 하나를 <strong>호출자(Client)</strong>와 <strong>공급자(Supplier)</strong> 사이의 계약으로 본다. <strong>사전조건</strong>이라는 첫 번째 문은 호출자의 의무(위반은 호출자 버그), <strong>사후조건</strong>이라는 두 번째 문은 공급자의 의무(위반은 공급자 버그), 위아래를 감싸는 <strong>클래스 불변식</strong>은 호출 전후 객체가 항상 안정 상태임을 보장한다. 한쪽의 의무가 곧 다른 쪽의 권리다.</figcaption>
+</figure>
+
 ## 들어가며
 
 이 글은 `OO-Design-Essential` 시리즈의 **4단계**입니다. 전체 학습 지도는 [OO-Design Essential Curriculum](/2026/06/19/oo-design-essential-curriculum.html)에서 확인할 수 있습니다.
@@ -149,6 +207,50 @@ flowchart TD
 
 precondition이 통과하기 전까지는 공급자에게 아무 책임이 없고(입력이 잘못된 건 호출자 탓), precondition이 통과한 뒤에는 postcondition·invariant 달성이 전적으로 공급자 책임입니다. 이 경계선이 디버깅을 극적으로 단순하게 만듭니다.
 
+이 책임의 이동을 메서드 호출의 시간축 위에 펼쳐 보면 한눈에 들어옵니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="메서드 호출의 시간축 위에 책임 소재를 띠로 나눈 그림. 왼쪽 끝에서 사전조건 검사 지점까지는 호출자 책임 구간이고, 사전조건을 통과한 뒤 본문 실행과 사후조건 검사까지는 공급자 책임 구간이다. 그 전체 구간을 클래스 불변식이 위에서 감싼다. 사전조건 지점에서 책임의 배턴이 호출자에서 공급자로 넘어간다." viewBox="0 0 660 250" xmlns="http://www.w3.org/2000/svg">
+  <title>책임의 이동 — 사전조건 지점을 경계로 호출자 책임에서 공급자 책임으로 배턴이 넘어가는 호출 시간축</title>
+
+  <!-- invariant umbrella over the whole call -->
+  <rect x="40" y="36" width="580" height="22" rx="4" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="1.8"/>
+  <text x="330" y="51" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">Class Invariant — 호출 전체 구간에서 항상 참</text>
+
+  <!-- timeline axis -->
+  <line x1="40" y1="150" x2="620" y2="150" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+  <text x="40" y="172" text-anchor="start" font-size="8.5" fill="currentColor" opacity="0.7">호출 시작</text>
+  <text x="620" y="172" text-anchor="end" font-size="8.5" fill="currentColor" opacity="0.7">정상 종료</text>
+
+  <!-- caller responsibility band -->
+  <rect x="40" y="92" width="240" height="40" rx="4" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
+  <text x="160" y="110" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">호출자 책임 구간</text>
+  <text x="160" y="125" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85">사전조건을 충족시킬 의무</text>
+
+  <!-- precondition gate (the handover line) -->
+  <line x1="300" y1="74" x2="300" y2="186" stroke="var(--accent-color)" stroke-width="2.5" stroke-dasharray="5,4"/>
+  <circle cx="300" cy="150" r="6" fill="var(--accent-color)"/>
+  <text x="300" y="206" text-anchor="middle" font-size="9" fill="var(--accent-color)" font-weight="700">Precondition 검사</text>
+  <text x="300" y="219" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">책임의 배턴이 넘어가는 선</text>
+
+  <!-- supplier responsibility band -->
+  <rect x="320" y="92" width="300" height="40" rx="4" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="470" y="110" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">공급자 책임 구간</text>
+  <text x="470" y="125" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85">본문 실행 → 사후조건·불변식 달성</text>
+
+  <!-- handover arrow -->
+  <line x1="252" y1="150" x2="288" y2="150" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#resp-arrow)"/>
+  <line x1="312" y1="150" x2="348" y2="150" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#resp-arrow)"/>
+
+  <defs>
+    <marker id="resp-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>같은 계약을 호출의 <strong>시간축</strong>으로 본 그림. 사전조건 검사 지점이 책임의 분기선이다 — 그 왼쪽(입력 준비)은 전적으로 호출자 책임, 그 오른쪽(본문 실행·결과 보장)은 전적으로 공급자 책임이며, 클래스 불변식만이 양쪽을 통틀어 항상 참으로 유지된다. 버그가 어느 구간에서 터졌는지가 곧 누구의 잘못인지를 말해 준다.</figcaption>
+</figure>
+
 ## 상속과 다형성: LSP와 올바른 상속
 
 다형성은 "같은 호출이 객체 종류에 따라 다르게 동작"하는 능력입니다. 그런데 자식 클래스가 부모의 자리를 대신할 때, 호출자가 믿고 있던 계약이 깨지면 안 됩니다. 이것을 형식화한 것이 **리스코프 치환 원칙(Liskov Substitution Principle, LSP)** 입니다.
@@ -160,7 +262,55 @@ DbC의 언어로 옮기면 LSP는 두 개의 명확한 규칙이 됩니다.
 - **자식은 사전조건을 강화(strengthen)하지 말 것** — 부모보다 더 까다로운 요구를 하면 안 됩니다. 부모를 믿고 호출하던 코드가 자식 앞에서 갑자기 거부당하기 때문입니다. 사전조건은 **같거나 약하게(weaker)** 만 바꿀 수 있습니다.
 - **자식은 사후조건을 약화(weaken)하지 말 것** — 부모가 약속한 결과보다 덜 보장하면 안 됩니다. 호출자는 부모의 사후조건만큼은 항상 받을 자격이 있습니다. 사후조건은 **같거나 강하게(stronger)** 만 바꿀 수 있습니다.
 
-한 문장으로: **"요구는 덜, 보장은 더(require no more, promise no less)."**
+한 문장으로: **"요구는 덜, 보장은 더(require no more, promise no less)."** 이 두 규칙을 사전조건·사후조건의 "허용 폭"으로 그려 보면 올바른 상속과 LSP 위반이 명확히 갈립니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="리스코프 치환 원칙을 사전조건과 사후조건의 허용 폭으로 나타낸 그림. 부모의 사전조건 막대를 기준으로, 올바른 자식은 사전조건을 같거나 더 넓게(약하게) 받아들이고 사후조건은 같거나 더 좁게(강하게) 보장한다. 잘못된 자식은 사전조건을 더 좁혀(강화) 부모를 믿던 호출이 거부당하거나, 사후조건을 더 넓혀(약화) 약속을 덜 지킨다." viewBox="0 0 660 290" xmlns="http://www.w3.org/2000/svg">
+  <title>LSP — 사전조건은 같거나 넓게(약하게), 사후조건은 같거나 좁게(강하게)만 바꿀 수 있다</title>
+
+  <!-- column headers -->
+  <text x="245" y="26" text-anchor="middle" font-size="11.5" fill="currentColor" font-weight="700">사전조건 (받아들이는 입력 폭)</text>
+  <text x="540" y="26" text-anchor="middle" font-size="11.5" fill="currentColor" font-weight="700">사후조건 (보장하는 결과)</text>
+
+  <!-- ===== Parent baseline ===== -->
+  <text x="20" y="64" text-anchor="start" font-size="10" fill="currentColor" font-weight="700" opacity="0.85">부모</text>
+  <rect x="120" y="50" width="250" height="22" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="245" y="65" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85">기준 허용 폭</text>
+  <rect x="430" y="50" width="220" height="22" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="540" y="65" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85">기준 보장</text>
+
+  <!-- guide lines from parent edges -->
+  <line x1="120" y1="48" x2="120" y2="250" stroke="currentColor" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+  <line x1="370" y1="48" x2="370" y2="250" stroke="currentColor" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+  <line x1="430" y1="48" x2="430" y2="250" stroke="currentColor" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+  <line x1="650" y1="48" x2="650" y2="250" stroke="currentColor" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+
+  <!-- ===== Good child ===== -->
+  <text x="20" y="118" text-anchor="start" font-size="10" fill="currentColor" font-weight="700" opacity="0.85">올바른</text>
+  <text x="20" y="131" text-anchor="start" font-size="10" fill="currentColor" font-weight="700" opacity="0.85">자식</text>
+  <!-- precondition: same or wider (weaker) -->
+  <rect x="120" y="108" width="300" height="22" rx="3" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2.5"/>
+  <text x="270" y="123" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">같거나 더 넓게 (약화) ✔</text>
+  <!-- postcondition: same or narrower (stronger) -->
+  <rect x="430" y="108" width="150" height="22" rx="3" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2.5"/>
+  <text x="505" y="123" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700">같거나 더 좁게 (강화) ✔</text>
+
+  <!-- ===== Bad child ===== -->
+  <text x="20" y="200" text-anchor="start" font-size="10" fill="var(--accent-color)" font-weight="700">잘못된</text>
+  <text x="20" y="213" text-anchor="start" font-size="10" fill="var(--accent-color)" font-weight="700">자식</text>
+  <!-- precondition: narrower (strengthened) -> rejects valid input -->
+  <rect x="120" y="190" width="150" height="22" rx="3" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="195" y="205" text-anchor="middle" font-size="8.5" fill="var(--accent-color)" font-weight="700">더 좁힘 (강화) ✘</text>
+  <text x="320" y="205" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">멀쩡한 입력이 거부됨</text>
+  <!-- postcondition: wider (weakened) -> promises less -->
+  <rect x="430" y="190" width="220" height="22" rx="3" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="540" y="205" text-anchor="middle" font-size="8.5" fill="var(--accent-color)" font-weight="700">더 넓힘 (약화) ✘ — 약속을 덜 지킴</text>
+
+  <!-- direction legend -->
+  <text x="330" y="262" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.85" font-weight="700">요구는 덜 (사전조건 ↔ 넓게) · 보장은 더 (사후조건 ↔ 좁게)</text>
+</svg>
+<figcaption>LSP를 두 막대의 <strong>폭</strong>으로 본 그림. 부모의 막대가 기준선이다 — <strong>올바른 자식</strong>은 사전조건을 <em>같거나 더 넓게</em>(요구는 덜) 받고 사후조건을 <em>같거나 더 좁게</em>(보장은 더) 지킨다. <strong>잘못된 자식</strong>은 그 반대로, 사전조건을 좁혀 멀쩡한 입력을 거부하거나(예: <code>BadSquare</code>) 사후조건을 넓혀 약속을 덜 지킨다 — 둘 다 치환 불가능.</figcaption>
+</figure>
 
 ```python
 class Rectangle:

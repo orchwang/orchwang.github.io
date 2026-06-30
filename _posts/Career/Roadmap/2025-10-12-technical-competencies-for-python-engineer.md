@@ -10,11 +10,113 @@ banner: wartable
 excerpt: "10년차 Python 백엔드 엔지니어 기술 역량 로드맵. 언어 코어, 아키텍처, 데이터베이스, 인프라, 운영, 협업 등 전 영역을 체크리스트로 정리했습니다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="Python 백엔드 엔지니어의 기술 역량 맵. 가운데에 'Python 엔지니어' 코어가 있고, 그 둘레를 8개의 역량 영역 타일이 둘러싼다. 영역은 1) 언어·코어, 2) 백엔드 아키텍처, 3) 데이터베이스·스토리지, 4) 인프라·DevOps, 5) 보안·안정성, 6) 성능·확장성, 7) 협업·리더십, 8) 미래 확장(리더 레벨)이다. 코어에서 각 타일로 선이 뻗어 한 사람이 갖춰야 할 전방위 역량을 한 장으로 보여준다." viewBox="0 0 680 360" xmlns="http://www.w3.org/2000/svg">
+  <title>Python 엔지니어 기술 역량 맵 — 코어를 중심으로 둘러싼 8개 역량 영역</title>
+
+  <!-- ===== spokes from core to each domain (drawn first, under tiles) ===== -->
+  <g stroke="var(--secondary-color)" stroke-width="2" opacity="0.7">
+    <line x1="340" y1="180" x2="130" y2="66"/>
+    <line x1="340" y1="180" x2="340" y2="60"/>
+    <line x1="340" y1="180" x2="550" y2="66"/>
+    <line x1="340" y1="180" x2="592" y2="180"/>
+    <line x1="340" y1="180" x2="550" y2="294"/>
+    <line x1="340" y1="180" x2="340" y2="300"/>
+    <line x1="340" y1="180" x2="130" y2="294"/>
+    <line x1="340" y1="180" x2="88" y2="180"/>
+  </g>
+
+  <!-- ===== center core ===== -->
+  <circle cx="340" cy="180" r="52" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="3"/>
+  <circle cx="340" cy="180" r="44" fill="none" stroke="var(--accent-color)" stroke-width="1.5" opacity="0.6"/>
+  <text x="340" y="174" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">Python</text>
+  <text x="340" y="192" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">엔지니어</text>
+
+  <!-- ===== 8 domain tiles ===== -->
+  <!-- 1. 언어·코어 (top-left) -->
+  <g>
+    <rect x="48" y="42" width="164" height="48" rx="4" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2"/>
+    <text x="130" y="64" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">1 · 언어 / 코어</text>
+    <text x="130" y="80" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">GIL · 메모리 · 동시성 · 타입</text>
+  </g>
+  <!-- 2. 백엔드 아키텍처 (top-center) -->
+  <g>
+    <rect x="258" y="36" width="164" height="48" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="340" y="58" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">2 · 백엔드 아키텍처</text>
+    <text x="340" y="74" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">DDD · API · 이벤트 기반</text>
+  </g>
+  <!-- 3. DB·스토리지 (top-right) -->
+  <g>
+    <rect x="468" y="42" width="164" height="48" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="550" y="64" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">3 · DB / 스토리지</text>
+    <text x="550" y="80" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">RDBMS · NoSQL · OLAP</text>
+  </g>
+  <!-- 4. 인프라·DevOps (right) -->
+  <g>
+    <rect x="510" y="156" width="164" height="48" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="592" y="178" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">4 · 인프라 / DevOps</text>
+    <text x="592" y="194" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">CI/CD · K8s · 관측성 · IaC</text>
+  </g>
+  <!-- 5. 보안·안정성 (bottom-right) -->
+  <g>
+    <rect x="468" y="270" width="164" height="48" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="550" y="292" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">5 · 보안 / 안정성</text>
+    <text x="550" y="308" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">인증·인가 · 무결성 · 복원</text>
+  </g>
+  <!-- 6. 성능·확장성 (bottom-center) -->
+  <g>
+    <rect x="258" y="276" width="164" height="48" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="340" y="298" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">6 · 성능 / 확장성</text>
+    <text x="340" y="314" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">Scale-out · 캐시 · 분산</text>
+  </g>
+  <!-- 7. 협업·리더십 (bottom-left) -->
+  <g>
+    <rect x="48" y="270" width="164" height="48" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+    <text x="130" y="292" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">7 · 협업 / 리더십</text>
+    <text x="130" y="308" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">리뷰 · 문서화 · 의사결정</text>
+  </g>
+  <!-- 8. 미래 확장 (left) -->
+  <g>
+    <rect x="6" y="156" width="164" height="48" rx="4" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+    <text x="88" y="178" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">8 · 미래 확장</text>
+    <text x="88" y="194" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">시스템 설계 · MLOps · 거버넌스</text>
+  </g>
+</svg>
+<figcaption>10년차 Python 백엔드 엔지니어의 역량 맵 — 가운데 코어를 중심으로 <strong>8개 영역</strong>(언어·코어 / 백엔드 아키텍처 / DB·스토리지 / 인프라·DevOps / 보안·안정성 / 성능·확장성 / 협업·리더십 / 미래 확장)이 둘러싼다. 이 글은 각 영역을 체크리스트로 풀어낸다.</figcaption>
+</figure>
+
 ## Python 엔지니어 기술 역량 로드맵
 
 10년차 파이썬 백엔드 엔지니어라면, 단순히 프레임워크 사용 능력을 넘어서 시스템 아키텍처, 성능 최적화, 운영 자동화, 협업 리더십까지 포함한 전방위적 역량이 요구됩니다.
 
 이 로드맵은 핵심 영역별로 정리한 기술 역량 체크리스트입니다. 각 항목을 학습하면서 체크박스를 업데이트하고 관련 학습 기록을 링크로 연결합니다.
+
+### 한눈에 보기 — 연차별 성장 경로
+
+8개 역량 영역은 따로 노는 목록이 아니라, 연차에 따라 무게중심이 옮겨가는 **하나의 성장 경로**입니다. 기초를 다지는 0–2년차, 실무로 숙련되는 3–5년차, 리더십을 구축하는 6–10년차로 이어지며 위 8개 영역이 순차적으로 활성화됩니다.
+
+```mermaid
+flowchart LR
+    P1["Phase 1<br/>기초 다지기<br/>(0–2년차)"]
+    P2["Phase 2<br/>실무 숙련<br/>(3–5년차)"]
+    P3["Phase 3<br/>리더십 구축<br/>(6–10년차)"]
+
+    P1 --> P2 --> P3
+
+    P1 --- D1["① 언어·코어"]
+    P1 --- D3["③ DB·스토리지 기초"]
+    P1 --- D2a["② 웹 프레임워크"]
+
+    P2 --- D2b["② 아키텍처 설계"]
+    P2 --- D4["④ 인프라·DevOps"]
+    P2 --- D6["⑥ 성능·확장성"]
+    P2 --- D5["⑤ 보안·안정성"]
+
+    P3 --- D7["⑦ 협업·리더십"]
+    P3 --- D8["⑧ 미래 확장"]
+```
+
+각 Phase에 도장을 하나씩 깨며 다음 단계로 넘어가는 흐름으로 읽으면, 아래 영역별 체크리스트가 "지금 내가 어디쯤인지"를 가늠하는 지도가 됩니다.
 
 ## 🧠 1. 언어 및 코어 역량 (Python Core Competency)
 

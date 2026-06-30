@@ -9,6 +9,90 @@ published: true
 excerpt: "아키텍처를 측정 가능한 품질 속성으로 다루는 공학 방법론. QA 시나리오 6요소, 전술 카탈로그, ATAM 평가, Views & Beyond 문서화를 정리합니다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="품질 속성 중심 아키텍처 공학을 한 장으로 묶은 그림. 왼쪽에는 가용성·성능·보안·수정 가능성이라는 네 개의 품질 속성 기둥이 서 있고, 각 기둥은 QA 시나리오로 측정 가능하게 정량화된다. 가운데에서는 전술 카탈로그가 톱니바퀴처럼 맞물려 그 품질 속성들을 떠받친다. 오른쪽 위에서는 ATAM 평가의 저울이 트레이드오프를 가늠하고, 오른쪽 아래에서는 Views 문서가 세 겹의 관점으로 설계를 기록한다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>Software Architecture in Practice — 품질 속성(기둥) · QA 시나리오(측정) · 전술(톱니) · ATAM(저울) · Views(문서)</title>
+
+  <!-- ===== LEFT: four quality-attribute pillars on a measured baseline ===== -->
+  <text x="116" y="22" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">품질 속성 (기둥)</text>
+  <!-- baseline = QA scenario measurement -->
+  <line x1="28" y1="220" x2="208" y2="220" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="118" y="236" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8" font-weight="700">QA 시나리오로 측정 (자극→응답→측정값)</text>
+  <!-- pillar: availability -->
+  <rect x="32" y="96" width="36" height="124" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="50" y="160" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700" transform="rotate(-90 50 160)">가용성</text>
+  <!-- pillar: performance -->
+  <rect x="76" y="76" width="36" height="144" rx="2" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.2"/>
+  <text x="94" y="150" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700" transform="rotate(-90 94 150)">성능</text>
+  <!-- pillar: security -->
+  <rect x="120" y="110" width="36" height="110" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="138" y="166" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700" transform="rotate(-90 138 166)">보안</text>
+  <!-- pillar: modifiability -->
+  <rect x="164" y="88" width="36" height="132" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="182" y="156" text-anchor="middle" font-size="8.5" fill="currentColor" font-weight="700" transform="rotate(-90 182 156)">수정 가능성</text>
+
+  <!-- divider -->
+  <line x1="240" y1="40" x2="240" y2="248" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== MIDDLE: tactics as interlocking gears supporting the attributes ===== -->
+  <text x="360" y="22" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">전술 (떠받침)</text>
+  <!-- gear A -->
+  <g transform="translate(318 110)">
+    <circle r="34" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
+    <circle r="11" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <g stroke="currentColor" stroke-width="6">
+      <line x1="0" y1="-34" x2="0" y2="-44"/><line x1="0" y1="34" x2="0" y2="44"/>
+      <line x1="-34" y1="0" x2="-44" y2="0"/><line x1="34" y1="0" x2="44" y2="0"/>
+      <line x1="-24" y1="-24" x2="-31" y2="-31"/><line x1="24" y1="24" x2="31" y2="31"/>
+      <line x1="-24" y1="24" x2="-31" y2="31"/><line x1="24" y1="-24" x2="31" y2="-31"/>
+    </g>
+  </g>
+  <!-- gear B -->
+  <g transform="translate(396 168)">
+    <circle r="28" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.2"/>
+    <circle r="9" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <g stroke="var(--gold)" stroke-width="5">
+      <line x1="0" y1="-28" x2="0" y2="-37"/><line x1="0" y1="28" x2="0" y2="37"/>
+      <line x1="-28" y1="0" x2="-37" y2="0"/><line x1="28" y1="0" x2="37" y2="0"/>
+      <line x1="-20" y1="-20" x2="-26" y2="-26"/><line x1="20" y1="20" x2="26" y2="26"/>
+      <line x1="-20" y1="20" x2="-26" y2="26"/><line x1="20" y1="-20" x2="26" y2="-26"/>
+    </g>
+  </g>
+  <text x="360" y="232" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8" font-weight="700">검증된 설계 결정이 맞물려 품질을 달성</text>
+
+  <!-- divider -->
+  <line x1="452" y1="40" x2="452" y2="248" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== RIGHT TOP: ATAM balance scale (tradeoff) ===== -->
+  <text x="566" y="22" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">ATAM · Views</text>
+  <line x1="566" y1="58" x2="566" y2="92" stroke="currentColor" stroke-width="2"/>
+  <line x1="510" y1="64" x2="622" y2="52" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <line x1="510" y1="64" x2="510" y2="80" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="622" y1="52" x2="622" y2="68" stroke="currentColor" stroke-width="1.5"/>
+  <path d="M500,80 a10,6 0 0 0 20,0 z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+  <path d="M612,68 a10,6 0 0 0 20,0 z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+  <text x="566" y="106" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8" font-weight="700">트레이드오프 평가</text>
+
+  <!-- RIGHT BOTTOM: three stacked view documents -->
+  <rect x="536" y="146" width="64" height="34" rx="2" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.6"/>
+  <rect x="528" y="162" width="64" height="34" rx="2" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.6"/>
+  <rect x="520" y="178" width="64" height="34" rx="2" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+  <text x="552" y="199" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">뷰 3겹</text>
+  <text x="566" y="232" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8" font-weight="700">모듈 · C&amp;C · 할당 뷰로 문서화</text>
+
+  <!-- baseline flow arrow tying scenarios → tactics → attributes -->
+  <line x1="210" y1="120" x2="280" y2="120" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#sa-arrow)" opacity="0.85"/>
+  <line x1="430" y1="120" x2="500" y2="86" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#sa-arrow)" opacity="0.85"/>
+
+  <defs>
+    <marker id="sa-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>이 책의 척추 — <strong>품질 속성</strong>(가용성·성능·보안·수정 가능성)을 1차 시민인 <strong>기둥</strong>으로 세우고, 그 높이를 <strong>QA 시나리오</strong>로 측정한다. 가운데 맞물린 <strong>전술</strong>이 그 기둥을 떠받쳐 품질을 달성하고, 오른쪽에서 <strong>ATAM</strong>의 저울이 트레이드오프를 가늠하며 <strong>Views &amp; Beyond</strong>가 세 겹의 관점으로 기록한다.</figcaption>
+</figure>
+
 ## 들어가며
 
 이 글은 `Architecture-Essential` 시리즈의 **2단계**입니다. 전체 학습 경로는 [Architecture Essential Curriculum](/2026/06/19/architecture-essential-curriculum.html)에서 확인할 수 있습니다.
@@ -62,6 +146,56 @@ excerpt: "아키텍처를 측정 가능한 품질 속성으로 다루는 공학 
 
 핵심은 **응답 측정**입니다. 측정값이 있어야 "달성했다/못 했다"를 객관적으로 말할 수 있습니다.
 
+여섯 요소가 어떻게 한 문장으로 흐르는지 그림으로 보면 구조가 또렷해집니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="품질 속성 시나리오의 여섯 요소가 하나의 흐름을 이루는 그림. 왼쪽에서 자극원이 자극을 만들어 시스템으로 보내면, 그 자극은 특정 환경 조건 아래 특정 아티팩트에 도달한다. 아티팩트는 응답을 내놓고, 그 응답은 응답 측정값으로 합격 여부가 판정된다. 환경과 아티팩트는 자극이 도달하는 상황을 규정하는 한 쌍으로 위아래에 묶여 표시되고, 응답 측정은 합격선을 나타내는 강조 박스로 끝에 놓인다." viewBox="0 0 680 240" xmlns="http://www.w3.org/2000/svg">
+  <title>품질 속성 시나리오 6요소 — 자극원→자극→(환경·아티팩트)→응답→응답 측정의 흐름</title>
+
+  <!-- source -->
+  <rect x="20" y="98" width="92" height="44" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="66" y="118" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">자극원</text>
+  <text x="66" y="133" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">Source</text>
+  <line x1="112" y1="120" x2="142" y2="120" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#qa-arrow)"/>
+
+  <!-- stimulus -->
+  <rect x="144" y="98" width="92" height="44" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="190" y="118" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">자극</text>
+  <text x="190" y="133" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">Stimulus</text>
+  <line x1="236" y1="120" x2="266" y2="120" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#qa-arrow)"/>
+
+  <!-- environment + artifact: the condition pair the stimulus arrives into -->
+  <rect x="266" y="58" width="128" height="124" rx="4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="5 4" opacity="0.6"/>
+  <text x="330" y="50" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8" font-weight="700">도달 상황</text>
+  <rect x="278" y="70" width="104" height="44" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="330" y="90" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">환경</text>
+  <text x="330" y="105" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">Environment</text>
+  <rect x="278" y="126" width="104" height="44" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="330" y="146" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">아티팩트</text>
+  <text x="330" y="161" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">Artifact</text>
+  <line x1="394" y1="120" x2="424" y2="120" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#qa-arrow)"/>
+
+  <!-- response -->
+  <rect x="426" y="98" width="92" height="44" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="472" y="118" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">응답</text>
+  <text x="472" y="133" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">Response</text>
+  <line x1="518" y1="120" x2="548" y2="120" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#qa-arrow)"/>
+
+  <!-- response measure (the pass/fail line — emphasized) -->
+  <rect x="550" y="92" width="108" height="56" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <text x="604" y="112" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">응답 측정</text>
+  <text x="604" y="127" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85">Response Measure</text>
+  <text x="604" y="140" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85" font-weight="700">합격선 (시간·비율)</text>
+
+  <defs>
+    <marker id="qa-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>QA 시나리오 6요소의 흐름 — <strong>자극원</strong>이 만든 <strong>자극</strong>이 특정 <strong>환경</strong>에서 특정 <strong>아티팩트</strong>에 도달하면(점선 = 도달 상황), 아티팩트가 <strong>응답</strong>을 내놓고 그 응답을 <strong>응답 측정</strong>(합격선)으로 판정한다. 마지막 칸의 측정값이 있어야 비로소 "달성/미달"을 객관적으로 말할 수 있다.</figcaption>
+</figure>
+
 다음은 가용성(Availability) 시나리오의 구체적 예시입니다.
 
 ```text
@@ -113,7 +247,63 @@ excerpt: "아키텍처를 측정 가능한 품질 속성으로 다루는 공학 
 | 보안 (Security) | 공격 탐지·복구 | 침입 탐지, 감사 로그, 상태 복원 |
 | 테스트 용이성 (Testability) | 입출력 제어 | 의존성 주입, 기록/재생(record/playback), 인터페이스 분리 |
 
-전술의 가치는 **재사용 가능한 어휘**라는 데 있습니다. "가용성을 올리자"는 추상적이지만, "결제 서비스에 active/passive redundancy와 circuit breaker를 적용하자"는 구체적이고 토론 가능합니다. 위 가용성 시나리오의 "5초 내 감지 / 30초 내 복구"는 heartbeat(감지) + 자동 페일오버(복구)라는 전술 조합으로 직접 연결됩니다.
+전술의 가치는 **재사용 가능한 어휘**라는 데 있습니다. "가용성을 올리자"는 추상적이지만, "결제 서비스에 active/passive redundancy와 circuit breaker를 적용하자"는 구체적이고 토론 가능합니다. 위 가용성 시나리오의 "5초 내 감지 / 30초 내 복구"는 heartbeat(감지) + 자동 페일오버(복구)라는 전술 조합으로 직접 연결됩니다. 하나의 품질 속성이 어떻게 여러 전술 범주로 나뉘고, 그 범주가 다시 구체 전술과 시나리오 측정값으로 이어지는지 가용성을 예로 보면 다음과 같습니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="가용성이라는 하나의 품질 속성이 결함 감지, 결함 복구, 결함 예방이라는 세 전술 범주로 갈라지고, 각 범주가 구체 전술로 이어지는 그림. 왼쪽에 가용성 노드가 있고 오른쪽으로 세 갈래가 뻗는다. 결함 감지는 heartbeat와 타임아웃 전술로, 결함 복구는 페일오버와 redundancy 전술로, 결함 예방은 circuit breaker와 bulkhead 전술로 이어진다. 결함 감지와 결함 복구 전술은 가용성 시나리오의 측정값인 5초 내 감지와 30초 내 복구로 연결되어, 전술이 곧 측정값을 달성한다는 점이 강조된다." viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg">
+  <title>전술이 품질 속성을 달성한다 — 가용성 → 전술 범주(감지·복구·예방) → 구체 전술 → 시나리오 측정값</title>
+
+  <!-- quality attribute -->
+  <rect x="20" y="112" width="112" height="56" rx="3" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="76" y="136" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">가용성</text>
+  <text x="76" y="152" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">품질 속성</text>
+
+  <!-- branch lines to three categories -->
+  <line x1="132" y1="130" x2="186" y2="58" stroke="var(--secondary-color)" stroke-width="2.2" marker-end="url(#tc-arrow)"/>
+  <line x1="132" y1="140" x2="186" y2="140" stroke="var(--secondary-color)" stroke-width="2.2" marker-end="url(#tc-arrow)"/>
+  <line x1="132" y1="150" x2="186" y2="222" stroke="var(--secondary-color)" stroke-width="2.2" marker-end="url(#tc-arrow)"/>
+
+  <!-- category: detect -->
+  <rect x="188" y="36" width="120" height="44" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="248" y="54" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">결함 감지</text>
+  <text x="248" y="69" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">Detect Faults</text>
+  <!-- category: recover -->
+  <rect x="188" y="118" width="120" height="44" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="248" y="136" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">결함 복구</text>
+  <text x="248" y="151" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">Recover</text>
+  <!-- category: prevent -->
+  <rect x="188" y="200" width="120" height="44" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="248" y="218" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700">결함 예방</text>
+  <text x="248" y="233" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.8">Prevent</text>
+
+  <!-- concrete tactics -->
+  <line x1="308" y1="58" x2="338" y2="58" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#tc-arrow)"/>
+  <rect x="340" y="40" width="150" height="36" rx="3" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="2"/>
+  <text x="415" y="62" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">heartbeat · 타임아웃</text>
+
+  <line x1="308" y1="140" x2="338" y2="140" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#tc-arrow)"/>
+  <rect x="340" y="122" width="150" height="36" rx="3" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="2"/>
+  <text x="415" y="144" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">페일오버 · redundancy</text>
+
+  <line x1="308" y1="222" x2="338" y2="222" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#tc-arrow)"/>
+  <rect x="340" y="204" width="150" height="36" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.8"/>
+  <text x="415" y="226" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">circuit breaker · bulkhead</text>
+
+  <!-- measures (the scenario pass-line the detect/recover tactics achieve) -->
+  <line x1="490" y1="58" x2="520" y2="74" stroke="var(--secondary-color)" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#tc-arrow)" opacity="0.8"/>
+  <line x1="490" y1="140" x2="520" y2="116" stroke="var(--secondary-color)" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#tc-arrow)" opacity="0.8"/>
+  <rect x="522" y="74" width="138" height="44" rx="3" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="591" y="92" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">시나리오 측정값</text>
+  <text x="591" y="106" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85">5초 감지 · 30초 복구</text>
+
+  <defs>
+    <marker id="tc-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>전술이 품질 속성을 달성하는 경로 — 하나의 <strong>품질 속성</strong>(가용성)은 <strong>전술 범주</strong>(감지·복구·예방)로 갈라지고, 각 범주는 다시 <strong>구체 전술</strong>로 내려간다. 점선은 감지(heartbeat)·복구(페일오버) 전술이 위 가용성 시나리오의 <strong>측정값</strong>(5초 감지·30초 복구)을 직접 달성함을 가리킨다 — "가용성을 올리자"가 토론 가능한 결정으로 바뀌는 지점이다.</figcaption>
+</figure>
 
 다만 모든 전술에는 대가가 따릅니다. 캐시는 성능을 올리지만 일관성과 메모리를 희생합니다. redundancy는 가용성을 올리지만 비용과 복잡도를 늘립니다. 이 **상충**을 다루는 것이 바로 평가 단계의 역할입니다.
 

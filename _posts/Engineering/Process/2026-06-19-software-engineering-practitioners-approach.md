@@ -9,6 +9,55 @@ published: true
 excerpt: "Roger Pressman의 고전을 길잡이 삼아 소프트웨어 공학의 전체 지형도를 그린다. 프로세스 모델·요구사항 공학·설계와 품질·프로젝트 관리를 한눈에 조망하고, 이후 단계들이 이 지도 위 어디에 위치하는지 정리한다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="소프트웨어 공학의 전체 지형도를 한 장에 담은 그림. 맨 아래에 '소프트웨어 프로세스'라는 폭넓은 토대 띠가 깔리고, 그 위에 요구사항 공학·설계와 품질·프로젝트 관리 세 개의 활동 봉우리가 솟아 있다. 세 봉우리를 가로지르는 점선 리본이 활동들 사이를 오가는 피드백 되먹임을 나타낸다. 토대 띠 아래에는 폭포수·반복·점진이라는 세 가지 프로세스 리듬이 작게 표시된다." viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
+  <title>소프트웨어 공학의 지형도 — 프로세스 토대 위에 요구·설계/품질·관리가 얹히고 피드백으로 묶인다</title>
+
+  <text x="340" y="26" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700" opacity="0.8">소프트웨어 공학의 지형도</text>
+
+  <!-- ===== feedback ribbon weaving across the three peaks ===== -->
+  <path d="M118,118 C220,70 300,150 380,104 C460,60 540,150 600,104" fill="none" stroke="var(--secondary-color)" stroke-width="2" stroke-dasharray="5 5" opacity="0.85"/>
+  <text x="600" y="92" text-anchor="end" font-size="9" fill="currentColor" opacity="0.7">피드백 되먹임</text>
+
+  <!-- ===== three activity peaks ===== -->
+  <!-- Requirements -->
+  <rect x="64" y="120" width="160" height="86" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="144" y="150" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">요구사항 공학</text>
+  <text x="144" y="170" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.8">도출 · 분석</text>
+  <text x="144" y="186" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.8">명세 · 검증</text>
+
+  <!-- Design and Quality -->
+  <rect x="244" y="120" width="160" height="86" rx="4" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="324" y="150" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">설계와 품질</text>
+  <text x="324" y="170" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.8">설계 원칙 · 품질 속성</text>
+  <text x="324" y="186" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.8">검증 · 확인 (V&amp;V)</text>
+
+  <!-- Project Management -->
+  <rect x="424" y="120" width="160" height="86" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="504" y="150" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">프로젝트 관리</text>
+  <text x="504" y="170" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.8">추정 · 일정</text>
+  <text x="504" y="186" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.8">위험 관리</text>
+
+  <!-- ===== process foundation band ===== -->
+  <rect x="48" y="224" width="584" height="44" rx="5" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <text x="340" y="251" text-anchor="middle" font-size="14" fill="currentColor" font-weight="700">소프트웨어 프로세스 — 전체를 떠받치는 토대</text>
+
+  <!-- little legs from peaks to foundation -->
+  <line x1="144" y1="206" x2="144" y2="224" stroke="currentColor" stroke-width="1.5" opacity="0.55"/>
+  <line x1="324" y1="206" x2="324" y2="224" stroke="currentColor" stroke-width="1.5" opacity="0.55"/>
+  <line x1="504" y1="206" x2="504" y2="224" stroke="currentColor" stroke-width="1.5" opacity="0.55"/>
+
+  <!-- ===== three process rhythms under the foundation ===== -->
+  <text x="138" y="294" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.85" font-weight="700">폭포수</text>
+  <text x="340" y="294" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.85" font-weight="700">반복</text>
+  <text x="542" y="294" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.85" font-weight="700">점진</text>
+  <text x="234" y="294" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.5">·</text>
+  <text x="441" y="294" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.5">·</text>
+  <text x="340" y="312" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.6">토대를 흐르는 세 가지 리듬</text>
+</svg>
+<figcaption>이 글의 지형도 한 장 요약 — 맨 아래 <strong>소프트웨어 프로세스</strong>가 전체를 떠받치는 토대이고, 그 위에 <strong>요구사항 공학 · 설계와 품질 · 프로젝트 관리</strong> 세 활동이 얹힌다. 활동들은 한 방향이 아니라 점선 리본처럼 <strong>피드백</strong>으로 서로 오간다. 토대를 흐르는 리듬이 폭포수 · 반복 · 점진이다.</figcaption>
+</figure>
+
 ## 들어가며
 
 이 글은 `Process-Essential` 시리즈의 **1단계**입니다. 시리즈 전체 계획은 [Process Essential Curriculum](/2026/06/19/process-essential-curriculum.html)에서 확인할 수 있습니다.
@@ -69,13 +118,146 @@ flowchart TB
 
 **왜 중요한가.** 같은 요구사항이라도 "어떤 순서와 리듬으로 일할 것인가"에 따라 결과의 위험과 속도가 완전히 달라집니다. 프로세스 모델은 바로 그 "일하는 방식의 설계도"입니다. 모델 없이 일하면 매번 즉흥적으로 순서를 정하게 되고, 무엇이 끝났는지·무엇이 남았는지 가늠하기 어렵습니다.
 
-**개념.** 프로세스 모델은 소프트웨어를 만드는 활동(요구·설계·구현·테스트·배포)을 **언제·어떤 순서로·얼마나 반복하며** 수행할지 규정하는 틀입니다. 대표적인 세 모델을 비교해 봅니다.
+**개념.** 프로세스 모델은 소프트웨어를 만드는 활동(요구·설계·구현·테스트·배포)을 **언제·어떤 순서로·얼마나 반복하며** 수행할지 규정하는 틀입니다.
+
+Pressman은 이 프로세스를 더 큰 그림 안에 놓습니다. 소프트웨어 공학은 **품질에 대한 헌신을 바닥에 깔고, 그 위에 프로세스 → 방법 → 도구가 층층이 쌓이는 구조**라는 것입니다. 아래층이 윗층을 떠받칩니다. 도구는 방법을 자동화하고, 방법은 프로세스가 정한 순서를 채우며, 프로세스는 품질이라는 토대 위에서만 의미를 갖습니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="Pressman이 말하는 소프트웨어 공학의 네 계층을 아래에서 위로 쌓은 그림. 맨 아래는 모든 것을 떠받치는 가장 넓은 토대인 '품질 초점'이고, 그 위에 '프로세스' 계층, 다시 그 위에 '방법' 계층, 맨 위에 가장 좁은 '도구' 계층이 차례로 얹힌다. 위로 갈수록 구체적이고 좁아지며, 각 층은 바로 아래층에 기댄다는 것을 위쪽 화살표가 나타낸다." viewBox="0 0 560 300" xmlns="http://www.w3.org/2000/svg">
+  <title>소프트웨어 공학의 네 계층 — 품질 초점(토대) → 프로세스 → 방법 → 도구</title>
+
+  <text x="280" y="24" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.8">소프트웨어 공학의 네 계층</text>
+
+  <!-- Tools (top, narrowest) -->
+  <rect x="190" y="44" width="180" height="40" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="280" y="62" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">도구 (Tools)</text>
+  <text x="280" y="78" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">방법을 자동화 · 지원</text>
+
+  <!-- Methods -->
+  <rect x="140" y="100" width="280" height="40" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="280" y="118" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">방법 (Methods)</text>
+  <text x="280" y="134" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">"어떻게" — 분석·설계·구현·테스트 기법</text>
+
+  <!-- Process -->
+  <rect x="90" y="156" width="380" height="40" rx="4" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="280" y="174" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700">프로세스 (Process)</text>
+  <text x="280" y="190" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.8">"언제·어떤 순서로" — 활동을 묶는 골격</text>
+
+  <!-- Quality focus (bottom, widest foundation) -->
+  <rect x="40" y="212" width="480" height="48" rx="4" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <text x="280" y="232" text-anchor="middle" font-size="13" fill="currentColor" font-weight="700">품질 초점 (Quality Focus)</text>
+  <text x="280" y="249" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.85">모든 것을 떠받치는 토대 — 품질에 대한 헌신</text>
+
+  <!-- "rests on" arrows pointing up -->
+  <g opacity="0.6">
+    <line x1="280" y1="212" x2="280" y2="198" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#sl-arrow)"/>
+    <line x1="280" y1="156" x2="280" y2="142" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#sl-arrow)"/>
+    <line x1="280" y1="100" x2="280" y2="86" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#sl-arrow)"/>
+  </g>
+  <text x="498" y="160" text-anchor="end" font-size="8.5" fill="currentColor" opacity="0.6">위로 갈수록 구체적</text>
+  <text x="62" y="282" text-anchor="start" font-size="8.5" fill="currentColor" opacity="0.6">아래층이 윗층을 떠받친다</text>
+
+  <defs>
+    <marker id="sl-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>Pressman의 소프트웨어 공학 계층 — 맨 아래 <strong>품질 초점</strong>이 모든 것을 떠받치는 토대이고, 그 위로 <strong>프로세스</strong>(언제·어떤 순서로) → <strong>방법</strong>(어떻게) → <strong>도구</strong>(자동화)가 점점 구체적으로 좁아지며 쌓인다. 아래층 없이는 윗층이 설 수 없다. 이 글이 말하는 "프로세스라는 토대"는 바로 이 두 번째 계층이다.</figcaption>
+</figure>
+
+대표적인 세 모델을 비교해 봅니다.
 
 | 모델 | 핵심 아이디어 | 강점 | 약점 | 잘 맞는 상황 |
 |------|---------------|------|------|--------------|
 | 폭포수(Waterfall) | 단계를 한 번씩 순차 진행 | 단순·문서화 명확 | 변경에 취약, 늦은 피드백 | 요구가 고정·명확할 때 |
 | 반복(Iterative) | 전체를 여러 번 돌며 정제 | 위험을 일찍 노출 | 반복 관리 비용 | 요구 이해가 점차 깊어질 때 |
 | 점진(Incremental) | 동작하는 일부를 조금씩 더함 | 조기 가치 전달 | 아키텍처 일관성 주의 | 빠른 출시·부분 인도가 필요할 때 |
+
+세 모델의 차이는 "같은 활동을 어떤 **리듬**으로 배치하는가"에 있습니다. 아래 그림은 요구·설계·구현·테스트라는 같은 블록을 세 모델이 시간 축에서 어떻게 다르게 흘려보내는지 보여 줍니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="폭포수·반복·점진 세 프로세스 모델을 시간 축에서 비교한 그림. 위쪽 폭포수는 요구·설계·구현·테스트 네 블록이 왼쪽에서 오른쪽으로 한 줄로 단 한 번씩 순차 배치되고, 맨 끝에서야 인도가 일어난다. 가운데 반복은 같은 네 블록 묶음이 여러 번 반복되며 한 바퀴마다 정제가 쌓이고, 인도는 마지막에 한 번 일어난다. 아래쪽 점진은 매 반복 묶음이 끝날 때마다 동작하는 조각을 인도하여, 사용자에게 일찍 그리고 여러 번 가치를 전달한다." viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
+  <title>폭포수 vs 반복 vs 점진 — 같은 활동 블록의 서로 다른 시간 배치(리듬)</title>
+
+  <!-- time axis hint -->
+  <text x="40" y="22" text-anchor="start" font-size="10" fill="currentColor" opacity="0.6">시간 →</text>
+
+  <!-- ===== WATERFALL ===== -->
+  <text x="40" y="56" text-anchor="start" font-size="12" fill="currentColor" font-weight="700">폭포수</text>
+  <text x="118" y="56" text-anchor="start" font-size="8.5" fill="currentColor" opacity="0.7">한 번씩 순차 — 인도는 맨 끝</text>
+  <g font-size="9" font-weight="700">
+    <rect x="40" y="64" width="92" height="26" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+    <text x="86" y="81" text-anchor="middle" fill="currentColor">요구</text>
+    <rect x="138" y="64" width="92" height="26" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+    <text x="184" y="81" text-anchor="middle" fill="currentColor">설계</text>
+    <rect x="236" y="64" width="92" height="26" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+    <text x="282" y="81" text-anchor="middle" fill="currentColor">구현</text>
+    <rect x="334" y="64" width="92" height="26" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+    <text x="380" y="81" text-anchor="middle" fill="currentColor">테스트</text>
+  </g>
+  <line x1="426" y1="77" x2="452" y2="77" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#wm-arrow)"/>
+  <g font-size="8.5" font-weight="700">
+    <rect x="454" y="64" width="58" height="26" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+    <text x="483" y="81" text-anchor="middle" fill="currentColor">인도 ★</text>
+  </g>
+
+  <line x1="40" y1="110" x2="640" y2="110" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+
+  <!-- ===== ITERATIVE ===== -->
+  <text x="40" y="144" text-anchor="start" font-size="12" fill="currentColor" font-weight="700">반복</text>
+  <text x="118" y="144" text-anchor="start" font-size="8.5" fill="currentColor" opacity="0.7">여러 바퀴 정제 — 인도는 마지막에 한 번</text>
+  <g font-size="8.5" font-weight="700">
+    <!-- iteration 1 -->
+    <rect x="40" y="152" width="120" height="26" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="1.8"/>
+    <text x="100" y="169" text-anchor="middle" fill="currentColor">요구·설계·구현·테스트</text>
+    <text x="100" y="192" text-anchor="middle" font-size="8" font-weight="400" fill="currentColor" opacity="0.7">반복 1</text>
+    <!-- iteration 2 -->
+    <rect x="172" y="152" width="120" height="26" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="1.8"/>
+    <text x="232" y="169" text-anchor="middle" fill="currentColor">요구·설계·구현·테스트</text>
+    <text x="232" y="192" text-anchor="middle" font-size="8" font-weight="400" fill="currentColor" opacity="0.7">반복 2 (정제)</text>
+    <!-- iteration 3 -->
+    <rect x="304" y="152" width="120" height="26" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="1.8"/>
+    <text x="364" y="169" text-anchor="middle" fill="currentColor">요구·설계·구현·테스트</text>
+    <text x="364" y="192" text-anchor="middle" font-size="8" font-weight="400" fill="currentColor" opacity="0.7">반복 3 (정제)</text>
+  </g>
+  <line x1="424" y1="165" x2="450" y2="165" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#wm-arrow)"/>
+  <g font-size="8.5" font-weight="700">
+    <rect x="452" y="152" width="58" height="26" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+    <text x="481" y="169" text-anchor="middle" fill="currentColor">인도 ★</text>
+  </g>
+
+  <line x1="40" y1="212" x2="640" y2="212" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+
+  <!-- ===== INCREMENTAL ===== -->
+  <text x="40" y="246" text-anchor="start" font-size="12" fill="currentColor" font-weight="700">점진</text>
+  <text x="118" y="246" text-anchor="start" font-size="8.5" fill="currentColor" opacity="0.7">매 반복마다 동작하는 조각을 인도 — 조기·반복 전달</text>
+  <g font-size="8.5" font-weight="700">
+    <rect x="40" y="254" width="120" height="26" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="1.8"/>
+    <text x="100" y="271" text-anchor="middle" fill="currentColor">요구·설계·구현·테스트</text>
+    <rect x="172" y="254" width="120" height="26" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="1.8"/>
+    <text x="232" y="271" text-anchor="middle" fill="currentColor">요구·설계·구현·테스트</text>
+    <rect x="304" y="254" width="120" height="26" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="1.8"/>
+    <text x="364" y="271" text-anchor="middle" fill="currentColor">요구·설계·구현·테스트</text>
+  </g>
+  <!-- per-increment deliveries -->
+  <g font-size="8" font-weight="700">
+    <line x1="100" y1="280" x2="100" y2="296" stroke="var(--secondary-color)" stroke-width="1.8" marker-end="url(#wm-arrow)"/>
+    <text x="100" y="312" text-anchor="middle" fill="var(--gold)">인도 ★</text>
+    <line x1="232" y1="280" x2="232" y2="296" stroke="var(--secondary-color)" stroke-width="1.8" marker-end="url(#wm-arrow)"/>
+    <text x="232" y="312" text-anchor="middle" fill="var(--gold)">인도 ★</text>
+    <line x1="364" y1="280" x2="364" y2="296" stroke="var(--secondary-color)" stroke-width="1.8" marker-end="url(#wm-arrow)"/>
+    <text x="364" y="312" text-anchor="middle" fill="var(--gold)">인도 ★</text>
+  </g>
+
+  <defs>
+    <marker id="wm-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>같은 활동 블록(요구·설계·구현·테스트)의 서로 다른 <strong>리듬</strong> — <strong>폭포수</strong>는 한 번씩 순차로 흘러 맨 끝에 한 번 인도하고, <strong>반복</strong>은 같은 묶음을 여러 바퀴 돌며 정제해 마지막에 인도하며, <strong>점진</strong>은 매 반복마다 동작하는 조각을 인도해 가치를 조기에 여러 번 전달한다. 현대 애자일은 반복+점진의 결합이다.</figcaption>
+</figure>
 
 **구체적인 예.** 결제 시스템을 만든다고 합시다. 폭포수라면 "모든 요구사항을 다 받고 → 전체를 설계하고 → 구현 → 테스트"를 한 번 거칩니다. 반면 반복형은 "기본 카드 결제만 먼저 한 바퀴 돌려 동작시키고, 다음 반복에서 환불·할부를 더하며 매번 요구·설계·테스트를 재검토"합니다. 점진형은 거기에 더해 매 반복의 산출물을 **실제로 인도 가능한 조각**으로 만들어 사용자에게 일찍 내보냅니다. 현대 애자일(2단계 XP 포함)은 본질적으로 반복+점진의 결합입니다.
 

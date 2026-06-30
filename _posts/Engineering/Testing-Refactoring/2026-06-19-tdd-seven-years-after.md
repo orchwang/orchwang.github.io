@@ -9,6 +9,76 @@ published: true
 excerpt: "TDD를 수년간 실천한 뒤의 솔직한 회고, London vs Classicist 테스트 더블의 트레이드오프, 그리고 TDD를 언제 적용할지에 대한 성숙한 판단을 정리합니다."
 ---
 
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="TDD를 맹신이나 배척의 이분법이 아니라, 비용과 가치를 저울질해 맥락에 맞게 적용하는 도구로 보는 그림. 왼쪽에는 한쪽 접시에 테스트를 갖추는 비용, 다른 접시에 피드백·자신감·설계 압력이라는 가치를 올린 저울이 있고, 오른쪽에는 끄기(skip)와 켜기(always) 사이를 잇는 눈금 막대 위에서 바늘이 가운데의 적정 지점을 가리키며 TDD가 켜고 끄는 스위치가 아니라 스펙트럼임을 보여 준다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>TDD는 도그마가 아니라 도구 — 비용 대 가치를 저울질하고(왼쪽), on/off가 아닌 스펙트럼으로 적용한다(오른쪽)</title>
+
+  <!-- ===== LEFT: cost vs value balance scale ===== -->
+  <text x="170" y="26" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">비용 대 가치를 저울질</text>
+
+  <!-- stand -->
+  <line x1="170" y1="70" x2="170" y2="232" stroke="currentColor" stroke-width="2.5"/>
+  <rect x="146" y="232" width="48" height="10" rx="2" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <!-- pivot + beam (tilted slightly toward value = right pan lower) -->
+  <circle cx="170" cy="70" r="4" fill="var(--gold)" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="92" y1="62" x2="248" y2="78" stroke="currentColor" stroke-width="2.5"/>
+
+  <!-- left pan: cost -->
+  <line x1="92" y1="62" x2="92" y2="96" stroke="currentColor" stroke-width="1.5"/>
+  <path d="M70 96 a22 12 0 0 0 44 0 z" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <rect x="74" y="112" width="36" height="26" rx="3" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2"/>
+  <text x="92" y="129" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">비용</text>
+  <text x="92" y="156" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.75">작성·실행·유지</text>
+
+  <!-- right pan: value (sits lower → weighs more) -->
+  <line x1="248" y1="78" x2="248" y2="118" stroke="currentColor" stroke-width="1.5"/>
+  <path d="M222 118 a26 13 0 0 0 52 0 z" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.2"/>
+  <rect x="216" y="136" width="64" height="44" rx="3" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.2"/>
+  <text x="248" y="152" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">가치</text>
+  <text x="248" y="165" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.85">피드백·자신감</text>
+  <text x="248" y="176" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.85">설계 압력</text>
+
+  <!-- divider -->
+  <line x1="360" y1="44" x2="360" y2="236" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+
+  <!-- ===== RIGHT: TDD as a spectrum dial, not on/off ===== -->
+  <text x="520" y="26" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">스위치가 아니라 스펙트럼</text>
+
+  <!-- spectrum track -->
+  <line x1="408" y1="120" x2="632" y2="120" stroke="currentColor" stroke-width="3" opacity="0.55"/>
+  <!-- ticks -->
+  <g stroke="currentColor" stroke-width="1.5" opacity="0.5">
+    <line x1="408" y1="112" x2="408" y2="128"/>
+    <line x1="464" y1="114" x2="464" y2="126"/>
+    <line x1="520" y1="110" x2="520" y2="130"/>
+    <line x1="576" y1="114" x2="576" y2="126"/>
+    <line x1="632" y1="112" x2="632" y2="128"/>
+  </g>
+  <!-- end labels -->
+  <text x="408" y="150" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">끄기</text>
+  <text x="408" y="162" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.75">일회성·탐색</text>
+  <text x="632" y="150" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">언제나</text>
+  <text x="632" y="162" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.75">도그마</text>
+
+  <!-- needle pointing to the judged sweet spot (slightly right of center) -->
+  <line x1="520" y1="120" x2="544" y2="80" stroke="var(--accent-color)" stroke-width="3" marker-end="url(#tdd-tip)"/>
+  <circle cx="520" cy="120" r="6" fill="var(--gold)" stroke="currentColor" stroke-width="1.8"/>
+  <rect x="494" y="56" width="100" height="24" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+  <text x="544" y="72" text-anchor="middle" font-size="9" fill="currentColor" font-weight="700">어디에 얼마나</text>
+
+  <!-- bottom note -->
+  <text x="520" y="206" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.8" font-weight="700">하느냐 마느냐가 아니라 — 어디에 얼마나</text>
+  <text x="520" y="224" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.7">비용이 가치를 앞서면 줄이고, 가치가 비용을 앞서면 늘린다</text>
+
+  <defs>
+    <marker id="tdd-tip" markerWidth="9" markerHeight="9" refX="5" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 z" fill="var(--accent-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>이 회고의 한 줄 — TDD는 <strong>도그마가 아니라 도구</strong>다. 한쪽에는 테스트를 갖추는 <strong>비용</strong>, 다른 쪽에는 피드백·자신감·설계 압력이라는 <strong>가치</strong>를 올려 저울질하고(왼쪽), 켜고 끄는 스위치가 아니라 <strong>끄기↔언제나</strong> 사이의 스펙트럼 위에서 "어디에 얼마나" 적용할지를 고른다(오른쪽).</figcaption>
+</figure>
+
 ## 들어가며
 
 이 글은 `Testing-Refactoring-Essential` 시리즈의 **2단계**입니다. 앞선 1단계 [TDD By Example: 테스트가 이끄는 설계 (Red-Green-Refactor)](/2026/06/19/tdd-by-example.html)에서 우리는 Red-Green-Refactor라는 정전(正典)의 리듬을 배웠습니다. 규칙을 익혔다면, 곧바로 같은 저자가 그 규칙을 수년간 실천한 뒤의 회고를 듣는 것이 좋습니다. 이번 글은 TDD를 "규칙의 묶음"이 아니라 "효과를 얻는 도구"로 다시 세우고, 뒤이어 배울 *Refactoring*과 *GOOS*가 왜 필요한지를 미리 가리킵니다.
@@ -30,6 +100,26 @@ excerpt: "TDD를 수년간 실천한 뒤의 솔직한 회고, London vs Classici
 ## TDD에 대한 회고: 원칙은 실전에서 어떻게 다듬어졌나
 
 처음 TDD를 배울 때 우리는 규칙을 외웁니다. "항상 실패하는 테스트를 먼저 짜라", "테스트 없이는 한 줄도 쓰지 마라". 규칙은 입문자에게 필요한 보조 바퀴입니다. 그러나 수년을 실천하고 나면, Beck 본인의 회고가 그렇듯, 강조점이 규칙에서 **그 규칙이 주는 효과**로 옮겨 갑니다.
+
+7년 전과 후의 시선 변화는 이렇게 요약됩니다 — 강조점이 *외워야 할 규칙*에서 *얻어야 할 효과*로 이동합니다.
+
+```mermaid
+flowchart LR
+    subgraph BEFORE["7년 전 — 규칙을 외운다"]
+        R1["항상 테스트 먼저"]
+        R2["테스트 없이 한 줄도 금지"]
+        R3["규칙을 어기면 TDD 아님"]
+    end
+    subgraph AFTER["7년 후 — 효과를 읽는다"]
+        E1["피드백<br/>(몇 초 안의 답)"]
+        E2["자신감<br/>(되돌릴 안전망)"]
+        E3["설계 압력<br/>(쓰는 입장의 API)"]
+    end
+    BEFORE -->|"보조 바퀴를 떼고<br/>강조점 이동"| AFTER
+    R1 -.-> E1
+    R2 -.-> E2
+    R3 -.-> E3
+```
 
 ### TDD가 실제로 주는 세 가지
 
@@ -154,7 +244,45 @@ Beck은 "테스트를 먼저 쓰느냐"보다 "테스트가 어떤 성질을 갖
 
 ### 비용·가치로 따지는 판단 기준
 
-TDD가 강하게 빛나는 곳과, 비용이 가치를 앞서는 곳은 다릅니다.
+TDD가 강하게 빛나는 곳과, 비용이 가치를 앞서는 곳은 다릅니다. 그 경계를 한 장으로 보면 — 가로축은 *틀렸을 때 치르는 비용*, 세로축은 *코드가 살아남는 기간*입니다. 둘 다 큰 영역에서 TDD의 안전망이 싸게 느껴집니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="TDD를 어디에 얼마나 적용할지를 두 축으로 나눈 사분면 그림. 가로축은 코드가 틀렸을 때 치르는 비용으로 왼쪽이 낮고 오른쪽이 높으며, 세로축은 코드가 살아남는 기간으로 아래가 짧고 위가 길다. 오른쪽 위 영역(고비용·장수명)은 TDD가 강하게 빛나는 영역으로 가격 계산·상태 기계·파서·회귀가 치명적인 코드가 놓이고, 왼쪽 아래 영역(저비용·단명)은 신중히 적용하는 영역으로 탐색적 프로토타입·UI 픽셀 조정·일회성 스크립트가 놓인다. 대각선은 비용과 가치가 균형을 이루는 손익분기선을 나타낸다." viewBox="0 0 680 360" xmlns="http://www.w3.org/2000/svg">
+  <title>TDD를 어디에 얼마나 — 틀렸을 때의 비용(가로) × 코드의 수명(세로)으로 가른 판단 지도</title>
+
+  <!-- axes -->
+  <line x1="90" y1="300" x2="640" y2="300" stroke="currentColor" stroke-width="2" marker-end="url(#tdd-axis)"/>
+  <line x1="90" y1="300" x2="90" y2="36" stroke="currentColor" stroke-width="2" marker-end="url(#tdd-axis)"/>
+  <text x="370" y="338" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">틀렸을 때 치르는 비용  →</text>
+  <text x="58" y="170" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" transform="rotate(-90 58 170)">코드가 살아남는 기간  →</text>
+
+  <!-- break-even diagonal: cost balances value -->
+  <line x1="120" y1="300" x2="610" y2="60" stroke="var(--gold)" stroke-width="2" stroke-dasharray="6 5"/>
+  <text x="540" y="84" text-anchor="end" font-size="8.5" fill="currentColor" opacity="0.75" font-weight="700" transform="rotate(-26 540 84)">손익분기 — 비용 ≈ 가치</text>
+
+  <!-- top-right zone: TDD shines -->
+  <rect x="372" y="64" width="252" height="118" rx="4" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.4" opacity="0.95"/>
+  <text x="498" y="86" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">TDD가 강하게 빛난다</text>
+  <text x="498" y="106" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.9">가격 계산 · 상태 기계 · 파서</text>
+  <text x="498" y="122" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.9">오래 살아 반복 변경되는 코드</text>
+  <text x="498" y="138" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.9">회귀가 치명적인 영역</text>
+  <text x="498" y="160" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.7">→ 안전망이 싸게 느껴진다</text>
+
+  <!-- bottom-left zone: apply with care -->
+  <rect x="108" y="192" width="244" height="100" rx="4" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2.2"/>
+  <text x="230" y="214" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">신중히 적용한다</text>
+  <text x="230" y="234" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.9">탐색적 프로토타입</text>
+  <text x="230" y="250" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.9">UI 픽셀 조정 · 일회성 스크립트</text>
+  <text x="230" y="272" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.7">→ 핵심 로직만 떼어 테스트하는 절충</text>
+
+  <defs>
+    <marker id="tdd-axis" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="currentColor"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption>TDD를 <strong>하느냐 마느냐</strong>가 아니라 <strong>어디에 얼마나</strong> — 틀렸을 때의 비용(가로)과 코드의 수명(세로)이 둘 다 큰 오른쪽 위에서 TDD가 강하게 빛나고, 둘 다 작은 왼쪽 아래에서는 의식보다 절충이 낫다. 점선은 비용과 가치가 맞먹는 손익분기선이다.</figcaption>
+</figure>
 
 - **TDD가 잘 맞는 경우**: 명세가 비교적 분명하고 로직이 까다로운 도메인(가격 계산, 상태 기계, 파서), 오래 살아남아 반복 변경될 코드, 회귀가 치명적인 영역, 인터페이스를 먼저 설계하고 싶을 때.
 - **신중히 적용할 경우**: 탐색적 프로토타입처럼 *무엇을 만들지 자체가 불확실*할 때(테스트가 굳히기엔 너무 일찍), UI 픽셀 조정처럼 검증보다 눈으로 보는 게 빠른 작업, 곧 버릴 일회성 스크립트. 이런 곳에서도 핵심 로직만큼은 테스트로 떼어내는 절충이 가능합니다.
