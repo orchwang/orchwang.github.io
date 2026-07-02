@@ -73,9 +73,9 @@ flowchart TD
 
 > 완료한 항목에는 상세 포스트 링크가 연결됩니다. 학습이 진행될 때마다 체크박스와 진행률을 갱신합니다.
 
-- 현재 완료한 항목: **33개**
+- 현재 완료한 항목: **36개**
 - 전체 항목: **51개**
-- 진행률: **65%**
+- 진행률: **71%**
 
 ## 1단계: 개요와 토크나이제이션 (Lecture 1)
 
@@ -167,11 +167,11 @@ flowchart TD
 
 ## 12단계: 평가 (Evaluation) (Lecture 12)
 
-**[유닛 4 · 데이터 & 평가]** "좋은 모델"을 어떻게 측정하는가. perplexity 같은 내재적 지표부터 MMLU 등 벤치마크, LM-as-judge까지 평가 방법을 정리하고, 오염(contamination)·재현성 같은 평가의 함정을 짚습니다.
+**[유닛 4 · 데이터 & 평가]** "좋은 모델"을 어떻게 측정하는가. perplexity 같은 내재적 지표부터 MMLU 등 벤치마크, LM-as-judge까지 평가 방법을 정리하고, 오염(contamination)·재현성 같은 평가의 함정을 짚습니다. 자세한 내용은 [CS336 12강 — 평가(Evaluation): 하나의 참된 평가는 없다](/2026/06/26/cs336-lecture-12-evaluation.html) 포스트에서 다룹니다.
 
-- [ ] **내재적 지표**: perplexity·bits-per-byte와 그 한계
-- [ ] **벤치마크와 LM-as-judge**: MMLU 등 능력 벤치마크, 모델로 모델 평가하기, 휴먼 평가
-- [ ] **평가의 함정**: 데이터 오염(contamination), 프롬프트 민감도, 재현성과 리더보드의 한계
+- [x] **내재적 지표**: perplexity·bits-per-byte와 그 한계 — [[상세](/2026/06/26/cs336-lecture-12-evaluation.html)]
+- [x] **벤치마크와 LM-as-judge**: MMLU 등 능력 벤치마크, 모델로 모델 평가하기, 휴먼 평가 — [[상세](/2026/06/26/cs336-lecture-12-evaluation.html)]
+- [x] **평가의 함정**: 데이터 오염(contamination), 프롬프트 민감도, 재현성과 리더보드의 한계 — [[상세](/2026/06/26/cs336-lecture-12-evaluation.html)]
 
 ## 13단계: 데이터 1 — 수집과 출처 (Lecture 13)
 
@@ -252,5 +252,6 @@ CS336이 던지는 메시지는 분명합니다 — **언어 모델은 마법이
 - [CS336 9강 — 스케일링 법칙 1: 작게 실험해 크게 예측하기](/2026/06/26/cs336-lecture-9-scaling-laws-1.html) — 아홉째 단계, 멱법칙·Chinchilla·컴퓨트 최적 (유닛 3 시작)
 - [CS336 10강 — 추론(Inference): KV 캐시와 메모리 한계의 게임](/2026/06/26/cs336-lecture-10-inference.html) — 열째 단계, prefill/decode·KV 캐시·speculative decoding
 - [CS336 11강 — 스케일링 법칙 2: 실전 레시피와 muP](/2026/06/26/cs336-lecture-11-scaling-laws-2.html) — 열한째 단계, 실전 사례·WSD·muP (유닛 3 완료)
+- [CS336 12강 — 평가(Evaluation): 하나의 참된 평가는 없다](/2026/06/26/cs336-lecture-12-evaluation.html) — 열두째 단계, 평가 프레임워크·벤치마크·LM-as-judge·오염 (유닛 4 시작)
 - [Data Engineering Essential Curriculum](/2026/06/25/data-engineering-essential-curriculum.html) — 모델에 먹일 데이터를 만드는 파이프라인의 토대
 - [Python Advanced Competency Curriculum](/2025/10/12/python-advanced-competency-curriculum.html) — LLM 구현의 기반 언어, Python 심화
