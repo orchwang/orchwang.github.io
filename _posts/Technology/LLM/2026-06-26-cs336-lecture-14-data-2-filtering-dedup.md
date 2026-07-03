@@ -188,6 +188,83 @@ P(두 문서가 최소 한 밴드에서 충돌) = 1 − (1 − s^r)^b
 DALL-E의 학습 데이터 중복 제거가 좋은 예입니다 — **n = 9000, b = 20, r = 450**으로 두면 임계 유사도가 **≈ 0.99**가 됩니다. 즉 "거의 완전히 같은" 문서만 중복으로 잡고 나머지는 살립니다. b와 r을 조절하는 것만으로 "얼마나 비슷해야 중복인가"를 원하는 지점에 정확히 놓을 수 있다는 것이 LSH의 힘입니다.
 
 <figure class="post-figure">
+<svg role="img" aria-label="MinHash가 왜 Jaccard 유사도를 근사하는지 보여주는 도식. 문서 A와 문서 B를 각각 shingle 집합으로 그린 벤 다이어그램으로, 두 집합이 겹치는 교집합 영역이 있다. 각 shingle에는 해시 함수 h를 적용한 값이 숫자로 적혀 있고, A∪B 전체에서 가장 작은 해시값 12는 금색으로 강조되어 교집합에 속해 있다. 각 집합의 최소 해시를 취하면 min h(A)와 min h(B)가 모두 12로 같아 충돌한다. 전체 최소값을 가진 shingle이 교집합에 있을 때만 두 최소 해시가 일치하므로, 충돌 확률은 교집합 크기를 합집합 크기로 나눈 값 즉 Jaccard 유사도와 같다." viewBox="0 0 640 440" xmlns="http://www.w3.org/2000/svg">
+  <title>MinHash — 두 최소 해시가 충돌할 확률 = Jaccard(A, B)</title>
+  <defs>
+    <marker id="minArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--gold)"/>
+    </marker>
+  </defs>
+
+  <text x="320" y="26" text-anchor="middle" font-family="var(--font-body)" font-size="15" font-weight="700" fill="var(--text-color)">MinHash — 두 최소 해시가 같을 확률이 곧 Jaccard</text>
+  <text x="320" y="48" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-light)">각 shingle에 해시 h를 적용한 값(숫자) · 금색 = A∪B 전체에서 가장 작은 해시</text>
+
+  <!-- Venn diagram: 문서 A, 문서 B as shingle sets -->
+  <circle cx="225" cy="180" r="110" fill="currentColor" opacity="0.06"/>
+  <circle cx="418" cy="180" r="110" fill="currentColor" opacity="0.06"/>
+  <circle cx="225" cy="180" r="110" fill="none" stroke="var(--secondary-color)" stroke-width="2"/>
+  <circle cx="418" cy="180" r="110" fill="none" stroke="var(--secondary-color)" stroke-width="2"/>
+
+  <text x="180" y="98" text-anchor="middle" font-family="var(--font-body)" font-size="13" font-weight="700" fill="var(--text-color)">문서 A</text>
+  <text x="462" y="98" text-anchor="middle" font-family="var(--font-body)" font-size="13" font-weight="700" fill="var(--text-color)">문서 B</text>
+  <text x="321" y="185" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-light)">A∩B</text>
+
+  <!-- connectors: 두 집합의 최소 = 같은 shingle(12) -->
+  <line x1="321" y1="166" x2="200" y2="305" stroke="var(--gold)" stroke-width="1.4" stroke-dasharray="3 4" opacity="0.55" marker-end="url(#minArrow)"/>
+  <line x1="321" y1="166" x2="450" y2="305" stroke="var(--gold)" stroke-width="1.4" stroke-dasharray="3 4" opacity="0.55" marker-end="url(#minArrow)"/>
+
+  <!-- shingle tokens: A-only -->
+  <g font-family="var(--font-body)" font-size="13" text-anchor="middle">
+    <rect x="127" y="136" width="46" height="28" rx="7" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.6"/>
+    <text x="150" y="154" fill="var(--text-color)">47</text>
+    <rect x="125" y="192" width="46" height="28" rx="7" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.6"/>
+    <text x="148" y="210" fill="var(--text-color)">83</text>
+    <rect x="162" y="242" width="46" height="28" rx="7" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.6"/>
+    <text x="185" y="260" fill="var(--text-color)">61</text>
+  </g>
+
+  <!-- shingle tokens: B-only -->
+  <g font-family="var(--font-body)" font-size="13" text-anchor="middle">
+    <rect x="432" y="136" width="46" height="28" rx="7" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.6"/>
+    <text x="455" y="154" fill="var(--text-color)">55</text>
+    <rect x="445" y="192" width="46" height="28" rx="7" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.6"/>
+    <text x="468" y="210" fill="var(--text-color)">74</text>
+    <rect x="415" y="242" width="46" height="28" rx="7" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.6"/>
+    <text x="438" y="260" fill="var(--text-color)">90</text>
+  </g>
+
+  <!-- shingle tokens: A∩B (39, and 12 = global min in gold) -->
+  <g font-family="var(--font-body)" font-size="13" text-anchor="middle">
+    <rect x="298" y="196" width="46" height="28" rx="7" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.6"/>
+    <text x="321" y="214" fill="var(--text-color)">39</text>
+    <rect x="298" y="136" width="46" height="28" rx="7" fill="currentColor" opacity="0.15"/>
+    <rect x="298" y="136" width="46" height="28" rx="7" fill="none" stroke="var(--gold)" stroke-width="2.4"/>
+    <text x="321" y="154" fill="var(--gold)" font-weight="700">12</text>
+  </g>
+
+  <!-- min-of-each-set boxes -->
+  <g font-family="var(--font-body)" font-size="11.5" text-anchor="middle">
+    <rect x="110" y="307" width="112" height="26" rx="7" fill="currentColor" opacity="0.06"/>
+    <rect x="110" y="307" width="112" height="26" rx="7" fill="none" stroke="currentColor" stroke-width="1.4"/>
+    <text x="166" y="324" fill="var(--text-color)">min h(A) = <tspan fill="var(--gold)" font-weight="700">12</tspan></text>
+    <rect x="422" y="307" width="112" height="26" rx="7" fill="currentColor" opacity="0.06"/>
+    <rect x="422" y="307" width="112" height="26" rx="7" fill="none" stroke="currentColor" stroke-width="1.4"/>
+    <text x="478" y="324" fill="var(--text-color)">min h(B) = <tspan fill="var(--gold)" font-weight="700">12</tspan></text>
+  </g>
+  <text x="320" y="325" text-anchor="middle" font-family="var(--font-body)" font-size="12.5" font-weight="700" fill="var(--gold)">→ 일치 · 충돌</text>
+
+  <!-- reasoning + identity -->
+  <text x="320" y="352" text-anchor="middle" font-family="var(--font-body)" font-size="11.5" fill="var(--text-light)">A∪B에서 가장 작은 해시를 가진 shingle이 교집합에 있을 때만 두 최소값이 일치한다</text>
+
+  <rect x="59" y="362" width="522" height="64" rx="10" fill="currentColor" opacity="0.05"/>
+  <rect x="59" y="362" width="522" height="64" rx="10" fill="none" stroke="var(--secondary-color)" stroke-width="1.5"/>
+  <text x="320" y="389" text-anchor="middle" font-family="var(--font-body)" font-size="15" font-weight="700" fill="var(--text-color)">Pr[ min h(A) = min h(B) ] = <tspan fill="var(--accent-color)">|A∩B| / |A∪B|</tspan> = <tspan fill="var(--gold)">Jaccard(A, B)</tspan></text>
+  <text x="320" y="412" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-light)">이 예시: |A∩B| = 2, |A∪B| = 8 → Jaccard = 1/4</text>
+</svg>
+<figcaption>문서를 shingle 집합으로 보면, 각 shingle에 해시 h를 적용했을 때 A∪B 전체의 최솟값(여기선 12)을 누가 갖느냐가 관건이다. 그 최소 shingle이 교집합 A∩B에 있으면 min h(A)와 min h(B)가 같아 충돌하고, 아니면 어긋난다. 모든 shingle이 최소가 될 확률이 같으므로 충돌 확률 = |A∩B| / |A∪B| = Jaccard(A, B) — 무거운 집합 비교를 값싼 최소 해시 비교로 바꾸는 마법이다.</figcaption>
+</figure>
+
+<figure class="post-figure">
 <svg role="img" aria-label="LSH 밴드 구조가 만드는 S자 충돌 확률 곡선. 가로축은 두 문서의 Jaccard 유사도 s, 세로축은 두 문서가 최소 한 밴드에서 충돌할 확률. 곡선은 유사도가 낮을 때 거의 0, 임계 근처에서 급격히 상승해 높은 유사도에서 거의 1이 된다. r을 키우면 임계가 오른쪽으로 이동하며 곡선이 급경사가 되고, b를 키우면 임계가 왼쪽으로 이동한다." viewBox="0 0 680 360" xmlns="http://www.w3.org/2000/svg">
   <title>LSH 밴드 구조의 S자 임계 곡선 — P(s) = 1 − (1 − s^r)^b</title>
 

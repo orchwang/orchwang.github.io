@@ -130,7 +130,7 @@ Developers who want to:
 
 ## Existing Content & Post Types
 
-The `_posts/` directory currently holds **74 published posts**. They fall into a few recurring types — use these as references when writing new content.
+The `_posts/` directory currently holds **141 published posts**. They fall into a few recurring types — use these as references when writing new content.
 
 ### Curriculum / Roadmap Posts
 
@@ -555,14 +555,15 @@ make serve
 
 ### Existing Content
 
-- **74 published posts** across Technology, Engineering, Career, Language, Retrospec, BookLog, and Articles
-- Series in use: `Python-Essential` (11), `Rust-Essential` (10), `Process-Essential` (8), `OO-Design-Essential` (7), `Testing-Refactoring-Essential` (5), `Architecture-Essential` (5), `Craftsmanship-Essential` (5), `PostgreSQL-Essential` (3), `Learning-English` (2)
+- **141 published posts** across Technology, Engineering, Career, Language, Retrospec, BookLog, and Articles
+- Series in use: `CS336-LLM-From-Scratch` (18), `Python-Essential` (11), `Rust-Essential` (10), `Process-Essential` (8), `OO-Design-Essential` (7), `Testing-Refactoring-Essential` (5), `Architecture-Essential` (5), `Craftsmanship-Essential` (5), `PostgreSQL-Essential` (3), `Learning-English` (2)
 - **Engineering Essentials**: all 5 series complete (curriculum 100%) — 5 curricula + 25 stage deep-dives (30 posts) covering OO-Design, Architecture, Testing-Refactoring, Process, Craftsmanship
+- **CS336 (LLM from Scratch)**: the `CS336-LLM-From-Scratch` series is complete — 1 master curriculum + 17 lecture deep-dives (18 posts under `Technology/LLM`), organized into 5 units (기초 · 아키텍처/시스템 · 스케일링/추론 · 데이터/평가 · 정렬), curriculum at 100%
 - Yearly retrospectives for 2024, 2025, and 2026
 
 ### Categories
 
-- **Technology** (nested: Python, PostgreSQL, Rust): curricula + deep-dives
+- **Technology** (nested: Python, PostgreSQL, Rust, LLM): curricula + deep-dives (incl. the `CS336-LLM-From-Scratch` series under `Technology/LLM`)
 - **Engineering** (nested: OO-Design, Architecture, Testing-Refactoring, Process, Craftsmanship): classic-book curricula + per-book stage deep-dives
 - **Career → Roadmap**: roadmaps and competency maps
 - **Language → English**: language-learning notes
@@ -631,15 +632,16 @@ This wiki aims to be:
 
 ## Last Updated
 
-This guide reflects the project structure as of June 2026.
+This guide reflects the project structure as of July 2026.
 
 **Current Status:**
 
 - Jekyll wiki fully implemented
 - Category, tag, and series systems operational (with nested category support)
-- 74 published posts across Technology, Engineering, Career, Language, Retrospec, BookLog, Articles
+- 141 published posts across Technology, Engineering, Career, Language, Retrospec, BookLog, Articles
 - Engineering Essentials: 5 `*-Essential` series complete (OO-Design, Architecture, Testing-Refactoring, Process, Craftsmanship) — 30 posts, all curricula at 100%
-- Articles category + `article-manager` subagent: one analysis/intro post per external article (17 posts so far — AI/engineering articles plus YouTube video summaries via yt-dlp transcript extraction), now organized into 8 nested sub-categories (AI-Engineering, AI-Industry, AI-Essays, Security, Engineering-Culture, Career-Life, Systems-Programming, ML-Theory); the subagent recommends a new sub-category when an article fits none
+- CS336 (LLM from Scratch): `CS336-LLM-From-Scratch` series complete — 1 curriculum + 17 lecture deep-dives (18 posts under `Technology/LLM`), curriculum at 100%
+- Articles category + `article-manager` subagent: one analysis/intro post per external article (51 posts so far — AI/engineering articles plus YouTube video summaries via yt-dlp transcript extraction), now organized into 8 nested sub-categories (AI-Engineering, AI-Industry, AI-Essays, Security, Engineering-Culture, Career-Life, Systems-Programming, ML-Theory); the subagent recommends a new sub-category when an article fits none
 - Mermaid diagram rendering and zoom enabled
 - Logo and branding applied
 - Search functionality working

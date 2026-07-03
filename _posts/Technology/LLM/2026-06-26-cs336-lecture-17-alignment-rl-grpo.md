@@ -232,6 +232,82 @@ def grpo_step(policy, ref_policy, prompts, K, eps, beta):
 - **centered** → 학습이 됩니다. 그러나 종종 **국소 최적(local optimum)** 에 갇힙니다 — 어떤 부분 전략을 익히고는 거기서 더 나아가지 못합니다.
 - **normalized** → centered 대비 **큰 차이는 없습니다.** (표준편차로 나누는 것이 길이에 따른 편향을 은근히 끌어들이기도 해서, 그 편향을 피하려 정규화 항을 손본 **Dr. GRPO** 변형이 제안되었습니다.)
 
+<figure class="post-figure">
+<svg role="img" aria-label="raw 보상과 centered 보상의 학습 신호 비교. 왼쪽 raw reward 패널은 그룹의 네 응답이 모두 음이 아닌 보상을 받아, 네 개의 막대가 전부 0 위에 있고 위쪽 화살표만 달려 있다 — 정책이 모든 응답의 확률을 올리기만 해 좋고 나쁨을 구분하지 못하고 학습이 정체된다. 오른쪽 centered 패널은 그룹 평균을 빼 0을 평균에 맞춘 뒤, 평균보다 나은 응답은 0 위로 올라가 위쪽 화살표(확률 올림)를, 평균보다 못한 응답은 0 아래로 내려가 아래쪽 화살표(확률 내림)를 받는다 — 대비가 생겨 정책이 학습한다." viewBox="0 0 720 348" xmlns="http://www.w3.org/2000/svg">
+  <title>raw 보상은 왜 실패하고 centered 보상은 왜 학습하나 — 대비의 유무</title>
+
+  <text x="360" y="30" text-anchor="middle" font-family="var(--font-body)" font-size="16" font-weight="700" fill="var(--text-color)">raw는 왜 실패하고 centered는 왜 배우나</text>
+  <text x="360" y="49" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-light)">화살표 = 정책이 그 응답의 확률을 미는 방향 (↑ 올림 · ↓ 내림)</text>
+
+  <!-- ===== LEFT: raw reward — 전부 위로 ===== -->
+  <rect x="20" y="58" width="330" height="254" rx="10" fill="currentColor" opacity="0.04"/>
+  <rect x="20" y="58" width="330" height="254" rx="10" fill="none" stroke="var(--secondary-color)" stroke-width="2"/>
+  <text x="185" y="86" text-anchor="middle" font-family="var(--font-body)" font-size="15" font-weight="700" fill="var(--secondary-color)">raw reward</text>
+
+  <!-- zero baseline -->
+  <line x1="45" y1="250" x2="325" y2="250" stroke="currentColor" stroke-width="1.6" opacity="0.7"/>
+  <text x="38" y="254" text-anchor="middle" font-family="var(--font-body)" font-size="10.5" fill="var(--text-light)">0</text>
+
+  <!-- four non-negative reward bars, all above zero -->
+  <rect x="77" y="132" width="26" height="118" rx="3" fill="var(--secondary-color)" opacity="0.18"/>
+  <rect x="77" y="132" width="26" height="118" rx="3" fill="none" stroke="var(--secondary-color)" stroke-width="2"/>
+  <rect x="142" y="170" width="26" height="80" rx="3" fill="var(--secondary-color)" opacity="0.18"/>
+  <rect x="142" y="170" width="26" height="80" rx="3" fill="none" stroke="var(--secondary-color)" stroke-width="2"/>
+  <rect x="207" y="205" width="26" height="45" rx="3" fill="var(--secondary-color)" opacity="0.18"/>
+  <rect x="207" y="205" width="26" height="45" rx="3" fill="none" stroke="var(--secondary-color)" stroke-width="2"/>
+  <rect x="272" y="150" width="26" height="100" rx="3" fill="var(--secondary-color)" opacity="0.18"/>
+  <rect x="272" y="150" width="26" height="100" rx="3" fill="none" stroke="var(--secondary-color)" stroke-width="2"/>
+
+  <!-- all UP arrows (undifferentiated) -->
+  <line x1="90" y1="128" x2="90" y2="117" stroke="var(--secondary-color)" stroke-width="2.4"/>
+  <polygon points="84,119 96,119 90,107" fill="var(--secondary-color)"/>
+  <line x1="155" y1="166" x2="155" y2="155" stroke="var(--secondary-color)" stroke-width="2.4"/>
+  <polygon points="149,157 161,157 155,145" fill="var(--secondary-color)"/>
+  <line x1="220" y1="201" x2="220" y2="190" stroke="var(--secondary-color)" stroke-width="2.4"/>
+  <polygon points="214,192 226,192 220,180" fill="var(--secondary-color)"/>
+  <line x1="285" y1="146" x2="285" y2="135" stroke="var(--secondary-color)" stroke-width="2.4"/>
+  <polygon points="279,137 291,137 285,125" fill="var(--secondary-color)"/>
+
+  <text x="185" y="286" text-anchor="middle" font-family="var(--font-body)" font-size="12.5" font-weight="700" fill="var(--text-color)">모두 R ≥ 0 → 전부 ↑</text>
+  <text x="185" y="304" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-light)">좋고 나쁨을 구분 못 함 · 학습 정체</text>
+
+  <!-- ===== RIGHT: centered (− group mean) ===== -->
+  <rect x="370" y="58" width="330" height="254" rx="10" fill="currentColor" opacity="0.04"/>
+  <rect x="370" y="58" width="330" height="254" rx="10" fill="none" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="535" y="86" text-anchor="middle" font-family="var(--font-body)" font-size="15" font-weight="700" fill="var(--accent-color)">centered (− 그룹 평균)</text>
+
+  <!-- group-mean line becomes the new zero -->
+  <line x1="395" y1="178" x2="675" y2="178" stroke="var(--gold)" stroke-width="1.8"/>
+  <text x="398" y="196" text-anchor="start" font-family="var(--font-body)" font-size="10.5" fill="var(--text-light)">0 = 그룹 평균</text>
+
+  <!-- above-average → positive advantage (up) -->
+  <rect x="427" y="120" width="26" height="58" rx="3" fill="var(--accent-color)" opacity="0.18"/>
+  <rect x="427" y="120" width="26" height="58" rx="3" fill="none" stroke="var(--accent-color)" stroke-width="2"/>
+  <rect x="622" y="140" width="26" height="38" rx="3" fill="var(--accent-color)" opacity="0.18"/>
+  <rect x="622" y="140" width="26" height="38" rx="3" fill="none" stroke="var(--accent-color)" stroke-width="2"/>
+  <!-- below-average → negative advantage (down) -->
+  <rect x="492" y="178" width="26" height="32" rx="3" fill="var(--secondary-color)" opacity="0.18"/>
+  <rect x="492" y="178" width="26" height="32" rx="3" fill="none" stroke="var(--secondary-color)" stroke-width="2"/>
+  <rect x="557" y="178" width="26" height="62" rx="3" fill="var(--secondary-color)" opacity="0.18"/>
+  <rect x="557" y="178" width="26" height="62" rx="3" fill="none" stroke="var(--secondary-color)" stroke-width="2"/>
+
+  <!-- UP arrows for positive advantage -->
+  <line x1="440" y1="116" x2="440" y2="105" stroke="var(--accent-color)" stroke-width="2.4"/>
+  <polygon points="434,107 446,107 440,95" fill="var(--accent-color)"/>
+  <line x1="635" y1="136" x2="635" y2="125" stroke="var(--accent-color)" stroke-width="2.4"/>
+  <polygon points="629,127 641,127 635,115" fill="var(--accent-color)"/>
+  <!-- DOWN arrows for negative advantage -->
+  <line x1="505" y1="214" x2="505" y2="225" stroke="var(--secondary-color)" stroke-width="2.4"/>
+  <polygon points="499,223 511,223 505,235" fill="var(--secondary-color)"/>
+  <line x1="570" y1="244" x2="570" y2="255" stroke="var(--secondary-color)" stroke-width="2.4"/>
+  <polygon points="564,253 576,253 570,265" fill="var(--secondary-color)"/>
+
+  <text x="535" y="286" text-anchor="middle" font-family="var(--font-body)" font-size="12.5" font-weight="700" fill="var(--text-color)">평균 위는 ↑, 아래는 ↓</text>
+  <text x="535" y="304" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-light)">대비가 생겨 학습이 진행된다</text>
+</svg>
+<figcaption>raw 보상은 그룹의 응답이 모두 음이 아닌 보상을 받아 전부 확률이 올라간다 — 좋고 나쁨의 대비가 없어 학습이 정체된다. 그룹 평균을 빼 중심화하면 평균보다 나은 응답은 ↑(확률 올림), 못한 응답은 ↓(확률 내림)로 갈려, 정책이 배울 수 있는 대비가 생긴다.</figcaption>
+</figure>
+
 여기서 강의가 남기는 교훈이 둘입니다. 하나는 겸손에 관한 것입니다.
 
 > **RL은 결코 자명하지 않다.** 부품 하나만 잘못 골라도(raw reward, 혹은 새는 그래디언트) 학습이 통째로 무너지고, 잘 돌더라도 국소 최적 같은 나쁜 상태에 쉽게 갇힌다.

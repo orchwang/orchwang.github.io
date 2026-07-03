@@ -127,6 +127,73 @@ WARC에서 직접 본문을 뽑으려면 HTML→텍스트 도구가 필요합니
 
 그래서 진지한 데이터셋일수록 편한 WET을 쓰지 않고 **WARC에서 직접 추출**합니다. "어차피 같은 웹 아니냐"는 직관과 달리, 추출 단계는 모델의 성능을 좌우하는 첫 번째 갈림길입니다.
 
+<figure class="post-figure">
+<svg role="img" aria-label="같은 웹 페이지가 Common Crawl에서 두 포맷으로 저장되는 갈림길 도식. 왼쪽 WARC는 raw HTTP 응답과 HTML 원본을 그대로 담은 lossless 포맷이고, 오른쪽 WET은 Common Crawl이 미리 뽑아 준 lossy 텍스트다. WARC를 trafilatura로 직접 재추출하면 본문만 남은 깨끗한 텍스트를 얻어 학습에 유리하고, WET을 그대로 쓰면 메뉴·푸터 잡음이 섞여 학습에 불리하다. 추출 방법이 다운스트림 정확도를 유의하게 바꾼다." viewBox="0 0 720 400" xmlns="http://www.w3.org/2000/svg">
+  <title>WARC 재추출 vs WET 그대로 — 같은 페이지, 다른 텍스트 품질</title>
+  <defs>
+    <marker id="warcArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--gold)"/>
+    </marker>
+  </defs>
+
+  <text x="360" y="28" text-anchor="middle" font-family="var(--font-body)" font-size="16" font-weight="700" fill="var(--text-color)">같은 페이지, 두 갈래 — WARC 재추출 vs WET 그대로</text>
+
+  <!-- source page -->
+  <rect x="284" y="44" width="152" height="52" rx="8" fill="currentColor" opacity="0.05"/>
+  <rect x="284" y="44" width="152" height="52" rx="8" fill="none" stroke="var(--text-light)" stroke-width="2"/>
+  <text x="360" y="68" text-anchor="middle" font-family="var(--font-body)" font-size="13" font-weight="700" fill="var(--text-color)">원본 웹 페이지</text>
+  <text x="360" y="86" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-light)">raw HTML · 같은 한 장</text>
+
+  <text x="360" y="114" text-anchor="middle" font-family="var(--font-body)" font-size="11" fill="var(--text-light)">Common Crawl이 두 포맷으로 저장</text>
+
+  <!-- diverge arrows -->
+  <line x1="300" y1="96" x2="185" y2="128" stroke="var(--gold)" stroke-width="2.2" marker-end="url(#warcArrow)"/>
+  <line x1="420" y1="96" x2="535" y2="128" stroke="var(--gold)" stroke-width="2.2" marker-end="url(#warcArrow)"/>
+
+  <!-- WARC format box (recommended path — accent) -->
+  <rect x="56" y="130" width="248" height="82" rx="9" fill="currentColor" opacity="0.05"/>
+  <rect x="56" y="130" width="248" height="82" rx="9" fill="none" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="180" y="156" text-anchor="middle" font-family="var(--font-body)" font-size="15" font-weight="700" fill="var(--text-color)">WARC</text>
+  <text x="180" y="178" text-anchor="middle" font-family="var(--font-body)" font-size="11.5" fill="var(--text-light)">raw HTTP 응답 · HTML 원본 그대로</text>
+  <text x="180" y="196" text-anchor="middle" font-family="var(--font-body)" font-size="11.5" fill="var(--text-light)">lossless — 무겁지만 손실 없음</text>
+
+  <!-- WET format box (lossy path — secondary) -->
+  <rect x="416" y="130" width="248" height="82" rx="9" fill="currentColor" opacity="0.05"/>
+  <rect x="416" y="130" width="248" height="82" rx="9" fill="none" stroke="var(--secondary-color)" stroke-width="2"/>
+  <text x="540" y="156" text-anchor="middle" font-family="var(--font-body)" font-size="15" font-weight="700" fill="var(--text-color)">WET</text>
+  <text x="540" y="178" text-anchor="middle" font-family="var(--font-body)" font-size="11.5" fill="var(--text-light)">Common Crawl이 미리 뽑은 plain text</text>
+  <text x="540" y="196" text-anchor="middle" font-family="var(--font-body)" font-size="11.5" fill="var(--text-light)">lossy — 가볍지만 본문·잡음 뒤섞임</text>
+
+  <!-- transform arrows -->
+  <line x1="180" y1="212" x2="180" y2="268" stroke="var(--gold)" stroke-width="2.2" marker-end="url(#warcArrow)"/>
+  <line x1="540" y1="212" x2="540" y2="268" stroke="var(--gold)" stroke-width="2.2" marker-end="url(#warcArrow)"/>
+
+  <!-- transform badges (over arrows, on opaque panel) -->
+  <rect x="102" y="228" width="156" height="24" rx="7" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="1.5"/>
+  <text x="180" y="244" text-anchor="middle" font-family="var(--font-body)" font-size="11.5" font-weight="700" fill="var(--accent-color)">trafilatura로 재추출</text>
+  <rect x="440" y="228" width="200" height="24" rx="7" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="1.5"/>
+  <text x="540" y="244" text-anchor="middle" font-family="var(--font-body)" font-size="11.5" font-weight="700" fill="var(--text-light)">그대로 사용 (재추출 없음)</text>
+
+  <!-- WARC outcome (payoff — accent stroke) -->
+  <rect x="56" y="268" width="248" height="88" rx="9" fill="currentColor" opacity="0.05"/>
+  <rect x="56" y="268" width="248" height="88" rx="9" fill="none" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="180" y="296" text-anchor="middle" font-family="var(--font-body)" font-size="14" font-weight="700" fill="var(--text-color)">깨끗한 본문 텍스트</text>
+  <text x="180" y="320" text-anchor="middle" font-family="var(--font-body)" font-size="11.5" fill="var(--text-light)">본문만 남고 메뉴·잡음 제거</text>
+  <text x="180" y="342" text-anchor="middle" font-family="var(--font-body)" font-size="12.5" font-weight="700" fill="var(--accent-color)">→ 학습에 유리</text>
+
+  <!-- WET outcome (muted — secondary stroke) -->
+  <rect x="416" y="268" width="248" height="88" rx="9" fill="currentColor" opacity="0.05"/>
+  <rect x="416" y="268" width="248" height="88" rx="9" fill="none" stroke="var(--secondary-color)" stroke-width="2"/>
+  <text x="540" y="296" text-anchor="middle" font-family="var(--font-body)" font-size="14" font-weight="700" fill="var(--text-color)">잡음 섞인 텍스트</text>
+  <text x="540" y="320" text-anchor="middle" font-family="var(--font-body)" font-size="11.5" fill="var(--text-light)">메뉴·푸터 남고 본문 누락</text>
+  <text x="540" y="342" text-anchor="middle" font-family="var(--font-body)" font-size="12.5" font-weight="700" fill="var(--text-light)">→ 학습에 불리</text>
+
+  <!-- bottom band -->
+  <text x="360" y="384" text-anchor="middle" font-family="var(--font-body)" font-size="12.5" fill="var(--text-light)">추출 방법(WARC 재추출 vs WET)이 다운스트림 정확도를 유의하게 바꾼다</text>
+</svg>
+<figcaption>Common Crawl은 같은 페이지를 WARC(raw HTML, lossless)와 WET(기성 텍스트, lossy) 두 포맷으로 저장한다. WARC에서 trafilatura로 직접 재추출하면 본문만 남은 깨끗한 텍스트를 얻지만, 편한 WET을 그대로 쓰면 메뉴·푸터 잡음이 섞인다 — 추출 방법이 다운스트림 정확도를 가른다.</figcaption>
+</figure>
+
 ## 사전학습 데이터셋의 계보
 
 Common Crawl이라는 원재료를 두고, 랩들은 저마다의 방식으로 학습 코퍼스를 빚어 왔습니다. 그 흐름을 시간순으로 늘어놓으면 몇 가지 뚜렷한 트렌드가 보입니다. 아래 표는 계보를 요약한 것이고(숫자는 카탈로그의 몫), 그 뒤 문단이 진짜 이야기(트렌드)를 짚습니다.
