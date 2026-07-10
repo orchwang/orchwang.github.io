@@ -36,6 +36,8 @@ whenever the article fits — do **not** invent a new sub-category casually.
 | `Security` | `_posts/Articles/Security/` | **보안** (인증, 사회공학, 위협 모델, 방어) |
 | `Engineering-Culture` | `_posts/Articles/Engineering-Culture/` | 엔지니어링 **인물·역사·문화·다큐/인터뷰** |
 | `Career-Life` | `_posts/Articles/Career-Life/` | **커리어·일상·소프트 스킬** (AI와 무관한 직장/삶) |
+| `Systems-Programming` | `_posts/Articles/Systems-Programming/` | **저수준·시스템 프로그래밍** 기술 심화 (동시성·병렬성, 메모리 모델, lock-free·wait-free 자료구조, 컴파일러·런타임, 성능 엔지니어링, 분산 DB 인프라 — C/C++/Rust 등) |
+| `ML-Theory` | `_posts/Articles/ML-Theory/` | 딥러닝·머신러닝의 **이론·수학·기초 원리** (학습 동역학, 일반화 이론, 신경망의 수학적 해석, 표현력·수렴 분석) |
 
 ### Picking — or recommending — a sub-category
 
@@ -68,6 +70,13 @@ is present, ask for one — you cannot proceed without the source.
    quotes, and the takeaway. If the page only summarises a downloadable asset (PDF, etc.), say
    so in the post and work from the overview — **never invent specifics** (numbers, quotes,
    company details) that the source did not provide.
+   - **If you cannot obtain the article's actual content** — the host is blocked by this
+     session's egress policy (`WebFetch`/`curl` returns `403` with a `CONNECT`-stage
+     `policy denial`, per `/root/.ccr/README.md`), the origin bot-blocks the request, it is
+     paywalled, or it is otherwise unreachable — and the **user has not supplied the text**:
+     **stop. Do not write the post, and do not reconstruct it from the title/URL/slug** (that
+     is fabrication). Instead **park it in `TODOS.md`** (see "Source unreachable → TODOS.md"
+     below) and report the blocked host. The user will hand-deliver the text later.
 2. **Classify, then place & name.** Pick the sub-category (see "Sub-categories" above) — or,
    if nothing fits, recommend a new one and get the user's go-ahead. Then write the file to
    `_posts/Articles/<Sub>/YYYY-MM-DD-<english-slug>.md`. Use **today's date** (never
@@ -91,6 +100,54 @@ is present, ask for one — you cannot proceed without the source.
    cross-links) and the build result, then **explicitly request that `post-illustrator` run on
    this post**, listing the briefs you left. The post is "content-complete"; visuals are the
    specialist's pass. Commit only when the user asks.
+
+## Source unreachable → TODOS.md (park it, don't fabricate)
+
+When you cannot get the real content and the user hasn't pasted it (step 1 above), record the
+article in the repo-root **`TODOS.md`** instead of writing a post. This list is the wiki's
+pending-content queue; the user hand-delivers blocked sources later, and **completed items are
+deleted, not checked off**.
+
+1. **Read `TODOS.md`** at the repo root. If it does not exist, create it with this skeleton:
+
+   ```markdown
+   # TODOS — 위키 컨텐츠 작업 목록
+
+   이 문서는 Orc Hwang's Wiki에 등록할 모든 컨텐츠(아티클 포스트, 시리즈, 기타)의 작업 대기 목록이다.
+
+   ## 운영 규칙
+
+   - **완료된 항목은 삭제한다.** (체크만 남기지 않고 목록에서 제거 — 이 문서에는 "아직 안 된 일"만 남는다.)
+   - **아티클 포스트**는 `article-manager` 서브에이전트가 원문을 가져와 작성한다.
+   - **에이전트가 원문에 직접 접근하지 못하는 경우**(egress 정책 차단 → `403 CONNECT policy denial`, 원 서버 봇 차단, 페이월 등)에는, 제목·URL만으로 지어내지 않고 **여기 남겨 둔다.** 사용자가 **원문 텍스트를 직접 전달**하면 그때 작성한다.
+   - 상태 표기: `[대기: 원문 전달 필요]` = 접근 차단, 사용자 원문 대기 · `[작성 가능]` = 접근 가능/원문 확보 · `[진행 중]` = 작성/삽화 중.
+
+   ---
+
+   ## 아티클 포스트 (Articles)
+
+   ## 시리즈 · 기타 컨텐츠
+
+   _(현재 대기 항목 없음)_
+   ```
+
+2. **Append an entry** under `## 아티클 포스트 (Articles)` (skip if the same URL is already
+   listed — do not duplicate):
+
+   ```markdown
+   - [ ] **<제목 또는 URL에서 드러나는 주제>** — `[대기: 원문 전달 필요]`
+     - URL: <the article URL>
+     - 내용: <one line of what it likely is — clearly hedged, no invented specifics>. 분류 예상: `Articles/<Sub>` — 원문 확인 후 확정.
+     - 메모: <why it's blocked, e.g. egress 정책 차단(403 CONNECT policy denial)>. 사용자가 원문 텍스트 전달 시 작성.
+   ```
+
+3. **Do not** create a post file, and **do not** run the build for a post that doesn't exist.
+   Report to the orchestrator/user: the source was blocked (name the host + reason), and the
+   article has been parked in `TODOS.md` pending the pasted text. Commit only when asked.
+
+4. **When the user later supplies the text**, write the post normally (full workflow below),
+   then **delete that item from `TODOS.md`** in the same change — the queue holds only
+   outstanding work.
 
 ## Front matter (exact)
 
