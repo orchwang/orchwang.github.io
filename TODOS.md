@@ -37,4 +37,16 @@
 
 ## 시리즈 · 기타 컨텐츠
 
-_(현재 대기 항목 없음)_
+### Data Engineering 심화 연재 (별도 `*-Essential` 시리즈)
+
+`Data-Engineering-Essential` 오버뷰 시리즈(완주 100%)에서 분리 예고된 심화 시리즈들.
+조사 결과·단계 구성·우선순위는 **[DATA-ENGINEERING-SERIES-PLAN.md](./DATA-ENGINEERING-SERIES-PLAN.md)** 참고.
+착수 순서 권장: Spark → Kafka → dbt → Airflow (Tier 1) → Iceberg/Lakehouse → Flink (Tier 2).
+
+- [ ] **Spark-Essential** — 처리 심화(수요 1위). `[작성 가능]`
+- [ ] **Kafka-Essential** — 수집/스트리밍 심화. `[작성 가능]`
+- [ ] **dbt-Essential** — 변환/애널리틱스 엔지니어링 심화. `[작성 가능]`
+- [ ] **Airflow-Essential** — 오케스트레이션 심화. `[작성 가능]`
+- [ ] **Lakehouse-Essential (Iceberg)** — 저장 심화. 2026 오픈 테이블 포맷 사실상 표준. `[작성 가능]`
+- [ ] **Stream-Processing-Essential (Flink)** — 스트림 처리 심화(Kafka Streams 편과 중복 조율). `[작성 가능]`
+- 착수 시 오버뷰 시리즈 해당 단계의 "→ 향후 별도 시리즈" 문구를 실제 링크로 교체하고 커리큘럼 "다음 학습" 갱신.
