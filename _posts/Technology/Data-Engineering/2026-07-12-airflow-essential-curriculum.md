@@ -10,9 +10,137 @@ banner: wartable
 excerpt: "Data-Engineering-Essential 오버뷰의 '오케스트레이션' 단계에서 예고된 Apache Airflow 심화 스핀오프. DAG·오퍼레이터·태스크부터 스케줄러/Executor 내부, XCom·TaskFlow, 센서·deferrable, 백필·catchup·멱등, K8s 배포·운영까지 6단계로 정복하는 학습 로드맵입니다. 도장깨기 방식으로 진행 상황을 추적합니다."
 ---
 
-<!-- ILLUSTRATION(header): 인라인 SVG 헤더 일러스트. 위쪽 절반은 Airflow의 핵심 구조 — 왼쪽 '스케줄러'(루프를 상징하는 원형 화살표)가 가운데 DAG(방향성 비순환 그래프: 3~4개 태스크 노드가 화살표로 연결된 파이프라인)를 훑어 실행 대상을 고르고, 오른쪽 'Executor/워커'(Local·Celery·K8s를 뜻하는 3개의 일꾼 박스)에게 task를 배분하는 흐름. 아래쪽 절반은 DAG·오퍼레이터 → 스케줄러·Executor → XCom·TaskFlow → 센서·deferrable → 백필·멱등 → 배포·운영으로 이어지는 6단계 도장깨기 타임라인(원형 스탬프 1~6)과 끝의 완주 트로피. 테마 인식: currentColor와 var(--secondary-color)/var(--accent-color)/var(--gold) 토큰만 사용, post-figure post-figure--header로 감쌀 것. Spark 커리큘럼 헤더 SVG와 동일한 시각 언어. -->
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="Airflow Essential 시리즈를 한 장으로 정리한 그림. 위쪽은 Airflow의 실행 구조로, 왼쪽 스케줄러가 스케줄링 루프를 돌며 가운데 DAG(방향성 비순환 그래프로 이어진 태스크들)를 훑어 실행 대상을 고르고, 오른쪽 세 종류의 Executor(Local·Celery·Kubernetes)에게 task를 배분한다. 아래쪽은 DAG·오퍼레이터부터 배포·운영까지 6단계 도장깨기 로드맵 타임라인이며, 끝에는 시리즈 완주를 뜻하는 트로피가 놓여 있다." viewBox="0 0 680 360" xmlns="http://www.w3.org/2000/svg">
+  <title>Airflow Essential — 스케줄러·DAG·Executor 실행 구조와 6단계 도장깨기 로드맵</title>
+  <defs>
+    <marker id="af-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--secondary-color)"/>
+    </marker>
+    <marker id="af-loop" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
 
-<!-- ILLUSTRATION(through-line): 인라인 SVG 개념도 '세 막으로 보는 학습 여정'. 제1막 '선언'(1~3단계: DAG·오퍼레이터, 스케줄러·Executor, XCom·TaskFlow)으로 파이프라인을 코드로 선언하고 무엇이 어떻게 실행되는지 이해, 제2막 '견고하게'(4~5단계: 센서·deferrable, 백필·catchup·멱등)로 외부 상태 대기와 재실행 안전성을 확보, 제3막 '운영'(6단계: 배포·모니터링·로깅)으로 프로덕션에 올리는 흐름. 왼→오 굵은 화살표로 세 막 연결. var(--secondary-color)/var(--accent-color)/var(--gold) 토큰 사용, post-figure로 감쌀 것. -->
+  <!-- ===== title ===== -->
+  <text x="340" y="24" text-anchor="middle" font-size="17" font-weight="800" fill="currentColor" letter-spacing="1.5">AIRFLOW ESSENTIAL</text>
+
+  <!-- ===== SECTION A: execution structure ===== -->
+  <text x="30" y="50" text-anchor="start" font-size="11" font-weight="700" fill="currentColor" opacity="0.72">실행 구조 — 스케줄러가 DAG를 훑어 실행 대상을 고르고, Executor가 task를 나눠 수행한다</text>
+
+  <!-- Scheduler -->
+  <rect x="24" y="84" width="100" height="80" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="2.5"/>
+  <text x="74" y="104" text-anchor="middle" font-size="12.5" font-weight="700" fill="currentColor">스케줄러</text>
+  <!-- scheduling loop arrow -->
+  <path d="M74,116 A16,16 0 1 1 60,124" fill="none" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#af-loop)"/>
+  <text x="74" y="182" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.75">스케줄링 루프</text>
+
+  <!-- DAG (middle) -->
+  <text x="286" y="72" text-anchor="middle" font-size="10.5" font-weight="700" fill="currentColor" opacity="0.82">DAG · 방향성 비순환 그래프</text>
+  <g stroke="var(--secondary-color)" stroke-width="1.8" fill="none">
+    <line x1="219" y1="122" x2="268" y2="98" marker-end="url(#af-arrow)"/>
+    <line x1="219" y1="122" x2="268" y2="146" marker-end="url(#af-arrow)"/>
+    <line x1="293" y1="98" x2="342" y2="122" marker-end="url(#af-arrow)"/>
+    <line x1="293" y1="146" x2="342" y2="122" marker-end="url(#af-arrow)"/>
+  </g>
+  <g fill="var(--bg-panel)" stroke="currentColor" stroke-width="2">
+    <circle cx="206" cy="122" r="13"/>
+    <circle cx="280" cy="96" r="13"/>
+    <circle cx="280" cy="148" r="13"/>
+    <circle cx="354" cy="122" r="13"/>
+  </g>
+  <text x="280" y="182" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.75">태스크 · 의존성</text>
+
+  <!-- Executors (right) -->
+  <text x="516" y="72" text-anchor="middle" font-size="10.5" font-weight="700" fill="currentColor" opacity="0.82">Executor · 워커</text>
+  <g>
+    <rect x="440" y="82" width="152" height="32" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+    <rect x="440" y="122" width="152" height="32" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+    <rect x="440" y="162" width="152" height="32" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+  </g>
+  <g font-size="10.5" font-weight="700" fill="currentColor" text-anchor="middle">
+    <text x="516" y="102">LocalExecutor</text>
+    <text x="516" y="142">CeleryExecutor</text>
+    <text x="516" y="182">KubernetesExecutor</text>
+  </g>
+
+  <!-- Scheduler -> DAG -->
+  <line x1="126" y1="122" x2="189" y2="122" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#af-arrow)"/>
+  <text x="158" y="114" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.7">훑기</text>
+
+  <!-- DAG -> Executors -->
+  <g stroke="var(--secondary-color)" stroke-width="2" fill="none">
+    <line x1="367" y1="120" x2="436" y2="98" marker-end="url(#af-arrow)"/>
+    <line x1="368" y1="122" x2="436" y2="138" marker-end="url(#af-arrow)"/>
+    <line x1="367" y1="124" x2="436" y2="178" marker-end="url(#af-arrow)"/>
+  </g>
+  <text x="404" y="112" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.7">task 배분</text>
+
+  <!-- ===== divider ===== -->
+  <line x1="30" y1="216" x2="650" y2="216" stroke="currentColor" stroke-width="1.4" opacity="0.25"/>
+
+  <!-- ===== SECTION B: 6-step roadmap ===== -->
+  <text x="30" y="240" text-anchor="start" font-size="11" font-weight="700" fill="currentColor" opacity="0.72">6단계 로드맵 — 선언 → 견고함 → 운영, 그리고 완주</text>
+
+  <!-- act labels + underlines -->
+  <g font-size="9" font-weight="700" text-anchor="middle">
+    <text x="146" y="266" fill="var(--secondary-color)">선언 (1–3)</text>
+    <text x="351" y="266" fill="var(--accent-color)">견고함 (4–5)</text>
+    <text x="474" y="266" fill="var(--gold)">운영 (6)</text>
+  </g>
+  <g stroke-width="2" opacity="0.45">
+    <line x1="54" y1="272" x2="238" y2="272" stroke="var(--secondary-color)"/>
+    <line x1="302" y1="272" x2="400" y2="272" stroke="var(--accent-color)"/>
+    <line x1="456" y1="272" x2="492" y2="272" stroke="var(--gold)"/>
+  </g>
+
+  <!-- baseline -->
+  <line x1="52" y1="304" x2="489" y2="304" stroke="currentColor" stroke-width="2" opacity="0.4"/>
+
+  <!-- stamps -->
+  <g font-weight="800" text-anchor="middle">
+    <!-- 1 -->
+    <circle cx="64" cy="304" r="15" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2.5"/>
+    <text x="64" y="308" font-size="12" fill="currentColor">1</text>
+    <text x="64" y="334" font-size="8.5" font-weight="700" fill="currentColor">DAG·오퍼레이터</text>
+    <!-- 2 -->
+    <circle cx="146" cy="304" r="15" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2.5"/>
+    <text x="146" y="308" font-size="12" fill="currentColor">2</text>
+    <text x="146" y="334" font-size="8.5" font-weight="700" fill="currentColor">스케줄러</text>
+    <!-- 3 -->
+    <circle cx="228" cy="304" r="15" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2.5"/>
+    <text x="228" y="308" font-size="12" fill="currentColor">3</text>
+    <text x="228" y="334" font-size="8.5" font-weight="700" fill="currentColor">XCom·TaskFlow</text>
+    <!-- 4 -->
+    <circle cx="310" cy="304" r="15" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.5"/>
+    <text x="310" y="308" font-size="12" fill="currentColor">4</text>
+    <text x="310" y="334" font-size="8.5" font-weight="700" fill="currentColor">센서·deferrable</text>
+    <!-- 5 -->
+    <circle cx="392" cy="304" r="15" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.5"/>
+    <text x="392" y="308" font-size="12" fill="currentColor">5</text>
+    <text x="392" y="334" font-size="8.5" font-weight="700" fill="currentColor">백필·멱등</text>
+    <!-- 6 -->
+    <circle cx="474" cy="304" r="15" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="3"/>
+    <text x="474" y="308" font-size="12" fill="currentColor">6</text>
+    <text x="474" y="334" font-size="8.5" font-weight="700" fill="currentColor">배포·운영</text>
+  </g>
+
+  <!-- arrow to trophy -->
+  <line x1="492" y1="304" x2="596" y2="304" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#af-arrow)"/>
+
+  <!-- ===== victory trophy ===== -->
+  <g>
+    <path d="M602,288 L636,288 Q634,310 619,312 Q604,310 602,288 Z" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="2.5"/>
+    <path d="M602,292 q-10,1 -3,13" fill="none" stroke="var(--gold)" stroke-width="2"/>
+    <path d="M636,292 q10,1 3,13" fill="none" stroke="var(--gold)" stroke-width="2"/>
+    <rect x="615" y="312" width="8" height="8" fill="var(--gold)"/>
+    <rect x="606" y="320" width="26" height="5" rx="1" fill="var(--gold)"/>
+    <polygon points="619,294 621.8,300 628,300.5 623,304.5 624.8,310.5 619,307 613.2,310.5 615,304.5 610,300.5 616.2,300" fill="var(--gold-bright)"/>
+  </g>
+  <text x="619" y="340" text-anchor="middle" font-size="9" font-weight="800" fill="var(--gold)">완주</text>
+</svg>
+<figcaption>이 시리즈를 한 장으로 — 스케줄러·DAG·Executor 실행 구조와 DAG·오퍼레이터부터 배포·운영까지 6단계 도장깨기 로드맵, 그리고 완주 트로피</figcaption>
+</figure>
 
 ## 소개
 
@@ -21,6 +149,91 @@ excerpt: "Data-Engineering-Essential 오버뷰의 '오케스트레이션' 단계
 Apache Airflow는 2026년 현재도 데이터 파이프라인 오케스트레이션의 지배적 선택입니다. 데이터 엔지니어 채용에서 거의 빠지지 않는 도구이자, 배치 ETL·ML 워크플로·리버스 ETL을 하나의 코드베이스로 조율하는 기반 기술입니다. 그런데 Airflow로 DAG를 "돌아가게" 만드는 것과 "견고하고 운영 가능하게" 만드는 것은 전혀 다른 문제입니다. 후자는 내부 구조 — 스케줄러가 무엇을 언제 큐에 넣는지, Executor가 어떻게 task를 실행하는지, 재실행이 왜 안전하거나 위험한지 — 를 이해해야 비로소 손에 잡힙니다.
 
 이 시리즈는 그 내부로 들어갑니다. **DAG·오퍼레이터·태스크**(파이프라인을 코드로 선언한다)에서 출발해, **스케줄러·Executor 내부**(무엇이 어떻게 실행되는가)와 **XCom·TaskFlow API**(태스크 사이로 데이터를 어떻게 흘리는가)로 선언의 기초를 다지고, **센서·deferrable 오퍼레이터**(외부 상태를 효율적으로 기다린다)와 **백필·catchup·멱등**(재실행해도 안전하게 만든다)으로 파이프라인을 견고하게 만든 뒤, 마지막으로 **배포·운영**(K8s Executor·모니터링·로깅)으로 프로덕션에 올립니다. 각 단계를 정복할 때마다 상세 딥다이브 포스트를 작성하고 체크박스를 채우는 **도장깨기** 방식으로 진행합니다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="이 시리즈의 학습 여정을 세 막으로 나눈 개념도. 제1막 '선언'은 DAG·오퍼레이터, 스케줄러·Executor, XCom·TaskFlow(1~3단계)로 파이프라인을 코드로 선언하고 무엇이 어떻게 실행되는지 이해한다. 제2막 '견고하게'는 센서·deferrable와 백필·catchup·멱등(4~5단계)으로 외부 상태 대기와 재실행 안전성을 확보한다. 제3막 '운영'은 배포·모니터링·로깅(6단계)으로 프로덕션에 올린다. 세 막은 왼쪽에서 오른쪽으로 굵은 화살표로 이어진다." viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg">
+  <title>세 막으로 보는 Airflow 학습 여정 — 선언 → 견고하게 → 운영</title>
+
+  <!-- title -->
+  <text x="340" y="26" text-anchor="middle" font-size="15" font-weight="800" fill="currentColor">세 막으로 보는 학습 여정</text>
+
+  <!-- ===== ACT 1: 선언 (steps 1-3) ===== -->
+  <rect x="16" y="52" width="214" height="210" rx="6" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2.5"/>
+  <circle cx="34" cy="74" r="12" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2"/>
+  <text x="34" y="78" text-anchor="middle" font-size="11" font-weight="800" fill="currentColor">1</text>
+  <text x="128" y="78" text-anchor="middle" font-size="13" font-weight="800" fill="var(--secondary-color)">선언</text>
+  <text x="128" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.72">파이프라인을 코드로 선언한다</text>
+  <!-- mini DAG icon -->
+  <g>
+    <g stroke="var(--secondary-color)" stroke-width="1.8" fill="none">
+      <line x1="108" y1="132" x2="140" y2="132"/>
+      <line x1="105" y1="136" x2="123" y2="153"/>
+      <line x1="143" y1="136" x2="125" y2="153"/>
+    </g>
+    <g fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2">
+      <circle cx="103" cy="132" r="6"/>
+      <circle cx="145" cy="132" r="6"/>
+      <circle cx="124" cy="156" r="6"/>
+    </g>
+  </g>
+  <!-- step chips -->
+  <g font-size="9.5" font-weight="700">
+    <rect x="34" y="176" width="180" height="22" rx="4" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1" opacity="0.9"/>
+    <circle cx="48" cy="187" r="7" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="1.6"/><text x="48" y="190" text-anchor="middle" font-size="8" fill="currentColor">1</text><text x="62" y="190" fill="currentColor">DAG·오퍼레이터·태스크</text>
+    <rect x="34" y="202" width="180" height="22" rx="4" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1" opacity="0.9"/>
+    <circle cx="48" cy="213" r="7" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="1.6"/><text x="48" y="216" text-anchor="middle" font-size="8" fill="currentColor">2</text><text x="62" y="216" fill="currentColor">스케줄러·Executor 내부</text>
+    <rect x="34" y="228" width="180" height="22" rx="4" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1" opacity="0.9"/>
+    <circle cx="48" cy="239" r="7" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="1.6"/><text x="48" y="242" text-anchor="middle" font-size="8" fill="currentColor">3</text><text x="62" y="242" fill="currentColor">XCom·TaskFlow API</text>
+  </g>
+
+  <!-- arrow ACT1 -> ACT2 -->
+  <polygon points="232,148 246,148 246,141 260,157 246,173 246,166 232,166" fill="currentColor" opacity="0.5"/>
+
+  <!-- ===== ACT 2: 견고하게 (steps 4-5) ===== -->
+  <rect x="262" y="52" width="186" height="210" rx="6" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <circle cx="280" cy="74" r="12" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="280" y="78" text-anchor="middle" font-size="11" font-weight="800" fill="currentColor">2</text>
+  <text x="360" y="78" text-anchor="middle" font-size="13" font-weight="800" fill="var(--accent-color)">견고하게</text>
+  <text x="360" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.72">대기와 재실행 안전성 확보</text>
+  <!-- shield icon -->
+  <g>
+    <path d="M355,120 L373,127 L373,145 Q373,158 355,165 Q337,158 337,145 L337,127 Z" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.5"/>
+    <polyline points="347,142 353,149 365,133" fill="none" stroke="var(--accent-color)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <!-- step chips -->
+  <g font-size="9.5" font-weight="700">
+    <rect x="276" y="190" width="158" height="22" rx="4" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1" opacity="0.9"/>
+    <circle cx="290" cy="201" r="7" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="1.6"/><text x="290" y="204" text-anchor="middle" font-size="8" fill="currentColor">4</text><text x="304" y="204" fill="currentColor">센서·deferrable</text>
+    <rect x="276" y="216" width="158" height="22" rx="4" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1" opacity="0.9"/>
+    <circle cx="290" cy="227" r="7" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="1.6"/><text x="290" y="230" text-anchor="middle" font-size="8" fill="currentColor">5</text><text x="304" y="230" fill="currentColor">백필·catchup·멱등</text>
+  </g>
+  <text x="360" y="252" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--accent-color)">재실행해도 안전하게</text>
+
+  <!-- arrow ACT2 -> ACT3 -->
+  <polygon points="450,148 464,148 464,141 478,157 464,173 464,166 450,166" fill="currentColor" opacity="0.5"/>
+
+  <!-- ===== ACT 3: 운영 (step 6) ===== -->
+  <rect x="480" y="52" width="184" height="210" rx="6" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="2.5"/>
+  <circle cx="498" cy="74" r="12" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+  <text x="498" y="78" text-anchor="middle" font-size="11" font-weight="800" fill="currentColor">3</text>
+  <text x="576" y="78" text-anchor="middle" font-size="13" font-weight="800" fill="var(--gold)">운영</text>
+  <text x="576" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.72">프로덕션에 올린다</text>
+  <!-- monitor icon -->
+  <g>
+    <rect x="549" y="123" width="46" height="30" rx="2" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="2.5"/>
+    <polyline points="553,140 561,140 565,130 571,148 575,140 591,140" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="567" y="153" width="10" height="6" fill="var(--gold)"/>
+    <rect x="558" y="160" width="28" height="4" rx="1" fill="var(--gold)"/>
+  </g>
+  <!-- step chip -->
+  <g font-size="9.5" font-weight="700">
+    <rect x="494" y="200" width="156" height="22" rx="4" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1" opacity="0.9"/>
+    <circle cx="508" cy="211" r="7" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="1.6"/><text x="508" y="214" text-anchor="middle" font-size="8" fill="currentColor">6</text><text x="522" y="214" fill="currentColor">배포·모니터링·로깅</text>
+  </g>
+  <text x="576" y="244" text-anchor="middle" font-size="8.5" fill="currentColor" opacity="0.7">K8s Executor · SLA · 원격 로깅</text>
+</svg>
+<figcaption>학습 스파인을 세 막으로 — ① 선언(DAG·스케줄러·XCom) → ② 견고하게(센서·백필·멱등) → ③ 운영(배포·모니터링·로깅)</figcaption>
+</figure>
 
 ## 학습 흐름
 

@@ -10,7 +10,155 @@ banner: wartable
 excerpt: "Data-Engineering-Essential 오버뷰의 '처리' 단계에서 예고된 dbt(변환·애널리틱스 엔지니어링) 심화 스핀오프. 모델·ref·소스부터 테스트·문서화, 매크로·Jinja, incremental·snapshot, 패키지·CI, 세만틱 레이어까지 6단계로 정복하는 학습 로드맵입니다. 도장깨기 방식으로 진행 상황을 추적합니다."
 ---
 
-<!-- ILLUSTRATION(header): dbt-Essential 시리즈를 한 장으로 요약하는 헤더 일러스트. 위쪽에는 dbt의 변환 흐름 — 왼쪽의 source(원천 테이블)에서 ref()로 이어지는 여러 SQL 모델 노드가 DAG(의존성 그래프)를 이루며 오른쪽의 mart(최종 테이블)로 수렴하는 그림. 아래쪽에는 모델·ref → 테스트·문서화 → 매크로·Jinja → incremental·snapshot → 패키지·CI → 세만틱 레이어로 이어지는 6단계 도장깨기 로드맵 타임라인과, 끝의 완주 트로피. 테마 인식(currentColor/var(--...) 토큰), post-figure--header 래핑. -->
+<figure class="post-figure post-figure--header">
+<svg role="img" aria-label="dbt Essential 시리즈를 한 장으로 정리한 그림. 위쪽은 dbt의 변환 흐름으로, 왼쪽 source(원천 테이블)에서 ref()로 엮인 여러 SQL 모델 노드가 staging에서 intermediate로 이어지는 의존성 그래프(DAG)를 이루며 오른쪽 mart(최종 테이블)로 수렴한다. 아래쪽은 모델·ref → 테스트·문서화 → 매크로·Jinja → 증분·스냅샷 → 패키지·CI → 세만틱 레이어로 이어지는 6단계 로드맵 타임라인이며, 끝에는 시리즈 완주를 뜻하는 트로피가 놓여 있다." viewBox="0 0 680 360" xmlns="http://www.w3.org/2000/svg">
+  <title>dbt Essential — source에서 ref()로 엮인 모델 DAG가 mart로 수렴하는 변환 흐름과 6단계 도장깨기 로드맵</title>
+  <defs>
+    <marker id="dbt-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+
+  <!-- ===== title ===== -->
+  <text x="340" y="24" text-anchor="middle" font-size="17" font-weight="800" fill="currentColor" letter-spacing="1.5">DBT ESSENTIAL</text>
+
+  <!-- ===== SECTION A: transformation flow ===== -->
+  <text x="30" y="50" text-anchor="start" font-size="11" font-weight="700" fill="currentColor" opacity="0.72">변환 흐름 — source에서 ref()로 엮인 모델 DAG를 지나 mart로 수렴한다</text>
+
+  <!-- source (원천 테이블) -->
+  <rect x="28" y="84" width="96" height="78" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="2.5"/>
+  <text x="76" y="106" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">source</text>
+  <g stroke="currentColor" stroke-width="1.1" opacity="0.4">
+    <line x1="44" y1="120" x2="108" y2="120"/>
+    <line x1="44" y1="132" x2="108" y2="132"/>
+    <line x1="44" y1="144" x2="108" y2="144"/>
+    <line x1="76" y1="114" x2="76" y2="150"/>
+  </g>
+  <text x="76" y="180" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.75">원천 테이블</text>
+
+  <!-- staging model nodes -->
+  <g>
+    <rect x="174" y="60" width="96" height="30" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+    <rect x="174" y="110" width="96" height="30" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+    <rect x="174" y="160" width="96" height="30" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  </g>
+  <g font-size="8.5" font-weight="700" fill="currentColor" text-anchor="middle">
+    <text x="222" y="79">stg_orders</text>
+    <text x="222" y="129">stg_users</text>
+    <text x="222" y="179">stg_events</text>
+  </g>
+
+  <!-- intermediate model nodes -->
+  <g>
+    <rect x="320" y="84" width="100" height="30" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+    <rect x="320" y="136" width="100" height="30" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  </g>
+  <g font-size="8.5" font-weight="700" fill="currentColor" text-anchor="middle">
+    <text x="370" y="103">int_daily</text>
+    <text x="370" y="155">int_revenue</text>
+  </g>
+
+  <!-- mart (최종 테이블) -->
+  <rect x="470" y="84" width="116" height="78" rx="4" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <text x="528" y="106" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">mart</text>
+  <g stroke="currentColor" stroke-width="1.1" opacity="0.4">
+    <line x1="488" y1="120" x2="568" y2="120"/>
+    <line x1="488" y1="132" x2="568" y2="132"/>
+    <line x1="488" y1="144" x2="568" y2="144"/>
+    <line x1="528" y1="114" x2="528" y2="150"/>
+  </g>
+  <text x="528" y="180" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.75">최종 테이블</text>
+
+  <!-- source -> staging edges -->
+  <g stroke="var(--secondary-color)" stroke-width="2" fill="none">
+    <line x1="124" y1="110" x2="170" y2="75" marker-end="url(#dbt-arrow)"/>
+    <line x1="124" y1="123" x2="170" y2="125" marker-end="url(#dbt-arrow)"/>
+    <line x1="124" y1="136" x2="170" y2="175" marker-end="url(#dbt-arrow)"/>
+  </g>
+  <!-- staging -> intermediate edges -->
+  <g stroke="var(--secondary-color)" stroke-width="2" fill="none">
+    <line x1="270" y1="75" x2="316" y2="97" marker-end="url(#dbt-arrow)"/>
+    <line x1="270" y1="125" x2="316" y2="101" marker-end="url(#dbt-arrow)"/>
+    <line x1="270" y1="125" x2="316" y2="149" marker-end="url(#dbt-arrow)"/>
+    <line x1="270" y1="175" x2="316" y2="153" marker-end="url(#dbt-arrow)"/>
+  </g>
+  <!-- intermediate -> mart edges -->
+  <g stroke="var(--secondary-color)" stroke-width="2" fill="none">
+    <line x1="420" y1="99" x2="466" y2="112" marker-end="url(#dbt-arrow)"/>
+    <line x1="420" y1="151" x2="466" y2="134" marker-end="url(#dbt-arrow)"/>
+  </g>
+  <!-- edge-type labels -->
+  <g font-size="8.5" font-weight="700" fill="currentColor" text-anchor="middle" opacity="0.7">
+    <text x="147" y="205">source()</text>
+    <text x="295" y="205">ref()</text>
+    <text x="445" y="205">ref()</text>
+  </g>
+
+  <!-- ===== divider ===== -->
+  <line x1="30" y1="216" x2="650" y2="216" stroke="currentColor" stroke-width="1.4" opacity="0.25"/>
+
+  <!-- ===== SECTION B: 6-step roadmap ===== -->
+  <text x="30" y="240" text-anchor="start" font-size="11" font-weight="700" fill="currentColor" opacity="0.72">6단계 로드맵 — 모델링 기초 → 재사용·규모 → 협업·표준화, 그리고 완주</text>
+
+  <!-- act labels + underlines -->
+  <g font-size="9" font-weight="700" text-anchor="middle">
+    <text x="115" y="266" fill="var(--secondary-color)">모델링 기초 (1–2)</text>
+    <text x="295" y="266" fill="var(--accent-color)">재사용·규모 (3–4)</text>
+    <text x="475" y="266" fill="var(--gold)">협업·표준화 (5–6)</text>
+  </g>
+  <g stroke-width="2" opacity="0.45">
+    <line x1="70" y1="272" x2="160" y2="272" stroke="var(--secondary-color)"/>
+    <line x1="250" y1="272" x2="340" y2="272" stroke="var(--accent-color)"/>
+    <line x1="430" y1="272" x2="520" y2="272" stroke="var(--gold)"/>
+  </g>
+
+  <!-- baseline -->
+  <line x1="62" y1="304" x2="528" y2="304" stroke="currentColor" stroke-width="2" opacity="0.4"/>
+
+  <!-- stamps -->
+  <g font-weight="800" text-anchor="middle">
+    <!-- 1 -->
+    <circle cx="70" cy="304" r="15" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2.5"/>
+    <text x="70" y="308" font-size="12" fill="currentColor">1</text>
+    <text x="70" y="334" font-size="8.5" font-weight="700" fill="currentColor">모델·ref</text>
+    <!-- 2 -->
+    <circle cx="160" cy="304" r="15" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2.5"/>
+    <text x="160" y="308" font-size="12" fill="currentColor">2</text>
+    <text x="160" y="334" font-size="8.5" font-weight="700" fill="currentColor">테스트·문서</text>
+    <!-- 3 -->
+    <circle cx="250" cy="304" r="15" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.5"/>
+    <text x="250" y="308" font-size="12" fill="currentColor">3</text>
+    <text x="250" y="334" font-size="8.5" font-weight="700" fill="currentColor">매크로·Jinja</text>
+    <!-- 4 -->
+    <circle cx="340" cy="304" r="15" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.5"/>
+    <text x="340" y="308" font-size="12" fill="currentColor">4</text>
+    <text x="340" y="334" font-size="8.5" font-weight="700" fill="currentColor">증분·스냅샷</text>
+    <!-- 5 -->
+    <circle cx="430" cy="304" r="15" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="2.5"/>
+    <text x="430" y="308" font-size="12" fill="currentColor">5</text>
+    <text x="430" y="334" font-size="8.5" font-weight="700" fill="currentColor">패키지·CI</text>
+    <!-- 6 -->
+    <circle cx="520" cy="304" r="15" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="3"/>
+    <text x="520" y="308" font-size="12" fill="currentColor">6</text>
+    <text x="520" y="334" font-size="8.5" font-weight="700" fill="currentColor">세만틱 레이어</text>
+  </g>
+
+  <!-- arrow to trophy -->
+  <line x1="538" y1="304" x2="574" y2="304" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#dbt-arrow)"/>
+
+  <!-- ===== victory trophy ===== -->
+  <g>
+    <path d="M583,288 L617,288 Q615,310 600,312 Q585,310 583,288 Z" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="2.5"/>
+    <path d="M583,292 q-10,1 -3,13" fill="none" stroke="var(--gold)" stroke-width="2"/>
+    <path d="M617,292 q10,1 3,13" fill="none" stroke="var(--gold)" stroke-width="2"/>
+    <rect x="596" y="312" width="8" height="8" fill="var(--gold)"/>
+    <rect x="587" y="320" width="26" height="5" rx="1" fill="var(--gold)"/>
+    <polygon points="600,294 602.8,300 609,300.5 604,304.5 605.8,310.5 600,307 594.2,310.5 596,304.5 591,300.5 597.2,300" fill="var(--gold-bright)"/>
+  </g>
+  <text x="600" y="340" text-anchor="middle" font-size="9" font-weight="800" fill="var(--gold)">완주</text>
+</svg>
+<figcaption>이 시리즈를 한 장으로 — source에서 ref()로 엮인 모델 DAG가 mart로 수렴하는 dbt 변환 흐름과, 모델·ref부터 세만틱 레이어까지 6단계 도장깨기 로드맵, 그리고 완주 트로피</figcaption>
+</figure>
 
 ## 소개
 
@@ -20,7 +168,96 @@ dbt(data build tool)는 2026년 현재 애널리틱스 엔지니어링의 사실
 
 그런데 dbt로 모델 하나를 "돌아가게" 만드는 것과, 수백 개 모델을 **신뢰할 수 있고 유지보수 가능한 파이프라인**으로 키우는 것은 전혀 다른 문제입니다. 후자는 `ref()`가 만드는 의존성 그래프, 테스트와 문서로 세우는 신뢰, Jinja 매크로로 다스리는 반복, incremental·snapshot으로 감당하는 규모와 이력, 그리고 CI로 지키는 배포 안정성을 이해해야 비로소 손에 잡힙니다. 이 시리즈는 그 내부로 들어갑니다. 각 단계를 정복할 때마다 상세 딥다이브 포스트를 작성하고 체크박스를 채우는 **도장깨기** 방식으로 진행합니다.
 
-<!-- ILLUSTRATION(through-line): 이 시리즈의 학습 여정을 세 막으로 나눈 개념도. 제1막 '모델링 기초'는 모델·ref·소스와 테스트·문서화(1~2단계)로 신뢰할 수 있는 변환 그래프를 세우고, 제2막 '재사용과 규모'는 매크로·Jinja와 incremental·snapshot(3~4단계)으로 반복과 규모·이력을 다스리며, 제3막 '협업과 표준화'는 패키지·CI와 세만틱 레이어(5~6단계)로 팀 규모의 배포와 지표 표준화로 넓힌다. 세 막은 왼쪽에서 오른쪽으로 굵은 화살표로 이어진다. post-figure 래핑. -->
+<figure class="post-figure">
+<svg role="img" aria-label="이 시리즈의 학습 여정을 세 막으로 나눈 개념도. 제1막 '모델링 기초'는 모델·ref·소스와 테스트·문서화(1~2단계)로 신뢰할 수 있는 변환 그래프를 세우고, 제2막 '재사용과 규모'는 매크로·Jinja와 증분·스냅샷(3~4단계)으로 반복과 규모·이력을 다스리며, 제3막 '협업과 표준화'는 패키지·CI와 세만틱 레이어(5~6단계)로 팀 규모의 배포와 지표 표준화로 넓힌다. 세 막은 왼쪽에서 오른쪽으로 굵은 화살표로 이어진다." viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg">
+  <title>세 막으로 보는 dbt 학습 여정 — 모델링 기초 → 재사용과 규모 → 협업과 표준화</title>
+  <defs>
+    <marker id="dtl-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--gold)"/>
+    </marker>
+  </defs>
+
+  <!-- title -->
+  <text x="340" y="26" text-anchor="middle" font-size="15" font-weight="800" fill="currentColor">세 막으로 보는 학습 여정</text>
+
+  <!-- ===== ACT 1: 모델링 기초 (steps 1-2) ===== -->
+  <rect x="16" y="52" width="210" height="210" rx="6" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2.5"/>
+  <circle cx="34" cy="74" r="12" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2"/>
+  <text x="34" y="78" text-anchor="middle" font-size="11" font-weight="800" fill="currentColor">1</text>
+  <text x="128" y="78" text-anchor="middle" font-size="13" font-weight="800" fill="var(--secondary-color)">모델링 기초</text>
+  <text x="121" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.72">신뢰할 수 있는 변환 그래프를 세운다</text>
+  <!-- DAG icon -->
+  <g>
+    <line x1="100" y1="138" x2="121" y2="124" stroke="var(--secondary-color)" stroke-width="2"/>
+    <line x1="100" y1="138" x2="121" y2="152" stroke="var(--secondary-color)" stroke-width="2"/>
+    <line x1="121" y1="124" x2="142" y2="138" stroke="var(--secondary-color)" stroke-width="2"/>
+    <line x1="121" y1="152" x2="142" y2="138" stroke="var(--secondary-color)" stroke-width="2"/>
+    <circle cx="100" cy="138" r="7" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2"/>
+    <circle cx="121" cy="124" r="7" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2"/>
+    <circle cx="121" cy="152" r="7" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2"/>
+    <circle cx="142" cy="138" r="7" fill="var(--secondary-color)"/>
+  </g>
+  <!-- step chips -->
+  <g font-size="9.5" font-weight="700">
+    <rect x="34" y="198" width="174" height="22" rx="4" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1" opacity="0.9"/>
+    <circle cx="48" cy="209" r="7" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="1.6"/><text x="48" y="212" text-anchor="middle" font-size="8" fill="currentColor">1</text><text x="62" y="212" fill="currentColor">모델·ref·소스</text>
+    <rect x="34" y="224" width="174" height="22" rx="4" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1" opacity="0.9"/>
+    <circle cx="48" cy="235" r="7" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="1.6"/><text x="48" y="238" text-anchor="middle" font-size="8" fill="currentColor">2</text><text x="62" y="238" fill="currentColor">테스트·문서화</text>
+  </g>
+
+  <!-- arrow ACT1 -> ACT2 -->
+  <polygon points="228,148 240,148 240,141 254,157 240,173 240,166 228,166" fill="currentColor" opacity="0.5"/>
+
+  <!-- ===== ACT 2: 재사용과 규모 (steps 3-4) ===== -->
+  <rect x="242" y="52" width="196" height="210" rx="6" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <circle cx="260" cy="74" r="12" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="260" y="78" text-anchor="middle" font-size="11" font-weight="800" fill="currentColor">2</text>
+  <text x="349" y="78" text-anchor="middle" font-size="13" font-weight="800" fill="var(--accent-color)">재사용과 규모</text>
+  <text x="340" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.72">반복과 규모·이력을 다스린다</text>
+  <!-- reuse + layered scale icon -->
+  <g>
+    <rect x="320" y="128" width="40" height="14" rx="2" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="1.8"/>
+    <rect x="326" y="140" width="40" height="14" rx="2" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="1.8"/>
+    <rect x="332" y="152" width="40" height="14" rx="2" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="1.8"/>
+    <path d="M372,130 a12,12 0 1 1 -4,-8" fill="none" stroke="var(--accent-color)" stroke-width="2"/>
+    <polygon points="366,118 373,122 366,127" fill="var(--accent-color)"/>
+  </g>
+  <!-- step chips -->
+  <g font-size="9.5" font-weight="700">
+    <rect x="260" y="198" width="160" height="22" rx="4" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1" opacity="0.9"/>
+    <circle cx="274" cy="209" r="7" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="1.6"/><text x="274" y="212" text-anchor="middle" font-size="8" fill="currentColor">3</text><text x="288" y="212" fill="currentColor">매크로·Jinja</text>
+    <rect x="260" y="224" width="160" height="22" rx="4" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1" opacity="0.9"/>
+    <circle cx="274" cy="235" r="7" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="1.6"/><text x="274" y="238" text-anchor="middle" font-size="8" fill="currentColor">4</text><text x="288" y="238" fill="currentColor">증분·스냅샷 (SCD)</text>
+  </g>
+
+  <!-- arrow ACT2 -> ACT3 -->
+  <polygon points="440,148 452,148 452,141 466,157 452,173 452,166 440,166" fill="currentColor" opacity="0.5"/>
+
+  <!-- ===== ACT 3: 협업과 표준화 (steps 5-6) ===== -->
+  <rect x="454" y="52" width="210" height="210" rx="6" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="2.5"/>
+  <circle cx="472" cy="74" r="12" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+  <text x="472" y="78" text-anchor="middle" font-size="11" font-weight="800" fill="currentColor">3</text>
+  <text x="566" y="78" text-anchor="middle" font-size="13" font-weight="800" fill="var(--gold)">협업과 표준화</text>
+  <text x="559" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.72">팀 규모 배포와 지표 표준화로 넓힌다</text>
+  <!-- single definition -> many consumers icon -->
+  <g>
+    <circle cx="534" cy="140" r="7" fill="var(--gold)"/>
+    <g stroke="var(--gold)" stroke-width="2" fill="none">
+      <line x1="541" y1="136" x2="586" y2="122" marker-end="url(#dtl-arrow)"/>
+      <line x1="542" y1="140" x2="588" y2="140" marker-end="url(#dtl-arrow)"/>
+      <line x1="541" y1="144" x2="586" y2="158" marker-end="url(#dtl-arrow)"/>
+    </g>
+  </g>
+  <!-- step chips -->
+  <g font-size="9.5" font-weight="700">
+    <rect x="472" y="198" width="174" height="22" rx="4" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1" opacity="0.9"/>
+    <circle cx="486" cy="209" r="7" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="1.6"/><text x="486" y="212" text-anchor="middle" font-size="8" fill="currentColor">5</text><text x="500" y="212" fill="currentColor">패키지·CI</text>
+    <rect x="472" y="224" width="174" height="22" rx="4" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1" opacity="0.9"/>
+    <circle cx="486" cy="235" r="7" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="1.6"/><text x="486" y="238" text-anchor="middle" font-size="8" fill="currentColor">6</text><text x="500" y="238" fill="currentColor">세만틱 레이어·메트릭</text>
+  </g>
+</svg>
+<figcaption>학습 스파인을 세 막으로 — ① 모델링 기초(모델·ref·소스 → 테스트·문서화) → ② 재사용과 규모(매크로·Jinja → 증분·스냅샷) → ③ 협업과 표준화(패키지·CI → 세만틱 레이어)</figcaption>
+</figure>
 
 ## 학습 흐름
 
