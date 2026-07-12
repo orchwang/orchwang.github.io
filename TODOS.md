@@ -53,4 +53,4 @@
 - [ ] **Airflow-Essential** — 커리큘럼 완료, 단계 딥다이브 0/6. `[딥다이브 대기]`
 - [ ] **Lakehouse-Essential (Iceberg)** — 커리큘럼 완료, 단계 딥다이브 0/7. `[딥다이브 대기]`
 - [ ] **Stream-Processing-Essential (Flink)** — 커리큘럼 완료, 단계 딥다이브 0/6. `[딥다이브 대기]`
-- 삽화: Spark 커리큘럼은 삽화 완료. 나머지 5개 커리큘럼은 `post-illustrator` 삽화 패스 대기(헤더+through-line 브리프 남아 있음).
+- 삽화: **6개 커리큘럼 모두 삽화 완료**(헤더 + 3막 through-line 인라인 SVG). 단계 딥다이브 작성 시 각 포스트도 삽화 패스 필요.
