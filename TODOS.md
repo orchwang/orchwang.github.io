@@ -28,6 +28,11 @@
   - 내용: gingerbill(Bill Hall, Odin 프로그래밍 언어 창시자)의 블로그 에세이. 제목상 "좋은 도구는 (사용자에게) 보이지 않는다"는 도구 설계 철학/엔지니어링 문화에 관한 글로 추정. 분류 예상: `Articles/Engineering-Culture` (도구 설계 철학·엔지니어링 문화 에세이). 도구 설계보다 시스템/저수준 기술 심화 비중이 크면 `Articles/Systems-Programming`도 후보 — 원문 확인 후 확정.
   - 메모: egress 정책 차단(`403 CONNECT policy denial`, host `www.gingerbill.org:443`, `connect_rejected`). 핵심 논지·섹션 구조·인용 등 구체 사실은 원문 없이 지어낼 수 없으므로, 사용자가 원문 텍스트 전달 시 작성.
 
+- [ ] **AI 2040 (ai-2040.com)** — `[대기: 원문 전달 필요]`
+  - URL: <https://ai-2040.com/>
+  - 내용: **주제 미상 — 원문 확인 필요.** 도메인명("AI 2040")으로 보아 2040년경 AI의 미래를 다루는 아티클/에세이/프로젝트 사이트로 추정되나, 원문에 접근하지 못해 성격(아티클/에세이/보고서/인터랙티브 프로젝트)·저자·발행처·핵심 논지를 확인할 수 없음. 분류 예상: AI 관련이면 `Articles/AI-Essays` 또는 `Articles/AI-Industry` 후보 — 원문 확인 후 확정.
+  - 메모: egress 정책 차단(`403 CONNECT policy denial`, host `ai-2040.com:443`, `connect_rejected`). URL만으로는 주제가 불명확하므로 지어내지 않음. 사용자가 원문 텍스트 전달 시 작성.
+
 ---
 
 ## 시리즈 · 기타 컨텐츠
