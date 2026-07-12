@@ -23,6 +23,11 @@
   - 내용: devas.life 저자가 Claude Code(코딩 에이전트) 세션을 tmux로 관리하기 위해 만든 개발자 도구/워크플로우 소개로 추정. 분류 예상: `Articles/AI-Engineering` (코딩 에이전트를 운영하는 실무 — 하니스·워크플로우·인프라) — 원문 확인 후 확정.
   - 메모: egress 정책 차단(`403 CONNECT policy denial`, host `www.devas.life:443`). 도구 이름·설치법·사용법 등 구체 사실은 원문 없이 지어낼 수 없으므로, 사용자가 원문 텍스트 전달 시 작성.
 
+- [ ] **Good Tools are Invisible** — `[대기: 원문 전달 필요]`
+  - URL: <https://www.gingerbill.org/article/2026/07/10/good-tools-are-invisible/>
+  - 내용: gingerbill(Bill Hall, Odin 프로그래밍 언어 창시자)의 블로그 에세이. 제목상 "좋은 도구는 (사용자에게) 보이지 않는다"는 도구 설계 철학/엔지니어링 문화에 관한 글로 추정. 분류 예상: `Articles/Engineering-Culture` (도구 설계 철학·엔지니어링 문화 에세이). 도구 설계보다 시스템/저수준 기술 심화 비중이 크면 `Articles/Systems-Programming`도 후보 — 원문 확인 후 확정.
+  - 메모: egress 정책 차단(`403 CONNECT policy denial`, host `www.gingerbill.org:443`, `connect_rejected`). 핵심 논지·섹션 구조·인용 등 구체 사실은 원문 없이 지어낼 수 없으므로, 사용자가 원문 텍스트 전달 시 작성.
+
 ---
 
 ## 시리즈 · 기타 컨텐츠
