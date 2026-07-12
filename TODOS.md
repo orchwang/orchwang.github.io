@@ -43,10 +43,14 @@
 조사 결과·단계 구성·우선순위는 **[DATA-ENGINEERING-SERIES-PLAN.md](./DATA-ENGINEERING-SERIES-PLAN.md)** 참고.
 착수 순서 권장: Spark → Kafka → dbt → Airflow (Tier 1) → Iceberg/Lakehouse → Flink (Tier 2).
 
-- [ ] **Spark-Essential** — 처리 심화(수요 1위). `[작성 가능]`
-- [ ] **Kafka-Essential** — 수집/스트리밍 심화. `[작성 가능]`
-- [ ] **dbt-Essential** — 변환/애널리틱스 엔지니어링 심화. `[작성 가능]`
-- [ ] **Airflow-Essential** — 오케스트레이션 심화. `[작성 가능]`
-- [ ] **Lakehouse-Essential (Iceberg)** — 저장 심화. 2026 오픈 테이블 포맷 사실상 표준. `[작성 가능]`
-- [ ] **Stream-Processing-Essential (Flink)** — 스트림 처리 심화(Kafka Streams 편과 중복 조율). `[작성 가능]`
-- 착수 시 오버뷰 시리즈 해당 단계의 "→ 향후 별도 시리즈" 문구를 실제 링크로 교체하고 커리큘럼 "다음 학습" 갱신.
+6개 시리즈 모두 **마스터 커리큘럼 작성 완료 + 오버뷰 역방향 링크 연결 완료**. 이제 남은 일은
+각 시리즈의 **단계별 딥다이브 포스트 작성**이다 (작성마다 해당 커리큘럼 도장깨기 체크박스·진행률 갱신,
+오름차순 date 시각 `00:01:00`, `00:02:00`…로 순서 보장). 시리즈는 마지막 단계까지 완주 시 이 목록에서 삭제.
+
+- [ ] **Spark-Essential** — 커리큘럼 완료, 단계 딥다이브 0/7. `[딥다이브 대기]`
+- [ ] **Kafka-Essential** — 커리큘럼 완료, 단계 딥다이브 0/6. `[딥다이브 대기]`
+- [ ] **dbt-Essential** — 커리큘럼 완료, 단계 딥다이브 0/6. `[딥다이브 대기]`
+- [ ] **Airflow-Essential** — 커리큘럼 완료, 단계 딥다이브 0/6. `[딥다이브 대기]`
+- [ ] **Lakehouse-Essential (Iceberg)** — 커리큘럼 완료, 단계 딥다이브 0/7. `[딥다이브 대기]`
+- [ ] **Stream-Processing-Essential (Flink)** — 커리큘럼 완료, 단계 딥다이브 0/6. `[딥다이브 대기]`
+- 삽화: Spark 커리큘럼은 삽화 완료. 나머지 5개 커리큘럼은 `post-illustrator` 삽화 패스 대기(헤더+through-line 브리프 남아 있음).
