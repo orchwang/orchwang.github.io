@@ -109,7 +109,7 @@ flowchart TD
 원본을 의미 있는 데이터로 바꾸는 단계. 분산 처리의 기본 모델부터 배치(Spark)·스트림(Flink) 엔진, 그리고 SQL 기반 변환(dbt)까지 오버뷰합니다. 자세한 내용은 [데이터 변환·처리(Processing): 배치·스트림 엔진과 SQL 변환](/2026/06/25/data-processing.html) 포스트에서 다룹니다.
 
 - [x] **분산 처리 모델**: MapReduce에서 Spark로 — 왜 인메모리 처리가 판도를 바꿨는가 — [[상세](/2026/06/25/data-processing.html)]
-- [x] **배치 처리 엔진**: Apache Spark의 구조와 활용 (→ 향후 *Spark* 별도 시리즈 후보) — [[상세](/2026/06/25/data-processing.html)]
+- [x] **배치 처리 엔진**: Apache Spark의 구조와 활용 (→ 심화: [Spark-Essential 시리즈](/2026/07/12/spark-essential-curriculum.html)) — [[상세](/2026/06/25/data-processing.html)]
 - [x] **스트림 처리**: Flink·Kafka Streams, 이벤트 시간 vs 처리 시간, 윈도잉 — [[상세](/2026/06/25/data-processing.html)]
 - [x] **SQL 변환과 ELT**: dbt로 모델링·테스트·문서화하기 (→ 향후 *dbt* 별도 시리즈 후보) — [[상세](/2026/06/25/data-processing.html)]
 

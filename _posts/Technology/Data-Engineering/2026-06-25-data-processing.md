@@ -222,7 +222,7 @@ flowchart LR
 
 **Lazy evaluation(지연 평가).** Spark의 변환 연산(`map`, `filter`, `select`, `join` 등)은 **즉시 실행되지 않습니다.** 호출 시점에는 "무엇을 할지"의 계획(DAG)만 쌓아 두고, `count`·`collect`·`write` 같은 **액션(action)**이 호출되는 순간 비로소 전체 계획을 한꺼번에 최적화해 실행합니다. 덕분에 Spark는 여러 변환을 묶어 불필요한 단계를 건너뛰고 연산을 합칠 수 있습니다. "지금까지 쌓인 변환을 한꺼번에 평가한다"는 이 모델이, 앞서 본 DAG 최적화를 가능하게 하는 토대입니다.
 
-> 💡 Spark는 배치를 넘어 Spark Structured Streaming(스트리밍), MLlib(머신러닝), GraphX(그래프)까지 아우르는 큰 생태계입니다. 이 글에서는 처리 엔진 지도 안에서의 위치만 짚고, **Spark의 구조·튜닝·API는 향후 별도 시리즈에서 깊이 다룰 예정**입니다.
+> 💡 Spark는 배치를 넘어 Spark Structured Streaming(스트리밍), MLlib(머신러닝), GraphX(그래프)까지 아우르는 큰 생태계입니다. 이 글에서는 처리 엔진 지도 안에서의 위치만 짚습니다. Spark의 구조·튜닝·API는 이제 별도 시리즈 [Spark Essential Curriculum](/2026/07/12/spark-essential-curriculum.html)에서 아키텍처·Catalyst/Tungsten·셔플 튜닝·Structured Streaming까지 깊이 다룹니다.
 
 ## 3. 스트림 처리 — 무한한 흐름을 다루기
 
