@@ -249,7 +249,7 @@ flowchart LR
 
 실무에서는 **at-least-once + 멱등 소비**가 가장 현실적인 조합으로 널리 쓰입니다. "정확히 한 번"을 시스템 끝까지 보장하는 비용보다, 중복을 무해하게 만드는 편이 대체로 단순하기 때문입니다.
 
-> Kafka는 단순한 메시지 큐를 넘어 분산 로그·파티셔닝·컨슈머 그룹·스트림 처리까지 아우르는 깊은 주제라, 이 시리즈에서는 역할을 소개하는 선에서 멈춥니다. **Kafka는 향후 별도 시리즈에서 깊이 다룰 예정입니다.**
+> Kafka는 단순한 메시지 큐를 넘어 분산 로그·파티셔닝·컨슈머 그룹·스트림 처리까지 아우르는 깊은 주제라, 이 시리즈에서는 역할을 소개하는 선에서 멈춥니다. **Kafka는 이제 별도 시리즈 [Kafka Essential Curriculum](/2026/07/12/kafka-essential-curriculum.html)에서 분산 로그·파티션·전달 보장·Kafka Connect·Schema Registry·Kafka Streams까지 깊이 다룹니다.**
 
 ## 4. 수집 도구·커넥터 — build vs buy
 
