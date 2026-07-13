@@ -18,11 +18,6 @@
   - 내용: HashiCorp·Ghostty 창업자 Mitchell Hashimoto 인터뷰 (프로그래밍/엔지니어링 커리어). 분류 예상: `Articles/Engineering-Culture` (인물·인터뷰) — 원문 확인 후 확정.
   - 메모: 원문 접근 시도 시 egress 정책 차단 여부 확인 필요. 차단되면 사용자가 원문 텍스트 전달.
 
-- [ ] **I made a Claude Code session manager for tmux** — `[대기: 원문 전달 필요]`
-  - URL: <https://www.devas.life/i-made-a-claude-code-session-manager-for-tmux/>
-  - 내용: devas.life 저자가 Claude Code(코딩 에이전트) 세션을 tmux로 관리하기 위해 만든 개발자 도구/워크플로우 소개로 추정. 분류 예상: `Articles/AI-Engineering` (코딩 에이전트를 운영하는 실무 — 하니스·워크플로우·인프라) — 원문 확인 후 확정.
-  - 메모: egress 정책 차단(`403 CONNECT policy denial`, host `www.devas.life:443`). 도구 이름·설치법·사용법 등 구체 사실은 원문 없이 지어낼 수 없으므로, 사용자가 원문 텍스트 전달 시 작성.
-
 - [ ] **Good Tools are Invisible** — `[대기: 원문 전달 필요]`
   - URL: <https://www.gingerbill.org/article/2026/07/10/good-tools-are-invisible/>
   - 내용: gingerbill(Bill Hall, Odin 프로그래밍 언어 창시자)의 블로그 에세이. 제목상 "좋은 도구는 (사용자에게) 보이지 않는다"는 도구 설계 철학/엔지니어링 문화에 관한 글로 추정. 분류 예상: `Articles/Engineering-Culture` (도구 설계 철학·엔지니어링 문화 에세이). 도구 설계보다 시스템/저수준 기술 심화 비중이 크면 `Articles/Systems-Programming`도 후보 — 원문 확인 후 확정.
