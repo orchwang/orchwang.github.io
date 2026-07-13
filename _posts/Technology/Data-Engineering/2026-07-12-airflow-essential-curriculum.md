@@ -266,57 +266,57 @@ flowchart TD
 
 > 완료한 항목에는 상세 포스트 링크가 연결됩니다. 학습이 진행될 때마다 체크박스와 진행률을 갱신합니다.
 
-- 현재 완료한 항목: **0개**
+- 현재 완료한 항목: **6개**
 - 전체 항목: **6개**
-- 진행률: **0%**
+- 진행률: **100%**
 
 ## 1단계: DAG · 오퍼레이터 · 태스크 — 파이프라인을 코드로 선언
 
 Airflow의 모든 것이 여기서 출발합니다. 파이프라인을 방향성 비순환 그래프(**DAG**)로 모델링하고, 각 작업 단위를 **오퍼레이터**(무엇을 할지의 템플릿)와 그 인스턴스인 **태스크**로 선언하며, 태스크 사이 실행 순서를 **의존성**으로 잇는 법을 익힙니다. Bash·Python·SQL 같은 오퍼레이터의 종류와, 파이프라인 전체를 파이썬 코드로 표현한다는 "configuration as code" 철학을 여기서 잡으면 이후 모든 단계가 이 DAG 그림 위에 얹힙니다.
 
-- [ ] **DAG의 구조**: 방향성 비순환 그래프로 파이프라인 모델링, `schedule`·`start_date`·기본 인자
-- [ ] **오퍼레이터와 태스크**: Bash/Python/SQL 등 오퍼레이터 종류, 태스크 인스턴스와 의존성(`>>`) 정의
-- [ ] **configuration as code**: 파이프라인을 파이썬으로 선언하는 철학과 동적 DAG 생성
+- [x] **DAG의 구조**: 방향성 비순환 그래프로 파이프라인 모델링, `schedule`·`start_date`·기본 인자 — [[상세](/2026/07/13/airflow-dag-operators-tasks.html)]
+- [x] **오퍼레이터와 태스크**: Bash/Python/SQL 등 오퍼레이터 종류, 태스크 인스턴스와 의존성(`>>`) 정의 — [[상세](/2026/07/13/airflow-dag-operators-tasks.html)]
+- [x] **configuration as code**: 파이프라인을 파이썬으로 선언하는 철학과 동적 DAG 생성 — [[상세](/2026/07/13/airflow-dag-operators-tasks.html)]
 
 ## 2단계: 스케줄러 · Executor 내부 — 스케줄링 루프와 실행자
 
 DAG를 선언했을 때 **무엇이 그것을 언제 실행하는가**를 다루는 단계입니다. 파일을 파싱하고 실행 대상 task를 큐에 넣는 **스케줄러의 스케줄링 루프**, 그리고 큐에 들어온 task를 실제로 돌리는 **Executor**의 종류 — 단일 노드의 LocalExecutor, 분산 워커의 CeleryExecutor, 파드 단위로 격리 실행하는 KubernetesExecutor — 의 차이와 선택 기준을 익힙니다. task가 queued → running → success/failed로 넘어가는 상태 전이까지 잡으면 "왜 내 DAG가 안 도는가"를 구조적으로 진단하게 됩니다.
 
-- [ ] **스케줄러 루프**: DAG 파싱, task 인스턴스 생성, 실행 조건 판단과 큐잉
-- [ ] **Executor 종류**: Local · Celery · Kubernetes의 아키텍처와 트레이드오프
-- [ ] **task 생명주기**: queued → running → success/failed 상태 전이와 재시도
+- [x] **스케줄러 루프**: DAG 파싱, task 인스턴스 생성, 실행 조건 판단과 큐잉 — [[상세](/2026/07/13/airflow-scheduler-executor-internals.html)]
+- [x] **Executor 종류**: Local · Celery · Kubernetes의 아키텍처와 트레이드오프 — [[상세](/2026/07/13/airflow-scheduler-executor-internals.html)]
+- [x] **task 생명주기**: queued → running → success/failed 상태 전이와 재시도 — [[상세](/2026/07/13/airflow-scheduler-executor-internals.html)]
 
 ## 3단계: XCom · TaskFlow API — 태스크 간 데이터 전달과 파이썬 네이티브 DAG
 
 태스크는 서로 격리된 채 실행되는데, 그렇다면 앞 태스크의 결과를 뒤 태스크로 어떻게 넘길까요. 그 답이 **XCom**(cross-communication)입니다. XCom의 동작 원리와 메타데이터 DB에 저장되는 특성상의 **크기 한계**, 그리고 큰 데이터에는 XCom 대신 외부 스토리지를 쓰는 패턴을 익힙니다. 아울러 데코레이터(`@task`)로 파이썬 함수를 그대로 태스크로 만들고 XCom 전달을 암묵적으로 처리해 주는 **TaskFlow API**로, 훨씬 파이썬 네이티브하게 DAG를 작성하는 법을 다룹니다.
 
-- [ ] **XCom 기초**: push/pull 메커니즘, 메타데이터 DB 저장과 크기 한계
-- [ ] **TaskFlow API**: `@task`·`@dag` 데코레이터, 함수 반환값의 자동 XCom 전달
-- [ ] **대용량 데이터 전달**: XCom 대신 외부 스토리지 참조를 넘기는 패턴, custom XCom backend
+- [x] **XCom 기초**: push/pull 메커니즘, 메타데이터 DB 저장과 크기 한계 — [[상세](/2026/07/13/airflow-xcom-taskflow-api.html)]
+- [x] **TaskFlow API**: `@task`·`@dag` 데코레이터, 함수 반환값의 자동 XCom 전달 — [[상세](/2026/07/13/airflow-xcom-taskflow-api.html)]
+- [x] **대용량 데이터 전달**: XCom 대신 외부 스토리지 참조를 넘기는 패턴, custom XCom backend — [[상세](/2026/07/13/airflow-xcom-taskflow-api.html)]
 
 ## 4단계: 센서 · deferrable 오퍼레이터 — 외부 상태 대기와 비동기 효율
 
 파이프라인은 종종 "파일이 도착할 때까지", "외부 잡이 끝날 때까지" 기다려야 합니다. 그 대기를 담당하는 것이 **센서(Sensor)**입니다. 그런데 전통적 센서는 대기하는 내내 워커 슬롯을 점유해 자원을 낭비합니다. 이를 해결하는 것이 **deferrable 오퍼레이터**와 **triggerer** — 대기 상태를 워커에서 떼어 비동기 이벤트 루프로 넘겨, 슬롯을 점유하지 않고 수천 개의 대기를 효율적으로 처리합니다. 센서의 `poke` vs `reschedule` 모드와 deferrable 전환까지 익히면 대규모 파이프라인의 자원 효율이 달라집니다.
 
-- [ ] **센서 기초**: FileSensor·ExternalTaskSensor 등, `poke` vs `reschedule` 모드
-- [ ] **deferrable 오퍼레이터**: async 대기, triggerer 프로세스, 워커 슬롯 절약
-- [ ] **대기 패턴 설계**: 타임아웃·포크 간격·외부 의존성 대기의 안티패턴 피하기
+- [x] **센서 기초**: FileSensor·ExternalTaskSensor 등, `poke` vs `reschedule` 모드 — [[상세](/2026/07/13/airflow-sensors-deferrable-operators.html)]
+- [x] **deferrable 오퍼레이터**: async 대기, triggerer 프로세스, 워커 슬롯 절약 — [[상세](/2026/07/13/airflow-sensors-deferrable-operators.html)]
+- [x] **대기 패턴 설계**: 타임아웃·포크 간격·외부 의존성 대기의 안티패턴 피하기 — [[상세](/2026/07/13/airflow-sensors-deferrable-operators.html)]
 
 ## 5단계: 백필 · catchup · 멱등 — 논리적 실행 구간과 재실행 안전성
 
 Airflow에서 가장 헷갈리면서도 가장 중요한 개념 — **시간**입니다. 각 DAG 실행은 물리적 실행 시각이 아니라 **논리적 실행 구간**(data interval)에 묶여 있고, 이를 이해해야 과거 구간을 다시 도는 **백필(backfill)**과, 놓친 구간을 자동으로 따라잡는 **catchup**을 안전하게 다룰 수 있습니다. 그리고 그 재실행이 데이터를 오염시키지 않으려면 태스크가 **멱등(idempotent)** — 같은 구간을 몇 번 돌려도 결과가 같아야 — 해야 합니다. 논리 구간·백필·catchup·멱등을 하나로 꿰면 "재실행해도 안전한 파이프라인"의 설계 원칙이 손에 잡힙니다.
 
-- [ ] **논리적 실행 구간**: data interval, `logical_date`, 물리 실행 시각과의 구분
-- [ ] **백필과 catchup**: 과거 구간 재실행, `catchup` 동작과 누락 구간 따라잡기
-- [ ] **멱등 설계**: 파티션 덮어쓰기·업서트로 재실행 안전성 확보, 부작용 있는 태스크 피하기
+- [x] **논리적 실행 구간**: data interval, `logical_date`, 물리 실행 시각과의 구분 — [[상세](/2026/07/13/airflow-backfill-catchup-idempotency.html)]
+- [x] **백필과 catchup**: 과거 구간 재실행, `catchup` 동작과 누락 구간 따라잡기 — [[상세](/2026/07/13/airflow-backfill-catchup-idempotency.html)]
+- [x] **멱등 설계**: 파티션 덮어쓰기·업서트로 재실행 안전성 확보, 부작용 있는 태스크 피하기 — [[상세](/2026/07/13/airflow-backfill-catchup-idempotency.html)]
 
 ## 6단계: 배포 · 운영 — K8s Executor · 모니터링 · 로깅
 
 마지막은 Airflow를 프로덕션에 올려 **믿고 운영**하는 단계입니다. 컨테이너 이미지·DAG 배포 전략과 파드 단위로 격리 실행하는 **KubernetesExecutor** 운영, 태스크 실행 로그를 오브젝트 스토리지 등으로 모으는 **원격 로깅**, 그리고 SLA·경보·메트릭으로 파이프라인 건강을 지키는 **모니터링**을 다룹니다. 연결·변수·시크릿 관리와 스케줄러 이중화까지 짚어, "돌아가는 Airflow"를 "장애에 견디는 Airflow"로 끌어올립니다.
 
-- [ ] **배포와 KubernetesExecutor**: 이미지·DAG 배포, 파드 격리 실행, 자원 격리
-- [ ] **모니터링과 로깅**: 원격 로깅, 메트릭·SLA·경보, Airflow UI로 병목 읽기
-- [ ] **운영 견고성**: Connection·Variable·Secrets 관리, 스케줄러 HA와 장애 대응
+- [x] **배포와 KubernetesExecutor**: 이미지·DAG 배포, 파드 격리 실행, 자원 격리 — [[상세](/2026/07/13/airflow-deployment-operations.html)]
+- [x] **모니터링과 로깅**: 원격 로깅, 메트릭·SLA·경보, Airflow UI로 병목 읽기 — [[상세](/2026/07/13/airflow-deployment-operations.html)]
+- [x] **운영 견고성**: Connection·Variable·Secrets 관리, 스케줄러 HA와 장애 대응 — [[상세](/2026/07/13/airflow-deployment-operations.html)]
 
 ## 핵심 포인트
 

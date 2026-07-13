@@ -38,14 +38,13 @@
 조사 결과·단계 구성·우선순위는 **[DATA-ENGINEERING-SERIES-PLAN.md](./DATA-ENGINEERING-SERIES-PLAN.md)** 참고.
 착수 순서 권장: Spark → Kafka → dbt → Airflow (Tier 1) → Iceberg/Lakehouse → Flink (Tier 2).
 
-6개 시리즈 모두 **마스터 커리큘럼 작성 완료 + 오버뷰 역방향 링크 연결 완료**. 이제 남은 일은
+6개 시리즈 모두 **마스터 커리큘럼 작성 완료 + 오버뷰 역방향 링크 연결 완료** (Airflow-Essential은 단계 딥다이브 6/6 + 삽화까지 완주 → 목록에서 삭제). 이제 남은 일은
 각 시리즈의 **단계별 딥다이브 포스트 작성**이다 (작성마다 해당 커리큘럼 도장깨기 체크박스·진행률 갱신,
 오름차순 date 시각 `00:01:00`, `00:02:00`…로 순서 보장). 시리즈는 마지막 단계까지 완주 시 이 목록에서 삭제.
 
 - [ ] **Spark-Essential** — 커리큘럼 완료, 단계 딥다이브 0/7. `[딥다이브 대기]`
 - [ ] **Kafka-Essential** — 커리큘럼 완료, 단계 딥다이브 0/6. `[딥다이브 대기]`
 - [ ] **dbt-Essential** — 커리큘럼 완료, 단계 딥다이브 0/6. `[딥다이브 대기]`
-- [ ] **Airflow-Essential** — 커리큘럼 완료, 단계 딥다이브 0/6. `[딥다이브 대기]`
 - [ ] **Lakehouse-Essential (Iceberg)** — 커리큘럼 완료, 단계 딥다이브 0/7. `[딥다이브 대기]`
 - [ ] **Stream-Processing-Essential (Flink)** — 커리큘럼 완료, 단계 딥다이브 0/6. `[딥다이브 대기]`
 - 삽화: **6개 커리큘럼 모두 삽화 완료**(헤더 + 3막 through-line 인라인 SVG). 단계 딥다이브 작성 시 각 포스트도 삽화 패스 필요.
