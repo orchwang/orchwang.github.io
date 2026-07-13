@@ -28,6 +28,11 @@
   - 내용: **주제 미상 — 원문 확인 필요.** 도메인명("AI 2040")으로 보아 2040년경 AI의 미래를 다루는 아티클/에세이/프로젝트 사이트로 추정되나, 원문에 접근하지 못해 성격(아티클/에세이/보고서/인터랙티브 프로젝트)·저자·발행처·핵심 논지를 확인할 수 없음. 분류 예상: AI 관련이면 `Articles/AI-Essays` 또는 `Articles/AI-Industry` 후보 — 원문 확인 후 확정.
   - 메모: egress 정책 차단(`403 CONNECT policy denial`, host `ai-2040.com:443`, `connect_rejected`). URL만으로는 주제가 불명확하므로 지어내지 않음. 사용자가 원문 텍스트 전달 시 작성.
 
+- [ ] **martinfowler.com fragment (2026-07-13) — 주제 미상(fragment) · 원문 확인 필요** — `[대기: 원문 전달 필요]`
+  - URL: <https://martinfowler.com/fragments/2026-07-13.html>
+  - 내용: **주제 미상 — 원문 확인 필요.** Martin Fowler 사이트의 "fragment"(짧은 글/메모) 형식이며, URL에 제목·주제가 드러나지 않아 무슨 내용인지(저자·핵심 논지·섹션 구조) 확인 불가. 마틴 파울러 사이트 특성상 소프트웨어 설계·리팩터링·엔지니어링 문화 관련일 가능성이 높으나 지어낼 수 없음. 분류 예상: 엔지니어링 설계/문화면 `Articles/Engineering-Culture` 유력 — 원문 확인 후 실제 주제에 맞게 확정.
+  - 메모: egress 정책 차단(`403 CONNECT policy denial`, host `martinfowler.com:443`, `connect_rejected` — 프록시 `recentRelayFailures`에 기록됨). fragment라 URL만으로는 주제가 불명확하므로 지어내지 않음. 사용자가 원문 텍스트 전달 시 작성.
+
 ---
 
 ## 시리즈 · 기타 컨텐츠
