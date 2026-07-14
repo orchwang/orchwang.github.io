@@ -33,6 +33,11 @@
   - 내용: **주제 미상 — 원문 확인 필요.** Martin Fowler 사이트의 "fragment"(짧은 글/메모) 형식이며, URL에 제목·주제가 드러나지 않아 무슨 내용인지(저자·핵심 논지·섹션 구조) 확인 불가. 마틴 파울러 사이트 특성상 소프트웨어 설계·리팩터링·엔지니어링 문화 관련일 가능성이 높으나 지어낼 수 없음. 분류 예상: 엔지니어링 설계/문화면 `Articles/Engineering-Culture` 유력 — 원문 확인 후 실제 주제에 맞게 확정.
   - 메모: egress 정책 차단(`403 CONNECT policy denial`, host `martinfowler.com:443`, `connect_rejected` — 프록시 `recentRelayFailures`에 기록됨). fragment라 URL만으로는 주제가 불명확하므로 지어내지 않음. 사용자가 원문 텍스트 전달 시 작성.
 
+- [ ] **On Data Quality (1): Basics** — `[대기: 원문 전달 필요]`
+  - URL: <https://pivotal.substack.com/p/on-data-quality-1-basics>
+  - 내용: Substack 뉴스레터(pivotal.substack.com)의 데이터 품질 연재 1편으로, 제목상 "데이터 품질의 기초"를 다루는 것으로 추정(정의·차원·측정·거버넌스 등). 원문에 접근하지 못해 저자·발행일·핵심 논지·섹션 구조·구체 사실은 확인 불가이므로 지어내지 않음. 분류 예상: 데이터 엔지니어링 실무/문화 성격이면 `Articles/Engineering-Culture` 후보, 다만 데이터 엔지니어링 아티클이 누적되면 `Articles/Data-Engineering` 신설 후보도 검토 — 원문 확인 후 확정. 크로스링크 대상 확보: `Data-Engineering-Essential` 오버뷰 커리큘럼(/2026/06/25/data-engineering-essential-curriculum.html), 데이터 품질·거버넌스 오버뷰(_posts/Technology/Data-Engineering/2026-06-25-data-quality-governance.md), dbt-Essential 커리큘럼(/2026/07/12/dbt-essential-curriculum.html, dbt 테스트=데이터 품질 접점).
+  - 메모: egress 정책 차단(`403 CONNECT policy denial`, host `pivotal.substack.com:443`, `connect_rejected` — CONNECT 단계에서 프록시가 403 반환, 요청이 Substack 서버에 도달하지 않음. 봇 차단/페이월이 아니라 세션 egress 정책 차단). 사용자가 원문 텍스트 전달 시 작성.
+
 ---
 
 ## 시리즈 · 기타 컨텐츠
