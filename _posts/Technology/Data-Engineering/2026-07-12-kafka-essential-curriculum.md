@@ -290,57 +290,57 @@ flowchart TD
 
 > 완료한 항목에는 상세 포스트 링크가 연결됩니다. 학습이 진행될 때마다 체크박스와 진행률을 갱신합니다.
 
-- 현재 완료한 항목: **0개**
+- 현재 완료한 항목: **6개**
 - 전체 항목: **6개**
-- 진행률: **0%**
+- 진행률: **100%**
 
 ## 1단계: 분산 로그 · 토픽 · 파티션 — 커밋 로그 모델과 파티셔닝
 
 Kafka의 모든 것이 여기서 출발합니다. Kafka는 메시지 큐가 아니라, 지워지지 않고 계속 뒤에 덧붙는 **append-only 커밋 로그**입니다. 데이터가 담기는 논리 단위인 **토픽(topic)**, 그 토픽을 병렬 처리와 확장의 단위로 쪼갠 **파티션(partition)**, 그리고 각 레코드의 순번인 **오프셋(offset)**이 어떻게 맞물리는지를 익힙니다. 파티션이 순서 보장과 병렬성의 경계라는 사실, 파티셔닝 키가 처리량과 순서를 어떻게 가르는지, 복제(replication)와 리더/팔로워로 내구성을 확보하는 원리까지 잡으면 이후 모든 단계가 이 그림 위에 얹힙니다.
 
-- [ ] **커밋 로그 모델**: 큐가 아닌 append-only 로그, 보존(retention)과 재생(replay)이 주는 힘
-- [ ] **토픽과 파티션**: 파티션 = 병렬성·순서 보장의 단위, 파티셔닝 키의 선택
-- [ ] **복제와 내구성**: 리더/팔로워, ISR(In-Sync Replica), 복제 계수로 확보하는 내결함성
+- [x] **커밋 로그 모델**: 큐가 아닌 append-only 로그, 보존(retention)과 재생(replay)이 주는 힘 — [[상세](/2026/07/15/kafka-distributed-log-topics-partitions.html)]
+- [x] **토픽과 파티션**: 파티션 = 병렬성·순서 보장의 단위, 파티셔닝 키의 선택 — [[상세](/2026/07/15/kafka-distributed-log-topics-partitions.html)]
+- [x] **복제와 내구성**: 리더/팔로워, ISR(In-Sync Replica), 복제 계수로 확보하는 내결함성 — [[상세](/2026/07/15/kafka-distributed-log-topics-partitions.html)]
 
 ## 2단계: 프로듀서 / 컨슈머 · 컨슈머 그룹 — 병렬 소비와 오프셋
 
 로그에 **어떻게 쓰고, 어떻게 병렬로 읽는가**를 다루는 단계입니다. **프로듀서**가 레코드를 어느 파티션에 보낼지 정하고 배치·압축·`acks`로 처리량과 내구성을 조율하는 법, **컨슈머**가 로그를 순서대로 당겨(pull) 읽으며 어디까지 읽었는지를 **오프셋 커밋**으로 기록하는 법을 익힙니다. 핵심은 **컨슈머 그룹**입니다. 여러 컨슈머를 하나의 그룹으로 묶으면 파티션이 자동으로 나눠 배정되어 수평 확장이 되고, 컨슈머가 죽거나 추가되면 **리밸런싱(rebalancing)**이 일어납니다. 그룹 안에서 파티션 수가 병렬성의 상한이라는 점, 오프셋 커밋 시점이 전달 보장과 직결된다는 점을 여기서 잡습니다.
 
-- [ ] **프로듀서**: 파티션 배정·배치·압축, `acks`(0/1/all)로 처리량 vs 내구성 조율
-- [ ] **컨슈머와 오프셋**: pull 기반 소비, 오프셋 커밋(자동 vs 수동)과 재처리
-- [ ] **컨슈머 그룹과 리밸런싱**: 파티션 분배로 수평 확장, 리밸런싱과 그 비용
+- [x] **프로듀서**: 파티션 배정·배치·압축, `acks`(0/1/all)로 처리량 vs 내구성 조율 — [[상세](/2026/07/15/kafka-producers-consumers-groups.html)]
+- [x] **컨슈머와 오프셋**: pull 기반 소비, 오프셋 커밋(자동 vs 수동)과 재처리 — [[상세](/2026/07/15/kafka-producers-consumers-groups.html)]
+- [x] **컨슈머 그룹과 리밸런싱**: 파티션 분배로 수평 확장, 리밸런싱과 그 비용 — [[상세](/2026/07/15/kafka-producers-consumers-groups.html)]
 
 ## 3단계: 전달 보장 — at-least-once · exactly-once · 멱등 프로듀서 · 트랜잭션
 
 Kafka 실무에서 가장 자주 오해되고, 가장 중요한 주제입니다. "메시지가 유실되지 않는가", "중복되지 않는가"는 서로 다른 문제이고, Kafka는 이를 **세 가지 전달 의미**로 정리합니다. 유실은 없지만 중복이 가능한 **at-least-once**, 중복 위험을 감수하고 최소 지연을 택하는 **at-most-once**, 그리고 중복도 유실도 없는 **exactly-once**입니다. exactly-once를 가능하게 하는 두 축 — 재시도 중복을 막는 **멱등 프로듀서(idempotent producer)**와 여러 파티션에 걸친 쓰기를 원자적으로 묶는 **트랜잭션(transaction)** — 을 익힙니다. 오프셋 커밋 시점과 처리의 순서가 왜 전달 의미를 가르는지, exactly-once가 왜 "consume-process-produce" 루프에서만 온전히 성립하는지를 여기서 확실히 잡습니다.
 
-- [ ] **세 가지 전달 의미**: at-most-once vs at-least-once vs exactly-once의 트레이드오프
-- [ ] **멱등 프로듀서**: 프로듀서 재시도로 인한 중복을 시퀀스 번호로 제거하기
-- [ ] **트랜잭션과 EOS**: 다중 파티션 원자적 쓰기, read-process-write의 exactly-once 보장
+- [x] **세 가지 전달 의미**: at-most-once vs at-least-once vs exactly-once의 트레이드오프 — [[상세](/2026/07/15/kafka-delivery-guarantees.html)]
+- [x] **멱등 프로듀서**: 프로듀서 재시도로 인한 중복을 시퀀스 번호로 제거하기 — [[상세](/2026/07/15/kafka-delivery-guarantees.html)]
+- [x] **트랜잭션과 EOS**: 다중 파티션 원자적 쓰기, read-process-write의 exactly-once 보장 — [[상세](/2026/07/15/kafka-delivery-guarantees.html)]
 
 ## 4단계: Kafka Connect — CDC · Debezium 커넥터
 
 Kafka를 **다른 시스템과 잇는** 표준 방법입니다. 프로듀서·컨슈머를 매번 직접 짜는 대신, **Kafka Connect**는 소스(외부 → Kafka)와 싱크(Kafka → 외부) 커넥터를 선언적 설정만으로 운영하게 해 줍니다. 특히 데이터 엔지니어링에서 결정적인 쓰임은 **변경 데이터 캡처(CDC)**입니다. **Debezium** 같은 커넥터가 원천 DB의 트랜잭션 로그(WAL/binlog)를 읽어 INSERT·UPDATE·DELETE를 이벤트 스트림으로 바꿔 Kafka에 흘려보내면, 운영 DB의 변경이 거의 실시간으로 분석계·검색·캐시에 전파됩니다. 커넥터의 분산 실행 모델(worker·task), 오프셋 관리, 그리고 스냅샷 → 스트리밍 전환 같은 CDC 실무 감각을 익힙니다. (수집 관점의 CDC 개념은 오버뷰 [수집 포스트](/2026/06/25/data-ingestion.html)의 CDC 절이 좋은 사전 지식입니다.)
 
-- [ ] **Connect 아키텍처**: 소스/싱크 커넥터, worker·task 분산 실행, 선언적 설정
-- [ ] **CDC와 Debezium**: DB 트랜잭션 로그 기반 변경 캡처, 스냅샷 → 스트리밍
-- [ ] **운영 실무**: 오프셋·상태 관리, 스키마 전달, 흔한 장애 패턴
+- [x] **Connect 아키텍처**: 소스/싱크 커넥터, worker·task 분산 실행, 선언적 설정 — [[상세](/2026/07/15/kafka-connect-cdc.html)]
+- [x] **CDC와 Debezium**: DB 트랜잭션 로그 기반 변경 캡처, 스냅샷 → 스트리밍 — [[상세](/2026/07/15/kafka-connect-cdc.html)]
+- [x] **운영 실무**: 오프셋·상태 관리, 스키마 전달, 흔한 장애 패턴 — [[상세](/2026/07/15/kafka-connect-cdc.html)]
 
 ## 5단계: Schema Registry — Avro/Protobuf · 스키마 진화 · 호환성
 
 로그를 여러 팀이 오래 공유하면, 데이터의 **형태(스키마)**가 곧 시스템 간 **계약**이 됩니다. 프로듀서가 필드를 바꾸면 컨슈머가 깨지는 문제를 막기 위해 **Schema Registry**는 스키마를 중앙에서 등록·버전 관리하고, 메시지에는 스키마 ID만 실어 보내 효율과 안전을 함께 확보합니다. **Avro·Protobuf** 같은 이진 직렬화 포맷과, 스키마를 안전하게 바꾸는 **스키마 진화(schema evolution)**, 그리고 어떤 변경이 허용되는지를 규정하는 **호환성(backward/forward/full)** 규칙을 익힙니다. 이 단계를 잡으면 "데이터 계약(Data Contracts)"이 추상적 구호가 아니라 실제로 강제되는 메커니즘임을 이해하게 됩니다.
 
-- [ ] **Schema Registry의 역할**: 스키마 중앙 등록·버전 관리, 메시지에는 스키마 ID만
-- [ ] **직렬화 포맷**: Avro vs Protobuf vs JSON Schema, 이진 포맷의 이점
-- [ ] **스키마 진화와 호환성**: backward/forward/full 호환성 규칙과 안전한 필드 변경
+- [x] **Schema Registry의 역할**: 스키마 중앙 등록·버전 관리, 메시지에는 스키마 ID만 — [[상세](/2026/07/15/kafka-schema-registry.html)]
+- [x] **직렬화 포맷**: Avro vs Protobuf vs JSON Schema, 이진 포맷의 이점 — [[상세](/2026/07/15/kafka-schema-registry.html)]
+- [x] **스키마 진화와 호환성**: backward/forward/full 호환성 규칙과 안전한 필드 변경 — [[상세](/2026/07/15/kafka-schema-registry.html)]
 
 ## 6단계: Kafka Streams — 스트림 처리 DSL · 상태 저장 · KTable
 
 마지막은 로그 위에서 **바로 스트림을 처리하는** 단계입니다. 별도 처리 클러스터 없이, 애플리케이션 라이브러리만으로 Kafka 토픽을 입력받아 변환·집계·조인해 다시 토픽으로 내보내는 **Kafka Streams**를 다룹니다. 흐르는 이벤트를 다루는 **KStream**과, 최신 상태의 테이블로 보는 **KTable**의 이원성(stream-table duality), 집계·조인을 위한 **상태 저장(state store)**과 그 내결함성(changelog 토픽), 그리고 이벤트 시간 **윈도잉**과 exactly-once 처리를 익힙니다. Structured Streaming·Flink 같은 외부 엔진과의 경계 — 언제 Streams로 충분하고 언제 전용 엔진이 필요한지 — 도 함께 짚습니다. (스트림 처리의 시간·윈도 개념은 오버뷰 [처리 포스트](/2026/06/25/data-processing.html)의 이벤트 시간·윈도잉 절과 이어집니다.)
 
-- [ ] **스트림 처리 DSL**: KStream·KTable, map/filter/aggregate/join, 토폴로지
-- [ ] **상태 저장과 내결함성**: state store, changelog 토픽으로 복원되는 로컬 상태
-- [ ] **윈도잉과 정확성**: 이벤트 시간 윈도(텀블링/슬라이딩/세션), exactly-once 처리
+- [x] **스트림 처리 DSL**: KStream·KTable, map/filter/aggregate/join, 토폴로지 — [[상세](/2026/07/15/kafka-streams.html)]
+- [x] **상태 저장과 내결함성**: state store, changelog 토픽으로 복원되는 로컬 상태 — [[상세](/2026/07/15/kafka-streams.html)]
+- [x] **윈도잉과 정확성**: 이벤트 시간 윈도(텀블링/슬라이딩/세션), exactly-once 처리 — [[상세](/2026/07/15/kafka-streams.html)]
 
 ## 핵심 포인트
 
