@@ -13,40 +13,7 @@
 
 ## 아티클 포스트 (Articles)
 
-- [ ] **Interview with Mitchell Hashimoto** — `[대기: 원문 전달 필요]`
-  - URL: <https://alexalejandre.com/programming/interview-with-mitchell-hashimoto/>
-  - 내용: HashiCorp·Ghostty 창업자 Mitchell Hashimoto 인터뷰 (프로그래밍/엔지니어링 커리어). 분류 예상: `Articles/Engineering-Culture` (인물·인터뷰) — 원문 확인 후 확정.
-  - 메모: 원문 접근 시도 시 egress 정책 차단 여부 확인 필요. 차단되면 사용자가 원문 텍스트 전달.
-
-- [ ] **Good Tools are Invisible** — `[대기: 원문 전달 필요]`
-  - URL: <https://www.gingerbill.org/article/2026/07/10/good-tools-are-invisible/>
-  - 내용: gingerbill(Bill Hall, Odin 프로그래밍 언어 창시자)의 블로그 에세이. 제목상 "좋은 도구는 (사용자에게) 보이지 않는다"는 도구 설계 철학/엔지니어링 문화에 관한 글로 추정. 분류 예상: `Articles/Engineering-Culture` (도구 설계 철학·엔지니어링 문화 에세이). 도구 설계보다 시스템/저수준 기술 심화 비중이 크면 `Articles/Systems-Programming`도 후보 — 원문 확인 후 확정.
-  - 메모: egress 정책 차단(`403 CONNECT policy denial`, host `www.gingerbill.org:443`, `connect_rejected`). 핵심 논지·섹션 구조·인용 등 구체 사실은 원문 없이 지어낼 수 없으므로, 사용자가 원문 텍스트 전달 시 작성.
-
-- [ ] **AI 2040 (ai-2040.com)** — `[대기: 원문 전달 필요]`
-  - URL: <https://ai-2040.com/>
-  - 내용: **주제 미상 — 원문 확인 필요.** 도메인명("AI 2040")으로 보아 2040년경 AI의 미래를 다루는 아티클/에세이/프로젝트 사이트로 추정되나, 원문에 접근하지 못해 성격(아티클/에세이/보고서/인터랙티브 프로젝트)·저자·발행처·핵심 논지를 확인할 수 없음. 분류 예상: AI 관련이면 `Articles/AI-Essays` 또는 `Articles/AI-Industry` 후보 — 원문 확인 후 확정.
-  - 메모: egress 정책 차단(`403 CONNECT policy denial`, host `ai-2040.com:443`, `connect_rejected`). URL만으로는 주제가 불명확하므로 지어내지 않음. 사용자가 원문 텍스트 전달 시 작성.
-
-- [ ] **martinfowler.com fragment (2026-07-13) — 주제 미상(fragment) · 원문 확인 필요** — `[대기: 원문 전달 필요]`
-  - URL: <https://martinfowler.com/fragments/2026-07-13.html>
-  - 내용: **주제 미상 — 원문 확인 필요.** Martin Fowler 사이트의 "fragment"(짧은 글/메모) 형식이며, URL에 제목·주제가 드러나지 않아 무슨 내용인지(저자·핵심 논지·섹션 구조) 확인 불가. 마틴 파울러 사이트 특성상 소프트웨어 설계·리팩터링·엔지니어링 문화 관련일 가능성이 높으나 지어낼 수 없음. 분류 예상: 엔지니어링 설계/문화면 `Articles/Engineering-Culture` 유력 — 원문 확인 후 실제 주제에 맞게 확정.
-  - 메모: egress 정책 차단(`403 CONNECT policy denial`, host `martinfowler.com:443`, `connect_rejected` — 프록시 `recentRelayFailures`에 기록됨). fragment라 URL만으로는 주제가 불명확하므로 지어내지 않음. 사용자가 원문 텍스트 전달 시 작성.
-
-- [ ] **On Data Quality (1): Basics** — `[대기: 원문 전달 필요]`
-  - URL: <https://pivotal.substack.com/p/on-data-quality-1-basics>
-  - 내용: Substack 뉴스레터(pivotal.substack.com)의 데이터 품질 연재 1편으로, 제목상 "데이터 품질의 기초"를 다루는 것으로 추정(정의·차원·측정·거버넌스 등). 원문에 접근하지 못해 저자·발행일·핵심 논지·섹션 구조·구체 사실은 확인 불가이므로 지어내지 않음. 분류 예상: 데이터 엔지니어링 실무/문화 성격이면 `Articles/Engineering-Culture` 후보, 다만 데이터 엔지니어링 아티클이 누적되면 `Articles/Data-Engineering` 신설 후보도 검토 — 원문 확인 후 확정. 크로스링크 대상 확보: `Data-Engineering-Essential` 오버뷰 커리큘럼(/2026/06/25/data-engineering-essential-curriculum.html), 데이터 품질·거버넌스 오버뷰(_posts/Technology/Data-Engineering/2026-06-25-data-quality-governance.md), dbt-Essential 커리큘럼(/2026/07/12/dbt-essential-curriculum.html, dbt 테스트=데이터 품질 접점).
-  - 메모: egress 정책 차단(`403 CONNECT policy denial`, host `pivotal.substack.com:443`, `connect_rejected` — CONNECT 단계에서 프록시가 403 반환, 요청이 Substack 서버에 도달하지 않음. 봇 차단/페이월이 아니라 세션 egress 정책 차단). 사용자가 원문 텍스트 전달 시 작성.
-
-- [ ] **HTTP 429 (Too Many Requests) — velog @gusdudco6** — `[대기: 원문 전달 필요]`
-  - URL: <https://velog.io/@gusdudco6/HTTP429>
-  - 내용: velog.io(한국 개발자 블로그 플랫폼) @gusdudco6 님의 기술 글로, 제목상 HTTP 429(Too Many Requests) 상태 코드 / 레이트 리미팅을 다루는 것으로 추정(429가 무엇인지·언제 발생하는지·`Retry-After` 헤더·rate limiting·대응 방법 등). 원문에 접근하지 못해 저자 실명·발행일·핵심 논지·섹션 구조·코드 예시·구체 사실은 확인 불가이므로 지어내지 않음. 분류 예상: 웹/API·인프라 성격이면 `Articles/Systems-Programming`(성능 엔지니어링·분산 인프라) 후보 — 다만 순수 HTTP/웹 프로토콜 주제라 기존 sub-category와 완전히 맞지 않을 수 있으니 원문 확인 후 확정(맞는 곳이 없으면 `Web`/`Networking` 등 신설 후보 검토).
-  - 메모: egress 정책 차단(`403 CONNECT policy denial`, host `velog.io:443`, `connect_rejected` — 프록시 `recentRelayFailures`에 "gateway answered 403 to CONNECT (policy denial or upstream failure)"로 기록됨. CONNECT 단계에서 프록시가 403 반환, 요청이 velog 서버에 도달하지 않음 → 봇 차단/페이월이 아니라 세션 egress 정책 차단). 사용자가 원문 텍스트 전달 시 작성.
-
-- [ ] **We're going to make out like bandits** — `[대기: 원문 전달 필요]`
-  - URL: <https://www.rocketpoweredjetpants.com/2026/04/were-going-to-make-out-like-bandits/>
-  - 내용: rocketpoweredjetpants.com 개인 블로그(2026-04)의 에세이. 제목의 관용구 "make out like bandits"는 "크게 이득을 보다/한몫 챙기다"라는 뜻으로, 무언가로부터 큰 이득을 본다는 취지의 글로 추정되나, 원문에 접근하지 못해 저자·핵심 논지·섹션 구조·구체 사실(무엇으로 이득을 보는지 — AI/기술/시장/커리어 등)은 확인 불가이므로 지어내지 않음. 분류 예상: 실제 주제에 따라 `Articles/AI-Industry`(AI가 바꾸는 일·산업), `Articles/AI-Essays`(AI 시대 관점·에세이), 또는 `Articles/Career-Life` 중 하나가 유력하나 원문 확인 후 확정.
-  - 메모: egress 정책 차단(`403 CONNECT policy denial`, host `www.rocketpoweredjetpants.com:443`, `connect_rejected` — 프록시 `recentRelayFailures`에 "gateway answered 403 to CONNECT (policy denial or upstream failure)"로 기록됨. curl도 `(56) CONNECT tunnel failed, response 403` 반환 → CONNECT 단계에서 프록시가 403 반환, 요청이 원 서버에 도달조차 하지 않음. 원 서버 봇 차단/페이월이 아니라 세션 egress 정책 차단). 사용자가 원문 텍스트 전달 시 작성.
+_대기 중인 아티클 없음._ (2026-07-18: 이전에 egress 차단으로 파킹돼 있던 7건 — Mitchell Hashimoto 인터뷰, Good Tools are Invisible, AI 2040: Plan A, Martin Fowler fragment(7/13), On Data Quality(1), HTTP429(실제 주제: 확장성/성능), make out like bandits — 은 차단이 풀려 모두 작성 완료 후 삭제.)
 
 ---
 
