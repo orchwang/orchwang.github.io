@@ -43,6 +43,11 @@
   - 내용: velog.io(한국 개발자 블로그 플랫폼) @gusdudco6 님의 기술 글로, 제목상 HTTP 429(Too Many Requests) 상태 코드 / 레이트 리미팅을 다루는 것으로 추정(429가 무엇인지·언제 발생하는지·`Retry-After` 헤더·rate limiting·대응 방법 등). 원문에 접근하지 못해 저자 실명·발행일·핵심 논지·섹션 구조·코드 예시·구체 사실은 확인 불가이므로 지어내지 않음. 분류 예상: 웹/API·인프라 성격이면 `Articles/Systems-Programming`(성능 엔지니어링·분산 인프라) 후보 — 다만 순수 HTTP/웹 프로토콜 주제라 기존 sub-category와 완전히 맞지 않을 수 있으니 원문 확인 후 확정(맞는 곳이 없으면 `Web`/`Networking` 등 신설 후보 검토).
   - 메모: egress 정책 차단(`403 CONNECT policy denial`, host `velog.io:443`, `connect_rejected` — 프록시 `recentRelayFailures`에 "gateway answered 403 to CONNECT (policy denial or upstream failure)"로 기록됨. CONNECT 단계에서 프록시가 403 반환, 요청이 velog 서버에 도달하지 않음 → 봇 차단/페이월이 아니라 세션 egress 정책 차단). 사용자가 원문 텍스트 전달 시 작성.
 
+- [ ] **We're going to make out like bandits** — `[대기: 원문 전달 필요]`
+  - URL: <https://www.rocketpoweredjetpants.com/2026/04/were-going-to-make-out-like-bandits/>
+  - 내용: rocketpoweredjetpants.com 개인 블로그(2026-04)의 에세이. 제목의 관용구 "make out like bandits"는 "크게 이득을 보다/한몫 챙기다"라는 뜻으로, 무언가로부터 큰 이득을 본다는 취지의 글로 추정되나, 원문에 접근하지 못해 저자·핵심 논지·섹션 구조·구체 사실(무엇으로 이득을 보는지 — AI/기술/시장/커리어 등)은 확인 불가이므로 지어내지 않음. 분류 예상: 실제 주제에 따라 `Articles/AI-Industry`(AI가 바꾸는 일·산업), `Articles/AI-Essays`(AI 시대 관점·에세이), 또는 `Articles/Career-Life` 중 하나가 유력하나 원문 확인 후 확정.
+  - 메모: egress 정책 차단(`403 CONNECT policy denial`, host `www.rocketpoweredjetpants.com:443`, `connect_rejected` — 프록시 `recentRelayFailures`에 "gateway answered 403 to CONNECT (policy denial or upstream failure)"로 기록됨. curl도 `(56) CONNECT tunnel failed, response 403` 반환 → CONNECT 단계에서 프록시가 403 반환, 요청이 원 서버에 도달조차 하지 않음. 원 서버 봇 차단/페이월이 아니라 세션 egress 정책 차단). 사용자가 원문 텍스트 전달 시 작성.
+
 ---
 
 ## 시리즈 · 기타 컨텐츠
