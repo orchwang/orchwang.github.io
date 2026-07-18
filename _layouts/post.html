@@ -25,6 +25,12 @@ layout: default
             </div>
             {% endif %}
             <h1 class="post-title">{{ page.title }}</h1>
+            {% if page.presentation %}
+            <button type="button" class="present-btn js-present-btn" aria-label="이 포스트를 슬라이드로 발표 (전체화면)">
+                <span class="present-btn-icon" aria-hidden="true">▶</span>
+                <span class="present-btn-label">발표</span>
+            </button>
+            {% endif %}
             <div class="post-meta">
                 <time datetime="{{ page.date | date_to_xmlschema }}">
                     {{ page.date | date: "%Y년 %m월 %d일" }}

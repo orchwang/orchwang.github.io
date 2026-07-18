@@ -6,6 +6,7 @@ categories: [Technology, Data-Engineering]
 series: Data-Engineering-Essential
 tags: [data-engineering, data-pipeline, curriculum]
 published: true
+presentation: true
 banner: wartable
 image: /assets/images/data-engineering/data-engineering-curriculum-og.jpg
 excerpt: "데이터 엔지니어링의 정의와 역사부터 수집·저장·처리·오케스트레이션 기술 오버뷰, 사례별 파이프라인 설계, 품질·거버넌스·DataOps까지 10단계로 정복하는 종합 학습 로드맵입니다. 도장깨기 방식으로 진행 상황을 추적합니다."
@@ -192,3 +193,392 @@ flowchart TD
 - [데이터 엔지니어링이란: 수명주기와 데이터 엔지니어의 역할](/2026/06/25/what-is-data-engineering.html) — 1단계부터 다시 훑어보며 전체 지도 복습
 - [Designing Data-Intensive Applications](/2026/06/19/designing-data-intensive-applications.html) — 데이터 시스템의 이론적 토대 (Architecture-Essential)
 - [PostgreSQL Essential Curriculum](/2025/10/28/postgresql-essential-curriculum.html) — 데이터 저장의 핵심, 관계형 데이터베이스 깊이 파기
+
+<!-- ============================================================
+     PRESENTATION DECK — 발표 전용 편집본 (본문의 미러가 아님)
+     대상: 데이터 엔지니어링을 "전혀 모르는" 완전 초보자(비개발자·입문 개발자).
+     쉬운 비유 + 손으로 그린 인라인 SVG + 용어 풀이로 커리큘럼 전체를
+     하나의 이야기처럼 안내한다. 기술 색인이 아니라 접근 가능한 이야기.
+     모든 SVG 색은 토큰(var(--…))과 currentColor 만 사용 — 라이트/다크
+     양쪽에서 읽힌다. 화면에 렌더되지 않으며 presentation.js가 전체화면 재생.
+     한 슬라이드 = 하나의 <section class="slide">. (초보자용 재작성)
+     ============================================================ -->
+<div class="deck-source" hidden aria-hidden="true">
+
+<section class="slide slide--title">
+  <p class="deck-kicker">Data-Engineering-Essential · 완전 초보자를 위한 안내</p>
+  <h1>데이터 엔지니어링<br>처음부터</h1>
+  <p class="deck-lead">"데이터를 다룬다"는 게 대체 무슨 일일까? 아무것도 몰라도 괜찮습니다.</p>
+  <p class="deck-note">그림과 비유로 따라가는 커리큘럼 한 바퀴 — 용어는 나올 때마다 쉽게 풀어드립니다</p>
+</section>
+
+<section class="slide">
+  <p class="deck-kicker">먼저, 문제부터</p>
+  <h2>데이터는 처음엔 늘 '흩어져' 있다</h2>
+  <svg role="img" aria-label="왼쪽에 앱·결제·로그·센서라고 적힌 상자들이 제각각 흩어져 기울어져 있고, 가운데 화살표를 지나 오른쪽에는 반듯하게 정렬된 표 한 장이 놓여 있다. 흩어진 원천 데이터를 모아 쓸 수 있는 표로 정리하는 과정을 나타낸다." viewBox="0 0 680 240" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg">
+    <defs><marker id="dkA-arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--secondary-color)"/></marker></defs>
+    <g font-size="11" font-weight="700" text-anchor="middle">
+      <rect x="30" y="40" width="86" height="34" rx="5" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2" transform="rotate(-6 73 57)"/>
+      <text x="73" y="61" fill="currentColor" transform="rotate(-6 73 57)">앱</text>
+      <rect x="150" y="30" width="86" height="34" rx="5" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2" transform="rotate(5 193 47)"/>
+      <text x="193" y="51" fill="currentColor" transform="rotate(5 193 47)">결제</text>
+      <rect x="40" y="120" width="86" height="34" rx="5" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2" transform="rotate(7 83 137)"/>
+      <text x="83" y="141" fill="currentColor" transform="rotate(7 83 137)">로그</text>
+      <rect x="160" y="130" width="86" height="34" rx="5" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2" transform="rotate(-5 203 147)"/>
+      <text x="203" y="151" fill="currentColor" transform="rotate(-5 203 147)">센서</text>
+    </g>
+    <text x="140" y="205" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.7">제각각 · 지저분 · 못 씀</text>
+    <line x1="270" y1="120" x2="380" y2="120" stroke="var(--secondary-color)" stroke-width="3" marker-end="url(#dkA-arw)"/>
+    <text x="325" y="108" text-anchor="middle" font-size="11" font-weight="700" fill="var(--secondary-color)">데이터 엔지니어링</text>
+    <rect x="410" y="52" width="240" height="140" rx="6" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+    <rect x="410" y="52" width="240" height="28" rx="6" fill="var(--secondary-color)" opacity="0.18"/>
+    <g stroke="currentColor" opacity="0.4"><line x1="410" y1="80" x2="650" y2="80" stroke-width="1.4"/><line x1="410" y1="108" x2="650" y2="108" stroke-width="1"/><line x1="410" y1="136" x2="650" y2="136" stroke-width="1"/><line x1="410" y1="164" x2="650" y2="164" stroke-width="1"/><line x1="490" y1="52" x2="490" y2="192" stroke-width="1"/><line x1="570" y1="52" x2="570" y2="192" stroke-width="1"/></g>
+    <text x="530" y="212" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor">깨끗한 표 · 바로 분석</text>
+  </svg>
+  <p class="deck-lead">앱·결제·로그·센서… 데이터는 여기저기 제각각 쌓인다. 이대로는 아무도 못 쓴다.</p>
+  <p>누군가 이걸 모아서 <strong>깨끗하고 쓸 수 있는 형태</strong>로 정리해야 한다.</p>
+</section>
+
+<section class="slide">
+  <p class="deck-kicker">누가 하는 일인가</p>
+  <h2>재료를 준비하는 사람</h2>
+  <svg role="img" aria-label="세 사람이 나란히 있다. 왼쪽 데이터 엔지니어는 파이프 조각(재료 손질)을, 가운데 데이터 분석가는 막대 차트를, 오른쪽 데이터 사이언티스트는 작은 신경망 모델을 다룬다. 엔지니어가 준비한 재료 위에서 나머지 둘이 일한다는 것을 화살표로 나타낸다." viewBox="0 0 680 250" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg">
+    <defs><marker id="dkB-arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--gold)"/></marker></defs>
+    <rect x="24" y="46" width="196" height="150" rx="8" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="3"/>
+    <rect x="242" y="46" width="196" height="150" rx="8" fill="var(--bg-light)" stroke="var(--border-color)" stroke-width="2"/>
+    <rect x="460" y="46" width="196" height="150" rx="8" fill="var(--bg-light)" stroke="var(--border-color)" stroke-width="2"/>
+    <g fill="none" stroke="currentColor" stroke-width="2.5">
+      <circle cx="122" cy="86" r="15"/><path d="M96,140 Q122,108 148,140"/>
+      <circle cx="340" cy="86" r="15"/><path d="M314,140 Q340,108 366,140"/>
+      <circle cx="558" cy="86" r="15"/><path d="M532,140 Q558,108 584,140"/>
+    </g>
+    <g stroke="var(--secondary-color)" stroke-width="2.5" fill="none"><rect x="98" y="150" width="16" height="16" rx="2"/><line x1="114" y1="158" x2="130" y2="158"/><rect x="130" y="150" width="16" height="16" rx="2"/></g>
+    <g fill="var(--secondary-color)"><rect x="316" y="158" width="10" height="12"/><rect x="330" y="150" width="10" height="20"/><rect x="344" y="154" width="10" height="16"/></g>
+    <g stroke="var(--secondary-color)" stroke-width="2"><line x1="540" y1="160" x2="558" y2="150"/><line x1="558" y1="150" x2="576" y2="160"/><line x1="558" y1="150" x2="558" y2="170"/></g>
+    <g fill="var(--secondary-color)"><circle cx="540" cy="160" r="4"/><circle cx="576" cy="160" r="4"/><circle cx="558" cy="150" r="4"/><circle cx="558" cy="170" r="4"/></g>
+    <text x="122" y="30" text-anchor="middle" font-size="11" font-weight="800" fill="var(--gold)">재료를 준비</text>
+    <g text-anchor="middle" font-weight="700" font-size="12" fill="currentColor">
+      <text x="122" y="185">데이터 엔지니어</text>
+      <text x="340" y="185">데이터 분석가</text>
+      <text x="558" y="185">데이터 사이언티스트</text>
+    </g>
+    <line x1="224" y1="120" x2="240" y2="120" stroke="var(--gold)" stroke-width="2.5" marker-end="url(#dkB-arw)"/>
+    <line x1="442" y1="120" x2="458" y2="120" stroke="var(--gold)" stroke-width="2.5" marker-end="url(#dkB-arw)"/>
+  </svg>
+  <p class="deck-lead">요리에 비유하면 — <strong>데이터 엔지니어</strong>는 신선한 재료를 손질해 주방에 올린다.</p>
+  <p>그 재료로 <strong>분석가</strong>는 요리(차트·리포트)를, <strong>사이언티스트</strong>는 새 메뉴(AI 모델)를 만든다. 재료가 엉망이면 무엇도 안 된다.</p>
+</section>
+
+<section class="slide">
+  <p class="deck-kicker">이 발표를 관통하는 하나의 그림</p>
+  <h2>데이터가 흘러가는 길</h2>
+  <svg role="img" aria-label="컨베이어 벨트 위에 다섯 개의 칸이 순서대로 놓여 있다: 생성, 수집, 저장, 변환, 서빙. 데이터 꾸러미가 왼쪽에서 오른쪽으로 벨트를 따라 각 칸을 차례로 지나간다." viewBox="0 0 720 220" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg">
+    <defs><marker id="dkC-arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--secondary-color)"/></marker></defs>
+    <rect x="24" y="150" width="672" height="26" rx="13" fill="var(--bg-light)" stroke="var(--border-color)" stroke-width="2"/>
+    <g fill="none" stroke="currentColor" stroke-width="2" opacity="0.5"><circle cx="52" cy="163" r="9"/><circle cx="176" cy="163" r="9"/><circle cx="300" cy="163" r="9"/><circle cx="424" cy="163" r="9"/><circle cx="548" cy="163" r="9"/><circle cx="668" cy="163" r="9"/></g>
+    <g font-weight="700" font-size="13" text-anchor="middle">
+      <g><rect x="40" y="60" width="110" height="52" rx="7" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2.5"/><text x="95" y="83" fill="currentColor">생성</text><text x="95" y="100" font-size="9" fill="currentColor" opacity="0.7">데이터 발생</text></g>
+      <g><rect x="180" y="60" width="110" height="52" rx="7" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2.5"/><text x="235" y="83" fill="currentColor">수집</text><text x="235" y="100" font-size="9" fill="currentColor" opacity="0.7">모아 오기</text></g>
+      <g><rect x="320" y="60" width="110" height="52" rx="7" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2.5"/><text x="375" y="83" fill="currentColor">저장</text><text x="375" y="100" font-size="9" fill="currentColor" opacity="0.7">쌓아 두기</text></g>
+      <g><rect x="460" y="60" width="110" height="52" rx="7" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2.5"/><text x="515" y="83" fill="currentColor">변환</text><text x="515" y="100" font-size="9" fill="currentColor" opacity="0.7">다듬기</text></g>
+      <g><rect x="600" y="60" width="110" height="52" rx="7" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/><text x="655" y="83" fill="currentColor">서빙</text><text x="655" y="100" font-size="9" fill="currentColor" opacity="0.7">가져다 쓰기</text></g>
+    </g>
+    <g stroke="var(--secondary-color)" stroke-width="2.5"><line x1="152" y1="86" x2="178" y2="86" marker-end="url(#dkC-arw)"/><line x1="292" y1="86" x2="318" y2="86" marker-end="url(#dkC-arw)"/><line x1="432" y1="86" x2="458" y2="86" marker-end="url(#dkC-arw)"/><line x1="572" y1="86" x2="598" y2="86" marker-end="url(#dkC-arw)"/></g>
+    <rect x="120" y="132" width="26" height="26" rx="4" fill="var(--accent-color)"/>
+    <text x="133" y="150" text-anchor="middle" font-size="12" font-weight="800" fill="var(--bg-panel)">D</text>
+    <text x="360" y="205" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.72">데이터 파이프라인 = 이 컨베이어를 자동으로 굴리는 것</text>
+  </svg>
+  <p class="deck-lead">데이터는 컨베이어처럼 다섯 칸을 지난다: 생성 → 수집 → 저장 → 변환 → 서빙.</p>
+  <p class="deck-note">📖 <strong>용어 · 데이터 파이프라인</strong> = 이 흐름을 사람이 매번 손대지 않아도 자동으로 굴러가게 만든 '컨베이어 벨트'. 정수장이 강물을 받아 수돗물로 바꿔 집집마다 보내는 것과 같다.</p>
+</section>
+
+<section class="slide">
+  <span class="deck-num">수집</span>
+  <h2>데이터 모아 오기 (Ingestion)</h2>
+  <svg role="img" aria-label="왼쪽은 배치 방식으로, 데이터 방울을 양동이에 모았다가 시계가 가리키는 정해진 시각에 한꺼번에 붓는 모습이다. 오른쪽은 스트리밍 방식으로, 수도관을 따라 데이터가 끊임없이 흘러가는 모습이다." viewBox="0 0 680 240" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg">
+    <defs><marker id="dkD-arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--secondary-color)"/></marker></defs>
+    <rect x="20" y="40" width="300" height="176" rx="8" fill="var(--bg-light)" stroke="var(--border-color)" stroke-width="2"/>
+    <text x="170" y="66" text-anchor="middle" font-size="14" font-weight="800" fill="currentColor">배치 (Batch)</text>
+    <path d="M110,110 L150,110 L144,175 L116,175 Z" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2.5"/>
+    <rect x="116" y="142" width="28" height="31" fill="var(--secondary-color)" opacity="0.3"/>
+    <g fill="var(--accent-color)"><circle cx="130" cy="96" r="4"/><circle cx="122" cy="84" r="4"/><circle cx="138" cy="84" r="4"/></g>
+    <circle cx="235" cy="130" r="26" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2.5"/>
+    <g stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="235" y1="130" x2="235" y2="114"/><line x1="235" y1="130" x2="248" y2="136"/></g>
+    <text x="170" y="200" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.78">모았다가 정해진 때에 한 번에</text>
+    <rect x="360" y="40" width="300" height="176" rx="8" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="2.5"/>
+    <text x="510" y="66" text-anchor="middle" font-size="14" font-weight="800" fill="currentColor">스트리밍 (Streaming)</text>
+    <rect x="388" y="120" width="244" height="30" rx="15" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2.5"/>
+    <line x1="392" y1="135" x2="624" y2="135" stroke="var(--accent-color)" stroke-width="2" stroke-dasharray="6 6" marker-end="url(#dkD-arw)"/>
+    <g fill="var(--accent-color)"><circle cx="410" cy="135" r="4"/><circle cx="450" cy="135" r="4"/><circle cx="490" cy="135" r="4"/><circle cx="530" cy="135" r="4"/><circle cx="570" cy="135" r="4"/></g>
+    <text x="510" y="200" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.78">생기는 즉시 끊임없이</text>
+  </svg>
+  <p class="deck-lead">가져오는 방식은 크게 둘 — 모아서 한꺼번에(배치) vs 생기는 즉시 계속(스트리밍).</p>
+  <p class="deck-note">📖 <strong>용어 · 배치</strong> = 양동이에 모았다가 한 번에 붓기(예: 매일 밤). <strong>스트리밍</strong> = 수도관처럼 끊임없이 흘려보내기(실시간). <strong>CDC</strong> = 원본 DB에서 '바뀐 것만' 집어내 따라 옮기는 기법(Change Data Capture).</p>
+</section>
+
+<section class="slide">
+  <span class="deck-num">저장</span>
+  <h2>어디에 쌓을까 (Storage)</h2>
+  <svg role="img" aria-label="세 가지 저장 방식. 왼쪽 웨어하우스는 반듯한 선반이 있는 창고 건물로 정형 데이터만 담는다. 가운데 레이크는 물결치는 호수로 표·사진·로그 등 온갖 원본을 그대로 담는다. 오른쪽 레이크하우스는 호수 위에 창고 건물을 얹어 둘을 합친 모습이다." viewBox="0 0 700 236" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg">
+    <text x="118" y="34" text-anchor="middle" font-size="13" font-weight="800" fill="currentColor">웨어하우스</text>
+    <rect x="34" y="70" width="168" height="120" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2.5"/>
+    <path d="M28,70 L118,42 L208,70 Z" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2.5"/>
+    <g stroke="currentColor" stroke-width="1.6" opacity="0.5"><line x1="34" y1="110" x2="202" y2="110"/><line x1="34" y1="150" x2="202" y2="150"/><line x1="90" y1="70" x2="90" y2="190"/><line x1="146" y1="70" x2="146" y2="190"/></g>
+    <text x="118" y="210" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.75">정형(표)만 · 잘 정리</text>
+    <text x="350" y="34" text-anchor="middle" font-size="13" font-weight="800" fill="currentColor">레이크</text>
+    <path d="M270,80 Q350,60 430,80 L430,180 Q350,196 270,180 Z" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2.5"/>
+    <g stroke="var(--secondary-color)" stroke-width="1.6" fill="none" opacity="0.6"><path d="M280,110 Q350,98 420,110"/><path d="M280,140 Q350,128 420,140"/></g>
+    <rect x="300" y="100" width="20" height="20" rx="3" fill="var(--accent-color)" opacity="0.8"/>
+    <circle cx="360" cy="150" r="11" fill="var(--gold)" opacity="0.85"/>
+    <path d="M388,108 l16,0 l-8,16 z" fill="var(--secondary-color)"/>
+    <text x="350" y="210" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.75">원본 다 담기 · 자유</text>
+    <text x="582" y="34" text-anchor="middle" font-size="13" font-weight="800" fill="currentColor">레이크하우스</text>
+    <path d="M502,150 Q582,134 662,150 L662,182 Q582,196 502,182 Z" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2.5"/>
+    <rect x="536" y="86" width="92" height="66" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+    <path d="M530,86 L582,62 L634,86 Z" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+    <g stroke="currentColor" stroke-width="1.4" opacity="0.5"><line x1="536" y1="118" x2="628" y2="118"/><line x1="582" y1="86" x2="582" y2="152"/></g>
+    <text x="582" y="210" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.75">자유 + 질서 = 통합</text>
+  </svg>
+  <p class="deck-note">📖 <strong>용어 · 웨어하우스</strong>=반듯한 표만 담는 잘 정리된 창고, <strong>데이터 레이크</strong>=원본을 형태 상관없이 다 담는 호수, <strong>레이크하우스</strong>=둘을 합친 요즘 방식. / <strong>OLTP</strong>=주문·결제 같은 '거래' 처리용 DB, <strong>OLAP</strong>=쌓인 데이터를 '분석'하는 용도 — 데이터 엔지니어링은 주로 OLAP 쪽.</p>
+</section>
+
+<section class="slide">
+  <span class="deck-num">저장</span>
+  <h2>같은 표라도 '어떻게' 저장하느냐</h2>
+  <svg role="img" aria-label="왼쪽 표는 행 지향 저장으로 한 행 전체가 강조되어, 분석할 때 모든 데이터를 읽어야 함을 나타낸다. 오른쪽 표는 열 지향(Parquet) 저장으로 필요한 한 개의 열만 강조되어, 필요한 열만 골라 읽음을 나타낸다." viewBox="0 0 680 240" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg">
+    <text x="160" y="34" text-anchor="middle" font-size="13" font-weight="800" fill="currentColor">행 지향</text>
+    <rect x="40" y="52" width="240" height="140" rx="5" fill="var(--bg-panel)" stroke="var(--border-color)" stroke-width="2"/>
+    <rect x="40" y="94" width="240" height="28" fill="var(--accent-color)" opacity="0.25"/>
+    <g stroke="currentColor" stroke-width="1" opacity="0.35"><line x1="40" y1="80" x2="280" y2="80"/><line x1="40" y1="108" x2="280" y2="108"/><line x1="40" y1="136" x2="280" y2="136"/><line x1="40" y1="164" x2="280" y2="164"/><line x1="120" y1="52" x2="120" y2="192"/><line x1="200" y1="52" x2="200" y2="192"/></g>
+    <text x="160" y="214" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.78">한 행씩 — 다 읽어야 한다</text>
+    <text x="520" y="34" text-anchor="middle" font-size="13" font-weight="800" fill="currentColor">열 지향 · Parquet</text>
+    <rect x="400" y="52" width="240" height="140" rx="5" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+    <rect x="480" y="52" width="80" height="140" fill="var(--secondary-color)" opacity="0.28"/>
+    <g stroke="currentColor" stroke-width="1" opacity="0.35"><line x1="400" y1="80" x2="640" y2="80"/><line x1="400" y1="108" x2="640" y2="108"/><line x1="400" y1="136" x2="640" y2="136"/><line x1="400" y1="164" x2="640" y2="164"/><line x1="480" y1="52" x2="480" y2="192"/><line x1="560" y1="52" x2="560" y2="192"/></g>
+    <text x="520" y="214" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.78">필요한 열만 콕 — 빠르고 작다</text>
+  </svg>
+  <p class="deck-lead">분석은 보통 몇 개 '열(칼럼)'만 본다 — 그래서 열 단위로 저장하면 훨씬 빠르고 작다.</p>
+  <p class="deck-note">📖 <strong>용어 · Parquet</strong> = 분석용으로 널리 쓰는 '열 지향(columnar)' 파일 형식. 필요한 열만 콕 집어 읽고, 잘 압축된다.</p>
+</section>
+
+<section class="slide">
+  <p class="deck-kicker">역사가 바꾼 순서</p>
+  <h2>ETL 에서 ELT 로</h2>
+  <svg role="img" aria-label="위쪽 ETL 줄은 추출, 변환, 적재 순서의 세 상자가 화살표로 이어져 있다. 아래쪽 ELT 줄은 추출, 적재, 변환 순서로 이어져, 변환과 적재의 순서가 뒤바뀐 것을 강조한다." viewBox="0 0 680 210" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg">
+    <defs><marker id="dkG-arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--secondary-color)"/></marker></defs>
+    <text x="42" y="64" font-size="15" font-weight="800" fill="currentColor">ETL</text>
+    <g font-size="12" font-weight="700" text-anchor="middle">
+      <rect x="130" y="36" width="120" height="46" rx="6" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2"/><text x="190" y="64" fill="currentColor">추출 E</text>
+      <rect x="290" y="36" width="120" height="46" rx="6" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.5"/><text x="350" y="64" fill="currentColor">변환 T</text>
+      <rect x="450" y="36" width="120" height="46" rx="6" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="2.5"/><text x="510" y="64" fill="currentColor">적재 L</text>
+    </g>
+    <g stroke="var(--secondary-color)" stroke-width="2.5"><line x1="252" y1="59" x2="288" y2="59" marker-end="url(#dkG-arw)"/><line x1="412" y1="59" x2="448" y2="59" marker-end="url(#dkG-arw)"/></g>
+    <text x="44" y="162" font-size="15" font-weight="800" fill="currentColor">ELT</text>
+    <g font-size="12" font-weight="700" text-anchor="middle">
+      <rect x="130" y="134" width="120" height="46" rx="6" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2"/><text x="190" y="162" fill="currentColor">추출 E</text>
+      <rect x="290" y="134" width="120" height="46" rx="6" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="2.5"/><text x="350" y="162" fill="currentColor">적재 L</text>
+      <rect x="450" y="134" width="120" height="46" rx="6" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.5"/><text x="510" y="162" fill="currentColor">변환 T</text>
+    </g>
+    <g stroke="var(--secondary-color)" stroke-width="2.5"><line x1="252" y1="157" x2="288" y2="157" marker-end="url(#dkG-arw)"/><line x1="412" y1="157" x2="448" y2="157" marker-end="url(#dkG-arw)"/></g>
+    <text x="622" y="110" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent-color)">T ↔ L</text>
+    <text x="622" y="126" text-anchor="middle" font-size="10" font-weight="700" fill="var(--accent-color)">순서가 바뀐다</text>
+  </svg>
+  <p class="deck-lead">'변환(T)'을 언제 하느냐의 차이 — 옮기기 전(ETL)에서, 일단 다 넣고 나중에(ELT)로.</p>
+  <p class="deck-note">📖 <strong>용어 · ETL</strong> = 추출→변환→적재(Extract·Transform·Load). <strong>ELT</strong> = 추출→적재→변환. 저장·연산 비용이 싸지면서 "일단 다 넣고 나중에 다듬자"가 대세가 됐다.</p>
+</section>
+
+<section class="slide">
+  <span class="deck-num">변환</span>
+  <h2>원본을 '쓸 수 있게' 다듬기 (Processing)</h2>
+  <svg role="img" aria-label="왼쪽은 빈칸과 오류가 섞인 지저분한 표이고, 가운데 화살표를 지나 오른쪽은 깔끔하게 정리된 표가 된다. 원본 데이터를 다듬어 쓸 수 있는 표로 만드는 변환 과정을 나타낸다." viewBox="0 0 620 216" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg">
+    <defs><marker id="dkH-arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--secondary-color)"/></marker></defs>
+    <rect x="30" y="40" width="200" height="140" rx="5" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2"/>
+    <g stroke="currentColor" stroke-width="1" opacity="0.35"><line x1="30" y1="80" x2="230" y2="80"/><line x1="30" y1="112" x2="230" y2="112"/><line x1="30" y1="144" x2="230" y2="144"/><line x1="96" y1="40" x2="96" y2="180"/><line x1="164" y1="40" x2="164" y2="180"/></g>
+    <g fill="var(--accent-color)" font-size="14" font-weight="800" text-anchor="middle"><text x="63" y="103">✕</text><text x="197" y="135">?</text><text x="130" y="167">✕</text></g>
+    <text x="130" y="202" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.78">빈칸 · 중복 · 오류</text>
+    <line x1="248" y1="110" x2="360" y2="110" stroke="var(--secondary-color)" stroke-width="3" marker-end="url(#dkH-arw)"/>
+    <text x="304" y="98" text-anchor="middle" font-size="11" font-weight="700" fill="var(--secondary-color)">변환</text>
+    <rect x="386" y="40" width="200" height="140" rx="5" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+    <rect x="386" y="40" width="200" height="26" fill="var(--secondary-color)" opacity="0.18"/>
+    <g stroke="currentColor" stroke-width="1" opacity="0.35"><line x1="386" y1="66" x2="586" y2="66"/><line x1="386" y1="94" x2="586" y2="94"/><line x1="386" y1="122" x2="586" y2="122"/><line x1="386" y1="150" x2="586" y2="150"/><line x1="452" y1="40" x2="452" y2="180"/><line x1="520" y1="40" x2="520" y2="180"/></g>
+    <text x="486" y="202" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.78">깨끗 · 일관 · 바로 분석</text>
+  </svg>
+  <p class="deck-lead">빈칸 채우고, 중복 지우고, 합치고, 계산해서 — 의미 있는 표로 만든다.</p>
+  <ul class="deck-chips">
+    <li class="deck-chip">Spark · 대용량 처리</li>
+    <li class="deck-chip">dbt · SQL 변환</li>
+    <li class="deck-chip">Flink · 실시간</li>
+  </ul>
+</section>
+
+<section class="slide">
+  <span class="deck-num">오케스트레이션</span>
+  <h2>수많은 작업의 '지휘자'</h2>
+  <svg role="img" aria-label="작은 작업 그래프. A에서 B와 C로 화살표가 나가고, B와 C에서 다시 D로 화살표가 모인다. 화살표는 모두 한 방향이며 되돌아오는 화살표가 없는 비순환 구조다." viewBox="0 0 620 240" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg">
+    <defs><marker id="dkI-arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--secondary-color)"/></marker></defs>
+    <g stroke="var(--secondary-color)" stroke-width="2.5" fill="none">
+      <line x1="126" y1="112" x2="258" y2="66" marker-end="url(#dkI-arw)"/>
+      <line x1="126" y1="128" x2="258" y2="174" marker-end="url(#dkI-arw)"/>
+      <line x1="342" y1="66" x2="474" y2="112" marker-end="url(#dkI-arw)"/>
+      <line x1="342" y1="174" x2="474" y2="128" marker-end="url(#dkI-arw)"/>
+    </g>
+    <g text-anchor="middle" font-weight="800" font-size="16">
+      <g><circle cx="100" cy="120" r="30" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2.5"/><text x="100" y="126" fill="currentColor">A</text></g>
+      <g><circle cx="300" cy="56" r="30" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2.5"/><text x="300" y="62" fill="currentColor">B</text></g>
+      <g><circle cx="300" cy="184" r="30" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2.5"/><text x="300" y="190" fill="currentColor">C</text></g>
+      <g><circle cx="500" cy="120" r="30" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="3"/><text x="500" y="126" fill="currentColor">D</text></g>
+    </g>
+    <text x="310" y="228" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.72">한 방향 · 되돌아오지 않음 (비순환)</text>
+  </svg>
+  <p class="deck-lead">"A가 끝나야 B·C를 하고, 둘 다 끝나야 D" — 순서와 의존성을 대신 챙겨준다.</p>
+  <p class="deck-note">📖 <strong>용어 · 오케스트레이션</strong> = 작업들을 언제·어떤 순서로 돌릴지 자동 조율(지휘). <strong>DAG</strong> = 작업들의 순서도, 화살표는 한 방향이고 되돌아오지 않는다(비순환). <strong>멱등성</strong> = 같은 작업을 두 번 돌려도 결과가 똑같음 — 그래야 안심하고 재시도한다.</p>
+</section>
+
+<section class="slide">
+  <p class="deck-kicker">요즘 저장의 핵심 · Apache Iceberg</p>
+  <h2>파일 더미 위에 진짜 '테이블'을 얹기</h2>
+  <svg role="img" aria-label="세 층으로 쌓인 그림. 맨 아래는 Parquet 데이터 파일들, 그 위에는 어떤 파일이 이 표에 속하는지·스키마·통계를 담은 메타데이터 층, 맨 위에는 현재 스냅샷을 가리키는 카탈로그가 있다. 파일 더미 위에 테이블 층을 얹어 진짜 표처럼 다루는 구조를 나타낸다." viewBox="0 0 660 280" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg">
+    <defs><marker id="dkJ-arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--gold)"/></marker></defs>
+    <rect x="230" y="30" width="200" height="42" rx="6" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="2.5"/>
+    <text x="330" y="50" text-anchor="middle" font-size="12" font-weight="800" fill="currentColor">카탈로그</text>
+    <text x="330" y="65" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.75">"지금의 표는 이 스냅샷"</text>
+    <line x1="330" y1="72" x2="330" y2="104" stroke="var(--gold)" stroke-width="2.5" marker-end="url(#dkJ-arw)"/>
+    <rect x="70" y="106" width="520" height="60" rx="6" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2.5"/>
+    <text x="330" y="130" text-anchor="middle" font-size="12" font-weight="800" fill="currentColor">메타데이터 (테이블 층)</text>
+    <text x="330" y="150" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.78">어떤 파일이 이 표에 속하나 · 스키마 · 통계 · 스냅샷 이력</text>
+    <g stroke="var(--secondary-color)" stroke-width="2" opacity="0.7"><line x1="160" y1="166" x2="160" y2="196" marker-end="url(#dkJ-arw)"/><line x1="330" y1="166" x2="330" y2="196" marker-end="url(#dkJ-arw)"/><line x1="500" y1="166" x2="500" y2="196" marker-end="url(#dkJ-arw)"/></g>
+    <text x="330" y="216" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor" opacity="0.85">데이터 파일 (Parquet) — 그냥 파일들</text>
+    <g font-family="monospace" font-size="9" text-anchor="middle" fill="currentColor">
+      <g><rect x="96" y="226" width="110" height="40" rx="4" fill="var(--bg-light)" stroke="var(--border-color)" stroke-width="2"/><text x="151" y="250">part-0.parquet</text></g>
+      <g><rect x="222" y="226" width="110" height="40" rx="4" fill="var(--bg-light)" stroke="var(--border-color)" stroke-width="2"/><text x="277" y="250">part-1.parquet</text></g>
+      <g><rect x="348" y="226" width="110" height="40" rx="4" fill="var(--bg-light)" stroke="var(--border-color)" stroke-width="2"/><text x="403" y="250">part-2.parquet</text></g>
+      <g><rect x="474" y="226" width="110" height="40" rx="4" fill="var(--bg-light)" stroke="var(--border-color)" stroke-width="2"/><text x="529" y="250">part-3.parquet</text></g>
+    </g>
+  </svg>
+  <p class="deck-lead">호수에 파일만 잔뜩 쌓으면 "지금 이 표가 정확히 뭔지" 아무도 모른다. 그 위에 얇은 '설명서 층'을 얹은 게 <strong>테이블 포맷</strong>이다.</p>
+  <p class="deck-note">📖 <strong>용어 · 테이블 포맷</strong>(Iceberg·Delta·Hudi) = 파일 묶음 위에 '어떤 파일이 이 표에 속하나, 스키마는 무엇인가'를 기록한 메타데이터 층. 덕분에 파일 더미가 데이터베이스 표처럼 행동한다.</p>
+</section>
+
+<section class="slide">
+  <p class="deck-kicker">Apache Iceberg · 이게 왜 좋은가</p>
+  <h2>세 가지 큰 선물</h2>
+  <svg role="img" aria-label="스냅샷 S1, S2, S3가 시간 순서로 놓인 타임라인. '현재' 포인터가 최신 S3를 가리키고, S3에서 과거 S1으로 되돌아가는 점선 화살표가 시간여행과 롤백을 나타낸다." viewBox="0 0 660 200" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="dkK-arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--secondary-color)"/></marker>
+      <marker id="dkK-tt" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--accent-color)"/></marker>
+    </defs>
+    <text x="540" y="46" text-anchor="middle" font-size="12" font-weight="800" fill="var(--gold)">현재</text>
+    <line x1="540" y1="52" x2="540" y2="94" stroke="var(--gold)" stroke-width="2.5" marker-end="url(#dkK-arw)"/>
+    <path d="M528,110 Q330,34 152,110" fill="none" stroke="var(--accent-color)" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#dkK-tt)"/>
+    <text x="330" y="42" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent-color)">시간여행 · 롤백</text>
+    <line x1="100" y1="120" x2="580" y2="120" stroke="currentColor" stroke-width="1.6" opacity="0.4"/>
+    <g stroke="var(--secondary-color)" stroke-width="2.5"><line x1="164" y1="120" x2="316" y2="120" marker-end="url(#dkK-arw)"/><line x1="356" y1="120" x2="508" y2="120" marker-end="url(#dkK-arw)"/></g>
+    <g text-anchor="middle" font-weight="800" font-size="13">
+      <g><circle cx="140" cy="120" r="24" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2.5"/><text x="140" y="125" fill="currentColor">S1</text></g>
+      <g><circle cx="340" cy="120" r="24" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2.5"/><text x="340" y="125" fill="currentColor">S2</text></g>
+      <g><circle cx="540" cy="120" r="24" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="3"/><text x="540" y="125" fill="currentColor">S3</text></g>
+    </g>
+    <g text-anchor="middle" font-size="10" fill="currentColor" opacity="0.7"><text x="140" y="166">어제</text><text x="340" y="166">오늘 오전</text><text x="540" y="166">지금</text></g>
+  </svg>
+  <div class="deck-cols">
+    <div class="deck-card"><h3>ACID 트랜잭션</h3><p>여러 명이 동시에 써도 반쯤 쓰다 만 '깨진 표'가 안 보인다. 다 되거나, 안 되거나.</p></div>
+    <div class="deck-card"><h3>시간여행</h3><p>"어제 오후의 표"를 그대로 다시 조회. 실수하면 과거로 <strong>롤백</strong>.</p></div>
+    <div class="deck-card"><h3>진화</h3><p>표를 통째로 다시 안 만들고도 <strong>컬럼 추가·파티션 변경</strong>이 안전하게.</p></div>
+  </div>
+  <p class="deck-note">📖 <strong>용어 · ACID</strong> = 데이터가 '다 되거나 안 되거나'로 안전하게 바뀌는 성질. <strong>시간여행(time travel)</strong> = 과거의 '스냅샷(그 순간의 표 상태)'을 다시 불러오는 기능.</p>
+</section>
+
+<section class="slide">
+  <span class="deck-num">응용</span>
+  <h2>조각들을 하나로 — 아키텍처</h2>
+  <svg role="img" aria-label="세 계단이 왼쪽에서 오른쪽으로 점점 높아진다. 낮은 Bronze(원본), 중간 Silver(정제), 높은 Gold(완성)로 데이터 품질이 단계적으로 올라가는 메달리온 아키텍처를 나타낸다." viewBox="0 0 640 240" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg">
+    <defs><marker id="dkL-arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--secondary-color)"/></marker></defs>
+    <g text-anchor="middle" font-weight="800">
+      <g><rect x="40" y="150" width="150" height="60" rx="6" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.5"/><text x="115" y="176" font-size="14" fill="currentColor">Bronze</text><text x="115" y="196" font-size="10" fill="currentColor" opacity="0.75">원본 그대로</text></g>
+      <g><rect x="245" y="106" width="150" height="104" rx="6" fill="var(--bg-light)" stroke="var(--border-color)" stroke-width="2.5"/><text x="320" y="132" font-size="14" fill="currentColor">Silver</text><text x="320" y="152" font-size="10" fill="currentColor" opacity="0.75">씻고 다듬기</text></g>
+      <g><rect x="450" y="62" width="150" height="148" rx="6" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="3"/><text x="525" y="88" font-size="14" fill="currentColor">Gold</text><text x="525" y="108" font-size="10" fill="currentColor" opacity="0.75">바로 쓰는 완성본</text></g>
+    </g>
+    <g stroke="var(--secondary-color)" stroke-width="2.5"><line x1="192" y1="150" x2="243" y2="130" marker-end="url(#dkL-arw)"/><line x1="397" y1="120" x2="448" y2="100" marker-end="url(#dkL-arw)"/></g>
+    <text x="320" y="230" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.72">품질이 단계로 올라간다 →</text>
+  </svg>
+  <p class="deck-lead">대표 조립법 '메달리온' — 원본(Bronze)을 씻고(Silver) 다듬어(Gold) 품질을 단계로 올린다.</p>
+  <p class="deck-note">각 도구(수집·저장·변환)를 어떻게 이어 붙여 하나의 시스템으로 만드는가 — 사례별 파이프라인 설계로 이어진다.</p>
+</section>
+
+<section class="slide">
+  <span class="deck-num">심화</span>
+  <h2>'돌아간다' ≠ '믿을 수 있다'</h2>
+  <svg role="img" aria-label="파이프라인 중간에 방패 모양의 검사 관문이 있다. 올바른 초록 데이터는 통과해 지나가고, 잘못된 붉은 데이터는 관문 아래로 걸러진다. 데이터 품질 검사를 나타낸다." viewBox="0 0 640 200" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg">
+    <defs><marker id="dkM-arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--secondary-color)"/></marker></defs>
+    <rect x="40" y="86" width="560" height="30" rx="15" fill="var(--bg-light)" stroke="var(--border-color)" stroke-width="2"/>
+    <line x1="60" y1="101" x2="300" y2="101" stroke="var(--secondary-color)" stroke-width="2" stroke-dasharray="6 6"/>
+    <path d="M320,54 L362,70 L362,108 Q341,132 320,110 Q299,132 278,108 L278,70 Z" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+    <path d="M310,90 l8,9 l14,-17" fill="none" stroke="var(--secondary-color)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="320" y="150" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor">품질 검사</text>
+    <g fill="var(--secondary-color)"><circle cx="120" cy="101" r="5"/><circle cx="170" cy="101" r="5"/><circle cx="220" cy="101" r="5"/></g>
+    <line x1="382" y1="101" x2="580" y2="101" stroke="var(--secondary-color)" stroke-width="2" stroke-dasharray="6 6" marker-end="url(#dkM-arw)"/>
+    <g fill="var(--secondary-color)"><circle cx="440" cy="101" r="5"/><circle cx="500" cy="101" r="5"/></g>
+    <line x1="320" y1="116" x2="320" y2="160" stroke="var(--accent-color)" stroke-width="2" stroke-dasharray="4 4"/>
+    <circle cx="320" cy="172" r="7" fill="var(--accent-color)"/>
+    <text x="410" y="182" text-anchor="middle" font-size="9.5" fill="var(--accent-color)" font-weight="700">불량 데이터는 걸러냄</text>
+  </svg>
+  <p class="deck-lead">빠른 파이프라인도 틀린 데이터를 흘리면 가치가 마이너스. 그래서 검사·추적·운영이 필요하다.</p>
+  <ul>
+    <li><strong>품질</strong> — 데이터가 규칙에 맞는지 자동 검사(테스트).</li>
+    <li><strong>거버넌스</strong> — 이 데이터가 어디서 왔는지 출처·흐름 추적.</li>
+    <li><strong>DataOps</strong> — 데이터 시스템도 소프트웨어처럼 테스트·자동 배포·모니터링.</li>
+  </ul>
+</section>
+
+<section class="slide">
+  <p class="deck-kicker">전체 지도 · 10단계</p>
+  <h2>우리가 지나온 길</h2>
+  <div class="deck-cols">
+    <div class="deck-card"><h3>기초 · 1~2</h3><p>데이터 엔지니어링이란 · 여기까지 온 역사(ETL→ELT, 창고→레이크하우스)</p></div>
+    <div class="deck-card"><h3>핵심 · 3~6</h3><p>수집 · 저장 · 변환 · 오케스트레이션 — 수명주기 따라가기</p></div>
+    <div class="deck-card"><h3>응용 · 7~8</h3><p>아키텍처 패턴과 사례별 파이프라인 설계</p></div>
+    <div class="deck-card"><h3>심화 · 9~10</h3><p>품질·거버넌스·관측가능성 · DataOps·운영·신뢰성</p></div>
+  </div>
+</section>
+
+<section class="slide">
+  <p class="deck-kicker">한 장 용어 정리</p>
+  <h2>📖 오늘의 단어장</h2>
+  <div class="deck-cols">
+    <div class="deck-card"><h3>파이프라인</h3><p>데이터를 자동으로 흘려보내는 컨베이어</p></div>
+    <div class="deck-card"><h3>배치 · 스트리밍</h3><p>모아서 한 번에 · 생기는 즉시 계속</p></div>
+    <div class="deck-card"><h3>CDC</h3><p>바뀐 것만 집어내 따라 옮기기</p></div>
+    <div class="deck-card"><h3>ETL · ELT</h3><p>변환을 옮기기 전 · 넣고 나중에</p></div>
+    <div class="deck-card"><h3>DAG</h3><p>되돌아오지 않는 작업 순서도</p></div>
+    <div class="deck-card"><h3>멱등성</h3><p>두 번 돌려도 결과가 같음</p></div>
+    <div class="deck-card"><h3>테이블 포맷</h3><p>파일 더미 위에 얹은 '표' 층(Iceberg)</p></div>
+    <div class="deck-card"><h3>시간여행</h3><p>과거 스냅샷을 다시 조회</p></div>
+  </div>
+</section>
+
+<section class="slide">
+  <p class="deck-kicker">기억할 다섯 가지</p>
+  <h2>핵심 포인트</h2>
+  <ul>
+    <li><strong>흐름으로 생각하기</strong> — 모든 도구는 생성→수집→저장→변환→서빙 어딘가에 속한다.</li>
+    <li><strong>도구보다 문제가 먼저</strong> — "무엇이 필요한가"가 도구를 고른다.</li>
+    <li><strong>실시간이 늘 정답은 아니다</strong> — 배치 vs 스트리밍은 트레이드오프.</li>
+    <li><strong>품질은 기능이 아니라 토대다</strong> — 틀린 데이터는 가치가 마이너스.</li>
+    <li><strong>데이터 시스템도 소프트웨어다</strong> — 테스트·자동화·모니터링(DataOps).</li>
+  </ul>
+</section>
+
+<section class="slide slide--title">
+  <p class="deck-kicker">이제 지도를 손에 넣었다</p>
+  <h1>여기서 출발 🎉</h1>
+  <p class="deck-lead">전체 그림을 잡았으니, 다음은 도구를 하나씩 깊이 파고들 차례.</p>
+  <ul class="deck-chips">
+    <li class="deck-chip">Kafka</li>
+    <li class="deck-chip">Spark</li>
+    <li class="deck-chip">dbt</li>
+    <li class="deck-chip">Airflow</li>
+    <li class="deck-chip">Lakehouse · Iceberg</li>
+  </ul>
+</section>
+
+</div>

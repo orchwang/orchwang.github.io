@@ -4254,3 +4254,363 @@ mark {
         transform: none !important;
     }
 }
+
+/* ============================================================
+   PRESENTATION MODE — opt-in per post (`presentation: true`)
+   A "발표" button on the post header opens the rendered body as a
+   fullscreen slide deck (one slide per H2 section). Theme-aware;
+   built entirely from design tokens.
+   ============================================================ */
+
+/* --- Trigger button (post header) ------------------------- */
+.present-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 4px 0 14px;
+    padding: 8px 16px;
+    font-family: var(--font-pixel);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--gold-bright);
+    background: var(--chrome-bg);
+    background-image: linear-gradient(180deg, var(--chrome-bg) 0%, var(--chrome-bg-2) 100%);
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius);
+    box-shadow: var(--px-shadow);
+    cursor: pointer;
+    transition: transform 0.12s steps(2), color 0.12s;
+}
+
+.present-btn:hover,
+.present-btn:focus-visible {
+    color: #fff;
+    transform: translate(-2px, -2px);
+}
+
+.present-btn:active {
+    transform: translate(0, 0);
+    box-shadow: 2px 2px 0 var(--shadow-color);
+}
+
+.present-btn-icon {
+    color: var(--crimson);
+    font-size: 11px;
+    line-height: 1;
+}
+:root[data-theme="dark"] .present-btn-icon { color: var(--accent-color); }
+
+/* --- Fullscreen overlay ----------------------------------- */
+.present-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 4000;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-color);
+    background-image: linear-gradient(180deg, var(--bg-color) 0%, var(--bg-sunken) 100%);
+    color: var(--text-color);
+}
+
+/* Lock page scroll while presenting. */
+body.present-active { overflow: hidden; }
+
+/* --- Slide stage ------------------------------------------ */
+.present-stage {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.present-slide {
+    position: absolute;
+    inset: 0;
+    display: none;
+    overflow-y: auto;
+    /* Tighter margins so content fills the frame (readability at projection distance). */
+    padding: clamp(22px, 3.5vh, 40px) clamp(26px, 4vw, 60px);
+}
+
+.present-slide.is-active {
+    display: flex;
+    flex-direction: column;
+    /* `safe center` centers short slides but top-aligns tall ones so the
+       title/last line never gets clipped (still scrollable via overflow-y). */
+    justify-content: safe center;
+    animation: present-fade 0.22s ease-out;
+}
+
+@keyframes present-fade {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.present-slide-inner {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    /* Scale the reading tier up for projection legibility. */
+    font-size: clamp(1.25rem, 2vw, 1.8rem);
+    line-height: 1.55;
+}
+
+.present-slide-inner > *:first-child { margin-top: 0; }
+
+.present-slide-inner h1 {
+    font-family: var(--font-pixel);
+    font-size: clamp(2.6rem, 6vw, 5rem);
+    line-height: 1.2;
+    color: var(--primary-color);
+    margin-bottom: 0.4em;
+}
+
+.present-slide-inner h2 {
+    font-size: clamp(2.1rem, 4vw, 3.4rem);
+    color: var(--primary-color);
+    margin-bottom: 0.55em;
+    padding-bottom: 0.28em;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.present-slide-inner h3 {
+    font-size: clamp(1.5rem, 2.8vw, 2.3rem);
+    color: var(--accent-color);
+    margin: 0.9em 0 0.45em;
+}
+
+.present-slide-inner p,
+.present-slide-inner li { margin-bottom: 0.6em; }
+
+.present-slide-inner pre,
+.present-slide-inner table,
+.present-slide-inner .mermaid,
+.present-slide-inner .mermaid-zoom-container,
+.present-slide-inner img,
+.present-slide-inner svg {
+    max-width: 100%;
+}
+
+.present-slide-inner pre { font-size: 0.82em; }
+
+.present-slide-inner img,
+.present-slide-inner .post-figure svg { height: auto; }
+
+/* Cap diagram height so an SVG never eats the whole slide — keeps the title
+   and the text below it on-screen. Aspect ratio is preserved; the diagram
+   shrinks and stays centered. Overrides any inline width:100% sizing. */
+.present-slide-inner svg {
+    max-height: 50vh;
+    height: auto;
+    display: block;
+    margin: 0.2em auto 0.4em;
+}
+
+/* --- Title slide ------------------------------------------ */
+.present-slide--title .present-slide-inner {
+    text-align: center;
+}
+
+.present-title {
+    font-family: var(--font-pixel);
+    font-size: clamp(2.4rem, 5.5vw, 4.6rem);
+    line-height: 1.22;
+    color: var(--primary-color);
+    margin-bottom: 0.5em;
+}
+
+.present-title-meta {
+    font-family: var(--font-pixel);
+    font-size: clamp(0.9rem, 1.6vw, 1.25rem);
+    color: var(--text-light);
+}
+
+/* --- Progress bar ----------------------------------------- */
+.present-progress {
+    flex: 0 0 auto;
+    height: 4px;
+    background: var(--bg-sunken);
+}
+
+.present-progress-bar {
+    height: 100%;
+    width: 0;
+    background: var(--crimson);
+    transition: width 0.22s ease-out;
+}
+:root[data-theme="dark"] .present-progress-bar { background: var(--accent-color); }
+
+/* --- Controls bar ----------------------------------------- */
+.present-controls {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 10px 16px;
+    background: var(--chrome-bg);
+    border-top: 2px solid var(--border-strong);
+}
+
+.present-ctrl {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    font-size: 15px;
+    color: var(--chrome-ink);
+    background: transparent;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: color 0.12s, border-color 0.12s, background 0.12s;
+}
+
+.present-ctrl:hover:not(:disabled),
+.present-ctrl:focus-visible:not(:disabled) {
+    color: #fff;
+    border-color: var(--gold-bright);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.present-ctrl:disabled {
+    opacity: 0.35;
+    cursor: default;
+}
+
+.present-exit {
+    color: var(--gold-bright);
+    border-color: var(--crimson);
+}
+
+.present-counter {
+    min-width: 72px;
+    text-align: center;
+    font-family: var(--font-pixel);
+    font-size: 14px;
+    color: var(--chrome-muted);
+}
+
+/* --- Mobile ----------------------------------------------- */
+@media (max-width: 600px) {
+    .present-slide { padding: 20px 18px 12px; }
+    .present-ctrl { width: 44px; height: 44px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .present-slide.is-active { animation: none; }
+    .present-progress-bar { transition: none; }
+}
+
+/* --- Authored deck source (hidden from the reading flow) ----
+   Posts with `presentation: true` write a bespoke slide edition in a
+   `<div class="deck-source">`. It never renders inline — presentation.js
+   clones it into the fullscreen deck. */
+.deck-source { display: none; }
+
+/* --- Deck authoring helpers (only meaningful inside a slide) --- */
+.present-slide-inner .deck-kicker {
+    font-family: var(--font-pixel);
+    font-size: clamp(0.85rem, 1.4vw, 1.1rem);
+    letter-spacing: 0.08em;
+    color: var(--secondary-color);
+    margin-bottom: 0.6em;
+}
+:root[data-theme="dark"] .present-slide-inner .deck-kicker { color: var(--orc-green); }
+
+.present-slide-inner .deck-lead {
+    font-size: clamp(1.6rem, 3vw, 2.7rem);
+    line-height: 1.38;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+}
+
+.present-slide-inner .deck-note {
+    color: var(--text-light);
+    font-size: 0.9em;
+}
+
+/* Big stage number badge */
+.present-slide-inner .deck-num {
+    display: inline-block;
+    font-family: var(--font-pixel);
+    color: var(--gold-bright);
+    background: var(--chrome-bg);
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius);
+    padding: 2px 12px;
+    margin-bottom: 0.4em;
+}
+
+/* Column grid for side-by-side stages */
+.present-slide-inner .deck-cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: clamp(14px, 2vw, 28px);
+    margin-top: 0.4em;
+}
+
+.present-slide-inner .deck-card {
+    background: var(--bg-panel);
+    border: 2px solid var(--border-color);
+    border-left: 5px solid var(--primary-color);
+    border-radius: var(--radius);
+    padding: clamp(14px, 1.6vw, 22px);
+}
+
+.present-slide-inner .deck-card h3 { margin-top: 0; }
+
+.present-slide-inner .deck-card p:last-child,
+.present-slide-inner .deck-card ul:last-child,
+.present-slide-inner .deck-card li:last-child { margin-bottom: 0; }
+
+/* Tag chips */
+.present-slide-inner .deck-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 0.6em;
+    list-style: none;
+    padding: 0;
+}
+
+.present-slide-inner .deck-chip {
+    font-family: var(--font-pixel);
+    font-size: clamp(0.8rem, 1.3vw, 1.05rem);
+    color: var(--chrome-ink);
+    background: var(--chrome-bg);
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius);
+    padding: 6px 14px;
+    margin: 0;
+}
+
+/* A lifecycle flow row (생성→수집→…) */
+.present-slide-inner .deck-flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 10px;
+    margin: 0.6em 0;
+    list-style: none;
+    padding: 0;
+    font-family: var(--font-pixel);
+    font-size: clamp(0.85rem, 1.5vw, 1.2rem);
+}
+
+.present-slide-inner .deck-flow li {
+    margin: 0;
+    padding: 8px 14px;
+    background: var(--bg-panel);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius);
+}
+
+.present-slide-inner .deck-flow li::after {
+    content: "→";
+    margin-left: 12px;
+    color: var(--accent-color);
+}
+
+.present-slide-inner .deck-flow li:last-child::after { content: ""; margin: 0; }

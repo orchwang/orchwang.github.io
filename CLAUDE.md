@@ -305,6 +305,40 @@ excerpt: "Brief 1-2 sentence summary for SEO and previews."
   war-council header banner. See `DESIGN.md` §5 and `ASSETS.md`.
 - `image`: *(optional)* per-post social/OG image path; falls back to the site default
   (Orgrimmar) when omitted.
+- `presentation`: *(optional)* set `presentation: true` to add a **"▶ 발표"** button to the
+  post header that plays the post as a fullscreen slide deck. See **Presentation Mode** below.
+
+### Presentation Mode (opt-in slide deck)
+
+Any post can offer a fullscreen slide presentation. It is **opt-in** and, by design principle,
+the deck is a **separately authored edition — NOT a mirror of the reading body**. Slides are
+compressed, restructured, and tuned for projection; the prose stays the prose.
+
+Decks are authored by the **`deck-author` subagent**: point it at a post and it distils that post
+into a talk; by **default it bases the deck on the given post**, but on **special request** it
+honours the framing (e.g. "overview the whole curriculum series" → it reads the sibling series
+posts and builds a curriculum-wide overview deck). Invoke with "이 포스트 슬라이드로 만들어줘",
+"발표 슬라이드 작성/재작성", or "<커리큘럼> 전반을 오버뷰하는 슬라이드로".
+
+**How it works:**
+
+1. Add `presentation: true` to the front matter → a **"▶ 발표"** button appears in the post header.
+2. Author the deck in the post file inside a hidden `<div class="deck-source" hidden aria-hidden="true">`
+   block (place it at the **end** of the post; it never renders inline — `assets/js/presentation.js`
+   reads it and plays it fullscreen). One slide = one `<section class="slide">`.
+3. Write slides as plain HTML (no Markdown dependency) so layout is fully controlled. Slide
+   modifier classes map to `present-slide--*` styling (e.g. `class="slide slide--title"` → centered
+   title slide).
+
+**Deck authoring helpers** (styled in `style.css`, only meaningful inside a slide):
+`deck-kicker` (eyebrow label), `deck-lead` (big lead line), `deck-note` (muted footnote),
+`deck-num` (stage badge), `deck-cols` + `deck-card` (column grid of cards), `deck-chips` + `deck-chip`
+(tag chips), `deck-flow` (arrow-linked pipeline row). Theme-aware (light + dark) via design tokens.
+
+**Playback:** fullscreen overlay; navigate with `→`/`Space`/`PageDown` (next), `←`/`PageUp` (prev),
+`Home`/`End` (first/last), `Esc` (exit); bottom control bar (◀ · counter · ▶ · ✕) + progress bar.
+
+Reference implementation: `_posts/Technology/Data-Engineering/2026-06-25-data-engineering-essential-curriculum.md`.
 
 ### Content Structure Template
 
