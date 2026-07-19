@@ -546,7 +546,7 @@ def process(path: str) -> None:
 process.expand(path=list_files())
 ```
 
-`expand()`는 상류가 반환한 리스트의 원소마다 task instance를 하나씩 **실행 시점에** 만들어 병렬로 돌립니다. 파싱 시점 loop가 "정적 팬아웃"이라면, mapping은 "동적 팬아웃"입니다. 여기서 쓰인 `@task` 데코레이터와 함수 반환값이 하류로 흘러가는 메커니즘(XCom)은 3단계 [XCom·TaskFlow API]에서 본격적으로 다룹니다 — 지금은 "그래프 모양을 런타임 데이터가 결정할 수도 있다"는 가능성만 챙겨 두세요.
+`expand()`는 상류가 반환한 리스트의 원소마다 task instance를 하나씩 **실행 시점에** 만들어 병렬로 돌립니다. 파싱 시점 loop가 "정적 팬아웃"이라면, mapping은 "동적 팬아웃"입니다. 여기서 쓰인 `@task` 데코레이터와 함수 반환값이 하류로 흘러가는 메커니즘(XCom)은 3단계 [XCom·TaskFlow API](/2026/07/13/airflow-xcom-taskflow-api.html)에서 본격적으로 다룹니다 — 지금은 "그래프 모양을 런타임 데이터가 결정할 수도 있다"는 가능성만 챙겨 두세요.
 
 ## 정리
 
