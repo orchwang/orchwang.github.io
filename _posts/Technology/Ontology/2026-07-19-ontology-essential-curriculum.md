@@ -7,6 +7,7 @@ series: Ontology-Essential
 tags: [ontology, data-modeling, curriculum, knowledge-graph, fde]
 published: true
 banner: wartable
+presentation: true
 excerpt: "Palantir 같은 회사의 Forward Deployed Engineer(FDE)가 갖춰야 할 핵심 역량 — 온톨로지 기반(시맨틱) 데이터 모델링 — 을 7단계로 정복하는 마스터 로드맵. 의미 계층의 개념과 형식 기반부터 객체·링크·데이터 매핑, 액션·운영 계층, 거버넌스와 FDE 워크플로까지 도장깨기 방식으로 추적합니다."
 ---
 
@@ -358,3 +359,393 @@ flowchart TD
 - [Data Engineering Essential Curriculum](/2026/06/25/data-engineering-essential-curriculum.html) — 온톨로지의 백킹 데이터셋을 만들어 내는 파이프라인 전반의 지도
 - [OO-Design Essential Curriculum](/2026/06/19/oo-design-essential-curriculum.html) — 객체·관계로 세상을 모델링하는 사고의 뿌리(도메인 모델링·유비쿼터스 언어)
 - [dbt Essential Curriculum](/2026/07/12/dbt-essential-curriculum.html) — 시맨틱 계층·메트릭으로 데이터에 의미를 얹는 또 다른 접근
+
+<!-- ============================================================
+     PRESENTATION DECK — 발표 전용 편집본 (본문의 미러가 아님)
+     스코프: 이 포스트 하나가 아니라 Ontology-Essential 시리즈 전체
+     (커리큘럼 + 7단계 딥다이브)를 오버뷰하는 덱.
+     청중: (1) 온톨로지를 전혀 모르는 사람 — 비유로 시작하고 용어는
+     나올 때마다 짧게 정의한다. (2) 데이터 엔지니어링을 함께 배우는
+     중인 사람 — 파이프라인·테이블·스키마·dbt 와의 연결 고리를 곳곳에
+     명시한다. 모든 SVG 색은 토큰(var(--…))과 currentColor 만 사용 —
+     라이트/다크 양쪽에서 읽힌다. 화면에 렌더되지 않으며
+     presentation.js가 전체화면 재생. 한 슬라이드 = <section class="slide">.
+     ============================================================ -->
+<div class="deck-source" hidden aria-hidden="true">
+
+<section class="slide slide--title">
+  <p class="deck-kicker">Ontology-Essential · 시리즈 전체 오버뷰</p>
+  <h1>온톨로지,<br>처음부터</h1>
+  <p class="deck-lead">데이터에 <strong>의미</strong>를 입히는 법 — 7단계 여정을 한 바퀴 돕니다.</p>
+  <p class="deck-note">온톨로지를 몰라도 괜찮습니다. 데이터 엔지니어링을 배우는 중이라면 더 좋습니다 — 그 다음 층의 이야기입니다.</p>
+</section>
+
+<section class="slide">
+  <p class="deck-kicker">먼저, 비유부터</p>
+  <h2>온톨로지가 뭐예요?</h2>
+  <svg role="img" aria-label="왼쪽 패널은 현실 세계로 고객, 주문, 제품이 관계로 얽혀 있는 모습이고, 오른쪽 패널은 데이터 위에 세운 복제본으로 같은 세 객체가 같은 관계로 이어져 있다. 두 패널 사이의 양방향 화살표는 동기화를 뜻한다." viewBox="0 0 680 240" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg">
+    <defs><marker id="dko1-arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--gold)"/></marker></defs>
+    <rect x="20" y="36" width="280" height="170" rx="8" fill="var(--bg-light)" stroke="var(--border-color)" stroke-width="2"/>
+    <text x="160" y="60" text-anchor="middle" font-size="13" font-weight="800" fill="currentColor">현실 세계</text>
+    <g stroke="currentColor" stroke-width="1.8" opacity="0.55">
+      <line x1="100" y1="110" x2="160" y2="150"/><line x1="160" y1="150" x2="228" y2="110"/>
+    </g>
+    <g fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="100" cy="98" r="11"/><path d="M82,134 Q100,112 118,134"/></g>
+    <text x="100" y="158" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor">고객</text>
+    <rect x="140" y="150" width="40" height="26" rx="4" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2.2"/>
+    <text x="160" y="194" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor">주문</text>
+    <path d="M214,96 h28 v26 h-28 z M221,96 v-8 h14 v8" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2.2"/>
+    <text x="228" y="140" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor">제품</text>
+    <line x1="312" y1="120" x2="368" y2="120" stroke="var(--gold)" stroke-width="2.6" marker-start="url(#dko1-arw)" marker-end="url(#dko1-arw)"/>
+    <text x="340" y="106" text-anchor="middle" font-size="10" font-weight="700" fill="var(--gold)">동기화</text>
+    <rect x="380" y="36" width="280" height="170" rx="8" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2.5"/>
+    <text x="520" y="60" text-anchor="middle" font-size="13" font-weight="800" fill="var(--secondary-color)">데이터 위의 복제본 — 온톨로지</text>
+    <g stroke="var(--secondary-color)" stroke-width="2" opacity="0.7">
+      <line x1="455" y1="112" x2="515" y2="152"/><line x1="515" y1="152" x2="585" y2="112"/>
+    </g>
+    <text x="474" y="144" text-anchor="middle" font-size="8" font-weight="700" fill="var(--secondary-color)">주문함</text>
+    <text x="566" y="144" text-anchor="middle" font-size="8" font-weight="700" fill="var(--secondary-color)">포함</text>
+    <g font-size="10" font-weight="700" text-anchor="middle">
+      <rect x="425" y="96" width="60" height="28" rx="5" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
+      <text x="455" y="114" fill="currentColor">고객</text>
+      <rect x="485" y="148" width="60" height="28" rx="5" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2.2"/>
+      <text x="515" y="166" fill="currentColor">주문</text>
+      <rect x="555" y="96" width="60" height="28" rx="5" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
+      <text x="585" y="114" fill="currentColor">제품</text>
+    </g>
+  </svg>
+  <p class="deck-lead">조직이 다루는 현실을 데이터 위에 그대로 본뜬 <strong>지도이자 사전</strong> — 흔히 "디지털 트윈"이라 부릅니다.</p>
+  <p class="deck-note">📖 <strong>용어 · 온톨로지(ontology)</strong> = 실세계의 <strong>객체</strong>(고객·주문·제품), 그 <strong>속성</strong>, 그들을 잇는 <strong>관계</strong>를 데이터 위에 명시한, 조직이 공유하는 의미 모델.</p>
+</section>
+
+<section class="slide">
+  <p class="deck-kicker">왜 필요한가</p>
+  <h2>데이터는 있는데, 의미가 없다</h2>
+  <p class="deck-lead"><code>status = 3</code>은 무슨 뜻일까? — "그건 김 선임이 알아요."</p>
+  <ul>
+    <li>의미는 사라지지 않는다 — <strong>SQL 쿼리 · 백엔드 코드 · 낡은 위키 · 사람 머릿속</strong>에 흩어져 살 뿐 (📖 <strong>부족지식</strong>, tribal knowledge)</li>
+    <li>그래서 마케팅과 재무의 "월간 고객 수"가 <strong>서로 다르고</strong>, 쿼리는 에러 없이 <strong>조용히 틀린다</strong></li>
+    <li>파이프라인은 데이터의 <strong>형태</strong>를 옮길 뿐 — 테이블과 조인 키는 "이 행이 한 명의 <strong>고객</strong>"이라는 뜻을 담지 못한다</li>
+  </ul>
+  <p class="deck-note">데이터 엔지니어링이 "어떻게 옮기고 저장하는가"의 문제라면, 온톨로지는 "그 데이터가 <strong>무엇을 의미하는가</strong>"의 문제.</p>
+</section>
+
+<section class="slide">
+  <p class="deck-kicker">용어 정리 — 셋을 가르자</p>
+  <h2>데이터 모델 vs 스키마 vs 온톨로지</h2>
+  <div class="deck-cols">
+    <div class="deck-card">
+      <h3>데이터 모델</h3>
+      <p>"무엇을 <strong>어떻게 구조화</strong>해 표현하는가"</p>
+      <p>ERD·개념→논리→물리 모델. 설계 문서로 박제되기 쉽다.</p>
+    </div>
+    <div class="deck-card">
+      <h3>스키마</h3>
+      <p>"<strong>어떻게 저장</strong>하고 형태를 강제하는가"</p>
+      <p>CREATE TABLE·타입·제약. DE에서 배운 그것 — 형태는 지키지만 뜻은 모른다.</p>
+    </div>
+    <div class="deck-card">
+      <h3>온톨로지</h3>
+      <p>"이 데이터가 <strong>무엇을 의미</strong>하는가"</p>
+      <p>객체·속성·링크·액션. 의미가 모델 안에 산다.</p>
+    </div>
+  </div>
+  <p class="deck-note">온톨로지는 스키마의 <strong>대체물이 아니다</strong> — 저장은 여전히 스키마가 하고, 온톨로지는 그 <strong>위에 얹는 층</strong>이다.</p>
+</section>
+
+<section class="slide">
+  <p class="deck-kicker">시리즈 지도 — 이 발표의 뼈대</p>
+  <h2>7단계, 세 막의 여정</h2>
+  <ul class="deck-flow">
+    <li>① 개념</li>
+    <li>② 형식·그래프</li>
+    <li>③ 객체</li>
+    <li>④ 링크</li>
+    <li>⑤ 매핑</li>
+    <li>⑥ 액션</li>
+    <li>⑦ 거버넌스</li>
+  </ul>
+  <div class="deck-cols">
+    <div class="deck-card">
+      <h3>1막 · 의미를 이해하기 (①~②)</h3>
+      <p>왜 스키마를 넘어 의미 계층인가, 그리고 그 학문적 뿌리</p>
+    </div>
+    <div class="deck-card">
+      <h3>2막 · 온톨로지를 짓기 (③~⑤)</h3>
+      <p>객체·링크로 모델을 세우고, 실제 데이터로 채운다</p>
+    </div>
+    <div class="deck-card">
+      <h3>3막 · 살아있게 하기 (⑥~⑦)</h3>
+      <p>행동을 얹고, 조직 안에서 안전하게 진화시킨다</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <span class="deck-num">1단계 · 의미 계층</span>
+  <h2>저장 위에 의미, 의미 위에 행동</h2>
+  <svg role="img" aria-label="세 개의 층이 아래에서 위로 쌓여 있다. 맨 아래 저장 계층에는 테이블 세 개가 있고, 매핑 화살표를 따라 가운데 의미 계층의 객체 그래프(고객, 주문, 제품이 링크로 연결)로 이어지며, 다시 위 행동 계층의 결정과 행동으로 이어진다. 행동 계층에서 의미 계층으로 되돌아오는 점선 화살표는 write-back을 뜻한다." viewBox="0 0 680 250" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg">
+    <defs><marker id="dko2-arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--secondary-color)"/></marker>
+    <marker id="dko2-acc" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--accent-color)"/></marker></defs>
+    <rect x="60" y="182" width="440" height="52" rx="6" fill="var(--bg-light)" stroke="var(--border-color)" stroke-width="2"/>
+    <text x="86" y="212" font-size="11" font-weight="800" fill="currentColor">저장</text>
+    <g stroke="currentColor" stroke-width="1.6">
+      <rect x="150" y="194" width="70" height="28" fill="var(--bg-panel)"/><line x1="150" y1="203" x2="220" y2="203"/>
+      <rect x="240" y="194" width="70" height="28" fill="var(--bg-panel)"/><line x1="240" y1="203" x2="310" y2="203"/>
+      <rect x="330" y="194" width="70" height="28" fill="var(--bg-panel)"/><line x1="330" y1="203" x2="400" y2="203"/>
+    </g>
+    <text x="440" y="212" font-size="9" fill="currentColor" opacity="0.7">테이블 · 스키마</text>
+    <rect x="60" y="96" width="440" height="66" rx="6" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2.5"/>
+    <text x="86" y="133" font-size="11" font-weight="800" fill="var(--secondary-color)">의미</text>
+    <g stroke="var(--secondary-color)" stroke-width="1.8" opacity="0.7"><line x1="196" y1="128" x2="266" y2="128"/><line x1="326" y1="128" x2="396" y2="128"/></g>
+    <text x="231" y="120" text-anchor="middle" font-size="8" font-weight="700" fill="var(--secondary-color)">주문함</text>
+    <text x="361" y="120" text-anchor="middle" font-size="8" font-weight="700" fill="var(--secondary-color)">포함</text>
+    <g font-size="9.5" font-weight="700" text-anchor="middle">
+      <rect x="146" y="114" width="50" height="26" rx="5" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.8"/><text x="171" y="131" fill="currentColor">고객</text>
+      <rect x="266" y="114" width="50" height="26" rx="5" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.8"/><text x="291" y="131" fill="currentColor">주문</text>
+      <rect x="396" y="114" width="50" height="26" rx="5" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.8"/><text x="421" y="131" fill="currentColor">제품</text>
+    </g>
+    <rect x="60" y="20" width="440" height="52" rx="6" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="2.5"/>
+    <text x="86" y="50" font-size="11" font-weight="800" fill="var(--gold)">행동</text>
+    <text x="280" y="50" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor">결정 · 액션 — "주문을 취소한다"</text>
+    <line x1="280" y1="180" x2="280" y2="166" stroke="var(--secondary-color)" stroke-width="2.4" marker-end="url(#dko2-arw)"/>
+    <text x="304" y="177" font-size="8.5" font-weight="700" fill="var(--secondary-color)">매핑</text>
+    <line x1="280" y1="94" x2="280" y2="76" stroke="var(--secondary-color)" stroke-width="2.4" marker-end="url(#dko2-arw)"/>
+    <path d="M520,46 q42,80 -6,116" fill="none" stroke="var(--accent-color)" stroke-width="1.8" stroke-dasharray="4 3" marker-end="url(#dko2-acc)"/>
+    <text x="576" y="118" text-anchor="middle" font-size="9" font-weight="700" fill="var(--accent-color)">write-back</text>
+  </svg>
+  <p class="deck-lead">세 층은 각각 다른 질문에 답한다 — 이 그림이 시리즈 전체의 좌표축.</p>
+  <p class="deck-note">📖 <strong>용어 · 의미 계층(semantic layer)</strong> = 정의를 쿼리마다 복붙하지 않고 <strong>모델에 한 번</strong> 두고 조직 전체가 공유하는 층. DDD의 유비쿼터스 언어, dbt의 시맨틱 계층과 같은 계보다.</p>
+</section>
+
+<section class="slide">
+  <span class="deck-num">2단계 · 형식 기반</span>
+  <h2>이 발상의 뿌리 — 지식 그래프</h2>
+  <div class="deck-cols">
+    <div class="deck-card">
+      <h3>RDF / OWL — 의미와 추론</h3>
+      <p>모든 지식을 <strong>트리플</strong>(주어–술어–목적어)로: "김지수 — 주문했다 — 주문#1001"</p>
+      <p>클래스 계층·논리 제약 위에서 기계가 <strong>추론</strong>까지 한다 (시맨틱 웹 계보)</p>
+    </div>
+    <div class="deck-card">
+      <h3>속성 그래프 — 저장과 탐색</h3>
+      <p><strong>노드·엣지·속성</strong> — 값을 실체 안에 내장 (Neo4j·Cypher 계열)</p>
+      <p>개발자 경험과 탐색 성능에 강한, 실무 그래프 DB의 주류</p>
+    </div>
+  </div>
+  <p class="deck-lead">우리가 지을 운영 온톨로지 = <strong>속성 그래프의 뼈대</strong> + <strong>스키마 우선의 의미 규율</strong>, 두 계보의 교배종.</p>
+  <p class="deck-note">📖 <strong>용어 · 택소노미</strong> = is-a 하나로 된 분류 <strong>트리</strong>(상품 카테고리). 온톨로지는 임의 관계·제약·추론까지 담는 <strong>그래프</strong> — 카테고리 트리를 만들었다고 온톨로지가 아니다.</p>
+</section>
+
+<section class="slide">
+  <span class="deck-num">3단계 · 객체 타입</span>
+  <h2>도메인의 명사를 객체로 승격하기</h2>
+  <p class="deck-lead">테이블이 <strong>저장 단위</strong>라면, 객체 타입은 "우리 조직은 세계를 이 단위로 인식한다"는 <strong>인식 단위</strong>.</p>
+  <ul>
+    <li><strong>승격 관문 셋</strong> — 독립 생명주기가 있는가 · 다른 곳에서 참조하는가 · 링크의 대상이 되는가. 둘 이상 "예"면 객체로, 아니면 속성으로</li>
+    <li>"모든 명사를 객체로"는 안티패턴 — 그래프를 읽을 수 없게 만든다</li>
+    <li>ER 모델링은 절반의 자산 — 엔티티→객체, 애트리뷰트→속성, 식별자→기본키로 거의 1:1 번역</li>
+  </ul>
+  <ul class="deck-chips">
+    <li class="deck-chip">고객</li>
+    <li class="deck-chip">주문</li>
+    <li class="deck-chip">제품</li>
+    <li class="deck-chip">설비</li>
+  </ul>
+  <p class="deck-note">📖 <strong>용어 · 기본키(primary key)</strong> = 객체를 유일하게 식별하는 값. 링크의 끝점이자 매핑의 닻이라 <strong>유일·불변·무의미</strong>하게 잡는다.</p>
+</section>
+
+<section class="slide">
+  <span class="deck-num">4단계 · 링크 타입</span>
+  <h2>관계에 이름을 붙인다</h2>
+  <svg role="img" aria-label="왼쪽 패널은 관계형 데이터베이스의 시선으로 customers 테이블과 orders 테이블이 이름 없는 외래키 선으로 이어져 있고 조인은 쿼리 작성자의 몫이라는 설명이 붙어 있다. 오른쪽 패널은 온톨로지의 시선으로 고객 객체와 주문 객체가 주문함이라는 이름 있는 링크로 이어져 있다." viewBox="0 0 680 210" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg">
+    <defs><marker id="dko3-arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--secondary-color)"/></marker></defs>
+    <rect x="20" y="30" width="300" height="150" rx="8" fill="var(--bg-light)" stroke="var(--border-color)" stroke-width="2"/>
+    <text x="170" y="54" text-anchor="middle" font-size="12" font-weight="800" fill="currentColor">관계형 DB — 외래키</text>
+    <g font-size="9.5" font-weight="700" text-anchor="middle">
+      <rect x="40" y="80" width="94" height="40" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.8"/>
+      <text x="87" y="97" fill="currentColor">customers</text>
+      <text x="87" y="112" font-size="8" fill="currentColor" opacity="0.7">cust_id (PK)</text>
+      <rect x="206" y="80" width="94" height="40" rx="3" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.8"/>
+      <text x="253" y="97" fill="currentColor">orders</text>
+      <text x="253" y="112" font-size="8" fill="currentColor" opacity="0.7">cust_id (FK)</text>
+    </g>
+    <line x1="136" y1="100" x2="204" y2="100" stroke="currentColor" stroke-width="1.6" opacity="0.6"/>
+    <text x="170" y="92" text-anchor="middle" font-size="10" font-weight="800" fill="var(--accent-color)">이름 없음</text>
+    <text x="170" y="162" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.75">조인 경로는 매번 쿼리 작성자의 몫</text>
+    <rect x="360" y="30" width="300" height="150" rx="8" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2.5"/>
+    <text x="510" y="54" text-anchor="middle" font-size="12" font-weight="800" fill="var(--secondary-color)">온톨로지 — 링크 타입</text>
+    <g font-size="10.5" font-weight="700" text-anchor="middle">
+      <rect x="382" y="82" width="82" height="36" rx="6" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
+      <text x="423" y="105" fill="currentColor">고객</text>
+      <rect x="556" y="82" width="82" height="36" rx="6" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
+      <text x="597" y="105" fill="currentColor">주문</text>
+    </g>
+    <line x1="466" y1="100" x2="552" y2="100" stroke="var(--secondary-color)" stroke-width="2.6" marker-end="url(#dko3-arw)"/>
+    <text x="510" y="90" text-anchor="middle" font-size="10" font-weight="800" fill="var(--secondary-color)">주문함 (1:N)</text>
+    <text x="510" y="162" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.75">관계가 모델에 한 번 선언되고, 모두가 재사용</text>
+  </svg>
+  <p class="deck-lead">"고객이 주문을 낸다"가 조인 로직이 아니라 <strong>모델에 새겨진 일급 관계</strong>가 된다 — 조인 사고에서 <strong>탐색 사고</strong>로.</p>
+  <p class="deck-note">📖 <strong>용어 · 카디널리티</strong> = 관계의 짝수 규칙(1:1·1:N·N:M). 번역 규칙: FK 컬럼 → 1:N 링크, 순수 조인 테이블 → N:M 링크로 소멸.</p>
+</section>
+
+<section class="slide">
+  <span class="deck-num">5단계 · 데이터 매핑</span>
+  <h2>개념 모델을 실제 데이터로 채우기</h2>
+  <ul class="deck-flow">
+    <li>원천 시스템</li>
+    <li>파이프라인</li>
+    <li>백킹 데이터셋</li>
+    <li>객체·링크</li>
+  </ul>
+  <p class="deck-lead">데이터셋의 <strong>행 하나 = 객체 하나</strong>, 컬럼 = 속성, 기본키 = 객체 식별자.</p>
+  <ul>
+    <li>온톨로지는 데이터를 새로 저장하지 않는다 — <strong>파이프라인 산출물에 의미를 입힐 뿐</strong></li>
+    <li>정제는 파이프라인의 일, <strong>의미는 매핑의 일</strong> — 시스템 어휘(<code>cust_nm</code>)를 도메인 어휘(이름)로 번역</li>
+  </ul>
+  <p class="deck-note">📖 <strong>용어 · 백킹 데이터셋(backing dataset)</strong> = 객체 타입을 물리적으로 뒷받침하는 테이블 — 바로 <strong>DE 시리즈에서 배우는 파이프라인의 산출물</strong>이 여기에 꽂힌다.</p>
+</section>
+
+<section class="slide">
+  <span class="deck-num">5단계 · 엔티티 해소</span>
+  <h2>흩어진 "같은 실체"를 하나로</h2>
+  <p class="deck-lead">시스템 A의 <code>cust_id</code>와 시스템 B의 이메일이 <strong>같은 고객</strong>임을 어떻게 판정하나? — 전역 공통 키가 없다는 게 문제의 본질.</p>
+  <ul>
+    <li><strong>결정적 매칭</strong>(권위 있는 식별자, 설명 가능) 먼저 → 안 되면 <strong>확률적 매칭</strong>(필드 유사도의 가중 합산)</li>
+    <li>임계값은 둘 — <strong>자동 병합 / 검토 큐 / 비매칭</strong>의 3구간. 잘못된 병합은 되돌리기 어려우니 보수적으로</li>
+    <li>품질에서 지면 사용자는 온톨로지 <strong>전체를</strong> 불신한다 — 매핑 실패는 격리하고, 계측하고, 정직하게 드러낸다</li>
+  </ul>
+  <p class="deck-note">📖 <strong>용어 · 엔티티 해소(entity resolution)</strong> = 여러 소스에 흩어진 같은 실체를 하나의 객체로 묶는 일. <strong>골든 레코드</strong> = 그렇게 병합해 선출한 대표 레코드(원본 계보 보존). FDE 업무의 무게중심이 여기다.</p>
+</section>
+
+<section class="slide">
+  <span class="deck-num">6단계 · 액션</span>
+  <h2>읽기를 넘어, 닫힌 고리로</h2>
+  <svg role="img" aria-label="네 개의 상자가 시계 방향 순환 고리를 이룬다. 온톨로지에서 통찰로, 통찰에서 액션으로, 액션에서 원천 시스템으로 이어지고, 원천 시스템에서 파이프라인을 거쳐 다시 온톨로지로 돌아온다. 액션에서 온톨로지로 바로 이어지는 화살표는 즉시 갱신을 뜻한다." viewBox="0 0 680 230" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg">
+    <defs><marker id="dko4-arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--secondary-color)"/></marker>
+    <marker id="dko4-gold" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--gold)"/></marker></defs>
+    <g font-size="12" font-weight="700" text-anchor="middle">
+      <rect x="40" y="86" width="140" height="52" rx="7" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2.5"/>
+      <text x="110" y="108" fill="currentColor">온톨로지</text>
+      <text x="110" y="126" font-size="9" fill="currentColor" opacity="0.7">객체 · 링크</text>
+      <rect x="230" y="26" width="140" height="52" rx="7" fill="var(--bg-panel)" stroke="var(--border-color)" stroke-width="2"/>
+      <text x="300" y="48" fill="currentColor">통찰</text>
+      <text x="300" y="66" font-size="9" fill="currentColor" opacity="0.7">"재고 부족 위험"</text>
+      <rect x="420" y="86" width="140" height="52" rx="7" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+      <text x="490" y="108" fill="currentColor">액션</text>
+      <text x="490" y="126" font-size="9" fill="currentColor" opacity="0.7">발주 · 취소 · 재배정</text>
+      <rect x="230" y="152" width="140" height="52" rx="7" fill="var(--bg-panel)" stroke="var(--border-color)" stroke-width="2"/>
+      <text x="300" y="174" fill="currentColor">원천 시스템</text>
+      <text x="300" y="192" font-size="9" fill="currentColor" opacity="0.7">ERP · CRM</text>
+    </g>
+    <g stroke="var(--secondary-color)" stroke-width="2.4">
+      <line x1="168" y1="82" x2="238" y2="60" marker-end="url(#dko4-arw)"/>
+      <line x1="374" y1="60" x2="444" y2="84" marker-end="url(#dko4-arw)"/>
+      <line x1="238" y1="170" x2="172" y2="140" marker-end="url(#dko4-arw)"/>
+    </g>
+    <line x1="444" y1="142" x2="374" y2="168" stroke="var(--gold)" stroke-width="2.4" marker-end="url(#dko4-gold)"/>
+    <text x="422" y="170" text-anchor="middle" font-size="9" font-weight="700" fill="var(--gold)">write-back</text>
+    <line x1="418" y1="106" x2="184" y2="106" stroke="var(--gold)" stroke-width="1.8" stroke-dasharray="4 3" marker-end="url(#dko4-gold)"/>
+    <text x="300" y="98" text-anchor="middle" font-size="9" font-weight="700" fill="var(--gold)">즉시 갱신</text>
+    <text x="196" y="212" font-size="9" fill="currentColor" opacity="0.7">파이프라인이 다시 적재 — 고리 검증</text>
+  </svg>
+  <p class="deck-lead">대시보드에서 멈추면 세계를 <strong>비추는 거울</strong>일 뿐 — 액션이 있어야 세계를 <strong>바꾸는 손</strong>, 곧 업무 시스템이 된다.</p>
+  <p class="deck-note">📖 <strong>용어 · 액션(action)</strong> = 전제조건·효과가 선언된 <strong>통제된</strong> 객체 변경 (임의 UPDATE의 반대). <strong>write-back</strong> = 그 행동의 결과가 모델과 원천 시스템으로 되돌아 쓰이는 것.</p>
+</section>
+
+<section class="slide">
+  <span class="deck-num">7단계 · 거버넌스 · FDE</span>
+  <h2>온톨로지를 오래 살리는 법</h2>
+  <p class="deck-lead">배포된 온톨로지 변경은 <strong>공용 API 변경</strong>이다 — 객체·링크는 소비자와의 계약.</p>
+  <ul>
+    <li><strong>진화</strong> — 추가는 안전, 의미 변경은 주의, 삭제는 위험. breaking 변경은 <strong>expand → migrate → contract</strong>로</li>
+    <li><strong>거버넌스</strong> — 접근 제어를 테이블이 아니라 <strong>객체·속성·액션 단위</strong>(의미 단위)로. 좁은 액션 관문 덕에 완전한 감사 추적</li>
+    <li><strong>FDE 워크플로</strong> — 도메인 워크숍에서 어휘를 캐고 → 좁게 모델링 → 진짜 데이터로 검증 → 배포·피드백의 <strong>순환</strong></li>
+  </ul>
+  <p class="deck-note">📖 <strong>용어 · FDE(Forward Deployed Engineer)</strong> = 고객사 현장에 들어가 지저분한 운영 데이터를 그 조직의 온톨로지로 빚어내는 엔지니어 — Palantir가 대표적. 이 시리즈가 겨냥하는 역량이다.</p>
+</section>
+
+<section class="slide">
+  <p class="deck-kicker">데이터 엔지니어링과 잇기</p>
+  <h2>DE를 배우는 중이라면 — 바로 그 다음 층</h2>
+  <ul class="deck-flow">
+    <li>생성·수집</li>
+    <li>저장·변환</li>
+    <li>서빙 (DE)</li>
+    <li>온톨로지 (의미)</li>
+    <li>액션 (행동)</li>
+  </ul>
+  <ul>
+    <li>DE 시리즈의 파이프라인이 만든 산출물 = 온톨로지의 <strong>백킹 데이터셋</strong> — 온톨로지는 그 위의 의미 층</li>
+    <li><strong>dbt의 시맨틱 계층</strong>이 메트릭에 하던 일을, 온톨로지는 <strong>객체·관계·행동 전부</strong>로 일반화한 것</li>
+    <li>write-back은 파이프라인의 <strong>역방향</strong> — 행동의 결과가 원천으로 되돌아가고, 다음 적재가 고리를 검증한다</li>
+  </ul>
+  <p class="deck-note">Data-Engineering-Essential에서 "옮기고 저장하는 법"을 배웠다면, 이 시리즈는 그 데이터가 "무엇을 뜻하고 무엇을 하게 하는가"를 배운다.</p>
+</section>
+
+<section class="slide">
+  <p class="deck-kicker">용어집 ① — 모델의 어휘</p>
+  <h2>오늘 나온 말들, 다시 한 번</h2>
+  <div class="deck-cols">
+    <div class="deck-card">
+      <h3>온톨로지 / 의미 계층</h3>
+      <p>실세계의 객체·속성·관계를 데이터 위에 명시한 공유 의미 모델 — "현실의 디지털 트윈"</p>
+    </div>
+    <div class="deck-card">
+      <h3>객체 타입 · 기본키</h3>
+      <p>도메인의 명사(고객·주문)를 표현하는 인식 단위와, 그것을 유일하게 식별하는 값</p>
+    </div>
+    <div class="deck-card">
+      <h3>링크 타입 · 카디널리티</h3>
+      <p>이름 있는 일급 관계("주문함")와 그 짝수 규칙(1:1·1:N·N:M)</p>
+    </div>
+    <div class="deck-card">
+      <h3>지식 그래프 · 트리플</h3>
+      <p>주어–술어–목적어 사실들이 이루는 그래프 — 온톨로지의 형식적 뿌리</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <p class="deck-kicker">용어집 ② — 데이터와 운영의 어휘</p>
+  <h2>모델을 살아 있게 하는 말들</h2>
+  <div class="deck-cols">
+    <div class="deck-card">
+      <h3>백킹 데이터셋</h3>
+      <p>객체를 물리적으로 뒷받침하는 테이블 — 파이프라인의 산출물</p>
+    </div>
+    <div class="deck-card">
+      <h3>엔티티 해소 · 골든 레코드</h3>
+      <p>여러 소스의 같은 실체를 하나로 묶고, 대표 레코드를 선출하는 일</p>
+    </div>
+    <div class="deck-card">
+      <h3>액션 · write-back</h3>
+      <p>통제된 객체 변경과, 그 결과가 모델·원천으로 되돌아 쓰이는 고리</p>
+    </div>
+    <div class="deck-card">
+      <h3>거버넌스 · FDE</h3>
+      <p>의미 단위의 권한·버전·감사, 그리고 현장에서 온톨로지를 빚는 엔지니어</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <p class="deck-kicker">핵심 포인트</p>
+  <h2>다섯 문장만 가져가세요</h2>
+  <ul>
+    <li><strong>온톨로지는 저장이 아니라 의미다</strong> — 스키마가 "어떻게 저장"이라면 온톨로지는 "무엇을 의미"</li>
+    <li><strong>관계가 가치를 만든다</strong> — 관계를 일급 링크로 올리면 조인 로직이 사라진다</li>
+    <li><strong>개념 모델은 데이터 매핑에서 검증된다</strong> — 엔티티 해소를 통과 못 하면 그림일 뿐</li>
+    <li><strong>읽기 모델을 넘어 행동으로</strong> — 액션·write-back이 있어야 업무 시스템</li>
+    <li><strong>온톨로지는 살아 진화한다</strong> — 버전·거버넌스·도메인 협업 없이는 이내 현실과 어긋난다</li>
+  </ul>
+</section>
+
+<section class="slide slide--title">
+  <p class="deck-kicker">Ontology-Essential · 7단계 완주 🎉</p>
+  <h1>의미 위에서<br>행동하라</h1>
+  <p class="deck-lead">도구는 바뀌어도 뼈대는 오래 간다 — <strong>실세계를 객체와 관계로 모델링하고, 그 위에 의미와 행동을 얹는다.</strong></p>
+  <p class="deck-note">더 알아보기 — <a href="/2026/07/19/ontology-essential-curriculum.html">Ontology Essential Curriculum</a> (7단계 도장깨기 로드맵) · <a href="/2026/06/25/data-engineering-essential-curriculum.html">Data Engineering Essential</a> (백킹 데이터셋을 만드는 파이프라인) · <a href="/2026/07/12/dbt-essential-curriculum.html">dbt Essential</a> (시맨틱 계층의 이웃 접근)</p>
+</section>
+
+</div>
