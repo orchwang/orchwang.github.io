@@ -194,7 +194,7 @@ Categories mirror the `_posts/` directory layout. Most posts use a **nested two-
 
 ### Technology (nested)
 
-Top-level technical category, always paired with a sub-category that names the directory: `Technology/Python`, `Technology/PostgreSQL`, `Technology/Rust`. Holds curricula and deep-dive posts; most belong to a `*-Essential` series.
+Top-level technical category, always paired with a sub-category that names the directory: `Technology/Python`, `Technology/PostgreSQL`, `Technology/Rust`. Holds curricula and deep-dive posts; most belong to a `*-Essential` series. `Technology/Projects` is the home of **personal/toy-project showcase posts** (프로젝트 소개 + 개발 여정 — e.g. Orc Camp); these use no series and follow a showcase structure (소개 → 핵심 컨셉 → 기능 → 아키텍처 → 개발 여정 → 회고) instead of the curriculum/deep-dive templates.
 
 ### Engineering (nested)
 
@@ -597,7 +597,7 @@ make serve
 
 ### Categories
 
-- **Technology** (nested: Python, PostgreSQL, Rust, LLM): curricula + deep-dives (incl. the `CS336-LLM-From-Scratch` series under `Technology/LLM`)
+- **Technology** (nested: Python, PostgreSQL, Rust, LLM, Data-Engineering, Ontology, Projects): curricula + deep-dives (incl. the `CS336-LLM-From-Scratch` series under `Technology/LLM`), plus personal project showcases under `Technology/Projects`
 - **Engineering** (nested: OO-Design, Architecture, Testing-Refactoring, Process, Craftsmanship): classic-book curricula + per-book stage deep-dives
 - **Career → Roadmap**: roadmaps and competency maps
 - **Language → English**: language-learning notes
