@@ -68,6 +68,18 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      # While the repository's Pages source is "Deploy from a branch", every push
+      # triggers BOTH this workflow and the legacy "pages build and deployment"
+      # branch build. The legacy build ships the RAW branch (this repo has
+      # .nojekyll), and whichever deployment finishes LAST is what gets served —
+      # if the legacy build wins the race, the live site shows unprocessed
+      # front matter/Liquid. This delay guarantees our built artifact always
+      # deploys last. (Permanent fix: Settings → Pages → Source = "GitHub
+      # Actions", which disables the legacy build entirely; this step is then
+      # harmless and can be removed.)
+      - name: Wait out the legacy branch-build race
+        run: sleep 120
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
