@@ -58,6 +58,23 @@
           type="image/webp">
     {% endif %}
 
+    {% comment %}
+      Globe page only: an importmap for three.js (loaded from jsDelivr, same CDN
+      pattern as mermaid/svg-pan-zoom). MUST live in <head> so it is parsed before
+      ANY module script on the page — including the mermaid module at the bottom.
+      Pin the version EXACTLY: three ships breaking changes between minors.
+    {% endcomment %}
+    {% if page.url == '/pages/globe.html' %}
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.178.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.178.0/examples/jsm/"
+      }
+    }
+    </script>
+    {% endif %}
+
     {% seo %}
     {% feed_meta %}
 
@@ -136,5 +153,10 @@
 
     <!-- Mermaid Pan & Zoom Enhancement -->
     <script defer src="{{ '/assets/js/mermaid-zoom.js' | relative_url }}"></script>
+
+    {% if page.url == '/pages/globe.html' %}
+    <!-- World Map: pixel-art three.js globe of all posts (see specs/worldmap-globe) -->
+    <script type="module" src="{{ '/assets/js/globe.js' | relative_url }}"></script>
+    {% endif %}
 </body>
 </html>
