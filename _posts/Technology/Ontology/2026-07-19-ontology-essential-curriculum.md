@@ -274,6 +274,8 @@ flowchart TD
 - 전체 항목: **21개**
 - 진행률: **100%**
 
+> 진행률은 **7단계 본류(21항목)** 기준입니다. 아래 "심화·비교편(온톨로지 vs DDD)"은 순서에 매이지 않는 **곁가지(번외)**라 이 집계에 포함하지 않습니다.
+
 ## 1단계: 온톨로지란 무엇인가 — 의미 계층·데이터 모델과의 차이
 
 모든 것의 출발점입니다. **온톨로지**는 조직이 다루는 실세계를 객체·속성·관계로 표현한 공유된 의미 모델이며, 흔히 "현실의 디지털 트윈"이라 불립니다. 여기서 먼저 **데이터 모델 · 스키마 · 온톨로지**의 차이를 분명히 합니다 — 스키마가 *데이터를 어떻게 저장하는가*라면, 온톨로지는 *그 데이터가 무엇을 의미하는가*입니다. 왜 테이블·조인만으로는 부족하고 별도의 **의미 계층**이 필요한지, 그리고 온톨로지가 분석(analytical)을 넘어 **운영(operational)**의 기반이 될 때 어떤 힘을 갖는지 — 이 시리즈 전체의 "왜"를 여기서 세웁니다. Palantir Foundry의 Ontology를 대표 사례로, 이 발상이 특정 제품이 아니라 하나의 **모델링 패러다임**임을 이해합니다.
@@ -330,6 +332,14 @@ flowchart TD
 - [x] **거버넌스와 보안**: 의미 계층 위의 접근 제어·보안 마킹, 데이터 계보·감사 — [[상세](/2026/07/19/ontology-governance-evolution-fde-workflow.html)]
 - [x] **FDE 워크플로**: 도메인 워크숍으로 요구 도출, 반복적 모델링, 배포·피드백 루프 — [[상세](/2026/07/19/ontology-governance-evolution-fde-workflow.html)]
 
+## 심화·비교편: 온톨로지 vs 도메인 주도 설계(DDD)
+
+7단계를 따라오다 보면, 소프트웨어 설계를 아는 독자라면 반드시 마주치는 질문이 있습니다 — **"이거 도메인 주도 설계(DDD)랑 거의 같은 이야기 아닌가?"** 실제로 온톨로지의 **객체 타입**은 DDD의 **엔티티**와 판박이고, **의미 계층**은 DDD의 **유비쿼터스 언어**와 같은 처방입니다. 시리즈 곳곳에서 그때그때 "이건 DDD의 무엇과 같다"고 짚어 왔지만, 둘을 **정면으로 나란히 놓고** 어디가 겹치고 어디가 어긋나는지를 한 편으로 정리한 심화 비교편입니다. 7단계 본류에 얹는 **곁가지(번외)** — 순서에 매이지 않고, 시리즈를 어느 정도 소화한 뒤 읽으면 좋습니다.
+
+- [x] **공통 뿌리**: 유비쿼터스 언어 ↔ 의미 계층 — 왜 둘이 같은 처방이며, 엔티티↔객체 타입이 거의 1:1인가 — [[상세](/2026/07/20/ontology-vs-ddd.html)]
+- [x] **결정적 차이**: 사는 층(코드 vs 데이터) · 경계에 대한 태도(분할 vs 통합) · 애그리거트와 엔티티 해소라는 서로에게 없는 층 — [[상세](/2026/07/20/ontology-vs-ddd.html)]
+- [x] **함께 쓰기**: 경쟁이 아니라 층을 나눈 협력 — DDD가 쪼갠 것을 온톨로지가 통합하고, 온톨로지의 행동을 DDD가 일관성 있게 실행 — [[상세](/2026/07/20/ontology-vs-ddd.html)]
+
 ## 핵심 포인트
 
 - **온톨로지는 저장이 아니라 의미다**: 스키마가 "어떻게 저장하는가"라면 온톨로지는 "무엇을 의미하는가"입니다. 이 구분을 놓치면 온톨로지는 그저 또 하나의 스키마로 전락합니다.
@@ -356,6 +366,7 @@ flowchart TD
 
 ### 다음 학습 (Next Learning)
 
+- [온톨로지 vs 도메인 주도 설계(DDD)](/2026/07/20/ontology-vs-ddd.html) — 같은 뿌리에서 갈라진 두 줄기, 개념 대 개념 매핑과 결정적 차이 (심화·비교편)
 - [Data Engineering Essential Curriculum](/2026/06/25/data-engineering-essential-curriculum.html) — 온톨로지의 백킹 데이터셋을 만들어 내는 파이프라인 전반의 지도
 - [OO-Design Essential Curriculum](/2026/06/19/oo-design-essential-curriculum.html) — 객체·관계로 세상을 모델링하는 사고의 뿌리(도메인 모델링·유비쿼터스 언어)
 - [dbt Essential Curriculum](/2026/07/12/dbt-essential-curriculum.html) — 시맨틱 계층·메트릭으로 데이터에 의미를 얹는 또 다른 접근
@@ -681,6 +692,26 @@ flowchart TD
     <li>write-back은 파이프라인의 <strong>역방향</strong> — 행동의 결과가 원천으로 되돌아가고, 다음 적재가 고리를 검증한다</li>
   </ul>
   <p class="deck-note">Data-Engineering-Essential에서 "옮기고 저장하는 법"을 배웠다면, 이 시리즈는 그 데이터가 "무엇을 뜻하고 무엇을 하게 하는가"를 배운다.</p>
+</section>
+
+<section class="slide">
+  <p class="deck-kicker">설계 계보와 잇기 — 심화·비교편</p>
+  <h2>DDD를 아는가? — 같은 뿌리, 다른 층</h2>
+  <p class="deck-lead">"온톨로지, 이거 <strong>도메인 주도 설계(DDD)</strong>랑 같은 얘기 아냐?" — 절반은 맞다. 같은 뿌리에서 갈라진 <strong>두 줄기</strong>다.</p>
+  <div class="deck-cols">
+    <div class="deck-card">
+      <h3>겹치는 것 — 같은 뿌리</h3>
+      <p>유비쿼터스 언어 ↔ <strong>의미 계층</strong> · 엔티티 ↔ <strong>객체 타입</strong> · 값 객체 ↔ <strong>속성</strong> · 식별자 ↔ <strong>기본키</strong></p>
+      <p>둘 다 "도메인의 의미를 명시하고 조직이 공유하게 하라"는 <strong>같은 처방</strong>.</p>
+    </div>
+    <div class="deck-card">
+      <h3>갈라지는 것 — 다른 층</h3>
+      <p><strong>사는 층</strong>: DDD는 코드·쓰기·트랜잭션 / 온톨로지는 데이터·통합·읽기+행동</p>
+      <p><strong>경계</strong>: DDD는 바운디드 컨텍스트로 <strong>분할</strong> / 온톨로지는 <strong>통합</strong>을 지향하다 규모에서 경계를 재발견</p>
+      <p><strong>고유 층</strong>: 애그리거트는 DDD에만 · 엔티티 해소는 온톨로지에만</p>
+    </div>
+  </div>
+  <p class="deck-note">경쟁이 아니라 <strong>층을 나눈 협력</strong> — DDD가 쪼갠 것을 온톨로지가 통합해 조망하고, 온톨로지의 행동을 DDD가 일관성 있게 실행한다. 📖 자세히 → <a href="/2026/07/20/ontology-vs-ddd.html">온톨로지 vs DDD</a></p>
 </section>
 
 <section class="slide">
