@@ -305,65 +305,65 @@ flowchart TD
 
 > 완료한 항목에는 상세 포스트 링크가 연결됩니다. 학습이 진행될 때마다 체크박스와 진행률을 갱신합니다.
 
-- 현재 완료한 항목: **0개**
+- 현재 완료한 항목: **7개**
 - 전체 항목: **7개**
-- 진행률: **0%**
+- 진행률: **100%**
 
 ## 1단계: 아키텍처 — Driver/Executor·클러스터 매니저·실행 흐름
 
 Spark 성능과 디버깅의 모든 것이 여기서 출발합니다. 하나의 **Driver**가 사용자 코드를 실행 계획(DAG)으로 세워 작업을 분배하고, 여러 **Executor**가 클러스터 각 노드에서 실제 task를 수행합니다. 그 사이에서 자원을 배분하는 **클러스터 매니저**(YARN·Kubernetes·Standalone)의 역할과, 하나의 액션이 Job → Stage → Task로 쪼개지는 **실행 흐름**을 익힙니다. 스테이지의 경계가 왜 셔플 지점인지까지 잡으면 이후 모든 단계가 이 그림 위에 얹힙니다.
 
-- [ ] **Driver와 Executor**: 실행 계획을 세우는 두뇌와 task를 수행하는 일꾼, 그리고 둘의 통신
-- [ ] **클러스터 매니저**: YARN·Kubernetes·Standalone의 자원 배분과 배포 모델(client vs cluster)
-- [ ] **실행 흐름**: 액션 → Job → Stage → Task 분해, 스테이지 경계와 셔플의 관계
+- [x] **Driver와 Executor**: 실행 계획을 세우는 두뇌와 task를 수행하는 일꾼, 그리고 둘의 통신 — [[상세](/2026/07/16/spark-architecture-driver-executor.html)]
+- [x] **클러스터 매니저**: YARN·Kubernetes·Standalone의 자원 배분과 배포 모델(client vs cluster) — [[상세](/2026/07/16/spark-architecture-driver-executor.html)]
+- [x] **실행 흐름**: 액션 → Job → Stage → Task 분해, 스테이지 경계와 셔플의 관계 — [[상세](/2026/07/16/spark-architecture-driver-executor.html)]
 
 ## 2단계: RDD / DataFrame / Dataset — 핵심 추상화와 차이
 
 Spark로 다루는 데이터의 세 가지 얼굴을 구분하는 단계입니다. 1세대 저수준 추상화인 **RDD**(계보 기반 내결함성을 주지만 최적화 여지가 적음), 스키마가 있어 옵티마이저가 개입할 수 있는 **DataFrame**, 그리고 타입 안전성을 더한 **Dataset**의 차이와 각각을 언제 쓰는지를 익힙니다. 아울러 변환은 계획만 쌓고 액션에서 한꺼번에 실행하는 **lazy evaluation**, 노드 안에서 끝나는 narrow와 셔플을 부르는 wide **트랜스포메이션**의 구분을 여기서 확실히 잡습니다.
 
-- [ ] **RDD**: 분산 불변 컬렉션, 계보(lineage) 기반 내결함성, 저수준 제어의 쓰임새
-- [ ] **DataFrame / Dataset**: 스키마 기반 고수준 API, 타입 안전성, 무엇을 언제 선택할까
-- [ ] **lazy evaluation과 트랜스포메이션**: 변환 vs 액션, narrow vs wide 트랜스포메이션
+- [x] **RDD**: 분산 불변 컬렉션, 계보(lineage) 기반 내결함성, 저수준 제어의 쓰임새 — [[상세](/2026/07/16/spark-rdd-dataframe-dataset.html)]
+- [x] **DataFrame / Dataset**: 스키마 기반 고수준 API, 타입 안전성, 무엇을 언제 선택할까 — [[상세](/2026/07/16/spark-rdd-dataframe-dataset.html)]
+- [x] **lazy evaluation과 트랜스포메이션**: 변환 vs 액션, narrow vs wide 트랜스포메이션 — [[상세](/2026/07/16/spark-rdd-dataframe-dataset.html)]
 
 ## 3단계: Catalyst 옵티마이저 · Tungsten 실행 엔진 — 쿼리 최적화/코드 생성
 
 DataFrame이 RDD보다 빠른 **이유**가 여기 있습니다. **Catalyst 옵티마이저**는 사용자 쿼리를 논리 계획 → 최적화된 논리 계획 → 물리 계획으로 변환하며 조건 푸시다운·컬럼 프루닝·조인 재정렬 같은 최적화를 적용합니다. **Tungsten 실행 엔진**은 그 물리 계획을 JVM 오버헤드를 줄인 메모리 관리와 whole-stage code generation으로 실행합니다. 여기에 런타임 통계로 계획을 다시 짜는 **AQE(Adaptive Query Execution)**까지 이해하면 "왜 이 쿼리가 이렇게 실행되는가"를 읽을 수 있게 됩니다.
 
-- [ ] **Catalyst 옵티마이저**: 논리 → 물리 계획 변환, 규칙 기반·비용 기반 최적화
-- [ ] **Tungsten 실행 엔진**: 메모리 관리, whole-stage code generation
-- [ ] **Adaptive Query Execution(AQE)**: 런타임 통계 기반 계획 재조정
+- [x] **Catalyst 옵티마이저**: 논리 → 물리 계획 변환, 규칙 기반·비용 기반 최적화 — [[상세](/2026/07/16/spark-catalyst-tungsten-aqe.html)]
+- [x] **Tungsten 실행 엔진**: 메모리 관리, whole-stage code generation — [[상세](/2026/07/16/spark-catalyst-tungsten-aqe.html)]
+- [x] **Adaptive Query Execution(AQE)**: 런타임 통계 기반 계획 재조정 — [[상세](/2026/07/16/spark-catalyst-tungsten-aqe.html)]
 
 ## 4단계: 셔플 · 파티셔닝 · 성능 튜닝 — 스큐·스필·조인 전략
 
 Spark 실무에서 가장 자주, 가장 아프게 부딪히는 지점입니다. 노드 사이에서 키를 재배치하는 **셔플**은 늘 가장 비싼 연산이고, 성능 튜닝의 대부분은 셔플을 줄이거나 다스리는 일입니다. **파티셔닝** 전략(파티션 수·`repartition` vs `coalesce`·파티션 프루닝), 한 키에 데이터가 쏠리는 **데이터 스큐**와 메모리를 넘겨 디스크로 흘리는 **스필(spill)**, 그리고 broadcast·sort-merge·shuffle-hash 같은 **조인 전략** 선택을 다룹니다. Spark UI로 병목을 읽는 법까지 함께 익힙니다.
 
-- [ ] **셔플과 파티셔닝**: 셔플의 비용, 파티션 수 조정, `repartition`/`coalesce`, 파티션 프루닝
-- [ ] **스큐와 스필**: 데이터 스큐 완화(salting·AQE skew join), 메모리/디스크 스필 진단
-- [ ] **조인 전략**: broadcast · sort-merge · shuffle-hash join의 선택 기준과 Spark UI 읽기
+- [x] **셔플과 파티셔닝**: 셔플의 비용, 파티션 수 조정, `repartition`/`coalesce`, 파티션 프루닝 — [[상세](/2026/07/16/spark-shuffle-partitioning-tuning.html)]
+- [x] **스큐와 스필**: 데이터 스큐 완화(salting·AQE skew join), 메모리/디스크 스필 진단 — [[상세](/2026/07/16/spark-shuffle-partitioning-tuning.html)]
+- [x] **조인 전략**: broadcast · sort-merge · shuffle-hash join의 선택 기준과 Spark UI 읽기 — [[상세](/2026/07/16/spark-shuffle-partitioning-tuning.html)]
 
 ## 5단계: Spark Structured Streaming — 마이크로배치·워터마크·상태
 
 Spark를 배치 너머 **실시간**으로 확장하는 단계입니다. Structured Streaming은 무한한 스트림을 계속 자라는 테이블로 보고, 배치와 거의 같은 DataFrame API로 다루게 해 줍니다. 흐름을 잘게 나눠 처리하는 **마이크로배치** 모델, 이벤트 시간 집계에서 언제 윈도를 닫을지 정하는 **워터마크**, 집계·조인·중복 제거를 위한 **상태(state) 관리**, 그리고 정확히 한 번 처리를 보장하는 체크포인트와 출력 모드를 익힙니다. (스트림 처리의 시간 개념은 오버뷰 [처리 포스트](/2026/06/25/data-processing.html)의 이벤트 시간·워터마크·윈도잉 절이 좋은 사전 지식입니다.)
 
-- [ ] **마이크로배치 모델**: 스트림을 계속 자라는 테이블로 보기, 배치와 통합된 API
-- [ ] **워터마크와 윈도잉**: 이벤트 시간 집계, 지각 데이터 처리, 텀블링/슬라이딩/세션
-- [ ] **상태와 정확성**: 상태 저장 연산, 체크포인트, 출력 모드와 exactly-once 보장
+- [x] **마이크로배치 모델**: 스트림을 계속 자라는 테이블로 보기, 배치와 통합된 API — [[상세](/2026/07/16/spark-structured-streaming.html)]
+- [x] **워터마크와 윈도잉**: 이벤트 시간 집계, 지각 데이터 처리, 텀블링/슬라이딩/세션 — [[상세](/2026/07/16/spark-structured-streaming.html)]
+- [x] **상태와 정확성**: 상태 저장 연산, 체크포인트, 출력 모드와 exactly-once 보장 — [[상세](/2026/07/16/spark-structured-streaming.html)]
 
 ## 6단계: PySpark 실무 — API·UDF·pandas API on Spark
 
 현실의 Spark 코드 대부분은 **PySpark**로 작성됩니다. Python API의 구조와 JVM과의 경계, 성능을 좌우하는 **UDF**의 종류(Python UDF vs Pandas UDF/Arrow 기반 벡터화 UDF)와 그 비용, 그리고 기존 pandas 코드를 분산 실행으로 옮기는 **pandas API on Spark**를 다룹니다. Python↔JVM 직렬화 오버헤드를 어떻게 피하는지, 언제 UDF 대신 내장 함수를 써야 하는지 같은 실무 감각을 함께 익힙니다.
 
-- [ ] **PySpark API**: Python 진입점과 JVM 경계, DataFrame/SQL 실무 패턴
-- [ ] **UDF**: Python UDF vs Pandas(벡터화) UDF, 직렬화 비용과 내장 함수 우선 원칙
-- [ ] **pandas API on Spark**: 기존 pandas 코드를 분산 실행으로 확장하기
+- [x] **PySpark API**: Python 진입점과 JVM 경계, DataFrame/SQL 실무 패턴 — [[상세](/2026/07/16/spark-pyspark-udf-pandas-api.html)]
+- [x] **UDF**: Python UDF vs Pandas(벡터화) UDF, 직렬화 비용과 내장 함수 우선 원칙 — [[상세](/2026/07/16/spark-pyspark-udf-pandas-api.html)]
+- [x] **pandas API on Spark**: 기존 pandas 코드를 분산 실행으로 확장하기 — [[상세](/2026/07/16/spark-pyspark-udf-pandas-api.html)]
 
 ## 7단계 (심화): Iceberg / Delta 연동 — 레이크하우스 저장 포맷과의 결합
 
 마지막은 Spark를 2026년 **레이크하우스** 스택에 얹는 심화 단계입니다. 오버뷰 [저장 포스트](/2026/06/25/data-storage.html)에서 소개한 오픈 테이블 포맷 — **Apache Iceberg**·**Delta Lake** — 을 Spark에서 읽고 쓰는 법을 다룹니다. 레이크 위에 ACID·시간여행(time travel)·스키마 진화를 얹는 테이블 포맷과 Spark를 결합하면, MERGE·업서트·증분 처리 같은 웨어하우스급 연산을 오브젝트 스토리지 위에서 수행할 수 있습니다. compaction·스냅샷 관리 같은 유지보수까지 짚습니다.
 
-- [ ] **테이블 포맷 기초**: Iceberg·Delta의 메타데이터·스냅샷·ACID·시간여행
-- [ ] **Spark에서 읽고 쓰기**: MERGE/업서트, 스키마 진화, 파티션 진화
-- [ ] **유지보수**: compaction, 스냅샷 만료, 증분 처리 패턴
+- [x] **테이블 포맷 기초**: Iceberg·Delta의 메타데이터·스냅샷·ACID·시간여행 — [[상세](/2026/07/16/spark-iceberg-delta-lakehouse.html)]
+- [x] **Spark에서 읽고 쓰기**: MERGE/업서트, 스키마 진화, 파티션 진화 — [[상세](/2026/07/16/spark-iceberg-delta-lakehouse.html)]
+- [x] **유지보수**: compaction, 스냅샷 만료, 증분 처리 패턴 — [[상세](/2026/07/16/spark-iceberg-delta-lakehouse.html)]
 
 ## 핵심 포인트
 
