@@ -11,3 +11,7 @@ vendor/
 
 # Specs
 specs/
+
+# Claude Code local config + working plans (not for version control)
+.claude/settings.local.json
+.claude/plans/
