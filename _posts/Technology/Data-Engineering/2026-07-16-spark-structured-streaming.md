@@ -469,4 +469,5 @@ Spark Structured Streaming의 5단계를 정리합니다.
 - [Spark 셔플·파티셔닝·튜닝](/2026/07/16/spark-shuffle-partitioning-tuning.html) — 4단계: 마이크로배치도 결국 배치 잡, 그 성능을 다스리는 법
 - [Spark Essential Curriculum](/2026/07/12/spark-essential-curriculum.html) — 시리즈 로드맵으로 돌아가 진행 상황 확인하기
 - [데이터 변환·처리(Processing): 배치·스트림 엔진과 SQL 변환](/2026/06/25/data-processing.html) — 오버뷰의 이벤트 시간·워터마크·윈도잉 절과 이어서 읽기
+- [Stream Processing Essential Curriculum](/2026/07/12/stream-processing-essential-curriculum.html) — 자매 시리즈. "스트림 네이티브" 엔진(Flink) 접근 — 이 글의 "배치 통합 스트림"과 대비
 - [Kafka Streams: 스트림 DSL · 상태 저장 · KTable](/2026/07/15/kafka-streams.html) — 라이브러리형 스트림 처리와의 대비
