@@ -78,6 +78,7 @@ Developers who want to:
 │   ├── Engineering/Testing-Refactoring/ # categories: [Engineering, Testing-Refactoring]
 │   ├── Engineering/Process/             # categories: [Engineering, Process]
 │   ├── Engineering/Craftsmanship/       # categories: [Engineering, Craftsmanship]
+│   ├── Engineering/Mindset/             # categories: [Engineering, Mindset] (자작 에세이)
 │   ├── Career/Roadmap/          # categories: [Career, Roadmap]
 │   ├── Language/English/        # categories: [Language, English]
 │   ├── Retrospec/               # categories: Retrospec (yearly retrospectives)
@@ -199,6 +200,8 @@ Top-level technical category, always paired with a sub-category that names the d
 ### Engineering (nested)
 
 Top-level category for software-engineering fundamentals drawn from classic books, always paired with a sub-category that names the directory: `Engineering/OO-Design`, `Engineering/Architecture`, `Engineering/Testing-Refactoring`, `Engineering/Process`, `Engineering/Craftsmanship`. Each sub-category is a completed `*-Essential` series: a master-roadmap **curriculum** post (`banner: wartable`, 도장깨기 checkboxes) plus per-book **stage** deep-dives. Stage posts use ascending `date` times (`00:01:00`, `00:02:00`, …) so the series page lists curriculum → stage 1 → stage 2 … in order.
+
+**Exception — `Engineering/Mindset`**: self-authored technical essays on engineering thinking and growth (문제 정의, 사고방식, Senior→Principal 전환 등). Not a book series — no `series`, no banner, no 도장깨기 checkboxes. First-person essay tone; visuals (header SVG, Mermaid, explanatory SVGs) via `post-illustrator`.
 
 ### Career → Roadmap (nested)
 
@@ -598,7 +601,7 @@ make serve
 ### Categories
 
 - **Technology** (nested: Python, PostgreSQL, Rust, LLM, Data-Engineering, Ontology, Projects): curricula + deep-dives (incl. the `CS336-LLM-From-Scratch` series under `Technology/LLM`), plus personal project showcases under `Technology/Projects`
-- **Engineering** (nested: OO-Design, Architecture, Testing-Refactoring, Process, Craftsmanship): classic-book curricula + per-book stage deep-dives
+- **Engineering** (nested: OO-Design, Architecture, Testing-Refactoring, Process, Craftsmanship, Mindset): classic-book curricula + per-book stage deep-dives, plus self-authored engineering essays under `Engineering/Mindset`
 - **Career → Roadmap**: roadmaps and competency maps
 - **Language → English**: language-learning notes
 - **Retrospec**: yearly retrospectives

@@ -257,7 +257,7 @@ flowchart LR
 - **비용** 관점: 인프라·인건비 트레이드오프는
 - **보안** 관점: 새로 열리는 공격면은
 
-한 관점에서 최적인 답이 다른 관점에서는 최악인 경우가 흔하다. 관점을 바꿔 설명해 보면 그 충돌이 미리 드러난다.
+한 관점에서 최적인 답이 다른 관점에서는 최악인 경우가 흔하다. 관점을 바꿔 설명해 보면 그 충돌이 미리 드러나고, 드러난 충돌을 저울에 올려 무엇을 얻고 무엇을 포기할지 견주는 일이 곧 **트레이드오프 분석**이다.
 
 ### (5) 한 문장으로 요약
 
@@ -397,4 +397,4 @@ Principal이 분리해 내는 것은 단 하나다. **Redis는 "문제"가 아�
 
 - [Python Backend Engineer 직무 기술서](/2025/10/12/python-engineer-job-description.html) — 레벨별 역할과 요구 역량 맵
 - [The Pragmatic Programmer: 실용주의 장인의 습관](/2026/06/19/pragmatic-programmer.html) — 문제를 다루는 장인의 태도
-- Domain-Driven Design — 문제 공간(도메인)을 먼저 이해하고 해결 공간을 설계하기
+- [Domain-Driven Design](/2026/06/19/domain-driven-design.html) — 문제 공간(도메인)을 먼저 이해하고 해결 공간을 설계하기

@@ -72,7 +72,7 @@ excerpt: "rody(@0x_rody)가 X에 올린 'How to Do Graph Engineering With Opus 5
   <!-- WARNING banner: don't toggle effort mid-session -->
   <g transform="translate(320,312)">
     <path d="M-16,-12 L0,-24 L16,-12 L16,10 L-16,10 Z" fill="none" stroke="var(--accent-color)" stroke-width="2" transform="translate(-140,0) scale(0.62)"/>
-    <text x="-118" y="4" text-anchor="middle" font-size="15" font-weight="700" fill="var(--accent-color)">!</text>
+    <text x="-140" y="4" text-anchor="middle" font-size="15" font-weight="700" fill="var(--accent-color)">!</text>
     <text x="14" y="4" text-anchor="middle" font-size="10.5" font-weight="700" fill="currentColor">effort를 세션 중 바꾸면 캐시가 깨진다</text>
   </g>
 
@@ -91,7 +91,7 @@ excerpt: "rody(@0x_rody)가 X에 올린 'How to Do Graph Engineering With Opus 5
 ## 원문 정보
 
 > - **제목**: How to Do Graph Engineering With Opus 5 (Exact Config Inside)
-> - **출처**: rody (@0x_rody) · X(트위터) 스레드 (<https://x.com>)
+> - **출처**: rody ([@0x_rody](https://x.com/0x_rody)) · X(트위터) 스레드
 > - **발행**: 2026-07-27 · 약 6분 분량
 > - **원문 링크**: <https://x.com/i/status/2081664256571810178>
 
@@ -129,7 +129,7 @@ flowchart LR
     end
 
     W["배선<br/>Graphiti MCP + Neo4j<br/>(Docker)"]
-    B2["청구서<br/>~$10.30"]
+    B2["청구서<br/>~$10.30 · 원문 주장"]
     B1["나이브<br/>$35+"]
 
     P -->|"가격 레버로 누른다"| LV
@@ -326,9 +326,9 @@ Graphiti는 MCP 서버를 함께 배포한다. Claude Code에 아래 블록을 �
 5,000 에피소드를 백필한다고 하자. 각 에피소드는 텍스트 약 800토큰, 그 앞에 붙는 캐시된 스키마 프리픽스 약 600토큰.
 
 - **나이브(정가·캐시 없음·high effort)**: 5,000 × 1,400토큰 × $5/M = **입력 $35.00**, 여기에 무거운 추론 출력이 $25/M로 추가된다.
-- **Opus 5를 제대로(캐시된 프리픽스·low effort·배치)**: 스키마 600토큰 × $0.50/M(캐시 읽기) + 텍스트 800토큰 × $2.50/M(배치 입력) = **입력 약 $10.30**, 출력은 low effort라 미미하다.
+- **Opus 5를 제대로(캐시된 프리픽스·low effort·배치)**: 스키마 600토큰 × $0.50/M(캐시 읽기) + 텍스트 800토큰 × $2.50/M(배치 입력) = **입력 약 $10.30**(원문 주장), 출력은 low effort라 미미하다.
 
-같은 그래프, 나이브 비용의 3분의 1 미만. 원문 결론은 여기서 한 걸음 더 나간다 — **temporal 그래프를 먹이는 게 이제 같은 코퍼스를 벡터 스토어에 임베딩하는 것보다 싸다.**
+한 가지 짚을 점: 이 분해식을 그대로 검산하면 5,000 × (600 × $0.50/M + 800 × $2.50/M) ≈ **$11.50**로, 원문이 제시한 $10.30과 약 $1 어긋난다. 원문이 캐시 쓰기/읽기 비율 등 다른 가정을 깔았을 수 있는데 스레드에는 드러나 있지 않다. 어느 값이든 **"나이브 대비 3분의 1 미만"이라는 결론 자체는 흔들리지 않는다.** 원문 결론은 여기서 한 걸음 더 나간다 — **temporal 그래프를 먹이는 게 이제 같은 코퍼스를 벡터 스토어에 임베딩하는 것보다 싸다.**
 
 ### 흔한 실수와 20분 셋업
 
