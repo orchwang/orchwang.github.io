@@ -100,6 +100,48 @@ excerpt: "타인이 대충 던진 의견에서도 핵심을 파악해 구체화�
 
 핵심은 하나다. **증상과 원인을 분리하는 것.** 사용자가 가리키는 곳은 아픈 곳이지, 병의 위치가 아니다.
 
+<figure class="post-figure">
+<svg role="img" aria-label="증상과 원인이 서로 다른 깊이에 있음을 보여주는 지층 단면도. 위에서 아래로 검색 UI(검색창), 태그 구조, 정보 구조 세 개의 층이 쌓여 있다. 맨 위 검색 UI 층에는 통증을 뜻하는 붉은 불꽃 표시가 찍혀 있고, 오른쪽에 '증상 · 아픈 곳, 사용자가 가리키는 곳'이라고 적혀 있다. 맨 아래 정보 구조 층에는 붉은 균열이 나 있고, 오른쪽에 '원인 · 병의 위치, 진짜 고쳐야 할 곳'이라고 적혀 있다. 왼쪽에는 위 통증 지점에서 아래 균열 지점으로 향하는 점선 화살표가 아래로 내려가며, 아픈 곳과 병의 위치가 서로 다른 층에 있음을 나타낸다." viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg">
+  <title>아픈 곳(증상)과 병의 위치(원인)는 다른 층에 있다</title>
+
+  <text x="340" y="28" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">사용자가 가리키는 곳(증상) ≠ 병의 위치(원인)</text>
+
+  <!-- ===== stacked strata ===== -->
+  <rect x="150" y="52"  width="300" height="46" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+  <text x="300" y="80"  text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.85">검색 UI · 검색창</text>
+
+  <rect x="150" y="112" width="300" height="46" rx="4" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.4" opacity="0.9"/>
+  <text x="300" y="140" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.8">태그 구조</text>
+
+  <rect x="150" y="172" width="300" height="46" rx="4" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="1.8"/>
+  <text x="300" y="200" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.9">정보 구조 · 콘텐츠 구조</text>
+
+  <!-- pain spark on top layer -->
+  <g stroke="var(--accent-color)" stroke-width="2">
+    <line x1="200" y1="63" x2="200" y2="87"/>
+    <line x1="188" y1="75" x2="212" y2="75"/>
+    <line x1="191" y1="66" x2="209" y2="84"/>
+    <line x1="209" y1="66" x2="191" y2="84"/>
+  </g>
+  <circle cx="200" cy="75" r="3" fill="var(--accent-color)"/>
+
+  <!-- crack on bottom layer -->
+  <polyline points="192,176 200,188 194,196 206,208 200,214" fill="none" stroke="var(--accent-color)" stroke-width="2.4"/>
+
+  <!-- descending dashed arrow: symptom -> cause -->
+  <line x1="118" y1="74" x2="118" y2="198" stroke="currentColor" stroke-width="1.6" stroke-dasharray="4 4" opacity="0.7"/>
+  <polygon points="118,212 111,198 125,198" fill="currentColor" opacity="0.7"/>
+  <text transform="translate(100,138) rotate(-90)" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.65">진짜 원인은 더 깊은 층</text>
+
+  <!-- right-side callouts -->
+  <text x="470" y="70"  font-size="11" fill="var(--accent-color)" font-weight="700">증상 · 아픈 곳</text>
+  <text x="470" y="86"  font-size="9"  fill="currentColor" opacity="0.75">사용자가 가리키는 곳</text>
+  <text x="470" y="190" font-size="11" fill="var(--accent-color)" font-weight="700">원인 · 병의 위치</text>
+  <text x="470" y="206" font-size="9"  fill="currentColor" opacity="0.75">진짜 고쳐야 할 곳</text>
+</svg>
+<figcaption>증상과 원인의 분리 — 사용자가 아파하는 표면(검색창)과 병이 자리한 깊이(정보 구조)는 다른 층이다.</figcaption>
+</figure>
+
 ## 좋은 사고의 순서 — 한눈에 보기
 
 좋은 사고는 요구에서 해결책으로 직행하지 않는다. 사실에서 시작해 여러 단계를 거친다.
@@ -148,6 +190,62 @@ flowchart LR
 > 안정성을 높인다 → 어떤 안정성? 장애율? SLA? 메모리? 복구 시간(MTTR)?
 
 "안정성"은 아름답지만 텅 빈 단어다. 무엇을 측정할지 정하지 못하면 개선했는지조차 알 수 없다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="추상화와 구체화가 서로 반대 방향임을 보여주는 그림. 왼쪽에는 아래에서 위로 올라가는 사다리가 있다. 맨 아래 칸은 '버튼이 많다', 가운데 칸은 '인지 부하가 높다', 맨 위 칸은 '사용성이 낮다'이며, 왼쪽에 위로 향하는 초록 화살표와 '추상화(올리기)' 글자가 있다. 오른쪽에는 맨 위의 '안정성'이라는 한 단어가 아래로 네 개의 칸 '장애율', 'SLA', '메모리', 'MTTR'로 갈라져 내려가고, 아래로 향하는 붉은 화살표와 '구체화(내리기)' 글자가 있다. 왼쪽은 구체적인 현상을 한 단계 위 개념으로 올리는 방향, 오른쪽은 추상적인 단어를 측정 가능한 지표로 내리는 방향이다." viewBox="0 0 680 330" xmlns="http://www.w3.org/2000/svg">
+  <title>추상화는 올려서 개념으로, 구체화는 내려서 지표로</title>
+
+  <text x="340" y="26" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">추상화는 올리고, 구체화는 내린다</text>
+
+  <line x1="340" y1="46" x2="340" y2="300" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 5" opacity="0.25"/>
+
+  <!-- ===== LEFT: abstraction ladder (bottom -> up) ===== -->
+  <line x1="190" y1="108" x2="190" y2="216" stroke="currentColor" stroke-width="1.4" opacity="0.5"/>
+
+  <rect x="95" y="64"  width="190" height="44" rx="4" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2"/>
+  <text x="190" y="91"  text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.9">사용성이 낮다</text>
+
+  <rect x="95" y="140" width="190" height="44" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
+  <text x="190" y="167" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.85">인지 부하가 높다</text>
+
+  <rect x="95" y="216" width="190" height="44" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
+  <text x="190" y="243" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.85">버튼이 많다</text>
+
+  <line x1="55" y1="252" x2="55" y2="78" stroke="var(--secondary-color)" stroke-width="2"/>
+  <polygon points="55,64 48,80 62,80" fill="var(--secondary-color)"/>
+  <text transform="translate(38,164) rotate(-90)" text-anchor="middle" font-size="11" font-weight="700" fill="var(--secondary-color)">추상화 (올리기)</text>
+
+  <text x="190" y="292" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.6">한 단계 위 개념으로 → 새 해법이 열린다</text>
+
+  <!-- ===== RIGHT: concretization (top -> down, split) ===== -->
+  <rect x="440" y="52" width="140" height="42" rx="4" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2"/>
+  <text x="510" y="79" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.9">안정성</text>
+
+  <line x1="510" y1="94" x2="429" y2="214" stroke="currentColor" stroke-width="1.3" opacity="0.5"/>
+  <line x1="510" y1="94" x2="483" y2="214" stroke="currentColor" stroke-width="1.3" opacity="0.5"/>
+  <line x1="510" y1="94" x2="537" y2="214" stroke="currentColor" stroke-width="1.3" opacity="0.5"/>
+  <line x1="510" y1="94" x2="591" y2="214" stroke="currentColor" stroke-width="1.3" opacity="0.5"/>
+
+  <rect x="398" y="216" width="62" height="44" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
+  <text x="429" y="243" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.85">장애율</text>
+
+  <rect x="468" y="216" width="30" height="44" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
+  <text x="483" y="243" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.85">SLA</text>
+
+  <rect x="508" y="216" width="58" height="44" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
+  <text x="537" y="243" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.85">메모리</text>
+
+  <rect x="576" y="216" width="62" height="44" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
+  <text x="607" y="243" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.85">MTTR</text>
+
+  <line x1="368" y1="72" x2="368" y2="238" stroke="var(--accent-color)" stroke-width="2"/>
+  <polygon points="368,252 361,236 375,236" fill="var(--accent-color)"/>
+  <text transform="translate(385,158) rotate(90)" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent-color)">구체화 (내리기)</text>
+
+  <text x="518" y="292" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.6">측정 가능한 지표로 → 개선 여부를 안다</text>
+</svg>
+<figcaption>추상화 사다리 — 위로 올리면 새 해법이 보이고(버튼→인지 부하→사용성), 아래로 내리면 측정할 지표가 생긴다(안정성→장애율·SLA·메모리·MTTR).</figcaption>
+</figure>
 
 ### (4) 여러 관점으로 보기
 
@@ -219,6 +317,47 @@ Elasticsearch로 직행했다면, 문제가 실은 2번이나 3번이었을 때 
 | 시간축 | 현재를 최적화한다 | 2~3년 뒤를 설계한다 |
 
 Senior는 주어진 문제를 훌륭하게 푼다. Principal은 그 앞에 서서 "이게 정말 우리가 풀어야 할 문제인가?"를 먼저 묻는다. 앞의 문제 정의 훈련이 개인의 사고 습관이라면, Principal의 일은 그 습관을 **조직의 의사결정 규모로** 실행하는 것이다.
+
+<figure class="post-figure">
+<svg role="img" aria-label="Senior와 Principal이 같은 '지금' 시점에 서 있지만 서로 다른 시간축을 바라본다는 것을 보여주는 그림. 아래에는 왼쪽 '지금'에서 오른쪽 '2~3년 뒤'로 향하는 시간 축이 있다. 위쪽 Senior는 '지금' 위치에 서서 바로 옆의 좁은 창을 본다. 그 창에는 '기능을 잘 만든다 · 코드 품질', '현재를 최적화한다'라고 적혀 있어 시야가 현재에 머문다. 아래쪽 Principal도 같은 '지금'에 서 있지만, 시선이 붉은 긴 화살표가 되어 '2~3년 뒤'의 과녁까지 뻗어 있고, '조직 전체의 기술 방향을 설계한다', '무슨 문제를 풀지 정의한다'라고 적혀 있다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>같은 지금에 서서, 다른 시간을 본다 — Senior와 Principal의 시간축 차이</title>
+
+  <text x="340" y="26" text-anchor="middle" font-size="12" fill="currentColor" font-weight="700" opacity="0.75">같은 '지금'에 서서, 다른 시간을 본다</text>
+
+  <!-- vertical guides -->
+  <line x1="130" y1="58" x2="130" y2="248" stroke="currentColor" stroke-width="1" stroke-dasharray="3 4" opacity="0.22"/>
+  <line x1="588" y1="150" x2="588" y2="248" stroke="currentColor" stroke-width="1" stroke-dasharray="3 4" opacity="0.22"/>
+
+  <!-- ===== Senior lane ===== -->
+  <text x="130" y="72" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700">Senior</text>
+  <circle cx="130" cy="96" r="7" fill="currentColor"/>
+  <line x1="139" y1="96" x2="156" y2="96" stroke="currentColor" stroke-width="2"/>
+  <polygon points="166,96 154,90 154,102" fill="currentColor"/>
+  <rect x="168" y="78" width="196" height="40" rx="5" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 3"/>
+  <text x="266" y="95"  text-anchor="middle" font-size="10" fill="currentColor" font-weight="700" opacity="0.9">기능을 잘 만든다 · 코드 품질</text>
+  <text x="266" y="110" text-anchor="middle" font-size="9"  fill="currentColor" opacity="0.75">현재를 최적화한다</text>
+
+  <!-- ===== Principal lane ===== -->
+  <text x="130" y="158" text-anchor="middle" font-size="11" fill="var(--accent-color)" font-weight="700">Principal</text>
+  <circle cx="130" cy="182" r="7" fill="var(--accent-color)"/>
+  <line x1="139" y1="182" x2="576" y2="182" stroke="var(--accent-color)" stroke-width="2.2"/>
+  <polygon points="588,182 574,175 574,189" fill="var(--accent-color)"/>
+  <circle cx="588" cy="182" r="11" fill="none" stroke="var(--accent-color)" stroke-width="1.6"/>
+  <circle cx="588" cy="182" r="4"  fill="var(--accent-color)"/>
+  <text x="345" y="172" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700" opacity="0.9">2~3년 뒤 · 조직 전체의 기술 방향을 설계한다</text>
+  <text x="320" y="204" text-anchor="middle" font-size="9"  fill="currentColor" opacity="0.75">무슨 문제를 풀지 정의한다</text>
+
+  <!-- ===== time axis ===== -->
+  <line x1="90" y1="248" x2="616" y2="248" stroke="currentColor" stroke-width="1.6" opacity="0.7"/>
+  <polygon points="628,248 614,242 614,254" fill="currentColor" opacity="0.7"/>
+  <line x1="130" y1="243" x2="130" y2="253" stroke="currentColor" stroke-width="1.6" opacity="0.7"/>
+  <line x1="588" y1="243" x2="588" y2="253" stroke="currentColor" stroke-width="1.6" opacity="0.7"/>
+  <text x="130" y="270" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700" opacity="0.8">지금</text>
+  <text x="588" y="270" text-anchor="middle" font-size="10" fill="currentColor" font-weight="700" opacity="0.8">2~3년 뒤</text>
+  <text x="628" y="270" text-anchor="middle" font-size="9"  fill="currentColor" opacity="0.55">시간</text>
+</svg>
+<figcaption>Senior와 Principal의 시간축 — 둘 다 '지금'에 서 있지만, Senior는 눈앞의 기능을, Principal은 2~3년 뒤 조직의 방향을 본다.</figcaption>
+</figure>
 
 ### Principal Engineer의 사고 방식
 
