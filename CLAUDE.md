@@ -625,6 +625,7 @@ make serve
 - ✅ Logo and favicon
 - ✅ Responsive design
 - ✅ Quick links on home page
+- ✅ Knowledge Graph (`/pages/graph.html`): d3-force + Canvas 2D force-directed map of every internal post link; 3 typed edge layers (link / series / tag similarity), infographic stats band + side panel; built-time link extraction in `_plugins/graph_links.rb`, data emitted via `graph.json`. Companion to the World Map globe (territory vs connection metaphor)
 
 ---
 
@@ -683,6 +684,7 @@ This guide reflects the project structure as of July 2026.
 - Logo and branding applied
 - Search functionality working
 - CV page with auto-calculated career duration integrated
+- Knowledge Graph page (`/pages/graph.html`) shipped — d3-force visualisation of post links with 3 typed edge layers (link / series / tag similarity) and infographic stats band; built-time link extraction in `_plugins/graph_links.rb`, data via `graph.json`. See `specs/knowledge-graph/plan.md`.
 
 **Next Steps:**
 

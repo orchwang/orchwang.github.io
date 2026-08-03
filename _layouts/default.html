@@ -158,5 +158,10 @@
     <!-- World Map: pixel-art three.js globe of all posts (see specs/worldmap-globe) -->
     <script type="module" src="{{ '/assets/js/globe.js' | relative_url }}"></script>
     {% endif %}
+
+    {% if page.url == '/pages/graph.html' %}
+    <!-- Knowledge Graph: d3-force + Canvas 2D visualisation of post links (see specs/knowledge-graph) -->
+    <script type="module" src="{{ '/assets/js/graph.js' | relative_url }}"></script>
+    {% endif %}
 </body>
 </html>
