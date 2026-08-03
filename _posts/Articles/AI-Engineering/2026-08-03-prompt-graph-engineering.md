@@ -121,7 +121,7 @@ flowchart LR
 
 세 가지 이유로 이 위키 맥락과 정확히 맞물린다.
 
-1. **저자의 인접 연구 라인이 우리가 다뤄 온 스택 그 자체다.** 같은 저자가 쓴 *What makes a harness a harness*(하니스의 필요충분조건, [7])와 *loop engineering*([32])이 있고, 이 논문은 그 위계에서 한 층을 맡는다: **프롬프트 → 컨텍스트 → 하니스 → 루프** 스택에서 PGE는 "루프가 바깥에서 에이전트를 몰 때, 안쪽에서 호출 합성을 구조화하는 그래프" 층이다. 우리가 [Loop Engineering](/2026/06/19/loop-engineering.html)과 [Graph Engineering](/2026/07/19/graph-engineering.html)에서 실무 관점으로 다룬 것을, 이 논문은 학술적 정의로 못 박는다.
+1. **저자의 인접 연구 라인이 우리가 다뤄 온 스택 그 자체다.** 같은 저자가 쓴 [*What makes a harness a harness*(하니스의 필요충분조건)](/2026/08/03/what-makes-a-harness-a-harness.html)와 *loop engineering*([32])이 있고, 이 논문은 그 위계에서 한 층을 맡는다: **프롬프트 → 컨텍스트 → 하니스 → 루프** 스택에서 PGE는 "루프가 바깥에서 에이전트를 몰 때, 안쪽에서 호출 합성을 구조화하는 그래프" 층이다. 특히 **Claude Code 서브에이전트는 그 harness 논문에선 T1–T4를 모두 통과해 '유효한 하니스'로 포함되지만, 이 prompt-graph 논문에선 위임이 창발적이라 배제된다** — 같은 도구를 두 정의가 서로 다른 각도에서 자르는 셈이다. 우리가 [Loop Engineering](/2026/06/19/loop-engineering.html)과 [Graph Engineering](/2026/07/19/graph-engineering.html)에서 실무 관점으로 다룬 것을, 이 논문은 학술적 정의로 못 박는다.
 2. **우리가 쓰는 Claude Code 서브에이전트가 반례다.** 논문은 이 하니스를 "PGE가 아님"으로 **의도적으로 배제한다** — 위임이 창발적이기 때문이다. 왜 우리 도구가 '프롬프트 그래프'가 아닌지 알면, 그것이 무엇인지도 선명해진다.
 3. **바로 어제 쓴 리팩터링 포스트와 연결된다.** 이 논문 RQ5의 '등가(equivalence)' 문제 — "두 프롬프트 그래프가 언제 같은 프로그램인가, 분포적으로 동작을 보존하는 리팩터링은 무엇인가" — 는 [리팩터링의 경제적 이점](/2026/08/03/refactoring-economic-benefit.html)이 다룬 '동작 보존 정리'와 정확히 같은 질문의 LLM 버전이다.
 
@@ -429,6 +429,7 @@ flowchart LR
 
 - [원문 — What makes prompts a graph (arXiv:2607.27578)](https://arxiv.org/abs/2607.27578) — Sandeco Macedo의 정의적 논문 원문
 - [Graph Engineering: Loop Engineering 다음, 에이전트의 일을 그래프로 설계하라](/2026/07/19/graph-engineering.html) — 같은 "그래프로 설계" 발상을 실무 관점에서 다룬 자매 글
+- [무엇이 하니스를 하니스로 만드는가: 에이전트 하니스의 필요충분조건](/2026/08/03/what-makes-a-harness-a-harness.html) — **자매편.** 같은 저자가 같은 방법론으로 이 그래프 층 *바깥*의 런타임 층(하니스)을 4조건(T1–T4)으로 정의한다. Claude Code가 여기선 배제되고 harness에선 포함되는 대비가 핵심
 - [Loop Engineering (Addy Osmani)](/2026/06/19/loop-engineering.html) — 저자 Macedo의 인접 연구(하니스·루프) 라인과 맞물리는 "루프가 바깥, 그래프가 안쪽" 스택
 - [Codex의 agent loop를 펼쳐 보기](/2026/06/25/codex-agent-loop.html) — 하니스가 LLM을 부리는 창발적 실행 층 — PGE가 배제하는 바로 그 지점
 - [신뢰할 수 있는 Agentic AI 시스템 만들기](/2026/06/19/reliable-agentic-ai-systems.html) — 노드 분해 = 컨텍스트 관리 전략의 실전 사례
