@@ -13,7 +13,22 @@
 
 ## 아티클 포스트 (Articles)
 
-_대기 중인 아티클 없음._ (2026-07-18: 이전에 egress 차단으로 파킹돼 있던 7건 — Mitchell Hashimoto 인터뷰, Good Tools are Invisible, AI 2040: Plan A, Martin Fowler fragment(7/13), On Data Quality(1), HTTP429(실제 주제: 확장성/성능), make out like bandits — 은 차단이 풀려 모두 작성 완료 후 삭제.)
+- [ ] **The Limits of Rust (Sylvain Kerkour)** — `[대기: 원문 전달 필요]`
+  - URL: https://kerkour.com/the-limits-of-rust
+  - 내용: Rust의 한계를 다루는 시스템 프로그래밍 에세이로 추정(제목 기준). 구체적 논지·수치·인용은 원문 미확인이라 단정 불가. 분류 예상: `Articles/Systems-Programming` — 원문 확인 후 확정.
+  - 메모: egress 정책 차단(`403 CONNECT policy denial`, host `kerkour.com:443`). WebFetch·curl 모두 CONNECT 단계에서 차단됨. 사용자가 원문 텍스트 전달 시 작성.
+
+- [ ] **Code Was Never the Hard Part is an Insult to All Programmers (Senko Rašić)** — `[대기: 원문 전달 필요]`
+  - URL: https://blog.senko.net/code-was-never-the-hard-part-is-an-insult-to-all-programmers
+  - 내용: "Code Was Never the Hard Part"라는 (AI 코딩 시대에 코드 작성의 가치를 평가절하하는) 주장에 대한 반박 에세이로 추정(제목 기준). 구체적 논지·인용은 원문 미확인이라 단정 불가. 분류 예상: `Articles/Engineering-Culture` 또는 `Articles/AI-Industry` — 원문 확인 후 확정.
+  - 메모: egress 정책 차단(`EGRESS_BLOCKED`, domain `blog.senko.net`). WebFetch로 차단 확인. 사용자가 원문 텍스트 전달 시 작성.
+
+- [ ] **Engineering Leaders' Day-to-Day Activities (Software Leads, Substack)** — `[대기: 원문 전달 필요]`
+  - URL: https://softwareleads.substack.com/p/engineering-leaders-day-to-day-activities
+  - 내용: 엔지니어링 리더(EM/테크리드 등)의 일상 업무·시간 배분을 다루는 글로 추정(제목 기준). 구체적 논지·목록은 원문 미확인이라 단정 불가. 분류 예상: `Articles/Career-Life` 또는 `Articles/Engineering-Culture` — 원문 확인 후 확정.
+  - 메모: egress 정책 차단(`EGRESS_BLOCKED`, domain `softwareleads.substack.com`). WebFetch로 차단 확인. 사용자가 원문 텍스트 전달 시 작성.
+
+(2026-07-18: 이전에 egress 차단으로 파킹돼 있던 7건 — Mitchell Hashimoto 인터뷰, Good Tools are Invisible, AI 2040: Plan A, Martin Fowler fragment(7/13), On Data Quality(1), HTTP429(실제 주제: 확장성/성능), make out like bandits — 은 차단이 풀려 모두 작성 완료 후 삭제.)
 
 ---
 
