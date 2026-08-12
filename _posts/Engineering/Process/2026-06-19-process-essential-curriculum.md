@@ -7,12 +7,12 @@ series: Process-Essential
 tags: [engineering, curriculum, agile, requirements, process]
 published: true
 banner: wartable
-excerpt: "Pressman의 큰 그림부터 XP, 사용자 스토리·유스케이스, CI, Essence까지 7권의 고전으로 애자일 프로세스와 요구사항을 도장깨기 방식으로 정복하는 마스터 로드맵입니다."
+excerpt: "Pressman의 큰 그림부터 XP, 사용자 스토리·유스케이스, CI, Essence, 그리고 Brooks의 맨먼스 신화까지 8권의 고전으로 애자일 프로세스와 요구사항, 그 뿌리인 프로젝트 관리를 도장깨기 방식으로 정복하는 마스터 로드맵입니다."
 ---
 
 <figure class="post-figure post-figure--header">
-<svg role="img" aria-label="Process-Essential 7단계 학습 여정을 왼쪽에서 오른쪽으로 오르는 세 단의 계단으로 그린 그림. 가장 낮은 단은 기초로 1단계 소프트웨어 공학 개관과 2단계 XP·애자일 가치가 놓이고, 가운데 단은 핵심으로 3단계 사용자 스토리, 4단계 유스케이스 작성법, 5단계 유스케이스 주도 개발이 놓이며, 가장 높은 단은 응용으로 6단계 지속적 통합(CI)과 7단계 Essence·SEMAT가 놓인다. 계단 전체를 가로지르며 프로세스 축과 요구사항 축이라는 두 줄기가 함께 오르고, 마지막에 완주 깃발이 꽂혀 있다." viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
-  <title>Process-Essential 학습 여정 — 기초(공학·애자일)에서 핵심(요구사항·유스케이스)을 거쳐 응용(CI·Essence)까지 오르는 7단계 계단</title>
+<svg role="img" aria-label="Process-Essential 8단계 학습 여정을 그린 그림. 왼쪽에서 오른쪽으로 오르는 세 단의 계단이 있고, 가장 낮은 단은 기초로 1단계 소프트웨어 공학 개관과 2단계 XP·애자일 가치, 가운데 단은 핵심으로 3단계 사용자 스토리·4단계 유스케이스 작성법·5단계 유스케이스 주도 개발, 가장 높은 단은 응용으로 6단계 지속적 통합(CI)과 7단계 Essence·SEMAT가 놓인다. 세 계단 전체는 아래에 가로로 놓인 금빛 토대 밴드 위에 얹혀 있으며, 그 토대가 뿌리 · 프로젝트 관리의 고전인 8단계 맨먼스 신화 · 개념적 무결성이다. 계단을 가로지르며 프로세스 축과 요구사항 축이라는 두 줄기가 함께 오르고, 정상에는 완주 깃발이 꽂혀 있다." viewBox="0 0 680 372" xmlns="http://www.w3.org/2000/svg">
+  <title>Process-Essential 학습 여정 — 기초(공학·애자일)·핵심(요구사항·유스케이스)·응용(CI·Essence)의 세 계단이, 뿌리인 8단계 맨먼스(개념적 무결성) 토대 위에 오르는 8단계 여정</title>
 
   <!-- ===== two through-line axes climbing across all stages ===== -->
   <text x="40" y="34" font-size="11.5" fill="currentColor" font-weight="700" opacity="0.8">프로세스 · 요구사항 두 축이 함께 오른다</text>
@@ -61,26 +61,40 @@ excerpt: "Pressman의 큰 그림부터 XP, 사용자 스토리·유스케이스,
   <path d="M226,224 L246,210" fill="none" stroke="var(--gold)" stroke-width="2.5" marker-end="url(#pe-arrow)"/>
   <path d="M514,156 L534,142" fill="none" stroke="var(--gold)" stroke-width="2.5" marker-end="url(#pe-arrow)"/>
 
+  <!-- ===== ROOT / foundation band — 8단계 맨먼스, the origin the whole staircase rests on ===== -->
+  <!-- roots rising from the band into the base of the lowest step -->
+  <g stroke="var(--gold)" stroke-width="2" stroke-dasharray="2 4" opacity="0.85">
+    <line x1="92" y1="306" x2="86" y2="290"/>
+    <line x1="132" y1="306" x2="132" y2="290"/>
+    <line x1="172" y1="306" x2="178" y2="290"/>
+  </g>
+  <rect x="32" y="306" width="616" height="52" rx="4" fill="var(--bg-light)" stroke="var(--gold)" stroke-width="2.2"/>
+  <text x="48" y="328" font-size="11" fill="currentColor" font-weight="700" opacity="0.85">뿌리 · 프로젝트 관리의 고전</text>
+  <text x="48" y="345" font-size="9" fill="currentColor" opacity="0.7">이 모든 프로세스의 원형이자 토대</text>
+  <rect x="414" y="314" width="220" height="36" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="1.8"/>
+  <text x="524" y="330" text-anchor="middle" font-size="9.5" fill="currentColor" font-weight="700">8단계 · 맨먼스 신화</text>
+  <text x="524" y="343" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85">개념적 무결성</text>
+
   <defs>
     <marker id="pe-arrow" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto">
       <path d="M0,0 L9,4.5 L0,9 z" fill="var(--gold)"/>
     </marker>
   </defs>
 </svg>
-<figcaption>7단계 학습 여정을 오르는 세 단의 계단 — <strong>기초</strong>(공학 개관·XP 애자일 가치)에서 <strong>핵심</strong>(사용자 스토리·유스케이스·UC 주도 개발)을 거쳐 <strong>응용</strong>(지속적 통합·Essence)으로 올라간다. 계단 전체를 가로지르는 두 줄기는 이 시리즈가 함께 다지는 <strong>프로세스</strong>와 <strong>요구사항</strong> 두 축으로, 마지막에 완주 깃발이 꽂힌다.</figcaption>
+<figcaption>8단계 학습 여정 — 오르는 세 단의 계단은 <strong>기초</strong>(공학 개관·XP 애자일 가치)에서 <strong>핵심</strong>(사용자 스토리·유스케이스·UC 주도 개발)을 거쳐 <strong>응용</strong>(지속적 통합·Essence)으로 이어지고, 정상에 완주 깃발이 꽂힌다. 그 세 계단 전체는 아래를 가로지르는 금빛 <strong>뿌리 · 토대 밴드</strong> 위에 얹혀 있다 — 마지막에 밟지만 이 모든 프로세스 논의의 원형인 <strong>8단계 맨먼스 신화 · 개념적 무결성</strong>이다. 계단을 관통하는 두 줄기는 함께 다지는 <strong>프로세스</strong>와 <strong>요구사항</strong> 두 축이다.</figcaption>
 </figure>
 
 ## 소개
 
 좋은 코드를 짜는 능력만으로는 좋은 소프트웨어가 만들어지지 않습니다. "무엇을 만들 것인가"를 정의하는 **요구사항(Requirements)**, 그 요구사항을 작동하는 결과물로 흘려보내는 **프로세스(Process)**가 함께 단단해야 합니다. 애자일은 이 두 축을 무겁게 만들지 않으면서도 변화에 유연하게 대응하는 방법을 제시하며, 그 뿌리에는 수십 년에 걸쳐 검증된 고전들이 있습니다.
 
-이 커리큘럼은 그 뼈대가 되는 7권의 책을 한 단계씩 정복하는 학습 트랙입니다. **기초**에서 Pressman으로 소프트웨어 공학의 큰 그림을, Beck으로 애자일의 가치와 실천을 익힙니다. **핵심**에서는 Cohn의 사용자 스토리, Cockburn의 유스케이스 작성법, 그리고 Jacobson의 OOSE로 요구사항을 다루는 세 가지 관점을 깊이 파고듭니다. **응용**에서는 Duvall의 CI로 현대적 통합 실천을, Jacobson의 Essence로 "방법론 감옥"을 벗어나는 사고법을 배웁니다.
+이 커리큘럼은 그 뼈대가 되는 8권의 책을 한 단계씩 정복하는 학습 트랙입니다. **기초**에서 Pressman으로 소프트웨어 공학의 큰 그림을, Beck으로 애자일의 가치와 실천을 익힙니다. **핵심**에서는 Cohn의 사용자 스토리, Cockburn의 유스케이스 작성법, 그리고 Jacobson의 OOSE로 요구사항을 다루는 세 가지 관점을 깊이 파고듭니다. **응용**에서는 Duvall의 CI로 현대적 통합 실천을, Jacobson의 Essence로 "방법론 감옥"을 벗어나는 사고법을 배웁니다. 마지막 **뿌리**에서는 Brooks의 *The Mythical Man-Month*로 이 모든 프로세스 논의의 원형이자 토대인 소프트웨어 프로젝트 관리의 고전을 관통합니다.
 
 이 글은 `Process-Essential` 시리즈의 **마스터 로드맵**입니다. 각 책의 핵심 항목을 정복할 때마다 체크박스를 채우고 상세 포스트를 연결하는 **도장깨기** 방식으로 진행 상황을 추적합니다. 완료한 항목이 늘어날수록 진행률이 차오르는 모습을 나침반 삼아 한 단계씩 나아가 보세요.
 
 ## 학습 흐름
 
-7단계는 아래 순서대로 진행하는 것을 권장합니다. **기초**(공학의 큰 그림·애자일 가치)로 토대를 다지고, **핵심**(요구사항·유스케이스)으로 무엇을 만들지 정의하는 힘을 기른 뒤, **응용**(CI·Essence)으로 현대적 실천과 방법론을 보는 눈을 완성하는 흐름입니다.
+8단계는 아래 순서대로 진행하는 것을 권장합니다. **기초**(공학의 큰 그림·애자일 가치)로 토대를 다지고, **핵심**(요구사항·유스케이스)으로 무엇을 만들지 정의하는 힘을 기른 뒤, **응용**(CI·Essence)으로 현대적 실천과 방법론을 보는 눈을 기릅니다. 마지막 **뿌리**(맨먼스)로 이 모든 것을 떠받치는 프로젝트 관리의 원형까지 관통하며 마무리하는 흐름입니다.
 
 ```mermaid
 flowchart TD
@@ -102,16 +116,20 @@ flowchart TD
         S7["7단계<br/>Essence · SEMAT"]
     end
 
-    S1 --> S2 --> S3 --> S4 --> S5 --> S6 --> S7
-    S7 --> Done([시리즈 완주 🎉])
+    subgraph ROOT["뿌리 · 프로젝트 관리의 고전"]
+        S8["8단계<br/>맨먼스 신화 · 개념적 무결성"]
+    end
+
+    S1 --> S2 --> S3 --> S4 --> S5 --> S6 --> S7 --> S8
+    S8 --> Done([시리즈 완주 🎉])
 ```
 
 ## 학습 진행 현황
 
 > 완료한 항목에는 상세 포스트 링크가 연결됩니다. 학습이 진행될 때마다 체크박스와 진행률을 갱신합니다.
 
-- 현재 완료한 항목: **32개**
-- 전체 항목: **32개**
+- 현재 완료한 항목: **37개**
+- 전체 항목: **37개**
 - 진행률: **100%** 🎉
 
 ## 1단계: Software Engineering: A Practitioner's Approach (Roger Pressman) — 소프트웨어 공학 개관
@@ -181,6 +199,16 @@ XP의 핵심 실천인 지속적 통합을 본격적으로 다룹니다. 코드�
 - [x] **실천(Practice)의 조합**: 방법을 레고처럼 조립하기, Practice 라이브러리 — [[상세](/2026/06/19/essentials-of-modern-software-engineering.html)]
 - [x] **팀의 상태 점검**: 알파 카드로 진행 상황을 시각화하고 다음 행동 정하기 — [[상세](/2026/06/19/essentials-of-modern-software-engineering.html)]
 
+## 8단계: The Mythical Man-Month (Fred Brooks) — 맨먼스 신화와 개념적 무결성
+
+1975년에 나온 소프트웨어 공학의 고전이자, 이 시리즈가 다룬 모든 프로세스 논의의 원형입니다. Brooks는 IBM OS/360을 이끌며 얻은 교훈을 통해 "왜 소프트웨어 프로젝트는 늘 늦고, 인력을 더해도 왜 나아지지 않는가"를 처음으로 정면 해부했습니다. 애자일이 답하려 한 질문의 뿌리를 확인하고, 반세기가 지나도 늙지 않는 사람·조직·복잡성의 문제를 관통하는 단계입니다.
+
+- [x] **맨먼스 신화와 브룩스의 법칙**: 사람과 시간은 교환되지 않는다 — 늦은 프로젝트에 인력을 더하면 더 늦어진다, 소통 비용 n(n−1)/2 — [[상세](/2026/08/12/the-mythical-man-month.html)]
+- [x] **개념적 무결성(Conceptual Integrity)**: 시스템 설계의 가장 중요한 고려사항, 아키텍처와 구현의 분리, 사용자의 대리인으로서의 아키텍트 — [[상세](/2026/08/12/the-mythical-man-month.html)]
+- [x] **외과수술팀과 두 번째 시스템 효과**: 소수가 설계하고 다수가 짓는 팀 구성, 과잉설계의 함정 — [[상세](/2026/08/12/the-mythical-man-month.html)]
+- [x] **일정과 소통**: "하루에 하루씩" 늦는 프로젝트, 날카로운 마일스톤과 바벨탑의 교훈 — [[상세](/2026/08/12/the-mythical-man-month.html)]
+- [x] **버리기 위한 시제품**: "하나는 버릴 셈으로 계획하라", 변화를 유일한 상수로 보는 설계 — [[상세](/2026/08/12/the-mythical-man-month.html)]
+
 ## 핵심 포인트
 
 - **프로세스와 요구사항은 한 쌍입니다**: "어떻게 일할 것인가(프로세스)"와 "무엇을 만들 것인가(요구사항)"는 분리되지 않습니다. 두 축을 함께 단단히 다지세요.
@@ -188,10 +216,11 @@ XP의 핵심 실천인 지속적 통합을 본격적으로 다룹니다. 코드�
 - **요구사항은 추적 가능해야 합니다**: 스토리·유스케이스가 테스트와 설계로 연결될 때 비로소 변화에 강한 개발이 됩니다(3·4·5단계의 공통 주제).
 - **실천은 피드백으로 작동합니다**: XP와 CI의 힘은 모두 짧고 자동화된 피드백 루프에서 나옵니다.
 - **방법론을 도구로 보세요**: Essence는 "정답 방법론"을 강요하지 않습니다. 실천을 조합하고 팀 상태를 점검하는 메타적 시야를 기르세요.
+- **인력과 진척은 다릅니다**: 소통 경로는 n(n−1)/2로 폭발하기에, 늦은 프로젝트에 사람을 더하면 더 늦어집니다(브룩스의 법칙). 그리고 흩어진 손을 하나로 묶는 것은 **개념적 무결성**입니다.
 
 ## 추천 학습 순서
 
-먼저 1단계 Pressman으로 분야 전체의 지도를 그려 길을 잃지 않을 좌표를 확보하고, 2단계 Beck으로 애자일의 가치와 짧은 피드백 루프라는 핵심 신념을 세웁니다. 이어 핵심 묶음에서는 가벼운 사용자 스토리(3단계 Cohn)로 요구사항을 다루는 감각을 먼저 익힌 뒤, 더 상세한 유스케이스 작성법(4단계 Cockburn)으로 정밀도를 높이고, 그 개념의 기원이자 추적성을 강조하는 OOSE(5단계 Jacobson)로 뿌리를 이해하는 순서가 자연스럽습니다. 마지막 응용 묶음에서는 XP의 실천을 구체화하는 CI(6단계 Duvall)를 손에 익힌 뒤, 모든 방법론을 메타적으로 바라보는 Essence(7단계 Jacobson)로 시야를 넓히며 마무리합니다.
+먼저 1단계 Pressman으로 분야 전체의 지도를 그려 길을 잃지 않을 좌표를 확보하고, 2단계 Beck으로 애자일의 가치와 짧은 피드백 루프라는 핵심 신념을 세웁니다. 이어 핵심 묶음에서는 가벼운 사용자 스토리(3단계 Cohn)로 요구사항을 다루는 감각을 먼저 익힌 뒤, 더 상세한 유스케이스 작성법(4단계 Cockburn)으로 정밀도를 높이고, 그 개념의 기원이자 추적성을 강조하는 OOSE(5단계 Jacobson)로 뿌리를 이해하는 순서가 자연스럽습니다. 응용 묶음에서는 XP의 실천을 구체화하는 CI(6단계 Duvall)를 손에 익힌 뒤, 모든 방법론을 메타적으로 바라보는 Essence(7단계 Jacobson)로 시야를 넓힙니다. 마지막으로 8단계 Brooks의 맨먼스로 이 모든 논의의 원형을 확인하며 시리즈를 관통해 마무리합니다. 시간이 없다면 Brooks는 가장 먼저 읽어도 좋은, 시대를 타지 않는 출발점이기도 합니다.
 
 ## 결론
 
