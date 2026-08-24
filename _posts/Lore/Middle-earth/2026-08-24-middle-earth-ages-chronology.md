@@ -216,9 +216,9 @@ flowchart TD
 <figure class="post-figure">
 <picture>
   <source type="image/webp" srcset="/assets/images/lore/middle-earth-ages-map-640.webp 640w, /assets/images/lore/middle-earth-ages-map-1024.webp 1024w, /assets/images/lore/middle-earth-ages-map-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
-  <img src="/assets/images/lore/middle-earth-ages-map.jpg" alt="양피지에 그린 고지도. 오른쪽에는 산맥·숲·강을 품은 온전한 초록 대륙(중간계)이 있고, 왼쪽 은청색 바다 속에는 물에 잠겨 유령처럼 비치는 두 땅 — 북서쪽 대륙과 별 모양 섬 — 이 점선 해안으로 가라앉아 있다. 가장 왼쪽 끝에는 안개 속으로 멀어지는 희미한 해안(아만)이 보인다. 왼쪽 아래 나침반과 룬 글자, 장식 테두리. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+  <img src="/assets/images/lore/middle-earth-ages-map.jpg" alt="양피지에 그린 고지도. 오른쪽에는 산맥·숲·강을 품은 온전한 초록 대륙(중간계 본토)이 있고, 그 서쪽 바다에는 본토와 이어진 채 물에 잠겨 유령처럼 비치는 옛 땅(벨레리안드)과 별 모양 섬(누메노르)이 점선 해안으로 가라앉아 있다. 가장 왼쪽 끝에는 안개 속으로 멀어지는 희미한 해안(아만)이 보인다. 왼쪽 아래 나침반과 룬 글자, 장식 테두리. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
 </picture>
-<figcaption>물에 잠긴 시대의 지도 — 오른쪽 <strong>온전한 중간계 본토</strong> 서쪽 바다 아래로, 침몰한 <strong>벨레리안드</strong>(본디 중간계 북서부, 청색산맥 서쪽)와 수몰한 <strong>누메노르</strong>(별 모양 섬)가 유령처럼 비친다. 맨 왼쪽 안개 너머로 멀어지는 것이 필멸자가 닿을 수 없게 된 <strong>아만</strong>이다. <em>(공식 지도를 옮긴 것이 아니라 콘셉트에 맞춰 새로 생성한 원본 삽화 — 도식적 표현이므로 실제 위치·형태와는 다르다)</em></figcaption>
+<figcaption>물에 잠긴 시대의 지도 — 오른쪽 <strong>온전한 중간계 본토</strong>에 이어진 채 서쪽 바다에 잠긴 <strong>벨레리안드</strong>(본디 중간계 북서부, 청색산맥 서쪽)와, 그 남쪽에 수몰한 <strong>누메노르</strong>(별 모양 섬)가 유령처럼 비친다. 맨 왼쪽 안개 너머로 멀어지는 것이 필멸자가 닿을 수 없게 된 <strong>아만</strong>이다. <em>(공식 지도를 옮긴 것이 아니라 콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
 </figure>
 
 아래 개념도는 그 변화를 시대별로 다시 도식화한 것입니다(상대적 위치와 사라진 땅만을 나만의 표현으로 새로 그린 것입니다).
