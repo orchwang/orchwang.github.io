@@ -123,9 +123,15 @@ header illustration; the user generates the PNG, drops it in `~/Downloads`, and 
 it into committed assets. This section is the **single source of truth** for that prompt — both
 agents build from this skeleton when asked.
 
+> **Two flavours.** The **default** base concept below (Grom / Orgrimmar) applies to every
+> ordinary post. **`Lore` posts are the one exception** — they keep the pixel-art *style* but
+> swap the protagonist/setting for the post's own fictional world (see "Lore variant" below),
+> and for them a prompt is a **standard deliverable**, not opt-in.
+
 ### Mandatory base concept (always include — verbatim intent)
 
-Every header-illustration prompt MUST carry this concept, regardless of the post's topic:
+Every header-illustration prompt MUST carry this concept, regardless of the post's topic
+(**except `Lore` posts** — see "Lore variant" below):
 
 1. **Style** — **dot/pixel-art 2D platformer game** look (retro 16-bit side-scroller), matching
    the site's "Warsong Codex" pixel-RPG identity. Crisp pixels, limited warm palette
@@ -162,6 +168,65 @@ so keep the composition balanced and avoid critical detail at the extreme edges.
   a **1536×1024 (3:2)** landscape. A landscape ~3:2 reads well as a `.post-figure--header`
   illustration; a 1.91:1 center-crop yields the OG image.
 - Keep `[SUBJECT]` legible as pixel art — one clear focal action, not a busy collage.
+
+### Lore variant (`[Lore, *]` posts) — keep the pixels, swap the world
+
+Posts in the **`Lore`** category analyse *other* fictional worlds (Middle-earth, and future
+novel/game universes). Forcing Grom Hellscream + Orgrimmar onto a Tolkien post would break the
+lore. So for `Lore` posts, **the pixel-art *style* is retained** (it is the wiki's visual
+identity) while the **protagonist, setting, palette, and mood are re-cast from the post's own
+world**. Two more differences from the default flavour:
+
+- **A prompt is the *standard* deliverable, not opt-in.** `Lore` lives on atmosphere, so
+  whoever authors a `Lore` post proposes a ready-to-use image-generation prompt by default
+  (the user generates the raster externally and it is wired as a full `.post-figure` header).
+- **Homage rule still binds.** Name iconic characters/places only as originals — *"a hooded
+  ranger in the likeness of Aragorn"*, *"a white tiered city in the likeness of Minas Tirith"* —
+  so the output is original homage pixel art, never a copied asset (same rule as Grom, DESIGN.md §8).
+
+**Kept from the base concept (never drop):**
+
+1. **Style** — retro 16-bit **dot/pixel-art 2D platformer / side-scroller**, crisp pixels, a
+   **limited** palette. This clause is non-negotiable; it is what keeps every `Lore` header
+   unmistakably part of this wiki.
+
+**Re-cast per world (the `Lore` variables):**
+
+2. **Palette** — a limited retro palette **tuned to the world's mood** (not the Orc rust-red).
+3. **Protagonist** — an iconic figure/archetype of *that* world, phrased as homage.
+4. **Setting** — a signature locale of *that* world.
+5. **Mood** — that world's own atmosphere.
+
+Author a **world card** once per sub-category (reuse it for every post in that world), then vary
+only `[SUBJECT]` per post. Middle-earth's card (`[Lore, Middle-earth]`):
+
+```text
+Palette: limited retro palette — mossy green, weathered stone-grey, parchment bone,
+  silver-blue mist, ember-gold for magic/rings.
+Protagonist (pick per post): a small barefoot hobbit in the likeness of Frodo · a hooded
+  ranger in the likeness of Aragorn · a grey wandering wizard in the likeness of Gandalf.
+Setting (pick per post): rolling green Shire hills with round doors · a white tiered city in
+  the likeness of Minas Tirith · black jagged peaks and a fiery mountain in the likeness of
+  Mordor · misty pine forest · ancient elven ruins.
+Mood: epic, mythic, melancholy-heroic; the weight of a long history; quest atmosphere.
+```
+
+**Lore prompt skeleton** (fill the world card + `[SUBJECT]`; keep clause 1 verbatim):
+
+```text
+Retro 16-bit pixel-art 2D platformer game scene, side-scroller perspective, crisp pixels,
+limited retro palette ([WORLD PALETTE]).
+Hero: [PROTAGONIST — homage phrasing, "… in the likeness of …"].
+Setting: [SETTING — a signature locale of this world, homage phrasing].
+Mood: [WORLD MOOD].
+Scene for this post: [SUBJECT — a pixel-art metaphor for this post's topic; one clear focal action].
+Self-contained illustration with one clear focal subject; the whole frame is shown in-body,
+so keep the composition balanced and avoid critical detail at the extreme edges.
+```
+
+Same per-generator tail (`--ar 3:2 --style raw` / 1536×1024) and the "generated PNG → committed
+asset" steps below apply unchanged. When a **new `Lore` sub-category** (world) is added, write
+its world card here so it becomes the shared source of truth for that world.
 
 ### From generated PNG → committed asset
 

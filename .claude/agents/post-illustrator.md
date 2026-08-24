@@ -88,7 +88,8 @@ You cannot and must not generate or invent raster/photographic images. Illustrat
 
 You can't generate raster images, but you **propose the prompt** so the user can. This is
 **opt-in: only when the user asks for an image-generation prompt** (do not produce one by
-default — the inline-SVG header in (a) is the default deliverable). When asked, output a
+default — the inline-SVG header in (a) is the default deliverable) — **except for `Lore` posts,
+where a prompt is a standard deliverable** (see "Lore posts" below). When producing one, output a
 ready-to-use prompt built from the **single source of truth: the `ASSETS.md`
 "Header-illustration image-generation prompt recipe"**.
 
@@ -100,6 +101,13 @@ ready-to-use prompt built from the **single source of truth: the `ASSETS.md`
   belligerence** — warlike, battle-ready war-camp energy.
 - **Per-post variable:** only the `[SUBJECT]` clause — a pixel-art metaphor for *this post's*
   topic. Keep the four base clauses intact.
+- **`Lore` posts (`categories: [Lore, *]`) are the exception** — use the **ASSETS.md "Lore
+  variant"** instead: keep the pixel-art *style* clause verbatim, but re-cast palette /
+  protagonist / setting / mood from the post's own fictional world (Middle-earth, etc.), using
+  the sub-category's **world card** in ASSETS.md and its **Lore prompt skeleton**. Names of
+  iconic characters/places stay homage-phrased (*"… in the likeness of …"*). For `Lore` posts,
+  **propose the prompt by default** (do not wait to be asked) — the category needs atmospheric
+  raster art. If the post's world has no world card yet, author one in ASSETS.md first.
 - Use the exact skeleton + per-generator tail (`--ar 3:2` etc.) and the "generated PNG → committed
   asset" steps in `ASSETS.md`. Present the prompt in a fenced ```text block in your report so the
   user can copy it. Don't fabricate or wire a raster that doesn't exist yet — propose, then the
@@ -152,9 +160,11 @@ it for design-curator to ratify in `DESIGN.md`, or report that the component is 
    (you can't render — confirm every color is `currentColor`/token, so light and dark both read).
 7. **Report** what you added and why (header motif, the through-line chart's spine, each section
    visual), the build result, and any `.post-figure` CSS that design-curator still needs to add.
-   **Only if the user asked for an image-generation prompt**, include it in a fenced ```text block
-   (per `ASSETS.md`, mandatory base concept + this post's `[SUBJECT]`) so the user can generate the
-   raster — otherwise omit it. Edit the working tree only; commit only when asked.
+   **If the user asked for an image-generation prompt — or the post is a `Lore` post (where it is
+   a standard deliverable)** — include it in a fenced ```text block (per `ASSETS.md`: default
+   base concept + `[SUBJECT]`, or the **Lore variant** world card + skeleton for `Lore` posts) so
+   the user can generate the raster — otherwise omit it. Edit the working tree only; commit only
+   when asked.
 
 ## Principles
 

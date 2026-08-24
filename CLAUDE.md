@@ -238,6 +238,20 @@ The `article-manager` subagent files each new article into the best-fitting sub-
 
 **Adding a sub-category:** create the matching nested directory under `_posts/` (e.g. `_posts/Technology/Go/` or `_posts/Articles/Data-Engineering/`) and use the nested form (`categories: [Technology, Go]` / `categories: [Articles, Data-Engineering]`).
 
+### Lore (nested)
+
+`Lore` — analyses of **fictional worlds / worldbuilding** from novels and games (세계관 정리·해설). Like `Technology`/`Engineering`/`Articles`, it is a **nested** category: every post is filed under exactly one sub-category naming a single **universe**, and lives in the matching directory. Each universe is a `*-Lore` series with a `banner: wartable` **roadmap** post (도장깨기 checkboxes over 시대·종족·지리·악의 계보·핵심 사물) plus per-topic deep-dives.
+
+| Sub-category | 무엇을 담나 |
+| --- | --- |
+| `Middle-earth` | 톨킨 레젠다리움 — 실마릴리온·호빗·반지의 제왕 (`Middle-earth-Lore` 시리즈) |
+
+**Copyright:** these source novels/games are **not public domain** — never transcribe originals; analyse and explain the world's structure/meaning in your own words, quoting only briefly with attribution.
+
+**Illustrations are a defining trait of `Lore`.** Every `Lore` post gets an atmospheric **pixel-art header illustration** proposed as an **image-generation prompt** (the user generates the raster externally; it is then wired as a full `.post-figure` header). The prompt keeps the wiki's **dot/pixel-art style** but re-casts protagonist/setting/palette/mood from the post's own world (never Grom/Orgrimmar) — see the **"Lore variant"** in `ASSETS.md` (single source of truth, with a per-world **world card**), applied by `post-illustrator` (or whoever authors the post).
+
+**Adding a sub-category (a new world):** create `_posts/Lore/<World>/`, use `categories: [Lore, <World>]`, and add the world's **world card** to the `ASSETS.md` "Lore variant" section.
+
 ---
 
 ## Writing New Posts
