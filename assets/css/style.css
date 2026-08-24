@@ -4060,6 +4060,133 @@ mark {
     border: none;
 }
 
+/* ── Code toolbar (language label + copy button) — added by code-toolbar.js ──
+   Applied only to JS-enhanced Rouge blocks, so the no-JS view keeps the plain
+   .highlight styling. The wrapper becomes the framed card; the inner .highlight
+   drops its own frame so the toolbar + code read as one unit. */
+.post-content .code-block--enhanced {
+    position: relative;
+    margin: 28px 0;
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius);
+    box-shadow: inset 2px 2px 0 rgba(0,0,0,0.08);
+    background-color: var(--bg-sunken);
+    overflow: hidden;
+}
+
+.post-content .code-block--enhanced .highlight {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.code-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 6px 10px 6px 16px;
+    background-color: var(--bg-light);
+    border-bottom: 2px solid var(--border-strong);
+}
+
+.code-toolbar__lang {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    user-select: none;
+}
+
+.code-copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--text-light);
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.code-copy-btn:hover {
+    color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.code-copy-btn:focus-visible {
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 2px;
+}
+
+.code-copy-btn svg {
+    width: 13px;
+    height: 13px;
+    flex: 0 0 auto;
+}
+
+.code-copy-btn.is-copied {
+    color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.code-copy-btn.is-error {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+/* ── Line-number gutter + hover row highlight — added by code-toolbar.js.
+   Numbers are CSS counters (::before, user-select:none) so they are never part
+   of a copy. The gutter is sticky so it stays put during horizontal scroll.
+   The .highlight's horizontal padding is dropped and re-supplied by each row
+   (gutter on the left, padding-right on the right) so hover backgrounds span
+   the full width without any negative margins / spurious overflow. */
+.code-block--numbered > .highlight {
+    padding: 24px 0;
+}
+
+.code-block--numbered .highlight code {
+    counter-reset: codeline;
+    /* inline-block + min-width:100% lets the code grow to its widest line so
+       long lines stay horizontally scrollable (block rows would clip instead),
+       while short blocks still fill the panel width for full-width row hover. */
+    display: inline-block;
+    min-width: 100%;
+}
+
+.code-line {
+    display: block;
+    counter-increment: codeline;
+    padding-right: 24px;
+}
+
+.code-line::before {
+    content: counter(codeline);
+    display: inline-block;
+    width: 2.6em;
+    margin-right: 16px;
+    padding: 0 10px 0 24px;
+    text-align: right;
+    color: var(--text-light);
+    opacity: 0.5;
+    user-select: none;
+    -webkit-user-select: none;
+    border-right: 1px solid var(--border-color);
+}
+
+.code-line:hover {
+    background-color: var(--gold-soft);
+}
+
 .highlight .hll { background-color: #ffffcc }
 .highlight .c { color: #6a737d; font-style: italic } /* Comment */
 .highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
