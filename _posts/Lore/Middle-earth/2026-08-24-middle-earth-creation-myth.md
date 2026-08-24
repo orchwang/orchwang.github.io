@@ -175,4 +175,4 @@ flowchart TD
 
 - [중간계 세계관 정복 로드맵](/2026/08/24/middle-earth-lore-roadmap.html) — 이 시리즈의 마스터 로드맵
 - [하나의 세계, 세 권의 책: 톨킨 레젠다리움과 하위창조](/2026/08/24/middle-earth-legendarium-overview.html) — 1단계 세계관 개요
-- **3단계: 시대 구분 — 세계의 연대기** — 등불·두 나무의 시대에서 제1·2·3시대로 *(작성 예정)*
+- [빛의 연대기: 등불과 두 나무에서 세 시대로](/2026/08/24/middle-earth-ages-chronology.html) — 3단계 시대 구분 (완료)
