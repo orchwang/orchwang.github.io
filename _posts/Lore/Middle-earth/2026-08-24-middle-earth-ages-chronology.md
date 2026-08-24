@@ -209,6 +209,81 @@ flowchart TD
 
 절대반지가 파괴되면서 사우론은 완전히 소멸하고, **제3시대가 끝납니다.** 마법과 엘프의 시대가 저물고, 엘프들은 서쪽 바다 너머로 떠나며, 아라고른이 인간의 왕으로 즉위하면서 **제4시대 — 인간의 시대** 가 열립니다. 톨킨 세계 전체가 "빛이 줄어드는 역사"라 했던 이유가 여기서 완성됩니다. 두 나무의 찬란한 빛에서 시작한 세계는, 이제 마법이 물러나고 평범한 인간들이 자기 힘으로 살아가는 세계가 됩니다.
 
+## 지리로 본 시대 — 사라지는 땅
+
+톨킨의 연대기에는 또 하나의 특징이 있습니다. **큰 시대가 끝날 때마다 땅덩어리 하나가 통째로 사라진다**는 것입니다. 제1시대는 대륙 **벨레리안드**의 침몰로, 제2시대는 섬 왕국 **누메노르**의 수몰로 끝났습니다. 그래서 톨킨의 지도는 시대마다 다시 그려야 합니다 — **지리가 곧 연대기**인 셈입니다. 아래는 그 변화를 원본 개념도로 도식화한 것입니다(공식 지도를 옮긴 것이 아니라, 상대적 위치와 사라진 땅만을 나만의 표현으로 새로 그린 것입니다).
+
+<figure class="post-figure">
+<svg role="img" aria-label="시대에 따라 지도가 바뀌는 과정을 세 칸으로 나눈 개념도. 각 칸은 왼쪽에 축복의 땅 아만, 오른쪽에 중간계, 그 사이에 바다가 있는 단순한 지도다. 첫째 칸 제1시대에는 북서쪽에 대륙 벨레리안드가 있다. 둘째 칸 제2시대에는 벨레리안드가 바다에 잠겨 사라지고, 바다 한가운데 별 모양 섬 누메노르가 새로 생긴다. 셋째 칸 제3시대에는 누메노르마저 수몰되고, 아만은 둥글게 바뀐 세계 밖으로 떨어져 나가 필멸자가 닿을 수 없게 되며, 결국 중간계만 남는다." viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg">
+  <title>시대별 지형 변화 — 시대가 끝날 때마다 땅 하나가 사라진다</title>
+
+  <text x="360" y="22" text-anchor="middle" font-size="11" fill="currentColor" font-weight="700" opacity="0.75">시대가 끝날 때마다 땅 하나가 사라진다</text>
+
+  <!-- ===== Panel A: 제1시대 ===== -->
+  <text x="120" y="46" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">제1시대</text>
+  <rect x="15" y="54" width="210" height="180" rx="5" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.4" opacity="0.9"/>
+  <!-- 아만 (west strip) -->
+  <path d="M15 54 L52 54 L44 234 L15 234 Z" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="1.6"/>
+  <text x="30" y="148" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8" transform="rotate(-90 30 148)">아만</text>
+  <!-- 중간계 (east blob) -->
+  <path d="M150 68 L218 78 L222 214 L156 224 L146 150 Z" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.5"/>
+  <text x="186" y="152" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85">중간계</text>
+  <!-- 벨레리안드 (highlighted, NW) -->
+  <path d="M70 74 L138 70 L132 120 L74 116 Z" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.2"/>
+  <text x="102" y="98" text-anchor="middle" font-size="7.5" fill="currentColor" font-weight="700">벨레리안드</text>
+  <text x="120" y="252" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">북서쪽 대륙 벨레리안드가 있다</text>
+
+  <!-- arrow A→B -->
+  <line x1="228" y1="144" x2="252" y2="144" stroke="var(--secondary-color)" stroke-width="2.4" marker-end="url(#mp-arrow)"/>
+
+  <!-- ===== Panel B: 제2시대 ===== -->
+  <text x="360" y="46" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">제2시대</text>
+  <rect x="255" y="54" width="210" height="180" rx="5" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.4" opacity="0.9"/>
+  <!-- 아만 -->
+  <path d="M255 54 L292 54 L284 234 L255 234 Z" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="1.6"/>
+  <text x="270" y="148" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8" transform="rotate(-90 270 148)">아만</text>
+  <!-- 중간계 -->
+  <path d="M390 68 L458 78 L462 214 L396 224 L386 150 Z" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.5"/>
+  <text x="426" y="152" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.85">중간계</text>
+  <!-- 벨레리안드 침몰 (dashed, faded) -->
+  <path d="M310 74 L378 70 L372 120 L314 116 Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="3 3" opacity="0.45"/>
+  <text x="342" y="98" text-anchor="middle" font-size="7" fill="currentColor" opacity="0.5">벨레리안드</text>
+  <text x="342" y="110" text-anchor="middle" font-size="6.5" fill="currentColor" opacity="0.5">(침몰)</text>
+  <!-- 누메노르 (star island, highlighted) -->
+  <path d="M338 168 L344 182 L358 184 L347 194 L350 208 L338 200 L326 208 L329 194 L318 184 L332 182 Z" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+  <text x="338" y="228" text-anchor="middle" font-size="7.5" fill="currentColor" font-weight="700">누메노르</text>
+  <text x="360" y="252" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">벨레리안드 침몰 · 누메노르 융성</text>
+
+  <!-- arrow B→C -->
+  <line x1="468" y1="144" x2="492" y2="144" stroke="var(--secondary-color)" stroke-width="2.4" marker-end="url(#mp-arrow)"/>
+
+  <!-- ===== Panel C: 제3시대 ===== -->
+  <text x="600" y="46" text-anchor="middle" font-size="10.5" fill="currentColor" font-weight="700">제3시대</text>
+  <rect x="495" y="54" width="210" height="180" rx="5" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="1.8" opacity="0.95"/>
+  <!-- 아만 세계 밖으로 (dashed, split away) -->
+  <path d="M495 54 L520 54 L512 234 L495 234 Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="3 3" opacity="0.5"/>
+  <text x="507" y="148" text-anchor="middle" font-size="6.5" fill="currentColor" opacity="0.55" transform="rotate(-90 507 148)">아만(닿을 수 없음)</text>
+  <line x1="524" y1="60" x2="524" y2="228" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2 4" opacity="0.5"/>
+  <!-- 중간계 (only solid land left) -->
+  <path d="M600 68 L668 78 L672 214 L606 224 L596 150 Z" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2"/>
+  <text x="636" y="152" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">중간계</text>
+  <!-- 누메노르 수몰 -->
+  <path d="M548 168 L554 182 L568 184 L557 194 L560 208 L548 200 L536 208 L539 194 L528 184 L542 182 Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-dasharray="3 3" opacity="0.45"/>
+  <text x="548" y="228" text-anchor="middle" font-size="6.5" fill="currentColor" opacity="0.5">누메노르 (수몰)</text>
+  <text x="600" y="252" text-anchor="middle" font-size="7.5" fill="currentColor" opacity="0.8">누메노르 수몰 · 세계가 둥글게</text>
+
+  <text x="360" y="292" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.85" font-weight="700">벨레리안드 → 누메노르 → 아만마저 멀어지고 — 끝내 중간계만 남는다</text>
+  <text x="360" y="312" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.7">지명 하나가 사라진 자리마다 한 시대가 끝났다 — 지리가 곧 연대기다</text>
+
+  <defs>
+    <marker id="mp-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="var(--secondary-color)"/>
+    </marker>
+  </defs>
+</svg>
+<figcaption><strong>시대별 지형 변화</strong> — 왼쪽 <strong>아만</strong>과 오른쪽 <strong>중간계</strong> 사이 바다에서, 시대가 끝날 때마다 땅 하나가 사라진다. <strong>제1시대</strong>엔 벨레리안드가 있었고, <strong>제2시대</strong>엔 그것이 침몰하고 누메노르가 솟았으며, <strong>제3시대</strong>엔 누메노르마저 수몰하고 아만은 둥글게 바뀐 세계 밖으로 떨어져 나간다. <em>(공식 지도를 옮긴 것이 아니라 상대적 위치만 도식화한 원본 개념도)</em></figcaption>
+</figure>
+
 ## 시대 요약
 
 | 시대 | 세계의 빛 | 중심 사건 | 시대를 끝낸 파국 |
