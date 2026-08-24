@@ -100,7 +100,36 @@ layout: default
     </nav>
 </div>
 
-{% if site.posts.size > 1 %}
+{% if page.series %}
+    {% comment %} Series posts: keep bottom prev/next INSIDE the series so a same-date
+       post from another series never bleeds into the stage navigation. {% endcomment %}
+    {% assign nav_series_posts = site.posts | where: "series", page.series | sort: 'date' %}
+    {% assign nav_series_size = nav_series_posts | size %}
+    {% assign nav_index = 0 %}
+    {% for post in nav_series_posts %}
+        {% if post.url == page.url %}
+            {% assign nav_index = forloop.index %}
+            {% break %}
+        {% endif %}
+    {% endfor %}
+    {% if nav_series_size > 1 %}
+    <nav class="post-navigation">
+        {% if nav_index > 1 %}
+        {% assign nav_prev_index = nav_index | minus: 2 %}
+        {% assign nav_prev = nav_series_posts[nav_prev_index] %}
+        <a href="{{ nav_prev.url | relative_url }}" class="prev-post">
+            ← {{ nav_prev.title }}
+        </a>
+        {% endif %}
+        {% if nav_index < nav_series_size %}
+        {% assign nav_next = nav_series_posts[nav_index] %}
+        <a href="{{ nav_next.url | relative_url }}" class="next-post">
+            {{ nav_next.title }} →
+        </a>
+        {% endif %}
+    </nav>
+    {% endif %}
+{% elsif site.posts.size > 1 %}
 <nav class="post-navigation">
     {% if page.previous.url %}
     <a href="{{ page.previous.url | relative_url }}" class="prev-post">
