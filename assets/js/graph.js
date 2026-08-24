@@ -50,7 +50,8 @@ import {
     'Retrospec': '--crimson',
     'Career': '--accent-color',
     'Language': '--secondary-color',
-    'BookLog': '--bone'
+    'BookLog': '--bone',
+    'Lore': '--lore-arcane'
   };
   const FALLBACK_TOKENS = ['--steel', '--gold', '--orc-green', '--crimson',
     '--accent-color', '--secondary-color', '--bone', '--primary-color'];

@@ -69,6 +69,7 @@
     --orc-green-deep: #3d6b2f;
     --steel: #4a4a52;          /* forged steel grey */
     --bone: #efe2c4;           /* tusk/bone ivory (medallion fill) */
+    --lore-arcane: #6a4b8c;    /* muted amethyst — Lore category continent (graph) */
 
     --gold: #9a6f12;           /* bronze/brass (frames, edges on dark chrome) */
     --gold-bright: #d9a528;    /* brighter brass for dark chrome */
@@ -192,6 +193,7 @@
     --orc-green-deep: #557f37;
     --steel: #6a6a74;             /* lit steel */
     --bone: #2e2620;             /* dark medallion backing */
+    --lore-arcane: #b79be0;      /* lit amethyst — Lore category continent (graph) */
 
     --gold: #d9a528;              /* brass/ember-gold */
     --gold-bright: #f5c542;       /* brightest forge-gold */
@@ -254,6 +256,7 @@
         --orc-green-deep: #557f37;
         --steel: #6a6a74;
         --bone: #2e2620;
+        --lore-arcane: #b79be0;
         --gold: #d9a528;
         --gold-bright: #f5c542;
         --gold-soft: rgba(245,197,66,0.15);
