@@ -225,4 +225,4 @@ flowchart TD
 
 - [중간계 세계관 정복 로드맵](/2026/08/24/middle-earth-lore-roadmap.html) — 이 시리즈의 마스터 로드맵
 - [빛의 연대기: 등불과 두 나무에서 세 시대로](/2026/08/24/middle-earth-ages-chronology.html) — 3단계 시대 구분
-- **5단계: 지리 — 세계의 무대** — 아만·벨레리안드·누메노르·제3시대 중간계 *(작성 예정)*
+- [세계의 무대: 축복의 땅 아만에서 제3시대 중간계까지](/2026/08/24/middle-earth-geography.html) — 5단계 지리
