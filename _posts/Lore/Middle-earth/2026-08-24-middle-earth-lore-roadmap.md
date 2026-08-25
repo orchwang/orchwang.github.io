@@ -164,9 +164,9 @@ flowchart TD
 
 **확장 — 주요 도시 (7단계)**
 
-- 현재 완료한 항목: **3개**
+- 현재 완료한 항목: **5개**
 - 전체 항목: **17개**
-- 진행률: **18%** (도시별 딥다이브 순차 작성 중)
+- 진행률: **29%** (도시별 딥다이브 순차 작성 중)
 
 ## 1단계: 세계관 개요 — 하나의 세계, 세 권의 책
 
@@ -244,8 +244,8 @@ flowchart TD
 - [x] **미나스 티리스(Minas Tirith)**: 산에 기댄 일곱 겹의 흰 도시, 펠렌노르 평원의 전투 — [[상세](/2026/08/25/middle-earth-city-minas-tirith.html)]
 - [x] **미나스 모르굴(Minas Morgul)**: 옛 미나스 이실이 타락한 나즈굴의 도시, 어둠의 쌍둥이 — [[상세](/2026/08/25/middle-earth-city-minas-morgul.html)]
 - [x] **오스길리아스(Osgiliath)**: 강을 낀 곤도르의 옛 수도이자 폐허 — [[상세](/2026/08/25/middle-earth-city-osgiliath.html)]
-- [ ] **에도라스(Edoras)**: 로한의 언덕 위 수도, 황금궁전 메두셀드 — *작성 예정*
-- [ ] **아이센가드 / 오르상크(Isengard)**: 사루만의 요새, 엔트의 습격과 수몰 — *작성 예정*
+- [x] **에도라스(Edoras)**: 로한의 언덕 위 수도, 황금궁전 메두셀드 — [[상세](/2026/08/25/middle-earth-city-edoras.html)]
+- [x] **아이센가드 / 오르상크(Isengard)**: 사루만의 요새, 엔트의 습격과 수몰 — [[상세](/2026/08/25/middle-earth-city-isengard.html)]
 - [ ] **로슬로리엔 / 카라스 갈라돈(Caras Galadhon)**: 황금 나무 위의 엘프 도시 — *작성 예정*
 - [ ] **에레보르(Erebor)**: 외로운 산의 드워프 산중왕국, 스마우그와 다섯 군대의 전투 — *작성 예정*
 
@@ -271,6 +271,8 @@ flowchart TD
 - [불멸과 필멸 사이: 엘프·인간·드워프·호빗, 그리고 오르크의 기원](/2026/08/24/middle-earth-races.html) — 4단계 종족 (완료)
 - [세계의 무대: 축복의 땅 아만에서 제3시대 중간계까지](/2026/08/24/middle-earth-geography.html) — 5단계 지리 (완료)
 - [악의 계보와 두 개의 보석: 모르고스에서 사우론으로, 실마릴에서 절대반지로](/2026/08/24/middle-earth-enemy-and-artifacts.html) — 6단계 악의 계보·핵심 사물 (완료)
-- [경비의 탑, 미나스 티리스: 일곱 겹의 흰 도시](/2026/08/25/middle-earth-city-minas-tirith.html) — 7단계 주요 도시 (작성 중, 2/17)
-- [요술의 탑, 미나스 모르굴: 시체빛에 잠긴 어둠의 쌍둥이](/2026/08/25/middle-earth-city-minas-morgul.html) — 7단계 주요 도시 (작성 중, 3/17)
-- [별들의 요새, 오스길리아스: 강 위에 무너진 곤도르의 심장](/2026/08/25/middle-earth-city-osgiliath.html) — 7단계 주요 도시 (작성 중, 3/17)
+- [경비의 탑, 미나스 티리스: 일곱 겹의 흰 도시](/2026/08/25/middle-earth-city-minas-tirith.html) — 7단계 주요 도시
+- [요술의 탑, 미나스 모르굴: 시체빛에 잠긴 어둠의 쌍둥이](/2026/08/25/middle-earth-city-minas-morgul.html) — 7단계 주요 도시
+- [별들의 요새, 오스길리아스: 강 위에 무너진 곤도르의 심장](/2026/08/25/middle-earth-city-osgiliath.html) — 7단계 주요 도시
+- [황금궁전의 언덕, 에도라스: 초원 위에 선 기마민족의 도시](/2026/08/25/middle-earth-city-edoras.html) — 7단계 주요 도시
+- [쇠의 고리, 아이센가드: 마음이 금속과 바퀴가 될 때](/2026/08/25/middle-earth-city-isengard.html) — 7단계 주요 도시
