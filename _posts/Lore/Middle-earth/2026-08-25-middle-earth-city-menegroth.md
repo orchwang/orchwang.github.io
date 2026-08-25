@@ -10,7 +10,6 @@ image: /assets/images/lore/middle-earth-city-menegroth-og.jpg
 excerpt: "숲을 통째로 옮겨 담은 듯한 벨레리안드 최고(最古)이자 가장 아름다운 지하 궁전. 마이아 멜리안의 마법 장막이 나라 전체를 감싸 어떤 적도 들이지 않았지만, 정작 이 왕국을 무너뜨린 것은 안으로 들여온 보석 하나 — 실마릴의 저주였다. 제1시대 세 도시의 마지막을 정리한다."
 ---
 
-<!-- ILLUSTRATION(header): 메네그로스 헤더 삽화 — 아래 채팅의 생성 프롬프트 참고. 래스터 생성 후 이 주석을 <figure>로 교체한다.
 <figure class="post-figure post-figure--header">
 <picture>
   <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-menegroth-640.webp 640w, /assets/images/lore/middle-earth-city-menegroth-1024.webp 1024w, /assets/images/lore/middle-earth-city-menegroth-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
@@ -18,7 +17,6 @@ excerpt: "숲을 통째로 옮겨 담은 듯한 벨레리안드 최고(最古)�
 </picture>
 <figcaption>천 개의 동굴 <strong>메네그로스</strong>의 대홀 — 돌을 깎아 세운 <strong>너도밤나무 모양의 기둥</strong>들이 별이 박힌 천장까지 뻗고, 가지 사이에 돌새와 돌짐승이 앉았다. 숲을 통째로 옮겨 담은 듯한 지하 궁전에, 왕 <strong>싱골</strong>과 마이아 여왕 <strong>멜리안</strong>이 자리한다. <em>(공식 이미지를 옮긴 것이 아니라 콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
 </figure>
--->
 
 <figure class="post-figure">
 <svg role="img" aria-label="메네그로스가 마이아 멜리안의 마법 장막으로 지켜졌지만 안으로 들여온 실마릴의 저주로 무너졌음을 보여 주는 개념도. 가운데에 너도밤나무 기둥이 선 지하 궁전이 있고, 그 둘레를 빛나는 마법의 결계(멜리안의 장막)가 감싼다. 왼쪽 바깥에서 날아든 적의 화살들이 결계에 막혀 튕겨 나간다. 그러나 결계 안쪽 궁전 한복판에는 밝게 빛나는 보석 실마릴이 놓여 있고, 그 보석에서 붉은 균열이 사방으로 번져 안에서 터진 저주 — 동족살해 — 를 나타낸다." viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
@@ -126,7 +124,6 @@ flowchart LR
 
 ## 멜리안의 장막 — 마법으로 두른 나라
 
-<!-- ILLUSTRATION(birdview): 메네그로스 버드뷰 삽화 — 아래 채팅의 생성 프롬프트 참고. 래스터 생성 후 이 주석을 <figure>로 교체한다.
 <figure class="post-figure">
 <picture>
   <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-menegroth-birdview-640.webp 640w, /assets/images/lore/middle-earth-city-menegroth-birdview-1024.webp 1024w, /assets/images/lore/middle-earth-city-menegroth-birdview-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
@@ -134,7 +131,6 @@ flowchart LR
 </picture>
 <figcaption><strong>도리아스와 메네그로스 전경</strong> — 울창한 숲 한복판을 흐르는 <strong>에스갈두인</strong> 강, 그 강가 언덕 아래로 난 지하 궁전의 성문과 그 앞의 돌다리. 숲 전체를 감싼 희미한 은청색 결계가 <strong>멜리안의 장막</strong> — 나라를 두른 마법의 방벽이다. <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
 </figure>
--->
 
 메네그로스의 진짜 방어는 성벽이 아니라 **마법**이었습니다. 여왕 **멜리안**은 발라와 같은 반열의 정령 **마이아**로, 자신의 힘으로 도리아스 전체를 감싸는 보이지 않는 결계 — **멜리안의 장막(Girdle of Melian)** — 을 둘렀습니다.
 
