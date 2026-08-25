@@ -175,6 +175,14 @@ flowchart LR
 
 곤돌린의 함락에서 살아남은 아이 **에아렌딜**이 바다를 건너 발라들에게 중간계를 구해 달라 간청하고, 마침내 그 간청이 받아들여져 **분노의 전쟁(War of Wrath)** 이 벌어집니다. 서녘에서 온 **발라의 군대**가 벨레리안드로 밀려들어, 오랜 세월 누구도 함락하지 못한 앙반드를 정면으로 칩니다.
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-angband-war-of-wrath-640.webp 640w, /assets/images/lore/middle-earth-city-angband-war-of-wrath-1024.webp 1024w, /assets/images/lore/middle-earth-city-angband-war-of-wrath-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-angband-war-of-wrath.jpg" alt="제1시대를 끝낸 분노의 전쟁을 한 프레임에 담은 시네마틱 장면. 하늘 한복판에서 이마에 눈부신 흰 보석(실마릴)을 단 영웅이 빛나는 하늘배를 몰고, 거대한 독수리 떼와 함께 역사상 가장 큰 검은 날개 용과 맞선다. 그 아래로 무너져 내리는 세 화산 봉우리와 갈라져 열린 검은 요새, 은백과 금빛 깃발을 든 서녘의 군대가 부서진 성문으로 밀려든다. 화면 아래 가장자리에서는 갈라진 땅으로 바다가 쏟아져 들어와 대륙이 잠긴다. 검은 쇠와 붉은 불 위로 은백·금·여명빛이 쏟아지는 빛과 어둠의 대비. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>분노의 전쟁 — 제1시대를 끝낸 빛과 어둠의 격돌</strong>. 하늘에서는 실마릴을 단 <strong>에아렌딜</strong>이 빛의 배를 몰고 <strong>독수리들</strong>과 함께 최대의 날개 용 <strong>앙칼라곤</strong>과 싸우고, 그 아래로 <strong>상고로드림</strong>이 무너지며 <strong>서녘의 군대</strong>가 부서진 앙반드로 밀려든다. 화면 아래엔 갈라진 땅으로 바다가 쏟아져 — <strong>벨레리안드의 수몰</strong>, 승리의 값이 함께 담겼다. <em>(공식 이미지를 옮긴 것이 아니라 콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
+
 - **상고로드림의 붕괴** — 세계의 권능이 직접 부딪치자, 세 화산 봉우리는 무너지고 앙반드는 뿌리째 파괴됩니다.
 - **모르고스의 추방** — 어둠의 군주는 붙잡혀 세계 밖 **공허**로 던져집니다. 제1시대의 악의 근원이 마침내 제거된 것입니다.
 - **세계째 치른 값** — 그러나 그 싸움의 규모가 너무나 컸던 나머지, 전쟁의 여파로 **벨레리안드 전체가 바다에 잠깁니다.** 앙반드를 부수기 위해 세계의 한 대륙을 통째로 잃은 것입니다. 이로써 **제1시대가 끝납니다.**
