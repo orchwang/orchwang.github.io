@@ -154,6 +154,14 @@ flowchart LR
 
 곤돌린이 **안에서 새어 나간 배신**으로 무너졌다면, 나르고스론드는 **스스로 드러낸 자만**으로 무너졌습니다. 방향은 반대지만 — 하나는 안이 열리고, 하나는 밖으로 나섰습니다 — 둘 다 **도시를 지키던 원칙(은신)을 스스로 저버린** 순간 몰락했다는 점에서 같습니다.
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-nargothrond-glaurung-640.webp 640w, /assets/images/lore/middle-earth-city-nargothrond-glaurung-1024.webp 1024w, /assets/images/lore/middle-earth-city-nargothrond-glaurung-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-nargothrond-glaurung.jpg" alt="함락의 현장. 협곡을 가로지르는 큰 돌다리 위를, 거대한 황금빛 화룡 글라우룽이 불을 내뿜으며 성문을 향해 걸어 들어온다. 절벽을 파고든 지하 도시의 성문과 홀들이 불길과 연기에 휩싸이고, 무너지는 성벽 사이로 요정 방어군이 흩어진다. 붉은 화염빛이 협곡을 물들이고 강물에 그 빛이 비친다. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>나르고스론드의 함락</strong> — 아버지 용 <strong>글라우룽</strong>이 도시가 자랑삼아 놓은 <strong>큰 다리를 밟고</strong> 불을 내뿜으며 성문으로 밀려든다. 날개 없이 땅을 기는 거대한 화룡, 그 열기와 주술 앞에 벨레리안드 최대의 왕국이 하루아침에 잿더미가 된다. 위치를 감추려 놓지 않았던 다리가, 그대로 파멸이 걸어 들어온 길이 되었다. <em>(공식 이미지를 옮긴 것이 아니라 콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
+
 ## 보물 위에 누운 용 — 저주의 무대
 
 도시를 함락한 글라우룽은 파괴에 그치지 않고, 나르고스론드에 쌓인 막대한 **보물 위에 똬리를 틀고 눕습니다.** 훗날 스마우그가 에레보르의 금 위에 누운 그 원형이 여기, 용의 아버지 글라우룽에게서 시작됩니다.
