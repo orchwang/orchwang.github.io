@@ -144,6 +144,14 @@ flowchart LR
 
 싱골의 딸 **루시엔**은 인간 영웅 **베렌**과 사랑에 빠집니다. 싱골은 딸을 내주는 조건으로 모르고스의 왕관에 박힌 **실마릴** 하나를 요구했고 — 사실상 불가능한 과업으로 베렌을 내치려 한 것이었으나 — 두 사람은 끝내 그 보석을 되찾아 메네그로스로 가져옵니다. 세상에서 가장 탐나는 보석이, 가장 안전한 궁전 **안으로** 들어온 것입니다.
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-menegroth-silmaril-640.webp 640w, /assets/images/lore/middle-earth-city-menegroth-silmaril-1024.webp 1024w, /assets/images/lore/middle-earth-city-menegroth-silmaril-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-menegroth-silmaril.jpg" alt="별 박힌 천장과 너도밤나무 돌기둥이 늘어선 메네그로스 대홀 한복판, 황금 목걸이 나우글라미르에 박힌 실마릴이 눈부신 흰빛으로 타오른다. 그 앞에 남루한 인간 베렌과 빛나는 요정 처녀 루시엔이 보석을 바쳐 들고, 계단 위 옥좌에는 은발의 왕 싱골과 빛나는 마이아 여왕 멜리안이 앉아 있다. 보석의 찬란한 빛이 한쪽 홀을 비추지만, 그 빛이 드리운 긴 그림자 속 기둥 뒤에서 탐욕에 찬 드워프의 손과 붉은 불씨의 그림자가 다가올 파멸을 예고한다. 은청색과 금빛, 대비되는 붉은 어둠. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>실마릴의 도래 — 영광과 저주가 한 프레임에</strong>. 베렌과 루시엔이 되찾아 온 <strong>실마릴</strong>이 나우글라미르에 박혀 대홀을 눈부시게 밝히고, 옥좌의 싱골·멜리안이 이를 맞는다. 그러나 그 찬란한 빛이 드리운 긴 그림자 속에는 이미 <strong>보석을 탐하는 손과 다가올 불길</strong>이 어른거린다. 가장 아름다운 것을 안으로 들이는 순간, 그 저주도 함께 들어왔다. <em>(공식 이미지를 옮긴 것이 아니라 콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
+
 그리고 그 보석은 저주를 함께 들여왔습니다. 실마릴에는 그것을 만든 **페아노르 가문의 맹세**가 걸려 있었습니다. 누구든 실마릴을 가진 자에게서 그것을 빼앗겠다는 맹세였고, 이 보석이 닿는 곳마다 피를 불렀습니다.
 
 - **싱골의 최후** — 싱골은 실마릴을 드워프의 명품 목걸이 **나우글라미르**에 박게 했으나, 완성된 보석의 소유를 두고 드워프들과 다투다 살해당합니다.
