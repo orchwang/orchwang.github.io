@@ -124,6 +124,14 @@ flowchart LR
 
 곤돌린이 '산맥으로 숨은 하얀 도시'라면, 나르고스론드는 '강 아래 바위로 숨은 어두운 도시'였습니다. 두 도시 모두 **숨는 것**을 생명으로 삼았다는 점에서 한 쌍입니다.
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-nargothrond-hall-640.webp 640w, /assets/images/lore/middle-earth-city-nargothrond-hall-1024.webp 1024w, /assets/images/lore/middle-earth-city-nargothrond-hall-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-nargothrond-hall.jpg" alt="살아 있는 바위를 통째로 깎아 세운 나르고스론드의 거대한 지하 기둥 홀. 천장까지 닿는 굵은 돌기둥들이 열을 지어 어둠 속으로 아득히 이어지고, 기둥마다 걸린 횃불과 등불이 바위 벽을 황금빛으로 물들인다. 홀 안쪽 높은 자리에 왕관을 쓴 놀도르 왕이 서 있고, 그 곁으로 굴착을 도운 드워프 석공들과 요정 신하들이 오간다. 바위를 깎아 낸 정교한 조각과 계단, 지하를 흐르는 물길이 보인다. 웅장하고 서늘한 지하 왕국의 위용. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>바위 속 대홀</strong> — 살아 있는 바위를 통째로 깎아 세운 나르고스론드의 지하 기둥 홀. 천장까지 닿는 돌기둥이 어둠 속으로 아득히 이어지고, 횃불이 바위 벽을 황금빛으로 물들인다. 높은 자리의 왕관 쓴 이는 <strong>핀로드 펠라군드</strong>(오마주) — '동굴을 판 자'라는 그 별명대로, 드워프 석공들과 함께 바위를 깎아 벨레리안드 최대의 왕국을 세웠다. <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
+
 ## 왕의 희생 — 반지와 맹세
 
 <figure class="post-figure">
@@ -165,6 +173,14 @@ flowchart LR
 ## 보물 위에 누운 용 — 저주의 무대
 
 도시를 함락한 글라우룽은 파괴에 그치지 않고, 나르고스론드에 쌓인 막대한 **보물 위에 똬리를 틀고 눕습니다.** 훗날 스마우그가 에레보르의 금 위에 누운 그 원형이 여기, 용의 아버지 글라우룽에게서 시작됩니다.
+
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-nargothrond-hoard-640.webp 640w, /assets/images/lore/middle-earth-city-nargothrond-hoard-1024.webp 1024w, /assets/images/lore/middle-earth-city-nargothrond-hoard-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-nargothrond-hoard.jpg" alt="약탈당한 나르고스론드의 지하 대홀 안, 산더미처럼 쌓인 금화·보석·갑옷·잔 위에 거대한 황금빛 화룡 글라우룽이 똬리를 틀고 누워 있다. 날개 없이 땅을 기는 육중한 몸이 보물 더미를 휘감고, 사악한 눈이 어둠 속에서 이글거리며 콧김에 옅은 연기가 흐른다. 보물의 금빛과 용의 열기가 부서진 돌기둥과 그을린 홀 벽을 붉게 물들인다. 앞쪽에는 갑옷을 두른 한 인간 영웅이 검을 든 채 홀로 작게 서서 용의 주술 어린 눈길에 붙들린 듯 맞서 있다. 압도적 크기 대비, 불길하고 저주받은 분위기. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>보물 위에 누운 용</strong> — 함락한 도시의 금·보석 더미 위에 똬리를 튼 아버지 용 <strong>글라우룽</strong>. 앞쪽에 홀로 선 갑옷 두른 이는 그 주술의 눈길에 붙들린 인간 영웅 <strong>투린</strong>(오마주)이다. 훗날 에레보르의 금 위에 누운 <strong>스마우그</strong>의 원형이 바로 여기서 시작된다 — 용이 보물 위에 눕는 순간, 나르고스론드는 파괴를 넘어 <strong>저주의 무대</strong>가 된다. <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
 
 나르고스론드의 함락은 동시에 **투린 비극의 절정**이기도 합니다. 글라우룽은 단순한 짐승이 아니라 말과 마법으로 상대의 마음을 홀리는 존재였고, 투린을 주술로 붙들어 그릇된 선택으로 몰아갑니다. 그 결과 투린을 사랑한 요정 처녀 **핀두일라스**는 버림받아 죽고, 이후 이어지는 투린 가문의 파멸은 톨킨이 그린 가장 어두운 비극(『후린의 아이들』)으로 남습니다. 나르고스론드의 몰락은 그 비극이 절정으로 치닫는 무대였습니다.
 
