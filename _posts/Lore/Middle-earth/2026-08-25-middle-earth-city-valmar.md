@@ -103,6 +103,14 @@ flowchart LR
 
 그러나 발마르를 특별하게 만든 것은 도시 자체가 아니라, 그 **곁에 선 두 그루의 나무**였습니다.
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-valmar-valar-gathering-640.webp 640w, /assets/images/lore/middle-earth-city-valmar-valar-gathering-1024.webp 1024w, /assets/images/lore/middle-earth-city-valmar-valar-gathering-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-valmar-valar-gathering.jpg" alt="초록 언덕 위 운명의 원에 성격과 외양이 제각각인 발라들이 모여 있다. 창공의 왕, 별의 여왕, 대장장이 신, 자라는 것들의 여신, 바다의 군주, 운명의 심판자 등 서로 다른 색과 기품의 신적 존재들이 어우러지고, 배경에는 은빛·금빛 두 나무가 빛을 뿌리며 그 아래로 종탑과 황금 지붕의 발마르 도시가 펼쳐진다. 해도 달도 없는 별밤. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>발라들의 회합</strong> — 운명의 원에 모인 신들은 하나같지 않다. 창공의 왕·별의 여왕·대장장이·자라는 것들의 여신·바다의 군주·운명의 심판자… 저마다 다른 빛과 기품을 지닌 <strong>발라</strong>들이 두 나무의 빛과 종소리의 도시를 배경으로 세계를 의논한다. 이 도시의 격은 건물이 아니라, 그것을 다스리는 존재들에게서 나온다.</figcaption>
+</figure>
+
 ## 두 나무의 빛 — 값없이 흘러넘친 황금
 
 <figure class="post-figure">
@@ -129,6 +137,14 @@ flowchart LR
 이 사건이 **발리노르의 어둠(Darkening of Valinor)** 입니다. 세계의 유일한 빛이 꺼지자, 축복의 땅마저 **처음으로 밤에 잠깁니다.** 종소리의 도시 발마르 위로 세계의 첫 어둠이 내린 것입니다. 모르고스는 그 혼란을 틈타 엘프들의 보석 **실마릴**(두 나무의 빛을 담아 둔 세 보석)을 훔쳐 달아나고, 이것이 제1시대 실마릴 전쟁의 방아쇠가 됩니다.
 
 발라들은 죽어 가는 두 나무에서 마지막으로 맺힌 것을 건집니다 — 텔페리온의 마지막 **꽃**과 라우렐린의 마지막 **열매**입니다. 이 둘로 각각 **달**과 **해**를 만들어 하늘에 띄웁니다. 우리가 아는 해와 달은, 이렇게 잃어버린 두 나무 빛의 **마지막 잔영**입니다. 발마르를 채우던 그 완전한 빛은 다시 돌아오지 않았습니다.
+
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-valmar-darkening-640.webp 640w, /assets/images/lore/middle-earth-city-valmar-darkening-1024.webp 1024w, /assets/images/lore/middle-earth-city-valmar-darkening-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-valmar-darkening.jpg" alt="언덕 위 은빛·금빛 두 나무가 창에 찔려 시들며 빛이 꺼져 간다. 밑동에는 거대한 거미 형상의 어둠이 웅크려 빛을 빨아 마시고 그 몸에서 먹빛 어둠이 사방으로 번진다. 곁 그림자에는 창을 든 최초의 악이 서서 검은 철 왕관에 빛나는 세 보석을 박고 있다. 배경의 종탑·황금 지붕 도시가 처음으로 어둠에 잠기고, 죽어 가는 나무에 마지막 은빛 꽃과 금빛 열매가 희미하게 남아 빛난다. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>발리노르의 어둠</strong> — 세계의 첫 밤. 거대한 거미 형상의 <strong>웅골리안트</strong>가 두 나무의 빛을 남김없이 빨아 마시고, 그 몸에서 번진 먹빛 어둠이 종소리의 도시를 처음으로 삼킨다. 그림자 속 <strong>모르고스</strong>는 훔친 <strong>실마릴</strong>을 검은 철 왕관에 박고, 죽어 가는 나무에 남은 마지막 은빛 꽃과 금빛 열매만이 장차 <strong>달과 해</strong>가 될 잔영으로 희미하게 빛난다.</figcaption>
+</figure>
 
 ## 상징과 의미 — 잃어버린 빛의 고향
 
