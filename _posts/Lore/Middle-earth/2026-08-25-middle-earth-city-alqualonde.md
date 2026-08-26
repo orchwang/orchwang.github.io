@@ -133,6 +133,14 @@ flowchart LR
 
 그러자 페아노르의 놀도르는 **힘으로 배를 빼앗으려** 합니다. 텔레리가 부두에서 이를 막아서자, 놀도르는 칼을 뽑아 그들을 베고 배를 강탈합니다. 이것이 **알콸론데의 동족살해(첫 동족살해)** 입니다 — 세계가 생긴 이래 **요정이 요정의 피를 흘린 최초의 사건**. 무장하지 않은 뱃사람이 많던 텔레리 쪽이 크게 스러졌고, 진주의 방파제가 같은 종족의 피로 물들었습니다.
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-alqualonde-kinslaying-640.webp 640w, /assets/images/lore/middle-earth-city-alqualonde-kinslaying-1024.webp 1024w, /assets/images/lore/middle-earth-city-alqualonde-kinslaying-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-alqualonde-kinslaying.jpg" alt="별빛만 남은 밤, 백조의 항구 방파제 위에서 벌어진 첫 동족살해. 칼을 뽑아 든 놀도르 요정들이 텔레리 뱃사람들을 베며 전진하고, 무장하지 않은 텔레리는 노와 창으로 배를 막아선다. 전경에서는 백조 모양 배 한 척이 밧줄에 끌려 항구 밖으로 강탈되고, 그 금빛 부리가 등불에 번득인다. 진주 방파제 위에 붉은 피가 번지고 등불이 물과 피에 어린다. 두 나무가 죽어 별만 남은 첫 어둠의 하늘. 비극적이고 장엄한 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>알콸론데의 동족살해</strong> — 진주로 빛나던 방파제 위, 칼을 뽑은 <strong>놀도르</strong>가 노와 창으로 배를 지키려는 <strong>텔레리</strong> 뱃사람들을 베며 전진한다. 전경에선 <strong>백조 배</strong> 한 척이 밧줄에 끌려 항구 밖으로 강탈되고, 그 금빛 부리가 등불에 번득인다. 두 나무가 죽어 별만 남은 첫 어둠 아래, <strong>요정이 요정의 피를 흘린 최초의 순간</strong> — 무기가 된 것은 미움이 아니라 '가장 아름다운 것을 갖겠다'는 마음이었다. <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
+
 이 사건이 놀도르에게 남긴 것은 배 몇 척이 아니라 **지울 수 없는 저주**였습니다. 아만을 떠나는 놀도르 앞에 발라 만도스의 사자가 나타나 **북구의 예언(만도스의 저주)** 을 선포합니다 — 너희가 흘린 동족의 피가 너희를 따라다닐 것이며, 배신과 좌절이 너희 일을 그르치리라는 것. 실제로 제1시대 내내 놀도르의 영광은 늘 이 첫 피의 그림자 아래 놓입니다. 페아노르의 아들들이 훗날 두 번째·세 번째 동족살해를 거듭하는 것도 이 저주의 연장입니다.
 
 한편 이 참극에 몸서리친 일부 놀도르 — 특히 핀아르핀과 그를 따르는 무리 — 는 발걸음을 돌려 아만으로 되돌아갑니다. 같은 도시에서 어떤 이는 피를 흘리고, 어떤 이는 그 피를 보고 돌아선 것입니다.
