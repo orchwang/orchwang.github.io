@@ -134,6 +134,14 @@ flowchart LR
 
 여기서 이 도시의 결정적 장면이 벌어집니다. 발라들의 만류에도, 페아노르와 놀도르의 대부분은 복수와 자유를 좇아 **아만을 떠나기로** 합니다. 두 나무의 빛을 향해 세웠던 그 도시에서, 요정들은 이제 **그 빛을 등지고** 고갯길 너머 바다로, 다시 중간계로 향합니다. 이것이 **놀도르의 망명(이탈)** 입니다. 세계에서 가장 축복받은 자리를 스스로 걸어 나온 이 선택은, 곧이어 벌어질 첫 동족살해(다음 편 알콸론데)와 제1시대 실마릴 전쟁의 모든 비극으로 이어집니다.
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-tirion-exile-640.webp 640w, /assets/images/lore/middle-earth-city-tirion-exile-1024.webp 1024w, /assets/images/lore/middle-earth-city-tirion-exile-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-tirion-exile.jpg" alt="빛나던 하얀 도시 티리온을 등지고 어두운 고갯길과 검은 바다를 향해 내려가는 놀도르 요정들의 긴 행렬. 선두에는 왕관을 쓴 장인-군주(페아노르 오마주)가 높이 든 횃불과 뽑은 검으로 무리를 이끌고, 그 뒤로 창과 깃발과 횃불의 열이 언덕을 감아 내려간다. 요정들의 등은 도시의 빛 쪽을, 얼굴은 어둠 쪽을 향한다. 두 나무가 죽어 별만 남은 첫 밤 하늘. 비극적이고 장엄한 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>놀도르의 망명</strong> — 두 나무의 빛을 향해 세운 도시에서, 요정들은 이제 그 빛을 등지고 고갯길 너머 어둠으로 내려간다. 선두의 왕관 쓴 장인-군주(<strong>페아노르</strong> 오마주)가 든 횃불과 뽑은 검이 무리를 이끌고, 뒤로 창·깃발·횃불의 열이 언덕을 감아 내려간다. 두 나무가 죽어 별만 남은 <strong>첫 밤</strong>, 세계에서 가장 축복받은 자리를 스스로 걸어 나오는 발걸음. <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
+
 ## 상징과 의미 — 향함과 등짐 사이
 
 티리온이 이 세계에서 갖는 의미는, 이 도시가 **빛을 향한 마음과 빛을 등진 선택** 사이에 놓여 있다는 데 있습니다.
