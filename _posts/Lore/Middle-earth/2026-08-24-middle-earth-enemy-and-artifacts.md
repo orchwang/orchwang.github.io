@@ -103,6 +103,14 @@ flowchart TD
 
 두 군주를 관통하는 것은 앞선 단계들에서 반복된 원칙입니다 — **악은 창조하지 못하고**(2·4단계), **지배하려 할 뿐**입니다. 모르고스는 세계를 오염시켜 지배하려 했고, 사우론은 반지로 모든 의지를 하나로 묶어 지배하려 했습니다. 규모는 줄었지만 본질은 같습니다.
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-enemy-two-dark-lords-640.webp 640w, /assets/images/lore/middle-earth-enemy-two-dark-lords-1024.webp 1024w, /assets/images/lore/middle-earth-enemy-two-dark-lords-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-enemy-two-dark-lords.jpg" alt="한 프레임에 마주 선 두 어둠의 군주. 왼쪽은 세 실마릴을 박은 왕관을 쓴 거대한 최초의 어둠으로, 그 힘이 세계 대지 전체로 검은 안개처럼 번지는 '규모의 어둠'을 등졌다. 오른쪽은 더 작지만 날카로운 두 번째 어둠으로, 하나의 검은 첨탑과 그 안에 응축된 단 하나의 붉은 광점 '집중의 어둠'을 등졌다. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>두 어둠의 군주</strong> — 악은 하나의 계보다. 왼쪽 <strong>모르고스</strong>는 힘을 세계 전체에 흩뿌린 <strong>규모의 어둠</strong>(배경에 넓게 번지는 오염), 오른쪽 <strong>사우론</strong>은 그 힘을 한 점에 응축한 <strong>집중의 어둠</strong>(단 하나의 탑과 붉은 눈). 스승보다 약하기에 오히려 더 위험한 제자 — 그 집중의 극단이 곧 절대반지다.</figcaption>
+</figure>
+
 ## 두 개의 보석 — 실마릴과 절대반지
 
 각 어둠의 시대에는 그 시대를 상징하는 **하나의 사물**이 있습니다.
@@ -120,6 +128,14 @@ flowchart TD
 | 결말 | 하늘·바다·땅으로 흩어짐 | 운명의 산에서 파괴 |
 
 두 사물은 성격이 정반대지만 **같은 이야기**를 합니다 — 세계를 망치는 것은 대개 노골적인 정복욕이 아니라, **하나의 대상을 붙들고 놓지 않으려는 '소유하려는 사랑'**이라는 것. 페아노르는 자신이 만든 아름다움에 대한 집착으로, 반지의 소유자들은 힘에 대한 갈망으로 무너집니다. 실마릴이 '선한 것을 향한 잘못된 사랑'이라면, 절대반지는 '악을 향한 사랑'입니다 — 그러나 결말은 같습니다.
+
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-enemy-two-jewels-640.webp 640w, /assets/images/lore/middle-earth-enemy-two-jewels-1024.webp 1024w, /assets/images/lore/middle-earth-enemy-two-jewels-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-enemy-two-jewels.jpg" alt="화면 좌우에서 대치하는 두 개의 보석. 왼쪽은 은청빛으로 빛나는 세 개의 성스러운 실마릴로, 배경에 두 나무의 빛과 맹세·동족살해의 불길이 몽타주로 겹친다. 오른쪽은 붉게 타오르는 하나의 절대반지로, 배경에 운명의 산 용암과 전장·반지를 잘라 내는 순간이 겹친다. 중앙에서 두 빛이 팽팽히 맞부딪힌다. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>두 개의 보석</strong> — 좌우로 대치한 <strong>실마릴</strong>(은청빛 순수·창조)과 <strong>절대반지</strong>(검붉은 지배·악). 각 사물의 배경에 얽힌 사건이 겹친다 — 실마릴 뒤엔 두 나무의 빛과 맹세·동족살해, 반지 뒤엔 운명의 산의 벼려짐과 전쟁. 성격은 정반대지만 대칭을 이루는 구도가 <strong>같은 비극</strong>임을 말한다 — 하나의 사물을 향한 소유욕이 언제나 세계를 무너뜨린다.</figcaption>
+</figure>
 
 ## 절대반지의 본질 — 왜 반드시 불에 던져야 했나
 
