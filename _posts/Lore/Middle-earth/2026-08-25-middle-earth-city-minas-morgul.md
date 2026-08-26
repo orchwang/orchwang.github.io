@@ -95,6 +95,14 @@ flowchart LR
 
 미나스 이실은 모르도르를 정면으로 마주 본 동쪽 관문이자, 곤도르의 세 **팔란티르(천리안 돌)** 중 하나인 **이실의 돌(Ithil-stone)** 을 간직한 도시였습니다. 이름처럼 달빛을 닮은 은은한 빛을 냈다고 전해집니다. 곤도르가 강성했을 때, 이 도시는 검은 땅의 코앞에서 어둠을 감시하는 최전선이었습니다.
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-minas-morgul-ithil-640.webp 640w, /assets/images/lore/middle-earth-city-minas-morgul-ithil-1024.webp 1024w, /assets/images/lore/middle-earth-city-minas-morgul-ithil-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-minas-morgul-ithil.jpg" alt="타락하기 전 '달의 탑' 미나스 이실. 맑은 밤하늘 커다란 은빛 보름달 아래, 온전하고 아름다운 곤도르식 흰 돌의 계단식 도시가 은청색 달빛을 받아 은은하게 빛난다. 성벽 위엔 은빛 별 문장의 깃발이 걸리고, 성탑 꼭대기 창에서 부드러운 은빛이 흘러나온다. 도시는 동쪽 검은 산맥을 정면으로 마주 보고 서서 어둠을 감시하는 최전선의 위엄을 풍긴다. 살아 있는 정원과 은빛 분수. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>달의 탑, 미나스 이실 — 빛나던 시절</strong>. 시체빛으로 썩기 전, 이 도시는 <strong>살아 있는 은빛 달빛</strong> 아래 아름답게 빛나는 곤도르의 최전선이었다. 은빛 별 문장의 깃발, 온전한 흰 돌의 계단식 성벽, 그리고 동쪽 어둠을 정면으로 마주 본 성탑 — 훗날의 창백한 인광과 정반대의, 산 것의 빛. <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
+
 ## 함락과 타락 — 요술의 탑이 되기까지
 
 그러나 최전선은 가장 먼저 무너지는 법입니다. 사우론이 잠시 물러난 뒤에도 그의 종 **나즈굴(반지악령)** 은 남아 있었고, 제3시대 2000년 그들은 미나스 이실을 포위합니다. 2년의 포위 끝에 2002년, 도시는 함락됩니다. 이 사건은 두 가지 의미에서 곤도르에 치명적이었습니다.
@@ -105,6 +113,14 @@ flowchart LR
 함락된 도시는 나즈굴의 우두머리 **마술사왕(Witch-king)** 의 본거지가 되었고, 이름은 **미나스 모르굴('요술의 탑', 검은 마법의 탑)** 으로 바뀝니다. 맞은편의 미나스 아노르가 이때 이름을 **미나스 티리스('경비의 탑')** 로 바꾼 것도 바로 이 사건 때문입니다 — 한 도시의 타락이 다른 도시의 이름까지 바꿔 놓은 것입니다.
 
 > 톨킨 세계에서 악은 새것을 창조하지 못하고 **이미 있는 것을 비틀 뿐**입니다(6단계, 종족 편). 미나스 모르굴이 바로 그 원리의 도시입니다 — 나즈굴은 새 도시를 짓지 않았습니다. 곤도르가 지은 아름다운 도시를 **비틀어** 자기 것으로 만들었을 뿐입니다.
+
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-minas-morgul-fall-640.webp 640w, /assets/images/lore/middle-earth-city-minas-morgul-fall-1024.webp 1024w, /assets/images/lore/middle-earth-city-minas-morgul-fall-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-minas-morgul-fall.jpg" alt="미나스 이실이 함락되는 순간. 흰 돌의 성문 앞으로 후드를 쓴 검은 반지악령(나즈굴)들의 무리가 창백한 횃불을 들고 밀려들고, 성문은 부서져 있다. 도시 위쪽 절반은 아직 은청색 달빛이지만 아래쪽부터 병든 시체빛 초록으로 물들어 올라가, 빛이 뒤바뀌는 오염의 경계선이 성벽을 가로지른다. 한 나즈굴의 손에 어두운 수정 구슬(팔란티르)이 들려 검은 빛을 낸다. 하늘엔 초록빛 번개. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>함락과 타락 — 요술의 탑이 되기까지</strong>. 제3시대 2002년, <strong>나즈굴</strong>이 흰 성문을 부수고 밀려들자 도시의 은빛이 아래에서부터 <strong>시체빛 초록</strong>으로 물들어 오른다 — 파괴가 아니라 <strong>오염</strong>의 순간. 한 악령의 손에 빼앗긴 <strong>이실의 돌(팔란티르)</strong>이 검은 빛을 낸다. 성벽을 가로지르는 빛의 경계선이 '달의 탑'이 '요술의 탑'으로 뒤바뀌는 찰나를 가른다. <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
 
 ## 시체빛 도시 — 구조와 규모
 
@@ -133,6 +149,15 @@ flowchart LR
 
 프로도는 마침 이 출정을 골짜기 근처에서 목격합니다. 절대반지가 그의 목에서 무겁게 그를 끌어당기고, 마술사왕이 잠시 걸음을 멈추는 그 순간의 긴장은 시리즈에서 가장 숨 막히는 장면 중 하나입니다. 미나스 모르굴에서 나온 군대가 미나스 티리스를 치러 가는 이 구도 — **어둠의 쌍둥이가 빛의 쌍둥이를 향해 진군하는 것** — 은 두 도시가 애초에 한 형제였다는 사실 때문에 더욱 비극적입니다.
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-minas-morgul-army-640.webp 640w, /assets/images/lore/middle-earth-city-minas-morgul-army-1024.webp 1024w, /assets/images/lore/middle-earth-city-minas-morgul-army-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-minas-morgul-army.jpg" alt="반지전쟁의 출정 장면. 창백한 시체빛으로 빛나는 미나스 모르굴 성문에서 검은 오르크 군대가 쏟아져 나와 흰 돌다리를 건너 서쪽으로 진군한다. 선두엔 창백한 검을 든 마술사왕이 검은 말에 올라 잠시 걸음을 멈추고 있다. 하늘엔 초록빛 인광과 붉은 번개. 화면 앞쪽 오른편 바위 그늘엔 후드를 쓴 작은 맨발의 순례자가 목에 걸린 반지를 움켜쥐고 얼어붙은 채 이 광경을 올려다본다. 지상에서 올려다본 저각 시점. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>반지전쟁 — 골짜기에서 나온 군대</strong>. 제3시대 3019년, <strong>마술사왕</strong>이 시체빛 대군을 이끌고 흰 다리를 건너 서쪽 미나스 티리스로 출정한다. 앞쪽 바위 그늘에는 반지의 무게에 짓눌린 <strong>작은 순례자</strong>가 얼어붙은 채 이를 목격한다 — 어둠의 쌍둥이가 빛의 쌍둥이를 향해 진군하는, 시리즈에서 가장 숨 막히는 순간. <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
+
+
 전쟁이 끝난 뒤, 미나스 모르굴의 사악함은 너무 깊어 곧바로 정화되지 못합니다. 왕이 된 아라고른은 훗날 이 도시를 헐어 버리도록 명하지만, 골짜기에 밴 공포는 오래도록 남습니다. 미나스 티리스가 다시 살아난 것과 달리, 미나스 모르굴은 **되살리는 것이 아니라 지워야 하는** 장소였습니다.
 
 ## 상징과 의미 — 타락한 쌍둥이
@@ -154,4 +179,4 @@ flowchart LR
 - [경비의 탑, 미나스 티리스: 일곱 겹의 흰 도시](/2026/08/25/middle-earth-city-minas-tirith.html) — 빛의 쌍둥이, 미나스 모르굴의 거울상 (주요 도시 편)
 - [악의 계보와 두 개의 보석: 모르고스에서 사우론으로](/2026/08/24/middle-earth-enemy-and-artifacts.html) — 나즈굴과 마술사왕의 정체 (6단계)
 - [세계의 무대: 축복의 땅 아만에서 제3시대 중간계까지](/2026/08/24/middle-earth-geography.html) — 모르도르와 그림자 산맥의 지리 (5단계)
-- **오스길리아스** — 두 탑 사이에 있던 곤도르의 옛 수도 *(주요 도시 편, 작성 예정)*
+- [별들의 요새, 오스길리아스: 강 위에 무너진 곤도르의 심장](/2026/08/25/middle-earth-city-osgiliath.html) — 두 탑 사이에 있던 곤도르의 옛 수도 (주요 도시 편)

@@ -129,6 +129,15 @@ flowchart LR
 
 일곱 번째 층, 궁성(Citadel)에 이르면 도시의 심장이 나옵니다. **분수의 뜰(Court of the Fountain)** 한가운데에는 **백색성수(White Tree)** 가 서 있습니다. 이 나무는 누메노르에서 이어져 온 왕가의 상징으로, 왕이 없는 시대 내내 **말라 죽은 채** 그 자리를 지킵니다. 죽은 나무를 차마 베지 못하고 그대로 둔 이 뜰의 풍경이야말로, "왕은 없지만 왕을 기다린다"는 곤도르의 처지를 압축합니다.
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-minas-tirith-white-tree-640.webp 640w, /assets/images/lore/middle-earth-city-minas-tirith-white-tree-1024.webp 1024w, /assets/images/lore/middle-earth-city-minas-tirith-white-tree-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-minas-tirith-white-tree.jpg" alt="궁성 7층 분수의 뜰. 흰 대리석 마당 한가운데 원형 분수 옆에 잎을 다 떨군 채 말라 죽은 백색성수가 창백하게 서 있고, 검은 가지가 하늘로 뻗는다. 뒤로 흰 궁성 벽과 높이 솟은 백색 탑, 뜰 양옆에 은빛 나무 문장을 단 검은 갑옷의 근위병 두 명이 파수를 선다. 이른 아침의 서늘한 빛. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>도시의 심장 — 분수의 뜰</strong>. 궁성 꼭대기 마당 한가운데, 잎을 다 떨군 채 말라 죽은 <strong>백색성수</strong>가 창백하게 서 있고 그 뒤로 <strong>백색 탑</strong>이 솟는다. 은빛 나무 문장을 단 근위병들이 지키는 이 뜰의 죽은 나무와 빈 옥좌가 "왕은 없지만 왕을 기다린다"는 곤도르를 압축한다. <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
+
+
 궁성에는 **백색 탑(에크셀리온의 탑)** 이 솟아 있고, 그 안에 곤도르의 옥좌가 있습니다. 그러나 그 옥좌는 오래 비어 있었습니다. 마지막 왕이 후사 없이 사라진 뒤, 곤도르는 **집정관(Steward)** 이 "왕이 돌아올 때까지" 대리 통치해 왔기 때문입니다. 옥좌 아래 계단에 놓인 집정관의 검은 의자가 이 도시의 미묘한 권력을 상징합니다 — 왕을 대신하지만 왕은 아닌 자리.
 
 이 긴장은 반지전쟁에서 폭발합니다. 마지막 집정관 **데네소르**는 팔란티르(천리안 돌)로 사우론의 힘을 엿보다 절망에 빠져, 아들 파라미르와 함께 스스로를 불태우려 합니다(궁성 뒤편 **라스 디넨 — '침묵의 거리'** 의 왕가 무덤에서). 왕의 부재가 도시를 안에서부터 무너뜨리려는 순간, 진짜 왕 **아라고른**이 돌아옵니다.
@@ -144,6 +153,14 @@ flowchart LR
 - **반전** — 봉화(烽火)를 보고 달려온 **로한의 기병대**가 평원으로 쏟아져 들어옵니다. 세오덴 왕이 전사하지만, 그의 조카 **에오윈**이 호빗 **메리**와 함께 "남자에게 쓰러지지 않는다"던 마술사왕을 베어 넘깁니다.
 - **결정타** — 아라고른이 남쪽에서 **코르세어의 검은 배**를 빼앗아 타고 나타나, 뒤에서 적을 친 데다 사자(死者)의 군대까지 앞세워 전세를 뒤집습니다.
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-minas-tirith-pelennor-640.webp 640w, /assets/images/lore/middle-earth-city-minas-tirith-pelennor-1024.webp 1024w, /assets/images/lore/middle-earth-city-minas-tirith-pelennor-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-minas-tirith-pelennor.jpg" alt="펠렌노르 평원의 전투. 오른쪽 뒤로 일곱 겹의 흰 미나스 티리스가 솟고 대문에서 검은 연기가 오른다. 도시 앞 평원을 오르크 무리와 검은 깃발, 거대한 전투코끼리 무마킬의 실루엣이 뒤덮었고, 왼쪽에서 창을 세운 로한 기병대가 초록·흰 깃발을 휘날리며 쏟아져 들어와 적진과 충돌한다. 하늘은 검붉은 폭풍 그림자, 서쪽 지평선에 창백한 빛. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>펠렌노르 평원의 전투</strong> — 함락 직전의 도시(오른쪽, 대문에서 연기가 오른다) 앞으로 모르도르 대군이 밀려들고, 왼쪽에서 봉화를 보고 달려온 <strong>로한의 기병대</strong>가 평원으로 쏟아져 전세를 뒤집는 순간. 반지전쟁 최대의 회전이자 시리즈에서 가장 큰 도시 방어전이다. <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
+
 이 전투로 미나스 티리스는 함락 직전에 구원받고, 서쪽 세계는 절대반지를 파괴할 시간을 벌게 됩니다. 도시의 일곱 겹은 결국 마지막까지 다 뚫리지 않았습니다 — 첫 문이 부서진 그 순간에 구원이 도착했기 때문입니다.
 
 ## 상징과 의미 — 경비의 탑
@@ -152,6 +169,14 @@ flowchart LR
 
 - **경비의 탑** — 이 도시는 정복이 아니라 **감시와 인내**의 도시입니다. 수백 년간 모르도르를 마주 본 채, 스스로 쇠락해 가면서도 서쪽 세계의 문을 지켰습니다. 화려한 승리가 아니라 오래 버티는 것 — 그것이 곤도르의 미덕입니다.
 - **왕을 기다리는 도시** — 시든 백색성수와 빈 옥좌는 "지금은 아니지만 언젠가"라는 희망의 은유입니다. 왕의 귀환과 함께 성수의 묘목이 다시 발견되어 심기는 장면은, 도시가 마침내 '경비'를 끝내고 다시 살아나는 상징입니다.
+
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-minas-tirith-watch-640.webp 640w, /assets/images/lore/middle-earth-city-minas-tirith-watch-1024.webp 1024w, /assets/images/lore/middle-earth-city-minas-tirith-watch-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-minas-tirith-watch.jpg" alt="도시 꼭대기 궁성 성벽의 흉벽 위, 검은 갑옷에 은빛 나무 문장을 단 근위병 한 명이 홀로 등을 보인 채 동쪽을 응시하며 파수를 선다. 곁으로 흰 백색 탑의 밑동이 우뚝 솟고, 멀리 동쪽 지평선에는 모르도르의 검붉은 어둠과 산맥의 그림자가 낮게 깔린다. 해질녘의 서늘한 남보라빛 하늘. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>경비의 탑</strong> — 성벽 위에서 홀로 동쪽 모르도르의 어둠을 응시하며 파수를 서는 근위병. 이 도시의 미덕은 화려한 정복이 아니라, 스스로 쇠락해 가면서도 수백 년간 서쪽 세계의 문을 지킨 <strong>감시와 인내</strong>였다. <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
 
 프로도가 모르도르에서 반지를 파괴하는 '작은 이야기'와, 미나스 티리스가 대군을 막아 내는 '큰 이야기'는 동전의 양면입니다. 큰 전투가 적의 눈을 도시로 끌어 준 덕분에, 두 호빗이 그 눈을 피해 운명의 산에 이를 수 있었습니다. 미나스 티리스는 그 자체로 이기기 위한 도시가 아니라, **누군가가 이길 시간을 벌어 주는 도시**였습니다.
 
@@ -165,5 +190,5 @@ flowchart LR
 
 - [세계의 무대: 축복의 땅 아만에서 제3시대 중간계까지](/2026/08/24/middle-earth-geography.html) — 곤도르가 놓인 제3시대 지리 (5단계)
 - [악의 계보와 두 개의 보석: 모르고스에서 사우론으로](/2026/08/24/middle-earth-enemy-and-artifacts.html) — 미나스 티리스가 맞선 적의 정체 (6단계)
-- **미나스 모르굴** — 골짜기 건너 어둠의 쌍둥이 도시 *(주요 도시 편, 작성 예정)*
-- **오스길리아스** — 곤도르의 옛 수도이자 폐허 *(주요 도시 편, 작성 예정)*
+- [요술의 탑, 미나스 모르굴: 시체빛에 잠긴 어둠의 쌍둥이](/2026/08/25/middle-earth-city-minas-morgul.html) — 골짜기 건너 어둠의 쌍둥이 도시 (주요 도시 편)
+- [별들의 요새, 오스길리아스: 강 위에 무너진 곤도르의 심장](/2026/08/25/middle-earth-city-osgiliath.html) — 곤도르의 옛 수도이자 폐허 (주요 도시 편)

@@ -102,6 +102,14 @@ flowchart LR
 
 곤도르가 쇠락하면서 이 요새는 백색회의의 수장인 마법사 **사루만**에게 관리가 맡겨집니다. 처음에 그는 사우론을 감시하는 서쪽의 파수꾼이었습니다. 미나스 모르굴이 '함락되어' 타락했다면, 아이센가드는 **지키던 자가 스스로 타락한** 경우입니다.
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-isengard-origin-640.webp 640w, /assets/images/lore/middle-earth-city-isengard-origin-1024.webp 1024w, /assets/images/lore/middle-earth-city-isengard-origin-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-isengard-origin.jpg" alt="타락하기 전 아이센가드를 지상 눈높이에서 본 모습. 거대한 원형 돌 고리 안이 키 큰 나무와 꽃 정원, 맑은 거울 같은 호수, 포장된 산책로로 가득 찬 초록 골짜기다. 정중앙에 네 갈래 뿔 모양의 검은 탑 오르상크가 상처 없이 솟아 있고, 아침 햇살이 비친다. 흰옷을 입은 마법사가 지팡이를 들고 정원 길을 걷는다. 매연도 화로도 갱도도 없이 평화롭다. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>타락 전의 아이센가드</strong> — 같은 쇠의 고리가 <strong>나무·정원·호수로 가득 찬 초록 골짜기</strong>였던 시절. 정중앙엔 검은 탑 <strong>오르상크</strong>가 상처 없이 서 있고, 아직 흰옷의 사루만이 정원을 걷는다. 뒤에 나올 산업화된 전경과 정반대의 '처음' 얼굴이다. <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
+
 ## 사루만의 타락 — 산업의 화로
 
 사루만은 오르상크의 돌로 사우론을 엿보다 오히려 그 힘에 매혹되고, "질서와 힘"이라는 명분 아래 스스로 어둠의 길로 들어섭니다. 그리고 그 타락은 아이센가드의 **풍경**으로 그대로 드러납니다.
@@ -130,6 +138,14 @@ flowchart LR
 - **수몰** — 엔트들은 **아이센 강의 물길을 돌려** 고리 안으로 쏟아붓습니다. 갱도와 화로가 물에 잠기고, 산업 지옥은 거대한 흙탕 호수가 됩니다.
 - **탑에 갇힌 사루만** — 부술 수 없는 오르상크만은 남아, 사루만은 자기 탑 안에 **갇힌** 신세가 됩니다. 뒤이어 간달프가 찾아와 사루만의 지팡이를 부러뜨리고 그를 마법사단에서 내쫓습니다. 이때 뱀혓바닥이 탑에서 던진 팔란티르를 피핀이 들여다보는 사건이 벌어집니다.
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-isengard-ents-640.webp 640w, /assets/images/lore/middle-earth-city-isengard-ents-1024.webp 1024w, /assets/images/lore/middle-earth-city-isengard-ents-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-isengard-ents.jpg" alt="폭풍 치는 밤, 위에서 내려다본 아이센가드 전경. 화면 대부분을 채우는 거대한 원형 돌 고리 안이 온통 물바다가 되어, 갱도와 화로와 쇠 바퀴가 물에 잠긴 채 곳곳에서 하얀 수증기를 뿜는다. 물에 잠긴 고리 한가운데 네 갈래 뿔 모양의 검은 탑 오르상크만 온전히 솟아 있다. 고리 왼쪽 아래 벽 한쪽이 뚫려 돌려진 강물이 바깥으로 흘러나오고, 그 곁으로 여러 나무 목자(엔트)가 무리지어 고리를 향해 진군한다. 고리 바깥은 숲과 산맥, 하늘엔 번개. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>엔트의 마지막 진군</strong> — 벌목으로 분노한 나무 목자들이 돌 고리를 부수고 <strong>아이센 강물</strong>을 돌려 쏟아부었다. 갱도와 화로가 모조리 물에 잠겨 수증기를 뿜고, 부술 수 없는 <strong>오르상크</strong>만 거대한 물바다 한가운데 홀로 남는다. 왼쪽 아래 뚫린 벽으로 엔트 무리가 진군해 온다. <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
+
 전쟁이 끝난 뒤, 엔트들은 물에 잠긴 고리를 다시 정원으로 되돌리고 그 자리를 지키는 **'파수의 숲(Watchwood)'** 을 심습니다. 나무를 벤 자리에 다시 나무가 서는 것 — 아이센가드의 결말은 그렇게 처음의 초록으로 되돌아갑니다.
 
 ## 상징과 의미 — 마음이 금속과 바퀴가 될 때
@@ -139,6 +155,14 @@ flowchart LR
 - **산업 대 자연** — 아이센가드는 톨킨이 목격한 산업화(자연을 밀어내는 공장과 매연)에 대한 우화로 자주 읽힙니다. 사루만의 화로와 그것을 무너뜨리는 엔트의 대비는, **자라나는 것 대 찍어 내는 것**의 대립입니다. 앞 편 에도라스(나무를 사랑한 도시)와 나란히 놓으면 이 대비가 더 선명합니다.
 - **지키던 자의 타락** — 미나스 모르굴이 '바깥에서 온 타락', 오스길리아스가 '안에서 시작된 붕괴'였다면, 아이센가드는 **지키라고 세운 파수꾼이 스스로 적이 된** 경우입니다. 사우론을 감시하던 사루만이 사우론을 흉내 내다 무너진 것은, 악을 오래 들여다보는 일의 위험을 말합니다.
 - **부술 수 없는 것과 되살아나는 것** — 오르상크(돌·기계)는 부술 수 없었지만 그저 갇힌 감옥이 되었고, 베여 나간 나무는 다시 자라 그 자리를 지킵니다. 톨킨 세계에서 끝내 이기는 것은 단단한 것이 아니라 **자라나는 것**임을, 아이센가드의 결말이 보여 줍니다.
+
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-isengard-symbol-640.webp 640w, /assets/images/lore/middle-earth-city-isengard-symbol-1024.webp 1024w, /assets/images/lore/middle-earth-city-isengard-symbol-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-isengard-symbol.jpg" alt="톨킨의 문구 '금속과 바퀴의 마음'을 형상화한 개념 삽화. 화면 한가운데 마법사의 옆모습 실루엣이 세로로 반씩 갈라져 있다. 한쪽 절반은 살아 있는 초록으로, 새싹과 뿌리와 이파리가 돋아난다. 다른 절반은 차갑게 맞물려 돌아가는 쇠 톱니바퀴와 피스톤, 매연으로 이루어져 있다. 자라나는 것과 찍어 내는 것이 한 몸에서 맞선다. 철회색과 앰버골드, 이끼 초록의 제한된 팔레트. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>마음이 금속과 바퀴가 될 때</strong> — 사루만의 타락을 한 장면으로. 같은 형상이 한쪽은 <strong>자라나는 것</strong>(새싹·뿌리), 한쪽은 <strong>찍어 내는 것</strong>(톱니바퀴·피스톤·매연)으로 갈라진다. 톨킨 세계에서 끝내 이기는 것은 단단한 쪽이 아니라 자라나는 쪽이다. <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
 
 ## 결론
 
@@ -151,4 +175,4 @@ flowchart LR
 - [황금궁전의 언덕, 에도라스: 초원 위에 선 기마민족의 도시](/2026/08/25/middle-earth-city-edoras.html) — 사루만이 노린 이웃, 나무의 도시 (주요 도시 편)
 - [악의 계보와 두 개의 보석: 모르고스에서 사우론으로](/2026/08/24/middle-earth-enemy-and-artifacts.html) — 사루만의 타락과 팔란티르 (6단계)
 - [불멸과 필멸 사이: 엘프·인간·드워프·호빗, 그리고 오르크의 기원](/2026/08/24/middle-earth-races.html) — 엔트와 우루크하이의 기원 (4단계)
-- **로슬로리엔(카라스 갈라돈)** — 나무 위에 지은 황금 숲의 엘프 도시 *(주요 도시 편, 작성 예정)*
+- [황금 나무의 도시, 카라스 갈라돈: 시간이 멈춘 로슬로리엔](/2026/08/25/middle-earth-city-caras-galadhon.html) — 나무 위에 지은 황금 숲의 엘프 도시 (주요 도시 편)

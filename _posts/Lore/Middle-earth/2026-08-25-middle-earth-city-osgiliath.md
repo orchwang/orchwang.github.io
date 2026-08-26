@@ -93,6 +93,14 @@ flowchart LR
 
 도시의 중심에는 **별들의 돔(Dome of Stars)** 이 있었습니다. 이곳에는 곤도르 세 팔란티르 가운데 **으뜸가는 주(主) 돌** 이 놓여, 나머지 돌들(미나스 아노르·미나스 이실의 돌)과 교신하는 중심 노릇을 했습니다. '별들의 요새'라는 이름은 이 돔과, 밤이면 강물에 비쳐 별처럼 빛나던 도시의 불빛에서 왔다고 전해집니다. 전성기의 오스길리아스는 곤도르에서 가장 크고 인구가 많은 도시였습니다.
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-osgiliath-glory-640.webp 640w, /assets/images/lore/middle-earth-city-osgiliath-glory-1024.webp 1024w, /assets/images/lore/middle-earth-city-osgiliath-glory-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-osgiliath-glory.jpg" alt="파괴되기 전 전성기의 오스길리아스. 맑은 별밤, 넓은 은빛 강 안두인을 가로질러 집과 탑과 등불이 늘어선 온전하고 거대한 흰 돌다리가 양안을 잇는다. 강 한복판에는 별 문양의 은빛 큰 돔(별들의 돔)이 우뚝 서서 창에서 은은한 빛이 흘러나오고, 그 불빛과 하늘의 별이 잔잔한 강물에 비쳐 도시 전체가 물 위에 별처럼 빛난다. 양안엔 흰 돌의 번성한 거리와 부두. 활기차고 장엄한 곤도르 최전성기의 수도. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>별들의 요새 — 곤도르의 첫 심장</strong>. 폐허가 되기 전, 오스길리아스는 강을 <strong>품은</strong> 도시였다. 집과 탑과 등불이 늘어선 <strong>온전한 큰 다리</strong>가 안두인을 가로지르고, 강 한복판 <strong>별들의 돔</strong>에서 흘러나온 빛이 하늘의 별과 함께 강물에 비쳐 도시가 물 위에 별처럼 빛났다 — '별들의 요새'라는 이름이 온 그 광경. <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
+
 ## 중심이 무너지다 — 내전과 역병
 
 번영의 도시를 무너뜨린 것은 외적이 아니라 **곤도르 자신**이었습니다. 제3시대 1437년, 왕위 계승을 둘러싼 **동족상잔(Kin-strife)** 이라는 내전이 터집니다. 이 싸움의 와중에 오스길리아스는 불타고, **별들의 돔이 무너지며 주 팔란티르가 안두인 강물 속으로 영영 사라집니다.** 곤도르의 눈 하나가 이때 감긴 셈입니다.
@@ -100,6 +108,14 @@ flowchart LR
 이어 1636년, **대역병(Great Plague)** 이 곤도르를 휩쓸며 이미 상처 입은 오스길리아스의 인구를 결정적으로 무너뜨립니다. 살아남은 왕과 백성은 강 서쪽의 더 안전한 도시 **미나스 아노르(훗날 미나스 티리스)** 로 수도를 옮기고, 오스길리아스는 서서히 버려집니다. 한때 왕국의 심장이던 도시가, 이제 아무도 살지 않는 **국경의 폐허**가 된 것입니다.
 
 > 미나스 이실의 함락(미나스 모르굴 편)이 '바깥에서 온 타락'이었다면, 오스길리아스의 몰락은 '안에서 시작된 붕괴'입니다. 두 도시의 운명을 나란히 놓으면, 곤도르를 무너뜨린 것이 적의 칼만은 아니었음이 분명해집니다 — 내분과 역병, 곧 **스스로 약해지는 힘**이 먼저였습니다.
+
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-osgiliath-fall-640.webp 640w, /assets/images/lore/middle-earth-city-osgiliath-fall-1024.webp 1024w, /assets/images/lore/middle-earth-city-osgiliath-fall-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-osgiliath-fall.jpg" alt="내전과 역병으로 무너지는 오스길리아스. 밤의 강 한복판, 별들의 돔이 붉은 불길에 휩싸여 반쯤 무너져 내리고, 같은 곤도르 갑옷을 입은 두 무리의 병사가 다리 위에서 서로 칼을 겨눈다(동족상잔). 무너지는 돔에서 빠져나온 검은 수정 구슬(주 팔란티르)이 강물로 떨어지며 물보라를 일으키고, 화면 오른쪽 양안의 흰 거리는 이미 불이 꺼진 채 잿빛 안개와 텅 빈 창들로 뒤덮여 역병의 죽음을 암시한다. 붉은 불빛과 잿빛이 뒤섞인 하늘. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>중심이 무너지다 — 내전과 역병</strong>. 곤도르를 무너뜨린 것은 외적이 아니라 곤도르 자신이었다. 제3시대 1437년 <strong>동족상잔</strong>의 불길에 <strong>별들의 돔</strong>이 무너지고 <strong>주 팔란티르</strong>가 강물 속으로 영영 사라진다. 뒤이은 1636년 <strong>대역병</strong>이 남은 거리를 잿빛 죽음으로 비운다 — 바깥에서 온 타락이 아니라, 안에서 시작된 붕괴. <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
 
 ## 강 위의 폐허 — 구조와 규모
 
@@ -131,6 +147,14 @@ flowchart LR
 
 오스길리아스의 함락은 곧 미나스 티리스 공방전의 서막이었습니다. 중심의 폐허를 잃자, 마지막 보루 하나만 남은 것입니다.
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-osgiliath-crossing-640.webp 640w, /assets/images/lore/middle-earth-city-osgiliath-crossing-1024.webp 1024w, /assets/images/lore/middle-earth-city-osgiliath-crossing-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-osgiliath-crossing.jpg" alt="반지전쟁의 안두인 도하 방어전. 밤의 폐허 오스길리아스, 가운데가 끊긴 부서진 흰 돌다리를 사이에 두고, 앞쪽 서안에서는 흰 나무 문장의 곤도르 병사들이 방패벽을 이루고 활을 쏘며 버틴다. 강 건너 동안과 검은 강물 위로는 창백한 초록빛을 등진 검은 오르크 군대가 작은 배와 부서진 다리를 타고 밀려 건너온다. 하늘엔 동쪽 미나스 모르굴 방향의 초록 인광과 붉은 화염, 무너진 별들의 돔 잔해가 실루엣으로 선다. 횃불과 화살이 교차하는 지상 저각 시점. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>반지전쟁 — 안두인 도하의 요충</strong>. 폐허가 다시 전장이 되었다. 가운데가 끊긴 <strong>부서진 다리</strong>를 사이에 두고, 서안의 곤도르 병사들(흰 나무 문장)이 방패벽으로 버티는 동안 동안에서는 미나스 모르굴의 대군이 배와 잔교로 <strong>안두인을 건너</strong>온다. 이 도하가 뚫리면 곧장 <strong>펠렌노르 평원의 전투</strong> — 마지막 보루 미나스 티리스만 남는다. <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
+
 ## 상징과 의미 — 중심을 잃은 나라
 
 오스길리아스가 이 세계에서 갖는 의미는 **'중심의 상실'** 이라는 한 문장에 담깁니다.
@@ -150,4 +174,4 @@ flowchart LR
 - [경비의 탑, 미나스 티리스: 일곱 겹의 흰 도시](/2026/08/25/middle-earth-city-minas-tirith.html) — 삼도시의 서쪽 탑 (주요 도시 편)
 - [요술의 탑, 미나스 모르굴: 시체빛에 잠긴 어둠의 쌍둥이](/2026/08/25/middle-earth-city-minas-morgul.html) — 삼도시의 동쪽 탑 (주요 도시 편)
 - [세계의 무대: 축복의 땅 아만에서 제3시대 중간계까지](/2026/08/24/middle-earth-geography.html) — 안두인 대하와 곤도르의 지리 (5단계)
-- **에도라스** — 로한의 언덕 위 수도, 황금궁전 메두셀드 *(주요 도시 편, 작성 예정)*
+- [황금궁전의 언덕, 에도라스: 초원 위에 선 기마민족의 도시](/2026/08/25/middle-earth-city-edoras.html) — 로한의 언덕 위 수도, 황금궁전 메두셀드 (주요 도시 편)
