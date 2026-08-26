@@ -143,6 +143,14 @@ flowchart TD
 <figcaption><strong>불멸과 필멸</strong> — 톨킨 세계에서 죽음은 벌이 아니다. 엘프는 <strong>불멸</strong>이기에 세계가 끝날 때까지 그 안에 묶이지만, 인간은 죽어 <strong>세계 밖으로</strong> 떠난다 — 이 떠남이 곧 에루가 인간에게만 준 '선물'이다. 이 선물을 두려워하고 거부한 데서 인간의 비극이 시작된다.</figcaption>
 </figure>
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-races-elves-and-men-640.webp 640w, /assets/images/lore/middle-earth-races-elves-and-men-1024.webp 1024w, /assets/images/lore/middle-earth-races-elves-and-men-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-races-elves-and-men.jpg" alt="한 프레임 안에서 마주 선 불멸의 엘프 군주와 필멸의 인간 왕. 왼쪽 엘프는 별빛을 향해, 오른쪽 인간은 저무는 성채를 향해 서서 같은 자리에 있으나 다른 운명으로 갈라진다. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>첫째 자손과 둘째 자손</strong> — 같은 창조주에게서 났으되 정반대의 운명을 진 두 종족. <strong>엘프</strong>는 별빛을 향해 세계에 남고, <strong>인간</strong>은 저무는 땅 너머로 떠난다. 함께 서 있으나 시선이 갈라지는 이 순간이 톨킨 세계의 중심 긴장이다.</figcaption>
+</figure>
+
 ## 창조의 곁가지 — 드워프·엔트·호빗
 
 일루바타르의 자손 둘 외에, 에루가 **직접 계획하지는 않았지만 결국 받아들인** 종족들이 있습니다.
@@ -152,6 +160,14 @@ flowchart TD
 **엔트.** 아울레가 드워프를 만들었다는 사실을 알게 된 그의 배우자 **야반나**(자라는 것들의 수호자)는, 드워프가 나무를 마구 베어 낼 것을 걱정해 에루에게 청원합니다. 이에 응답으로 태어난 것이 **나무의 목자, 엔트**입니다. 숲을 지키는 이 거대하고 느린 존재들은, 창조의 균형을 맞추려는 야반나의 사랑에서 비롯되었습니다.
 
 **호빗.** 우리가 가장 사랑하는 이 작은 종족은, 사실 **별개의 종족이 아니라 인간의 한 갈래**입니다. 기원은 명확히 기록되지 않았지만, 톨킨은 호빗을 인간과 가까운 친족으로 두었습니다. 흥미로운 것은 그 **소박함이 곧 강함**이라는 점입니다 — 권력을 탐하지 않는 평범함 덕분에, 호빗은 절대반지의 유혹에 인간이나 엘프보다 훨씬 오래 버팁니다. 세계를 구하는 것이 위대한 영웅이 아니라 작은 호빗이라는 톨킨의 선택은, 이 종족 설정에 이미 담겨 있습니다.
+
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-races-dwarves-ents-hobbits-640.webp 640w, /assets/images/lore/middle-earth-races-dwarves-ents-hobbits-1024.webp 1024w, /assets/images/lore/middle-earth-races-dwarves-ents-hobbits-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-races-dwarves-ents-hobbits.jpg" alt="숲의 빈터에서 마주친 세 곁가지 종족. 배경에 우뚝 선 거대한 나무의 목자 엔트, 그 발치에 도끼를 짊어진 단단한 드워프, 맨 앞에 올려다보는 작은 맨발의 호빗이 크기와 성정의 극단적 대비를 이룬다. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>창조의 곁가지</strong> — 에루가 직접 계획하진 않았으나 받아들인 세 종족. 대장장이 신의 손에서 난 <strong>드워프</strong>, 숲을 지키라 태어난 <strong>엔트</strong>, 소박함이 곧 강함인 <strong>호빗</strong>. 크기도 성정도 제각각이지만, 모두 창조의 균형을 채우는 자리에 놓였다.</figcaption>
+</figure>
 
 ## 비틀린 자들 — 오르크와 '악은 창조하지 못한다'
 
@@ -195,6 +211,14 @@ flowchart TD
 </figure>
 
 가장 널리 알려진 설명은 『실마릴리온』의 것으로, **모르고스가 해가 뜨기 전 어둠 속에서 붙잡은 엘프들을 오랜 세월 고문하고 왜곡해 오르크를 만들었다**는 것입니다. 그러나 톨킨 자신은 이 기원을 끝까지 불편해했고, 만년에는 대안(타락한 인간설, 짐승에 가까운 존재설, 하급 정령이 깃든 껍데기설 등)을 여럿 고민했습니다 — 어느 것도 완전히 확정하지 못한 채 남겼습니다. 이 **미결의 고민** 자체가 의미심장합니다. "선한 창조주가 지은 세계에서 악한 종족은 어떻게 존재할 수 있는가"라는 신학적 난제를, 톨킨은 값싸게 봉합하지 않았습니다. 확실한 것은 하나입니다 — **오르크조차 본디 무언가 온전한 것이었고, 악은 그것을 망가뜨렸을 뿐 새로 만들지는 못했다**는 것.
+
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-races-orcs-640.webp 640w, /assets/images/lore/middle-earth-races-orcs-1024.webp 1024w, /assets/images/lore/middle-earth-races-orcs-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-races-orcs.jpg" alt="검은 요새의 철문이 열리며 붉은 눈의 오르크 군세가 횃불을 들고 쏟아져 나온다. 어긋난 갑주와 굽은 등, 찢긴 깃발이 질서정연한 창조가 아닌 왜곡의 산물임을 드러내고, 그을린 검붉은 하늘 아래 잿빛 연기가 인다. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>비틀린 자들</strong> — 오르크에게는 에루로 이어지는 계보가 없다. 검은 요새에서 쏟아지는 이 군세는 새로 창조된 종족이 아니라, 이미 있던 온전한 것을 오랜 고문과 왜곡으로 망가뜨린 결과다. 악이 할 수 있는 유일한 '창작'은 이런 왜곡뿐이라는 세계관의 원칙을 한 장면으로 보여 준다.</figcaption>
+</figure>
 
 ## 종족 요약
 
