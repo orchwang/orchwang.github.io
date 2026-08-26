@@ -191,6 +191,14 @@ flowchart TD
 
 이 시대의 골격은 **실마릴을 되찾으려는 전쟁**입니다. 페아노르와 그 아들들은 실마릴을 되찾겠다며 **되돌릴 수 없는 맹세**를 하고 중간계로 건너와, 모르고스의 요새가 있는 중간계 북서부 지역 **벨레리안드(Beleriand)** — 청색산맥(에레드 루인) 서쪽의 땅 — 에서 수백 년에 걸친 전쟁을 벌입니다. 이것이 뒤에 이어질 이야기(4·6단계)에서 자세히 다룰 실마릴리온의 중심 서사입니다. 전쟁은 대부분 패배로 점철되지만, 끝내 발라들이 직접 개입한 **분노의 전쟁(War of Wrath)** 에서 모르고스가 세계 밖으로 축출됩니다. 그러나 그 싸움의 여파가 얼마나 컸던지 — **벨레리안드 전역(중간계 북서부)이 바다에 잠기며** 제1시대가 끝납니다. 벨레리안드는 중간계와 떨어진 별개 대륙이 아니라 한 대륙의 북서쪽 자락이었고, 청색산맥 동쪽의 본토는 그대로 남아 우리가 아는 제3시대 중간계가 됩니다. 다시 한 번, 한 시대의 종말은 지도를 통째로 바꿔 놓습니다.
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-ages-first-age-640.webp 640w, /assets/images/lore/middle-earth-ages-first-age-1024.webp 1024w, /assets/images/lore/middle-earth-ages-first-age-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-ages-first-age.jpg" alt="제1시대를 한눈에 담은 영화적 장면. 하늘에는 은빛 달과 금빛 해가 처음으로 함께 떠오르고, 그 사이에 세 개의 흰빛 보석 실마릴이 빛난다. 지평선에는 세 봉우리의 검은 화산 요새가 붉은 불길과 연기를 뿜고, 그 앞 벌판을 은빛 갑옷의 엘프 대군이 창을 세우고 진군한다. 화면 오른쪽 아래에서는 땅이 갈라지며 바다에 잠겨 든다. 은·금빛, 실마릴의 흰빛, 검은 화산과 붉은 불길, 은빛 군세. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption>제1시대 한눈에 보기 — 처음 떠오른 <strong>해와 달</strong> 아래, 두 나무의 빛을 담은 세 보석 <strong>실마릴</strong>을 두고 벌어지는 전쟁. 놀도르 엘프의 대군이 모르고스의 화산 요새 <strong>상고로드림(앙반드)</strong>에 맞서고, 끝내 <strong>벨레리안드</strong>가 바다에 잠기며 시대가 닫힌다.</figcaption>
+</figure>
+
 ## 제2시대 — 누메노르와 힘의 반지
 
 모르고스는 사라졌지만 그의 가장 유능했던 부하 **사우론(Sauron)** 이 남았습니다. 제2시대는 이 **두 번째 어둠의 군주**가 부상하는 시대입니다.
@@ -201,6 +209,14 @@ flowchart TD
 
 제2시대는 두 개의 파국으로 마무리됩니다. 첫째, 사우론은 오만해진 누메노르를 부추겨 **불사의 땅 아만을 무력으로 침공**하게 만들고, 이에 에루가 직접 개입해 **누메노르 섬 전체를 바닷속으로 침몰**시킵니다(**아칼라베스, Akallabêth**). 이때 세계의 형태 자체가 바뀌어, 평평했던 세계가 **둥글게** 되고 아만은 필멸자가 닿을 수 없는 곳으로 떨어져 나갑니다. 살아남은 충직한 누메노르인들은 중간계로 피신해 **곤도르**와 **아르노르** 왕국을 세웁니다(반지의 제왕에서 아라고른의 혈통이 여기서 나옵니다). 둘째, 엘프와 인간의 **최후의 동맹(Last Alliance)** 이 사우론을 무너뜨리고 이실두르가 그의 손가락에서 절대반지를 잘라 냅니다 — 그러나 반지를 파괴하지 않고 차지하면서, 다음 시대의 비극이 예약됩니다.
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-ages-second-age-640.webp 640w, /assets/images/lore/middle-earth-ages-second-age-1024.webp 1024w, /assets/images/lore/middle-earth-ages-second-age-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-ages-second-age.jpg" alt="제2시대를 한눈에 담은 영화적 장면. 왼쪽에는 바다 위로 솟은 별 모양의 섬 왕국과 흰 돛의 배들이 늘어선 항구가 있고, 오른쪽 하늘에는 운명의 산 붉은 불길 속에서 주조된 황금 절대반지가 불타는 요정문자를 두른 채 크게 떠 있다. 가운데 배경에서는 거대한 검은 파도가 별 모양 섬을 향해 밀려들어 삼키려 하고, 저 멀리 검은 탑을 포위한 은빛 동맹군의 긴 행렬이 보인다. 바다의 청록, 흰 돛과 대리석, 반지의 황금과 붉은 불길, 삼키는 파도의 짙은 물빛. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption>제2시대 한눈에 보기 — 바다를 다스린 별 모양 섬 왕국 <strong>누메노르</strong>의 번영과, 운명의 산에서 주조된 <strong>절대반지</strong>. 그 오만이 부른 <strong>누메노르 수몰</strong>(거대한 파도)과, 사우론을 무너뜨린 <strong>최후의 동맹</strong>으로 시대가 닫힌다.</figcaption>
+</figure>
+
 ## 제3시대 — 반지전쟁으로 가는 길
 
 우리가 가장 잘 아는 **호빗**과 **반지의 제왕**이 놓이는 시대입니다. 앞선 네 시대가 이 마지막 시대를 위한 긴 준비였다고 해도 지나치지 않습니다.
@@ -208,6 +224,14 @@ flowchart TD
 최후의 동맹 직후 이실두르가 강에서 습격당해 죽으면서, 절대반지는 강바닥에 **잃어버려집니다.** 반지는 수천 년을 잠들었다가 **골룸**의 손에 들어가고, 다시 우연히 호빗 **빌보**에게 발견됩니다 — 이것이 『호빗』의 사건입니다. 그동안 사우론은 형체 없는 그림자로 서서히 힘을 되찾아 다시 일어서고, 잃어버린 절대반지를 되찾으려 합니다. 빌보에게서 반지를 물려받은 **프로도**가 그것을 유일하게 파괴할 수 있는 곳 — 반지가 만들어진 **운명의 산** 불길 — 으로 가져가 없애는 여정이 곧 『반지의 제왕』의 **반지전쟁(War of the Ring)** 입니다.
 
 절대반지가 파괴되면서 사우론은 완전히 소멸하고, **제3시대가 끝납니다.** 마법과 엘프의 시대가 저물고, 엘프들은 서쪽 바다 너머로 떠나며, 아라고른이 인간의 왕으로 즉위하면서 **제4시대 — 인간의 시대** 가 열립니다. 톨킨 세계 전체가 "빛이 줄어드는 역사"라 했던 이유가 여기서 완성됩니다. 두 나무의 찬란한 빛에서 시작한 세계는, 이제 마법이 물러나고 평범한 인간들이 자기 힘으로 살아가는 세계가 됩니다.
+
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-ages-third-age-640.webp 640w, /assets/images/lore/middle-earth-ages-third-age-1024.webp 1024w, /assets/images/lore/middle-earth-ages-third-age-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-ages-third-age.jpg" alt="제3시대를 한눈에 담은 영화적 장면. 화면 위쪽 어둠 속에서 붉은 불꽃의 거대한 눈이 떠오르고, 그 시선이 향한 곳에 붉게 이글거리는 운명의 산이 솟아 있다. 화면 아래에는 작은 호빗 하나가 황금 반지를 손에 쥔 채 산으로 향하는 길을 걷고, 곁에 원정대의 작은 실루엣들이 늘어선다. 오른쪽에서는 절대반지가 불길 속에서 부서지며 흰 섬광이 터지고, 그 빛 속에 왕관을 쓴 인간 왕과 서쪽 바다로 떠나는 엘프의 흰 배가 어렴풋이 보인다. 붉은 불꽃의 눈, 어둠, 반지의 황금, 파괴의 흰 섬광, 새벽의 옅은 금빛. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption>제3시대 한눈에 보기 — 어둠에서 되살아난 <strong>사우론의 눈</strong>과 <strong>운명의 산</strong>, 그곳으로 반지를 나르는 <strong>호빗과 반지 원정대</strong>. 절대반지가 파괴되며(흰 섬광) 마법의 시대가 저물고, 왕의 즉위와 서녘으로 떠나는 엘프의 배와 함께 <strong>인간의 시대(제4시대)</strong>가 열린다.</figcaption>
+</figure>
 
 ## 지리로 본 시대 — 사라지는 땅
 
