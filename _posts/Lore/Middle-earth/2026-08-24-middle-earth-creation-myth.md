@@ -89,6 +89,14 @@ flowchart TD
 
 에루는 홀로 있는 **시간 밖의 공간(Timeless Halls)** 에서, 자신의 생각으로 **아이누(Ainur)** — "거룩한 이들" — 를 지어냅니다. 아이누는 천사에 가까운 정령적 존재로, 각자 에루의 마음 중 **일부만**을 이해하도록 태어났습니다. 어떤 이는 바람을, 어떤 이는 물을, 어떤 이는 자라나는 것을 유독 깊이 이해하는 식입니다. 이 "부분적 이해"가 뒤에 각 발라가 맡을 영역이 되고, 동시에 갈등의 씨앗이 됩니다 — 자기가 이해한 부분을 전부라 여기는 순간 오만이 시작되기 때문입니다.
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-creation-myth-eru-ainur-640.webp 640w, /assets/images/lore/middle-earth-creation-myth-eru-ainur-1024.webp 1024w, /assets/images/lore/middle-earth-creation-myth-eru-ainur-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-creation-myth-eru-ainur.jpg" alt="시간 밖의 어두운 궁정. 화면 위쪽에 형체 없는 압도적인 빛의 근원 — 유일자 에루 — 이 앰버-금빛으로 타오르고, 그 광휘에서 천사적 정령들(아이누)이 은청색 빛의 몸을 얻어 아래로 반원을 그리며 경외 속에 늘어선다. 저마다 바람·물·불·자라는 것의 기운을 어렴풋이 두른 채 근원의 빛을 우러른다. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption>시간 밖의 궁정 — 형체 없는 빛의 근원 <strong>에루</strong>에게서 <strong>아이누</strong>가 형체를 얻어 태어난다. 저마다 에루의 마음 중 <strong>일부만</strong>을 두른 채, 뒷날 각자가 다스릴 영역(바람·물·불·자라는 것)의 기운을 어렴풋이 품고 있다.</figcaption>
+</figure>
+
 ## 아이눌린달레 — 음악으로서의 창조
 
 에루는 아이누에게 하나의 **주제(theme)** 를 제시하고, 그것으로 노래할 것을 명합니다. 이것이 **아이눌린달레(Ainulindalë)** — *아이누의 음악* 입니다. 아이누들은 저마다 이해한 바를 얹어 거대한 화음을 이루어 갑니다. 이 음악은 단순한 노래가 아니라 **앞으로 존재할 세계의 설계도**입니다.
@@ -144,6 +152,14 @@ flowchart TD
 
 노래를 마친 아이누 중 일부는 자신이 부른 세계를 **직접 빚고 다스리기 위해** Eä 안으로 내려갑니다. 이들 가운데 큰 권능을 지닌 이들을 **발라(Valar, "세계의 권능들")**, 그들을 돕는 작은 정령들을 **마이아(Maiar)** 라 부릅니다. 발라는 흔히 **열넷(7 남·7 여)** 으로 헤아리며, 타락하기 전의 멜코르를 넣으면 열다섯입니다.
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-creation-myth-valar-council-640.webp 640w, /assets/images/lore/middle-earth-creation-myth-valar-council-1024.webp 1024w, /assets/images/lore/middle-earth-creation-myth-valar-council-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-creation-myth-valar-council.jpg" alt="발마르의 심판의 원. 두 나무의 금빛과 은빛이 비치는 원형 광장에 세계의 큰 권능들(발라)이 둥글게 모여 회합한다. 바람의 왕(독수리를 곁에 둔 형상), 별을 왕관처럼 두른 여왕, 물결에 둘러싸인 바다의 군주, 망치를 든 대장장이, 초록 생명을 두른 여신, 검은 옷의 운명의 심판자가 저마다의 영역을 상징하며 위엄 있게 늘어선다. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption>발마르의 <strong>심판의 원(Ring of Doom)</strong> — 세계에 내려온 큰 권능 <strong>발라</strong>가 회합한다. 만웨(바람)·바르다(별)·울모(바다)·아울레(대장장이)·야반나(생명)·만도스(운명)가 저마다 다스릴 영역의 상징을 두른 채, 세계의 운명을 의논한다.</figcaption>
+</figure>
+
 | 발라 | 영역 | 비고 |
 | --- | --- | --- |
 | 만웨(Manwë) | 바람·하늘 | 발라의 왕, 에루의 뜻에 가장 가까움 |
@@ -156,6 +172,14 @@ flowchart TD
 | 멜코르(Melkor) | — | 가장 강했던 발라, 뒤에 **모르고스** |
 
 마이아는 수가 많고 대개 이름 없이 발라를 섬기지만, 그중 몇은 중간계 역사에서 결정적 역할을 합니다. 그리고 여기에 톨킨 세계관의 가장 인상적인 반전이 있습니다 — **간달프·사우론·발로그가 모두 같은 마이아 반열**이라는 사실입니다(위 그림). 간달프(본명 **올로린**)는 제3시대에 인간 노인의 모습으로 파견된 **이스타리(마법사)** 중 하나이고, 사우론은 본디 장인 발라 **아울레의 마이아**였다가 멜코르에게 넘어갔으며, 발로그는 불과 그림자의 마이아가 타락한 존재입니다. 모리아의 다리에서 맞붙은 간달프와 발로그가 그토록 팽팽했던 이유가 여기 있습니다 — 둘은 **본디 같은 종류의 정령**이었던 것입니다.
+
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-creation-myth-maiar-clash-640.webp 640w, /assets/images/lore/middle-earth-creation-myth-maiar-clash-1024.webp 1024w, /assets/images/lore/middle-earth-creation-myth-maiar-clash-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-creation-myth-maiar-clash.jpg" alt="카잣둠의 좁고 부서진 돌다리 위에서 마주 선 두 정령. 왼쪽에는 잿빛 옷의 노인 마법사가 은백색으로 빛나는 지팡이와 검을 들고 버티고, 오른쪽에는 화염과 그림자로 이루어진 거대한 존재가 불타는 채찍을 치켜든 채 앰버-붉은 불길을 뿜는다. 둘 사이로 검은 심연이 갈라져 있고, 두 빛 — 차가운 은청빛과 뜨거운 화염빛 — 이 다리 한가운데서 부딪친다. 본디 같은 마이아 반열이면서 정반대로 갈린 두 정령의 대치. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption>같은 <strong>마이아</strong>, 정반대의 길 — 잿빛 마법사 <strong>간달프</strong>(올로린)와 불·그림자의 <strong>발로그</strong>가 카잣둠의 다리에서 맞선다. 태생은 같은 반열의 정령이나, <strong>어느 노래를 따랐는가</strong>가 하나는 은빛으로 하나는 화염으로 갈라놓았다.</figcaption>
+</figure>
 
 ## 핵심 포인트
 
