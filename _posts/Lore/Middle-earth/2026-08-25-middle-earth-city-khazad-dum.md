@@ -132,7 +132,7 @@ flowchart LR
   <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-khazad-dum-birdview-640.webp 640w, /assets/images/lore/middle-earth-city-khazad-dum-birdview-1024.webp 1024w, /assets/images/lore/middle-earth-city-khazad-dum-birdview-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
   <img src="/assets/images/lore/middle-earth-city-khazad-dum-birdview.jpg" alt="안개산맥을 세로로 자른 거대한 단면 조감도. 위에는 눈 덮인 봉우리 셋이 솟아 있고, 그 아래 산의 몸통 속으로 층층이 파 내려간 수많은 지하 대전당과 기둥의 숲, 다리와 계단이 산의 뿌리까지 이어진다. 왼쪽에는 서쪽 관문, 오른쪽에는 동쪽 골짜기로 나가는 문이 보인다. 돌벽 곳곳에 은빛 미스릴 광맥이 그물처럼 빛나고, 가장 깊은 바닥은 짙은 어둠에 잠겨 붉은 기운이 어린다. 검은 돌, 은빛 광맥, 바닥의 붉은 기운. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
 </picture>
-<figcaption><strong>크하잣둠 단면 조감</strong> — 안개산맥을 세로로 갈라 보면, 눈 덮인 봉우리 아래로 층층이 파 내려간 지하 대전당이 산의 뿌리까지 이어진다. 서문과 동문이 산맥의 양쪽을 잇고, 돌벽 곳곳에 은빛 <strong>미스릴</strong> 광맥이 빛난다. 그러나 가장 깊은 바닥은 짙은 어둠에 잠겨 있다 — 드워프가 아직 건드리지 않은, 세계만큼 오래된 무언가가 잠든 곳이다. <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+<figcaption><strong>크하잣둠 단면 조감</strong> — 안개산맥을 세로로 갈라 보면, 눈 덮인 봉우리 아래로 층층이 파 내려간 지하 대전당이 산의 뿌리까지 이어진다. 그 한복판에는 소실점까지 검은 기둥이 두 줄로 늘어선 거대한 <strong>대회랑(드워로우델프)</strong> 이 있고, 서문과 동문이 산맥의 양쪽을 잇는다. 돌벽 곳곳에 은빛 <strong>미스릴</strong> 광맥이 빛난다. 그러나 가장 깊은 바닥은 짙은 어둠에 잠겨 있다 — 드워프가 아직 건드리지 않은, 세계만큼 오래된 무언가가 잠든 곳이다. <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
 </figure>
 
 크하잣둠의 부와 명성은 대부분 하나의 금속에서 나왔습니다. 드워프들이 **미스릴(Mithril)**, 곧 '진은(眞銀, true-silver)'이라 부른 금속입니다. 미스릴은 세상 어디에서도 나지 않고 오직 크하잣둠의 산 밑에서만 캘 수 있었습니다.
