@@ -115,6 +115,14 @@ flowchart LR
 
 이렇게 곤돌린은 **수백 년간 아무도 찾지 못한** 요정 최후의 은신처가 됩니다.
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-gondolin-hidden-way-640.webp 640w, /assets/images/lore/middle-earth-city-gondolin-hidden-way-1024.webp 1024w, /assets/images/lore/middle-earth-city-gondolin-hidden-way-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-gondolin-hidden-way.jpg" alt="새벽 안개 속, 하늘을 찌를 듯 깎아지른 에워두른 산맥의 발치에 선 놀도르 요정 일행. 산맥이 사방을 벽처럼 막아 서 있고, 그 한쪽에 좁고 어두운 협곡 틈 — 골짜기로 드는 유일한 은밀한 길 — 이 갈라져 있으며 그 입구를 지키는 육중한 첫 번째 관문이 어렴풋이 보인다. 앞쪽에서 왕관을 쓴 놀도르 군주와 소수의 수행원이 망토를 두른 채 그 틈을 향해 다가서고, 틈 너머로 초록 골짜기의 빛이 새어 나온다. 은밀하고 경외로운 새벽. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>숨은 길</strong> — 사방을 벽처럼 막아선 <strong>에워두른 산맥</strong>의 발치, 그 한쪽에만 갈라진 좁은 협곡 틈이 골짜기로 드는 유일한 길이다. 왕관을 쓴 <strong>투르곤</strong>(오마주)과 수행원이 그 은밀한 입구로 다가서고, 틈 너머로 감춰진 초록 골짜기의 빛이 새어 나온다. 위치 자체가 극비였던, 아무도 찾지 못한 은신처의 문턱. <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
+
 ## 잃어버린 도시를 본떠 — 티리온의 그림자
 
 <figure class="post-figure">
@@ -139,6 +147,14 @@ flowchart LR
 
 위치를 알아낸 모르고스는 대군을 보냅니다. 오르크뿐 아니라 **발로그**와, 이때 처음으로 대규모로 등장한 **용(화룡)** 들이 산맥을 넘어 골짜기로 쏟아집니다. 곤돌린은 불길에 휩싸입니다.
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-gondolin-fall-640.webp 640w, /assets/images/lore/middle-earth-city-gondolin-fall-1024.webp 1024w, /assets/images/lore/middle-earth-city-gondolin-fall-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-gondolin-fall.jpg" alt="밤, 에워두른 산맥의 능선을 넘어 골짜기로 쏟아져 들어오는 모르고스의 대군. 산등성이 너머로 불을 뿜는 거대한 화룡들이 넘어오고, 채찍과 불꽃을 두른 발로그들이 능선을 타고 내려오며, 그 사이로 오르크 무리가 골짜기를 메운다. 골짜기 한복판 언덕 위의 하얀 대리석 도시는 이미 불길에 휩싸여 흰 탑들이 무너지고, 붉은 화염과 검은 연기가 별 하늘을 가린다. 도시의 흰빛과 화염의 붉은빛이 강렬하게 대비되는 웅장하고 비극적인 재난 장면. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>곤돌린의 함락</strong> — 위치가 새어 나가자, 능선을 넘어 <strong>화룡</strong>과 <strong>발로그</strong>와 오르크 대군이 골짜기로 쏟아진다. 언덕 위 하얀 도시는 불길에 휩싸이고, 흰 탑이 무너지며 붉은 화염이 별 하늘을 가린다. 어떤 외부의 적도 뚫지 못한 은신을, 안에서 열린 문 하나가 <strong>제1시대 최대의 비극</strong>으로 바꾼 밤. <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
+
 - **투르곤의 최후** — 왕은 무너지는 자기 탑과 함께 스러집니다.
 - **글로르핀델과 발로그** — 탈출로에서 요정 영주 글로르핀델이 발로그와 맞붙어, 그를 끌어안고 함께 절벽 아래로 떨어져 죽습니다. 소수의 피난민을 지켜 낸 희생이었습니다.
 - **한 줄기 탈출** — 이드릴은 미리 판 비밀 탈출로를 통해 투오르, 어린 에아렌딜, 그리고 살아남은 소수를 이끌고 산맥을 빠져나갑니다.
@@ -152,6 +168,14 @@ flowchart LR
 성장한 에아렌딜은 요정과 인간을 대신해 바다를 건너, 오래전 요정들이 등지고 떠났던 축복의 땅 **아만**으로 갑니다. 그리고 발라들 앞에 서서, 모르고스에게 짓밟히는 중간계를 구해 달라고 간청합니다. 이 간청이 받아들여져, 발라들이 마침내 군대를 일으키는 **분노의 전쟁**이 벌어지고, 이 전쟁으로 모르고스가 무너지며 **제1시대가 끝납니다.**
 
 즉 요정들이 빛을 등지고 떠난 그 길을, 곤돌린에서 태어난 후손이 거꾸로 되짚어 올라가 **용서와 구원을 얻어 온** 것입니다. 가장 비극적으로 무너진 도시가, 결국 세계를 구할 희망의 요람이었습니다.
+
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-gondolin-earendil-640.webp 640w, /assets/images/lore/middle-earth-city-gondolin-earendil-1024.webp 1024w, /assets/images/lore/middle-earth-city-gondolin-earendil-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-gondolin-earendil.jpg" alt="별이 총총한 밤바다를 건너 축복의 땅 아만의 빛을 향해 나아가는 에아렌딜. 전경의 하얀 요정 배 뱃머리에 갑옷을 두른 항해자가 굳게 서 있고, 그의 이마에는 실마릴 하나가 밤바다 위의 별처럼 눈부시게 빛나 어둠을 가른다. 배는 검푸른 대양을 가르며 나아가고 별빛이 물 위에 부서지며, 멀리 수평선 너머로 아만의 해안이 따뜻한 금빛으로 어렴풋이 밝아 온다. 희망차고 성스럽고 광활한 분위기. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>세계의 희망, 에아렌딜</strong> — 곤돌린의 불길에서 살아 나온 아이가, 이마에 <strong>실마릴</strong>을 별처럼 밝힌 채 별바다를 건너 요정들이 등지고 떠났던 <strong>아만</strong>으로 향한다. 빛을 등진 그 길을 후손이 거꾸로 되짚어 올라가 <strong>용서와 구원</strong>을 청하는 항해 — 가장 어두운 함락에서 태어난 뜻밖의 희망(<strong>에우카타스트로페</strong>). <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
 
 ## 상징과 의미 — 벽이 막지 못하는 것
 
