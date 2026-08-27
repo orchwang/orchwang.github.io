@@ -164,8 +164,8 @@ flowchart TD
 
 **확장 — 주요 도시 (7단계)**
 
-- 현재 완료한 항목: **19개**
-- 전체 항목: **19개**
+- 현재 완료한 항목: **21개**
+- 전체 항목: **21개**
 - 진행률: **100%** 🎉 (주요 도시 편 완결 — 나무의 시대부터 반지전쟁의 무대까지)
 
 ## 1단계: 세계관 개요 — 하나의 세계, 세 권의 책
@@ -246,6 +246,8 @@ flowchart TD
 - [x] **미나스 티리스(Minas Tirith)**: 산에 기댄 일곱 겹의 흰 도시, 펠렌노르 평원의 전투 — [[상세](/2026/08/25/middle-earth-city-minas-tirith.html)]
 - [x] **미나스 모르굴(Minas Morgul)**: 옛 미나스 이실이 타락한 나즈굴의 도시, 어둠의 쌍둥이 — [[상세](/2026/08/25/middle-earth-city-minas-morgul.html)]
 - [x] **오스길리아스(Osgiliath)**: 강을 낀 곤도르의 옛 수도이자 폐허 — [[상세](/2026/08/25/middle-earth-city-osgiliath.html)]
+- [x] **아르노르(Arnor)**: 엘렌딜이 세운 북쪽 왕국, 통째로 지워졌다 끝내 왕관이 돌아온 폐허와 순찰자의 땅 — [[상세](/2026/08/25/middle-earth-city-arnor.html)]
+- [x] **앙그마르 / 카른 둠(Angmar)**: 오직 아르노르를 지우려 세워졌다 스러진 마술사왕의 반(反)도시 — [[상세](/2026/08/25/middle-earth-city-angmar.html)]
 - [x] **에도라스(Edoras)**: 로한의 언덕 위 수도, 황금궁전 메두셀드 — [[상세](/2026/08/25/middle-earth-city-edoras.html)]
 - [x] **아이센가드 / 오르상크(Isengard)**: 사루만의 요새, 엔트의 습격과 수몰 — [[상세](/2026/08/25/middle-earth-city-isengard.html)]
 - [x] **로슬로리엔 / 카라스 갈라돈(Caras Galadhon)**: 황금 나무 위의 엘프 도시 — [[상세](/2026/08/25/middle-earth-city-caras-galadhon.html)]
@@ -288,6 +290,8 @@ flowchart TD
 - [경비의 탑, 미나스 티리스: 일곱 겹의 흰 도시](/2026/08/25/middle-earth-city-minas-tirith.html) — 7단계 주요 도시
 - [요술의 탑, 미나스 모르굴: 시체빛에 잠긴 어둠의 쌍둥이](/2026/08/25/middle-earth-city-minas-morgul.html) — 7단계 주요 도시
 - [별들의 요새, 오스길리아스: 강 위에 무너진 곤도르의 심장](/2026/08/25/middle-earth-city-osgiliath.html) — 7단계 주요 도시
+- [북방의 잊힌 왕국, 아르노르: 통째로 지워졌으나 끝내 왕관이 돌아온 인간 왕국](/2026/08/25/middle-earth-city-arnor.html) — 7단계 주요 도시 (제3시대)
+- [북쪽의 그림자 왕국, 앙그마르(카른 둠): 오직 하나를 지우려 세워졌다 스러진 반(反)도시](/2026/08/25/middle-earth-city-angmar.html) — 7단계 주요 도시 (제3시대)
 - [황금궁전의 언덕, 에도라스: 초원 위에 선 기마민족의 도시](/2026/08/25/middle-earth-city-edoras.html) — 7단계 주요 도시
 - [쇠의 고리, 아이센가드: 마음이 금속과 바퀴가 될 때](/2026/08/25/middle-earth-city-isengard.html) — 7단계 주요 도시
 - [황금 나무의 도시, 카라스 갈라돈: 시간이 멈춘 로슬로리엔](/2026/08/25/middle-earth-city-caras-galadhon.html) — 7단계 주요 도시
