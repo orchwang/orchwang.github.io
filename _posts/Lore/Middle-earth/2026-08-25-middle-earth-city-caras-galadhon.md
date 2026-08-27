@@ -133,6 +133,14 @@ flowchart LR
 
 이 숲에서 벌어지는 가장 유명한 장면이 **갈라드리엘의 시험**입니다. 프로도가 절대반지를 그에게 건네려 하자, 갈라드리엘은 잠시 그 반지로 자신이 무엇이 될 수 있는지를 봅니다 — "어둠의 여왕! 밤처럼 아름답고 무서운" 존재. 그러나 그는 그 유혹을 물리치고 **"나는 시험을 통과했다. 나는 작아지고, 서녘으로 떠나 갈라드리엘로 남겠다"** 고 말합니다. 힘을 가질 기회를 스스로 내려놓는 이 장면은, 반지의 제왕 전체에서 절대반지를 거부한 몇 안 되는 결정적 순간입니다.
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-caras-galadhon-galadriel-640.webp 640w, /assets/images/lore/middle-earth-city-caras-galadhon-galadriel-1024.webp 1024w, /assets/images/lore/middle-earth-city-caras-galadhon-galadriel-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-caras-galadhon-galadriel.jpg" alt="밤의 금빛 잎 숲속 빈터. 흰 옷을 입은 키 큰 엘프 여왕 앞에, 맨발의 작은 호빗이 손바닥에 반지 하나를 올려 내민다. 여왕의 머리 위로 엠버골드로 타오르는 거대한 반투명 환영 — 아름답고 무서운 어둠의 여왕 — 이 우듬지를 채우지만, 실제 여왕의 몸은 작고 희게 남아 있다. 든 손끝의 은빛 반지 네냐가 은청색으로 빛난다. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>갈라드리엘의 시험</strong> — 프로도가 내민 절대반지 앞에서, 갈라드리엘은 잠시 "밤처럼 아름답고 무서운 어둠의 여왕"의 환영으로 타오른다. 그러나 그는 유혹을 물리치고 작아지기를 택한다 — 손끝의 <strong>네냐</strong>만이 은빛으로 조용히 빛난다. <em>(공식 이미지를 옮긴 것이 아니라 콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
+
 ## 원정대의 안식 — 선물과 갈림길
 
 로슬로리엔은 원정대에게 **모리아에서 간달프를 잃은 직후의 피난처**였습니다. 상실에 빠진 이들이 이 숲에서 잠시 쉬며 상처를 추스릅니다. 떠날 때 갈라드리엘은 각자에게 선물을 주는데, 이 선물들이 뒷이야기에서 요긴한 역할을 합니다.
@@ -143,6 +151,14 @@ flowchart LR
 
 이렇게 로슬로리엔은 이야기의 **쉼표**이자 **분기점**입니다. 여기서 원정대는 마지막으로 한자리에 모여 쉬고, 곧이어 강을 따라 내려가다 보로미르의 죽음과 함께 뿔뿔이 흩어집니다.
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-caras-galadhon-farewell-640.webp 640w, /assets/images/lore/middle-earth-city-caras-galadhon-farewell-1024.webp 1024w, /assets/images/lore/middle-earth-city-caras-galadhon-farewell-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-caras-galadhon-farewell.jpg" alt="여명빛 아래 황금 숲 가장자리를 따라 흐르는 은빛 강. 회색 망토를 두른 원정대가 탄 날렵한 엘프의 배 세 척이 하류로 미끄러져 내려간다. 초록 강둑에 흰 옷의 키 큰 엘프 여왕이 한 손을 들어 배웅하고, 멜로른의 금빛 잎이 물 위로 흩날린다. 앞 배의 작은 호빗은 별빛을 담아 빛나는 유리병을 쥐고 있다. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>원정대의 작별</strong> — 은빛 강을 따라 엘프의 배가 황금 숲을 떠나고, 강가의 <strong>갈라드리엘</strong>이 손을 들어 배웅한다. 멜로른의 금빛 잎이 물 위로 내리고, 앞 배의 호빗은 별빛을 담은 <strong>유리병</strong>을 쥐고 있다 — 훗날 어둠 속에서 그를 구할 빛이다. <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
+
 ## 상징과 의미 — 지키려 할수록 저무는 아름다움
 
 로슬로리엔이 이 세계에서 갖는 의미는 **'사라져 가는 것'** 이라는 톨킨 세계의 정서와 곧장 이어집니다.
@@ -150,6 +166,14 @@ flowchart LR
 - **아이센가드의 정반대** — 사루만이 나무를 베어 기계를 만들었다면, 갈라드림은 나무를 살려 그 위에 도시를 얹었습니다. **찍어 내는 문명 대 자라나는 문명** — 앞 편 아이센가드와 나란히 놓으면 이 대비가 가장 선명합니다.
 - **멈춘 시간의 대가** — 네냐가 지킨 '늙지 않는 아름다움'은 절대반지에 매인 힘이었습니다. 프로도가 반지를 파괴하면 사우론이 무너지는 동시에 **세 엘프 반지의 힘도 함께 스러집니다.** 즉 로슬로리엔의 황금빛을 지키려면 사우론을 못 이기고, 사우론을 이기려면 이 숲의 아름다움도 저물어야 합니다. 갈라드리엘은 그 사실을 알면서 승리를 택합니다.
 - **저무는 엘프의 시대** — 반지전쟁이 끝나자 네냐의 힘은 다하고, 갈라드리엘은 마침내 그토록 오래 떠나지 못했던 서녘(발리노르)로 배를 타고 떠납니다. 로슬로리엔의 쇠락은 곧 **엘프의 시대가 끝나고 인간의 시대(제4시대)가 열림**을 뜻합니다. 세계에서 가장 아름다운 것이, 세계가 나아지기 위해 스스로 사라지는 것 — 이것이 이 숲이 남기는 마지막 정서입니다.
+
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-caras-galadhon-fading-640.webp 640w, /assets/images/lore/middle-earth-city-caras-galadhon-fading-1024.webp 1024w, /assets/images/lore/middle-earth-city-caras-galadhon-fading-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-caras-galadhon-fading.jpg" alt="한 그루 거대한 멜로른이 세로로 둘로 갈린 개념 삽화. 왼쪽 절반은 은빛 줄기와 무성한 금빛 잎, 빛나는 흰 플렛과 등불로 가득한 전성기. 오른쪽 절반은 잎이 떨어지고 줄기가 잿빛으로 시들며 불빛이 꺼져 가는 쇠락. 오른쪽 먼 지평선 위로 작은 잿빛 엘프의 배가 서녘으로 항해한다. 두 절반을 가르는 가느다란 엠버골드 이음선이 위에서 아래로 흐른다. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>지키려 할수록 저무는 아름다움</strong> — 한 그루 멜로른이 시간으로 갈린다. 왼쪽은 빛과 금빛 잎으로 가득한 전성기, 오른쪽은 잎이 지고 불빛이 꺼져 가는 쇠락. 절대반지가 무너지면 <strong>네냐</strong>의 힘도 다하고, 갈라드리엘의 배는 <strong>서녘</strong>으로 떠난다. <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
 
 ## 결론
 

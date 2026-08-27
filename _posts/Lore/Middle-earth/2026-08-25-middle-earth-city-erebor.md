@@ -109,6 +109,14 @@ flowchart LR
 
 스로르(Thrór) 대에 에레보르는 절정에 이릅니다. 산 아래의 왕은 막대한 황금 위에 앉았고, 산기슭의 인간 도시 **데일(Dale)** 과 활발히 교역하며 이 일대가 함께 번영했습니다. 그러나 바로 그 넘치는 부가, 멀리서 재앙 하나를 불러들입니다.
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-erebor-hall-640.webp 640w, /assets/images/lore/middle-earth-city-erebor-hall-1024.webp 1024w, /assets/images/lore/middle-earth-city-erebor-hall-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-erebor-hall.jpg" alt="산 속을 파 만든 거대한 기둥 홀. 룬이 새겨진 돌기둥이 층층이 늘어서고 대장간의 주황 불빛이 쏟아진다. 수염 난 드워프 장인들이 모루에서 금과 보석을 두드리고, 광차와 갱도가 더 깊은 곳으로 이어진다. 홀 안쪽 높은 단의 돌 왕좌에 산 아래의 왕이 앉아 있고, 그 위로 스스로 빛나는 흰 보석 아르켄스톤이 걸려 홀을 은빛으로 물들인다. 밝고 활기찬 전성기. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>번영기의 에레보르</strong> — 산을 파 새긴 기둥 홀에 대장간 불빛이 넘치고, 드워프 장인들이 금과 보석을 벼린다. 높은 단의 돌 왕좌에 <strong>산 아래의 왕</strong>이 앉고, 그 위에서 <strong>아르켄스톤</strong>이 홀을 은빛으로 밝힌다. 용이 잠든 훗날의 어두운 대전과 정반대인, 살아 있는 왕국의 절정이다. <em>(공식 이미지를 옮긴 것이 아니라 콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
+
 ## 황금이 부른 용 — 스마우그
 
 <figure class="post-figure">
@@ -123,6 +131,14 @@ flowchart LR
 
 여기서 톨킨은 드워프의 재앙을 하나의 상징으로 압축합니다 — **쌓아 둔 부는 그 자체로 재앙을 부른다.** 아무도 쓰지 않고 산 속에 잠들어 있는 황금은, 결국 그것을 탐하는 더 큰 탐욕(용)을 불러들일 뿐입니다.
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-erebor-smaug-640.webp 640w, /assets/images/lore/middle-earth-city-erebor-smaug-1024.webp 1024w, /assets/images/lore/middle-earth-city-erebor-smaug-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-erebor-smaug.jpg" alt="저물녘 하늘을 가르며 거대한 붉은 화룡이 외로운 산을 향해 급강하하고 긴 화염을 뿜는다. 산기슭의 인간 도시 데일이 불길에 휩싸여 지붕이 무너지고, 긴 호수 물 위로 불빛이 붉게 비친다. 산문 앞에서 작은 드워프들이 뿔뿔이 달아나고 하늘에는 재와 불티가 흩날린다. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>스마우그의 습격</strong> — 북방의 화룡이 황금 냄새를 좇아 외로운 산에 날아든다. 산문을 부수고 왕국을 덮치며, 산기슭의 <strong>데일</strong>까지 불태운다. 넘치는 부가 불러들인 재앙이 이렇게 왕국을 하루아침에 무너뜨린다. <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
+
 ## 되찾음과 황금병 — 다섯 군대의 전투
 
 『호빗』의 이야기가 여기서 시작됩니다. 소린은 열두 드워프와 마법사 간달프, 그리고 도둑으로 고용된 호빗 **빌보 배긴스(Bilbo Baggins)** 를 데리고 잃어버린 왕국을 되찾으러 떠납니다. 빌보가 스마우그의 대전에 몰래 숨어들고, 용의 약점(가슴 비늘 한 조각의 빈틈)이 드러납니다. 결국 스마우그는 산에서 날아올라 호수 마을을 불태우다가, 데일의 후예 **바르드(Bard)** 가 쏜 검은 화살에 그 빈틈을 맞고 최후를 맞습니다.
@@ -133,11 +149,27 @@ flowchart LR
 
 그 순간, 공통의 적이 나타나 상황을 뒤집습니다. 오르크와 와르그의 대군이 산을 노리고 몰려온 것입니다. 드워프·인간·엘프는 서로에게 겨눈 무기를 돌려 함께 싸우고, 여기에 거대한 독수리들과 곰인간 베오른까지 가세합니다. 이것이 **다섯 군대의 전투(Battle of Five Armies)** 입니다. 전투에서 소린은 치명상을 입지만, 죽기 직전 빌보에게 자신의 탐욕을 사죄하며 화해합니다 — **"만약 우리 중 더 많은 이가 황금보다 음식과 노래와 즐거움을 소중히 여겼다면, 이 세계는 더 즐거운 곳이었을 것이오."**
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-erebor-battle-640.webp 640w, /assets/images/lore/middle-earth-city-erebor-battle-1024.webp 1024w, /assets/images/lore/middle-earth-city-erebor-battle-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-erebor-battle.jpg" alt="외로운 산 기슭 골짜기의 대규모 전투. 도끼를 든 드워프, 창과 활을 든 엘프, 호수 마을·데일의 인간이 한편에 서서 몰려드는 오르크와 와르그 늑대 대군에 맞선다. 하늘에서 거대한 독수리들이 급강하해 가세하고, 배경에 외로운 산 봉우리가 솟아 있다. 깃발과 먼지, 부딪치는 무기. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>다섯 군대의 전투</strong> — 주인 없는 황금을 두고 대치하던 드워프·인간·엘프가, 오르크와 와르그의 대군이 나타나자 서로에게 겨눈 무기를 돌려 함께 싸운다. 독수리와 베오른까지 가세한 이 전투에서 소린은 치명상을 입고, 죽기 전 황금보다 소중한 것을 깨닫는다. <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
+
 ## 재건과 반지전쟁 — 다시 선 왕국
 
 많은 도시가 함락으로 끝나는 이 시리즈에서, 에레보르는 드물게 **되살아나는** 도시입니다. 소린이 죽은 뒤 그의 친척 **다인 2세 무쇠발(Dáin II Ironfoot)** 이 산 아래의 왕이 되어 왕국을 재건합니다. 폐허가 됐던 데일도 바르드의 후손 아래 다시 세워지고, 산과 도시는 굳건한 동맹을 맺습니다.
 
 이 동맹은 훗날 반지전쟁 때 시험대에 오릅니다. 사우론의 동방 군대가 북방을 공격했을 때(**데일 전투**), 에레보르의 드워프와 데일의 인간은 함께 맞서 싸웁니다. 늙은 다인 2세는 쓰러진 데일의 왕을 지키다 산문 앞에서 전사하지만, 결국 북방을 지켜 냅니다. 남쪽 곤도르에서 반지가 파괴되어 사우론이 무너지자 이 포위도 풀립니다. 프로도가 남쪽에서 벌인 일이 저 먼 북쪽의 산 하나까지 구한 셈입니다.
+
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-erebor-restored-640.webp 640w, /assets/images/lore/middle-earth-city-erebor-restored-1024.webp 1024w, /assets/images/lore/middle-earth-city-erebor-restored-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-erebor-restored.jpg" alt="재건된 에레보르의 여명. 복원된 거대한 산문이 활짝 열려 룬이 새겨진 새 문짝이 빛나고, 그 앞으로 달리는 강이 맑게 흘러나온다. 성벽 위로 드워프 왕가의 깃발이 나부끼고, 긴 호숫가에는 다시 세워진 인간 도시 데일의 새 지붕과 종탑이 늘어선다. 드워프와 인간이 함께 성문 길을 오간다. 맑은 새벽빛. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>다시 선 왕국</strong> — 다인 2세 아래 에레보르가 재건되고, 폐허였던 <strong>데일</strong>도 바르드의 후손 아래 다시 선다. 복원된 산문에서 강이 맑게 흐르고 왕가의 깃발이 나부낀다. 함락으로 끝난 많은 도시와 달리, 에레보르는 이 시리즈에서 '되살아난 도시'의 자리를 차지한다. <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
 
 ## 상징과 의미 — 두 개의 황금
 
