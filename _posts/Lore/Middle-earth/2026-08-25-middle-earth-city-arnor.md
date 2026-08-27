@@ -135,6 +135,14 @@ excerpt: "엘렌딜이 곤도르와 함께 세운 북쪽 왕국, 그러나 북�
 - **너무 늦은 승리** — 왕국이 무너진 뒤에야 남쪽 곤도르의 함대가 사령관 **에아르누르**와 함께 도착해, TA 1975 **포르노스트 전투**에서 앙그마르를 완전히 격파합니다. 목적을 이룬 앙그마르는 사라지고, 마술사왕은 남쪽 모르도르로 달아나 훗날 미나스 모르굴의 주인이 됩니다. 앙그마르는 아르노르를 지우는 데 성공한 뒤, 그 자신도 함께 스러진 셈입니다.
 - **폐허가 된 왕국** — 승리했으나 되살릴 왕국은 이미 없었습니다. 안누미나스도, 포르노스트도, 바람마루도 사람 하나 없는 폐허로 남습니다. 호빗들은 포르노스트의 폐허를 훗날 **'죽은자의 둑(Deadmen's Dike)'** 이라 부르며 가까이 가기를 꺼렸습니다. 북왕국은 지도에서 완전히 지워졌습니다.
 
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/lore/middle-earth-city-arnor-fornost-640.webp 640w, /assets/images/lore/middle-earth-city-arnor-fornost-1024.webp 1024w, /assets/images/lore/middle-earth-city-arnor-fornost-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/lore/middle-earth-city-arnor-fornost.jpg" alt="포르노스트의 함락 장면. 눈 덮인 북구릉 위 흰 돌의 성벽 수도가 겨울 하늘 아래 불타며 무너지고, 뚫린 성문으로 검은 앙그마르 군세가 쏟아져 들며 성벽 위로 검은 연기가 오른다. 앞쪽 언덕길로 피란민의 행렬이 이어지고, 그 선두에 별 문양 망토를 두른 마지막 왕이 말을 타고 북쪽으로 떠나며 불타는 도시를 돌아본다. 창백한 겨울빛, 흰 눈, 회색 돌, 검은 연기, 붉은 불길. 옆에서 본 구도. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption><strong>포르노스트의 함락</strong> — 북왕국의 마지막 수도가 겨울 하늘 아래 불타 무너지고, 마지막 왕 <strong>아르베두이</strong>가 피란민과 함께 북쪽으로 떠난다. 그는 얼어붙은 포로켈 만에서 배와 함께 잠기고, 이로써 북왕국의 왕통이 끊긴다. <em>(콘셉트에 맞춰 새로 생성한 원본 삽화)</em></figcaption>
+</figure>
+
 ## 폐허와 순찰자 — 남은 것
 
 왕국은 사라졌지만, 그 **핏줄과 사명**은 사라지지 않았습니다. 여기서 아르노르의 이야기는 다른 모든 몰락과 갈라집니다.
