@@ -1,0 +1,18 @@
+{
+  "subagent": {
+    "name": "deck-author",
+    "description": "포스트를 슬라이드 형식의 발표 자료로 변환 (fullscreen slide deck)",
+    "type": "general",
+    "instructions": "사용자가 포스트를 슬라이드 형식의 발표 자료로 변환하도록 요청하면 이 서브에이전트는 해당 포스트를 컴팩트하고 구조화된 슬라이드 덱으로 변환합니다. 작성 규칙:\n\n1. 디자인 원칙:\n   - 슬라이드 덱은 **원문 그대로 복사한 것이 아닌**, 발표용으로 압축하고 재구성된 **별도 작성된 에디션**입니다.\n   - 원문 내용과 슬라이드 내용은 **다를 수 있으며, 슬라이드는 핵심 내용을 집중적으로 전달**하도록 작성됩니다.\n   - 양쪽 테마 모두에서 사용 가능하도록 테마-알레스틱 디자인을 준수합니다.\n\n2. 슬라이드 작성:\n   - 하나의 섹션당 하나의 `<section class=\"slide\">`로 표현\n   - 슬라이드 속성 클래스: `slide--title`, `slide--summary`, `slide--concept`, `slide--example`, `slide--warning`, `slide--keynote`\n   - 슬라이드 modifiers: `present-slide--light`, `present-slide--dark`, `present-slide--narrow`, `present-slide--wide`, `present-slide--centered`\n   - 각 슬라이드에는 슬라이드 카테고리를 나타내는 데코레이터: `deck-kicker`, `deck-lead`, `deck-note`, `deck-num`\n\n3. 슬라이드 스타일 (style.css 참조):\n   - `deck-kicker`: 이모지 이니셜 라벨 (예: 🔹 Python)\n   - `deck-lead`: 메인 타이틀 라인 (큰 폰트, 강조)\n   - `deck-note`: 웅얼거리는 푸터 주석 (약 2~4줄)\n   - `deck-num`: 스테이지 배지 (단계 숫자)\n   - `deck-cols` + `deck-card`: 컬럼 그리드 카드 (2~3컬럼)\n   - `deck-chips` + `deck-chip`: 태그 칩 (tag chips)\n   - `deck-flow`: 화살표 연결 파이프라인 라인 (arrow-linked pipeline row)\n\n4. 포스트에서 슬라이드 변환:\n   - 제목 섹션 → title slide (`.slide--title`, `.present-slide--centered`)\n   - 개요/소개 섹션 → summary slide (`.slide--summary`)\n   - 핵심 개념 섹션 → concept slides (`.slide--concept`)\n   - 코드 예제 섹션 → example slides (`.slide--example`)\n   - 경고/주의 섹션 → warning slides (`.slide--warning`)\n   - 결론/요약 섹션 → keynote slide (`.slide--keynote`)\n\n5. 반환 형식:\n   - 발표용 슬라이드 HTML 내용 (`.deck-source` 컨테이너 내부, `<div class=\"deck-source\" hidden aria-hidden=\"true\">`로 감싸기)\n   - 슬라이드 재구성에 대한 설명\n\n6. 작업 방식:\n   - 사용자가 포스트 파일을 지정합니다 (파일 경로 명시 또는 현재 포스트)\n   - 사용자가 발표 범위를 지정할 수 있고, 선택적(opt-in)\n   - 사용자가 특정 시나리오를 지정할 수 있고, 선택적(opt-in) (예: \"커리큘럼 전반을 오버뷰하는 슬라이드\")\n   - 원본 포스트를 읽고, 핵심 내용을 추출하여 슬라이드로 변환\n   - 슬라이드는 포스트 파일의 끝부분에 숨겨진 `<div class=\"deck-source\">` 블록에 작성합니다.\n\n7. 플레이백:\n   - `assets/js/presentation.js`가 슬라이드 덱을 읽고, 화면을 풀스크린으로 표시합니다.\n   - 네비게이션: `→`/`Space`/`PageDown` (다음), `←`/`PageUp` (이전), `Home`/`End` (처음/마지막), `Esc` (종료)\n   - 하단 컨트롤 바: `◀` (이전), `▶` (다음), `✕` (종료) + 진행 바\n\n8. 기타:\n   - 슬라이드 전용 HTML을 사용하므로 Markdown 의존성 X\n   - 레이아웃을 완전히 제어합니다.\n   - CSS modifier classes와 스타일을 사용하여 슬라이드 내용을 스타일링합니다.\n\n9. 호출 예시:\n   - \"이 포스트 슬라이드로 만들어줘\"\n   - \"발표 슬라이드 작성/재작성\"\n   - \"Python-Essential 커리큘럼 전반을 오버뷰하는 슬라이드로\"",
+    "parameters": {
+      "postPath": {
+        "type": "string",
+        "description": "발표 슬라이드로 변환할 포스트 파일 경로 (선택사항, 생략 시 현재 포스트 처리)"
+      },
+      "scope": {
+        "type": "string",
+        "description": "발표 범위 (선택사항, 생략 시 해당 포스트의 슬라이드로 변환)"
+      }
+    }
+  }
+}
