@@ -1,0 +1,113 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "datamaker": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Datamaker 사내 LLM",
+      "options": {
+        "baseURL": "https://platform-llm.datamaker.io/v1",
+        "apiKey": "{env:DATAMAKER_LLM_KEY}"
+      },
+      "models": {
+        "glm-4.7-flash": {
+          "name": "glm-4.7-flash (사내)",
+          "limit": {
+            "context": 65536,
+            "output": 32768
+          }
+        }
+      }
+    }
+  },
+  "model": "datamaker/glm-4.7-flash",
+  "subagents_marketplaces": {
+    "datamaker-bundled": {
+      "source_type": "local",
+      "source": "/Users/hwangjongtaek/.codex/.tmp/bundled-marketplaces/datamaker-bundled"
+    }
+  },
+  "subagents_plugins": {
+    "article-manager": {
+      "enabled": true
+    },
+    "post-illustrator": {
+      "enabled": true
+    },
+    "deck-author": {
+      "enabled": true
+    },
+    "browser-automation": {
+      "enabled": true
+    },
+    "content-reviewer": {
+      "enabled": true
+    },
+    "taxonomy-curator": {
+      "enabled": true
+    },
+    "cv-maintainer": {
+      "enabled": true
+    },
+    "learning-content-expert": {
+      "enabled": true
+    },
+    "wiki-manager": {
+      "enabled": true
+    }
+  },
+  "subagents_features": {
+    "enable_repl": false
+  },
+  "mcp_servers": {
+    "node_repl": {
+      "args": [],
+      "command": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl",
+      "startup_timeout_sec": 120,
+      "env": {
+        "NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS": "1000",
+        "NODE_REPL_NODE_MODULE_DIRS": "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules",
+        "NODE_REPL_NODE_PATH": "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node",
+        "NODE_REPL_TRUSTED_CODE_PATHS": "/Users/hwangjongtaek/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules",
+        "CODEX_HOME": "/Users/hwangjongtaek/.codex",
+        "BROWSER_USE_AVAILABLE_BACKENDS": "chrome,iab",
+        "BROWSER_USE_TINYSKY_ENABLED": "0",
+        "NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER": "Control the in-app browser in conjunction with the Browser Plugin.",
+        "NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME": "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative.",
+        "NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE": "Control desktop apps on macOS through Computer Use.",
+        "BROWSER_USE_CODEX_APP_BUILD_FLAVOR": "prod",
+        "BROWSER_USE_CODEX_APP_VERSION": "26.825.31414",
+        "NODE_REPL_TRUSTED_SERVICES": "{\"browser\":\"/Users/hwangjongtaek/.codex/plugins/cache/openai-bundled/browser/26.825.31414/scripts/browser-service.mjs\",\"sky\":\"@oai/sky/service\"}",
+        "SKY_CUA_SERVICE_PATH": "/Users/hwangjongtaek/.codex/computer-use/Codex Computer Use.app",
+        "CODEX_CLI_PATH": "/Applications/ChatGPT.app/Contents/Resources/codex"
+      }
+    },
+    "computer-use": {
+      "command": "./Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient",
+      "args": ["mcp"],
+      "cwd": ".",
+      "enabled": false
+    },
+    "openaiDeveloperDocs": {
+      "url": "https://developers.openai.com/mcp"
+    },
+    "cua_repl": {
+      "command": "/Applications/ChatGPT.app/Contents/MacOS/ChatGPT",
+      "enabled": false
+    }
+  },
+  "shell_environment_policy": {
+    "set": {
+      "NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S": "028a14b6eaa6d98dac2aae00764345ab9f244801ed8493d42b9af3be5575006e,f204d340535055781952b10ed396de20b842f00a19e430852f7e121ad1ce91f6"
+    }
+  },
+  "desktop": {
+    "conversationDetailMode": "STEPS_PROSE",
+    "ambient-suggestions-enabled": true,
+    "followUpQueueMode": "queue"
+  },
+  "projects": {
+    "/Users/hwangjongtaek/Projects/private/orchwang.github.io": {
+      "trust_level": "trusted"
+    }
+  }
+}
