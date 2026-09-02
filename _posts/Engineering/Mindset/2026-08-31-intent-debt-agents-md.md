@@ -8,6 +8,14 @@ published: true
 excerpt: "기술 부채·인지 부채·의도 부채 중 에이전트가 대신 갚아줄 수 없는 유일한 부채, 의도 부채를 어떻게 인지하고 방지할지 실전 체크리스트와 AGENTS.md 템플릿으로 재구성하고, 오픈소스 리포 'it-is-not-my-intent'로 공개한다."
 ---
 
+<figure class="post-figure post-figure--header">
+<picture>
+  <source type="image/webp" srcset="/assets/images/intent/it-is-not-my-intent-mascot-640.webp 640w, /assets/images/intent/it-is-not-my-intent-mascot-800.webp 800w" sizes="(max-width: 800px) 100vw, 420px">
+  <img src="/assets/images/intent/it-is-not-my-intent-mascot.jpg" alt="오그리마 성문과 호드 깃발을 배경으로 선 픽셀아트 오크 전사(그롬 헬스크림 풍). 붉은 전투 문양을 얼굴에 그린 채 이마엔 식은땀 한 방울이 맺혀 있고, 한 손을 방어하듯 들어 올린다. 오른쪽 말풍선에는 'IT IS NOT MY INTENT!'라고 적혀 있다." width="800" height="800" loading="eager" decoding="async">
+</picture>
+<figcaption>이 글의 결과물을 담은 오픈소스 리포 <a href="https://github.com/hwangjongtaek/it-is-not-my-intent"><strong><code>it-is-not-my-intent</code></strong></a>의 마스코트. "그건 제 의도가 아니었어요"라며 손사래 치는 오크 전사 — 일이 터진 <em>뒤에</em> 하던 이 변명을, 의도를 미리 적어 <em>터지기 전에</em> 거짓말로 만드는 것이 이 글의 주제다.</figcaption>
+</figure>
+
 <div class="post-summary-box" markdown="1">
 
 ### 📌 이 글에서 다루는 내용
@@ -147,7 +155,7 @@ class LegacyInvoice(models.Model):
 
 ## 오픈소스로 공개한다 — `it-is-not-my-intent`
 
-이 템플릿을 리포로 만들어 공개하기로 했다. 이름은 **`it-is-not-my-intent`**.
+이 템플릿을 리포로 만들어 공개하기로 했다. 이름은 **[`it-is-not-my-intent`](https://github.com/hwangjongtaek/it-is-not-my-intent)**.
 
 "그건 제 의도가 아니었어요"는 원래 일이 **터진 뒤에** 하는 변명이다. 책임을 과거로 떠넘기는 문장이다. 이 리포의 이름은 그 문장을 뒤집는다. 의도를 **일이 터지기 전에** 파일로 적어 두면, 그 변명은 더 이상 성립하지 않는다. 의도가 적혀 있는데 무시됐다면 그건 프로세스의 실패이고, 애초에 적혀 있지 않았다면 그것도 이제는 눈에 보이는 실패다. 어느 쪽이든 "제 의도가 아니었어요"로 도망칠 곳이 사라진다 — 사람에게도, 에이전트에게도.
 
@@ -160,6 +168,10 @@ class LegacyInvoice(models.Model):
 > 지금 이 결정의 이유는, 사람 머릿속이 아니라 파일 안에 있는가?
 
 "아니오"라는 답이 나올 때마다, 그것이 다음 세션에 청구될 이자다. 지금 한 줄 적어 두는 게 언제나 더 싸다.
+
+### 더 읽어보기 · 가져다 쓰기
+
+- **[`hwangjongtaek/it-is-not-my-intent`](https://github.com/hwangjongtaek/it-is-not-my-intent)** — 이 글에서 다룬 구조를 그대로 담은 `AGENTS.md` 템플릿과 README. 리포 루트에 복사해 1·2·3·5번 섹션을 채우면 바로 쓸 수 있다. (MIT)
 
 ### 다음 학습 (Next Learning)
 
