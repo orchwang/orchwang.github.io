@@ -1,0 +1,46 @@
+# Orc Hwang's Wiki — Oh My Pi (omp) Project Configuration
+
+modelRoles:
+  # Task subagents & review roles
+  review: google-antigravity/gemini-3.7-flash:high
+  fast: google-antigravity/gemini-3.7-flash:low
+
+task:
+  enableEffort: true
+  maxRecursionDepth: 2
+
+tools:
+  approvalMode: write
+  approval:
+    bash: prompt
+    read: allow
+    grep: allow
+    glob: allow
+
+bash:
+  patterns:
+    - match: "bundle exec *"
+      approval: allow
+    - match: "make *"
+      approval: allow
+    - match: "git status*"
+      approval: allow
+    - match: "git diff*"
+      approval: allow
+    - match: "git log*"
+      approval: allow
+    - match: "rbenv *"
+      approval: allow
+
+bashInterceptor:
+  enabled: true
+  patterns:
+    - pattern: '^\s*(cat|head|tail)\s+'
+      tool: read
+      message: "Use the read tool instead."
+    - pattern: '^\s*(grep|rg)\s+'
+      tool: grep
+      message: "Use the grep tool instead."
+    - pattern: '^\s*(find|ls\s+-R)\s+'
+      tool: glob
+      message: "Use the glob tool instead."
