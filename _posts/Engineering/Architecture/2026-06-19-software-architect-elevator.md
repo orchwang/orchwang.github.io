@@ -84,13 +84,13 @@ excerpt: "Gregor Hohpe의 The Software Architect Elevator를 따라 임원실과
 
 ## 들어가며
 
-이 글은 `Architecture-Essential` 시리즈의 **4단계이자 마지막**입니다. 전체 학습 지도는 [Architecture Essential Curriculum](/2026/06/19/architecture-essential-curriculum.html)에서 다시 확인할 수 있습니다.
+이 글은 `Architecture-Essential` 시리즈의 **4단계**입니다. 전체 학습 지도는 [Architecture Essential Curriculum](/2026/06/19/architecture-essential-curriculum.html)에서 다시 확인할 수 있습니다.
 
 3단계 [Designing Data-Intensive Applications: 분산 데이터 시스템](/2026/06/19/designing-data-intensive-applications.html)에서는 복제, 파티셔닝, 합의, 트랜잭션 같은 **깊은 기술 시스템**을 다뤘습니다. 거기서 우리는 "기계실(engine room)"의 언어, 즉 일관성 모델과 장애 시나리오를 정밀하게 다루는 법을 배웠습니다. 하지만 아무리 정교한 분산 시스템을 설계해도, 그 결정을 **왜** 내렸는지를 비즈니스 의사결정권자에게 설명하지 못한다면 그 아키텍처는 조직 안에서 살아남지 못합니다. 기술적 탁월함과 조직적 영향력은 별개의 근육입니다.
 
 이번 단계의 교재는 Gregor Hohpe의 *The Software Architect Elevator*입니다. 이 책의 핵심 은유는 제목 그대로 **엘리베이터**입니다. 좋은 아키텍트는 건물의 한 층에만 머무르지 않습니다. 최상층의 **임원실(penthouse)**, 즉 비즈니스 전략과 예산이 결정되는 곳과, 지하의 **기계실(engine room)**, 즉 실제 코드와 인프라가 돌아가는 곳 사이를 엘리베이터를 타고 끊임없이 오르내립니다. 그리고 그 엘리베이터 안에서 **양쪽의 언어를 통역**합니다. 임원에게는 기술적 제약을 비즈니스 리스크로 번역하고, 엔지니어에게는 비즈니스 목표를 설계 제약으로 번역합니다.
 
-많은 조직에서 이 엘리베이터는 **고장 나 있습니다**. 임원실은 기계실에서 무슨 일이 벌어지는지 모르고, 기계실은 위에서 왜 그런 결정을 내렸는지 모릅니다. 아키텍트의 가장 중요한 역할은 이 단절된 두 층을 다시 연결하는 것입니다. 이 글은 그 연결을 어떻게 만드는지 — 트레이드오프 소통, 조직 구조(Conway의 법칙), 기술 리더십 — 를 다루며 `Architecture-Essential` 시리즈 전체를 마무리합니다.
+많은 조직에서 이 엘리베이터는 **고장 나 있습니다**. 임원실은 기계실에서 무슨 일이 벌어지는지 모르고, 기계실은 위에서 왜 그런 결정을 내렸는지 모릅니다. 아키텍트의 가장 중요한 역할은 이 단절된 두 층을 다시 연결하는 것입니다. 이 글은 그 연결을 어떻게 만드는지 — 트레이드오프 소통, 조직 구조(Conway의 법칙), 기술 리더십 — 를 다룹니다. 통역이 자리 잡은 뒤, 팀과 함께 화이트보드 앞에서 설계를 돌리는 실전은 5단계 [Design It!: 개발자에서 아키텍트로](/2026/09/06/design-it-from-programmer-to-architect.html)로 이어집니다.
 
 <div class="post-summary-box" markdown="1">
 
@@ -242,12 +242,13 @@ flowchart TB
 
 이번 4단계에서는 아키텍트의 **조직적 역할**을 다뤘습니다. **아키텍트 엘리베이터**는 임원실과 기계실을 오가며 양쪽 언어를 통역하는 일이고, **트레이드오프 소통**은 옵션·근거·비용을 이해관계자의 언어로 펼쳐 책임 있는 결정을 가능하게 하는 일이며, **Conway의 법칙**은 조직 구조와 시스템 구조가 거울처럼 맞물린다는 통찰과 그것을 역으로 이용하는 전략이었습니다. 마지막으로 **기술 리더십**은 표준·플랫폼·문화라는 지렛대로 조직 전체의 엔지니어링 수준을 끌어올리는 일이었습니다. 아키텍처는 박스와 화살표를 넘어, 결국 **사람과 소통의 구조를 설계하는 일**임을 확인했습니다.
 
-🎉 이로써 `Architecture-Essential` 시리즈 네 단계를 모두 완주했습니다. 네 권의 책은 하나의 여정으로 이어집니다. **Eric Evans의 *Domain-Driven Design***(1단계)에서 우리는 소프트웨어가 결국 **도메인의 모델**이며, 비즈니스 언어를 코드에 정직하게 새기는 것이 출발점임을 배웠습니다. **Len Bass의 *Software Architecture in Practice***(2단계)에서는 그 모델을 **품질 속성의 공학**으로 다루는 법 — 가용성·성능·보안 같은 -ility들을 전술과 트레이드오프로 설계하는 법을 익혔습니다. **Martin Kleppmann의 *Designing Data-Intensive Applications***(3단계)에서는 그 설계를 **분산 시스템의 가혹한 현실** 속에서 검증했습니다. 복제·파티셔닝·합의가 부딪히는 기계실의 진실을 마주했습니다. 그리고 이번 **Gregor Hohpe의 *The Software Architect Elevator***(4단계)는 그 모든 기술적 결정을 **조직이라는 인간 시스템** 안에서 살아 움직이게 하는 법을 가르쳤습니다. 도메인에서 출발해 품질로, 분산의 현실로, 그리고 조직으로 — 이 네 층을 오르내릴 수 있을 때 비로소 아키텍트가 됩니다. 결국 아키텍처란 박스와 화살표가 아니라 **사람과 트레이드오프에 관한 것**입니다.
+네 권의 책은 여기까지 하나의 여정으로 이어집니다. **Eric Evans의 *Domain-Driven Design***(1단계)에서 우리는 소프트웨어가 결국 **도메인의 모델**이며, 비즈니스 언어를 코드에 정직하게 새기는 것이 출발점임을 배웠습니다. **Len Bass의 *Software Architecture in Practice***(2단계)에서는 그 모델을 **품질 속성의 공학**으로 다루는 법 — 가용성·성능·보안 같은 -ility들을 전술과 트레이드오프로 설계하는 법을 익혔습니다. **Martin Kleppmann의 *Designing Data-Intensive Applications***(3단계)에서는 그 설계를 **분산 시스템의 가혹한 현실** 속에서 검증했습니다. 복제·파티셔닝·합의가 부딪히는 기계실의 진실을 마주했습니다. 그리고 이번 **Gregor Hohpe의 *The Software Architect Elevator***(4단계)는 그 모든 기술적 결정을 **조직이라는 인간 시스템** 안에서 살아 움직이게 하는 법을 가르칩니다. 도메인에서 출발해 품질로, 분산의 현실로, 그리고 조직으로 — 이 네 층을 오르내릴 수 있을 때 아키텍트의 자리가 열립니다. 그 자리에서 팀과 함께 설계를 실제로 돌리는 법은 다음 단계, Michael Keeling의 *Design It!* 입니다. 결국 아키텍처란 박스와 화살표가 아니라 **사람과 트레이드오프에 관한 것**입니다.
 
 ### 다음 학습
 
-이 단계가 `Architecture-Essential` 시리즈의 마지막입니다. 시리즈를 완주한 것을 축하합니다. 더 넓은 학습으로 이어가려면 아래를 참고하세요.
+이 단계 다음은 시리즈의 실전 마무리입니다. 화이트보드 앞에서 팀과 함께 설계하는 순환은 아래 5단계에서 이어집니다.
 
+- 다음 (5단계): [Design It!: 개발자에서 아키텍트로](/2026/09/06/design-it-from-programmer-to-architect.html)
 - 전체 로드맵 다시 보기: [Architecture Essential Curriculum](/2026/06/19/architecture-essential-curriculum.html)
 - 이전 단계 다시 보기 (3단계): [Designing Data-Intensive Applications: 분산 데이터 시스템](/2026/06/19/designing-data-intensive-applications.html)
 - 자매 커리큘럼 — 객체지향 설계로 깊이 파기: [OO-Design Essential Curriculum](/2026/06/19/oo-design-essential-curriculum.html)
