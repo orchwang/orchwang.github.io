@@ -1,7 +1,7 @@
 ---
 layout: cv
 title: CV
-subtitle: Python Backend Engineer | HHKB & NeoVim
+subtitle: Software Engineer | HHKB & NeoVim
 permalink: /pages/cv.html
 date: 2025-10-12
 ---
@@ -12,12 +12,12 @@ date: 2025-10-12
 - **Email:** orchwang@gmail.com
 - **Blog:** [https://wiki.orchwang.dev/](https://wiki.orchwang.dev/)
 - **LinkedIn:** [www.linkedin.com/in/orchwang](https://www.linkedin.com/in/orchwang)
-- **GitHub:** [https://github.com/orchwang](https://github.com/orchwang)
+- **GitHub:** [https://github.com/orchwang](https://github.com/orchwang), [https://github.com/hwangjongtaek](https://github.com/hwangjongtaek)
 - **Twitter:** [https://x.com/orchwang](https://x.com/orchwang)
 
 ## Professional Summary
 
-11년차 Python 백엔드 엔지니어이자 엔지니어링 리더로서, 서비스 아키텍처 설계와 MLOps/LLMOps 플랫폼 구축, Kubernetes 기반 인프라 운영 경험을 바탕으로 제품 안정성과 개발 효율성 모두를 높여온 전문가입니다.
+12년차 Software Engineer로서, Backend·Frontend 등 특정 스택에 얽매이지 않고 AI Engineering을 통해 설계·개발·테스트·배포·운영에 이르는 제품 개발 전 과정을 총괄합니다. 특히 Backend Engineer로 가장 오랜 경험을 쌓아왔으며, 이를 기반으로 한 서비스 아키텍처 설계와 MLOps/LLMOps 플랫폼 구축, Kubernetes 기반 인프라 운영 경험을 바탕으로 제품 안정성과 개발 효율성 모두를 높여온 전문가입니다.
 
 ### 핵심 역량
 
@@ -37,6 +37,14 @@ date: 2025-10-12
 - **IDE:**
   - [NvChad (NeoVim Wrapper)](https://nvchad.com/)
   - VSCode with VimMode
+- **Terminal:**
+  - [tmux](https://github.com/tmux/tmux/wiki)
+- **AI Coding Agent:**
+  - [Oh My Pi](https://omp.sh/)
+  - [opencode](https://opencode.ai/)
+  - [Google Antigravity](https://antigravity.google/)
+  - [OpenAI Codex](https://openai.com/codex/)
+  - [Claude Code](https://claude.com/claude-code)
 
 ## Work Experience
 
@@ -44,9 +52,9 @@ date: 2025-10-12
 
 - {{ site.career_start_date | career_duration }}
 
-### **데이터메이커** (2024.01 - 재직중, 2년 6개월)
+### **데이터메이커** (2024.01 - 재직중, 2년 9개월)
 
-정규직 | 팀장 | 백엔드 엔지니어
+정규직 | 백엔드 엔지니어
 
 **Synapse DevOps** (2026.01 - 2026.06, 인프라 관리)
 
@@ -67,7 +75,6 @@ date: 2025-10-12
 
 - Ray 기반 에이전트에서 작동하는 플러그인 시스템 피처 개발
 - 플러그인 시스템의 공통 기능을 제공하는 Synapse SDK 개발
-- 100,000건 이상의 Ground Truth 데이터 임포트를 분산처리하여 소요시간 60% 이상 단축
 - Dataset Import/Export 플러그인 설계 및 개발
 - `#SDK` `#Pydantic`
 
@@ -113,6 +120,23 @@ date: 2025-10-12
 - TechValue Jade 서비스(외주) 백엔드 서버 개발
 - AIVORY 추천시스템 백엔드 서버 개발 (Bert 모델 연동)
 - AIVORY 검색 솔루션 백엔드 개발 (ElasticSearch 기반)
+
+## Side Projects
+
+### [Orc Camp](https://github.com/hwangjongtaek/orc-camp)
+
+- tmux 세션을 캠프로, AI 코딩 에이전트(Claude Code, Codex)를 오크로 시각화하는 local-first CLI + 대시보드
+- Read-only & privacy-first 설계, 픽셀아트 스타일 (TypeScript)
+
+### [Orc Citadel](https://github.com/hwangjongtaek/orc-citadel)
+
+- Temporal Evidence Intelligence — 수백만 공개 문서에서 시간·출처가 보존된 주장(Claim) 지식 그래프를 구축
+- LLM 에이전트가 그래프의 공백과 모순을 조사해 지식 그래프를 확장 (Python)
+
+### [It Is Not My Intent](https://github.com/hwangjongtaek/it-is-not-my-intent)
+
+- Intent Debt(의도 부채)를 갚기 위한 drop-in AGENTS.md 템플릿
+- 결정의 "왜"를 먼저 기록해 AI 에이전트와 팀이 의도를 잃지 않도록 하는 문서화 도구
 
 ## Education
 
@@ -201,7 +225,6 @@ date: 2025-10-12
 ## Key Achievements Summary
 
 - ✅ **테스트 커버리지 88% 달성** - TDD 문화 도입 6개월 만에 달성
-- ✅ **데이터 처리 성능 60% 개선** - Ray 기반 분산처리 시스템 구축으로 100,000건 이상 데이터 처리 시간 단축
 - ✅ **코드 리뷰 소요시간 90% 단축** - AI Coding Assistant 활용 및 자동화 도입
 - ✅ **일 100만 건 트래픽 처리** - MSA, CQRS, Message Queue 등을 활용한 성능 최적화
 - ✅ **Docs as Code 문화 정착** - Docusaurus 통합을 통한 문서화 활성화 및 접근성 개선
