@@ -10,12 +10,19 @@ task:
   maxRecursionDepth: 2
 
 tools:
-  approvalMode: write
+  approvalMode: yolo
   approval:
     bash: prompt
     read: allow
     grep: allow
     glob: allow
+
+advisor:
+  enabled: true
+  syncBacklog: "1"
+
+modelRoles:
+  advisor: "@slow"
 
 bash:
   patterns:
@@ -44,3 +51,4 @@ bashInterceptor:
     - pattern: '^\s*(find|ls\s+-R)\s+'
       tool: glob
       message: "Use the glob tool instead."
+

@@ -38,6 +38,7 @@ whenever the article fits — do **not** invent a new sub-category casually.
 | `Career-Life` | `_posts/Articles/Career-Life/` | **커리어·일상·소프트 스킬** (AI와 무관한 직장/삶) |
 | `Systems-Programming` | `_posts/Articles/Systems-Programming/` | **저수준·시스템 프로그래밍** 기술 심화 (동시성·병렬성, 메모리 모델, lock-free·wait-free 자료구조, 컴파일러·런타임, 성능 엔지니어링, 분산 DB 인프라 — C/C++/Rust 등) |
 | `ML-Theory` | `_posts/Articles/ML-Theory/` | 딥러닝·머신러닝의 **이론·수학·기초 원리** (학습 동역학, 일반화 이론, 신경망의 수학적 해석, 표현력·수렴 분석) |
+| `Fintech` | `_posts/Articles/Fintech/` | 결제망·은행 시스템·금융 기술 및 금융 인프라의 구조와 운영 |
 
 ### Picking — or recommending — a sub-category
 
