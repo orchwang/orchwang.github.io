@@ -284,6 +284,7 @@ Jev의 핵심 강점은 속도다. 저자에 따르면:
 
 - [원문 — Jev means structured output is interesting again](https://www.seangoedecke.com/jev-means-structured-output-is-interesting-again/)
 - [0.7초 만에 내 글 전부를 심사한 모델: TypeSafe Jev 미니 바이브 체크](/2026/09/20/mini-vibe-check-typesafe-jev.html) — 같은 Jev를 사용자 관점에서 실전 테스트한 자매편 (777개 판단, "지식 노동의 린터")
+- [JEV Essential Curriculum](/2026/09/21/jev-essential-curriculum.html) — 이 글을 씨앗으로 판단 특화 모델의 배경·본질·활용을 7단계로 정복하는 학습 로드맵
 - [GPT-6 Astra: 하니스가 곧 제품이다](/2026/09/08/gpt6-astra-harness-is-the-product.html) — "가치는 모델인가 시스템인가"라는 같은 질문의 하니스 버전
 - [무엇이 하니스를 하니스로 만드는가](/2026/08/03/what-makes-a-harness-a-harness.html) — 모델을 감싸는 런타임 레이어의 정의
 - [CS336 10강 — 추론(Inference): KV 캐시와 메모리 한계의 게임](/2026/06/26/cs336-lecture-10-inference.html) — prefill vs generation, 자기회귀 추론의 비용 구조라는 배경 지식

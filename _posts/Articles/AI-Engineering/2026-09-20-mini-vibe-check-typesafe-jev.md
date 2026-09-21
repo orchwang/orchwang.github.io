@@ -277,6 +277,7 @@ TypeSafe의 철학을 압축한 문장이 인상적이다: **"We're building pro
 
 - [원문 — Mini-Vibe Check: TypeSafe's Jev Judged Everything I've Written in 0.7 Seconds](https://every.to/also-true-for-humans/mini-vibe-check-typesafe-s-jev-judged-everything-i-ve-written-in-0-7-seconds)
 - [Jev와 구조화 출력의 재발견](/2026/09/20/jev-structured-output-interesting-again.html) — 같은 Jev를 아키텍처·레이턴시 관점에서 파고든 Sean Goedecke 분석 — 이 글의 실사용기와 짝을 이루는 자매편
+- [JEV Essential Curriculum](/2026/09/21/jev-essential-curriculum.html) — 이 글을 씨앗으로 판단 특화 모델의 배경·본질·활용을 7단계로 정복하는 학습 로드맵
 - [확률적 엔지니어링과 24-7 직원](/2026/06/25/probabilistic-engineering-and-the-24-7-employee.html) — "생성은 싸졌지만 검증은 싸지지 않았다"는 비대칭 — Jev가 겨냥하는 바로 그 지점
 - [신뢰할 수 있는 Agentic AI 시스템 만들기](/2026/06/19/reliable-agentic-ai-systems.html) — 프로덕션 에이전트의 신뢰성을 만드는 하니스·컨텍스트 엔지니어링, 판정기가 꽂힐 자리
 - [무엇이 하니스를 하니스로 만드는가](/2026/08/03/what-makes-a-harness-a-harness.html) — 판단 모델을 부품으로 쓰게 될 하니스 계층의 정의
