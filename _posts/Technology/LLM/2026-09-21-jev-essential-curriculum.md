@@ -197,6 +197,10 @@ flowchart TD
 - [Jev와 구조화 출력의 재발견: 70ms 지능은 새로운 컴퓨팅 프리미티브인가 (Sean Goedecke)](/2026/09/20/jev-structured-output-interesting-again.html) — **아키텍처·레이턴시 관점의 해부.** System One 구조, prefill + 단일 토큰 재현 실험, 해자 논쟁, "환각 면역" 비판. 특히 2단계와 5단계의 뼈대.
 - [0.7초 만에 내 글 전부를 심사한 모델: TypeSafe Jev 미니 바이브 체크 (Mike Taylor)](/2026/09/20/mini-vibe-check-typesafe-jev.html) — **사용자 관점의 실사용 검증.** 777개 판단 실험, RLCD와 보정, 세 활용 영역, "지식 노동의 린터" 프레임. 특히 4단계와 6단계의 뼈대.
 
+시리즈 발행 후 나온 세 번째 분석은 앞의 두 관점이 남긴 공백을 채우는 후속 검증입니다.
+
+- [Jev 아키텍처의 가면을 벗기다: API 프로빙으로 역공학한 판단 모델의 내부 (Archer Hume)](/2026/09/22/jevs-architecture-unmasked.html) — **API 프로빙 역공학 관점의 후속 검증.** 직접 확률 readout(z = Wh + b → softmax), 공유 상태 1회 인코딩 + 격리된 질문 브랜치, listwise 선택지 상호작용, MMLU ECE 0.0313 실측 — Goedecke의 "prefill + 단일 토큰" 재현 가설을 부분 기각하는 증거들. 특히 5단계(해부)와 4단계(보정)의 후속 검증이며, 2단계(토큰 회계)와 7단계(MoE 추정)에도 보조 근거를 보탭니다.
+
 ## 핵심 포인트
 
 - **렌즈 먼저, 제품은 나중**: 제약 디코딩·추론 비용·판단 계보·보정이라는 배경 없이 발표문을 읽으면 마케팅과 본질을 가를 수 없습니다

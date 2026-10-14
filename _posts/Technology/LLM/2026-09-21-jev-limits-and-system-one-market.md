@@ -462,3 +462,4 @@ flowchart LR
 - [GPT-6 Astra: 하니스가 곧 제품이다](/2026/09/08/gpt6-astra-harness-is-the-product.html) — "모델의 성질인가 시스템의 성질인가"라는 같은 질문의 하니스 버전
 - [Jev와 구조화 출력의 재발견 (Sean Goedecke)](/2026/09/20/jev-structured-output-interesting-again.html) — 이 포스트가 딛고 선 test-time compute 상한 논증과 해자 반박의 원문 분석
 - [0.7초 만에 내 글 전부를 심사한 모델: TypeSafe Jev 미니 바이브 체크 (Mike Taylor)](/2026/09/20/mini-vibe-check-typesafe-jev.html) — 미검증 지대 세 가지를 처음 지목한 실사용기 분석
+- [Jev 아키텍처의 가면을 벗기다 (Archer Hume)](/2026/09/22/jevs-architecture-unmasked.html) — 공개 API 프로빙으로 해자 논쟁을 갱신한 후속 분석 — sparse MoE 백본 추정("측정 아닌 추론") 포함

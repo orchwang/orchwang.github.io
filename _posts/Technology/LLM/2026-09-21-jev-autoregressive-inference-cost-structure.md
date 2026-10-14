@@ -351,3 +351,4 @@ flowchart TD
 - [3단계 — 판단의 계보: 분류기 · LLM-as-Judge](/2026/09/21/jev-lineage-of-judgment-llm-as-judge.html) — 다음 단계. 값싸고 빨라진 판정이 어떤 계보 위에 서 있는가
 - [CS336 10강 — 추론(Inference): KV 캐시와 메모리 한계의 게임](/2026/06/26/cs336-lecture-10-inference.html) — 이 글의 하드웨어 관점 심화. roofline, KV 캐시 축소 아키텍처(GQA·MLA), speculative decoding, PagedAttention
 - [Jev와 구조화 출력의 재발견 (Sean Goedecke)](/2026/09/20/jev-structured-output-interesting-again.html) — 이 단계의 씨앗이 된 분석. prefill + 단일 토큰 재현 실험(Qwen2.5-1.5B, 2~3x)의 전말과 해자 논쟁
+- [Jev 아키텍처의 가면을 벗기다 (Archer Hume)](/2026/09/22/jevs-architecture-unmasked.html) — 이 글의 토큰 회계 렌즈로 Jev를 실측한 후속 프로빙 분석 — 상태 1회 과금·격리 브랜치·배치 스케줄링의 증거

@@ -3,6 +3,12 @@
 Notable design/UI changes to the wiki. Format: [Keep a Changelog](https://keepachangelog.com/).
 See [`DESIGN.md`](DESIGN.md) (design system) and [`ASSETS.md`](ASSETS.md) (asset pipeline).
 
+## [Unreleased]
+
+### Fixed
+- **Post tables stay within the mobile reading panel.** Tables wider than the viewport now
+  scroll horizontally inside their own bounds instead of widening the whole page.
+
 ## [2.1.0] — 2026-06-25
 
 ### Changed

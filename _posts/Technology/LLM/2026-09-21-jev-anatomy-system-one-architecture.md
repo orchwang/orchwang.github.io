@@ -370,6 +370,8 @@ flowchart LR
 
 이 삼단 결론 — **해자는 얇고, 훈련 층의 차별점은 검증 대기 중이며, 프리미티브는 진짜다** — 이 발표문과 반박을 모두 소화한 뒤에 남는 정직한 잔고입니다.
 
+> **후속 근거 업데이트**: 이 글 발행 후, Archer Hume이 공개 API 프로빙만으로 Jev를 역공학한 [후속 분석](/2026/09/22/jevs-architecture-unmasked.html)이 해자 논쟁의 저울을 움직였습니다. 토큰 회계의 정확한 가산성, 질문 100개까지 평평한 지연(1개 86.5ms vs 100개 82ms), 형제 브랜치 간 완전한 정보 격리(가시성 0.00 vs 공유 상태 0.90~0.92), 무관 선택지 주입 시 log-odds 이동(+0.38 → +0.11) 같은 관찰은 단일 토큰 constrained decoding으로는 설명하기 어렵고, Jev가 텍스트 생성 경로 자체가 없는 **직접 확률 readout(z = Wh + b → softmax) + 공유 상태 1회 인코딩 + 격리된 질문 브랜치** 구조일 가능성을 가리킵니다. 즉 "속도는 재현 가능하다"는 Goedecke의 반박은 유효하되 "같은 구조다"까지는 아니라는 것 — 쟁점은 속도의 재현에서 **공유 상태 + 수천 개 격리 판정이라는 인터페이스·비용 구조의 재현**으로 옮겨 갑니다.
+
 ## 정리
 
 - **System One의 정체**: 자기회귀 순차 생성을 버리고 구조화 출력만 내보내는 판단 특화 설계 — 유한한 선택지라는 출력 공간의 축소가 속도(70ms)·지연 상한(500ms)·단일 forward pass 병렬 판정의 출발점입니다
@@ -388,3 +390,4 @@ flowchart LR
 - [6단계: 판단을 코드에 꽂기 — 확률 + 임계값 설계 패턴](/2026/09/21/jev-probability-threshold-design-pattern.html) — 해부를 마친 판정기를 소프트웨어 부품으로 쓰는 법
 - [2단계: 자기회귀 추론의 비용 구조 — prefill vs generation](/2026/09/21/jev-autoregressive-inference-cost-structure.html) — 이 글의 속도 반박(prefill + 단일 토큰)을 지탱하는 기술적 근거
 - [Jev와 구조화 출력의 재발견 (Sean Goedecke)](/2026/09/20/jev-structured-output-interesting-again.html) — 이 단계의 뼈대가 된 원문 분석 포스트
+- [Jev 아키텍처의 가면을 벗기다 (Archer Hume)](/2026/09/22/jevs-architecture-unmasked.html) — 이 글의 해자 논쟁을 갱신한 후속 프로빙 분석 — "속도는 재현 가능하나 구조는 다르다"
