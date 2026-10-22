@@ -45,7 +45,7 @@ Developers who want to:
 3. **Series System**: Group sequential posts into a learning series (e.g. `Python-Essential`)
 4. **Search**: Client-side search across all content
 5. **Roadmap Tracking**: Master progress tracker with checkboxes
-6. **Mermaid Diagrams**: Light/dark-aware diagram rendering with zoom (see `MERMAID_USAGE.md`)
+6. **Mermaid Diagrams**: Mermaid syntax rendered by Pele — token-themed (light/dark), zoom + ⛶ fullscreen viewer (see `MERMAID_USAGE.md`)
 7. **CV Integration**: Professional portfolio page with auto-calculated career duration
 8. **Responsive Design**: Mobile-friendly layout
 
@@ -101,8 +101,7 @@ Developers who want to:
 │   │   ├── mobile-menu.js       # Mobile hamburger menu
 │   │   ├── toc.js               # Table of contents
 │   │   ├── category-tree.js     # Collapsible category tree
-│   │   ├── mermaid-init.js      # Mermaid diagram init (theme-aware)
-│   │   └── mermaid-zoom.js      # Mermaid diagram zoom/pan
+│   │   └── mermaid-pele.js      # Mermaid-syntax diagrams via Pele (theme-aware, zoom + ⛶ fullscreen)
 │   └── images/              # Images and logos
 ├── pages/                   # Fixed pages
 │   ├── cv.md                # Curriculum Vitae
@@ -186,7 +185,7 @@ reads a finished/drafted post and adds visual aids that earn their place:
 - **Explanatory illustrations** — inline-SVG concept drawings for the 1–3 hardest passages.
 - **Architecture/structure diagrams** — Mermaid (`flowchart`, `sequenceDiagram`, `classDiagram`, `erDiagram`, `stateDiagram-v2`) for any system/flow/data-model the post describes.
 
-It obeys `DESIGN.md` (no imagery behind reading text — figures sit on opaque `--bg-panel` panels; no hardcoded colors; readable in both themes; Mermaid uses the default theme + the `--mermaid-line` token like the existing 39 posts). Illustrations use the `.post-figure` figure component (owned by **`design-curator`**). It is **additive** — it never rewrites prose. Invoke with "이 포스트에 삽화/도표 넣어줘", "illustrate this post", or run it as the illustration pass after `article-manager` (which leaves `<!-- ILLUSTRATION(…) -->` briefs for it to fulfil).
+It obeys `DESIGN.md` (no imagery behind reading text — figures sit on opaque `--bg-panel` panels; no hardcoded colors; readable in both themes; Mermaid diagrams take their colors from the `--pele-*` → design-token mapping, never hardcoded `style`/`classDef`). Illustrations use the `.post-figure` figure component (owned by **`design-curator`**). It is **additive** — it never rewrites prose. Invoke with "이 포스트에 삽화/도표 넣어줘", "illustrate this post", or run it as the illustration pass after `article-manager` (which leaves `<!-- ILLUSTRATION(…) -->` briefs for it to fulfil).
 
 ---
 

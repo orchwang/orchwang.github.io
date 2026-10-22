@@ -3612,303 +3612,186 @@ mark {
     }
 }
 
-/* Mermaid Diagram Styles */
+/* ============================================================
+   MERMAID DIAGRAMS — rendered by Pele (assets/js/mermaid-pele.js)
+   ------------------------------------------------------------
+   Pele draws Mermaid syntax as SVG whose colors and fonts come from the
+   --pele-* variables below. They point at design tokens, so diagrams
+   follow the ☀️/🔥 toggle without re-rendering (no theme hacks needed).
+   ============================================================ */
 .mermaid {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 2em 0;
-    padding: 1em;
-    background-color: var(--bg-light);
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    overflow-x: auto;
-    min-height: 400px; /* Increased minimum height for better visibility */
+    --pele-bg: var(--bg-panel);
+    --pele-fg: var(--text-color);
+    --pele-muted: var(--text-light);
+    --pele-line: var(--mermaid-line);
+    --pele-surface: var(--bg-light);
+    --pele-surface-alt: var(--bg-sunken);
+    --pele-border: var(--border-color);
+    --pele-accent: var(--secondary-color);
+    --pele-critical: var(--accent-color);
+    --pele-font: var(--font-body);
+    --pele-font-mono: var(--font-mono);
+    --pele-radius: var(--radius);
+    /* Pele's zoom controls sit under the ⛶ button */
+    --pele-zoom-top: 48px;
 }
 
-/* Ensure mermaid diagrams are responsive */
-.mermaid svg {
-    max-width: 100%;
-    height: auto !important; /* Allow SVG to grow with content */
-    min-height: 350px; /* Minimum height for SVG */
-    background-color: transparent !important; /* Fix black background issue */
-}
-
-/* Fix svg-pan-zoom overlay background */
-.mermaid svg > g,
-.mermaid svg > g > g {
-    background-color: transparent !important;
-}
-
-/* Center align mermaid diagrams */
-.post-content .mermaid {
-    text-align: center;
-}
-
-/* Edge / arrow contrast. Mermaid renders with the default (light) theme, so its
-   dark-grey links + arrowheads vanish on the dark-mode canvas (var(--bg-panel)).
-   Re-color them with a theme-aware token — CSS applies to the live SVG, so it
-   follows the ☀️/🔥 toggle without re-rendering the diagram. */
-.mermaid .edgePaths path,
-.mermaid .edgePath path,
-.mermaid path.flowchart-link,
-.mermaid .flowchart-link,
-.mermaid .messageLine0,
-.mermaid .messageLine1,
-.mermaid .relation {
-    stroke: var(--mermaid-line) !important;
-}
-.mermaid .arrowheadPath,
-.mermaid marker path,
-.mermaid .marker {
-    fill: var(--mermaid-line) !important;
-    stroke: var(--mermaid-line) !important;
-}
-
-/* Mermaid Zoom Container */
-.mermaid-zoom-container {
+.mermaid-frame {
     position: relative;
     margin: 2em 0;
+}
+
+.mermaid-frame .mermaid {
+    padding: 1.25em 1em;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
-    overflow: hidden;
-}
-
-.mermaid-zoom-container .mermaid {
-    margin: 0;
-    cursor: grab;
-    user-select: none;
-    border-radius: 0 0 var(--radius) var(--radius);
-    border-top: none;
-    background-color: var(--bg-panel) !important;
-    /* Fixed-size viewport — svg-pan-zoom fits/centers the diagram inside it.
-       Block (not flex) and a definite height so fit() has a stable box. */
-    display: block;
-    height: clamp(420px, 70vh, 640px);
-    min-height: 0;
-    padding: 0;
-    overflow: hidden;
-}
-
-/* Inside the zoom container svg-pan-zoom must own the SVG box: let it fill the
-   viewport. This overrides the global `.mermaid svg { height: auto !important }`
-   whose !important otherwise blocks fit/center and clips the diagram. */
-.mermaid-zoom-container .mermaid svg {
-    width: 100% !important;
-    height: 100% !important;
-    max-width: none !important;
-    min-height: 0 !important;
-    display: block;
-}
-
-.mermaid-zoom-container .mermaid:active {
-    cursor: grabbing;
-}
-
-/* Interactive Badge */
-.mermaid-interactive-badge {
-    background: var(--chrome-bg);
-    background-image: linear-gradient(180deg, var(--chrome-bg) 0%, var(--chrome-bg-2) 100%);
-    color: var(--gold-bright);
-    font-family: var(--font-pixel);
-    padding: 9px 16px;
-    font-size: 11px;
-    font-weight: 700;
     text-align: center;
-    border: 2px solid var(--border-strong);
-    border-bottom: none;
-    border-radius: var(--radius) var(--radius) 0 0;
+}
+
+/* ⛶ 전체화면 — revealed on hover/focus (GitHub-style), always shown on touch */
+.mermaid-expand-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 5;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
-    box-shadow: var(--px-shadow-sm);
-    user-select: none;
-    transition: transform 0.1s steps(2);
-}
-
-.mermaid-interactive-badge:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    transform: translateY(-1px);
-}
-
-/* Reset Button */
-.mermaid-reset-btn {
-    position: absolute;
-    top: 50px;
-    right: 10px;
+    gap: 6px;
+    padding: 7px 12px;
     background: var(--bg-panel);
     border: 2px solid var(--border-strong);
+    border-radius: var(--radius);
     color: var(--secondary-color);
     font-family: var(--font-pixel);
-    padding: 9px 14px;
-    border-radius: var(--radius);
     font-size: 11px;
     font-weight: 700;
     cursor: pointer;
     box-shadow: var(--px-shadow-sm);
-    transition: transform 0.1s steps(2), background-color 0.1s steps(2), color 0.1s steps(2);
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    opacity: 0;
+    transition: opacity 0.15s ease, transform 0.1s steps(2), background-color 0.1s steps(2), color 0.1s steps(2);
 }
 
-.mermaid-reset-btn:hover {
+.mermaid-frame:hover .mermaid-expand-btn,
+.mermaid-expand-btn:focus-visible {
+    opacity: 1;
+}
+
+.mermaid-expand-btn:hover,
+.mermaid-expand-btn:focus-visible {
     background: var(--secondary-color);
     color: var(--bg-panel);
     transform: translate(-1px, -1px);
 }
 
-.mermaid-reset-btn:active {
+.mermaid-expand-btn:active {
     transform: translate(2px, 2px);
     box-shadow: 0 0 0 var(--shadow-color);
 }
 
-/* svg-pan-zoom Control Icons Customization */
-.svg-pan-zoom-control {
-    cursor: pointer;
-    fill: var(--bg-panel);
-    stroke: var(--secondary-color);
-    stroke-width: 1px;
+@media (hover: none) {
+    .mermaid-expand-btn { opacity: 1; }
 }
 
-.svg-pan-zoom-control:hover {
-    fill: var(--secondary-color);
-}
-
-.svg-pan-zoom-control-background {
-    fill: var(--bg-panel);
-    opacity: 0.95;
-    stroke: var(--border-color);
-    stroke-width: 1px;
-}
-
-.svg-pan-zoom-control-element {
-    fill: var(--secondary-color);
-}
-
-.svg-pan-zoom-control-element:hover {
-    fill: var(--accent-color);
-}
-
-/* Ensure svg-pan-zoom controls are visible and styled */
-.svg-pan-zoom-control-background {
-    rx: 4;
-    ry: 4;
-}
-
-/* Mobile-specific styles for static diagrams (no zoom) */
-.mermaid-mobile {
-    overflow-x: auto !important;
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-    cursor: default !important;
-}
-
-.mermaid-mobile svg {
-    cursor: default !important;
-    user-select: none;
-}
-
-/* Tablet and mobile: disable zoom interface */
-/* Using hover:none to detect true touch devices (not desktop with touchscreen) */
-@media (hover: none) and (pointer: coarse) {
-    /* Hide zoom controls on mobile/tablet */
-    .mermaid-zoom-container .mermaid-interactive-badge,
-    .mermaid-zoom-container .mermaid-reset-btn,
-    .svg-pan-zoom-control {
-        display: none !important;
-    }
-
-    /* Ensure diagrams are scrollable */
-    .mermaid {
-        overflow-x: auto !important;
-        overflow-y: auto !important;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    /* Remove grab cursor on mobile */
-    .mermaid-zoom-container .mermaid {
-        cursor: default !important;
-    }
-}
-
-/* Additional fallback for older mobile browsers */
 @media (max-width: 768px) {
-    .mermaid-zoom-container .mermaid-interactive-badge,
-    .mermaid-zoom-container .mermaid-reset-btn,
-    .svg-pan-zoom-control {
-        display: none !important;
-    }
+    .mermaid-frame .mermaid { padding: 1em 0.5em; }
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    .mermaid-interactive-badge {
-        font-size: 11px;
-        padding: 6px 12px;
-    }
+/* --- Fullscreen viewer (GitHub-style expand dialog) ------- */
+body.mermaid-fullscreen-open { overflow: hidden; }
 
-    .mermaid-reset-btn {
-        top: 45px;
-        right: 8px;
-        padding: 6px 12px;
-        font-size: 12px;
-    }
-
-    .mermaid-zoom-container .mermaid {
-        padding: 0.5em;
-    }
-
-    /* Adjust svg-pan-zoom controls for mobile */
-    .svg-pan-zoom-control {
-        transform: scale(0.9);
-    }
+.mermaid-fullscreen {
+    position: fixed;
+    inset: 0;
+    z-index: 4000;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-panel);
+    color: var(--text-color);
 }
 
-/* Touch device optimizations */
-@media (hover: none) and (pointer: coarse) {
-    .mermaid-zoom-container .mermaid {
-        cursor: default;
-    }
-
-    .mermaid-reset-btn {
-        padding: 10px 16px;
-        font-size: 14px;
-    }
+.mermaid-fullscreen-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    background: var(--chrome-bg);
+    background-image: linear-gradient(180deg, var(--chrome-bg) 0%, var(--chrome-bg-2) 100%);
+    border-bottom: 2px solid var(--border-strong);
+    color: var(--gold-bright);
+    font-family: var(--font-pixel);
+    font-size: 12px;
 }
 
-/* Dark mode (dungeon) — Mermaid surfaces follow tokens.
-   Covers both the manual toggle and the OS-default fallback. */
-:root[data-theme="dark"] .mermaid-zoom-container .mermaid,
-:root[data-theme="dark"] .mermaid {
-    background-color: var(--bg-light) !important;
-    border-color: var(--border-color);
+.mermaid-fullscreen-title {
+    flex: 0 1 auto;
+    min-width: 0;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-:root[data-theme="dark"] .mermaid-reset-btn {
-    background: var(--bg-light);
+.mermaid-fullscreen-hint {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 11px;
+    opacity: 0.75;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mermaid-fullscreen-tools {
+    display: flex;
+    flex-shrink: 0;
+    gap: 6px;
+    margin-left: auto;
+}
+
+.mermaid-fullscreen-tools button {
+    min-width: 36px;
+    padding: 7px 12px;
+    background: var(--bg-panel);
+    border: 2px solid var(--border-strong);
+    border-radius: var(--radius);
     color: var(--secondary-color);
-    border-color: var(--secondary-color);
+    font-family: var(--font-pixel);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: var(--px-shadow-sm);
+    transition: transform 0.1s steps(2), background-color 0.1s steps(2), color 0.1s steps(2);
 }
 
-:root[data-theme="dark"] .svg-pan-zoom-control-background {
-    fill: var(--bg-light);
-    stroke: var(--border-color);
+.mermaid-fullscreen-tools button:hover,
+.mermaid-fullscreen-tools button:focus-visible {
+    background: var(--secondary-color);
+    color: var(--bg-panel);
+    transform: translate(-1px, -1px);
 }
 
-/* Animation for zoom interactions */
-@keyframes zoomPulse {
-    0%, 100% {
-        box-shadow: 0 0 0 0 rgba(184, 134, 11, 0.45);
-    }
-    50% {
-        box-shadow: 0 0 0 10px rgba(184, 134, 11, 0);
-    }
+.mermaid-fullscreen-stage {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+    touch-action: none;
 }
 
-.mermaid-zoom-container:active {
-    animation: zoomPulse 0.6s ease-out;
+.mermaid-fullscreen-stage .mermaid {
+    width: 100%;
+    height: 100%;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .mermaid-fullscreen-bar { padding: 8px 10px; gap: 8px; }
+    .mermaid-fullscreen-hint { display: none; }
+    .mermaid-fullscreen-stage .mermaid { padding: 12px; }
 }
 
 /* ============================================================
@@ -4524,7 +4407,7 @@ body.present-active { overflow: hidden; }
 .present-slide-inner pre,
 .present-slide-inner table,
 .present-slide-inner .mermaid,
-.present-slide-inner .mermaid-zoom-container,
+.present-slide-inner .mermaid-frame,
 .present-slide-inner img,
 .present-slide-inner svg {
     max-width: 100%;

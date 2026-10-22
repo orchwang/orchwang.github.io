@@ -31,7 +31,7 @@ legibility of long-form technical prose and code is the top priority.
 - `assets/css/style.css` — single stylesheet, CSS-variable driven (`:root` tokens).
 - `_layouts/{default,post,cv,tag_page,category_page,series_page}.html` — page structure.
 - `_includes/{header,footer}.html` — chrome.
-- `assets/js/{toc,mobile-menu,category-tree,mermaid-init,mermaid-zoom}.js` — interaction.
+- `assets/js/{toc,mobile-menu,category-tree,mermaid-pele}.js` — interaction.
 
 ## Current design facts (verify before quoting)
 

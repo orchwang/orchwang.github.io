@@ -75,11 +75,11 @@ You cannot and must not generate or invent raster/photographic images. Illustrat
 
 ### 도표 = Mermaid (per MERMAID_USAGE.md)
 
-- Fence with ` ```mermaid `. The site renders with Mermaid's **default theme** + `fontFamily:
-  inherit`, and re-colors edges/arrows via the `--mermaid-line` CSS token (theme-aware).
-- **Do not add custom node fills, `style`, or `classDef` with hardcoded colors** — they break
-  dark mode. Rely on the default theme exactly like the existing 39 posts do; the site CSS
-  handles edge contrast in both themes.
+- Fence with ` ```mermaid `. The site renders Mermaid syntax with **Pele**, whose colors and
+  fonts come from `--pele-*` variables mapped to the design tokens — theme-aware with no
+  re-render. Readers get inline zoom for wide diagrams and a ⛶ 전체화면 viewer.
+- **Do not add custom node fills, `style`, or `classDef` with colors** (hardcoded or `var(...)`
+  — unquoted parentheses even break parsing). The token mapping handles both themes.
 - **Quote node labels** that contain Korean, parentheses, slashes, or punctuation
   (`A["검증 비용<br/>(Verification Tax)"]`). Use `<br/>` for line breaks.
 - Keep diagrams readable: a handful of nodes, clear direction (`LR`/`TB`), meaningful edge labels.
