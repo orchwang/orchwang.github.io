@@ -698,6 +698,18 @@ input:focus-visible,
     transform: translateY(-2px);
 }
 
+/* tablet: 8 menu tiles must still fit beside the branding before the hamburger takes over */
+@media (min-width: 769px) and (max-width: 1080px) {
+    .main-navigation .nav-menu {
+        gap: 2px;
+    }
+
+    .main-navigation .nav-menu a {
+        font-size: 12px;
+        padding: 11px 7px;
+    }
+}
+
 /* Theme toggle — tavern <-> dungeon */
 .theme-toggle {
     font-family: var(--font-pixel);
@@ -2534,6 +2546,117 @@ mark {
 .back-to-categories a:hover {
     border-color: var(--gold);
     transform: translateY(-2px);
+}
+
+/* All-posts archive (/posts/) — chronological list + pagination */
+.posts-archive-page {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.post-item-category {
+    color: var(--primary-color);
+    white-space: nowrap;
+}
+
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+.pagination-pages {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+}
+
+.pagination-step,
+.pagination-page {
+    font-family: var(--font-pixel);
+    font-size: 12px;
+    line-height: 1;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--secondary-color);
+    text-decoration: none;
+    background: var(--bg-light);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius);
+    box-shadow: var(--px-shadow-sm);
+    transition: transform 0.1s steps(2), border-color 0.1s steps(2);
+}
+
+a.pagination-step:hover,
+a.pagination-page:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+}
+
+a.pagination-step:focus-visible,
+a.pagination-page:focus-visible {
+    outline: 3px solid var(--gold-bright);
+    outline-offset: 2px;
+}
+
+.pagination-page.is-current {
+    color: var(--bg-panel);
+    background: var(--primary-color);
+    border-color: var(--border-strong);
+}
+
+.pagination-step.is-disabled {
+    color: var(--text-light);
+    opacity: 0.55;
+    box-shadow: none;
+    cursor: default;
+}
+
+.pagination-gap {
+    font-family: var(--font-pixel);
+    font-size: 12px;
+    color: var(--text-light);
+    min-width: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* phone: page numbers on their own row, prev/next side by side below */
+@media (max-width: 480px) {
+    .pagination {
+        gap: 8px;
+    }
+
+    .pagination-pages {
+        order: -1;
+        width: 100%;
+        gap: 4px;
+    }
+
+    .pagination-step {
+        flex: 1;
+    }
+
+    .pagination-page {
+        min-width: 36px;
+        padding: 0 6px;
+    }
+
+    .pagination-gap {
+        min-width: 14px;
+    }
 }
 
 /* Categories Page Styles */

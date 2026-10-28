@@ -1,0 +1,69 @@
+---
+layout: default
+---
+
+{% assign pager = page.paginator %}
+<div class="posts-archive-page">
+    <header class="page-header">
+        <h1>모든 포스트</h1>
+        <p>전체 {{ pager.total_posts }}개의 출정 기록을 최신순으로 — {{ pager.first_index }}–{{ pager.last_index }}번째 ({{ pager.page }} / {{ pager.total_pages }}쪽)</p>
+    </header>
+
+    <div class="posts-list">
+        {% for post in pager.posts %}
+        <article class="post-item">
+            <h2 class="post-item-title">
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h2>
+            <div class="post-item-meta">
+                <time datetime="{{ post.date | date_to_xmlschema }}">
+                    {{ post.date | date: "%Y년 %m월 %d일" }}
+                </time>
+                {% if post.categories.size > 0 %}
+                <span class="post-item-category">{{ post.categories | join: " › " }}</span>
+                {% endif %}
+                {% if post.tags %}
+                <div class="post-item-tags">
+                    {% for tag in post.tags %}
+                    <a href="{{ site.baseurl }}/tags/{{ tag | slugify }}/" class="tag">{{ tag }}</a>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% if post.excerpt %}
+            <div class="post-item-excerpt">
+                {{ post.excerpt | strip_html | truncate: 200 }}
+            </div>
+            {% endif %}
+        </article>
+        {% endfor %}
+    </div>
+
+    {% if pager.total_pages > 1 %}
+    <nav class="pagination" aria-label="포스트 페이지 이동">
+        {% if pager.previous_url %}
+        <a class="pagination-step" href="{{ pager.previous_url | relative_url }}" rel="prev">← 이전</a>
+        {% else %}
+        <span class="pagination-step is-disabled" aria-disabled="true">← 이전</span>
+        {% endif %}
+
+        <ol class="pagination-pages">
+            {% for link in pager.links %}
+            {% if link.gap %}
+            <li class="pagination-gap" aria-hidden="true">…</li>
+            {% elsif link.current %}
+            <li><span class="pagination-page is-current" aria-current="page">{{ link.num }}</span></li>
+            {% else %}
+            <li><a class="pagination-page" href="{{ link.url | relative_url }}" aria-label="{{ link.num }}쪽">{{ link.num }}</a></li>
+            {% endif %}
+            {% endfor %}
+        </ol>
+
+        {% if pager.next_url %}
+        <a class="pagination-step" href="{{ pager.next_url | relative_url }}" rel="next">다음 →</a>
+        {% else %}
+        <span class="pagination-step is-disabled" aria-disabled="true">다음 →</span>
+        {% endif %}
+    </nav>
+    {% endif %}
+</div>
