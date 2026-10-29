@@ -758,6 +758,7 @@ W3C PROV와 OpenLineage 같은 표준 위에 세운 이 기록이, 예전에 **�
 ### 더 읽어보기
 
 - [원문 — The Self-Organizing Data Stack (Ananth Packkildurai, Data Engineering Weekly)](https://www.dataengineeringweekly.com/p/the-self-organizing-data-stack)
+- [후속편 — 에이전트가 파이프라인을 짜는 시대, 데이터 모델은 아직 필요한가](/2026/10/29/do-we-still-need-data-models.html) — 같은 저자가 이 글이 "엔진의 내부 구현"으로 강등한 데이터 모델을 다시 꺼내, 에이전트의 해석을 사람이 검사하는 표면으로 재정의한다
 - [Data Engineering Essential Curriculum](/2026/06/25/data-engineering-essential-curriculum.html) — 이 글이 뒤집으려는 "현재 패러다임"의 전체 지도
 - [데이터 파이프라인의 역사와 진화](/2026/06/25/data-pipeline-history-and-evolution.html) — "아키텍처는 비용 구조가 결정한다"는 진자의 교훈
 - [오케스트레이션: DAG·스케줄링과 견고한 파이프라인](/2026/06/25/orchestration.html) — task-centric vs asset-centric, 원문이 한 칸 더 나아가는 출발점
