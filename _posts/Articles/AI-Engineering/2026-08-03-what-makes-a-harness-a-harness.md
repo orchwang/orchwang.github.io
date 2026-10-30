@@ -3,7 +3,7 @@ layout: post
 title: "무엇이 하니스를 하니스로 만드는가: 에이전트 하니스의 필요충분조건 (Sandeco Macedo)"
 date: 2026-08-03
 categories: [Articles, AI-Engineering]
-tags: [articles, ai, coding-agent, agent-harness, agentic-engineering, runtime-layer]
+tags: [articles, paper, ai, coding-agent, agent-harness, agentic-engineering, runtime-layer]
 published: true
 excerpt: "Sanderson Oliveira de Macedo의 arXiv 논문(2606.10106)을 분석·정리한다. LLM을 에이전트로 바꾸는 '하니스'라는 널리 쓰이지만 정의 없던 용어를 4개 필요충분조건(T1–T4)으로 규정하고, Claude Code·SWE-agent 등 실제 6개 시스템에 적용하는 정의적 논문이다. 자매편 prompt graph engineering과 함께 읽는다."
 ---

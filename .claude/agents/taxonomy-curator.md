@@ -32,6 +32,9 @@ before acting. Verify claims against the actual repo — front matter and direct
 - **Tags**: lowercase, hyphenated for multi-word terms (`import-system`,
   `garbage-collection`, `coding-agent`). Reuse existing tags; do not invent
   near-duplicates (e.g. avoid `py` when `python` exists).
+- **`paper` tag**: marks Articles posts whose source is itself an academic paper (arXiv,
+  Hugging Face Papers, OpenReview, ACL Anthology, proceedings/journals); placed right after
+  `articles`. Not for blog posts that merely cite a paper.
 - **Auto-generation**: `_plugins/tag_generator.rb`, `category_generator.rb`, and
   `series_generator.rb` create `/tags/<slug>/`, `/categories/<slug>/`, `/series/<slug>/`.
   The listing pages are `pages/{tags,categories,series}.md`. New values appear

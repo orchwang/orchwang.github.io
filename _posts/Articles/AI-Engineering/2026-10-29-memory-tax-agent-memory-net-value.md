@@ -3,7 +3,7 @@ layout: post
 title: "메모리 세금(Memory Tax): 에이전트 메모리는 정말 RAG보다 나은가 (Xuan He 외, arXiv:2610.34073)"
 date: 2026-10-29
 categories: [Articles, AI-Engineering]
-tags: [articles, ai, llm, agent-memory, rag, evaluation, agentic-engineering]
+tags: [articles, paper, ai, llm, agent-memory, rag, evaluation, agentic-engineering]
 published: true
 excerpt: "많은 전용 에이전트 메모리가 원본 기록을 그대로 검색하는 naive RAG보다 못하다는 관찰에서 출발해, 메모리의 순가치를 '이득'과 '세금'(충실성·접근성·강건성)으로 쪼개는 arXiv 논문 Memory Tax(2610.34073)를 정리한다. 세금이 생기는 경로와 설계 처방을 개발자 관점에서 짚는다."
 ---

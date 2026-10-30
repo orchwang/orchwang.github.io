@@ -167,6 +167,10 @@ excerpt: "<원문 출처를 밝히고 무엇을 분석·정리하는지 1~2문�
   above. The file MUST live in the matching directory `_posts/Articles/<Sub>/`.
 - `tags` — always lead with `articles`; add lowercase-hyphenated topic tags, reusing existing
   tags where possible (check `pages/tags.md` / existing posts).
+- **`paper` 태그** — 원문이 논문이면 `articles` 다음에 `paper` 태그를 붙인다
+  (`tags: [articles, paper, <topic1>, …]`). 판단 기준: 분석 대상 원문 자체가 arXiv, Hugging Face
+  Papers, OpenReview, ACL Anthology, 학회 논문집(proceedings)·저널 등에 게재된 논문일 때만 붙인다.
+  블로그·뉴스레터·영상이 논문을 인용하거나 소개하는 경우(원문이 논문이 아닌 경우)는 붙이지 않는다.
 - No `series`, no `banner`. Optionally set `image:` for a per-post OG image.
 
 ## Canonical post structure

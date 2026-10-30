@@ -473,6 +473,7 @@ Learn more about [Python GIL](/2025/10/22/python-gil.html)
 - Create new tags only when needed
 - Use lowercase, hyphenated tags for multi-word terms (e.g., `import-system`, `coding-agent`) — matches existing posts
 - Keep tags specific and meaningful
+- `paper`: Articles posts whose source is an academic paper (arXiv, Hugging Face Papers, OpenReview, ACL Anthology, proceedings/journals) — placed right after `articles`; not for posts that merely cite a paper
 
 **Formatting:**
 

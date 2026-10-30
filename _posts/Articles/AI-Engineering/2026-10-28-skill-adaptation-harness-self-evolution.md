@@ -3,7 +3,7 @@ layout: post
 title: "능력에 맞춰 진화하라: 약한 모델을 위한 스킬 적응과 하니스 자기 진화 (Zhihao Yang 외, arXiv:2610.33024)"
 date: 2026-10-28
 categories: [Articles, AI-Engineering]
-tags: [articles, ai, llm, agent-harness, agentic-engineering, evaluation, agent-skills]
+tags: [articles, paper, ai, llm, agent-harness, agentic-engineering, evaluation, agent-skills]
 published: true
 excerpt: "Zhihao Yang 외 9인의 arXiv 논문 'Evolving to Match Capabilities'(2610.33024)를 분석·정리한다. 강한 모델을 끌어올리는 같은 스킬(SKILL.md)이 약한 모델에겐 무용하거나 해롭다는 관찰, 실패의 86%가 '이미 스킬에 적힌 요구사항'을 어긴 것이라는 진단, 그리고 네 가지 실패 유형을 고정된 메타 스킬로 증류해 스킬을 실행자 능력에 맞게 다시 쓰는 방법과 그 한계를 개발자 관점에서 짚는다."
 ---

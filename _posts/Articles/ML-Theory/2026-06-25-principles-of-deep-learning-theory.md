@@ -3,7 +3,7 @@ layout: post
 title: "딥러닝의 원리를 '유효 이론'으로 풀다: The Principles of Deep Learning Theory (Roberts·Yaida·Hanin)"
 date: 2026-06-25
 categories: [Articles, ML-Theory]
-tags: [articles, ai, deep-learning, ml-theory, neural-network]
+tags: [articles, paper, ai, deep-learning, ml-theory, neural-network]
 published: true
 excerpt: "Daniel A. Roberts, Sho Yaida, Boris Hanin의 책/논문 'The Principles of Deep Learning Theory'(arXiv:2106.10165)를 소개·분석한다. 물리학의 유효 이론(effective theory) 관점에서 깊고 넓은 신경망을 무한폭 가우시안 한계와 1/n 유한폭 보정으로 전개하는 이 작업이 무엇을 주장하는지, 그리고 실무자에게 어떤 함의가 있는지 정리한다."
 ---

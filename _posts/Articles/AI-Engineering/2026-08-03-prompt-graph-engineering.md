@@ -3,7 +3,7 @@ layout: post
 title: "프롬프트는 언제 '그래프'가 되는가: Prompt Graph Engineering의 필요충분조건 (Sandeco Macedo)"
 date: 2026-08-03
 categories: [Articles, AI-Engineering]
-tags: [articles, ai, coding-agent, prompt-graph, llm-pipeline, agentic-workflow]
+tags: [articles, paper, ai, coding-agent, prompt-graph, llm-pipeline, agentic-workflow]
 published: true
 excerpt: "Sandeco Macedo의 arXiv 논문(2607.27578)을 분석·정리한다. LangGraph·DSPy가 이미 노출하는 '프롬프트 그래프'를 4개 조건(G1–G4)과 4개 판정 테스트(T1–T4)로 정의하고, Claude Code 서브에이전트를 의도적 반례로 배제하는 정의적 논문이다."
 ---
