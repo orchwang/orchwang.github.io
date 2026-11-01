@@ -9,52 +9,51 @@ excerpt: "Flamerix AI가 GitHub gist로 공개한 'Claude Code burns ~15–20% o
 ---
 
 <figure class="post-figure post-figure--header">
-<svg role="img" aria-labelledby="aws-h-title aws-h-desc" viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg">
+<svg role="img" aria-labelledby="aws-h-title aws-h-desc" viewBox="0 0 360 620" width="420" xmlns="http://www.w3.org/2000/svg">
   <title id="aws-h-title">거대한 transcript를 통째로 넣고, 나오는 것은 3~5단어 깃발 하나</title>
-  <desc id="aws-h-desc">왼쪽의 길게 펼쳐진 transcript 두루마리 전체가 약 30초마다 백그라운드 에이전트마다 가운데의 모델 화로(대개 Opus)로 밀려 들어간다. 오른쪽으로 나오는 것은 에이전트 패널 상태 줄에 꽂히는 3~5단어짜리 작은 깃발 하나뿐이다. 아래 띠에는 입력 대 출력 약 9,000 대 1, 그리고 저자 측 텔레메트리에서 agent_summary가 전체 지출의 16.4%로 메인 대화 15.7%보다 컸다는 수치가 적혀 있다.</desc>
+  <desc id="aws-h-desc">위쪽의 길게 펼쳐진 transcript 두루마리 전체가 약 30초마다 백그라운드 에이전트마다 가운데의 모델 화로(대개 Opus)로 밀려 들어간다. 아래로 나오는 것은 에이전트 패널 상태 줄에 꽂히는 3~5단어짜리 작은 깃발 하나뿐이다. 맨 아래 띠에는 입력 대 출력 약 9,000 대 1, 그리고 저자 측 텔레메트리에서 agent_summary가 전체 지출의 16.4%로 메인 대화 15.7%보다 컸다는 수치가 적혀 있다.</desc>
   <defs>
     <marker id="aws-h-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
       <path d="M0 0 L10 5 L0 10 Z" fill="var(--accent-color)"/>
     </marker>
   </defs>
-  <!-- LEFT: the whole transcript scroll -->
-  <text x="140" y="30" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">에이전트의 transcript 전체</text>
-  <rect x="40" y="44" width="200" height="200" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
-  <rect x="30" y="38" width="220" height="14" rx="7" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
-  <rect x="30" y="236" width="220" height="14" rx="7" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
+  <!-- TOP: the whole transcript scroll -->
+  <text x="180" y="24" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">에이전트의 transcript 전체</text>
+  <rect x="80" y="44" width="200" height="104" rx="4" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <rect x="70" y="38" width="220" height="14" rx="7" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
+  <rect x="70" y="140" width="220" height="14" rx="7" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
   <g stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity="0.55">
-    <path d="M58 70 H210"/><path d="M58 86 H190"/><path d="M58 102 H222"/>
-    <path d="M58 118 H176"/><path d="M58 134 H214"/><path d="M58 150 H198"/>
-    <path d="M58 166 H222"/><path d="M58 182 H168"/><path d="M58 198 H206"/>
-    <path d="M58 214 H186"/>
+    <path d="M98 64 H250"/><path d="M98 76 H230"/><path d="M98 88 H262"/>
+    <path d="M98 100 H216"/><path d="M98 112 H254"/><path d="M98 124 H238"/>
   </g>
   <!-- ARROW: scroll -> furnace -->
-  <path d="M256 144 H322" fill="none" stroke="var(--accent-color)" stroke-width="4" marker-end="url(#aws-h-arrow)"/>
-  <text x="289" y="124" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent-color)">약 30초마다</text>
-  <text x="289" y="170" text-anchor="middle" font-size="11" fill="currentColor">에이전트마다</text>
+  <path d="M180 160 V206" fill="none" stroke="var(--accent-color)" stroke-width="4" marker-end="url(#aws-h-arrow)"/>
+  <text x="152" y="188" text-anchor="end" font-size="14" font-weight="700" fill="var(--accent-color)">약 30초마다</text>
+  <text x="208" y="188" text-anchor="start" font-size="14" fill="currentColor">에이전트마다</text>
   <!-- CENTER: model furnace -->
-  <rect x="334" y="84" width="130" height="136" rx="10" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2.5"/>
-  <rect x="356" y="132" width="86" height="64" rx="6" fill="none" stroke="currentColor" stroke-width="2"/>
-  <path d="M399 190 C372 176 384 158 392 146 C394 160 404 160 402 140 C418 154 428 176 399 190 Z" fill="var(--accent-color)" opacity="0.85"/>
-  <path d="M399 188 C390 180 394 170 398 164 C402 172 410 176 399 188 Z" fill="var(--gold)"/>
-  <text x="399" y="108" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">모델</text>
-  <text x="399" y="124" text-anchor="middle" font-size="11" fill="var(--text-light)">(대개 Opus)</text>
-  <text x="399" y="240" text-anchor="middle" font-size="11" fill="var(--text-light)">"최근 행동을 3~5단어로"</text>
+  <rect x="115" y="218" width="130" height="136" rx="10" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2.5"/>
+  <rect x="137" y="268" width="86" height="64" rx="6" fill="none" stroke="currentColor" stroke-width="2"/>
+  <path d="M180 326 C153 312 165 294 173 282 C175 296 185 296 183 276 C199 290 209 312 180 326 Z" fill="var(--accent-color)" opacity="0.85"/>
+  <path d="M180 324 C171 316 175 306 179 300 C183 308 191 312 180 324 Z" fill="var(--gold)"/>
+  <text x="180" y="242" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">모델</text>
+  <text x="180" y="260" text-anchor="middle" font-size="14" fill="var(--text-light)">(대개 Opus)</text>
+  <text x="180" y="374" text-anchor="middle" font-size="14" fill="var(--text-light)">"최근 행동을 3~5단어로"</text>
   <!-- ARROW: furnace -> flag (thin, small output) -->
-  <path d="M470 152 H540" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 4"/>
-  <!-- RIGHT: tiny flag on the agents-panel status line -->
-  <rect x="548" y="126" width="150" height="54" rx="6" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
-  <text x="623" y="118" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">에이전트 패널 상태 줄</text>
-  <path d="M566 170 V138" stroke="currentColor" stroke-width="2"/>
-  <path d="M567 139 L590 145 L567 152 Z" fill="var(--secondary-color)"/>
-  <text x="600" y="158" font-size="12" font-weight="700" fill="var(--secondary-color)">3~5단어</text>
-  <text x="623" y="200" text-anchor="middle" font-size="11" fill="var(--text-light)">UI 갱신에만 쓰임</text>
+  <path d="M180 384 V414" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <!-- BOTTOM: tiny flag on the agents-panel status line -->
+  <text x="180" y="434" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">에이전트 패널 상태 줄</text>
+  <rect x="105" y="444" width="150" height="54" rx="6" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
+  <path d="M123 488 V456" stroke="currentColor" stroke-width="2"/>
+  <path d="M124 457 L147 463 L124 470 Z" fill="var(--secondary-color)"/>
+  <text x="157" y="477" font-size="16" font-weight="700" fill="var(--secondary-color)">3~5단어</text>
+  <text x="180" y="518" text-anchor="middle" font-size="14" fill="var(--text-light)">UI 갱신에만 쓰임</text>
   <!-- BOTTOM band: the asymmetry -->
-  <rect x="30" y="272" width="660" height="54" rx="8" fill="var(--bg-panel)" stroke="var(--border-color)" stroke-width="2"/>
-  <text x="360" y="295" text-anchor="middle" font-size="14" font-weight="700" fill="var(--accent-color)">입력 : 출력 ≈ 9,000 : 1</text>
-  <text x="360" y="315" text-anchor="middle" font-size="11" fill="currentColor">agent_summary = 전체 지출의 16.4% (메인 대화 15.7%) · Flamerix AI 텔레메트리 기준 추정치</text>
+  <rect x="10" y="532" width="340" height="80" rx="8" fill="var(--bg-panel)" stroke="var(--border-color)" stroke-width="2"/>
+  <text x="180" y="557" text-anchor="middle" font-size="16" font-weight="700" fill="var(--accent-color)">입력 : 출력 ≈ 9,000 : 1</text>
+  <text x="180" y="580" text-anchor="middle" font-size="14" fill="currentColor">agent_summary = 전체 지출의 16.4%</text>
+  <text x="180" y="600" text-anchor="middle" font-size="14" fill="currentColor">(메인 대화 15.7%)</text>
 </svg>
-<figcaption>상태 줄 3~5단어를 위해 약 30초마다 transcript 전체를 다시 보내는 agent_summary 호출 — 수치는 gist 저자 측 측정·추정이다</figcaption>
+<figcaption>상태 줄 3~5단어를 위해 약 30초마다 transcript 전체를 다시 보내는 agent_summary 호출 — 수치는 gist 저자 측(Flamerix AI 텔레메트리 기준) 측정·추정치다</figcaption>
 </figure>
 
 ## 원문 정보

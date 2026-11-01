@@ -9,11 +9,13 @@ excerpt: "Hennadii Kutomanov의 arXiv 논문 Instruction Capacity(2610.36095)를
 ---
 
 <figure class="post-figure post-figure--header">
-<svg role="img" aria-label="한 오크 전사가 단어 치환 규칙 카드(lake → stone 등)를 품에 한가득 쌓아 들고 있다. 점선으로 표시된 용량 한계 아래의 카드는 반듯하게 쌓여 있지만, 한계를 넘는 카드는 기울어지다가 손에서 흘러내려 땅으로 떨어진다. 왼쪽에는 GPT-4o mini의 95% 기준 용량이 약 37~38개 규칙이라고 적혀 있다." viewBox="0 0 640 300">
+<svg role="img" aria-label="한 오크 전사가 단어 치환 규칙 카드(lake → stone 등)를 품에 한가득 쌓아 들고 있다. 점선으로 표시된 용량 한계 아래의 카드는 반듯하게 쌓여 있지만, 한계를 넘는 카드는 기울어지다가 손에서 흘러내려 땅으로 떨어진다. 위쪽에는 GPT-4o mini의 95% 기준 용량이 약 37~38개 규칙이라고 적혀 있다." viewBox="0 0 400 366" width="520">
   <title>동시에 들 수 있는 규칙의 수에는 한계가 있다 — Instruction Capacity</title>
-  <text x="320" y="26" text-anchor="middle" font-family="var(--font-body)" font-size="15" font-weight="700" fill="currentColor">동시에 들 수 있는 규칙의 수에는 한계가 있다</text>
-  <text x="320" y="282" text-anchor="middle" font-family="var(--font-mono)" font-size="12" fill="var(--accent-color)">instruction capacity · 규칙 m개 = 부하</text>
-  <path d="M40 252 H600" stroke="currentColor" stroke-width="2" opacity="0.5"/>
+  <text x="200" y="28" text-anchor="middle" font-family="var(--font-body)" font-size="17" font-weight="700" fill="currentColor">동시에 들 수 있는 규칙의 수에는 한계가 있다</text>
+  <text x="200" y="56" text-anchor="middle" font-family="var(--font-mono)" font-size="16" fill="currentColor" opacity="0.8">GPT-4o mini · q = 0.95</text>
+  <text x="200" y="84" text-anchor="middle" font-family="var(--font-body)" font-size="20" font-weight="700" fill="var(--accent-color)">약 37~38개 규칙</text>
+  <path d="M12 324 H388" stroke="currentColor" stroke-width="2" opacity="0.5"/>
+  <g transform="translate(-175 72)">
   <!-- WARRIOR -->
   <g>
     <rect x="223" y="138" width="8" height="10" fill="currentColor"/>
@@ -67,9 +69,6 @@ excerpt: "Hennadii Kutomanov의 arXiv 논문 Instruction Capacity(2610.36095)를
     <path d="M308 97 L316 100 L308 103 Z"/>
     <path d="M308 83 L316 86 L308 89 Z"/>
   </g>
-  <text x="372" y="216" font-family="var(--font-mono)" font-size="12" fill="currentColor">lake → stone</text>
-  <path d="M150 76 H470" stroke="var(--accent-color)" stroke-width="2" stroke-dasharray="6 5"/>
-  <text x="146" y="80" text-anchor="end" font-family="var(--font-body)" font-size="11" font-weight="700" fill="var(--accent-color)">용량 한계</text>
   <!-- OVERLOAD: tilting and falling cards -->
   <g fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="1.8">
     <rect x="276" y="60" width="92" height="12" rx="1" transform="rotate(6 322 66)"/>
@@ -83,9 +82,11 @@ excerpt: "Hennadii Kutomanov의 arXiv 논문 Instruction Capacity(2610.36095)를
     <path d="M444 136 Q458 148 462 160"/>
     <path d="M480 204 Q494 218 500 230"/>
   </g>
-  <text x="40" y="112" font-family="var(--font-mono)" font-size="12" fill="currentColor" opacity="0.8">GPT-4o mini · q = 0.95</text>
-  <text x="40" y="134" font-family="var(--font-body)" font-size="16" font-weight="700" fill="var(--accent-color)">약 37~38개 규칙</text>
-  <text x="40" y="236" font-family="var(--font-body)" font-size="11" fill="currentColor" opacity="0.75">카드 수는 도식</text>
+  </g>
+  <path d="M20 148 H380" stroke="var(--accent-color)" stroke-width="2" stroke-dasharray="6 5"/>
+  <text x="20" y="141" font-family="var(--font-body)" font-size="16" font-weight="700" fill="var(--accent-color)">용량 한계</text>
+  <text x="100" y="312" font-family="var(--font-mono)" font-size="16" fill="currentColor">lake → stone</text>
+  <text x="200" y="352" text-anchor="middle" font-family="var(--font-mono)" font-size="16" fill="var(--accent-color)">instruction capacity · 규칙 m개 = 부하</text>
 </svg>
 <figcaption>규칙 하나하나는 가볍지만, 동시에 들 수 있는 개수에는 한계가 있다 — 논문은 그 한계를 GPT-4o mini에서 95% 기준 약 37~38개 규칙으로 측정한다 (카드 수는 도식).</figcaption>
 </figure>
@@ -156,62 +157,66 @@ flowchart LR
 핵심 설계 원칙은 **계측 도구와 통계 모델의 분리**다. 1차 데이터는 "몇 번째 규칙이, 답변의 몇 번째 단어 위치에서 성공/실패했는가"라는 시행 단위 기록이고, 해석 방식은 나중에 개선할 수 있게 열어 둔다.
 
 <figure class="post-figure">
-<svg role="img" aria-label="한 요청의 해부도. 왼쪽 위에는 lake → stone부터 m번째 규칙까지 이어지는 규칙 표가, 왼쪽 아래에는 한 줄 10단어의 의미 없는 입력 텍스트가 있다. 둘이 모델로 들어가 답변이 나오고, 오른쪽에서 답변을 프로그램으로 계산한 정답과 줄 단위로 대조한다. 규칙이 걸린 단어마다 성공(체크) 또는 실패(엑스)가 표시되며, 실패는 1종 치환 오류, 2종 국소적인 줄 깨짐, 3종 텍스트 구조 상실로 구분된다." viewBox="0 0 640 350">
+<svg role="img" aria-label="한 요청의 해부도. 맨 위 왼쪽에는 lake → stone부터 m번째 규칙까지 이어지는 규칙 표가, 오른쪽에는 한 줄 10단어의 의미 없는 입력 텍스트가 있다. 둘이 가운데의 모델로 들어가 답변이 나오고, 그 아래에서 답변을 프로그램으로 계산한 정답과 줄 단위로 대조한다. 규칙이 걸린 단어마다 성공(체크) 또는 실패(엑스)가 표시되며, 맨 아래 범례처럼 실패는 1종 치환 오류, 2종 국소적인 줄 깨짐, 3종 텍스트 구조 상실로 구분된다." viewBox="0 0 380 654" width="440">
   <title>한 요청의 해부 — 규칙 표 + 무의미한 텍스트 → 답변 → 정답과 줄 단위 대조</title>
-  <rect x="16" y="20" width="184" height="118" rx="4" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
-  <text x="108" y="40" text-anchor="middle" font-family="var(--font-body)" font-size="12" font-weight="700" fill="currentColor">규칙 표 (m개 = 부하)</text>
-  <text x="30" y="64" font-family="var(--font-mono)" font-size="12" fill="currentColor" opacity="0.7">1.</text>
-  <text x="56" y="64" font-family="var(--font-mono)" font-size="12" fill="currentColor">lake → stone</text>
-  <text x="30" y="84" font-family="var(--font-mono)" font-size="12" fill="currentColor" opacity="0.7">2.</text>
-  <text x="56" y="84" font-family="var(--font-mono)" font-size="12" fill="currentColor">w<tspan font-size="9" dy="3">2</tspan><tspan dy="-3">&#160;→ u</tspan><tspan font-size="9" dy="3">2</tspan></text>
-  <text x="56" y="104" font-family="var(--font-mono)" font-size="12" fill="currentColor">⋮</text>
-  <text x="30" y="124" font-family="var(--font-mono)" font-size="12" fill="currentColor" opacity="0.7">m.</text>
-  <text x="56" y="124" font-family="var(--font-mono)" font-size="12" fill="currentColor">w<tspan font-size="9" dy="3">m</tspan><tspan dy="-3">&#160;→ u</tspan><tspan font-size="9" dy="3">m</tspan></text>
-  <rect x="16" y="152" width="184" height="96" rx="4" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
-  <text x="108" y="172" text-anchor="middle" font-family="var(--font-body)" font-size="12" font-weight="700" fill="currentColor">의미 없는 텍스트 (한 줄 10단어)</text>
-  <rect x="28" y="184" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
-  <rect x="44" y="184" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
-  <rect x="60" y="184" width="12" height="12" fill="var(--secondary-color)"/>
-  <rect x="76" y="184" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
-  <rect x="92" y="184" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
-  <rect x="108" y="184" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
-  <rect x="124" y="184" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
-  <rect x="140" y="184" width="12" height="12" fill="var(--secondary-color)"/>
-  <rect x="156" y="184" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
-  <rect x="172" y="184" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
-  <rect x="28" y="204" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
-  <rect x="44" y="204" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
-  <rect x="60" y="204" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
-  <rect x="76" y="204" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
-  <rect x="92" y="204" width="12" height="12" fill="var(--secondary-color)"/>
-  <rect x="108" y="204" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
-  <rect x="124" y="204" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
-  <rect x="140" y="204" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
-  <rect x="156" y="204" width="12" height="12" fill="var(--secondary-color)"/>
-  <rect x="172" y="204" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
-  <rect x="28" y="224" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
-  <rect x="44" y="224" width="12" height="12" fill="var(--secondary-color)"/>
-  <rect x="60" y="224" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
-  <rect x="76" y="224" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
-  <rect x="92" y="224" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
-  <rect x="108" y="224" width="12" height="12" fill="var(--secondary-color)"/>
-  <rect x="124" y="224" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
-  <rect x="140" y="224" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
-  <rect x="156" y="224" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
-  <rect x="172" y="224" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
-  <path d="M200 80 Q222 80 228 118 M200 200 Q222 200 228 160" stroke="currentColor" stroke-width="2" fill="none"/>
-  <rect x="222" y="112" width="68" height="54" rx="6" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
-  <text x="256" y="136" text-anchor="middle" font-family="var(--font-body)" font-size="13" font-weight="700" fill="var(--accent-color)">모델</text>
-  <text x="256" y="154" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="currentColor" opacity="0.8">temp 0</text>
-  <path d="M290 139 H310" stroke="currentColor" stroke-width="2"/>
-  <path d="M310 133 L320 139 L310 145 Z" fill="currentColor"/>
-  <rect x="322" y="20" width="302" height="228" rx="4" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
-  <text x="473" y="40" text-anchor="middle" font-family="var(--font-body)" font-size="12" font-weight="700" fill="currentColor">답변 ↔ 정답(프로그램 계산), 줄 단위 대조</text>
-  <text x="336" y="70" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="currentColor" opacity="0.7">1</text>
-  <text x="336" y="102" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="currentColor" opacity="0.7">2</text>
-  <text x="336" y="134" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="currentColor" opacity="0.7">3</text>
-  <text x="336" y="166" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="currentColor" opacity="0.7">4</text>
-  <text x="336" y="198" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="currentColor" opacity="0.7">5</text>
+  <rect x="12" y="14" width="172" height="152" rx="4" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
+  <text x="98" y="38" text-anchor="middle" font-family="var(--font-body)" font-size="16" font-weight="700" fill="currentColor">규칙 표</text>
+  <text x="98" y="58" text-anchor="middle" font-family="var(--font-body)" font-size="15" fill="currentColor">(m개 = 부하)</text>
+  <text x="22" y="86" font-family="var(--font-mono)" font-size="16" fill="currentColor" opacity="0.7">1.</text>
+  <text x="46" y="86" font-family="var(--font-mono)" font-size="16" fill="currentColor">lake → stone</text>
+  <text x="22" y="110" font-family="var(--font-mono)" font-size="16" fill="currentColor" opacity="0.7">2.</text>
+  <text x="46" y="110" font-family="var(--font-mono)" font-size="16" fill="currentColor">w<tspan font-size="15" dy="3">2</tspan><tspan dy="-3">&#160;→ u</tspan><tspan font-size="15" dy="3">2</tspan></text>
+  <text x="46" y="132" font-family="var(--font-mono)" font-size="16" fill="currentColor">⋮</text>
+  <text x="22" y="156" font-family="var(--font-mono)" font-size="16" fill="currentColor" opacity="0.7">m.</text>
+  <text x="46" y="156" font-family="var(--font-mono)" font-size="16" fill="currentColor">w<tspan font-size="15" dy="3">m</tspan><tspan dy="-3">&#160;→ u</tspan><tspan font-size="15" dy="3">m</tspan></text>
+  <rect x="196" y="14" width="172" height="152" rx="4" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
+  <text x="282" y="38" text-anchor="middle" font-family="var(--font-body)" font-size="16" font-weight="700" fill="currentColor">의미 없는 텍스트</text>
+  <text x="282" y="58" text-anchor="middle" font-family="var(--font-body)" font-size="15" fill="currentColor">(한 줄 10단어)</text>
+  <rect x="204" y="88" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <rect x="220" y="88" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <rect x="236" y="88" width="13" height="13" fill="var(--secondary-color)"/>
+  <rect x="252" y="88" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <rect x="268" y="88" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <rect x="284" y="88" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <rect x="300" y="88" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <rect x="316" y="88" width="13" height="13" fill="var(--secondary-color)"/>
+  <rect x="332" y="88" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <rect x="348" y="88" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <rect x="204" y="110" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <rect x="220" y="110" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <rect x="236" y="110" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <rect x="252" y="110" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <rect x="268" y="110" width="13" height="13" fill="var(--secondary-color)"/>
+  <rect x="284" y="110" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <rect x="300" y="110" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <rect x="316" y="110" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <rect x="332" y="110" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <rect x="348" y="110" width="13" height="13" fill="var(--secondary-color)"/>
+  <rect x="204" y="132" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <rect x="220" y="132" width="13" height="13" fill="var(--secondary-color)"/>
+  <rect x="236" y="132" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <rect x="252" y="132" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <rect x="268" y="132" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <rect x="284" y="132" width="13" height="13" fill="var(--secondary-color)"/>
+  <rect x="300" y="132" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <rect x="316" y="132" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <rect x="332" y="132" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <rect x="348" y="132" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
+  <path d="M98 166 Q100 190 150 204 M282 166 Q280 190 230 204" stroke="currentColor" stroke-width="2" fill="none"/>
+  <rect x="150" y="186" width="80" height="54" rx="6" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="190" y="208" text-anchor="middle" font-family="var(--font-body)" font-size="16" font-weight="700" fill="var(--accent-color)">모델</text>
+  <text x="190" y="230" text-anchor="middle" font-family="var(--font-mono)" font-size="15" fill="currentColor" opacity="0.8">temp 0</text>
+  <path d="M190 240 V254" stroke="currentColor" stroke-width="2"/>
+  <path d="M184 254 L190 264 L196 254 Z" fill="currentColor"/>
+  <rect x="12" y="266" width="356" height="246" rx="4" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
+  <text x="190" y="290" text-anchor="middle" font-family="var(--font-body)" font-size="16" font-weight="700" fill="currentColor">답변 ↔ 정답(프로그램 계산),</text>
+  <text x="190" y="310" text-anchor="middle" font-family="var(--font-body)" font-size="16" font-weight="700" fill="currentColor">줄 단위 대조</text>
+  <g transform="translate(-308 266)">
+  <text x="336" y="70" text-anchor="middle" font-family="var(--font-mono)" font-size="15" fill="currentColor" opacity="0.7">1</text>
+  <text x="336" y="102" text-anchor="middle" font-family="var(--font-mono)" font-size="15" fill="currentColor" opacity="0.7">2</text>
+  <text x="336" y="134" text-anchor="middle" font-family="var(--font-mono)" font-size="15" fill="currentColor" opacity="0.7">3</text>
+  <text x="336" y="166" text-anchor="middle" font-family="var(--font-mono)" font-size="15" fill="currentColor" opacity="0.7">4</text>
+  <text x="336" y="198" text-anchor="middle" font-family="var(--font-mono)" font-size="15" fill="currentColor" opacity="0.7">5</text>
   <rect x="352" y="58" width="18" height="16" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
   <rect x="374" y="58" width="18" height="16" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
   <rect x="396" y="58" width="18" height="16" fill="var(--secondary-color)"/>
@@ -260,20 +265,21 @@ flowchart LR
   <rect x="550" y="154" width="18" height="16" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>
   <path d="M352 194 q11 -12 22 0 t22 0 t22 0 t22 0 t22 0 t22 0 t22 0 t22 0 t22 0 t20 0" stroke="currentColor" stroke-width="2" fill="none" opacity="0.8"/>
   <path d="M352 224 q11 10 22 -4 t30 6 t26 -8 t34 10" stroke="currentColor" stroke-width="2" fill="none" opacity="0.45" stroke-dasharray="3 4"/>
-  <text x="612" y="102" text-anchor="end" font-family="var(--font-body)" font-size="11" font-weight="700" fill="var(--accent-color)">1종</text>
-  <text x="612" y="134" text-anchor="end" font-family="var(--font-body)" font-size="11" font-weight="700" fill="var(--gold)">2종</text>
-  <text x="612" y="198" text-anchor="end" font-family="var(--font-body)" font-size="11" font-weight="700" fill="currentColor">3종</text>
-  <rect x="16" y="264" width="608" height="74" rx="4" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.5" opacity="0.9"/>
-  <rect x="30" y="276" width="18" height="16" fill="var(--secondary-color)"/>
-  <path d="M34 284 L38 288 L44 280" stroke="var(--bg-panel)" stroke-width="2.2" fill="none"/>
-  <text x="56" y="289" font-family="var(--font-body)" font-size="12" fill="currentColor">성공 — 규칙이 걸린 단어가 정답과 일치</text>
-  <rect x="330" y="276" width="18" height="16" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.2"/>
-  <path d="M335 280 L343 288 M343 280 L335 288" stroke="var(--accent-color)" stroke-width="2.2"/>
-  <text x="356" y="289" font-family="var(--font-body)" font-size="12" fill="currentColor"><tspan font-weight="700">1종</tspan> 구조는 유지, 치환이 틀림</text>
-  <rect x="30" y="308" width="18" height="16" rx="2" fill="none" stroke="var(--gold)" stroke-width="2.2" stroke-dasharray="5 3"/>
-  <text x="56" y="321" font-family="var(--font-body)" font-size="12" fill="currentColor"><tspan font-weight="700">2종</tspan> 국소적인 줄 깨짐</text>
-  <path d="M330 316 q5 -8 9 0 t9 0" stroke="currentColor" stroke-width="2" fill="none"/>
-  <text x="356" y="321" font-family="var(--font-body)" font-size="12" fill="currentColor"><tspan font-weight="700">3종</tspan> 텍스트 구조 자체의 상실(붕괴)</text>
+  </g>
+  <text x="356" y="368" text-anchor="end" font-family="var(--font-body)" font-size="15" font-weight="700" fill="var(--accent-color)">1종</text>
+  <text x="356" y="400" text-anchor="end" font-family="var(--font-body)" font-size="15" font-weight="700" fill="var(--gold)">2종</text>
+  <text x="356" y="464" text-anchor="end" font-family="var(--font-body)" font-size="15" font-weight="700" fill="currentColor">3종</text>
+  <rect x="12" y="524" width="356" height="118" rx="4" fill="var(--bg-panel)" stroke="currentColor" stroke-width="1.5" opacity="0.9"/>
+  <rect x="22" y="534" width="18" height="16" fill="var(--secondary-color)"/>
+  <path d="M26 542 L30 546 L36 538" stroke="var(--bg-panel)" stroke-width="2.2" fill="none"/>
+  <text x="48" y="547" font-family="var(--font-body)" font-size="15" fill="currentColor">성공 — 규칙이 걸린 단어가 정답과 일치</text>
+  <rect x="22" y="562" width="18" height="16" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.2"/>
+  <path d="M27 566 L35 574 M35 566 L27 574" stroke="var(--accent-color)" stroke-width="2.2"/>
+  <text x="48" y="575" font-family="var(--font-body)" font-size="15" fill="currentColor"><tspan font-weight="700">1종</tspan> 구조는 유지, 치환이 틀림</text>
+  <rect x="22" y="590" width="18" height="16" rx="2" fill="none" stroke="var(--gold)" stroke-width="2.2" stroke-dasharray="5 3"/>
+  <text x="48" y="603" font-family="var(--font-body)" font-size="15" fill="currentColor"><tspan font-weight="700">2종</tspan> 국소적인 줄 깨짐</text>
+  <path d="M22 626 q5 -8 9 0 t9 0" stroke="currentColor" stroke-width="2" fill="none"/>
+  <text x="48" y="631" font-family="var(--font-body)" font-size="15" fill="currentColor"><tspan font-weight="700">3종</tspan> 텍스트 구조 자체의 상실(붕괴)</text>
 </svg>
 <figcaption>한 요청의 해부 — 규칙 표와 의미 없는 텍스트가 들어가고, 답변은 정답과 줄 단위로 대조되어 단어 위치마다 성공/실패가 기록된다. 실패는 1·2·3종으로 나눠 센다 (규칙 표의 w·u와 표시 위치는 도식).</figcaption>
 </figure>
@@ -295,49 +301,37 @@ flowchart LR
 - 측정 범위 안에서 예비량이 소진되지 않으면 그 값은 **외삽**이라고 표시한다.
 
 <figure class="post-figure">
-<svg role="img" aria-label="예비량 소진 개념도. 가로축은 로그 스케일의 규칙 수 m, 세로축은 로짓 η이다. 선은 m이 1일 때 기준 수준 α_phys 18.81 로짓에서 출발해, 규칙이 늘 때마다 테이블 크기와 규칙 번호의 비용이 쌓이며 내려온다. q 0.95 문턱 η*과 만나는 지점이 IEC_0.95(약 36.6~38.1개), 로짓 0인 q 0.5 문턱과 만나는 지점이 IEC_0.5(약 43.9~46.1개)이다. α_phys와 η* 사이 간격이 0.95 수준의 예비량 13.84 로짓이다. 곡선의 중간 모양은 도식이다." viewBox="0 0 640 340">
+<svg role="img" aria-label="예비량 소진 개념도. 가로축은 로그 스케일의 규칙 수 m, 세로축은 로짓 η이다. 선은 m이 1일 때 기준 수준 α_phys 18.81 로짓에서 출발해, 규칙이 늘 때마다 테이블 크기와 규칙 번호의 비용이 쌓이며 내려온다. q 0.95 문턱 η* 4.97과 만나는 지점이 IEC_0.95(약 36.6~38.1개), 로짓 0인 q 0.5 문턱과 만나는 지점이 IEC_0.5(약 43.9~46.1개)이다. α_phys와 η* 사이 간격이 0.95 수준의 예비량 13.84 로짓이다. 곡선의 중간 모양은 도식이다." viewBox="0 0 380 466" width="440">
   <title>예비량 소진 — 규칙당 가격이 쌓여 문턱을 넘는 지점이 IEC</title>
-  <path d="M70 45.0 V290 H600" stroke="currentColor" stroke-width="2" fill="none"/>
-  <text x="40" y="39.0" font-family="var(--font-body)" font-size="12" font-weight="700" fill="currentColor">로짓 η</text>
-  <text x="335" y="330" text-anchor="middle" font-family="var(--font-body)" font-size="12" font-weight="700" fill="currentColor">규칙 수 m (로그 축) — 다른 축은 최소 부하</text>
-  <path d="M80.0 290 V296" stroke="currentColor" stroke-width="1.5"/>
-  <text x="80.0" y="310" text-anchor="middle" font-family="var(--font-mono)" font-size="11" fill="currentColor" opacity="0.8">1</text>
-  <path d="M152.0 290 V296" stroke="currentColor" stroke-width="1.5"/>
-  <text x="152.0" y="310" text-anchor="middle" font-family="var(--font-mono)" font-size="11" fill="currentColor" opacity="0.8">2</text>
-  <path d="M224.0 290 V296" stroke="currentColor" stroke-width="1.5"/>
-  <text x="224.0" y="310" text-anchor="middle" font-family="var(--font-mono)" font-size="11" fill="currentColor" opacity="0.8">4</text>
-  <path d="M296.0 290 V296" stroke="currentColor" stroke-width="1.5"/>
-  <text x="296.0" y="310" text-anchor="middle" font-family="var(--font-mono)" font-size="11" fill="currentColor" opacity="0.8">8</text>
-  <path d="M368.0 290 V296" stroke="currentColor" stroke-width="1.5"/>
-  <text x="368.0" y="310" text-anchor="middle" font-family="var(--font-mono)" font-size="11" fill="currentColor" opacity="0.8">16</text>
-  <path d="M440.0 290 V296" stroke="currentColor" stroke-width="1.5"/>
-  <text x="440.0" y="310" text-anchor="middle" font-family="var(--font-mono)" font-size="11" fill="currentColor" opacity="0.8">32</text>
-  <path d="M512.0 290 V296" stroke="currentColor" stroke-width="1.5"/>
-  <text x="512.0" y="310" text-anchor="middle" font-family="var(--font-mono)" font-size="11" fill="currentColor" opacity="0.8">64</text>
-  <path d="M70 61.9 H600" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 4" opacity="0.5"/>
-  <text x="66" y="65.9" text-anchor="end" font-family="var(--font-mono)" font-size="11" fill="currentColor">18.81</text>
-  <path d="M70 200.3 H600" stroke="var(--accent-color)" stroke-width="1.8" stroke-dasharray="6 4"/>
-  <text x="66" y="204.3" text-anchor="end" font-family="var(--font-mono)" font-size="11" font-weight="700" fill="var(--accent-color)">η* = 4.97</text>
-  <path d="M70 250.0 H600" stroke="var(--secondary-color)" stroke-width="1.8" stroke-dasharray="2 4"/>
-  <text x="66" y="254.0" text-anchor="end" font-family="var(--font-mono)" font-size="11" font-weight="700" fill="var(--secondary-color)">0</text>
-  <text x="96" y="53.9" font-family="var(--font-body)" font-size="12" fill="currentColor"><tspan font-weight="700">기준 수준 α_phys</tspan> = 18.81 ± 1.44</text>
-  <text x="96" y="192.3" font-family="var(--font-body)" font-size="11" fill="var(--accent-color)"><tspan font-weight="700">q = 0.95 문턱</tspan> (분산 0이면 ln 19 ≈ 2.94, 난이도 분산에 따라 상승)</text>
-  <text x="96" y="268.0" font-family="var(--font-body)" font-size="11" fill="var(--secondary-color)"><tspan font-weight="700">q = 0.5 문턱</tspan> (로짓 0, 분산과 무관)</text>
-  <path d="M80.0 61.9 C300 71.9 452 144.3 455.9 200.3 Q467.9 218.3 475.4 250.0 L481.4 274.0" stroke="currentColor" stroke-width="3" fill="none"/>
-  <circle cx="80.0" cy="61.9" r="5" fill="currentColor"/>
-  <text x="150" y="158" font-family="var(--font-body)" font-size="11" fill="currentColor" opacity="0.85">규칙이 늘 때마다 치르는 "가격"이 쌓인다</text>
-  <text x="150" y="174" font-family="var(--font-body)" font-size="11" fill="currentColor" opacity="0.85">· 테이블 크기(로그) + 규칙 번호(거듭제곱)</text>
-  <circle cx="455.9" cy="200.3" r="6" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="3"/>
-  <circle cx="475.4" cy="250.0" r="6" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="3"/>
-  <path d="M455.9 208.3 V290" stroke="var(--accent-color)" stroke-width="1.2" stroke-dasharray="2 3"/>
-  <text x="445.9" y="230.3" text-anchor="end" font-family="var(--font-body)" font-size="12" font-weight="700" fill="var(--accent-color)">IEC_0.95 ≈ 36.6~38.1</text>
-  <text x="487.4" y="276.0" font-family="var(--font-body)" font-size="12" font-weight="700" fill="var(--secondary-color)">IEC_0.5 ≈ 43.9~46.1</text>
-  <path d="M576 61.9 H584 V200.3 H576" stroke="currentColor" stroke-width="2" fill="none"/>
-  <text x="570" y="127.1" text-anchor="end" font-family="var(--font-body)" font-size="12" font-weight="700" fill="currentColor">예비량</text>
-  <text x="570" y="143.1" text-anchor="end" font-family="var(--font-mono)" font-size="11" fill="currentColor">13.84 로짓</text>
-  <text x="600" y="54" text-anchor="end" font-family="var(--font-body)" font-size="10" fill="currentColor" opacity="0.7">곡선 중간 모양은 도식</text>
+  <path d="M56 44 V386 H370" stroke="currentColor" stroke-width="2" fill="none"/>
+  <text x="8" y="32" font-family="var(--font-body)" font-size="15" font-weight="700" fill="currentColor">로짓 η</text>
+  <path d="M66 386 V392 M112 386 V392 M158 386 V392 M204 386 V392 M250 386 V392 M296 386 V392 M342 386 V392" stroke="currentColor" stroke-width="1.5"/>
+  <text x="66" y="410" text-anchor="middle" font-family="var(--font-mono)" font-size="15" fill="currentColor" opacity="0.8">1</text>
+  <text x="158" y="410" text-anchor="middle" font-family="var(--font-mono)" font-size="15" fill="currentColor" opacity="0.8">4</text>
+  <text x="250" y="410" text-anchor="middle" font-family="var(--font-mono)" font-size="15" fill="currentColor" opacity="0.8">16</text>
+  <text x="342" y="410" text-anchor="middle" font-family="var(--font-mono)" font-size="15" fill="currentColor" opacity="0.8">64</text>
+  <text x="213" y="436" text-anchor="middle" font-family="var(--font-body)" font-size="15" font-weight="700" fill="currentColor">규칙 수 m (로그 축)</text>
+  <text x="213" y="456" text-anchor="middle" font-family="var(--font-body)" font-size="15" fill="currentColor">다른 축은 최소 부하</text>
+  <path d="M56 66.66 H370" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 4" opacity="0.5"/>
+  <text x="52" y="71.66" text-anchor="end" font-family="var(--font-mono)" font-size="15" fill="currentColor">18.81</text>
+  <path d="M56 260.42 H370" stroke="var(--accent-color)" stroke-width="1.8" stroke-dasharray="6 4"/>
+  <path d="M56 330 H370" stroke="var(--secondary-color)" stroke-width="1.8" stroke-dasharray="2 4"/>
+  <text x="52" y="335" text-anchor="end" font-family="var(--font-mono)" font-size="15" font-weight="700" fill="var(--secondary-color)">0</text>
+  <text x="74" y="56" font-family="var(--font-body)" font-size="15" fill="currentColor"><tspan font-weight="700">기준 수준 α_phys</tspan> = 18.81 ± 1.44</text>
+  <text x="64" y="282" font-family="var(--font-body)" font-size="15" fill="var(--accent-color)"><tspan font-weight="700">q = 0.95 문턱</tspan> · <tspan font-family="var(--font-mono)" font-weight="700">η* = 4.97</tspan></text>
+  <text x="64" y="322" font-family="var(--font-body)" font-size="15" font-weight="700" fill="var(--secondary-color)">q = 0.5 문턱</text>
+  <path d="M66 66.66 C206.56 80.66 303.67 182.02 306.16 260.42 Q313.83 285.62 318.62 330 L322.46 363.6" stroke="currentColor" stroke-width="3" fill="none"/>
+  <circle cx="66" cy="66.66" r="5" fill="currentColor"/>
+  <circle cx="306.16" cy="260.42" r="6" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="3"/>
+  <circle cx="318.62" cy="330" r="6" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="3"/>
+  <path d="M306.16 268.42 V386" stroke="var(--accent-color)" stroke-width="1.2" stroke-dasharray="2 3"/>
+  <text x="296" y="250" text-anchor="end" font-family="var(--font-body)" font-size="15" font-weight="700" fill="var(--accent-color)">IEC_0.95 ≈ 36.6~38.1</text>
+  <text x="298" y="354" text-anchor="end" font-family="var(--font-body)" font-size="15" font-weight="700" fill="var(--secondary-color)">IEC_0.5 ≈ 43.9~46.1</text>
+  <path d="M80 66.66 H88 V260.42 H80" stroke="currentColor" stroke-width="2" fill="none"/>
+  <text x="96" y="156" font-family="var(--font-body)" font-size="15" font-weight="700" fill="currentColor">예비량</text>
+  <text x="96" y="176" font-family="var(--font-mono)" font-size="15" fill="currentColor">13.84 로짓</text>
 </svg>
-<figcaption>예비량 소진 — 기준 수준 α_phys(18.81)에서 출발한 로짓이 규칙당 가격만큼 깎여 q = 0.95 문턱에 닿는 곳이 IEC_0.95, 0에 닿는 곳이 IEC_0.5다. 시작점·예비량·교차점 값은 원문 보고치, 그 사이 곡선 모양은 도식이다.</figcaption>
+<figcaption>예비량 소진 — 기준 수준 α_phys(18.81)에서 출발한 로짓이 규칙당 가격(테이블 크기(로그) + 규칙 번호(거듭제곱))만큼 깎여 q = 0.95 문턱에 닿는 곳이 IEC_0.95, 0에 닿는 곳이 IEC_0.5다. q = 0.95 문턱은 분산이 0이면 ln 19 ≈ 2.94지만 난이도 분산에 따라 상승하고(η* = 4.97), q = 0.5 문턱(로짓 0)은 분산과 무관하다. 시작점·예비량·교차점 값은 원문 보고치, 그 사이 곡선 모양은 도식이다.</figcaption>
 </figure>
 
 ### 5. GPT-4o mini의 "여권(passport)"
@@ -363,14 +357,16 @@ flowchart LR
 흥미로운 관찰 두 가지가 덧붙는다. 첫째, 규칙 수 계산에서 **규칙 테이블의 크기**보다 **뒤쪽 번호 규칙의 불리함**이 훨씬 비싸다 — 37번째 규칙 시점의 누적 가격 중 테이블 크기 몫은 약 2.2 로짓, 각 규칙의 번호별 불리함을 합한 몫은 약 11 로짓이다. 둘째, **붕괴(collapse)** 가 잦다. 2,958건 중 995건(33.6%)에서 텍스트 구조가 무너졌고, 규칙 256개 요청 9건은 모두 붕괴해 적합에서 제외됐다. 붕괴 확률의 법칙에는 텍스트 길이와 치환 밀도가 들어가지만 **규칙 수는 들어가지 않는다**(길이가 두 배가 될 때마다 붕괴 odds 약 11배).
 
 <figure class="post-figure">
-<svg role="img" aria-label="GPT-4o mini의 Instruction Capacity 여권 카드. 대상 스냅샷 gpt-4o-mini-2024-07-18. 세 용량: IEC_0.95 약 37~38개 규칙(bin 36.58 ± 5.41, 법칙 38.06 ± 6.13), 최대 밀도의 보장 용량 IGC_0.95 약 18~19개 규칙(18.69 ± 3.62, 17.55 ± 4.04), 피로 용량 FEC_0.95 3,277 ± 571 단어. 다섯 축의 법칙 형태: 텍스트 길이 V는 전이점 이후 로그 감소, 단어 위치 S는 쌍곡선, 치환 밀도 P는 포화, 규칙 수 M은 로그, 규칙 번호 R은 거듭제곱. 하단에 기준 수준 18.81 ± 1.44, 시행 642,430회, 요청 2,958건." viewBox="0 0 640 320">
+<svg role="img" aria-label="GPT-4o mini의 Instruction Capacity 여권 카드. 맨 위에 대상 스냅샷 gpt-4o-mini-2024-07-18과 사진란이 있다. 그 아래 세 용량: IEC_0.95 약 37~38개 규칙(bin 36.58 ± 5.41, 법칙 38.06 ± 6.13), 최대 밀도의 보장 용량 IGC_0.95 약 18~19개 규칙(18.69 ± 3.62, 17.55 ± 4.04), 피로 용량 FEC_0.95 3,277 ± 571 단어. 이어서 다섯 축의 법칙 형태: 텍스트 길이 V는 전이점 이후 로그 감소, 단어 위치 S는 쌍곡선, 치환 밀도 P는 포화, 규칙 수 M은 로그, 규칙 번호 R은 거듭제곱. 맨 아래에 기준 수준 18.81 ± 1.44, 시행 642,430회, 요청 2,958건." viewBox="0 0 380 652" width="440">
   <title>GPT-4o mini의 여권(passport) — 세 용량과 다섯 축의 법칙</title>
-  <rect x="16" y="16" width="608" height="290" rx="10" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2.5"/>
-  <text x="36" y="44" font-family="var(--font-mono)" font-size="13" font-weight="700" fill="var(--accent-color)">INSTRUCTION CAPACITY PASSPORT</text>
-  <text x="604" y="44" text-anchor="end" font-family="var(--font-mono)" font-size="12" fill="currentColor">gpt-4o-mini-2024-07-18</text>
-  <path d="M28 56 H612" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
-  <rect x="36" y="74" width="120" height="132" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/>
-  <g>
+  <rect x="10" y="10" width="360" height="632" rx="10" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2.5"/>
+  <text x="28" y="44" font-family="var(--font-mono)" font-size="16" font-weight="700" fill="var(--accent-color)">INSTRUCTION</text>
+  <text x="28" y="64" font-family="var(--font-mono)" font-size="16" font-weight="700" fill="var(--accent-color)">CAPACITY</text>
+  <text x="28" y="84" font-family="var(--font-mono)" font-size="16" font-weight="700" fill="var(--accent-color)">PASSPORT</text>
+  <text x="28" y="112" font-family="var(--font-mono)" font-size="15" fill="currentColor">gpt-4o-mini-2024-07-18</text>
+  <text x="28" y="134" font-family="var(--font-mono)" font-size="15" fill="currentColor" opacity="0.8">temp 0 · 고정 시드</text>
+  <rect x="262" y="26" width="90" height="99" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+  <g transform="translate(262 26) scale(0.75) translate(-36 -74)">
     <rect x="78" y="96" width="36" height="30" fill="currentColor"/>
     <rect x="86" y="105" width="6" height="6" fill="var(--bg-panel)"/>
     <rect x="100" y="105" width="6" height="6" fill="var(--bg-panel)"/>
@@ -381,36 +377,38 @@ flowchart LR
     <rect x="78" y="142" width="36" height="6" fill="var(--bg-panel)"/>
     <rect x="78" y="154" width="24" height="6" fill="var(--bg-panel)"/>
   </g>
-  <text x="96" y="196" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="currentColor" opacity="0.8">temp 0 · 고정 시드</text>
-  <text x="176" y="82" font-family="var(--font-body)" font-size="11" fill="currentColor" opacity="0.75">IEC_0.95 · 95% 신뢰 실행 규칙 수</text>
-  <text x="176" y="103" font-family="var(--font-body)" font-size="18" font-weight="700" fill="var(--accent-color)">약 37~38개 규칙</text>
-  <text x="176" y="119" font-family="var(--font-mono)" font-size="10.5" fill="currentColor" opacity="0.8">bin 36.58 ± 5.41 · 법칙 38.06 ± 6.13</text>
-  <text x="176" y="136" font-family="var(--font-body)" font-size="11" fill="currentColor" opacity="0.75">IGC_0.95 · 최대 밀도(p = 1) 보장 용량</text>
-  <text x="176" y="157" font-family="var(--font-body)" font-size="18" font-weight="700" fill="currentColor">약 18~19개 규칙</text>
-  <text x="176" y="173" font-family="var(--font-mono)" font-size="10.5" fill="currentColor" opacity="0.8">18.69 ± 3.62 · 17.55 ± 4.04</text>
-  <text x="176" y="190" font-family="var(--font-body)" font-size="11" fill="currentColor" opacity="0.75">FEC_0.95 · 답변 속 단어 위치(피로)</text>
-  <text x="176" y="211" font-family="var(--font-body)" font-size="18" font-weight="700" fill="currentColor">3,277 ± 571 단어</text>
-  <text x="176" y="227" font-family="var(--font-mono)" font-size="10.5" fill="currentColor" opacity="0.8">측정 범위 안</text>
-  <path d="M420 70 V230" stroke="currentColor" stroke-width="1" opacity="0.4"/>
-  <text x="434" y="84" font-family="var(--font-body)" font-size="12" font-weight="700" fill="currentColor">다섯 축 · 법칙의 형태</text>
-  <text x="434" y="112" font-family="var(--font-mono)" font-size="13" font-weight="700" fill="var(--accent-color)">V</text>
-  <text x="454" y="112" font-family="var(--font-body)" font-size="12" fill="currentColor">텍스트 길이</text>
-  <text x="604" y="112" text-anchor="end" font-family="var(--font-body)" font-size="11" font-weight="700" fill="var(--secondary-color)">전이점 후 로그</text>
-  <text x="434" y="137" font-family="var(--font-mono)" font-size="13" font-weight="700" fill="var(--accent-color)">S</text>
-  <text x="454" y="137" font-family="var(--font-body)" font-size="12" fill="currentColor">단어 위치</text>
-  <text x="604" y="137" text-anchor="end" font-family="var(--font-body)" font-size="11" font-weight="700" fill="var(--secondary-color)">쌍곡선</text>
-  <text x="434" y="162" font-family="var(--font-mono)" font-size="13" font-weight="700" fill="var(--accent-color)">P</text>
-  <text x="454" y="162" font-family="var(--font-body)" font-size="12" fill="currentColor">치환 밀도</text>
-  <text x="604" y="162" text-anchor="end" font-family="var(--font-body)" font-size="11" font-weight="700" fill="var(--secondary-color)">포화</text>
-  <text x="434" y="187" font-family="var(--font-mono)" font-size="13" font-weight="700" fill="var(--accent-color)">M</text>
-  <text x="454" y="187" font-family="var(--font-body)" font-size="12" fill="currentColor">규칙 수</text>
-  <text x="604" y="187" text-anchor="end" font-family="var(--font-body)" font-size="11" font-weight="700" fill="var(--secondary-color)">로그</text>
-  <text x="434" y="212" font-family="var(--font-mono)" font-size="13" font-weight="700" fill="var(--accent-color)">R</text>
-  <text x="454" y="212" font-family="var(--font-body)" font-size="12" fill="currentColor">규칙 번호</text>
-  <text x="604" y="212" text-anchor="end" font-family="var(--font-body)" font-size="11" font-weight="700" fill="var(--secondary-color)">거듭제곱</text>
-  <path d="M28 244 H612" stroke="currentColor" stroke-width="1" opacity="0.4" stroke-dasharray="4 3"/>
-  <text x="36" y="268" font-family="var(--font-mono)" font-size="11.5" fill="currentColor" opacity="0.85">P&lt;IEC&lt;&lt;ALPHA-PHYS&lt;18.81±1.44&lt;&lt;RESERVE-0.95&lt;13.84&lt;&lt;&lt;&lt;</text>
-  <text x="36" y="290" font-family="var(--font-mono)" font-size="11.5" fill="currentColor" opacity="0.85">REQ&lt;2958&lt;&lt;TRIALS&lt;642430&lt;&lt;RULES&lt;1-256&lt;&lt;WORDS&lt;20-10240&lt;</text>
+  <path d="M22 150 H358" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
+  <text x="28" y="176" font-family="var(--font-body)" font-size="15" fill="currentColor" opacity="0.75">IEC_0.95 · 95% 신뢰 실행 규칙 수</text>
+  <text x="28" y="200" font-family="var(--font-body)" font-size="20" font-weight="700" fill="var(--accent-color)">약 37~38개 규칙</text>
+  <text x="28" y="220" font-family="var(--font-mono)" font-size="15" fill="currentColor" opacity="0.8">bin 36.58 ± 5.41 · 법칙 38.06 ± 6.13</text>
+  <text x="28" y="252" font-family="var(--font-body)" font-size="15" fill="currentColor" opacity="0.75">IGC_0.95 · 최대 밀도(p = 1) 보장 용량</text>
+  <text x="28" y="276" font-family="var(--font-body)" font-size="20" font-weight="700" fill="currentColor">약 18~19개 규칙</text>
+  <text x="28" y="296" font-family="var(--font-mono)" font-size="15" fill="currentColor" opacity="0.8">18.69 ± 3.62 · 17.55 ± 4.04</text>
+  <text x="28" y="328" font-family="var(--font-body)" font-size="15" fill="currentColor" opacity="0.75">FEC_0.95 · 답변 속 단어 위치(피로)</text>
+  <text x="28" y="352" font-family="var(--font-body)" font-size="20" font-weight="700" fill="currentColor">3,277 ± 571 단어</text>
+  <text x="28" y="372" font-family="var(--font-mono)" font-size="15" fill="currentColor" opacity="0.8">측정 범위 안</text>
+  <path d="M22 388 H358" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+  <text x="28" y="412" font-family="var(--font-body)" font-size="15" font-weight="700" fill="currentColor">다섯 축 · 법칙의 형태</text>
+  <text x="28" y="438" font-family="var(--font-mono)" font-size="16" font-weight="700" fill="var(--accent-color)">V</text>
+  <text x="50" y="438" font-family="var(--font-body)" font-size="15" fill="currentColor">텍스트 길이</text>
+  <text x="352" y="438" text-anchor="end" font-family="var(--font-body)" font-size="15" font-weight="700" fill="var(--secondary-color)">전이점 후 로그</text>
+  <text x="28" y="462" font-family="var(--font-mono)" font-size="16" font-weight="700" fill="var(--accent-color)">S</text>
+  <text x="50" y="462" font-family="var(--font-body)" font-size="15" fill="currentColor">단어 위치</text>
+  <text x="352" y="462" text-anchor="end" font-family="var(--font-body)" font-size="15" font-weight="700" fill="var(--secondary-color)">쌍곡선</text>
+  <text x="28" y="486" font-family="var(--font-mono)" font-size="16" font-weight="700" fill="var(--accent-color)">P</text>
+  <text x="50" y="486" font-family="var(--font-body)" font-size="15" fill="currentColor">치환 밀도</text>
+  <text x="352" y="486" text-anchor="end" font-family="var(--font-body)" font-size="15" font-weight="700" fill="var(--secondary-color)">포화</text>
+  <text x="28" y="510" font-family="var(--font-mono)" font-size="16" font-weight="700" fill="var(--accent-color)">M</text>
+  <text x="50" y="510" font-family="var(--font-body)" font-size="15" fill="currentColor">규칙 수</text>
+  <text x="352" y="510" text-anchor="end" font-family="var(--font-body)" font-size="15" font-weight="700" fill="var(--secondary-color)">로그</text>
+  <text x="28" y="534" font-family="var(--font-mono)" font-size="16" font-weight="700" fill="var(--accent-color)">R</text>
+  <text x="50" y="534" font-family="var(--font-body)" font-size="15" fill="currentColor">규칙 번호</text>
+  <text x="352" y="534" text-anchor="end" font-family="var(--font-body)" font-size="15" font-weight="700" fill="var(--secondary-color)">거듭제곱</text>
+  <path d="M22 552 H358" stroke="currentColor" stroke-width="1" opacity="0.4" stroke-dasharray="4 3"/>
+  <text x="28" y="574" font-family="var(--font-mono)" font-size="15" fill="currentColor" opacity="0.85">P&lt;IEC&lt;&lt;ALPHA-PHYS&lt;18.81±1.44&lt;&lt;</text>
+  <text x="28" y="594" font-family="var(--font-mono)" font-size="15" fill="currentColor" opacity="0.85">RESERVE-0.95&lt;13.84&lt;&lt;&lt;&lt;</text>
+  <text x="28" y="614" font-family="var(--font-mono)" font-size="15" fill="currentColor" opacity="0.85">REQ&lt;2958&lt;&lt;TRIALS&lt;642430&lt;&lt;</text>
+  <text x="28" y="634" font-family="var(--font-mono)" font-size="15" fill="currentColor" opacity="0.85">RULES&lt;1-256&lt;&lt;WORDS&lt;20-10240&lt;</text>
 </svg>
 <figcaption>GPT-4o mini의 "여권" 한 장 — 세 가지 용량(IEC·IGC·FEC)과 다섯 축(V·S·P·M·R)의 법칙 형태, 하단에는 기준 수준과 측정 규모를 적었다. 모든 수치는 원문 보고치.</figcaption>
 </figure>

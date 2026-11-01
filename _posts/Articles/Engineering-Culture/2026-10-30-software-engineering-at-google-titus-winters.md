@@ -9,7 +9,7 @@ excerpt: "The Pragmatic Engineer 팟캐스트의 Titus Winters 에피소드를 �
 ---
 
 <figure class="post-figure post-figure--header">
-<svg role="img" aria-label="창마다 사람이 들어차 있는 거대한 성채가 코드베이스(약 2억 5천만 줄, 약 1만 명이 편집)를 나타낸다. 성채 아래 기초석 한 줄 가운데 한 칸에서 옛 기초석(옛 API)이 빠져나가고, 오른쪽의 작은 부대(약 12명 팀)가 새 기초석(새 API)을 밀어 넣는다. 입주자가 있는 건물의 기초를 교체하는 은유." viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg">
+<svg width="540" role="img" aria-label="창마다 사람이 들어차 있는 거대한 성채가 코드베이스(약 2억 5천만 줄, 약 1만 명이 편집)를 나타낸다. 성채 아래 기초석 한 줄 가운데 한 칸에서 옛 기초석(옛 API)이 빠져나가고, 오른쪽의 작은 부대(약 12명 팀)가 새 기초석(새 API)을 밀어 넣는다. 입주자가 있는 건물의 기초를 교체하는 은유." viewBox="0 0 700 328" xmlns="http://www.w3.org/2000/svg">
   <title>입주자가 있는 건물의 기초 교체 — 사람이 가득한 성채의 기초석을 작은 부대가 한 칸씩 갈아 끼운다</title>
   <defs>
     <marker id="swg-h-old" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
@@ -19,17 +19,15 @@ excerpt: "The Pragmatic Engineer 팟캐스트의 Titus Winters 에피소드를 �
       <path d="M0 0 L7 3 L0 6 z" fill="var(--accent-color)"/>
     </marker>
   </defs>
-
   <!-- 왼쪽 라벨: 코드베이스 규모 -->
-  <text x="110" y="104" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">코드베이스</text>
-  <text x="110" y="126" text-anchor="middle" font-size="12" fill="currentColor" opacity="0.85">약 2억 5천만 줄</text>
-  <text x="110" y="146" text-anchor="middle" font-size="12" fill="currentColor" opacity="0.85">약 1만 명이 편집 중</text>
-  <line x1="168" y1="124" x2="214" y2="124" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.5"/>
-
+  <text x="105" y="90" text-anchor="middle" font-size="28" font-weight="700" fill="currentColor">코드베이스</text>
+  <text x="105" y="128" text-anchor="middle" font-size="27" fill="currentColor" opacity="0.85">약 2억 5천만 줄</text>
+  <text x="105" y="164" text-anchor="middle" font-size="27" fill="currentColor" opacity="0.85">약 1만 명이</text>
+  <text x="105" y="196" text-anchor="middle" font-size="27" fill="currentColor" opacity="0.85">편집 중</text>
+  <line x1="204" y1="140" x2="216" y2="140" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.5"/>
   <!-- 깃발 -->
   <line x1="350" y1="48" x2="350" y2="12" stroke="currentColor" stroke-width="2"/>
   <path d="M351 13 L384 20 L351 28 z" fill="var(--secondary-color)"/>
-
   <!-- 성채 흉벽 -->
   <rect x="220" y="46" width="18" height="14" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
   <rect x="266" y="46" width="18" height="14" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
@@ -37,10 +35,8 @@ excerpt: "The Pragmatic Engineer 팟캐스트의 Titus Winters 에피소드를 �
   <rect x="370" y="46" width="18" height="14" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
   <rect x="416" y="46" width="18" height="14" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
   <rect x="462" y="46" width="18" height="14" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
-
   <!-- 성채 본체 -->
   <rect x="220" y="60" width="260" height="170" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
-
   <!-- 창문 4층 × 5열 (사람이 들어찬 건물) -->
   <g fill="none" stroke="currentColor" stroke-width="1.3">
     <rect x="244" y="76" width="28" height="22"/><rect x="290" y="76" width="28" height="22"/><rect x="336" y="76" width="28" height="22"/><rect x="382" y="76" width="28" height="22"/><rect x="428" y="76" width="28" height="22"/>
@@ -60,7 +56,6 @@ excerpt: "The Pragmatic Engineer 팟캐스트의 Titus Winters 에피소드를 �
     <rect x="298" y="163" width="12" height="7" rx="3"/><rect x="344" y="163" width="12" height="7" rx="3"/><rect x="436" y="163" width="12" height="7" rx="3"/>
     <rect x="252" y="199" width="12" height="7" rx="3"/><rect x="298" y="199" width="12" height="7" rx="3"/><rect x="390" y="199" width="12" height="7" rx="3"/><rect x="436" y="199" width="12" height="7" rx="3"/>
   </g>
-
   <!-- 기초석 한 줄 (가운데 한 칸 교체 중) -->
   <g stroke="currentColor" stroke-width="1.6">
     <rect x="210" y="230" width="40" height="32" fill="var(--bg-light)"/>
@@ -72,22 +67,18 @@ excerpt: "The Pragmatic Engineer 팟캐스트의 Titus Winters 에피소드를 �
     <rect x="450" y="230" width="40" height="32" fill="var(--bg-light)"/>
   </g>
   <rect x="326" y="226" width="48" height="40" fill="none" stroke="var(--gold)" stroke-width="2" stroke-dasharray="4 3"/>
-
   <!-- 지면 -->
   <line x1="20" y1="262" x2="680" y2="262" stroke="currentColor" stroke-width="1.4" opacity="0.45"/>
-
   <!-- 빠져나가는 옛 기초석 -->
   <rect x="110" y="230" width="40" height="32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="4 3" opacity="0.6"/>
   <path d="M342 266 Q 250 300 156 266" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="5 4" opacity="0.7" marker-end="url(#swg-h-old)"/>
-  <text x="130" y="302" text-anchor="middle" font-size="12" fill="currentColor" opacity="0.85">옛 기초석 · 옛 API</text>
-
+  <text x="130" y="316" text-anchor="middle" font-size="27" fill="currentColor" opacity="0.85">옛 기초석 · 옛 API</text>
   <!-- 들어오는 새 기초석 -->
   <rect x="560" y="230" width="40" height="32" fill="var(--accent-color)" stroke="currentColor" stroke-width="1.6" opacity="0.9"/>
   <path d="M556 266 Q 460 300 364 266" fill="none" stroke="var(--accent-color)" stroke-width="2" marker-end="url(#swg-h-new)"/>
-  <text x="580" y="302" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">새 기초석 · 새 API</text>
-
+  <text x="568" y="316" text-anchor="middle" font-size="27" font-weight="700" fill="currentColor">새 기초석 · 새 API</text>
   <!-- 작은 부대 (약 12명 팀) -->
-  <text x="642" y="200" text-anchor="middle" font-size="12" font-weight="700" fill="var(--secondary-color)">약 12명 팀</text>
+  <text x="626" y="200" text-anchor="middle" font-size="27" font-weight="700" fill="var(--secondary-color)">약 12명 팀</text>
   <g fill="currentColor">
     <circle cx="616" cy="220" r="6"/><rect x="611" y="227" width="10" height="20" rx="2"/>
     <circle cx="640" cy="220" r="6"/><rect x="635" y="227" width="10" height="20" rx="2"/>
@@ -173,86 +164,89 @@ LLM이 없던 시절이라, 팀은 **고급 언어 파싱 기법(AST)**으로 �
 요약은 **clang-format** 도구가 "Titus와 팀이 이 리팩터링에 필요했기 때문에" 존재한다고 적는다. (왜 필요했는지는 요약에 나오지 않는다 — 아래 분석에서 추측을 덧붙였다.)
 
 <figure class="post-figure">
-<svg role="img" aria-label="대규모 변경 7단계 파이프라인. 위쪽에 Parse(파싱), Match(매칭), Generate(편집 생성), Coexist(공존), Shard(디렉터리별 배치 배포), Block(신규 차단), Delete(삭제)가 한 줄로 이어진다. 앞의 세 단계는 '어떻게 고칠까', 뒤의 네 단계는 '멈추지 않고 옮겨 가기'로 묶인다. 아래 시간축에서 옛 API 막대는 처음부터 이어지다 Block 이후 신규 사용이 차단된 점선이 되고 Delete에서 사라진다. 새 API 막대는 Coexist부터 시작해 끝까지 이어지며, Coexist부터 Delete까지는 두 API가 나란히 존재하는 공존 구간이다." viewBox="0 0 680 274" xmlns="http://www.w3.org/2000/svg">
+<svg role="img" aria-label="대규모 변경 7단계 파이프라인. 왼쪽에 Parse(파싱), Match(매칭), Generate(편집 생성), Coexist(공존), Shard(디렉터리별 배치 배포), Block(신규 차단), Delete(삭제)가 위에서 아래로 이어진다. 앞의 세 단계는 '어떻게 고칠까', 뒤의 네 단계는 '멈추지 않고 옮겨 가기'로 묶인다. 오른쪽 세로 시간축(위에서 아래로)에서 옛 API 막대는 처음부터 이어지다 Block 이후 신규 사용이 차단된 점선이 되고 Delete에서 사라진다. 새 API 막대는 Coexist부터 시작해 끝까지 이어지며, Coexist부터 Delete까지는 두 API가 나란히 존재하는 공존 구간이다." viewBox="0 0 400 550" width="460" xmlns="http://www.w3.org/2000/svg">
   <title>대규모 변경 7단계 — 옛 API와 새 API가 공존하다가 Block·Delete로 옛 쪽이 사라지는 시간축</title>
   <defs>
     <marker id="swg-p-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
       <path d="M0 0 L6 3 L0 6 z" fill="currentColor"/>
     </marker>
-    <marker id="swg-p-new" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
-      <path d="M0 0 L6 3 L0 6 z" fill="var(--accent-color)"/>
-    </marker>
   </defs>
-
-  <!-- 단계 묶음 괄호 -->
-  <path d="M20 32 V24 H284 V32" fill="none" stroke="currentColor" stroke-width="1.3" opacity="0.6"/>
-  <text x="152" y="17" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.85">어떻게 고칠까 — AST 기반 도구</text>
-  <path d="M296 32 V24 H652 V32" fill="none" stroke="var(--secondary-color)" stroke-width="1.6"/>
-  <text x="474" y="17" text-anchor="middle" font-size="11" font-weight="700" fill="var(--secondary-color)">멈추지 않고 옮겨 가기 — 변경 관리</text>
-
+  <!-- 단계 묶음 괄호 + 머리말 -->
+  <path d="M22 52 H14 V220 H22" fill="none" stroke="currentColor" stroke-width="1.3" opacity="0.6"/>
+  <g font-size="16" fill="currentColor" text-anchor="middle" opacity="0.85">
+    <text x="99" y="20">어떻게 고칠까</text>
+    <text x="99" y="40">— AST 기반 도구</text>
+  </g>
+  <path d="M22 290 H14 V518 H22" fill="none" stroke="var(--secondary-color)" stroke-width="1.6"/>
+  <!-- 3→4 화살표 (머리말 판 뒤로 지나감) -->
+  <line x1="99" y1="220" x2="99" y2="286" stroke="currentColor" stroke-width="1.4" marker-end="url(#swg-p-arrow)"/>
+  <rect x="16" y="232" width="166" height="46" fill="var(--bg-panel)"/>
+  <g font-size="16" font-weight="700" fill="var(--secondary-color)" text-anchor="middle">
+    <text x="99" y="251">멈추지 않고 옮겨 가기</text>
+    <text x="99" y="271">— 변경 관리</text>
+  </g>
   <!-- 7단계 박스 -->
   <g stroke="currentColor" stroke-width="1.5" fill="var(--bg-light)">
-    <rect x="20" y="40" width="80" height="52" rx="4"/>
-    <rect x="112" y="40" width="80" height="52" rx="4"/>
-    <rect x="204" y="40" width="80" height="52" rx="4"/>
-    <rect x="296" y="40" width="80" height="52" rx="4" stroke="var(--gold)" stroke-width="2.2"/>
-    <rect x="388" y="40" width="80" height="52" rx="4"/>
-    <rect x="480" y="40" width="80" height="52" rx="4"/>
-    <rect x="572" y="40" width="80" height="52" rx="4"/>
+    <rect x="24" y="52" width="150" height="48" rx="4"/>
+    <rect x="24" y="112" width="150" height="48" rx="4"/>
+    <rect x="24" y="172" width="150" height="48" rx="4"/>
+    <rect x="24" y="290" width="150" height="48" rx="4" stroke="var(--gold)" stroke-width="2.2"/>
+    <rect x="24" y="350" width="150" height="48" rx="4"/>
+    <rect x="24" y="410" width="150" height="48" rx="4"/>
+    <rect x="24" y="470" width="150" height="48" rx="4"/>
   </g>
-  <g font-size="12" font-weight="700" fill="currentColor" text-anchor="middle">
-    <text x="60" y="62">1 Parse</text>
-    <text x="152" y="62">2 Match</text>
-    <text x="244" y="62">3 Generate</text>
-    <text x="336" y="62">4 Coexist</text>
-    <text x="428" y="62">5 Shard</text>
-    <text x="520" y="62">6 Block</text>
-    <text x="612" y="62">7 Delete</text>
+  <g font-size="17" font-weight="700" fill="currentColor" text-anchor="middle">
+    <text x="99" y="73">1 Parse</text>
+    <text x="99" y="133">2 Match</text>
+    <text x="99" y="193">3 Generate</text>
+    <text x="99" y="311">4 Coexist</text>
+    <text x="99" y="371">5 Shard</text>
+    <text x="99" y="431">6 Block</text>
+    <text x="99" y="491">7 Delete</text>
   </g>
-  <g font-size="11" fill="currentColor" text-anchor="middle" opacity="0.85">
-    <text x="60" y="80">AST 파싱</text>
-    <text x="152" y="80">패턴 매칭</text>
-    <text x="244" y="80">편집 생성</text>
-    <text x="336" y="80">옛·새 공존</text>
-    <text x="428" y="80">디렉터리별 배치</text>
-    <text x="520" y="80">신규 사용 차단</text>
-    <text x="612" y="80">옛 API 삭제</text>
+  <g font-size="16" fill="currentColor" text-anchor="middle" opacity="0.85">
+    <text x="99" y="93">AST 파싱</text>
+    <text x="99" y="153">패턴 매칭</text>
+    <text x="99" y="213">편집 생성</text>
+    <text x="99" y="331">옛·새 공존</text>
+    <text x="99" y="391">디렉터리별 배치</text>
+    <text x="99" y="451">신규 사용 차단</text>
+    <text x="99" y="511">옛 API 삭제</text>
   </g>
   <g stroke="currentColor" stroke-width="1.4" marker-end="url(#swg-p-arrow)">
-    <line x1="100" y1="66" x2="110" y2="66"/>
-    <line x1="192" y1="66" x2="202" y2="66"/>
-    <line x1="284" y1="66" x2="294" y2="66"/>
-    <line x1="376" y1="66" x2="386" y2="66"/>
-    <line x1="468" y1="66" x2="478" y2="66"/>
-    <line x1="560" y1="66" x2="570" y2="66"/>
+    <line x1="99" y1="100" x2="99" y2="108"/>
+    <line x1="99" y1="160" x2="99" y2="168"/>
+    <line x1="99" y1="338" x2="99" y2="346"/>
+    <line x1="99" y1="398" x2="99" y2="406"/>
+    <line x1="99" y1="458" x2="99" y2="466"/>
   </g>
-
-  <!-- 공존 구간 -->
-  <rect x="296" y="110" width="316" height="118" fill="var(--gold)" fill-opacity="0.12" stroke="var(--gold)" stroke-width="1.4" stroke-dasharray="5 4"/>
-  <text x="454" y="128" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor">공존 구간 — 옛·새 API가 나란히</text>
-
+  <!-- 공존 구간 (Coexist 시작 ~ Delete 중앙) -->
+  <rect x="189" y="290" width="191" height="204" fill="var(--gold)" fill-opacity="0.12" stroke="var(--gold)" stroke-width="1.4" stroke-dasharray="5 4"/>
+  <g font-size="16" font-weight="700" fill="currentColor">
+    <text x="266" y="314">공존 구간 —</text>
+    <text x="266" y="334">옛·새 API가</text>
+    <text x="266" y="354">나란히</text>
+  </g>
   <!-- Block / Delete 안내선 -->
-  <line x1="520" y1="92" x2="520" y2="228" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity="0.4"/>
-  <line x1="612" y1="92" x2="612" y2="228" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity="0.4"/>
-
+  <line x1="174" y1="434" x2="380" y2="434" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity="0.4"/>
+  <line x1="174" y1="494" x2="236" y2="494" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity="0.4"/>
   <!-- 옛 API 레인 -->
-  <text x="20" y="153" font-size="12" font-weight="700" fill="currentColor">옛 API</text>
-  <rect x="20" y="160" width="500" height="14" fill="currentColor" opacity="0.45"/>
-  <rect x="520" y="160" width="92" height="14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="4 3" opacity="0.7"/>
-  <text x="566" y="153" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.85">신규 사용 차단</text>
+  <text x="248" y="44" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">옛 API</text>
+  <rect x="241" y="52" width="14" height="382" fill="currentColor" opacity="0.45"/>
+  <rect x="241" y="434" width="14" height="60" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="4 3" opacity="0.7"/>
+  <text x="266" y="456" font-size="16" fill="currentColor" opacity="0.85">신규 사용 차단</text>
   <g stroke="var(--secondary-color)" stroke-width="2.6" stroke-linecap="round">
-    <line x1="604" y1="159" x2="620" y2="175"/>
-    <line x1="620" y1="159" x2="604" y2="175"/>
+    <line x1="240" y1="486" x2="256" y2="502"/>
+    <line x1="256" y1="486" x2="240" y2="502"/>
   </g>
-  <text x="626" y="172" font-size="11" font-weight="700" fill="var(--secondary-color)">삭제</text>
-
+  <text x="266" y="500" font-size="16" font-weight="700" fill="var(--secondary-color)">삭제</text>
   <!-- 새 API 레인 -->
-  <text x="288" y="208" text-anchor="end" font-size="12" font-weight="700" fill="currentColor">새 API</text>
-  <line x1="296" y1="203" x2="652" y2="203" stroke="var(--accent-color)" stroke-width="14" marker-end="url(#swg-p-new)"/>
-
+  <text x="206" y="282" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">새 API</text>
+  <rect x="199" y="290" width="14" height="210" fill="var(--accent-color)"/>
+  <path d="M191 500 L221 500 L206 518 z" fill="var(--accent-color)"/>
   <!-- 시간축 -->
-  <line x1="20" y1="248" x2="652" y2="248" stroke="currentColor" stroke-width="1.3" opacity="0.6" marker-end="url(#swg-p-arrow)"/>
-  <text x="656" y="268" text-anchor="end" font-size="11" fill="currentColor" opacity="0.8">시간 →</text>
+  <line x1="392" y1="52" x2="392" y2="518" stroke="currentColor" stroke-width="1.3" opacity="0.6" marker-end="url(#swg-p-arrow)"/>
+  <text x="398" y="542" text-anchor="end" font-size="16" fill="currentColor" opacity="0.8">시간 ↓</text>
 </svg>
 <figcaption>대규모 변경 7단계 — 새 API가 들어온 뒤에도 옛 API는 한동안 공존하고, 신규 사용을 막은 다음에야 삭제된다.</figcaption>
 </figure>
@@ -304,7 +298,7 @@ Winters는 ACM/IEEE 커리큘럼이 **2000년 무렵 이후 거의 바뀌지 않
 이에 대한 그의 처방은 **코드보다 학생의 프롬프트와 테스트를 채점하는 것**이다. 산출물만이 아니라, 학생이 소프트웨어를 만들고 검증하는 데 들인 **사고 과정**에 초점을 두자는 제안이다.
 
 <figure class="post-figure">
-<svg role="img" aria-label="왼쪽은 교수들이 전하는 AI 시대 학생의 세 그룹이다. 최상위권은 AI를 튜터로 최대한 활용해 어느 때보다 뛰어나며 위쪽 화살표로 표시된다. 중위권은 강조 테두리로 표시된 '가장 고전하는 그룹'으로, 무너졌다는 평가와 함께 B 학점 미만은 코드를 아예 이해하지 못한다는 설명과 아래쪽 화살표가 붙는다. 하위권은 저품질 산출물로 중위권을 쉽게 따라잡는다는 설명과 짧은 오른쪽 위 화살표로 표시된다. 오른쪽은 Winters의 처방으로, 평가 대상을 결과 코드만이 아니라 과정 — 프롬프트, 테스트, 사고 과정 — 까지 넓히는 화살표다." viewBox="0 0 680 236" xmlns="http://www.w3.org/2000/svg">
+<svg role="img" aria-label="위쪽은 교수들이 전하는 AI 시대 학생의 세 그룹이다. 최상위권은 AI를 튜터로 최대한 활용해 어느 때보다 뛰어나며 위쪽 화살표로 표시된다. 중위권은 강조 테두리로 표시된 '가장 고전하는 그룹'으로, 무너졌다는 평가와 함께 B 학점 미만은 코드를 아예 이해하지 못한다는 설명과 아래쪽 화살표가 붙는다. 하위권은 저품질 산출물로 중위권을 쉽게 따라잡는다는 설명과 짧은 오른쪽 위 화살표로 표시된다. 아래쪽은 Winters의 처방으로, 평가 대상을 결과 코드만이 아니라 과정 — 프롬프트, 테스트, 사고 과정 — 까지 넓히는 화살표다." viewBox="0 0 400 556" width="460" xmlns="http://www.w3.org/2000/svg">
   <title>AI로 가장 고전하는 건 중위권 — 그리고 결과 코드만이 아니라 과정도 평가하자는 처방</title>
   <defs>
     <marker id="swg-e-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
@@ -317,58 +311,53 @@ Winters는 ACM/IEEE 커리큘럼이 **2000년 무렵 이후 거의 바뀌지 않
       <path d="M0 0 L6 3 L0 6 z" fill="var(--secondary-color)"/>
     </marker>
   </defs>
-
-  <!-- 왼쪽: 3분화 -->
-  <text x="175" y="18" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">AI 시대 학생의 세 그룹 (교수들의 관찰)</text>
+  <!-- 위: 3분화 -->
+  <text x="200" y="24" text-anchor="middle" font-size="17" font-weight="700" fill="currentColor">AI 시대 학생의 세 그룹 (교수들의 관찰)</text>
   <g stroke="currentColor" stroke-width="1.4" fill="var(--bg-light)">
-    <rect x="20" y="30" width="310" height="54" rx="4"/>
-    <rect x="20" y="158" width="310" height="54" rx="4"/>
+    <rect x="16" y="40" width="372" height="66" rx="4"/>
+    <rect x="16" y="192" width="372" height="66" rx="4"/>
   </g>
   <!-- 중위권 = 가장 고전하는 그룹 (강조 테두리) -->
-  <rect x="20" y="94" width="310" height="54" rx="4" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2.6"/>
-  <rect x="30" y="43" width="64" height="28" rx="3" fill="var(--accent-color)" fill-opacity="0.25" stroke="var(--accent-color)" stroke-width="1.4"/>
-  <rect x="30" y="107" width="64" height="28" rx="3" fill="var(--secondary-color)" fill-opacity="0.2" stroke="var(--secondary-color)" stroke-width="1.6"/>
-  <rect x="30" y="171" width="64" height="28" rx="3" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.75"/>
-  <g font-size="12" font-weight="700" fill="currentColor" text-anchor="middle">
-    <text x="62" y="62">최상위권</text>
-    <text x="62" y="126">중위권</text>
-    <text x="62" y="190">하위권</text>
+  <rect x="16" y="116" width="372" height="66" rx="4" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="2.6"/>
+  <rect x="26" y="57" width="86" height="32" rx="3" fill="var(--accent-color)" fill-opacity="0.25" stroke="var(--accent-color)" stroke-width="1.4"/>
+  <rect x="26" y="133" width="86" height="32" rx="3" fill="var(--secondary-color)" fill-opacity="0.2" stroke="var(--secondary-color)" stroke-width="1.6"/>
+  <rect x="26" y="209" width="86" height="32" rx="3" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.75"/>
+  <g font-size="16" font-weight="700" fill="currentColor" text-anchor="middle">
+    <text x="69" y="79">최상위권</text>
+    <text x="69" y="155">중위권</text>
+    <text x="69" y="231">하위권</text>
   </g>
-  <g font-size="11" fill="currentColor">
-    <text x="104" y="54">어느 때보다 뛰어남</text>
-    <text x="104" y="72" opacity="0.85">AI를 튜터로 최대한 활용</text>
-    <text x="104" y="118" font-weight="700" fill="var(--secondary-color)">가장 고전 — "무너졌다"</text>
-    <text x="104" y="136" opacity="0.85">B 미만은 코드를 아예 이해 못함</text>
-    <text x="104" y="182">저품질 산출물로</text>
-    <text x="104" y="200" opacity="0.85">중위권을 쉽게 따라잡음</text>
+  <g font-size="16" fill="currentColor">
+    <text x="124" y="67">어느 때보다 뛰어남</text>
+    <text x="124" y="90" opacity="0.85">AI를 튜터로 최대한 활용</text>
+    <text x="124" y="143" font-weight="700" fill="var(--secondary-color)">가장 고전 — "무너졌다"</text>
+    <text x="124" y="166" opacity="0.85">B 미만은 코드를 아예 이해 못함</text>
+    <text x="124" y="219">저품질 산출물로</text>
+    <text x="124" y="242" opacity="0.85">중위권을 쉽게 따라잡음</text>
   </g>
   <!-- 추세 아이콘: 최상위 ↑, 중위 ↓, 하위 짧은 ↗ -->
-  <line x1="312" y1="72" x2="312" y2="44" stroke="var(--accent-color)" stroke-width="2.2" marker-end="url(#swg-e-acc)"/>
-  <line x1="312" y1="102" x2="312" y2="134" stroke="var(--secondary-color)" stroke-width="2.6" marker-end="url(#swg-e-down)"/>
-  <line x1="304" y1="194" x2="314" y2="184" stroke="currentColor" stroke-width="2" opacity="0.75" marker-end="url(#swg-e-arrow)"/>
-
+  <line x1="372" y1="92" x2="372" y2="58" stroke="var(--accent-color)" stroke-width="2.2" marker-end="url(#swg-e-acc)"/>
+  <line x1="372" y1="126" x2="372" y2="162" stroke="var(--secondary-color)" stroke-width="2.6" marker-end="url(#swg-e-down)"/>
+  <line x1="358" y1="244" x2="374" y2="228" stroke="currentColor" stroke-width="2" opacity="0.75" marker-end="url(#swg-e-arrow)"/>
   <!-- 연결 화살표 -->
-  <line x1="342" y1="121" x2="396" y2="121" stroke="currentColor" stroke-width="1.6" opacity="0.55" marker-end="url(#swg-e-arrow)"/>
-
-  <!-- 오른쪽: 평가 대상 이동 -->
-  <text x="530" y="18" text-anchor="middle" font-size="12" font-weight="700" fill="var(--secondary-color)">처방: 결과 코드만이 아니라 과정도</text>
-  <rect x="410" y="32" width="240" height="46" rx="4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="5 4" opacity="0.55"/>
-  <text x="530" y="60" text-anchor="middle" font-size="12" fill="currentColor" opacity="0.7">지금까지: 결과 코드 중심</text>
-
-  <line x1="530" y1="84" x2="530" y2="128" stroke="var(--accent-color)" stroke-width="3" marker-end="url(#swg-e-acc)"/>
-  <text x="542" y="111" font-size="11" fill="currentColor" opacity="0.85">평가 대상을 넓힌다</text>
-
-  <rect x="410" y="138" width="240" height="78" rx="4" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.4"/>
-  <text x="530" y="162" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">과정도 함께 평가</text>
+  <line x1="200" y1="266" x2="200" y2="298" stroke="currentColor" stroke-width="1.6" opacity="0.55" marker-end="url(#swg-e-arrow)"/>
+  <!-- 아래: 평가 대상 이동 -->
+  <text x="200" y="328" text-anchor="middle" font-size="17" font-weight="700" fill="var(--secondary-color)">처방: 결과 코드만이 아니라 과정도</text>
+  <rect x="60" y="342" width="280" height="46" rx="4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="5 4" opacity="0.55"/>
+  <text x="200" y="371" text-anchor="middle" font-size="16" fill="currentColor" opacity="0.7">지금까지: 결과 코드 중심</text>
+  <line x1="200" y1="394" x2="200" y2="438" stroke="var(--accent-color)" stroke-width="3" marker-end="url(#swg-e-acc)"/>
+  <text x="214" y="422" font-size="16" fill="currentColor" opacity="0.85">평가 대상을 넓힌다</text>
+  <rect x="16" y="450" width="372" height="92" rx="4" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="2.4"/>
+  <text x="200" y="478" text-anchor="middle" font-size="17" font-weight="700" fill="currentColor">과정도 함께 평가</text>
   <g stroke="currentColor" stroke-width="1.2" fill="none">
-    <rect x="420" y="176" width="68" height="26" rx="13"/>
-    <rect x="496" y="176" width="68" height="26" rx="13"/>
-    <rect x="572" y="176" width="68" height="26" rx="13"/>
+    <rect x="44" y="494" width="100" height="32" rx="16"/>
+    <rect x="150" y="494" width="100" height="32" rx="16"/>
+    <rect x="256" y="494" width="100" height="32" rx="16"/>
   </g>
-  <g font-size="11" fill="currentColor" text-anchor="middle">
-    <text x="454" y="193">프롬프트</text>
-    <text x="530" y="193">테스트</text>
-    <text x="606" y="193">사고 과정</text>
+  <g font-size="16" fill="currentColor" text-anchor="middle">
+    <text x="94" y="516">프롬프트</text>
+    <text x="200" y="516">테스트</text>
+    <text x="306" y="516">사고 과정</text>
   </g>
 </svg>
 <figcaption>AI로 가장 고전하는 건 중위권이다 — 최상위권은 AI를 튜터로 삼아 더 나아지고, 하위권은 저품질 산출물로 중위권을 쉽게 따라잡는다. 그래서 Winters는 결과 코드만이 아니라 프롬프트·테스트·사고 과정을 채점하자고 제안한다.</figcaption>

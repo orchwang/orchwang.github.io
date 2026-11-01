@@ -9,7 +9,7 @@ excerpt: "Yosh Wuyts의 「The Missing Future State」를 분석한다. Rust의 
 ---
 
 <figure class="post-figure post-figure--header">
-<svg role="img" aria-label="이미 Poll::Ready(T)로 값 하나를 내놓은 future를 다시 poll하면 갈 수 있는 길을 그린 그림. 왼쪽 future 상자 위로 값 T가 한 번 빠져나갔고, 상자에서 나온 '다시 poll()' 화살표가 세 갈래로 나뉜다. 위쪽 갈래는 폭발 표시와 함께 panic(async 블록의 기본 동작), 아래쪽 갈래는 잠든 Pending 상자와 함께 hang(끝난 Fuse의 Pending은 깨우지 않음)으로 간다. 가운데 갈래는 점선으로 그린 빈 표지판 'Done ?'으로 이어지는데, Poll에는 이 상태를 나타낼 변형이 없다." viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg">
+<svg role="img" aria-label="이미 Poll::Ready(T)로 값 하나를 내놓은 future를 다시 poll하면 갈 수 있는 길을 그린 그림. 맨 위 future 상자 위로 값 T가 한 번 빠져나갔고, 상자에서 아래로 나온 '다시 poll()' 줄기가 세 갈래로 나뉜다. 위쪽 갈래는 폭발 표시와 함께 panic(async 블록의 기본 동작), 아래쪽 갈래는 잠든 Pending 상자와 함께 hang(끝난 Fuse의 Pending은 깨우지 않음)으로 간다. 가운데 갈래는 점선으로 그린 빈 표지판 'Done ?'으로 이어지는데, Poll에는 이 상태를 나타낼 변형이 없다." viewBox="0 0 400 545" width="440" xmlns="http://www.w3.org/2000/svg">
   <title>값을 낸 future를 다시 poll하면 — panic, hang, 그리고 비어 있는 Done 자리</title>
   <defs>
     <marker id="mfs-h-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -19,48 +19,46 @@ excerpt: "Yosh Wuyts의 「The Missing Future State」를 분석한다. Rust의 
       <path d="M0,0 L10,5 L0,10 z" fill="var(--gold)"/>
     </marker>
   </defs>
-
-  <text x="360" y="26" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">값을 낸 future를 다시 poll하면?</text>
-
+  <text x="200" y="28" text-anchor="middle" font-size="19" font-weight="700" fill="currentColor">값을 낸 future를 다시 poll하면?</text>
   <!-- ===== the future box + its single value ===== -->
-  <text x="105" y="58" text-anchor="middle" font-size="11" fill="var(--text-light)">① Poll::Ready(T) — 값은 하나</text>
-  <circle cx="105" cy="88" r="16" fill="var(--badge-fill)" stroke="var(--border-strong)" stroke-width="1.5"/>
-  <text x="105" y="93" text-anchor="middle" font-size="14" font-weight="700" fill="var(--border-strong)" style="font-family:var(--font-mono)">T</text>
-  <line x1="105" y1="124" x2="105" y2="108" stroke="var(--gold)" stroke-width="2" marker-end="url(#mfs-h-arrow-gold)"/>
-  <rect x="40" y="128" width="130" height="80" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
-  <rect x="40" y="128" width="130" height="18" rx="3" fill="currentColor" opacity="0.12"/>
-  <text x="105" y="141" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.8" style="font-family:var(--font-mono)">future</text>
-  <text x="105" y="174" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor" style="font-family:var(--font-mono)">impl Future</text>
-  <text x="105" y="194" text-anchor="middle" font-size="10" fill="var(--text-light)">이미 완료됨</text>
-
-  <!-- ===== re-poll arrow + fork ===== -->
-  <line x1="172" y1="168" x2="272" y2="168" stroke="currentColor" stroke-width="2.5"/>
-  <text x="222" y="158" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor">② 다시 poll()</text>
-  <circle cx="276" cy="168" r="5" fill="currentColor"/>
-  <line x1="280" y1="164" x2="396" y2="88" stroke="var(--accent-color)" stroke-width="2.2" marker-end="url(#mfs-h-arrow)"/>
-  <line x1="281" y1="168" x2="396" y2="168" stroke="var(--gold)" stroke-width="2.2" stroke-dasharray="6 5" marker-end="url(#mfs-h-arrow-gold)"/>
-  <line x1="280" y1="172" x2="396" y2="246" stroke="var(--text-light)" stroke-width="2.2" marker-end="url(#mfs-h-arrow)"/>
-
+  <circle cx="90" cy="70" r="17" fill="var(--badge-fill)" stroke="var(--border-strong)" stroke-width="1.5"/>
+  <text x="90" y="76" text-anchor="middle" font-size="17" font-weight="700" fill="var(--border-strong)" style="font-family:var(--font-mono)">T</text>
+  <line x1="90" y1="106" x2="90" y2="90" stroke="var(--gold)" stroke-width="2" marker-end="url(#mfs-h-arrow-gold)"/>
+  <text x="122" y="66" font-size="16" fill="var(--text-light)">① Poll::Ready(T)</text>
+  <text x="122" y="86" font-size="16" fill="var(--text-light)">— 값은 하나</text>
+  <rect x="20" y="108" width="140" height="78" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <rect x="20" y="108" width="140" height="22" rx="3" fill="currentColor" opacity="0.12"/>
+  <text x="90" y="125" text-anchor="middle" font-size="16" fill="currentColor" opacity="0.8" style="font-family:var(--font-mono)">future</text>
+  <text x="90" y="153" text-anchor="middle" font-size="17" font-weight="700" fill="currentColor" style="font-family:var(--font-mono)">impl Future</text>
+  <text x="90" y="176" text-anchor="middle" font-size="16" fill="var(--text-light)">이미 완료됨</text>
+  <!-- ===== re-poll trunk + three branches ===== -->
+  <line x1="50" y1="186" x2="50" y2="490" stroke="currentColor" stroke-width="2.5"/>
+  <circle cx="50" cy="194" r="5" fill="currentColor"/>
+  <text x="64" y="218" font-size="16" font-weight="700" fill="currentColor">② 다시 poll()</text>
+  <line x1="50" y1="272" x2="116" y2="272" stroke="var(--accent-color)" stroke-width="2.2" marker-end="url(#mfs-h-arrow)"/>
+  <line x1="50" y1="382" x2="114" y2="382" stroke="var(--gold)" stroke-width="2.2" stroke-dasharray="6 5" marker-end="url(#mfs-h-arrow-gold)"/>
+  <line x1="50" y1="490" x2="114" y2="490" stroke="var(--text-light)" stroke-width="2.2" marker-end="url(#mfs-h-arrow)"/>
   <!-- ===== branch 1: panic (explosion) ===== -->
-  <polygon points="470,82 452,87 461,103 445,94 440,112 435,94 419,103 428,87 410,82 428,77 419,61 435,70 440,52 445,70 461,61 452,77" fill="var(--accent-color)" stroke="currentColor" stroke-width="1.2"/>
-  <circle cx="440" cy="82" r="6" fill="var(--bg-panel)"/>
-  <text x="488" y="80" font-size="15" font-weight="700" fill="var(--accent-color)" style="font-family:var(--font-mono)">panic!</text>
-  <text x="488" y="98" font-size="11" fill="var(--text-light)">모든 async 블록·async fn의 동작</text>
-
+  <polygon points="180,272 162,277 171,293 155,284 150,302 145,284 129,293 138,277 120,272 138,267 129,251 145,260 150,242 155,260 171,251 162,267" fill="var(--accent-color)" stroke="currentColor" stroke-width="1.2"/>
+  <circle cx="150" cy="272" r="6" fill="var(--bg-panel)"/>
+  <text x="200" y="268" font-size="18" font-weight="700" fill="var(--accent-color)" style="font-family:var(--font-mono)">panic!</text>
+  <text x="200" y="290" font-size="16" fill="var(--text-light)">모든 async 블록·</text>
+  <text x="200" y="309" font-size="16" fill="var(--text-light)">async fn의 동작</text>
   <!-- ===== branch 2: the empty Done signpost ===== -->
-  <line x1="440" y1="184" x2="440" y2="206" stroke="var(--gold)" stroke-width="2.5" stroke-dasharray="4 3"/>
-  <rect x="404" y="152" width="72" height="32" rx="3" fill="none" stroke="var(--gold)" stroke-width="2" stroke-dasharray="6 4"/>
-  <text x="440" y="173" text-anchor="middle" font-size="13" font-weight="700" fill="var(--gold)" style="font-family:var(--font-mono)">Done ?</text>
-  <text x="488" y="164" font-size="13" font-weight="700" fill="var(--gold)">비어 있는 자리</text>
-  <text x="488" y="182" font-size="11" fill="var(--text-light)">Poll에는 '끝났음' 변형이 없다</text>
-
+  <line x1="158" y1="399" x2="158" y2="421" stroke="var(--gold)" stroke-width="2.5" stroke-dasharray="4 3"/>
+  <rect x="118" y="365" width="80" height="34" rx="3" fill="none" stroke="var(--gold)" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="158" y="388" text-anchor="middle" font-size="16" font-weight="700" fill="var(--gold)" style="font-family:var(--font-mono)">Done ?</text>
+  <text x="212" y="374" font-size="17" font-weight="700" fill="var(--gold)">비어 있는 자리</text>
+  <text x="212" y="396" font-size="16" fill="var(--text-light)">Poll에는 '끝났음'</text>
+  <text x="212" y="415" font-size="16" fill="var(--text-light)">변형이 없다</text>
   <!-- ===== branch 3: hang (Pending that never wakes) ===== -->
-  <rect x="408" y="230" width="64" height="34" rx="3" fill="var(--bg-light)" stroke="var(--text-light)" stroke-width="2"/>
-  <text x="440" y="252" text-anchor="middle" font-size="10.5" fill="currentColor" style="font-family:var(--font-mono)">Pending</text>
-  <text x="470" y="226" font-size="11" font-weight="700" fill="var(--text-light)" style="font-family:var(--font-mono)">z</text>
-  <text x="478" y="216" font-size="13" font-weight="700" fill="var(--text-light)" style="font-family:var(--font-mono)">z</text>
-  <text x="488" y="250" font-size="15" font-weight="700" fill="currentColor" opacity="0.85">Fuse → hang</text>
-  <text x="488" y="268" font-size="11" fill="var(--text-light)">끝난 Fuse의 Pending — 깨우지 않음</text>
+  <rect x="118" y="472" width="80" height="36" rx="3" fill="var(--bg-light)" stroke="var(--text-light)" stroke-width="2"/>
+  <text x="158" y="495" text-anchor="middle" font-size="16" fill="currentColor" style="font-family:var(--font-mono)">Pending</text>
+  <text x="200" y="468" font-size="16" font-weight="700" fill="var(--text-light)" style="font-family:var(--font-mono)">z</text>
+  <text x="211" y="454" font-size="18" font-weight="700" fill="var(--text-light)" style="font-family:var(--font-mono)">z</text>
+  <text x="228" y="486" font-size="18" font-weight="700" fill="currentColor" opacity="0.85">Fuse → hang</text>
+  <text x="228" y="508" font-size="16" fill="var(--text-light)">끝난 Fuse의 Pending</text>
+  <text x="228" y="527" font-size="16" fill="var(--text-light)">— 깨우지 않음</text>
 </svg>
 <figcaption>값 하나를 낸 future를 다시 두드리면 panic하거나 영원히 잠든다. 그 사이에 있어야 할 'Done' 자리는 비어 있다.</figcaption>
 </figure>
@@ -181,53 +179,48 @@ impl<F: Future> Future for MaybeDone<F> {
 그래서 호출자가 **`Poll::Ready(())` + `None`** 조합을 보면 "이 future는 끝났고 다시 값을 내지 않는다"는 것을 알 수 있다. 원래 의도는 future나 그 출력을 담는 슬롯일 뿐이었지만, 부수 효과로 *완료 이후 상태*를 전달할 수 있게 됐다.
 
 <figure class="post-figure">
-<svg role="img" aria-label="MaybeDone의 세 단계 상태 전이. 1단계 MaybeDone::Future(F)에서는 poll()이 Poll::Pending을, take()가 None을 돌려준다. 내부 future가 Poll::Ready(output)를 내면 self.set으로 2단계 MaybeDone::Done(Some(output))이 되고, 이때부터 poll()은 Poll::Ready(())를, take()는 Some(output)을 돌려준다. take()로 값을 꺼내면 3단계 MaybeDone::Done(None)이 되어 poll()은 계속 Poll::Ready(()), take()는 계속 None을 돌려준다. 3단계의 Ready(()) + None 조합이 '끝났고 다시 값을 내지 않는다'는 신호다." viewBox="0 0 720 270" xmlns="http://www.w3.org/2000/svg">
+<svg role="img" aria-label="MaybeDone의 세 단계 상태 전이를 위에서 아래로 그린 그림. 1단계 MaybeDone::Future(F)에서는 poll()이 Poll::Pending을, take()가 None을 돌려준다. 내부 future가 Poll::Ready(output)를 내면 self.set으로 2단계 MaybeDone::Done(Some(output))이 되고, 이때부터 poll()은 Poll::Ready(())를, take()는 Some(output)을 돌려준다. take()로 값을 꺼내면 3단계 MaybeDone::Done(None)이 되어 poll()은 계속 Poll::Ready(()), take()는 계속 None을 돌려준다. 3단계의 Ready(()) + None 조합이 '끝났고 다시 값을 내지 않는다'는 신호다." viewBox="0 0 400 552" width="440" xmlns="http://www.w3.org/2000/svg">
   <title>MaybeDone 슬롯의 상태 전이 — Future(F) → Done(Some(output)) → Done(None)</title>
   <defs>
     <marker id="mfs-md-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="var(--secondary-color)"/>
     </marker>
   </defs>
-
-  <!-- transition labels (above the gaps) -->
-  <text x="245" y="30" text-anchor="middle" font-size="11" font-weight="700" fill="var(--secondary-color)">poll(): 내부 future가 Ready(output)</text>
-  <text x="245" y="46" text-anchor="middle" font-size="10" fill="var(--text-light)" style="font-family:var(--font-mono)">self.set(Self::Done(Some(output)))</text>
-  <text x="475" y="30" text-anchor="middle" font-size="11" font-weight="700" fill="var(--secondary-color)">take(): 값을 꺼냄</text>
-  <text x="475" y="46" text-anchor="middle" font-size="10" fill="var(--text-light)" style="font-family:var(--font-mono)">output.take()</text>
-
   <!-- ===== card 1: Future(F) ===== -->
-  <rect x="20" y="62" width="190" height="140" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
-  <text x="34" y="84" font-size="10" font-weight="700" fill="var(--text-light)">① 기다리는 중</text>
-  <text x="115" y="108" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor" style="font-family:var(--font-mono)">Future(F)</text>
-  <line x1="30" y1="122" x2="200" y2="122" stroke="currentColor" stroke-width="1" opacity="0.3"/>
-  <text x="34" y="150" font-size="11" fill="currentColor" style="font-family:var(--font-mono)">poll() → Pending</text>
-  <text x="34" y="180" font-size="11" fill="currentColor" style="font-family:var(--font-mono)">take() → None</text>
-
-  <line x1="212" y1="132" x2="276" y2="132" stroke="var(--secondary-color)" stroke-width="2.2" marker-end="url(#mfs-md-arrow)"/>
-
+  <rect x="20" y="20" width="360" height="112" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="36" y="50" font-size="16" font-weight="700" fill="var(--text-light)">① 기다리는 중</text>
+  <text x="364" y="50" text-anchor="end" font-size="16" font-weight="700" fill="currentColor" style="font-family:var(--font-mono)">Future(F)</text>
+  <line x1="30" y1="64" x2="370" y2="64" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+  <text x="36" y="90" font-size="16" fill="currentColor" style="font-family:var(--font-mono)">poll() → Pending</text>
+  <text x="36" y="116" font-size="16" fill="currentColor" style="font-family:var(--font-mono)">take() → None</text>
+  <!-- transition 1 -->
+  <line x1="40" y1="134" x2="40" y2="184" stroke="var(--secondary-color)" stroke-width="2.2" marker-end="url(#mfs-md-arrow)"/>
+  <text x="56" y="155" font-size="16" font-weight="700" fill="var(--secondary-color)">poll(): 내부 future가 Ready(output)</text>
+  <text x="56" y="177" font-size="15.5" fill="var(--text-light)" style="font-family:var(--font-mono)">self.set(Self::Done(Some(output)))</text>
   <!-- ===== card 2: Done(Some(output)) ===== -->
-  <rect x="280" y="62" width="190" height="140" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
-  <text x="294" y="84" font-size="10" font-weight="700" fill="var(--text-light)">② 값을 들고 있음</text>
-  <text x="375" y="108" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor" style="font-family:var(--font-mono)">Done(Some(output))</text>
-  <line x1="290" y1="122" x2="460" y2="122" stroke="currentColor" stroke-width="1" opacity="0.3"/>
-  <text x="294" y="150" font-size="11" fill="currentColor" style="font-family:var(--font-mono)">poll() → Ready(())</text>
-  <text x="294" y="180" font-size="11" fill="currentColor" style="font-family:var(--font-mono)">take() → Some(output)</text>
-
-  <line x1="472" y1="132" x2="506" y2="132" stroke="var(--secondary-color)" stroke-width="2.2" marker-end="url(#mfs-md-arrow)"/>
-
+  <rect x="20" y="188" width="360" height="112" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="36" y="218" font-size="16" font-weight="700" fill="var(--text-light)">② 값을 들고 있음</text>
+  <text x="364" y="218" text-anchor="end" font-size="16" font-weight="700" fill="currentColor" style="font-family:var(--font-mono)">Done(Some(output))</text>
+  <line x1="30" y1="232" x2="370" y2="232" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+  <text x="36" y="258" font-size="16" fill="currentColor" style="font-family:var(--font-mono)">poll() → Ready(())</text>
+  <text x="36" y="284" font-size="16" fill="currentColor" style="font-family:var(--font-mono)">take() → Some(output)</text>
+  <!-- transition 2 -->
+  <line x1="40" y1="302" x2="40" y2="352" stroke="var(--secondary-color)" stroke-width="2.2" marker-end="url(#mfs-md-arrow)"/>
+  <text x="56" y="323" font-size="16" font-weight="700" fill="var(--secondary-color)">take(): 값을 꺼냄</text>
+  <text x="56" y="345" font-size="15.5" fill="var(--text-light)" style="font-family:var(--font-mono)">output.take()</text>
   <!-- ===== card 3: Done(None) ===== -->
-  <rect x="510" y="62" width="190" height="140" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
-  <text x="524" y="84" font-size="10" font-weight="700" fill="var(--gold)">③ 끝남 (값을 꺼낸 뒤)</text>
-  <text x="605" y="108" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor" style="font-family:var(--font-mono)">Done(None)</text>
-  <line x1="520" y1="122" x2="690" y2="122" stroke="currentColor" stroke-width="1" opacity="0.3"/>
-  <text x="524" y="150" font-size="11" fill="currentColor" style="font-family:var(--font-mono)">poll() → Ready(())</text>
-  <text x="524" y="180" font-size="11" fill="currentColor" style="font-family:var(--font-mono)">take() → None</text>
-  <text x="680" y="150" text-anchor="end" font-size="10" fill="var(--gold)">계속</text>
-  <text x="680" y="180" text-anchor="end" font-size="10" fill="var(--gold)">계속</text>
-
+  <rect x="20" y="356" width="360" height="112" rx="3" fill="var(--bg-panel)" stroke="var(--gold)" stroke-width="2.5"/>
+  <text x="36" y="386" font-size="16" font-weight="700" fill="var(--gold)">③ 끝남 (값을 꺼낸 뒤)</text>
+  <text x="364" y="386" text-anchor="end" font-size="16" font-weight="700" fill="currentColor" style="font-family:var(--font-mono)">Done(None)</text>
+  <line x1="30" y1="400" x2="370" y2="400" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+  <text x="36" y="426" font-size="16" fill="currentColor" style="font-family:var(--font-mono)">poll() → Ready(())</text>
+  <text x="36" y="452" font-size="16" fill="currentColor" style="font-family:var(--font-mono)">take() → None</text>
+  <text x="364" y="426" text-anchor="end" font-size="16" fill="var(--gold)">계속</text>
+  <text x="364" y="452" text-anchor="end" font-size="16" fill="var(--gold)">계속</text>
   <!-- bottom takeaway -->
-  <rect x="150" y="222" width="420" height="32" rx="3" fill="var(--gold)" opacity="0.14"/>
-  <text x="360" y="243" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">③의 Ready(()) + None 조합 = "끝났고, 다시 값을 내지 않는다"</text>
+  <rect x="20" y="484" width="360" height="56" rx="3" fill="var(--gold)" opacity="0.14"/>
+  <text x="200" y="507" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">③의 Ready(()) + None 조합</text>
+  <text x="200" y="529" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">= "끝났고, 다시 값을 내지 않는다"</text>
 </svg>
 <figcaption>MaybeDone은 출력을 ()로 바꾸고 값은 take()로 꺼내게 해서, 부수 효과로 '완료 이후' 상태를 호출자에게 전달한다.</figcaption>
 </figure>
@@ -302,7 +295,7 @@ pub enum CoroutineState<Y, R> {
 모든 future가 이 규칙을 지키면 어떤 future도 snoozed 상태가 되지 않는다.
 
 <figure class="post-figure">
-<svg role="img" aria-label="future 트리에서 snooze를 좌우로 대비한 그림. 두 쪽 모두 부모 future가 poll()을 받고, 그 아래에 자식 future A, B, C가 있으며 B의 waker가 호출되었다(wake 표시). 왼쪽(규칙 위반)에서는 부모가 A와 C만 poll하고 B로 가는 선은 끊겨 있어, 진행할 준비가 된 B가 poll되지 않는 snoozed 상태가 된다. 오른쪽(규칙 준수)에서는 부모가 waker가 호출된 B를 반드시 poll하므로 어떤 자식도 snoozed 상태가 되지 않는다." viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg">
+<svg role="img" aria-label="future 트리에서 snooze를 위아래로 대비한 그림. 두 쪽 모두 부모 future가 poll()을 받고, 그 아래에 자식 future A, B, C가 있으며 B의 waker가 호출되었다(wake 표시). 위쪽(규칙 위반)에서는 부모가 A와 C만 poll하고 B로 가는 선은 끊겨 있어, 진행할 준비가 된 B가 poll되지 않는 snoozed 상태가 된다. 아래쪽(규칙 준수)에서는 부모가 waker가 호출된 B를 반드시 poll하므로 어떤 자식도 snoozed 상태가 되지 않는다." viewBox="0 0 400 584" width="440" xmlns="http://www.w3.org/2000/svg">
   <title>future 트리의 snooze — wake된 자식을 건너뛰는 경우와 규칙대로 poll하는 경우</title>
   <defs>
     <marker id="mfs-sz-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -312,66 +305,57 @@ pub enum CoroutineState<Y, R> {
       <path d="M0,0 L10,5 L0,10 z" fill="var(--secondary-color)"/>
     </marker>
   </defs>
-
-  <line x1="360" y1="14" x2="360" y2="290" stroke="currentColor" stroke-width="1" stroke-dasharray="4 4" opacity="0.35"/>
-
-  <!-- ================= LEFT: rule violated ================= -->
-  <text x="180" y="26" text-anchor="middle" font-size="13" font-weight="700" fill="var(--accent-color)">규칙 위반 — B가 snoozed</text>
-  <line x1="180" y1="38" x2="180" y2="62" stroke="currentColor" stroke-width="2" marker-end="url(#mfs-sz-arrow)"/>
-  <text x="188" y="54" font-size="10" fill="var(--text-light)" style="font-family:var(--font-mono)">poll()</text>
-  <rect x="120" y="66" width="120" height="36" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
-  <text x="180" y="89" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">부모 future</text>
-
+  <line x1="14" y1="290" x2="386" y2="290" stroke="currentColor" stroke-width="1" stroke-dasharray="4 4" opacity="0.35"/>
+  <!-- ================= TOP: rule violated ================= -->
+  <text x="200" y="26" text-anchor="middle" font-size="17" font-weight="700" fill="var(--accent-color)">규칙 위반 — B가 snoozed</text>
+  <line x1="200" y1="38" x2="200" y2="62" stroke="currentColor" stroke-width="2" marker-end="url(#mfs-sz-arrow)"/>
+  <text x="208" y="55" font-size="16" fill="var(--text-light)" style="font-family:var(--font-mono)">poll()</text>
+  <rect x="125" y="66" width="150" height="36" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="200" y="90" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">부모 future</text>
   <!-- edges -->
-  <line x1="150" y1="102" x2="96" y2="174" stroke="currentColor" stroke-width="2" marker-end="url(#mfs-sz-arrow)"/>
-  <line x1="210" y1="102" x2="264" y2="174" stroke="currentColor" stroke-width="2" marker-end="url(#mfs-sz-arrow)"/>
-  <line x1="180" y1="102" x2="180" y2="174" stroke="var(--accent-color)" stroke-width="2" stroke-dasharray="5 5" opacity="0.7"/>
+  <line x1="170" y1="102" x2="116" y2="174" stroke="currentColor" stroke-width="2" marker-end="url(#mfs-sz-arrow)"/>
+  <line x1="230" y1="102" x2="284" y2="174" stroke="currentColor" stroke-width="2" marker-end="url(#mfs-sz-arrow)"/>
+  <line x1="200" y1="102" x2="200" y2="174" stroke="var(--accent-color)" stroke-width="2" stroke-dasharray="5 5" opacity="0.7"/>
   <!-- the cut: an X on the skipped edge -->
-  <line x1="171" y1="129" x2="189" y2="147" stroke="var(--accent-color)" stroke-width="3"/>
-  <line x1="189" y1="129" x2="171" y2="147" stroke="var(--accent-color)" stroke-width="3"/>
-  <text x="80" y="140" text-anchor="middle" font-size="10" fill="var(--text-light)" style="font-family:var(--font-mono)">poll</text>
-  <text x="280" y="140" text-anchor="middle" font-size="10" fill="var(--text-light)" style="font-family:var(--font-mono)">poll</text>
-
+  <line x1="191" y1="129" x2="209" y2="147" stroke="var(--accent-color)" stroke-width="3"/>
+  <line x1="209" y1="129" x2="191" y2="147" stroke="var(--accent-color)" stroke-width="3"/>
+  <text x="100" y="140" text-anchor="middle" font-size="16" fill="var(--text-light)" style="font-family:var(--font-mono)">poll</text>
+  <text x="300" y="140" text-anchor="middle" font-size="16" fill="var(--text-light)" style="font-family:var(--font-mono)">poll</text>
   <!-- children -->
-  <rect x="62" y="178" width="56" height="36" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
-  <text x="90" y="201" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">A</text>
-  <rect x="152" y="178" width="56" height="36" rx="3" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
-  <text x="180" y="201" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">B</text>
-  <rect x="242" y="178" width="56" height="36" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
-  <text x="270" y="201" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">C</text>
+  <rect x="82" y="178" width="56" height="36" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="110" y="203" text-anchor="middle" font-size="18" font-weight="700" fill="currentColor">A</text>
+  <rect x="172" y="178" width="56" height="36" rx="3" fill="var(--bg-panel)" stroke="var(--accent-color)" stroke-width="2.5"/>
+  <text x="200" y="203" text-anchor="middle" font-size="18" font-weight="700" fill="currentColor">B</text>
+  <rect x="262" y="178" width="56" height="36" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="290" y="203" text-anchor="middle" font-size="18" font-weight="700" fill="currentColor">C</text>
   <!-- wake badge on B -->
-  <rect x="196" y="164" width="40" height="18" rx="9" fill="var(--badge-fill)" stroke="var(--border-strong)" stroke-width="1"/>
-  <text x="216" y="177" text-anchor="middle" font-size="10" font-weight="700" fill="var(--border-strong)">wake</text>
-
-  <text x="180" y="244" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--accent-color)">B: 진행할 준비가 됐는데 poll되지 않음</text>
-  <text x="180" y="264" text-anchor="middle" font-size="10.5" fill="var(--text-light)">bbbs 시나리오를 활성(liveness) 속성으로 옮긴 것</text>
-
-  <!-- ================= RIGHT: rule followed ================= -->
-  <text x="540" y="26" text-anchor="middle" font-size="13" font-weight="700" fill="var(--secondary-color)">규칙 준수 — wake된 B까지 poll</text>
-  <line x1="540" y1="38" x2="540" y2="62" stroke="currentColor" stroke-width="2" marker-end="url(#mfs-sz-arrow)"/>
-  <text x="548" y="54" font-size="10" fill="var(--text-light)" style="font-family:var(--font-mono)">poll()</text>
-  <rect x="480" y="66" width="120" height="36" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
-  <text x="540" y="89" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">부모 future</text>
-
+  <rect x="208" y="162" width="50" height="22" rx="11" fill="var(--badge-fill)" stroke="var(--border-strong)" stroke-width="1"/>
+  <text x="233" y="178" text-anchor="middle" font-size="15.5" font-weight="700" fill="var(--border-strong)">wake</text>
+  <text x="200" y="246" text-anchor="middle" font-size="16" font-weight="700" fill="var(--accent-color)">B: 진행할 준비가 됐는데 poll되지 않음</text>
+  <text x="200" y="268" text-anchor="middle" font-size="16" fill="var(--text-light)">bbbs 시나리오를 활성(liveness) 속성으로 옮긴 것</text>
+  <!-- ================= BOTTOM: rule followed ================= -->
+  <text x="200" y="326" text-anchor="middle" font-size="17" font-weight="700" fill="var(--secondary-color)">규칙 준수 — wake된 B까지 poll</text>
+  <line x1="200" y1="338" x2="200" y2="362" stroke="currentColor" stroke-width="2" marker-end="url(#mfs-sz-arrow)"/>
+  <text x="208" y="355" font-size="16" fill="var(--text-light)" style="font-family:var(--font-mono)">poll()</text>
+  <rect x="125" y="366" width="150" height="36" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+  <text x="200" y="390" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">부모 future</text>
   <!-- edges: A/C optional (faint), B mandatory (bold) -->
-  <line x1="510" y1="102" x2="456" y2="174" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 4" opacity="0.45"/>
-  <line x1="570" y1="102" x2="624" y2="174" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 4" opacity="0.45"/>
-  <line x1="540" y1="102" x2="540" y2="174" stroke="var(--secondary-color)" stroke-width="3" marker-end="url(#mfs-sz-arrow-ok)"/>
-  <text x="550" y="142" font-size="10.5" font-weight="700" fill="var(--secondary-color)" style="font-family:var(--font-mono)">poll</text>
-
+  <line x1="170" y1="402" x2="116" y2="474" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 4" opacity="0.45"/>
+  <line x1="230" y1="402" x2="284" y2="474" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 4" opacity="0.45"/>
+  <line x1="200" y1="402" x2="200" y2="474" stroke="var(--secondary-color)" stroke-width="3" marker-end="url(#mfs-sz-arrow-ok)"/>
+  <text x="210" y="443" font-size="16" font-weight="700" fill="var(--secondary-color)" style="font-family:var(--font-mono)">poll</text>
   <!-- children -->
-  <rect x="422" y="178" width="56" height="36" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2" opacity="0.8"/>
-  <text x="450" y="201" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">A</text>
-  <rect x="512" y="178" width="56" height="36" rx="3" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2.5"/>
-  <text x="540" y="201" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">B</text>
-  <rect x="602" y="178" width="56" height="36" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2" opacity="0.8"/>
-  <text x="630" y="201" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">C</text>
+  <rect x="82" y="478" width="56" height="36" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2" opacity="0.8"/>
+  <text x="110" y="503" text-anchor="middle" font-size="18" font-weight="700" fill="currentColor">A</text>
+  <rect x="172" y="478" width="56" height="36" rx="3" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2.5"/>
+  <text x="200" y="503" text-anchor="middle" font-size="18" font-weight="700" fill="currentColor">B</text>
+  <rect x="262" y="478" width="56" height="36" rx="3" fill="var(--bg-light)" stroke="currentColor" stroke-width="2" opacity="0.8"/>
+  <text x="290" y="503" text-anchor="middle" font-size="18" font-weight="700" fill="currentColor">C</text>
   <!-- wake badge on B -->
-  <rect x="556" y="164" width="40" height="18" rx="9" fill="var(--badge-fill)" stroke="var(--border-strong)" stroke-width="1"/>
-  <text x="576" y="177" text-anchor="middle" font-size="10" font-weight="700" fill="var(--border-strong)">wake</text>
-
-  <text x="540" y="244" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--secondary-color)">waker가 호출된 자식은 반드시 poll</text>
-  <text x="540" y="264" text-anchor="middle" font-size="10.5" fill="var(--text-light)">모든 future가 재귀적으로 지키면 snoozed는 없다</text>
+  <rect x="208" y="462" width="50" height="22" rx="11" fill="var(--badge-fill)" stroke="var(--border-strong)" stroke-width="1"/>
+  <text x="233" y="478" text-anchor="middle" font-size="15.5" font-weight="700" fill="var(--border-strong)">wake</text>
+  <text x="200" y="546" text-anchor="middle" font-size="16" font-weight="700" fill="var(--secondary-color)">waker가 호출된 자식은 반드시 poll</text>
+  <text x="200" y="568" text-anchor="middle" font-size="16" fill="var(--text-light)">모든 future가 재귀적으로 지키면 snoozed는 없다</text>
 </svg>
 <figcaption>부모가 poll될 때 waker가 울린 자식을 건너뛰면 그 자식은 snoozed 상태가 된다. 규칙대로 wake된 자식까지 poll하면 트리 전체에서 snooze가 사라진다.</figcaption>
 </figure>

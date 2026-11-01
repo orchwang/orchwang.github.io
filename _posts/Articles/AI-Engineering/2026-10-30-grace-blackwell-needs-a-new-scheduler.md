@@ -9,169 +9,168 @@ excerpt: "SkyPilot 블로그의 'Grace Blackwell needs a new scheduler'를 분�
 ---
 
 <figure class="post-figure post-figure--header">
-<svg role="img" aria-label="18개 노드에 GPU가 4개씩, 모두 72개의 GPU가 꽂힌 랙 하나를 굵은 NVLink 고리가 감싸고 있다. 랙 안에서는 어떤 GPU 쌍이든 같은 빠른 길로 통신한다. 랙 경계 밖으로 나가 옆 랙으로 가는 InfiniBand 선은 가는 점선으로 그려져 대역폭이 줄어드는 것을 보여 준다. 랙이 곧 한 대의 서버라는 이미지다" viewBox="0 0 640 320">
+<svg width="540" role="img" aria-label="18개 노드에 GPU가 4개씩, 모두 72개의 GPU가 꽂힌 랙 하나를 굵은 NVLink 고리가 감싸고 있다. 랙 안에서는 어떤 GPU 쌍이든 같은 빠른 길로 통신한다. 랙 경계 밖으로 나가 옆 랙으로 가는 InfiniBand 선은 가는 점선으로 그려져 대역폭이 줄어드는 것을 보여 준다. 랙이 곧 한 대의 서버라는 이미지다" viewBox="0 0 640 360">
   <title>랙이 곧 서버: NVLink 도메인과 랙 경계</title>
   <g font-family="var(--font-body)">
-    <rect x="204" y="16" width="202" height="284" rx="14" fill="none" stroke="var(--gold)" stroke-width="6"/>
-    <rect x="204" y="16" width="202" height="284" rx="14" fill="none" stroke="var(--gold)" stroke-width="16" opacity="0.18"/>
-    <rect x="220" y="30" width="170" height="262" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
-    <rect x="368" y="36" width="14" height="250" fill="var(--gold)" opacity="0.85"/>
-    <rect x="228" y="36" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="262" y="36" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="296" y="36" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="330" y="36" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="358" y="40" width="10" height="2" fill="var(--gold)"/>
-    <rect x="228" y="50" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="262" y="50" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="296" y="50" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="330" y="50" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="358" y="54" width="10" height="2" fill="var(--gold)"/>
-    <rect x="228" y="64" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="262" y="64" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="296" y="64" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="330" y="64" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="358" y="68" width="10" height="2" fill="var(--gold)"/>
-    <rect x="228" y="78" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="262" y="78" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="296" y="78" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="330" y="78" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="358" y="82" width="10" height="2" fill="var(--gold)"/>
-    <rect x="228" y="92" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="262" y="92" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="296" y="92" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="330" y="92" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="358" y="96" width="10" height="2" fill="var(--gold)"/>
-    <rect x="228" y="106" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="262" y="106" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="296" y="106" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="330" y="106" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="358" y="110" width="10" height="2" fill="var(--gold)"/>
-    <rect x="228" y="120" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="262" y="120" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="296" y="120" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="330" y="120" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="358" y="124" width="10" height="2" fill="var(--gold)"/>
-    <rect x="228" y="134" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="262" y="134" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="296" y="134" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="330" y="134" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="358" y="138" width="10" height="2" fill="var(--gold)"/>
-    <rect x="228" y="148" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="262" y="148" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="296" y="148" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="330" y="148" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="358" y="152" width="10" height="2" fill="var(--gold)"/>
-    <rect x="228" y="162" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="262" y="162" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="296" y="162" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="330" y="162" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="358" y="166" width="10" height="2" fill="var(--gold)"/>
-    <rect x="228" y="176" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="262" y="176" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="296" y="176" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="330" y="176" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="358" y="180" width="10" height="2" fill="var(--gold)"/>
-    <rect x="228" y="190" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="262" y="190" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="296" y="190" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="330" y="190" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="358" y="194" width="10" height="2" fill="var(--gold)"/>
-    <rect x="228" y="204" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="262" y="204" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="296" y="204" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="330" y="204" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="358" y="208" width="10" height="2" fill="var(--gold)"/>
-    <rect x="228" y="218" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="262" y="218" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="296" y="218" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="330" y="218" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="358" y="222" width="10" height="2" fill="var(--gold)"/>
-    <rect x="228" y="232" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="262" y="232" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="296" y="232" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="330" y="232" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="358" y="236" width="10" height="2" fill="var(--gold)"/>
-    <rect x="228" y="246" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="262" y="246" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="296" y="246" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="330" y="246" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="358" y="250" width="10" height="2" fill="var(--gold)"/>
-    <rect x="228" y="260" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="262" y="260" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="296" y="260" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="330" y="260" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="358" y="264" width="10" height="2" fill="var(--gold)"/>
-    <rect x="228" y="274" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="262" y="274" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="296" y="274" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="330" y="274" width="28" height="10" fill="var(--secondary-color)"/>
-    <rect x="358" y="278" width="10" height="2" fill="var(--gold)"/>
-    <text x="305.0" y="316" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">NVL72 랙 · 18노드 × 4 GPU</text>
-    <text x="104" y="120" text-anchor="middle" font-size="22" font-weight="800" fill="var(--accent-color)">랙 = 서버</text>
-    <text x="104" y="150" text-anchor="middle" font-size="13" fill="currentColor">NVLink 도메인 하나</text>
-    <text x="104" y="172" text-anchor="middle" font-size="13" fill="currentColor">72 GPU · 130 TB/s</text>
-    <text x="104" y="194" text-anchor="middle" font-size="13" fill="currentColor">GPU당 1.8 TB/s</text>
-    <path d="M168 160 L196 160" stroke="var(--gold)" stroke-width="4"/>
-    <path d="M196 152 L206 160 L196 168 Z" fill="var(--gold)"/>
-    <path d="M406 160 C 450 160, 470 150, 520 150" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 5" opacity="0.7"/>
-    <text x="466" y="136" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">InfiniBand</text>
-    <text x="466" y="186" text-anchor="middle" font-size="12" fill="currentColor" opacity="0.8">방향당 400 Gb/s</text>
-    <text x="466" y="204" text-anchor="middle" font-size="12" fill="currentColor" opacity="0.8">랙 밖은 가늘어진다</text>
+    <rect x="232" y="16" width="202" height="284" rx="14" fill="none" stroke="var(--gold)" stroke-width="6"/>
+    <rect x="232" y="16" width="202" height="284" rx="14" fill="none" stroke="var(--gold)" stroke-width="16" opacity="0.18"/>
+    <rect x="248" y="30" width="170" height="262" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+    <rect x="396" y="36" width="14" height="250" fill="var(--gold)" opacity="0.85"/>
+    <rect x="256" y="36" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="290" y="36" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="324" y="36" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="358" y="36" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="386" y="40" width="10" height="2" fill="var(--gold)"/>
+    <rect x="256" y="50" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="290" y="50" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="324" y="50" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="358" y="50" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="386" y="54" width="10" height="2" fill="var(--gold)"/>
+    <rect x="256" y="64" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="290" y="64" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="324" y="64" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="358" y="64" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="386" y="68" width="10" height="2" fill="var(--gold)"/>
+    <rect x="256" y="78" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="290" y="78" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="324" y="78" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="358" y="78" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="386" y="82" width="10" height="2" fill="var(--gold)"/>
+    <rect x="256" y="92" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="290" y="92" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="324" y="92" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="358" y="92" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="386" y="96" width="10" height="2" fill="var(--gold)"/>
+    <rect x="256" y="106" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="290" y="106" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="324" y="106" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="358" y="106" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="386" y="110" width="10" height="2" fill="var(--gold)"/>
+    <rect x="256" y="120" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="290" y="120" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="324" y="120" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="358" y="120" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="386" y="124" width="10" height="2" fill="var(--gold)"/>
+    <rect x="256" y="134" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="290" y="134" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="324" y="134" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="358" y="134" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="386" y="138" width="10" height="2" fill="var(--gold)"/>
+    <rect x="256" y="148" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="290" y="148" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="324" y="148" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="358" y="148" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="386" y="152" width="10" height="2" fill="var(--gold)"/>
+    <rect x="256" y="162" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="290" y="162" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="324" y="162" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="358" y="162" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="386" y="166" width="10" height="2" fill="var(--gold)"/>
+    <rect x="256" y="176" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="290" y="176" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="324" y="176" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="358" y="176" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="386" y="180" width="10" height="2" fill="var(--gold)"/>
+    <rect x="256" y="190" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="290" y="190" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="324" y="190" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="358" y="190" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="386" y="194" width="10" height="2" fill="var(--gold)"/>
+    <rect x="256" y="204" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="290" y="204" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="324" y="204" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="358" y="204" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="386" y="208" width="10" height="2" fill="var(--gold)"/>
+    <rect x="256" y="218" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="290" y="218" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="324" y="218" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="358" y="218" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="386" y="222" width="10" height="2" fill="var(--gold)"/>
+    <rect x="256" y="232" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="290" y="232" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="324" y="232" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="358" y="232" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="386" y="236" width="10" height="2" fill="var(--gold)"/>
+    <rect x="256" y="246" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="290" y="246" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="324" y="246" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="358" y="246" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="386" y="250" width="10" height="2" fill="var(--gold)"/>
+    <rect x="256" y="260" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="290" y="260" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="324" y="260" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="358" y="260" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="386" y="264" width="10" height="2" fill="var(--gold)"/>
+    <rect x="256" y="274" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="290" y="274" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="324" y="274" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="358" y="274" width="28" height="10" fill="var(--secondary-color)"/>
+    <rect x="386" y="278" width="10" height="2" fill="var(--gold)"/>
+    <text x="333" y="344" text-anchor="middle" font-size="25" font-weight="700" fill="currentColor">NVL72 랙 · 18노드 × 4 GPU</text>
+    <text x="106" y="118" text-anchor="middle" font-size="34" font-weight="800" fill="var(--accent-color)">랙 = 서버</text>
+    <text x="106" y="160" text-anchor="middle" font-size="25" fill="currentColor">NVLink 도메인 하나</text>
+    <text x="106" y="192" text-anchor="middle" font-size="25" fill="currentColor">72 GPU</text>
+    <text x="106" y="224" text-anchor="middle" font-size="25" fill="currentColor">130 TB/s</text>
+    <text x="106" y="256" text-anchor="middle" font-size="25" fill="currentColor">GPU당 1.8 TB/s</text>
+    <path d="M186 106 L214 106" stroke="var(--gold)" stroke-width="4"/>
+    <path d="M212 98 L222 106 L212 114 Z" fill="var(--gold)"/>
+    <path d="M434 170 C 470 170, 500 200, 540 200" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 5" opacity="0.7"/>
+    <text x="563" y="84" text-anchor="middle" font-size="25" font-weight="700" fill="currentColor">InfiniBand</text>
     <g opacity="0.35">
-      <rect x="524" y="60" width="90" height="200" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
-      <rect x="530" y="68" width="16" height="10" fill="currentColor"/>
-      <rect x="550" y="68" width="16" height="10" fill="currentColor"/>
-      <rect x="570" y="68" width="16" height="10" fill="currentColor"/>
-      <rect x="590" y="68" width="16" height="10" fill="currentColor"/>
-      <rect x="530" y="84" width="16" height="10" fill="currentColor"/>
-      <rect x="550" y="84" width="16" height="10" fill="currentColor"/>
-      <rect x="570" y="84" width="16" height="10" fill="currentColor"/>
-      <rect x="590" y="84" width="16" height="10" fill="currentColor"/>
-      <rect x="530" y="100" width="16" height="10" fill="currentColor"/>
-      <rect x="550" y="100" width="16" height="10" fill="currentColor"/>
-      <rect x="570" y="100" width="16" height="10" fill="currentColor"/>
-      <rect x="590" y="100" width="16" height="10" fill="currentColor"/>
-      <rect x="530" y="116" width="16" height="10" fill="currentColor"/>
-      <rect x="550" y="116" width="16" height="10" fill="currentColor"/>
-      <rect x="570" y="116" width="16" height="10" fill="currentColor"/>
-      <rect x="590" y="116" width="16" height="10" fill="currentColor"/>
-      <rect x="530" y="132" width="16" height="10" fill="currentColor"/>
-      <rect x="550" y="132" width="16" height="10" fill="currentColor"/>
-      <rect x="570" y="132" width="16" height="10" fill="currentColor"/>
-      <rect x="590" y="132" width="16" height="10" fill="currentColor"/>
-      <rect x="530" y="148" width="16" height="10" fill="currentColor"/>
-      <rect x="550" y="148" width="16" height="10" fill="currentColor"/>
-      <rect x="570" y="148" width="16" height="10" fill="currentColor"/>
-      <rect x="590" y="148" width="16" height="10" fill="currentColor"/>
-      <rect x="530" y="164" width="16" height="10" fill="currentColor"/>
-      <rect x="550" y="164" width="16" height="10" fill="currentColor"/>
-      <rect x="570" y="164" width="16" height="10" fill="currentColor"/>
-      <rect x="590" y="164" width="16" height="10" fill="currentColor"/>
-      <rect x="530" y="180" width="16" height="10" fill="currentColor"/>
-      <rect x="550" y="180" width="16" height="10" fill="currentColor"/>
-      <rect x="570" y="180" width="16" height="10" fill="currentColor"/>
-      <rect x="590" y="180" width="16" height="10" fill="currentColor"/>
-      <rect x="530" y="196" width="16" height="10" fill="currentColor"/>
-      <rect x="550" y="196" width="16" height="10" fill="currentColor"/>
-      <rect x="570" y="196" width="16" height="10" fill="currentColor"/>
-      <rect x="590" y="196" width="16" height="10" fill="currentColor"/>
-      <rect x="530" y="212" width="16" height="10" fill="currentColor"/>
-      <rect x="550" y="212" width="16" height="10" fill="currentColor"/>
-      <rect x="570" y="212" width="16" height="10" fill="currentColor"/>
-      <rect x="590" y="212" width="16" height="10" fill="currentColor"/>
-      <rect x="530" y="228" width="16" height="10" fill="currentColor"/>
-      <rect x="550" y="228" width="16" height="10" fill="currentColor"/>
-      <rect x="570" y="228" width="16" height="10" fill="currentColor"/>
-      <rect x="590" y="228" width="16" height="10" fill="currentColor"/>
-      <rect x="530" y="244" width="16" height="10" fill="currentColor"/>
-      <rect x="550" y="244" width="16" height="10" fill="currentColor"/>
-      <rect x="570" y="244" width="16" height="10" fill="currentColor"/>
-      <rect x="590" y="244" width="16" height="10" fill="currentColor"/>
-      <text x="569" y="282" text-anchor="middle" font-size="12" fill="currentColor">다른 랙</text>
+      <rect x="540" y="100" width="90" height="200" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
+      <rect x="546" y="108" width="16" height="10" fill="currentColor"/>
+      <rect x="566" y="108" width="16" height="10" fill="currentColor"/>
+      <rect x="586" y="108" width="16" height="10" fill="currentColor"/>
+      <rect x="606" y="108" width="16" height="10" fill="currentColor"/>
+      <rect x="546" y="124" width="16" height="10" fill="currentColor"/>
+      <rect x="566" y="124" width="16" height="10" fill="currentColor"/>
+      <rect x="586" y="124" width="16" height="10" fill="currentColor"/>
+      <rect x="606" y="124" width="16" height="10" fill="currentColor"/>
+      <rect x="546" y="140" width="16" height="10" fill="currentColor"/>
+      <rect x="566" y="140" width="16" height="10" fill="currentColor"/>
+      <rect x="586" y="140" width="16" height="10" fill="currentColor"/>
+      <rect x="606" y="140" width="16" height="10" fill="currentColor"/>
+      <rect x="546" y="156" width="16" height="10" fill="currentColor"/>
+      <rect x="566" y="156" width="16" height="10" fill="currentColor"/>
+      <rect x="586" y="156" width="16" height="10" fill="currentColor"/>
+      <rect x="606" y="156" width="16" height="10" fill="currentColor"/>
+      <rect x="546" y="172" width="16" height="10" fill="currentColor"/>
+      <rect x="566" y="172" width="16" height="10" fill="currentColor"/>
+      <rect x="586" y="172" width="16" height="10" fill="currentColor"/>
+      <rect x="606" y="172" width="16" height="10" fill="currentColor"/>
+      <rect x="546" y="188" width="16" height="10" fill="currentColor"/>
+      <rect x="566" y="188" width="16" height="10" fill="currentColor"/>
+      <rect x="586" y="188" width="16" height="10" fill="currentColor"/>
+      <rect x="606" y="188" width="16" height="10" fill="currentColor"/>
+      <rect x="546" y="204" width="16" height="10" fill="currentColor"/>
+      <rect x="566" y="204" width="16" height="10" fill="currentColor"/>
+      <rect x="586" y="204" width="16" height="10" fill="currentColor"/>
+      <rect x="606" y="204" width="16" height="10" fill="currentColor"/>
+      <rect x="546" y="220" width="16" height="10" fill="currentColor"/>
+      <rect x="566" y="220" width="16" height="10" fill="currentColor"/>
+      <rect x="586" y="220" width="16" height="10" fill="currentColor"/>
+      <rect x="606" y="220" width="16" height="10" fill="currentColor"/>
+      <rect x="546" y="236" width="16" height="10" fill="currentColor"/>
+      <rect x="566" y="236" width="16" height="10" fill="currentColor"/>
+      <rect x="586" y="236" width="16" height="10" fill="currentColor"/>
+      <rect x="606" y="236" width="16" height="10" fill="currentColor"/>
+      <rect x="546" y="252" width="16" height="10" fill="currentColor"/>
+      <rect x="566" y="252" width="16" height="10" fill="currentColor"/>
+      <rect x="586" y="252" width="16" height="10" fill="currentColor"/>
+      <rect x="606" y="252" width="16" height="10" fill="currentColor"/>
+      <rect x="546" y="268" width="16" height="10" fill="currentColor"/>
+      <rect x="566" y="268" width="16" height="10" fill="currentColor"/>
+      <rect x="586" y="268" width="16" height="10" fill="currentColor"/>
+      <rect x="606" y="268" width="16" height="10" fill="currentColor"/>
+      <rect x="546" y="284" width="16" height="10" fill="currentColor"/>
+      <rect x="566" y="284" width="16" height="10" fill="currentColor"/>
+      <rect x="586" y="284" width="16" height="10" fill="currentColor"/>
+      <rect x="606" y="284" width="16" height="10" fill="currentColor"/>
     </g>
+    <text x="585" y="344" text-anchor="middle" font-size="25" fill="currentColor" opacity="0.8">다른 랙</text>
   </g>
 </svg>
-<figcaption>NVL72는 랙 하나의 72 GPU를 NVLink로 묶었다. 이득은 작업이 이 고리 안에 머물 때만 생기고, 랙 경계를 넘으면 InfiniBand로 내려간다.</figcaption>
+<figcaption>NVL72는 랙 하나의 72 GPU를 NVLink로 묶었다(랙 내부 총 130 TB/s, GPU당 1.8 TB/s). 이득은 작업이 이 고리 안에 머물 때만 생기고, 랙 경계를 넘으면 방향당 400 Gb/s인 InfiniBand로 내려가 길이 가늘어진다.</figcaption>
 </figure>
 
 ## 원문 정보
@@ -251,7 +250,7 @@ NVL72는 NVLink를 랙 전체로 늘린 구조다. 원문은 랙을 메모리를
 - 16노드 = **64 GPU**, 즉 2의 거듭제곱이라 병렬화 그룹 크기와도 잘 맞는다.
 
 <figure class="post-figure">
-<svg role="img" aria-label="왼쪽은 18개 노드로 된 NVL72 랙 하나다. 위의 16노드는 작업 슬라이스(64 GPU), 아래 2노드는 예비 노드로 구분되어 있고, 슬라이스 안의 노드 하나가 고장 나자 같은 랙의 예비 노드가 그 자리를 대신하는 화살표가 그려져 있다. 오른쪽 막대 그래프는 비가용률 약 2%를 가정했을 때 쓸 수 있는 노드 수로, 18노드 슬라이스가 1,602개, 16노드 슬라이스가 2,037개로 27% 차이가 난다" viewBox="0 0 640 340">
+<svg role="img" aria-label="위는 18개 노드로 된 NVL72 랙 하나다. 위쪽 16노드는 작업 슬라이스(64 GPU), 아래 2노드는 예비 노드로 구분되어 있고, 슬라이스 안의 노드 하나가 고장 나자 같은 랙의 예비 노드가 그 자리를 대신하는 화살표가 그려져 있다. 아래 막대 그래프는 비가용률 약 2%를 가정했을 때 쓸 수 있는 노드 수로, 18노드 슬라이스가 1,602개, 16노드 슬라이스가 2,037개로 27% 차이가 난다" viewBox="0 0 400 700" width="460">
   <title>16노드 슬라이스 + 예비 2노드, 그리고 가용 노드 비교</title>
   <g font-family="var(--font-body)">
     <rect x="54" y="28" width="148" height="279" fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
@@ -332,24 +331,24 @@ NVL72는 NVLink를 랙 전체로 늘린 구조다. 원문은 랙을 메모리를
     <path d="M52 279 C 16 279, 16 114, 50 114" fill="none" stroke="var(--accent-color)" stroke-width="2.5"/>
     <path d="M42 109 L52 114 L42 119 Z" fill="var(--accent-color)"/>
     <path d="M210 34 L218 34 L218 269 L210 269" fill="none" stroke="currentColor" stroke-width="1.5"/>
-    <text x="226" y="134" font-size="14" font-weight="700" fill="var(--secondary-color)">작업 슬라이스</text>
-    <text x="226" y="154" font-size="12" fill="currentColor">16노드 = 64 GPU</text>
-    <text x="226" y="119" font-size="12" fill="var(--accent-color)">← 고장 → 예비로 교체</text>
+    <text x="226" y="120" font-size="16" fill="var(--accent-color)">← 고장 → 예비로 교체</text>
+    <text x="226" y="166" font-size="17" font-weight="700" fill="var(--secondary-color)">작업 슬라이스</text>
+    <text x="226" y="188" font-size="16" fill="currentColor">16노드 = 64 GPU</text>
     <path d="M210 275 L218 275 L218 300 L210 300" fill="none" stroke="currentColor" stroke-width="1.5"/>
-    <text x="226" y="290" font-size="14" font-weight="700" fill="var(--gold)">예비 2노드</text>
-    <text x="136" y="334" text-anchor="middle" font-size="12" fill="currentColor">NVL72 랙 하나 (18노드)</text>
-    <path d="M380 280 L620 280" stroke="currentColor" stroke-width="2"/>
-    <rect x="410" y="131" width="70" height="149" fill="currentColor" opacity="0.35"/>
-    <rect x="520" y="90" width="70" height="190" fill="var(--secondary-color)"/>
-    <text x="445" y="123" text-anchor="middle" font-size="15" font-weight="800" fill="currentColor">1,602</text>
-    <text x="555" y="82" text-anchor="middle" font-size="15" font-weight="800" fill="var(--secondary-color)">2,037</text>
-    <text x="445" y="298" text-anchor="middle" font-size="12" fill="currentColor">18노드 슬라이스</text>
-    <text x="445" y="314" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.8">(꽉 채워 쓰기)</text>
-    <text x="555" y="298" text-anchor="middle" font-size="12" fill="currentColor">16노드 슬라이스</text>
-    <text x="555" y="314" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.8">(+ 예비 2)</text>
-    <text x="630" y="110" text-anchor="end" font-size="16" font-weight="800" fill="var(--gold)">+27%</text>
-    <text x="500" y="30" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">쓸 수 있는 노드 수</text>
-    <text x="500" y="48" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.8">(비가용률 약 2% 가정, 모델 계산)</text>
+    <text x="226" y="293" font-size="17" font-weight="700" fill="var(--gold)">예비 2노드</text>
+    <text x="128" y="334" text-anchor="middle" font-size="16" fill="currentColor">NVL72 랙 하나 (18노드)</text>
+    <text x="200" y="384" text-anchor="middle" font-size="17" font-weight="700" fill="currentColor">쓸 수 있는 노드 수</text>
+    <text x="200" y="406" text-anchor="middle" font-size="16" fill="currentColor" opacity="0.8">(비가용률 약 2% 가정, 모델 계산)</text>
+    <path d="M50 640 L350 640" stroke="currentColor" stroke-width="2"/>
+    <rect x="90" y="490.57" width="80" height="149.43" fill="currentColor" opacity="0.35"/>
+    <rect x="230" y="450" width="80" height="190" fill="var(--secondary-color)"/>
+    <text x="130" y="481.57" text-anchor="middle" font-size="18" font-weight="800" fill="currentColor">1,602</text>
+    <text x="270" y="441" text-anchor="middle" font-size="18" font-weight="800" fill="var(--secondary-color)">2,037</text>
+    <text x="390" y="478" text-anchor="end" font-size="19" font-weight="800" fill="var(--gold)">+27%</text>
+    <text x="130" y="662" text-anchor="middle" font-size="16" fill="currentColor">18노드 슬라이스</text>
+    <text x="130" y="682" text-anchor="middle" font-size="16" fill="currentColor" opacity="0.8">(꽉 채워 쓰기)</text>
+    <text x="270" y="662" text-anchor="middle" font-size="16" fill="currentColor">16노드 슬라이스</text>
+    <text x="270" y="682" text-anchor="middle" font-size="16" fill="currentColor" opacity="0.8">(+ 예비 2)</text>
   </g>
 </svg>
 <figcaption>"덜 쓰는 게 더 낫다" — 18노드 중 16노드만 작업에 쓰고 2노드를 예비로 남기면, 고장 난 노드를 랙 안에서 바로 갈아 끼울 수 있어 클러스터 전체로는 더 많은 노드를 쓴다.</figcaption>
@@ -377,107 +376,106 @@ NVL72는 NVLink를 랙 전체로 늘린 구조다. 원문은 랙을 메모리를
 - 안전하게 재시작할 수 있는 워크로드(체크포인트에서 이어 가는 managed job 등)만 선점한다. 인터랙티브 환경은 관리자가 따로 허용하지 않으면 건드리지 않는다.
 
 <figure class="post-figure">
-<svg role="img" aria-label="단편화 해소 전후 비교. 왼쪽(전): 랙 네 개에 빈 노드가 두 개씩 흩어져 있어 빈 노드를 합치면 랙 하나 분량이지만 어느 랙도 통째로 비어 있지 않아 랙 단위 작업이 대기 중이다. 오른쪽(후): Auto Defrag가 랙 4의 재시작 가능한 작업을 선점해 다른 랙의 빈 자리로 옮기고, 통째로 빈 랙 4에 대기하던 랙 단위 작업이 올라갔다" viewBox="0 0 640 330">
+<svg role="img" aria-label="단편화 해소 전후 비교. 위(전): 랙 네 개에 빈 노드가 두 개씩 흩어져 있어 빈 노드를 합치면 랙 하나 분량이지만 어느 랙도 통째로 비어 있지 않아 랙 단위 작업이 대기 중이다. 아래(후): Auto Defrag가 랙 4의 재시작 가능한 작업을 선점해 다른 랙의 빈 자리로 옮기고, 통째로 빈 랙 4에 대기하던 랙 단위 작업이 올라갔다" viewBox="0 0 360 690" width="420">
   <title>Auto Defrag: 흩어진 빈 노드를 모아 랙 하나를 비운다</title>
   <g font-family="var(--font-body)">
-    <text x="140" y="34" text-anchor="middle" font-size="15" font-weight="800" fill="currentColor">전: 빈 노드가 흩어짐</text>
-    <rect x="26" y="58" width="52" height="173" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
-    <rect x="30" y="62" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="30" y="83" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="31" y="105" width="42" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
-    <rect x="30" y="125" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="30" y="146" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="30" y="167" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="31" y="189" width="42" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
-    <rect x="30" y="209" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <text x="52" y="250" text-anchor="middle" font-size="12" fill="currentColor">랙 1</text>
-    <rect x="90" y="58" width="52" height="173" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
-    <rect x="94" y="62" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="94" y="83" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="94" y="104" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="95" y="126" width="42" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
-    <rect x="94" y="146" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="94" y="167" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="94" y="188" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="95" y="210" width="42" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
-    <text x="116" y="250" text-anchor="middle" font-size="12" fill="currentColor">랙 2</text>
-    <rect x="154" y="58" width="52" height="173" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
-    <rect x="158" y="62" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="159" y="84" width="42" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
-    <rect x="158" y="104" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="158" y="125" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="158" y="146" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="159" y="168" width="42" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
-    <rect x="158" y="188" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="158" y="209" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <text x="180" y="250" text-anchor="middle" font-size="12" fill="currentColor">랙 3</text>
-    <rect x="218" y="58" width="52" height="173" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
-    <rect x="223" y="63" width="42" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
-    <rect x="222" y="83" width="44" height="16" fill="var(--gold)"/>
-    <rect x="222" y="104" width="44" height="16" fill="var(--gold)"/>
-    <rect x="222" y="125" width="44" height="16" fill="var(--gold)"/>
-    <rect x="223" y="147" width="42" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
-    <rect x="222" y="167" width="44" height="16" fill="var(--gold)"/>
-    <rect x="222" y="188" width="44" height="16" fill="var(--gold)"/>
-    <rect x="222" y="209" width="44" height="16" fill="var(--gold)"/>
-    <text x="244" y="250" text-anchor="middle" font-size="12" fill="currentColor">랙 4</text>
-    <text x="140" y="274" text-anchor="middle" font-size="12" fill="var(--accent-color)" font-weight="700">빈 노드는 랙 하나 분량인데도</text>
-    <text x="140" y="292" text-anchor="middle" font-size="12" fill="var(--accent-color)" font-weight="700">랙 단위 작업은 대기열에 막힘</text>
-    <path d="M296 140 L336 140" stroke="var(--secondary-color)" stroke-width="4"/>
-    <path d="M334 130 L348 140 L334 150 Z" fill="var(--secondary-color)"/>
-    <text x="320" y="118" text-anchor="middle" font-size="12" font-weight="700" fill="var(--secondary-color)">Auto</text>
-    <text x="320" y="170" text-anchor="middle" font-size="12" font-weight="700" fill="var(--secondary-color)">Defrag</text>
-    <text x="500" y="34" text-anchor="middle" font-size="15" font-weight="800" fill="currentColor">후: 랙 하나를 통째로 비움</text>
-    <rect x="386" y="58" width="52" height="173" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
-    <rect x="390" y="62" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="390" y="83" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="390" y="104" width="44" height="16" fill="var(--gold)"/>
-    <rect x="390" y="125" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="390" y="146" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="390" y="167" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="390" y="188" width="44" height="16" fill="var(--gold)"/>
-    <rect x="390" y="209" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <text x="412" y="250" text-anchor="middle" font-size="12" fill="currentColor">랙 1</text>
-    <rect x="450" y="58" width="52" height="173" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
-    <rect x="454" y="62" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="454" y="83" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="454" y="104" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="454" y="125" width="44" height="16" fill="var(--gold)"/>
-    <rect x="454" y="146" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="454" y="167" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="454" y="188" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="454" y="209" width="44" height="16" fill="var(--gold)"/>
-    <text x="476" y="250" text-anchor="middle" font-size="12" fill="currentColor">랙 2</text>
-    <rect x="514" y="58" width="52" height="173" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
-    <rect x="518" y="62" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="518" y="83" width="44" height="16" fill="var(--gold)"/>
-    <rect x="518" y="104" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="518" y="125" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="518" y="146" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="518" y="167" width="44" height="16" fill="var(--gold)"/>
-    <rect x="518" y="188" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <rect x="518" y="209" width="44" height="16" fill="currentColor" opacity="0.35"/>
-    <text x="540" y="250" text-anchor="middle" font-size="12" fill="currentColor">랙 3</text>
-    <rect x="578" y="58" width="52" height="173" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
-    <rect x="582" y="62" width="44" height="16" fill="var(--accent-color)"/>
-    <rect x="582" y="83" width="44" height="16" fill="var(--accent-color)"/>
-    <rect x="582" y="104" width="44" height="16" fill="var(--accent-color)"/>
-    <rect x="582" y="125" width="44" height="16" fill="var(--accent-color)"/>
-    <rect x="582" y="146" width="44" height="16" fill="var(--accent-color)"/>
-    <rect x="582" y="167" width="44" height="16" fill="var(--accent-color)"/>
-    <rect x="582" y="188" width="44" height="16" fill="var(--accent-color)"/>
-    <rect x="582" y="209" width="44" height="16" fill="var(--accent-color)"/>
-    <text x="604" y="250" text-anchor="middle" font-size="12" fill="currentColor">랙 4</text>
-    <text x="500" y="274" text-anchor="middle" font-size="12" fill="var(--secondary-color)" font-weight="700">재시작 가능한 작업은 다른 랙으로,</text>
-    <text x="500" y="292" text-anchor="middle" font-size="12" fill="var(--secondary-color)" font-weight="700">빈 랙 4에 랙 단위 작업이 올라감</text>
-    <rect x="70" y="306" width="22" height="16" fill="currentColor" opacity="0.35"/>
-    <text x="98" y="319" font-size="11" fill="currentColor">작업</text>
-    <rect x="140" y="306" width="22" height="16" fill="var(--gold)"/>
-    <text x="168" y="319" font-size="11" fill="currentColor">재시작 가능 작업 (선점 대상)</text>
-    <rect x="331" y="307" width="20" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
-    <text x="358" y="319" font-size="11" fill="currentColor">빈 노드</text>
-    <rect x="410" y="306" width="22" height="16" fill="var(--accent-color)"/>
-    <text x="438" y="319" font-size="11" fill="currentColor">랙 단위 작업</text>
+    <text x="180" y="26" text-anchor="middle" font-size="17" font-weight="800" fill="currentColor">전: 빈 노드가 흩어짐</text>
+    <rect x="58" y="42" width="52" height="173" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
+    <rect x="62" y="46" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="62" y="67" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="63" y="89" width="42" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
+    <rect x="62" y="109" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="62" y="130" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="62" y="151" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="63" y="173" width="42" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
+    <rect x="62" y="193" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <text x="84" y="236" text-anchor="middle" font-size="15" fill="currentColor">랙 1</text>
+    <rect x="122" y="42" width="52" height="173" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
+    <rect x="126" y="46" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="126" y="67" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="126" y="88" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="127" y="110" width="42" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
+    <rect x="126" y="130" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="126" y="151" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="126" y="172" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="127" y="194" width="42" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
+    <text x="148" y="236" text-anchor="middle" font-size="15" fill="currentColor">랙 2</text>
+    <rect x="186" y="42" width="52" height="173" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
+    <rect x="190" y="46" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="191" y="68" width="42" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
+    <rect x="190" y="88" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="190" y="109" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="190" y="130" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="191" y="152" width="42" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
+    <rect x="190" y="172" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="190" y="193" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <text x="212" y="236" text-anchor="middle" font-size="15" fill="currentColor">랙 3</text>
+    <rect x="250" y="42" width="52" height="173" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
+    <rect x="255" y="47" width="42" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
+    <rect x="254" y="67" width="44" height="16" fill="var(--gold)"/>
+    <rect x="254" y="88" width="44" height="16" fill="var(--gold)"/>
+    <rect x="254" y="109" width="44" height="16" fill="var(--gold)"/>
+    <rect x="255" y="131" width="42" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
+    <rect x="254" y="151" width="44" height="16" fill="var(--gold)"/>
+    <rect x="254" y="172" width="44" height="16" fill="var(--gold)"/>
+    <rect x="254" y="193" width="44" height="16" fill="var(--gold)"/>
+    <text x="276" y="236" text-anchor="middle" font-size="15" fill="currentColor">랙 4</text>
+    <text x="180" y="262" text-anchor="middle" font-size="15" fill="var(--accent-color)" font-weight="700">빈 노드는 랙 하나 분량인데도</text>
+    <text x="180" y="282" text-anchor="middle" font-size="15" fill="var(--accent-color)" font-weight="700">랙 단위 작업은 대기열에 막힘</text>
+    <path d="M180 296 L180 322" stroke="var(--secondary-color)" stroke-width="4"/>
+    <path d="M170 320 L180 334 L190 320 Z" fill="var(--secondary-color)"/>
+    <text x="198" y="320" font-size="15" font-weight="700" fill="var(--secondary-color)">Auto Defrag</text>
+    <text x="180" y="362" text-anchor="middle" font-size="17" font-weight="800" fill="currentColor">후: 랙 하나를 통째로 비움</text>
+    <rect x="58" y="378" width="52" height="173" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
+    <rect x="62" y="382" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="62" y="403" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="62" y="424" width="44" height="16" fill="var(--gold)"/>
+    <rect x="62" y="445" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="62" y="466" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="62" y="487" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="62" y="508" width="44" height="16" fill="var(--gold)"/>
+    <rect x="62" y="529" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <text x="84" y="572" text-anchor="middle" font-size="15" fill="currentColor">랙 1</text>
+    <rect x="122" y="378" width="52" height="173" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
+    <rect x="126" y="382" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="126" y="403" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="126" y="424" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="126" y="445" width="44" height="16" fill="var(--gold)"/>
+    <rect x="126" y="466" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="126" y="487" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="126" y="508" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="126" y="529" width="44" height="16" fill="var(--gold)"/>
+    <text x="148" y="572" text-anchor="middle" font-size="15" fill="currentColor">랙 2</text>
+    <rect x="186" y="378" width="52" height="173" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
+    <rect x="190" y="382" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="190" y="403" width="44" height="16" fill="var(--gold)"/>
+    <rect x="190" y="424" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="190" y="445" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="190" y="466" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="190" y="487" width="44" height="16" fill="var(--gold)"/>
+    <rect x="190" y="508" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <rect x="190" y="529" width="44" height="16" fill="currentColor" opacity="0.35"/>
+    <text x="212" y="572" text-anchor="middle" font-size="15" fill="currentColor">랙 3</text>
+    <rect x="250" y="378" width="52" height="173" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.5"/>
+    <rect x="254" y="382" width="44" height="16" fill="var(--accent-color)"/>
+    <rect x="254" y="403" width="44" height="16" fill="var(--accent-color)"/>
+    <rect x="254" y="424" width="44" height="16" fill="var(--accent-color)"/>
+    <rect x="254" y="445" width="44" height="16" fill="var(--accent-color)"/>
+    <rect x="254" y="466" width="44" height="16" fill="var(--accent-color)"/>
+    <rect x="254" y="487" width="44" height="16" fill="var(--accent-color)"/>
+    <rect x="254" y="508" width="44" height="16" fill="var(--accent-color)"/>
+    <rect x="254" y="529" width="44" height="16" fill="var(--accent-color)"/>
+    <text x="276" y="572" text-anchor="middle" font-size="15" fill="currentColor">랙 4</text>
+    <text x="180" y="598" text-anchor="middle" font-size="15" fill="var(--secondary-color)" font-weight="700">재시작 가능한 작업은 다른 랙으로,</text>
+    <text x="180" y="618" text-anchor="middle" font-size="15" fill="var(--secondary-color)" font-weight="700">빈 랙 4에 랙 단위 작업이 올라감</text>
+    <rect x="22" y="638" width="22" height="16" fill="currentColor" opacity="0.35"/>
+    <text x="50" y="651" font-size="15" fill="currentColor">작업</text>
+    <rect x="111" y="639" width="20" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
+    <text x="138" y="651" font-size="15" fill="currentColor">빈 노드</text>
+    <rect x="214" y="638" width="22" height="16" fill="var(--accent-color)"/>
+    <text x="242" y="651" font-size="15" fill="currentColor">랙 단위 작업</text>
+    <rect x="22" y="664" width="22" height="16" fill="var(--gold)"/>
+    <text x="50" y="677" font-size="15" fill="currentColor">재시작 가능 작업 (선점 대상)</text>
   </g>
 </svg>
 <figcaption>단편화는 용량이 아니라 형태의 문제다. 빈 노드의 총량은 충분해도 한 랙에 모이지 않으면, 재시작 가능한 작업을 옮겨 랙 하나를 비워야 랙 단위 작업이 올라간다.</figcaption>

@@ -9,17 +9,15 @@ excerpt: "IQuest 연구진의 arXiv 논문(2610.35013) 'Multiscale Policy Optimi
 ---
 
 <figure class="post-figure post-figure--header">
-<svg role="img" aria-label="오크 전사가 다섯 개의 큰 돌계단(턴 1부터 턴 5)을 오른다. 계단과 계단 사이의 높이차, 즉 턴 간 가치 변화는 크고, 각 계단 윗면에 깔린 작은 자갈(토큰)은 거의 평평하다. 보상 깃발 R(τ)은 맨 꼭대기 계단에만 꽂혀 있다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg" font-family="var(--font-body)">
+<svg width="530" role="img" aria-label="오크 전사가 다섯 개의 큰 돌계단(턴 1부터 턴 5)을 오른다. 계단과 계단 사이의 높이차, 즉 턴 간 가치 변화는 크고, 각 계단 윗면에 깔린 작은 자갈(토큰)은 거의 평평하다. 보상 깃발 R(τ)은 맨 꼭대기 계단에만 꽂혀 있다." viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg" font-family="var(--font-body)">
   <title>턴은 큰 계단, 토큰은 그 위의 자갈 — 보상은 정상에만</title>
   <defs>
     <marker id="mpo-h-arrow" markerWidth="9" markerHeight="9" refX="4" refY="4" orient="auto">
       <path d="M0 0 L8 4 L0 8 z" fill="var(--secondary-color)"/>
     </marker>
   </defs>
-
   <!-- ground -->
   <line x1="20" y1="270" x2="660" y2="270" stroke="currentColor" stroke-width="2" opacity="0.5"/>
-
   <!-- five stone steps = five turns -->
   <rect x="40"  y="230" width="112" height="40"  fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
   <rect x="152" y="190" width="112" height="80"  fill="var(--bg-light)" stroke="currentColor" stroke-width="2"/>
@@ -32,12 +30,10 @@ excerpt: "IQuest 연구진의 arXiv 논문(2610.35013) 'Multiscale Policy Optimi
     <line x1="376" y1="150" x2="488" y2="150"/><line x1="376" y1="190" x2="488" y2="190"/><line x1="376" y1="230" x2="488" y2="230"/>
     <line x1="488" y1="110" x2="600" y2="110"/><line x1="488" y1="150" x2="600" y2="150"/><line x1="488" y1="190" x2="600" y2="190"/><line x1="488" y1="230" x2="600" y2="230"/>
   </g>
-
   <!-- turn labels -->
-  <g font-size="12" font-weight="700" fill="currentColor" text-anchor="middle" opacity="0.75">
-    <text x="96" y="256">턴 1</text><text x="208" y="256">턴 2</text><text x="320" y="256">턴 3</text><text x="432" y="256">턴 4</text><text x="544" y="256">턴 5</text>
+  <g font-size="27" font-weight="700" fill="currentColor" text-anchor="middle" opacity="0.8">
+    <text x="96" y="263">턴 1</text><text x="208" y="263">턴 2</text><text x="320" y="263">턴 3</text><text x="432" y="263">턴 4</text><text x="544" y="263">턴 5</text>
   </g>
-
   <!-- pebbles (tokens): nearly flat on each step top -->
   <g fill="var(--gold)" stroke="currentColor" stroke-width="0.6">
     <circle cx="52"  cy="226" r="2.6"/><circle cx="64"  cy="225" r="2.6"/><circle cx="76"  cy="226" r="2.6"/><circle cx="88"  cy="225" r="2.6"/><circle cx="100" cy="226" r="2.6"/><circle cx="112" cy="225" r="2.6"/><circle cx="124" cy="226" r="2.6"/><circle cx="136" cy="225" r="2.6"/>
@@ -46,16 +42,12 @@ excerpt: "IQuest 연구진의 arXiv 논문(2610.35013) 'Multiscale Policy Optimi
     <circle cx="388" cy="106" r="2.6"/><circle cx="400" cy="105" r="2.6"/><circle cx="412" cy="106" r="2.6"/><circle cx="424" cy="105" r="2.6"/><circle cx="436" cy="106" r="2.6"/><circle cx="448" cy="105" r="2.6"/><circle cx="460" cy="106" r="2.6"/><circle cx="472" cy="105" r="2.6"/>
     <circle cx="500" cy="66" r="2.6"/><circle cx="512" cy="65" r="2.6"/><circle cx="524" cy="66" r="2.6"/><circle cx="536" cy="65" r="2.6"/>
   </g>
-
   <!-- riser arrows: big value jumps between turns -->
   <line x1="370" y1="148" x2="370" y2="116" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#mpo-h-arrow)"/>
   <line x1="482" y1="108" x2="482" y2="76" stroke="var(--secondary-color)" stroke-width="2" marker-end="url(#mpo-h-arrow)"/>
-  <text x="290" y="104" font-size="12" font-weight="700" fill="var(--secondary-color)" text-anchor="middle">턴 사이: 가치가 크게 뛴다</text>
-  <line x1="330" y1="110" x2="364" y2="130" stroke="var(--secondary-color)" stroke-width="1" stroke-dasharray="3 3"/>
-
-  <text x="96" y="196" font-size="12" fill="currentColor" text-anchor="middle">토큰 = 자갈</text>
-  <text x="96" y="212" font-size="11" fill="currentColor" text-anchor="middle" opacity="0.75">턴 안에선 거의 평평</text>
-
+  <text x="34" y="74" font-size="27" font-weight="700" fill="var(--secondary-color)">턴 사이: 가치 점프</text>
+  <line x1="262" y1="80" x2="364" y2="128" stroke="var(--secondary-color)" stroke-width="1.4" stroke-dasharray="4 3"/>
+  <text x="84" y="206" font-size="27" fill="currentColor" text-anchor="middle">토큰=자갈</text>
   <!-- warrior (pixel orc) on step 2 -->
   <g>
     <rect x="186" y="150" width="16" height="14" fill="var(--accent-color)"/>
@@ -68,14 +60,13 @@ excerpt: "IQuest 연구진의 arXiv 논문(2610.35013) 'Multiscale Policy Optimi
     <rect x="205" y="160" width="3"  height="24" fill="currentColor"/>
     <rect x="207" y="156" width="10" height="10" fill="var(--secondary-color)"/>
   </g>
-
   <!-- reward flag only at the summit -->
   <line x1="580" y1="70" x2="580" y2="18" stroke="currentColor" stroke-width="2.5"/>
   <path d="M582 20 L626 30 L582 40 z" fill="var(--accent-color)" stroke="currentColor" stroke-width="1"/>
-  <text x="604" y="60" font-size="13" font-weight="700" fill="var(--gold)" stroke="currentColor" stroke-width="0.3" text-anchor="middle">R(τ)</text>
-  <text x="560" y="14" font-size="11" fill="currentColor" text-anchor="end" opacity="0.8">보상은 정상에만 (terminal)</text>
+  <text x="618" y="64" font-size="27" font-weight="700" fill="var(--gold)" stroke="currentColor" stroke-width="0.5" text-anchor="middle">R(τ)</text>
+  <text x="568" y="36" font-size="27" fill="currentColor" text-anchor="end" opacity="0.85">보상은 정상에만</text>
 </svg>
-<figcaption>장기 과제는 '턴'이라는 큰 계단을 오르는 일이다 — 가치는 계단 사이에서 뛰고, 계단 위 토큰들은 거의 평평하며, 보상은 마지막에만 주어진다</figcaption>
+<figcaption>장기 과제는 '턴'이라는 큰 계단을 오르는 일이다 — 가치는 계단 사이에서 크게 뛰고, 계단 위 자갈(토큰)들은 턴 안에서 거의 평평하며, 보상 R(τ)은 마지막(terminal)에만 주어진다</figcaption>
 </figure>
 
 ## 원문 정보
@@ -129,48 +120,49 @@ LLM RL의 표준 도구는 크게 둘로 갈린다. **PPO 계열**(PPO, VAPO 등
 즉 critic이 보기에 "상황이 좋아졌다/나빠졌다"는 판단은 대부분 **턴 경계**에서 일어난다. 한 턴 안의 토큰들은 거의 같은 가치 수준에 놓인다. 이것이 "턴을 macro action으로 보고 최적화하되, 토큰 간 크레딧은 세밀하게 나눌 여지를 남기자"는 설계의 출발점이다.
 
 <figure class="post-figure">
-<svg role="img" aria-label="개념도. 왼쪽: 한 궤적에서 토큰 위치에 따른 critic 가치가 계단 함수처럼 생겼다. 턴 경계(T1|T2|T3|T4)마다 값이 크게 오르거나 내리고, 턴 내부에서는 작은 잔물결만 있다. 오른쪽: 궤적 내 critic 가치 분산 중 턴 평균 간 차이가 차지하는 비율의 중앙값 89.5퍼센트를 막대로 표시하고, 93.8퍼센트의 궤적에서 턴 간 분산이 턴 내 분산보다 크다고 적었다." viewBox="0 0 640 290" xmlns="http://www.w3.org/2000/svg" font-family="var(--font-body)">
+<svg role="img" aria-label="개념도와 원문 수치를 위아래로 쌓은 그림. 위: 한 궤적에서 토큰 위치에 따른 critic 가치가 계단 함수처럼 생겼다. 턴 경계(T1|T2|T3|T4)마다 값이 크게 오르거나 내리고(점선), 턴 내부에서는 작은 잔물결만 있다. 아래: 궤적 내 critic 가치 분산 중 턴 평균 간 차이가 차지하는 비율의 중앙값 89.5퍼센트를 가로 막대로 표시하고, 93.8퍼센트의 궤적에서 턴 간 분산이 턴 내 분산보다 크다고 적었다." viewBox="0 0 360 530" width="440" xmlns="http://www.w3.org/2000/svg" font-family="var(--font-body)">
   <title>critic 가치는 턴 경계에서 뛴다 (개념도) + 원문 수치</title>
-  <!-- LEFT: schematic step function -->
-  <text x="40" y="22" font-size="12" font-weight="700" fill="currentColor">한 궤적의 critic 가치 V (개념도 — 실제 값 아님)</text>
-  <line x1="50" y1="40" x2="50" y2="240" stroke="currentColor" stroke-width="1.6"/>
-  <line x1="50" y1="240" x2="410" y2="240" stroke="currentColor" stroke-width="1.6"/>
-  <text x="230" y="262" font-size="11" fill="currentColor" text-anchor="middle" opacity="0.8">토큰 위치 →</text>
-  <text x="38" y="140" font-size="11" fill="currentColor" text-anchor="middle" opacity="0.8" transform="rotate(-90 38 140)">critic 가치 V</text>
+  <!-- TOP: schematic step function (x' = 40 + (x-50)*0.85, y' = y + 30) -->
+  <text x="180" y="22" font-size="16" font-weight="700" fill="currentColor" text-anchor="middle">한 궤적의 critic 가치 V</text>
+  <text x="180" y="42" font-size="15" fill="currentColor" text-anchor="middle" opacity="0.75">개념도 — 실제 값 아님</text>
+  <line x1="40" y1="70" x2="40" y2="270" stroke="currentColor" stroke-width="1.6"/>
+  <line x1="40" y1="270" x2="346" y2="270" stroke="currentColor" stroke-width="1.6"/>
+  <text x="193" y="292" font-size="15" fill="currentColor" text-anchor="middle" opacity="0.8">토큰 위치 →</text>
+  <text x="26" y="170" font-size="15" fill="currentColor" text-anchor="middle" opacity="0.8" transform="rotate(-90 26 170)">critic 가치 V</text>
   <!-- turn boundaries -->
   <g stroke="currentColor" stroke-width="1" stroke-dasharray="3 4" opacity="0.4">
-    <line x1="140" y1="45" x2="140" y2="240"/><line x1="230" y1="45" x2="230" y2="240"/><line x1="300" y1="45" x2="300" y2="240"/>
+    <line x1="116.5" y1="75" x2="116.5" y2="270"/><line x1="193" y1="75" x2="193" y2="270"/><line x1="252.5" y1="75" x2="252.5" y2="270"/>
   </g>
-  <g font-size="11" font-weight="700" fill="currentColor" text-anchor="middle" opacity="0.7">
-    <text x="95" y="56">T1</text><text x="185" y="56">T2</text><text x="265" y="56">T3</text><text x="355" y="56">T4</text>
+  <g font-size="15" font-weight="700" fill="currentColor" text-anchor="middle" opacity="0.7">
+    <text x="78.25" y="88">T1</text><text x="154.75" y="88">T2</text><text x="222.75" y="88">T3</text><text x="299.25" y="88">T4</text>
   </g>
   <!-- within-turn ripples -->
   <g fill="none" stroke="var(--accent-color)" stroke-width="2.4" stroke-linejoin="round">
-    <polyline points="55,200 70,197 85,202 100,198 115,201 130,199 140,200"/>
-    <polyline points="140,150 155,147 170,152 185,148 200,151 215,149 230,150"/>
-    <polyline points="230,172 245,169 260,174 275,170 290,173 300,171"/>
-    <polyline points="300,92 315,89 330,94 345,90 360,93 375,91 400,92"/>
+    <polyline points="44.25,230 57,227 69.75,232 82.5,228 95.25,231 108,229 116.5,230"/>
+    <polyline points="116.5,180 129.25,177 142,182 154.75,178 167.5,181 180.25,179 193,180"/>
+    <polyline points="193,202 205.75,199 218.5,204 231.25,200 244,203 252.5,201"/>
+    <polyline points="252.5,122 265.25,119 278,124 290.75,120 303.5,123 316.25,121 337.5,122"/>
   </g>
-  <!-- jumps at turn boundaries -->
+  <!-- jumps at turn boundaries (dashed) -->
   <g stroke="currentColor" stroke-width="2.4" stroke-dasharray="4 3">
-    <line x1="140" y1="200" x2="140" y2="150"/><line x1="230" y1="150" x2="230" y2="172"/><line x1="300" y1="171" x2="300" y2="92"/>
+    <line x1="116.5" y1="230" x2="116.5" y2="180"/><line x1="193" y1="180" x2="193" y2="202"/><line x1="252.5" y1="201" x2="252.5" y2="122"/>
   </g>
-  <text x="300" y="80" font-size="11" fill="currentColor" font-weight="700" text-anchor="middle">턴 경계: 큰 점프 (점선)</text>
-  <text x="95" y="225" font-size="11" fill="currentColor" text-anchor="middle" opacity="0.8">턴 안: 잔물결</text>
-
-  <!-- RIGHT: reported numbers -->
-  <text x="530" y="22" font-size="12" font-weight="700" fill="currentColor" text-anchor="middle">원문 측정 (search run)</text>
-  <text x="530" y="40" font-size="10" fill="currentColor" text-anchor="middle" opacity="0.75">2,048개 궤적 · 16,323개 턴</text>
-  <rect x="490" y="60" width="80" height="180" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
-  <rect x="490" y="78.9" width="80" height="161.1" fill="var(--accent-color)" opacity="0.85"/>
-  <text x="482" y="164" font-size="15" font-weight="700" fill="currentColor" text-anchor="end">89.5%</text>
-  <text x="482" y="180" font-size="10" fill="currentColor" text-anchor="end">턴 간 몫 →</text>
-  <text x="576" y="73" font-size="10" fill="currentColor" opacity="0.8">← 턴 내</text>
-  <text x="530" y="258" font-size="10" fill="currentColor" text-anchor="middle">궤적 내 가치 분산 중</text>
-  <text x="530" y="271" font-size="10" fill="currentColor" text-anchor="middle">턴 평균 간 차이의 비율 (중앙값)</text>
-  <text x="530" y="286" font-size="10" fill="var(--secondary-color)" font-weight="700" text-anchor="middle">93.8% 궤적에서 턴 간 &gt; 턴 내</text>
+  <text x="246" y="112" font-size="15" fill="currentColor" font-weight="700" text-anchor="middle">턴 경계: 큰 점프(점선)</text>
+  <text x="86" y="256" font-size="15" fill="currentColor" text-anchor="middle" opacity="0.8">턴 안: 잔물결</text>
+  <line x1="12" y1="316" x2="348" y2="316" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+  <!-- BOTTOM: reported numbers (bar 300 wide = 100%, fill 268.5 = 89.5%) -->
+  <text x="180" y="344" font-size="16" font-weight="700" fill="currentColor" text-anchor="middle">원문 측정 (search run)</text>
+  <text x="180" y="365" font-size="15" fill="currentColor" text-anchor="middle" opacity="0.75">2,048개 궤적 · 16,323개 턴</text>
+  <rect x="30" y="384" width="300" height="36" fill="var(--bg-light)" stroke="currentColor" stroke-width="1.6"/>
+  <rect x="30" y="384" width="268.5" height="36" fill="var(--accent-color)" opacity="0.85"/>
+  <line x1="298.5" y1="378" x2="298.5" y2="426" stroke="currentColor" stroke-width="1.6"/>
+  <text x="30" y="446" font-size="18" font-weight="700" fill="currentColor">89.5% <tspan font-size="15" font-weight="400">= 턴 간 몫</tspan></text>
+  <text x="330" y="446" font-size="15" fill="currentColor" text-anchor="end" opacity="0.8">턴 내 ↑</text>
+  <text x="180" y="474" font-size="15" fill="currentColor" text-anchor="middle">궤적 내 가치 분산 중</text>
+  <text x="180" y="494" font-size="15" fill="currentColor" text-anchor="middle">턴 평균 간 차이의 비율 (중앙값)</text>
+  <text x="180" y="520" font-size="15" fill="var(--secondary-color)" font-weight="700" text-anchor="middle">93.8% 궤적에서 턴 간 &gt; 턴 내</text>
 </svg>
-<figcaption>왼쪽은 개념도, 오른쪽은 원문 수치 — critic이 보는 "상황 변화"는 대부분 턴 경계에서 일어난다</figcaption>
+<figcaption>위는 개념도, 아래는 원문 수치 — critic이 보는 "상황 변화"는 대부분 턴 경계에서 일어난다</figcaption>
 </figure>
 
 ### 2. 설정: 턴을 macro decision으로
@@ -211,70 +203,69 @@ A_{t,i}^MAE   = A_t^turn + β · (A_{t,i}^intra − mean_i(A_{t,i}^intra))
 턴 평균을 빼 주기 때문에 **각 턴의 평균 advantage는 정확히 `A_t^turn`으로 보존**된다. 원문은 이것을 "턴 평균을 `A_t^turn`으로 고정하는 least-squares projection의 해"로 설명한다. `β = 0`이면 턴 advantage를 그 턴의 모든 토큰에 그대로 뿌리는(turn broadcasting) 방식으로 돌아간다. critic 자체는 VAPO의 decoupled GAE를 따라 `λ_critic = 1`로 terminal return에 직접 회귀한다.
 
 <figure class="post-figure">
-<svg role="img" aria-label="MAE 구조도(개념도). 두 패널에 세 개의 턴이 있고 각 턴은 다섯 토큰 막대로 이루어진다. 왼쪽 β가 0보다 큰 MAE에서는 토큰 막대가 턴 평균 점선 A_t^turn 위아래로 조금씩 다르지만 편차의 합이 0이라 턴 평균은 그대로다. 오른쪽 β가 0인 턴 broadcasting에서는 같은 턴의 모든 토큰이 정확히 A_t^turn 높이로 같다. 두 번째 턴은 음의 advantage이며, 음수 막대는 속을 비운 테두리 막대로 그렸다." viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg" font-family="var(--font-body)">
+<svg role="img" aria-label="MAE 구조도(개념도). 위아래 두 패널에 세 개의 턴이 있고 각 턴은 다섯 토큰 막대로 이루어진다. 위쪽 β가 0보다 큰 MAE에서는 토큰 막대가 턴 평균 점선 A_t^turn 위아래로 조금씩 다르지만 편차의 합이 0이라 턴 평균은 그대로다. 아래쪽 β가 0인 턴 broadcasting에서는 같은 턴의 모든 토큰이 정확히 A_t^turn 높이로 같다. 두 번째 턴은 음의 advantage이며, 음수 막대는 속을 비운 테두리 막대로 그렸다." viewBox="0 0 360 548" width="440" xmlns="http://www.w3.org/2000/svg" font-family="var(--font-body)">
   <title>MAE: 턴 평균은 보존하고 토큰에만 ± 편차를 얹는다</title>
-  <text x="165" y="24" font-size="13" font-weight="700" fill="currentColor" text-anchor="middle">β &gt; 0 — MAE (기준 β = 1.0)</text>
-  <text x="485" y="24" font-size="13" font-weight="700" fill="currentColor" text-anchor="middle">β = 0 — 턴 broadcasting</text>
-  <line x1="320" y1="40" x2="320" y2="250" stroke="currentColor" stroke-width="1" opacity="0.3"/>
-  <!-- zero lines -->
-  <line x1="28" y1="170" x2="300" y2="170" stroke="currentColor" stroke-width="1.4" opacity="0.6"/>
-  <line x1="348" y1="170" x2="620" y2="170" stroke="currentColor" stroke-width="1.4" opacity="0.6"/>
-  <text x="26" y="174" font-size="10" fill="currentColor" text-anchor="end" opacity="0.7">0</text>
-
+  <!-- TOP panel: MAE (original left panel, dx=+20, dy=-20; bar heights unchanged) -->
+  <text x="180" y="24" font-size="16" font-weight="700" fill="currentColor" text-anchor="middle">β &gt; 0 — MAE (기준 β = 1.0)</text>
+  <line x1="48" y1="150" x2="320" y2="150" stroke="currentColor" stroke-width="1.4" opacity="0.6"/>
+  <text x="44" y="155" font-size="15" fill="currentColor" text-anchor="end" opacity="0.7">0</text>
   <!-- LEFT panel: MAE -->
-  <rect x="40" y="122" width="11" height="48" fill="var(--accent-color)" opacity="0.85"/>
-  <rect x="55" y="134" width="11" height="36" fill="var(--accent-color)" opacity="0.85"/>
-  <rect x="70" y="124" width="11" height="46" fill="var(--accent-color)" opacity="0.85"/>
-  <rect x="85" y="136" width="11" height="34" fill="var(--accent-color)" opacity="0.85"/>
-  <rect x="100" y="134" width="11" height="36" fill="var(--accent-color)" opacity="0.85"/>
-  <line x1="36" y1="130" x2="115" y2="130" stroke="currentColor" stroke-width="1.6" stroke-dasharray="5 3"/>
-  <text x="75" y="112" text-anchor="middle" font-size="11" fill="currentColor">A₁^turn</text>
-  <rect x="126" y="170" width="11" height="17" fill="none" stroke="currentColor" stroke-width="1.4"/>
-  <rect x="141" y="170" width="11" height="29" fill="none" stroke="currentColor" stroke-width="1.4"/>
-  <rect x="156" y="170" width="11" height="19" fill="none" stroke="currentColor" stroke-width="1.4"/>
-  <rect x="171" y="170" width="11" height="31" fill="none" stroke="currentColor" stroke-width="1.4"/>
-  <rect x="186" y="170" width="11" height="29" fill="none" stroke="currentColor" stroke-width="1.4"/>
-  <line x1="122" y1="195" x2="201" y2="195" stroke="currentColor" stroke-width="1.6" stroke-dasharray="5 3"/>
-  <text x="161" y="217" text-anchor="middle" font-size="11" fill="currentColor">A₂^turn</text>
-  <rect x="212" y="102" width="11" height="68" fill="var(--accent-color)" opacity="0.85"/>
-  <rect x="227" y="114" width="11" height="56" fill="var(--accent-color)" opacity="0.85"/>
-  <rect x="242" y="104" width="11" height="66" fill="var(--accent-color)" opacity="0.85"/>
-  <rect x="257" y="116" width="11" height="54" fill="var(--accent-color)" opacity="0.85"/>
-  <rect x="272" y="114" width="11" height="56" fill="var(--accent-color)" opacity="0.85"/>
-  <line x1="208" y1="110" x2="287" y2="110" stroke="currentColor" stroke-width="1.6" stroke-dasharray="5 3"/>
-  <text x="247" y="92" text-anchor="middle" font-size="11" fill="currentColor">A₃^turn</text>
-
+  <rect x="60" y="102" width="11" height="48" fill="var(--accent-color)" opacity="0.85"/>
+  <rect x="75" y="114" width="11" height="36" fill="var(--accent-color)" opacity="0.85"/>
+  <rect x="90" y="104" width="11" height="46" fill="var(--accent-color)" opacity="0.85"/>
+  <rect x="105" y="116" width="11" height="34" fill="var(--accent-color)" opacity="0.85"/>
+  <rect x="120" y="114" width="11" height="36" fill="var(--accent-color)" opacity="0.85"/>
+  <line x1="56" y1="110" x2="135" y2="110" stroke="currentColor" stroke-width="1.6" stroke-dasharray="5 3"/>
+  <text x="95" y="92" text-anchor="middle" font-size="15" fill="currentColor">A₁^turn</text>
+  <rect x="146" y="150" width="11" height="17" fill="none" stroke="currentColor" stroke-width="1.4"/>
+  <rect x="161" y="150" width="11" height="29" fill="none" stroke="currentColor" stroke-width="1.4"/>
+  <rect x="176" y="150" width="11" height="19" fill="none" stroke="currentColor" stroke-width="1.4"/>
+  <rect x="191" y="150" width="11" height="31" fill="none" stroke="currentColor" stroke-width="1.4"/>
+  <rect x="206" y="150" width="11" height="29" fill="none" stroke="currentColor" stroke-width="1.4"/>
+  <line x1="142" y1="175" x2="221" y2="175" stroke="currentColor" stroke-width="1.6" stroke-dasharray="5 3"/>
+  <text x="181" y="197" text-anchor="middle" font-size="15" fill="currentColor">A₂^turn</text>
+  <rect x="232" y="82" width="11" height="68" fill="var(--accent-color)" opacity="0.85"/>
+  <rect x="247" y="94" width="11" height="56" fill="var(--accent-color)" opacity="0.85"/>
+  <rect x="262" y="84" width="11" height="66" fill="var(--accent-color)" opacity="0.85"/>
+  <rect x="277" y="96" width="11" height="54" fill="var(--accent-color)" opacity="0.85"/>
+  <rect x="292" y="94" width="11" height="56" fill="var(--accent-color)" opacity="0.85"/>
+  <line x1="228" y1="90" x2="307" y2="90" stroke="currentColor" stroke-width="1.6" stroke-dasharray="5 3"/>
+  <text x="267" y="72" text-anchor="middle" font-size="15" fill="currentColor">A₃^turn</text>
+  <text x="180" y="222" font-size="15" fill="currentColor" text-anchor="middle">토큰 막대 = A^turn + β·(A^intra − 턴 평균)</text>
+  <text x="180" y="244" font-size="15" fill="var(--secondary-color)" font-weight="700" text-anchor="middle">± 편차의 합 = 0 → 점선(턴 평균)은 그대로</text>
+  <line x1="12" y1="264" x2="348" y2="264" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+  <!-- BOTTOM panel: broadcasting (original right panel, dx=-300, dy=+230; bar heights unchanged) -->
+  <text x="180" y="292" font-size="16" font-weight="700" fill="currentColor" text-anchor="middle">β = 0 — 턴 broadcasting</text>
+  <line x1="48" y1="400" x2="320" y2="400" stroke="currentColor" stroke-width="1.4" opacity="0.6"/>
+  <text x="44" y="405" font-size="15" fill="currentColor" text-anchor="end" opacity="0.7">0</text>
   <!-- RIGHT panel: broadcasting -->
-  <rect x="360" y="130" width="11" height="40" fill="var(--accent-color)" opacity="0.85"/>
-  <rect x="375" y="130" width="11" height="40" fill="var(--accent-color)" opacity="0.85"/>
-  <rect x="390" y="130" width="11" height="40" fill="var(--accent-color)" opacity="0.85"/>
-  <rect x="405" y="130" width="11" height="40" fill="var(--accent-color)" opacity="0.85"/>
-  <rect x="420" y="130" width="11" height="40" fill="var(--accent-color)" opacity="0.85"/>
-  <line x1="356" y1="130" x2="435" y2="130" stroke="currentColor" stroke-width="1.6" stroke-dasharray="5 3"/>
-  <text x="395" y="120" text-anchor="middle" font-size="11" fill="currentColor">A₁^turn</text>
-  <rect x="446" y="170" width="11" height="25" fill="none" stroke="currentColor" stroke-width="1.4"/>
-  <rect x="461" y="170" width="11" height="25" fill="none" stroke="currentColor" stroke-width="1.4"/>
-  <rect x="476" y="170" width="11" height="25" fill="none" stroke="currentColor" stroke-width="1.4"/>
-  <rect x="491" y="170" width="11" height="25" fill="none" stroke="currentColor" stroke-width="1.4"/>
-  <rect x="506" y="170" width="11" height="25" fill="none" stroke="currentColor" stroke-width="1.4"/>
-  <line x1="442" y1="195" x2="521" y2="195" stroke="currentColor" stroke-width="1.6" stroke-dasharray="5 3"/>
-  <text x="481" y="213" text-anchor="middle" font-size="11" fill="currentColor">A₂^turn</text>
-  <rect x="532" y="110" width="11" height="60" fill="var(--accent-color)" opacity="0.85"/>
-  <rect x="547" y="110" width="11" height="60" fill="var(--accent-color)" opacity="0.85"/>
-  <rect x="562" y="110" width="11" height="60" fill="var(--accent-color)" opacity="0.85"/>
-  <rect x="577" y="110" width="11" height="60" fill="var(--accent-color)" opacity="0.85"/>
-  <rect x="592" y="110" width="11" height="60" fill="var(--accent-color)" opacity="0.85"/>
-  <line x1="528" y1="110" x2="607" y2="110" stroke="currentColor" stroke-width="1.6" stroke-dasharray="5 3"/>
-  <text x="567" y="100" text-anchor="middle" font-size="11" fill="currentColor">A₃^turn</text>
-
-  <!-- explanations -->
-  <text x="165" y="244" font-size="11" fill="currentColor" text-anchor="middle">토큰 막대 = A^turn + β·(A^intra − 턴 평균)</text>
-  <text x="165" y="262" font-size="11" fill="var(--secondary-color)" font-weight="700" text-anchor="middle">± 편차의 합 = 0 → 점선(턴 평균)은 그대로</text>
-  <text x="485" y="244" font-size="11" fill="currentColor" text-anchor="middle">같은 턴의 모든 토큰 = A^turn</text>
-  <text x="485" y="262" font-size="11" fill="currentColor" text-anchor="middle" opacity="0.8">편차가 사라진 평평한 broadcasting</text>
-  <text x="320" y="290" font-size="10" fill="currentColor" text-anchor="middle" opacity="0.7">개념도 — 막대 높이는 예시 값 · 속 빈 막대 = 음의 advantage · 점선 = 턴 평균 A_t^turn</text>
+  <rect x="60" y="360" width="11" height="40" fill="var(--accent-color)" opacity="0.85"/>
+  <rect x="75" y="360" width="11" height="40" fill="var(--accent-color)" opacity="0.85"/>
+  <rect x="90" y="360" width="11" height="40" fill="var(--accent-color)" opacity="0.85"/>
+  <rect x="105" y="360" width="11" height="40" fill="var(--accent-color)" opacity="0.85"/>
+  <rect x="120" y="360" width="11" height="40" fill="var(--accent-color)" opacity="0.85"/>
+  <line x1="56" y1="360" x2="135" y2="360" stroke="currentColor" stroke-width="1.6" stroke-dasharray="5 3"/>
+  <text x="95" y="350" text-anchor="middle" font-size="15" fill="currentColor">A₁^turn</text>
+  <rect x="146" y="400" width="11" height="25" fill="none" stroke="currentColor" stroke-width="1.4"/>
+  <rect x="161" y="400" width="11" height="25" fill="none" stroke="currentColor" stroke-width="1.4"/>
+  <rect x="176" y="400" width="11" height="25" fill="none" stroke="currentColor" stroke-width="1.4"/>
+  <rect x="191" y="400" width="11" height="25" fill="none" stroke="currentColor" stroke-width="1.4"/>
+  <rect x="206" y="400" width="11" height="25" fill="none" stroke="currentColor" stroke-width="1.4"/>
+  <line x1="142" y1="425" x2="221" y2="425" stroke="currentColor" stroke-width="1.6" stroke-dasharray="5 3"/>
+  <text x="181" y="443" text-anchor="middle" font-size="15" fill="currentColor">A₂^turn</text>
+  <rect x="232" y="340" width="11" height="60" fill="var(--accent-color)" opacity="0.85"/>
+  <rect x="247" y="340" width="11" height="60" fill="var(--accent-color)" opacity="0.85"/>
+  <rect x="262" y="340" width="11" height="60" fill="var(--accent-color)" opacity="0.85"/>
+  <rect x="277" y="340" width="11" height="60" fill="var(--accent-color)" opacity="0.85"/>
+  <rect x="292" y="340" width="11" height="60" fill="var(--accent-color)" opacity="0.85"/>
+  <line x1="228" y1="340" x2="307" y2="340" stroke="currentColor" stroke-width="1.6" stroke-dasharray="5 3"/>
+  <text x="267" y="330" text-anchor="middle" font-size="15" fill="currentColor">A₃^turn</text>
+  <text x="180" y="470" font-size="15" fill="currentColor" text-anchor="middle">같은 턴의 모든 토큰 = A^turn</text>
+  <text x="180" y="490" font-size="15" fill="currentColor" text-anchor="middle" opacity="0.8">편차가 사라진 평평한 broadcasting</text>
+  <text x="180" y="520" font-size="15" fill="currentColor" text-anchor="middle" opacity="0.7">개념도 · 막대 높이는 예시 값</text>
+  <text x="180" y="540" font-size="15" fill="currentColor" text-anchor="middle" opacity="0.7">속 빈 막대 = 음의 advantage · 점선 = 턴 평균</text>
 </svg>
-<figcaption>MAE는 턴 평균(점선)을 고정한 채 토큰에만 ± 편차를 나눠 준다 — β = 0이면 편차가 사라져 턴 broadcasting으로 돌아간다</figcaption>
+<figcaption>MAE는 턴 평균(점선)을 고정한 채 토큰에만 ± 편차를 나눠 준다 — β = 0이면 편차가 사라져 턴 broadcasting으로 돌아간다 (위: MAE, 아래: broadcasting)</figcaption>
 </figure>
 
 **(c) 턴 단위 importance sampling.** 토큰 ratio `ρ_{t,i} = π_θ(a_{t,i}|h_{t,i}) / π_old(a_{t,i}|h_{t,i})`를 턴 안에서 곱해 턴 ratio `ρ_t = Π_i ρ_{t,i}`를 만든다. 핵심은 stop-gradient 트릭이다.
@@ -329,42 +320,37 @@ A_{t,i}^MAE   = A_t^turn + β · (A_{t,i}^intra − mean_i(A_{t,i}^intra))
 - **λ_intra**: 시험한 값(0.90, 0.95, 1.00) 중 0.95가 가장 좋다.
 
 <figure class="post-figure">
-<svg role="img" aria-label="β ablation 그래프. 가로축 β 0, 0.5, 1.0, 1.5, 2.0, 세로축 4B Search BrowseComp-Plus pass@1. 값은 41.80, 44.13, 48.08, 46.23, 45.14로 β 1.0에서 정점을 찍고 내려간다. PPO 기준선 40.85가 수평 점선으로 그려져 있고, β 0도 그 위에 있지만 차이는 0.95점으로 작다." viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg" font-family="var(--font-body)">
+<svg role="img" aria-label="β ablation 그래프. 가로축 β 0, 0.5, 1.0, 1.5, 2.0, 세로축 4B Search BrowseComp-Plus pass@1(눈금 40, 45, 50). 값은 41.80, 44.13, 48.08, 46.23, 45.14로 β 1.0에서 정점을 찍고 내려간다. PPO 기준선 40.85가 수평 점선으로 그려져 있고, β 0도 그 위에 있지만 차이는 0.95점으로 작다." viewBox="0 0 380 326" width="460" xmlns="http://www.w3.org/2000/svg" font-family="var(--font-body)">
   <title>β ablation — BrowseComp-Plus pass@1 (4B Search, 원문 Table 3)</title>
-  <text x="330" y="20" font-size="12" font-weight="700" fill="currentColor" text-anchor="middle">BrowseComp-Plus pass@1 vs β (4B Search · 설정당 1 run)</text>
-  <!-- grid + y ticks: 40..50, 20px per point, y(v) = 240 - (v-40)*20 -->
+  <text x="190" y="22" font-size="16" font-weight="700" fill="currentColor" text-anchor="middle">BrowseComp-Plus pass@1 vs β</text>
+  <text x="190" y="42" font-size="15" fill="currentColor" text-anchor="middle" opacity="0.75">4B Search · 설정당 1 run</text>
+  <!-- y(v) = 270 - (v-40)*20 (20px per point, same scale as before); x(β) = 80 + β*130 -->
   <g stroke="currentColor" stroke-width="1" opacity="0.15">
-    <line x1="70" y1="200" x2="590" y2="200"/><line x1="70" y1="160" x2="590" y2="160"/><line x1="70" y1="120" x2="590" y2="120"/><line x1="70" y1="80" x2="590" y2="80"/><line x1="70" y1="40" x2="590" y2="40"/>
+    <line x1="58" y1="170" x2="366" y2="170"/><line x1="58" y1="70" x2="366" y2="70"/>
   </g>
-  <g font-size="10" fill="currentColor" text-anchor="end" opacity="0.8">
-    <text x="64" y="244">40</text><text x="64" y="204">42</text><text x="64" y="164">44</text><text x="64" y="124">46</text><text x="64" y="84">48</text><text x="64" y="44">50</text>
+  <g font-size="15" fill="currentColor" text-anchor="end" opacity="0.8">
+    <text x="52" y="275">40</text><text x="52" y="175">45</text><text x="52" y="75">50</text>
   </g>
-  <line x1="70" y1="36" x2="70" y2="240" stroke="currentColor" stroke-width="1.6"/>
-  <line x1="70" y1="240" x2="590" y2="240" stroke="currentColor" stroke-width="1.6"/>
-  <g font-size="11" fill="currentColor" text-anchor="middle">
-    <text x="100" y="258">0</text><text x="215" y="258">0.5</text><text x="330" y="258">1.0</text><text x="445" y="258">1.5</text><text x="560" y="258">2.0</text>
+  <line x1="58" y1="64" x2="58" y2="270" stroke="currentColor" stroke-width="1.6"/>
+  <line x1="58" y1="270" x2="366" y2="270" stroke="currentColor" stroke-width="1.6"/>
+  <g font-size="15" fill="currentColor" text-anchor="middle">
+    <text x="80" y="292">0</text><text x="145" y="292">0.5</text><text x="210" y="292">1.0</text><text x="275" y="292">1.5</text><text x="340" y="292">2.0</text>
   </g>
-  <text x="330" y="280" font-size="11" fill="currentColor" text-anchor="middle" opacity="0.8">β (턴 내부 재분배 강도)</text>
-
-  <!-- PPO baseline 40.85 -->
-  <line x1="70" y1="223" x2="590" y2="223" stroke="currentColor" stroke-width="1.6" stroke-dasharray="6 4" opacity="0.8"/>
-  <text x="586" y="217" font-size="11" fill="currentColor" font-weight="700" text-anchor="end">PPO 40.85 (점선)</text>
-
+  <text x="212" y="316" font-size="15" fill="currentColor" text-anchor="middle" opacity="0.8">β (턴 내부 재분배 강도)</text>
+  <!-- PPO baseline 40.85 (dashed) -->
+  <line x1="58" y1="253" x2="366" y2="253" stroke="currentColor" stroke-width="1.6" stroke-dasharray="6 4" opacity="0.8"/>
+  <text x="364" y="247" font-size="15" fill="currentColor" font-weight="700" text-anchor="end">PPO 40.85 (점선)</text>
   <!-- MPO curve -->
-  <polyline points="100,204 215,157.4 330,78.4 445,115.4 560,137.2" fill="none" stroke="var(--accent-color)" stroke-width="2.6" stroke-linejoin="round"/>
+  <polyline points="80,234 145,187.4 210,108.4 275,145.4 340,167.2" fill="none" stroke="var(--accent-color)" stroke-width="2.6" stroke-linejoin="round"/>
   <g fill="var(--accent-color)" stroke="currentColor" stroke-width="1">
-    <circle cx="100" cy="204" r="4.5"/><circle cx="215" cy="157.4" r="4.5"/><circle cx="330" cy="78.4" r="6"/><circle cx="445" cy="115.4" r="4.5"/><circle cx="560" cy="137.2" r="4.5"/>
+    <circle cx="80" cy="234" r="4.5"/><circle cx="145" cy="187.4" r="4.5"/><circle cx="210" cy="108.4" r="6"/><circle cx="275" cy="145.4" r="4.5"/><circle cx="340" cy="167.2" r="4.5"/>
   </g>
-  <g font-size="11" fill="currentColor" text-anchor="middle" font-weight="700">
-    <text x="100" y="192">41.80</text><text x="215" y="145">44.13</text><text x="330" y="64">48.08</text><text x="445" y="103">46.23</text><text x="560" y="125">45.14</text>
+  <g font-size="15" fill="currentColor" text-anchor="middle" font-weight="700">
+    <text x="90" y="246" text-anchor="start">41.80</text><text x="136" y="182" text-anchor="end">44.13</text><text x="210" y="96.4">48.08</text><text x="284" y="138" text-anchor="start">46.23</text><text x="340" y="190">45.14</text>
   </g>
-
-  <!-- annotations -->
-  <text x="150" y="208" font-size="10" fill="currentColor" opacity="0.85">β=0: PPO보다 근소하게 위 (+0.95)</text>
-  <text x="346" y="52" font-size="10" fill="var(--gold)" stroke="currentColor" stroke-width="0.25" font-weight="700">정점 — 기준 설정 β = 1.0</text>
-  <text x="470" y="160" font-size="10" fill="currentColor" opacity="0.85">β↑: 평균은 보존돼도 점수 하락</text>
+  <text x="210" y="78.4" font-size="15" fill="var(--gold)" stroke="currentColor" stroke-width="0.3" font-weight="700" text-anchor="middle">정점</text>
 </svg>
-<figcaption>원문 Table 3의 다섯 점 — β = 0은 PPO를 근소하게(0.95점) 넘을 뿐이고, 큰 향상은 β = 1.0의 토큰 재분배에서 나온다</figcaption>
+<figcaption>원문 Table 3의 다섯 점 — β = 0은 PPO(40.85)를 근소하게(+0.95점) 넘을 뿐이고, 큰 향상은 기준 설정 β = 1.0의 토큰 재분배에서 나온다. β를 더 키우면 턴 평균은 보존돼도 점수가 다시 떨어진다</figcaption>
 </figure>
 
 ### 8. 결론
