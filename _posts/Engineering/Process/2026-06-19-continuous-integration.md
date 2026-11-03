@@ -293,3 +293,4 @@ Continuous Integration은 "통합을 별도의 사건에서 평범한 배경 작
 - [Process Essential Curriculum](/2026/06/19/process-essential-curriculum.html) — 시리즈 전체 지도와 진행 현황
 - [OOSE: 유스케이스 주도 개발](/2026/06/19/oose-use-case-driven.html) — 5단계 다시 보기
 - [Essence: 방법론 감옥에서 탈출하기](/2026/06/19/essentials-of-modern-software-engineering.html) — 7단계로 이어가기
+- [TDD의 래칫, 가벼운 CI, pstack: 프로젝트 운영체제를 선택하는 법](/2026/11/03/tdd-ratchet-lightweight-ci-pstack.html) — pstack-governed와 SDD-governed 중 하나만 프로젝트 운영체제로 선택하되, CI의 반복 회귀 가드와 독립 product-surface verification은 어느 쪽에서도 유지하고 milestone 지표에 따라 clean cutover하는 모델

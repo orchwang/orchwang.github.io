@@ -558,3 +558,4 @@ pstack은 "AI 슬롭"이라는 막연한 불만을 **라우터 하나, 플레이
 - [Claude로 Claude를 출시하는 법](/2026/10/28/anthropic-ships-claude-with-claude.html) — 멀티 에이전트·평가·슬롭에 대한 모델 제공자 쪽 시각
 - [Codex의 agent loop를 펼쳐 보기](/2026/06/25/codex-agent-loop.html) — 하니스가 LLM을 부리는 내부 루프
 - [Test-Driven Development: By Example](/2026/06/19/tdd-by-example.html) — pstack `tdd` 스킬과 Bug fix 플레이북의 "실패 테스트 먼저" 배경
+- [TDD의 래칫, 가벼운 CI, pstack: 프로젝트 운영체제를 선택하는 법](/2026/11/03/tdd-ratchet-lightweight-ci-pstack.html) — 프로젝트·독립 subsystem이 milestone 동안 pstack-governed와 SDD-governed 중 하나만 채택하고, TDD·CI·ADR·Feature Map은 독립 control로 유지한 뒤 지표가 가설을 반박하면 clean cutover하는 운영 모델
