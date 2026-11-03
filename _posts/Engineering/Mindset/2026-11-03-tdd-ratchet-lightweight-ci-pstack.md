@@ -53,7 +53,7 @@ excerpt: "pstack-governed와 SDD-governed 중 하나를 프로젝트·독립 sub
   <path d="M400 180 V202 H205 V224" fill="none" stroke="var(--accent-color)" stroke-width="2.5" marker-end="url(#tdd-arrow-accent)"/>
   <path d="M400 180 V202 H595 V224" fill="none" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#tdd-arrow-secondary)"/>
   <text x="205" y="216" text-anchor="middle" fill="var(--accent-color)" font-family="inherit" font-size="11" font-weight="700">미래 변경마다 반복</text>
-  <text x="595" y="216" text-anchor="middle" fill="var(--secondary-color)" font-family="inherit" font-size="11" font-weight="700">현재 산출물을 product surface에서 확인</text>
+  <text x="595" y="216" text-anchor="middle" fill="var(--secondary-color)" font-family="inherit" font-size="11" font-weight="700">현재 산출물을 UI·CLI·API에서 직접 확인</text>
 
   <!-- Permanent CI ratchet -->
   <g>
@@ -555,7 +555,7 @@ P95가 예산을 넘으면 가장 먼저 할 일은 runner를 무작정 더 사�
     <li>작은 PR</li>
     <li>UI·CLI·API 독립 검증</li>
   </ul>
-  <p class="deck-lead">완료의 기준은 “코드를 썼다”가 아니라 “product surface에서 확인됐다”다.</p>
+  <p class="deck-lead">완료의 기준은 “코드를 썼다”가 아니라 “사용자가 접하는 UI·CLI·API에서 직접 확인됐다”다.</p>
   <p class="deck-note">작성자의 설명이나 초록색 테스트만으로 끝내지 않는다.</p>
 </section>
 
