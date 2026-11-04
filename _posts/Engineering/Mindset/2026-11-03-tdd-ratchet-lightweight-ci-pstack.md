@@ -14,83 +14,11 @@ excerpt: "pstack-governed와 SDD-governed 중 하나를 프로젝트·독립 sub
 > 본 포스트는 AI와 함께 작성하였으며, 저자가 초안을 작성했고 적극적인 조정을 거친 결과물입니다.
 
 <figure class="post-figure post-figure--header">
-<svg viewBox="0 0 800 440" role="img" aria-labelledby="tdd-controls-title tdd-controls-desc" xmlns="http://www.w3.org/2000/svg">
-  <title id="tdd-controls-title">하나의 프로젝트 계약 기준선과 TDD·CI의 영구 래칫, 독립 product-surface verification을 잇는 안전 모델</title>
-  <desc id="tdd-controls-desc">왼쪽의 TDD 크랭크가 설계를 전진시키고, 가운데에는 프로젝트가 선택한 운영 규칙의 권위 있는 계약 기준선이 있다. 아래 왼쪽에서는 낮고 안정적인 가드가 CI에서 반복되는 래칫이 되고, 아래 오른쪽에서는 독립 검증자가 UI, CLI, API를 직접 실행해 확인한다. 두 종류의 증거는 어느 프로젝트 운영 규칙에서도 쓰는 독립 control이며 서로 다른 시간축의 신뢰를 만든다.</desc>
-  <defs>
-    <marker id="tdd-arrow-accent" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-      <path d="M0 0 L10 5 L0 10 Z" fill="var(--accent-color)"/>
-    </marker>
-    <marker id="tdd-arrow-secondary" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-      <path d="M0 0 L10 5 L0 10 Z" fill="var(--secondary-color)"/>
-    </marker>
-  </defs>
-
-  <text x="400" y="28" text-anchor="middle" fill="currentColor" font-family="inherit" font-size="16" font-weight="700">한 계약 기준선을 두 시간축에서 지킨다</text>
-
-  <!-- TDD crank: useful for moving design, not an automatic lifetime commitment -->
-  <g>
-    <circle cx="92" cy="112" r="43" fill="var(--bg-light)" stroke="var(--accent-color)" stroke-width="3"/>
-    <path d="M66 86 A43 43 0 0 1 124 91" fill="none" stroke="var(--accent-color)" stroke-width="3" marker-end="url(#tdd-arrow-accent)"/>
-    <line x1="92" y1="112" x2="125" y2="82" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
-    <circle cx="92" cy="112" r="6" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
-    <circle cx="131" cy="76" r="8" fill="var(--secondary-color)" stroke="currentColor" stroke-width="2"/>
-    <text x="92" y="108" text-anchor="middle" fill="currentColor" font-family="inherit" font-size="11" font-weight="700">RED</text>
-    <text x="92" y="124" text-anchor="middle" fill="currentColor" font-family="inherit" font-size="10">GREEN</text>
-    <text x="92" y="174" text-anchor="middle" fill="currentColor" font-family="inherit" font-size="14" font-weight="700">크랭크</text>
-    <text x="92" y="191" text-anchor="middle" fill="var(--text-light)" font-family="inherit" font-size="11">설계를 전진시킨다</text>
-  </g>
-
-  <path d="M150 112 H250" fill="none" stroke="var(--secondary-color)" stroke-width="3" marker-end="url(#tdd-arrow-secondary)"/>
-  <text x="200" y="99" text-anchor="middle" fill="var(--text-light)" font-family="inherit" font-size="11">모든 exploratory test가 아니라</text>
-
-  <!-- Contract gate: decides what deserves permanent protection -->
-  <g>
-    <path d="M260 66 H540 V145 L500 180 H300 L260 145 Z" fill="var(--bg-light)" stroke="var(--border-color)" stroke-width="3"/>
-    <path d="M278 82 H522" fill="none" stroke="var(--gold)" stroke-width="3"/>
-    <text x="400" y="112" text-anchor="middle" fill="currentColor" font-family="inherit" font-size="18" font-weight="700">권위 있는 계약 기준선</text>
-    <text x="400" y="136" text-anchor="middle" fill="var(--text-light)" font-family="inherit" font-size="12">공통 기획 SSOT에서 파생</text>
-    <text x="400" y="159" text-anchor="middle" fill="var(--accent-color)" font-family="inherit" font-size="12" font-weight="700">운영 규칙마다 하나만 유지</text>
-  </g>
-
-  <!-- One contract creates two complementary kinds of evidence -->
-  <path d="M400 180 V202 H205 V224" fill="none" stroke="var(--accent-color)" stroke-width="2.5" marker-end="url(#tdd-arrow-accent)"/>
-  <path d="M400 180 V202 H595 V224" fill="none" stroke="var(--secondary-color)" stroke-width="2.5" marker-end="url(#tdd-arrow-secondary)"/>
-  <text x="205" y="216" text-anchor="middle" fill="var(--accent-color)" font-family="inherit" font-size="11" font-weight="700">미래 변경마다 반복</text>
-  <text x="595" y="216" text-anchor="middle" fill="var(--secondary-color)" font-family="inherit" font-size="11" font-weight="700">현재 산출물을 UI·CLI·API에서 직접 확인</text>
-
-  <!-- Permanent CI ratchet -->
-  <g>
-    <rect x="30" y="230" width="350" height="128" rx="8" fill="var(--bg-light)" stroke="var(--border-color)" stroke-width="2.5"/>
-    <text x="205" y="256" text-anchor="middle" fill="currentColor" font-family="inherit" font-size="15" font-weight="700">영구 래칫 · CI</text>
-    <path d="M65 292 H330" fill="none" stroke="var(--accent-color)" stroke-width="3" marker-end="url(#tdd-arrow-accent)"/>
-    <text x="197" y="283" text-anchor="middle" fill="var(--text-light)" font-family="inherit" font-size="11">관련 PR마다 같은 계약을 다시 확인</text>
-    <path d="M70 334 L92 310 L114 334 L136 310 L158 334 L180 310 L202 334 L224 310 L246 334 L268 310 L290 334 L312 310 L334 334" fill="none" stroke="var(--accent-color)" stroke-width="3" stroke-linejoin="round"/>
-    <path d="M174 299 L196 320 L164 323 Z" fill="var(--secondary-color)" stroke="currentColor" stroke-width="1.5"/>
-    <text x="205" y="350" text-anchor="middle" fill="currentColor" font-family="inherit" font-size="11" font-weight="700">낮고 안정적인 가드가 역행을 막는다</text>
-  </g>
-
-  <!-- Independent real-surface proof -->
-  <g>
-    <rect x="420" y="230" width="350" height="128" rx="8" fill="var(--bg-light)" stroke="var(--border-color)" stroke-width="2.5"/>
-    <text x="595" y="256" text-anchor="middle" fill="currentColor" font-family="inherit" font-size="15" font-weight="700">독립 product-surface verification</text>
-    <rect x="450" y="274" width="125" height="62" rx="5" fill="var(--bg-panel)" stroke="var(--secondary-color)" stroke-width="2.5"/>
-    <line x1="450" y1="290" x2="575" y2="290" stroke="var(--border-color)" stroke-width="2"/>
-    <circle cx="461" cy="282" r="3" fill="var(--accent-color)"/>
-    <circle cx="472" cy="282" r="3" fill="var(--gold)"/>
-    <text x="512" y="314" text-anchor="middle" fill="currentColor" font-family="inherit" font-size="11" font-weight="700">UI · CLI · API</text>
-    <circle cx="625" cy="287" r="12" fill="var(--bg-panel)" stroke="currentColor" stroke-width="2"/>
-    <path d="M625 299 V326 M608 315 H642" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-    <path d="M667 300 L678 311 L700 284" fill="none" stroke="var(--secondary-color)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="667" y="336" text-anchor="middle" fill="var(--text-light)" font-family="inherit" font-size="10">작성자 밖의 PASS</text>
-  </g>
-
-  <!-- Convergence: neither side substitutes for the other -->
-  <path d="M205 358 V375 H400 M595 358 V375 H400 M400 375 V388" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.7" marker-end="url(#tdd-arrow-secondary)"/>
-  <rect x="285" y="390" width="230" height="36" rx="18" fill="var(--bg-light)" stroke="var(--secondary-color)" stroke-width="3"/>
-  <text x="400" y="414" text-anchor="middle" fill="currentColor" font-family="inherit" font-size="14" font-weight="700">가볍고 끊기지 않는 안전망</text>
-</svg>
-<figcaption>삽화: 프로젝트는 별도 기획 SSOT를 product intent의 공통 기준선으로 두고, delivery에는 pstack-governed와 SDD-governed 중 하나의 운영 규칙만 적용한다. TDD의 크랭크, CI의 영구 래칫, 독립 product-surface PASS는 두 workflow를 섞는 층이 아니라 어느 프로젝트 운영 규칙에서도 쓸 수 있는 독립 control이다.</figcaption>
+<picture>
+  <source type="image/webp" srcset="/assets/images/mindset/tdd-ci-pstack-safety-net-infographic-640.webp 640w, /assets/images/mindset/tdd-ci-pstack-safety-net-infographic-1024.webp 1024w, /assets/images/mindset/tdd-ci-pstack-safety-net-infographic-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 1000px">
+  <img src="/assets/images/mindset/tdd-ci-pstack-safety-net-infographic.jpg" alt="하나의 권위 있는 계약 기준선에서 미래 변경을 반복 검증하는 영구 래칫 CI와 현재 산출물을 직접 확인하는 독립 product-surface verification이 갈라졌다가 가볍고 끊기지 않는 안전망으로 합쳐지는 구조." width="1536" height="864" loading="lazy" decoding="async">
+</picture>
+<figcaption>하나의 계약 기준선을 두 시간축에서 지킨다. <strong>영구 래칫·CI</strong>는 미래 변경의 역행을 반복해서 막고, <strong>독립 product-surface verification</strong>은 현재 산출물을 UI·CLI·API에서 직접 확인한다.</figcaption>
 </figure>
 
 이 글에서 **프로젝트 운영 규칙**은 product·project·독립 subsystem의 모든 변경이 공통으로 상속하는 **source of truth, 작업 순서, 필수 산출물, 완료 판정 규칙**을 묶어 부르는 말이다. pstack이나 SDD가 스스로 사용하는 공식 범주명이 아니라, 이 글이 서로 다른 workflow의 운영 범위를 같은 관점에서 비교하기 위해 도입한 기준이다. `pstack-governed`와 `SDD-governed`는 이 네 항목을 서로 다르게 정하므로 각각 별도의 운영 규칙으로 다룬다. 반면 TDD·CI·ADR·Feature Map은 그 위에서 특정 질문을 담당하는 독립 controls다.
@@ -413,6 +341,14 @@ pstack-governed를 선택해도 CI의 영구 래칫을 버릴 수 없는 이유�
 | --- | --- | --- | --- | --- |
 | 변경 시점의 shipping evidence | "이 변경이 지금 product surface에서 동작하는가?" | 해당 PR·release 시점의 한 실행 | UI·CLI·API와 부수효과를 함께 본다 | 다음 변경에서도 자동으로 다시 실행된다는 보장이 없다 |
 | 영구 회귀 가드 | "미래 변경이 이 계약을 깨뜨렸는가?" | 모든 관련 커밋·PR에서 반복 | 한 번 확보한 계약을 자동으로 누적 보호한다 | 잘못된 층·구현 결합·mock 안에서는 product behavior와 멀어질 수 있다 |
+
+<figure class="post-figure">
+<picture>
+  <source type="image/webp" srcset="/assets/images/mindset/tdd-ci-pstack-operating-rule-640.webp 640w, /assets/images/mindset/tdd-ci-pstack-operating-rule-1024.webp 1024w, /assets/images/mindset/tdd-ci-pstack-operating-rule-1536.webp 1536w" sizes="(max-width: 800px) 100vw, 760px">
+  <img src="/assets/images/mindset/tdd-ci-pstack-operating-rule.jpg" alt="붉은 협곡의 오그리마 앞에서 오크 전사가 거대한 철제 레버를 당긴다. 선택된 성문으로 이어지는 길에는 래칫 톱니와 방패 모양 불빛이 이어지고, 다른 길의 쇠문은 닫혀 있다. 레트로 픽셀아트." width="1536" height="1024" loading="lazy" decoding="async">
+</picture>
+<figcaption>한 프로젝트에 <strong>운전대는 하나만</strong> 둔다. 오크 전사가 레버 하나를 선택하자 닫힌 길과 열린 길이 갈리고, 열린 길에는 래칫 톱니와 방패형 가드가 이어진다. 프로젝트 운영 규칙은 하나만 고르되 <strong>TDD·CI 안전장치</strong>는 선택한 길의 전진을 지킨다.</figcaption>
+</figure>
 
 pstack의 강점은 첫 번째 줄에 있다. Bug fix는 같은 표면에서 실패와 성공을 요구하고, Refactoring은 빌드·실행한 산출물의 동등성을 요구하며, Shipping은 작성자와 다른 검증자가 사용자처럼 실행하도록 한다. 이것은 보통의 "테스트 통과했습니다"보다 훨씬 강한 **현재 시점의 증명**이다.
 
