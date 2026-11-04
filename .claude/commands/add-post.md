@@ -1,211 +1,109 @@
 ---
-description: Create a new Jekyll blog post with proper formatting
+description: Create a new Jekyll blog post with proper formatting and directory placement
 ---
 
 # Add Post Command
 
-Create a new Jekyll blog post with the following arguments:
+Create a new Jekyll post for **Orc Hwang's Wiki** according to repository conventions, front-matter requirements, and category-directory mirroring.
 
 ## Arguments Format
 
-```
+```text
 /add-post <title> [category1,category2] [tags-with-comma] [yyyy-mm-dd]
 ```
 
-**Note**: Categories can be comma-separated for nested directory structure (e.g., "Technology,Python" creates `_posts/Technology/Python/`)
+Categories may be comma-separated for nested directories. For example, `Technology,Python` maps to `_posts/Technology/Python/`.
 
 ## Task Instructions
 
-1. **Parse Arguments**:
+1. **Parse Arguments**
+   - Extract the post title.
+   - Extract an optional single or comma-separated category list.
+   - Convert comma-separated tags to lowercase-hyphenated form.
+   - Use the supplied `YYYY-MM-DD` date or today's actual date.
+   - Never use a future date; Jekyll hides future-dated posts by default.
 
-   - Extract the post title from the first argument(s) before category/tags
-   - Extract optional category (single or comma-separated like "Technology,Python" or "Career,Roadmap")
-   - Extract comma-separated tags (e.g., "Python,Django,Backend")
-   - Extract optional date argument in YYYY-MM-DD format
-     - If date argument is provided, use that date
-     - If date argument is NOT provided, use today's **actual current date** in YYYY-MM-DD format
-     - **IMPORTANT**: Be careful with future dates - Jekyll hides future-dated posts by default
-     - Example: If date "2024-10-12" is provided, use that date
+2. **Determine Directory Path**
+   - No categories: `_posts/`
+   - Single category: `_posts/<CategoryName>/`
+   - Multiple categories: `_posts/<Category1>/<Category2>/`
+   - Create missing directories and preserve exact category capitalization.
+   - The directory path must mirror the `categories` field.
 
-2. **Determine Directory Path**:
+3. **Generate Filename**
+   - Format: `YYYY-MM-DD-<slugified-title>.md`
+   - Lowercase the slug, replace spaces with hyphens, and remove unsupported special characters.
+   - The filename date must match the front-matter date.
 
-   - If **no categories** provided: `_posts/`
-   - If **single category**: `_posts/CategoryName/` (e.g., `_posts/Retrospec/`)
-   - If **multiple categories**: `_posts/Category1/Category2/` (e.g., `_posts/Technology/Python/`)
-   - **Create the directory structure if it doesn't exist**
-   - Use the exact category capitalization provided
+4. **Create the Post**
+   - Reuse the structure of a recent post of the same type.
+   - Write the main content in Korean; retain English technical terms, identifiers, and proper nouns where natural.
+   - Never place standalone `---` horizontal rules between sections. Use `---` only for the YAML front-matter boundary.
+   - Use this canonical educational structure when no more specific post type applies:
 
-3. **Generate Filename**:
-
-   - Format: `YYYY-MM-DD-slugified-title.md`
-   - Use the date from step 1 (provided date or today's date)
-   - Slugify the title:
-     - Convert to lowercase
-     - Replace spaces with hyphens
-     - Remove special characters except hyphens
-   - Example: "Analysis Python Commands" with date 2024-10-12 → "2024-10-12-analysis-python-commands.md"
-
-4. **Create the Post File** in the appropriate category directory with this structure:
-
-```markdown
+````markdown
 ---
 layout: post
-title: "<original title with proper capitalization>"
+title: "<Original Title>"
 date: YYYY-MM-DD
-categories: <category>
+categories: [Category1, Category2]
 tags: [tag1, tag2, tag3]
 published: true
-excerpt: "Brief 1-2 sentence summary of the post content."
+excerpt: "Brief 1-2 sentence summary of the post."
 ---
 
-## Introduction
+## Topic Introduction
 
-Brief introduction to the topic...
+Explain why the topic matters and what the post covers.
 
----
+## Main Concept
 
-## Main Content
+Explain the core principles and mechanics.
 
-### Section 1
+### Details and Code Examples
 
-Content here...
-
-### Section 2
-
-More content...
-
----
-
-## Key Points
-
-- Point 1
-- Point 2
-- Point 3
-
----
-
-## Conclusion
-
-Summary and wrap-up...
-
-### Next Steps
-
-- Related topic 1
-- Related topic 2
+```language
+// Practical, working example
 ```
 
-5. **Front Matter Rules**:
+## Practical Application and Considerations
 
-   - `layout: post` is always required
-   - `title:` should be quoted if it contains special characters
-   - `date:` must be in YYYY-MM-DD format
-     - **Must match the date used in the filename**
-     - Use the provided date argument, or today's actual date if not provided
-     - Be careful with future dates - future-dated posts won't appear on the site
-   - `categories:` formatting:
-     - **Single category**: `categories: CategoryName` (e.g., `categories: Retrospec`)
-     - **Multiple categories**: `categories: [Category1, Category2]` (e.g., `categories: [Technology, Python]`)
-     - Omit the line entirely if no categories provided
-     - **IMPORTANT**: Multiple categories create nested directories (Technology/Python/)
-   - `tags:` should be an array format: [tag1, tag2, tag3]
-   - `published: true` must always be included for posts ready to display
-   - `excerpt:` should be a brief 1-2 sentence summary
-     - Must be quoted
-     - Describes what the post covers
-     - Used for SEO and post previews
-     - Always include this field by default
+Cover real-world scenarios, performance, complexity, or edge cases.
 
-5. **After Creating the File**:
-   - Confirm the file was created
-   - Show the filename and path
-   - Provide the URL where the post will be accessible using the date from the filename: `http://localhost:4000/YYYY/MM/DD/title.html`
-   - Example: If created `2024-09-15-python-decorators.md`, the URL is `http://localhost:4000/2024/09/15/python-decorators.html`
+## Summary
 
-## Examples
+Summarize the key takeaways.
 
-### Example 1: Multiple categories (nested directories)
+### 다음 학습
 
-```
-/add-post Python Memory Management Technology,Python memory,gc,internals
-```
+- [Related Topic 1](/YYYY/MM/DD/related-topic-1.html)
+- [Related Topic 2](/YYYY/MM/DD/related-topic-2.html)
+````
 
-Creates: `_posts/Technology/Python/2025-10-25-python-memory-management.md`
-Front matter: `categories: [Technology, Python]`
+5. **Front Matter Rules**
+   - `layout: post` is required.
+   - Quote `title` when it contains `:` or other YAML-sensitive characters.
+   - `date` must use `YYYY-MM-DD` and match the filename.
+   - Use `categories: CategoryName` for one category.
+   - Use `categories: [Category1, Category2]` for nested categories.
+   - Omit `categories` when there is no category.
+   - Use lowercase-hyphenated array form for `tags`.
+   - Always include `published: true`.
+   - Always include a quoted 1-2 sentence `excerpt`.
 
-### Example 2: Single category
+6. **Optional AI-Assisted Writing Disclosure**
+   - Add this disclosure only when the author explicitly states they wrote the draft and actively adjusted the AI-assisted result. Do not infer it merely because AI was used.
+   - Place it immediately after the closing YAML front-matter delimiter, before any header illustration, summary box, table of contents, or prose, so readers see it before consuming the post.
+   - Use the canonical wording and blockquote format:
 
-```
-/add-post my 2024 retrospective Retrospec retrospec,booklog 2024-12-31
+```markdown
+> **작성 고지**
+>
+> 본 포스트는 AI와 함께 작성하였으며, 저자가 초안을 작성했고 적극적인 조정을 거친 결과물입니다.
 ```
 
-Creates: `_posts/Retrospec/2024-12-31-my-2024-retrospective.md`
-Front matter: `categories: Retrospec`
-
-### Example 3: Career roadmap (nested)
-
-```
-/add-post Senior Engineer Competencies Career,Roadmap career,engineering,skills
-```
-
-Creates: `_posts/Career/Roadmap/2025-10-25-senior-engineer-competencies.md`
-Front matter: `categories: [Career, Roadmap]`
-
-### Example 4: Without category (root directory)
-
-```
-/add-post understanding django orm Python,Django,ORM
-```
-
-Creates: `_posts/2025-10-25-understanding-django-orm.md`
-Front matter: No categories line
-
-### Example 5: With specific date
-
-```
-/add-post python decorators Technology,Python Python,Advanced 2024-09-15
-```
-
-Creates: `_posts/Technology/Python/2024-09-15-python-decorators.md`
-Front matter: `categories: [Technology, Python]`
-
-### Example 6: Korean title with nested categories
-
-```
-/add-post 파이썬 기초 문법 Technology,Python Python,기초 2024-08-20
-```
-
-Creates: `_posts/Technology/Python/2024-08-20-파이썬-기초-문법.md`
-
-## Important Notes
-
-- **Category Directory Structure**:
-  - **No categories**: File goes in `_posts/` root
-  - **Single category** (e.g., "Retrospec"): File goes in `_posts/Retrospec/`
-  - **Multiple categories** (e.g., "Technology,Python"): File goes in `_posts/Technology/Python/`
-  - **Always create the directory structure first** if it doesn't exist
-  - Use exact capitalization as provided (Technology, Python, Career, Roadmap, etc.)
-
-- **Date Handling**:
-  - If date argument is provided in YYYY-MM-DD format, use that exact date
-  - If date argument is NOT provided, use today's actual current date (not future dates)
-  - Jekyll hides future-dated posts by default
-  - Backdating posts is allowed by providing a past date
-
-- **Front Matter**:
-  - Keep the original title case in the front matter
-  - Single category: `categories: CategoryName` (no brackets)
-  - Multiple categories: `categories: [Category1, Category2]` (with brackets)
-  - If category is not provided, omit the `categories:` line entirely
-  - Tags should always be provided (at least one tag): `tags: [tag1, tag2]`
-  - **Always include `published: true`** in the front matter
-  - **Always include `excerpt:`** field with a brief 1-2 sentence summary for SEO and post previews
-
-- **File Naming**:
-  - Slugify the title for the filename (lowercase, hyphens)
-  - The filename date and front matter date must match
-  - The post will be automatically picked up by Jekyll when the server is running
-
-- **URL Structure**:
-  - URLs remain unchanged regardless of directory structure
-  - All posts use: `/:year/:month/:day/:title.html`
-  - Example: `_posts/Technology/Python/2024-09-15-python-decorators.md` → `/2024/09/15/python-decorators.html`
+7. **Post-Creation Verification**
+   - Run `bundle exec jekyll build`.
+   - Confirm the generated post exists in `_site/YYYY/MM/DD/<slug>.html`.
+   - Confirm internal links resolve.
+   - Report the created path, front matter, preview URL, and exercised verification.

@@ -4710,6 +4710,45 @@ body.present-active { overflow: hidden; }
 .present-slide-inner .deck-card ul:last-child,
 .present-slide-inner .deck-card li:last-child { margin-bottom: 0; }
 
+/* Semantic comparison matrix with stable projection alignment */
+.present-slide-inner .deck-matrix {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin: 0.55em 0;
+    font-size: clamp(1rem, 1.55vw, 1.35rem);
+    line-height: 1.45;
+}
+
+.present-slide-inner .deck-matrix .deck-matrix-label {
+    width: 16%;
+}
+
+.present-slide-inner .deck-matrix--rules .deck-matrix-label {
+    width: 10%;
+}
+
+.present-slide-inner .deck-matrix th,
+.present-slide-inner .deck-matrix td {
+    padding: 0.55em 0.7em;
+    border: 2px solid var(--border-color);
+    vertical-align: top;
+    text-align: left;
+    overflow-wrap: break-word;
+}
+
+.present-slide-inner .deck-matrix thead th {
+    background: var(--bg-sunken);
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.present-slide-inner .deck-matrix tbody th {
+    background: var(--bg-panel);
+    color: var(--accent-color);
+    white-space: nowrap;
+}
+
 /* Tag chips */
 .present-slide-inner .deck-chips {
     display: flex;

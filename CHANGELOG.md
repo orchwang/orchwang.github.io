@@ -8,6 +8,9 @@ See [`DESIGN.md`](DESIGN.md) (design system) and [`ASSETS.md`](ASSETS.md) (asset
 ### Fixed
 - **Post tables stay within the mobile reading panel.** Tables wider than the viewport now
   scroll horizontally inside their own bounds instead of widening the whole page.
+- **Presentation comparison tables keep their columns aligned.** The new `deck-matrix`
+  helper gives semantic slide tables fixed column widths, visible cell boundaries, and
+  non-wrapping row labels in both themes.
 
 ## [2.1.0] — 2026-06-25
 

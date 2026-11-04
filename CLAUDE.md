@@ -351,7 +351,8 @@ posts and builds a curriculum-wide overview deck). Invoke with "이 포스트 �
 **Deck authoring helpers** (styled in `style.css`, only meaningful inside a slide):
 `deck-kicker` (eyebrow label), `deck-lead` (big lead line), `deck-note` (muted footnote),
 `deck-num` (stage badge), `deck-cols` + `deck-card` (column grid of cards), `deck-chips` + `deck-chip`
-(tag chips), `deck-flow` (arrow-linked pipeline row). Theme-aware (light + dark) via design tokens.
+(tag chips), `deck-flow` (arrow-linked pipeline row), `deck-matrix` (fixed-column semantic comparison table).
+Theme-aware (light + dark) via design tokens.
 
 **Playback:** fullscreen overlay; navigate with `→`/`Space`/`PageDown` (next), `←`/`PageUp` (prev),
 `Home`/`End` (first/last), `Esc` (exit); bottom control bar (◀ · counter · ▶ · ✕) + progress bar.

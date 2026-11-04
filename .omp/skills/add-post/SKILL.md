@@ -41,7 +41,7 @@ Scaffold and create a new Jekyll blog post for **Orc Hwang's Wiki** conforming t
 4. **Create the Post File**:
    Use the canonical educational structure. **Important**: Never place standalone `---` horizontal rules between sections; headings provide visual separation.
 
-```markdown
+````markdown
 ---
 layout: post
 title: "<Original Title with Proper Capitalization>"
@@ -78,7 +78,7 @@ Key takeaways from this post.
 
 - [Related Topic 1](/YYYY/MM/DD/related-topic-1.html)
 - [Related Topic 2](/YYYY/MM/DD/related-topic-2.html)
-```
+````
 
 5. **Front Matter Rules**:
    - `layout: post` is required.
@@ -92,7 +92,18 @@ Key takeaways from this post.
    - `published: true` must always be included.
    - `excerpt`: 1-2 sentence summary for SEO and previews, quoted.
 
-6. **Post-Creation Verification**:
+6. **Optional AI-Assisted Writing Disclosure**:
+   - Add this disclosure only when the author explicitly states they wrote the draft and actively adjusted the AI-assisted result. Do not infer it merely because AI was used.
+   - Place it immediately after the closing YAML front-matter delimiter, before any header illustration, summary box, table of contents, or prose, so readers see it before consuming the post.
+   - Use the canonical wording and blockquote format:
+
+```markdown
+> **작성 고지**
+>
+> 본 포스트는 AI와 함께 작성하였으며, 저자가 초안을 작성했고 적극적인 조정을 거친 결과물입니다.
+```
+
+7. **Post-Creation Verification**:
    - Report created file path and front matter.
    - Provide local preview URL: `http://localhost:4000/YYYY/MM/DD/<slug>.html`.
    - Remind to run `bundle exec jekyll build` to verify compilation.
